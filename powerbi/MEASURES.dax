@@ -1,0 +1,50 @@
+Observed Transfer Outcomes =
+SUM(fct_transfer_cohort_performance[observed_outcome_count])
+
+Transfer Outcome Coverage % =
+DIVIDE(
+    SUM(fct_transfer_cohort_performance[observed_outcome_count]),
+    SUM(fct_transfer_cohort_performance[transfer_count])
+)
+
+Average Reliable Cohort Median Value Change % =
+CALCULATE(
+    AVERAGE(fct_transfer_cohort_performance[median_market_value_change_pct]),
+    fct_transfer_cohort_performance[meets_minimum_sample_size] = TRUE()
+)
+
+Historical Transfers =
+DISTINCTCOUNT(fct_transfer_fixed_horizon_outcomes[transfer_key])
+
+Observed 365d Transfers =
+CALCULATE(
+    [Historical Transfers],
+    fct_transfer_fixed_horizon_outcomes[has_365d_outcome] = TRUE()
+)
+
+365d Outcome Coverage % =
+DIVIDE([Observed 365d Transfers], [Historical Transfers])
+
+Median 365d Value Change % =
+CALCULATE(
+    MEDIAN(fct_transfer_fixed_horizon_outcomes[market_value_change_365d_pct]),
+    fct_transfer_fixed_horizon_outcomes[has_365d_outcome] = TRUE()
+)
+
+Known Fee Coverage % =
+DIVIDE(
+    SUM(fct_data_coverage_bias[known_fee_count]),
+    SUM(fct_data_coverage_bias[transfer_count])
+)
+
+Net Transfer Spend =
+SUM(fct_club_transfer_portfolio[net_transfer_spend])
+
+Reliable Club Transfer Success Rate % =
+CALCULATE(
+    AVERAGE(fct_club_risk_profile[transfer_success_rate_pct]),
+    fct_club_risk_profile[meets_minimum_sample_size] = TRUE()
+)
+
+Rolling 5 Goals per 90 =
+AVERAGE(fct_player_rolling_form[rolling_5_goals_per_90])

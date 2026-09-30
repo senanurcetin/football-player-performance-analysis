@@ -1,0 +1,116 @@
+table ml_player_market_value_feature_drift
+
+	column model_version
+		dataType: string
+		summarizeBy: none
+		sourceColumn: model_version
+
+		annotation SummarizationSetBy = Automatic
+
+	column feature
+		dataType: string
+		summarizeBy: none
+		sourceColumn: feature
+
+		annotation SummarizationSetBy = Automatic
+
+	column feature_type
+		dataType: string
+		summarizeBy: none
+		sourceColumn: feature_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column psi
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: psi
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column drift_status
+		dataType: string
+		summarizeBy: none
+		sourceColumn: drift_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column reference_row_count
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: reference_row_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column current_row_count
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: current_row_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column reference_season_min
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: reference_season_min
+
+		annotation SummarizationSetBy = Automatic
+
+	column reference_season_max
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: reference_season_max
+
+		annotation SummarizationSetBy = Automatic
+
+	column current_season_min
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: current_season_min
+
+		annotation SummarizationSetBy = Automatic
+
+	column current_season_max
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: current_season_max
+
+		annotation SummarizationSetBy = Automatic
+
+	column reference_missing_pct
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: reference_missing_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column current_missing_pct
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: current_missing_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition ml_player_market_value_feature_drift = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database([UseStorageApi=false]),
+				    #"data-analiz-490513" = Source{[Name="data-analiz-490513"]}[Data],
+				    football_ml_Schema = #"data-analiz-490513"{[Name="football_ml",Kind="Schema"]}[Data],
+				    ml_player_market_value_feature_drift_Table = football_ml_Schema{[Name="ml_player_market_value_feature_drift",Kind="Table"]}[Data]
+				in
+				    ml_player_market_value_feature_drift_Table
+

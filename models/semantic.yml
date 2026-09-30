@@ -1,0 +1,91 @@
+version: 2
+
+semantic_models:
+  - name: transfer_outcomes
+    description: Governed transfer outcome metrics at transfer grain
+    model: ref('fct_transfer_fixed_horizon_outcomes')
+    defaults:
+      agg_time_dimension: transfer_date
+    entities:
+      - {name: transfer, type: primary, expr: transfer_key}
+      - {name: player, type: foreign, expr: player_id}
+      - {name: destination_club, type: foreign, expr: to_club_id}
+    dimensions:
+      - name: transfer_date
+        type: time
+        type_params: {time_granularity: day}
+      - {name: position, type: categorical}
+      - {name: age_band_at_transfer, type: categorical}
+      - {name: fee_premium_band, type: categorical}
+      - {name: valuation_context_change, type: categorical}
+    measures:
+      - {name: transfer_count, agg: count, expr: transfer_key}
+      - {name: observed_365d_transfer_count, agg: sum, expr: "case when has_365d_outcome then 1 else 0 end"}
+      - {name: avg_market_value_change_365d_pct, agg: average, expr: market_value_change_365d_pct}
+      - {name: avg_fee_premium_pct, agg: average, expr: fee_market_value_difference_pct}
+
+  - name: club_season_performance
+    description: Governed club-season performance metrics
+    model: ref('fct_club_season_performance')
+    defaults:
+      agg_time_dimension: season_start_date
+    entities:
+      - {name: club_season_competition, type: primary, expr: "concat(cast(club_id as string), '-', cast(season as string), '-', competition_id)"}
+      - {name: club, type: foreign, expr: club_id}
+      - {name: competition, type: foreign, expr: competition_id}
+    dimensions:
+      - name: season_start_date
+        type: time
+        type_params: {time_granularity: day}
+      - {name: season, type: categorical}
+      - {name: competition_name, type: categorical}
+    measures:
+      - {name: club_matches, agg: sum, expr: matches_played}
+      - {name: club_points, agg: sum, expr: points}
+      - {name: club_wins, agg: sum, expr: wins}
+      - {name: club_goals_scored, agg: sum, expr: goals_scored}
+
+metrics:
+  - name: transfers
+    label: Transfers
+    description: Total historical transfers in the governed outcome population
+    type: simple
+    type_params: {measure: transfer_count}
+
+  - name: transfer_365d_outcome_coverage
+    label: Transfer 365-Day Outcome Coverage
+    description: Share of historical transfers with a comparable 365-day market-value outcome
+    type: ratio
+    type_params:
+      numerator: observed_365d_transfers
+      denominator: transfers
+
+  - name: observed_365d_transfers
+    label: Observed 365-Day Transfers
+    description: Historical transfers with a comparable 365-day market-value outcome
+    type: simple
+    type_params: {measure: observed_365d_transfer_count}
+
+  - name: average_365d_market_value_change_pct
+    label: Average 365-Day Market Value Change Percent
+    description: Average comparable 365-day market-value change percentage
+    type: simple
+    type_params: {measure: avg_market_value_change_365d_pct}
+
+  - name: average_transfer_fee_premium_pct
+    label: Average Transfer Fee Premium Percent
+    description: Average fee premium or discount versus the selected market-value baseline
+    type: simple
+    type_params: {measure: avg_fee_premium_pct}
+
+  - name: club_matches
+    label: Club Matches
+    description: Sum of club matches across selected club-season rows
+    type: simple
+    type_params: {measure: club_matches}
+
+  - name: club_points
+    label: Club Points
+    description: Sum of three-one-zero club points
+    type: simple
+    type_params: {measure: club_points}

@@ -1,0 +1,85 @@
+name: ML Production
+
+on:
+  schedule:
+    - cron: "0 5 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ml-production
+  cancel-in-progress: false
+
+jobs:
+  train-score-publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      DBT_PROFILES_DIR: ${{ github.workspace }}/.ci
+      DBT_PROJECT_ID: data-analiz-490513
+      DBT_SOURCE_DATABASE: data-analiz-490513
+      DBT_DATASET: football
+      DBT_KEYFILE: ${{ github.workspace }}/.ci/gcp-service-account.json
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt -r requirements-ml.txt
+
+      - name: Configure BigQuery credentials
+        env:
+          GCP_SERVICE_ACCOUNT_JSON: ${{ secrets.GCP_SERVICE_ACCOUNT_JSON }}
+        run: |
+          test -n "$GCP_SERVICE_ACCOUNT_JSON"
+          mkdir -p "$DBT_PROFILES_DIR"
+          printf '%s' "$GCP_SERVICE_ACCOUNT_JSON" > "$DBT_KEYFILE"
+          cp profiles.yml.example "$DBT_PROFILES_DIR/profiles.yml"
+
+      - name: Check source freshness
+        run: dbt source freshness --selector raw_sources --no-partial-parse
+
+      - name: Build ML feature models
+        run: dbt build --select tag:ml --no-partial-parse
+
+      - name: Train, validate, score, and publish
+        run: |
+          python scripts/train_player_market_value.py \
+            --project-id "$DBT_PROJECT_ID" \
+            --dataset football_ml \
+            --credentials "$DBT_KEYFILE" \
+            --test-seasons 2 \
+            --publish-predictions-table ml_player_market_value_evaluation_predictions \
+            --publish-current-predictions-table ml_player_market_value_current_predictions \
+            --publish-evaluation-metrics-table ml_player_market_value_evaluation_metrics \
+            --publish-drift-table ml_player_market_value_feature_drift \
+            --publish-model-registry-table ml_player_market_value_model_registry \
+            --publish-feature-importance-table ml_player_market_value_feature_importance \
+            --publish-quality-gates-table ml_player_market_value_quality_gates
+
+      - name: Verify governed ML artifact
+        run: python scripts/verify_ml_artifact.py
+
+      - name: Verify published BigQuery outputs
+        run: |
+          python scripts/verify_published_ml_outputs.py \
+            --project-id "$DBT_PROJECT_ID" \
+            --dataset football_ml \
+            --credentials "$DBT_KEYFILE"
+
+      - name: Upload governed ML artifacts
+        uses: actions/upload-artifact@v7
+        with:
+          name: player-market-value-${{ github.run_id }}
+          path: artifacts/player_market_value/
+          if-no-files-found: error
+          retention-days: 30

@@ -1,0 +1,153 @@
+table fct_agent_portfolio
+
+	column agent_name
+		dataType: string
+		summarizeBy: none
+		sourceColumn: agent_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column player_count
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: player_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column players_with_current_market_value
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: players_with_current_market_value
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_current_market_value
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: total_current_market_value
+
+		annotation SummarizationSetBy = Automatic
+
+	column avg_current_market_value
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: avg_current_market_value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column median_current_market_value
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: median_current_market_value
+
+		annotation SummarizationSetBy = Automatic
+
+	column max_current_market_value
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: max_current_market_value
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_player_matches
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: total_player_matches
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_player_goals
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: total_player_goals
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_player_assists
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: total_player_assists
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_transfer_records
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: total_transfer_records
+
+		annotation SummarizationSetBy = Automatic
+
+	column known_fee_transfer_records
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: known_fee_transfer_records
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_known_transfer_fee
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: total_known_transfer_fee
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column max_known_transfer_fee
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: max_known_transfer_fee
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column transfer_fee_coverage_pct
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: transfer_fee_coverage_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column complete_profile_players
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: complete_profile_players
+
+		annotation SummarizationSetBy = Automatic
+
+	column complete_profile_player_pct
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: complete_profile_player_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition fct_agent_portfolio = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database([UseStorageApi=false]),
+				    #"data-analiz-490513" = Source{[Name="data-analiz-490513"]}[Data],
+				    football_mart_Schema = #"data-analiz-490513"{[Name="football_mart",Kind="Schema"]}[Data],
+				    fct_agent_portfolio_Table = football_mart_Schema{[Name="fct_agent_portfolio",Kind="Table"]}[Data]
+				in
+				    fct_agent_portfolio_Table
+

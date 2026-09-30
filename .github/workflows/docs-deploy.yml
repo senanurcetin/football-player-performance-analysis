@@ -1,0 +1,84 @@
+name: Deploy Documentation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "models/**"
+      - "docs/**"
+      - "analyses/**"
+      - "macros/**"
+      - "seeds/**"
+      - "snapshots/**"
+      - "dbt_project.yml"
+      - ".github/workflows/docs-deploy.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      DBT_PROFILES_DIR: ${{ github.workspace }}/.ci
+      DBT_PROJECT_ID: data-analiz-490513
+      DBT_SOURCE_DATABASE: data-analiz-490513
+      DBT_DATASET: football
+      DBT_KEYFILE: ${{ github.workspace }}/.ci/gcp-service-account.json
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Configure BigQuery credentials
+        env:
+          GCP_SERVICE_ACCOUNT_JSON: ${{ secrets.GCP_SERVICE_ACCOUNT_JSON }}
+        run: |
+          test -n "$GCP_SERVICE_ACCOUNT_JSON"
+          mkdir -p "$DBT_PROFILES_DIR"
+          printf '%s' "$GCP_SERVICE_ACCOUNT_JSON" > "$DBT_KEYFILE"
+          cp profiles.yml.example "$DBT_PROFILES_DIR/profiles.yml"
+
+      - name: Generate dbt documentation
+        run: dbt docs generate --no-partial-parse
+
+      - name: Build docs site
+        run: |
+          mkdir -p _site
+          cp target/index.html _site/
+          cp target/manifest.json _site/
+          cp target/catalog.json _site/
+          cp target/sources.json _site/
+
+      - name: Upload pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

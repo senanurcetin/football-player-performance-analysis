@@ -1,0 +1,34 @@
+<LinguisticSchema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Language="en-US" DynamicImprovement="Default" xmlns="http://schemas.microsoft.com/sqlserver/2016/01/linguisticschema">
+  <Entities>
+    <Entity Name="Oyuncu_Performans_Analizi" ConceptualEntity="0ce4a2fd971eb39022dd" Source="Generated">
+      <Words>
+        <Word>📊 Oyuncu Performans Analizi</Word>
+      </Words>
+    </Entity>
+    <Entity Name="Kulüp_ve_Lig_Analizi" ConceptualEntity="91aec87da8540bd3167d" Source="Generated">
+      <Words>
+        <Word>🏆 Kulüp ve Lig Analizi</Word>
+      </Words>
+    </Entity>
+    <Entity Name="Transfer_ve_Piyasa_Değeri_Analizi" ConceptualEntity="9a642f68c4ed12a4ada6" Source="Generated">
+      <Words>
+        <Word>💰 Transfer ve Piyasa Değeri Analizi</Word>
+      </Words>
+    </Entity>
+    <Entity Name="Oyuncu_Piyasa_Değeri_Tahmini" ConceptualEntity="846e876fee1a9576852e" Source="Generated">
+      <Words>
+        <Word>⭐ Oyuncu Piyasa Değeri Tahmini</Word>
+      </Words>
+    </Entity>
+    <Entity Name="Oyuncu_Segmentasyonu" ConceptualEntity="6dad5fb984063dd4471c" Source="Generated">
+      <Words>
+        <Word>👥 Oyuncu Segmentasyonu</Word>
+      </Words>
+    </Entity>
+    <Entity Name="Transfer_Başarısı_Tahmini" ConceptualEntity="a4ab83c21207001485c0" Source="Generated">
+      <Words>
+        <Word>🔄 Transfer Başarısı Tahmini</Word>
+      </Words>
+    </Entity>
+  </Entities>
+</LinguisticSchema>

@@ -1,0 +1,213 @@
+table fct_club_season_performance
+
+	column club_id
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: club_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column club_name
+		dataType: string
+		summarizeBy: none
+		sourceColumn: club_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column season
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: season
+
+		annotation SummarizationSetBy = Automatic
+
+	column season_start_date
+		dataType: dateTime
+		formatString: Long Date
+		summarizeBy: none
+		sourceColumn: season_start_date
+
+		variation Variation
+			isDefault
+			relationship: 112c73cf-2101-4467-bf88-38e44a8f6cb6
+			defaultHierarchy: LocalDateTable_71a90387-bbfa-4391-a844-bb61a57df9e3.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column competition_id
+		dataType: string
+		summarizeBy: none
+		sourceColumn: competition_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column competition_name
+		dataType: string
+		summarizeBy: none
+		sourceColumn: competition_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column matches_played
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: matches_played
+
+		annotation SummarizationSetBy = Automatic
+
+	column wins
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: wins
+
+		annotation SummarizationSetBy = Automatic
+
+	column draws
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: draws
+
+		annotation SummarizationSetBy = Automatic
+
+	column losses
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: losses
+
+		annotation SummarizationSetBy = Automatic
+
+	column goals_scored
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: goals_scored
+
+		annotation SummarizationSetBy = Automatic
+
+	column goals_conceded
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: goals_conceded
+
+		annotation SummarizationSetBy = Automatic
+
+	column goal_difference
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: goal_difference
+
+		annotation SummarizationSetBy = Automatic
+
+	column points
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: points
+
+		annotation SummarizationSetBy = Automatic
+
+	column win_rate_pct
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: win_rate_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_goals_scored
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: avg_goals_scored
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_goals_conceded
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: avg_goals_conceded
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_attendance
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: avg_attendance
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column home_matches
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: home_matches
+
+		annotation SummarizationSetBy = Automatic
+
+	column away_matches
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: away_matches
+
+		annotation SummarizationSetBy = Automatic
+
+	column managers_used
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: managers_used
+
+		annotation SummarizationSetBy = Automatic
+
+	column formations_used
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: formations_used
+
+		annotation SummarizationSetBy = Automatic
+
+	column highest_recorded_position
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: highest_recorded_position
+
+		annotation SummarizationSetBy = Automatic
+
+	column lowest_recorded_position
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: lowest_recorded_position
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fct_club_season_performance = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database([UseStorageApi=false]),
+				    #"data-analiz-490513" = Source{[Name="data-analiz-490513"]}[Data],
+				    football_mart_Schema = #"data-analiz-490513"{[Name="football_mart",Kind="Schema"]}[Data],
+				    fct_club_season_performance_Table = football_mart_Schema{[Name="fct_club_season_performance",Kind="Table"]}[Data]
+				in
+				    fct_club_season_performance_Table
+

@@ -1,0 +1,346 @@
+version: 2
+
+models:
+  - name: time_spine_daily
+    description: Governed daily time spine used by the dbt Semantic Layer
+    time_spine:
+      standard_granularity_column: date_day
+    columns:
+      - name: date_day
+        description: Calendar date at daily grain
+        granularity: day
+        data_tests: [unique, not_null]
+
+  - name: dim_national_teams
+    description: National-team analytical dimension with ranking, squad, market-value, and availability context
+    columns:
+      - {name: national_team_id, description: Unique national-team identifier, data_tests: [unique, not_null]}
+      - {name: national_team_name, description: National-team name}
+      - {name: team_code, description: National-team short code}
+      - {name: country_id, description: Represented country identifier}
+      - {name: country_name, description: Represented country name}
+      - {name: country_code, description: Represented country code}
+      - {name: confederation, description: Football confederation}
+      - {name: squad_size, description: Reported squad size}
+      - {name: average_age, description: Reported squad average age}
+      - {name: foreigners_number, description: Reported foreign-based player count}
+      - {name: foreigners_percentage, description: Reported foreign-based player percentage}
+      - {name: total_market_value, description: Reported total national-team market value}
+      - {name: coach_name, description: National-team coach}
+      - {name: fifa_ranking, description: Reported FIFA ranking}
+      - {name: last_season, description: Latest source season}
+      - {name: national_team_name_display, description: Non-null national-team display label}
+      - {name: has_team_name, description: Team-name availability flag}
+      - {name: has_total_market_value, description: Total-market-value availability flag}
+      - {name: has_fifa_ranking, description: FIFA-ranking availability flag}
+
+  - name: fct_match
+    description: Match-level analytical fact with results, participants, venue, manager, formation, and coverage context
+    columns:
+      - {name: game_id, description: Unique match identifier, data_tests: [unique, not_null]}
+      - {name: game_date, description: Match date}
+      - {name: season, description: Match season}
+      - {name: competition_id, description: Competition identifier}
+      - {name: competition_name, description: Competition name}
+      - {name: competition_type, description: Competition type}
+      - {name: competition_country_name, description: Competition country}
+      - {name: round, description: Competition round or matchday}
+      - {name: home_club_id, description: Home club identifier}
+      - {name: home_club_name, description: Home club name}
+      - {name: away_club_id, description: Away club identifier}
+      - {name: away_club_name, description: Away club name}
+      - {name: home_club_goals, description: Home club goals}
+      - {name: away_club_goals, description: Away club goals}
+      - {name: total_goals, description: Total match goals}
+      - {name: home_goal_difference, description: Home goals minus away goals}
+      - {name: match_result, description: Result from the home-club perspective, data_tests: [{accepted_values: {arguments: {values: [home_win, away_win, draw]}}}]}
+      - {name: home_club_position, description: Recorded home club table position}
+      - {name: away_club_position, description: Recorded away club table position}
+      - {name: home_club_manager_name, description: Home club manager}
+      - {name: away_club_manager_name, description: Away club manager}
+      - {name: home_club_formation, description: Home club formation}
+      - {name: away_club_formation, description: Away club formation}
+      - {name: stadium, description: Match stadium}
+      - {name: attendance, description: Reported attendance}
+      - {name: referee, description: Match referee}
+      - {name: aggregate, description: Source aggregate-score context}
+      - {name: is_future_game, description: Flag indicating a future-dated match}
+      - {name: has_attendance, description: Flag indicating attendance availability}
+      - {name: has_both_formations, description: Flag indicating both formations are available}
+      - {name: has_both_managers, description: Flag indicating both managers are available}
+      - {name: has_both_table_positions, description: Flag indicating both recorded table positions are available}
+
+  - name: fct_player_match_performance
+    description: Player-match analytical fact combining appearances with match result and lineup context
+    columns:
+      - {name: appearance_id, description: Unique appearance identifier, data_tests: [unique, not_null]}
+      - {name: game_id, description: Match identifier}
+      - {name: player_id, description: Player identifier}
+      - {name: player_name, description: Best available player name}
+      - {name: position, description: Broad player position}
+      - {name: sub_position, description: Detailed player position}
+      - {name: player_club_id, description: Club represented by the player}
+      - {name: player_club_name, description: Club represented by the player}
+      - {name: competition_id, description: Competition identifier}
+      - {name: season, description: Match season}
+      - {name: appearance_date, description: Appearance date}
+      - {name: hosting, description: Home or away status, data_tests: [{accepted_values: {arguments: {values: [home, away, unknown]}}}]}
+      - {name: opponent_club_id, description: Opponent club identifier}
+      - {name: opponent_club_name, description: Opponent club name}
+      - {name: club_goals, description: Goals scored by the represented club}
+      - {name: opponent_goals, description: Goals scored by the opponent}
+      - {name: club_result, description: Result for the represented club, data_tests: [{accepted_values: {arguments: {values: [win, draw, loss, unknown]}}}]}
+      - {name: club_points, description: Match points earned by the represented club}
+      - {name: minutes_played, description: Player minutes in the match}
+      - {name: goals, description: Player goals in the match}
+      - {name: assists, description: Player assists in the match}
+      - {name: yellow_cards, description: Player yellow cards in the match}
+      - {name: red_cards, description: Player red cards in the match}
+      - {name: goals_per_90, description: Match goals per 90 minutes}
+      - {name: assists_per_90, description: Match assists per 90 minutes}
+      - {name: is_starter, description: Flag indicating a starting-lineup record}
+      - {name: is_captain, description: Flag indicating team captain status}
+      - {name: lineup_position, description: Position recorded in the match lineup}
+      - {name: has_lineup_context, description: Flag indicating matched lineup context}
+      - {name: is_future_appearance, description: Flag indicating a future-dated appearance}
+
+  - name: fct_player_rolling_form
+    description: Player-match fact with trailing five-appearance form metrics
+    columns:
+      - {name: appearance_id, description: Unique appearance identifier, data_tests: [unique, not_null]}
+      - {name: game_id, description: Match identifier}
+      - {name: player_id, description: Player identifier}
+      - {name: player_name, description: Player name}
+      - {name: position, description: Broad player position}
+      - {name: sub_position, description: Detailed player position}
+      - {name: player_club_id, description: Club represented by the player}
+      - {name: player_club_name, description: Club represented by the player}
+      - {name: competition_id, description: Competition identifier}
+      - {name: season, description: Match season}
+      - {name: appearance_date, description: Appearance date}
+      - {name: hosting, description: Home or away status}
+      - {name: opponent_club_id, description: Opponent club identifier}
+      - {name: opponent_club_name, description: Opponent club name}
+      - {name: club_result, description: Result for the represented club}
+      - {name: club_points, description: Match points earned by the represented club}
+      - {name: minutes_played, description: Player minutes in the current match}
+      - {name: goals, description: Player goals in the current match}
+      - {name: assists, description: Player assists in the current match}
+      - {name: is_starter, description: Current-match starter flag}
+      - {name: is_captain, description: Current-match captain flag}
+      - {name: rolling_5_appearances, description: Appearance count in the trailing five appearances}
+      - {name: rolling_5_minutes, description: Minutes across the trailing five appearances}
+      - {name: rolling_5_goals, description: Goals across the trailing five appearances}
+      - {name: rolling_5_assists, description: Assists across the trailing five appearances}
+      - {name: rolling_5_yellow_cards, description: Yellow cards across the trailing five appearances}
+      - {name: rolling_5_red_cards, description: Red cards across the trailing five appearances}
+      - {name: rolling_5_club_points, description: Club points across the trailing five appearances}
+      - {name: rolling_5_goals_per_90, description: Goals per 90 across the trailing five appearances}
+      - {name: rolling_5_assists_per_90, description: Assists per 90 across the trailing five appearances}
+      - {name: rolling_5_avg_minutes, description: Average minutes across the trailing five appearances}
+      - {name: rolling_5_starts, description: Starts across the trailing five appearances}
+      - {name: rolling_5_captain_appearances, description: Captain appearances across the trailing five appearances}
+
+  - name: fct_club_season_performance
+    description: Club performance by season and competition with tactical and manager context
+    columns:
+      - {name: club_id, description: Club identifier}
+      - {name: club_name, description: Club name}
+      - {name: season, description: Match season}
+      - {name: season_start_date, description: July 1 calendar date representing the start of the match season}
+      - {name: competition_id, description: Competition identifier}
+      - {name: competition_name, description: Competition name}
+      - {name: matches_played, description: Matches played}
+      - {name: wins, description: Matches won}
+      - {name: draws, description: Matches drawn}
+      - {name: losses, description: Matches lost}
+      - {name: goals_scored, description: Goals scored}
+      - {name: goals_conceded, description: Goals conceded}
+      - {name: goal_difference, description: Goals scored minus goals conceded}
+      - {name: points, description: Three-one-zero match points}
+      - {name: win_rate_pct, description: Percentage of matches won}
+      - {name: avg_goals_scored, description: Average goals scored per match}
+      - {name: avg_goals_conceded, description: Average goals conceded per match}
+      - {name: avg_attendance, description: Average reported attendance}
+      - {name: home_matches, description: Home matches}
+      - {name: away_matches, description: Away matches}
+      - {name: managers_used, description: Distinct recorded managers}
+      - {name: formations_used, description: Distinct recorded formations}
+      - {name: highest_recorded_position, description: Numerically highest recorded table-position value}
+      - {name: lowest_recorded_position, description: Numerically lowest recorded table-position value}
+
+  - name: fct_club_transfer_portfolio
+    description: Club transfer portfolio by transfer season with spend, income, premium, outcome, and coverage metrics
+    columns:
+      - {name: club_id, description: Club identifier}
+      - {name: club_name, description: Club name}
+      - {name: transfer_season, description: Transfer season label}
+      - {name: inbound_transfers, description: Incoming transfer records}
+      - {name: outbound_transfers, description: Outgoing transfer records}
+      - {name: inbound_known_fee_transfers, description: Incoming transfers with known fees}
+      - {name: outbound_known_fee_transfers, description: Outgoing transfers with known fees}
+      - {name: inbound_transfer_spend, description: Sum of known incoming transfer fees}
+      - {name: outbound_transfer_income, description: Sum of known outgoing transfer fees}
+      - {name: net_transfer_spend, description: Known incoming spend minus known outgoing income}
+      - {name: avg_inbound_transfer_fee, description: Average known incoming transfer fee}
+      - {name: avg_outbound_transfer_fee, description: Average known outgoing transfer fee}
+      - {name: avg_inbound_fee_premium_pct, description: Average incoming fee premium versus market-value baseline}
+      - {name: avg_outbound_fee_premium_pct, description: Average outgoing fee premium versus market-value baseline}
+      - {name: avg_inbound_post_transfer_value_change_pct, description: Average first post-transfer market-value change for incoming transfers}
+      - {name: inbound_transfers_with_value_outcome, description: Incoming transfers with post-transfer value outcome}
+      - {name: inbound_positive_value_outcome_rate_pct, description: Percentage of observed incoming transfers with positive post-transfer value movement}
+      - {name: inbound_fee_coverage_pct, description: Incoming transfer-fee coverage percentage}
+      - {name: outbound_fee_coverage_pct, description: Outgoing transfer-fee coverage percentage}
+
+  - name: fct_transfer_fixed_horizon_outcomes
+    description: Historical transfer outcomes at comparable 90, 180, and 365-day valuation windows with pre-post performance context
+    columns:
+      - {name: transfer_key, description: Stable transfer identifier, data_tests: [unique, not_null]}
+      - {name: player_id, description: Player identifier}
+      - {name: player_name, description: Player name}
+      - {name: position, description: Broad player position}
+      - {name: sub_position, description: Detailed player position}
+      - {name: age_at_transfer, description: Completed age at transfer}
+      - {name: age_band_at_transfer, description: Analytical age band}
+      - {name: transfer_date, description: Transfer date}
+      - {name: transfer_year, description: Transfer calendar year}
+      - {name: transfer_season, description: Transfer season label}
+      - {name: from_club_id, description: Origin club identifier}
+      - {name: from_club_name, description: Origin club name}
+      - {name: to_club_id, description: Destination club identifier}
+      - {name: to_club_name, description: Destination club name}
+      - {name: transfer_fee, description: Known transfer fee}
+      - {name: market_value_baseline, description: Selected transfer-time market-value baseline}
+      - {name: fee_market_value_difference, description: Fee minus market-value baseline}
+      - {name: fee_market_value_difference_pct, description: Fee premium or discount percentage}
+      - {name: fee_premium_band, description: Fee premium analytical band}
+      - {name: valuation_context_change, description: Competition-context change around transfer}
+      - {name: has_known_transfer_fee, description: Known-fee availability flag}
+      - {name: has_fee_market_value_comparison, description: Fee-to-value comparison availability flag}
+      - {name: target_90d_date, description: Transfer date plus 90 days}
+      - {name: valuation_90d_date, description: Nearest valuation within 30 days of the 90-day target}
+      - {name: market_value_90d, description: Market value at the selected 90-day valuation}
+      - {name: days_to_90d_valuation, description: Days from transfer to selected 90-day valuation}
+      - {name: market_value_change_90d, description: 90-day market value minus baseline}
+      - {name: market_value_change_90d_pct, description: 90-day market-value change percentage}
+      - {name: has_90d_outcome, description: Flag indicating an observed comparable 90-day outcome}
+      - {name: outcome_90d_status, description: Observation status for the 90-day outcome}
+      - {name: target_180d_date, description: Transfer date plus 180 days}
+      - {name: valuation_180d_date, description: Nearest valuation within 30 days of the 180-day target}
+      - {name: market_value_180d, description: Market value at the selected 180-day valuation}
+      - {name: days_to_180d_valuation, description: Days from transfer to selected 180-day valuation}
+      - {name: market_value_change_180d, description: 180-day market value minus baseline}
+      - {name: market_value_change_180d_pct, description: 180-day market-value change percentage}
+      - {name: has_180d_outcome, description: Flag indicating an observed comparable 180-day outcome}
+      - {name: outcome_180d_status, description: Observation status for the 180-day outcome}
+      - {name: target_365d_date, description: Transfer date plus 365 days}
+      - {name: valuation_365d_date, description: Nearest valuation within 30 days of the 365-day target}
+      - {name: market_value_365d, description: Market value at the selected 365-day valuation}
+      - {name: days_to_365d_valuation, description: Days from transfer to selected 365-day valuation}
+      - {name: market_value_change_365d, description: 365-day market value minus baseline}
+      - {name: market_value_change_365d_pct, description: 365-day market-value change percentage}
+      - {name: has_365d_outcome, description: Flag indicating an observed comparable 365-day outcome}
+      - {name: outcome_365d_status, description: Observation status for the 365-day outcome}
+      - {name: pre_180d_appearances, description: Appearances in the 180 days before transfer}
+      - {name: pre_180d_minutes, description: Minutes in the 180 days before transfer}
+      - {name: pre_180d_goals, description: Goals in the 180 days before transfer}
+      - {name: pre_180d_assists, description: Assists in the 180 days before transfer}
+      - {name: post_180d_appearances, description: Appearances in the 180 days after transfer}
+      - {name: post_180d_minutes, description: Minutes in the 180 days after transfer}
+      - {name: post_180d_goals, description: Goals in the 180 days after transfer}
+      - {name: post_180d_assists, description: Assists in the 180 days after transfer}
+      - {name: has_pre_180d_performance, description: Flag indicating pre-transfer performance observations}
+      - {name: has_post_180d_performance, description: Flag indicating post-transfer performance observations}
+      - {name: minutes_change_post_vs_pre_180d, description: Post-transfer minutes minus pre-transfer minutes}
+      - {name: goals_change_post_vs_pre_180d, description: Post-transfer goals minus pre-transfer goals}
+      - {name: assists_change_post_vs_pre_180d, description: Post-transfer assists minus pre-transfer assists}
+      - {name: source_latest_valuation_date, description: Latest valuation date available in the source snapshot}
+
+  - name: fct_transfer_cohort_performance
+    description: Transfer-cohort outcome metrics with robust statistics, confidence intervals, sample-size rules, and censoring coverage
+    columns:
+      - {name: horizon_days, description: Outcome horizon in days}
+      - {name: cohort_type, description: Cohort dimension type}
+      - {name: cohort_value, description: Cohort dimension value}
+      - {name: transfer_count, description: Transfers assigned to the cohort}
+      - {name: observed_outcome_count, description: Transfers with observed comparable outcomes}
+      - {name: missing_baseline_count, description: Transfers that cannot produce a comparable outcome because the transfer-time market-value baseline is missing}
+      - {name: not_yet_observable_count, description: Transfers not old enough for the complete outcome window}
+      - {name: missing_followup_count, description: Observable transfers lacking a comparable follow-up valuation}
+      - {name: outcome_coverage_pct, description: Percentage of cohort transfers with observed outcomes}
+      - {name: avg_market_value_change_pct, description: Average observed market-value change percentage}
+      - {name: median_market_value_change_pct, description: Approximate median observed market-value change percentage}
+      - {name: p25_market_value_change_pct, description: Approximate 25th percentile observed change}
+      - {name: p75_market_value_change_pct, description: Approximate 75th percentile observed change}
+      - {name: stddev_market_value_change_pct, description: Sample standard deviation of observed change}
+      - {name: positive_outcome_rate_pct, description: Percentage of observed outcomes with positive change}
+      - {name: avg_fee_premium_pct, description: Average fee premium or discount percentage}
+      - {name: avg_change_ci95_lower_pct, description: Approximate lower 95 percent confidence bound for mean change}
+      - {name: avg_change_ci95_upper_pct, description: Approximate upper 95 percent confidence bound for mean change}
+      - {name: meets_minimum_sample_size, description: Flag indicating at least 30 observed outcomes}
+      - {name: analytical_reliability, description: Reliability category based on observed sample size, data_tests: [{accepted_values: {arguments: {values: [strong, directional, insufficient]}}}]}
+
+  - name: fct_data_coverage_bias
+    description: Transfer-analysis coverage and selection-bias risk by important analytical segment
+    columns:
+      - {name: segment_type, description: Coverage-analysis segment type}
+      - {name: segment_value, description: Coverage-analysis segment value}
+      - {name: transfer_count, description: Transfers in the segment}
+      - {name: known_fee_count, description: Transfers with known fees}
+      - {name: known_fee_coverage_pct, description: Known-fee coverage percentage}
+      - {name: market_value_baseline_count, description: Transfers with a market-value baseline}
+      - {name: market_value_baseline_coverage_pct, description: Market-value baseline coverage percentage}
+      - {name: fee_value_comparison_count, description: Transfers eligible for fee-to-value comparison}
+      - {name: fee_value_comparison_coverage_pct, description: Fee-to-value comparison coverage percentage}
+      - {name: outcome_90d_count, description: Transfers with observed 90-day outcomes}
+      - {name: outcome_90d_coverage_pct, description: 90-day outcome coverage percentage}
+      - {name: outcome_180d_count, description: Transfers with observed 180-day outcomes}
+      - {name: outcome_180d_coverage_pct, description: 180-day outcome coverage percentage}
+      - {name: outcome_365d_count, description: Transfers with observed 365-day outcomes}
+      - {name: outcome_365d_coverage_pct, description: 365-day outcome coverage percentage}
+      - {name: pre_180d_performance_count, description: Transfers with pre-transfer performance}
+      - {name: pre_180d_performance_coverage_pct, description: Pre-transfer performance coverage percentage}
+      - {name: post_180d_performance_count, description: Transfers with post-transfer performance}
+      - {name: post_180d_performance_coverage_pct, description: Post-transfer performance coverage percentage}
+      - {name: maximum_material_missingness_pct, description: Highest missingness among key analytical fields}
+      - {name: coverage_bias_risk, description: Coverage and selection-bias risk category, data_tests: [{accepted_values: {arguments: {values: [acceptable, monitor, high_bias_risk, insufficient_sample]}}}]}
+
+  - name: fct_agent_portfolio
+    description: Current agent portfolio metrics across player value, performance, transfers, and source completeness
+    columns:
+      - {name: agent_name, description: Agent name, data_tests: [unique, not_null]}
+      - {name: player_count, description: Current-profile players represented}
+      - {name: players_with_current_market_value, description: Represented players with current market value}
+      - {name: total_current_market_value, description: Sum of represented-player current market values}
+      - {name: avg_current_market_value, description: Average represented-player current market value}
+      - {name: median_current_market_value, description: Approximate median represented-player current market value}
+      - {name: max_current_market_value, description: Maximum represented-player current market value}
+      - {name: total_player_matches, description: Total represented-player appearances}
+      - {name: total_player_goals, description: Total represented-player goals}
+      - {name: total_player_assists, description: Total represented-player assists}
+      - {name: total_transfer_records, description: Total represented-player transfer records}
+      - {name: known_fee_transfer_records, description: Represented-player transfer records with known fees}
+      - {name: total_known_transfer_fee, description: Sum of known represented-player transfer fees}
+      - {name: max_known_transfer_fee, description: Maximum known represented-player transfer fee}
+      - {name: transfer_fee_coverage_pct, description: Represented-player transfer-fee coverage percentage}
+      - {name: complete_profile_players, description: Represented players with complete source profiles}
+      - {name: complete_profile_player_pct, description: Percentage of represented players with complete source profiles}
+
+  - name: fct_analytics_refresh_audit
+    description: Append-only analytical refresh audit containing source volumes and critical coverage indicators per dbt invocation
+    columns:
+      - {name: audit_key, description: Unique dbt invocation identifier, data_tests: [unique, not_null]}
+      - {name: audit_generated_at_utc, description: Audit generation timestamp}
+      - {name: dbt_target_name, description: dbt target used for the audit}
+      - {name: source_game_rows, description: Staged game row count}
+      - {name: source_appearance_rows, description: Staged appearance row count}
+      - {name: source_transfer_rows, description: Staged transfer row count}
+      - {name: source_valuation_rows, description: Staged valuation row count}
+      - {name: match_rows, description: Match mart row count}
+      - {name: player_match_rows, description: Player-match mart row count}
+      - {name: historical_transfer_rows, description: Historical transfer outcome mart row count}
+      - {name: overall_known_fee_coverage_pct, description: Overall known-fee coverage percentage}
+      - {name: overall_fee_value_comparison_coverage_pct, description: Overall fee-to-value comparison coverage percentage}
+      - {name: overall_365d_outcome_coverage_pct, description: Overall 365-day outcome coverage percentage}
+      - {name: high_bias_risk_segment_count, description: Coverage segments classified as high bias risk}
+      - {name: insufficient_sample_cohort_count, description: Cohort rows below the minimum observed sample size}

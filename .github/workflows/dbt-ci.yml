@@ -1,0 +1,127 @@
+name: dbt CI
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/**"
+      - "models/**"
+      - "analyses/**"
+      - "docs/**"
+      - "powerbi/**"
+      - "tests/**"
+      - "macros/**"
+      - "seeds/**"
+      - "snapshots/**"
+      - "scripts/**"
+      - "requirements*.txt"
+      - "dbt_project.yml"
+      - "selectors.yml"
+  pull_request:
+    paths:
+      - ".github/workflows/**"
+      - "models/**"
+      - "analyses/**"
+      - "docs/**"
+      - "powerbi/**"
+      - "tests/**"
+      - "macros/**"
+      - "seeds/**"
+      - "snapshots/**"
+      - "scripts/**"
+      - "requirements*.txt"
+      - "dbt_project.yml"
+      - "selectors.yml"
+  schedule:
+    - cron: "0 3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: dbt-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      DBT_PROFILES_DIR: ${{ github.workspace }}/.ci
+      DBT_PROJECT_ID: data-analiz-490513
+      DBT_SOURCE_DATABASE: data-analiz-490513
+      DBT_DATASET: ${{ github.event_name == 'pull_request' && format('football_ci_pr_{0}', github.run_id) || 'football' }}
+      DBT_KEYFILE: ${{ github.workspace }}/.ci/gcp-service-account.json
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt -r requirements-ml.txt
+
+      - name: Configure BigQuery credentials
+        env:
+          GCP_SERVICE_ACCOUNT_JSON: ${{ secrets.GCP_SERVICE_ACCOUNT_JSON }}
+        run: |
+          test -n "$GCP_SERVICE_ACCOUNT_JSON"
+          mkdir -p "$DBT_PROFILES_DIR"
+          printf '%s' "$GCP_SERVICE_ACCOUNT_JSON" > "$DBT_KEYFILE"
+          cp profiles.yml.example "$DBT_PROFILES_DIR/profiles.yml"
+
+      - name: Validate connection and project
+        run: |
+          dbt debug
+          dbt parse --no-partial-parse
+
+      - name: Validate ML pipeline
+        run: python scripts/check_ml_pipeline.py
+
+      - name: Check source freshness
+        run: dbt source freshness --selector raw_sources --no-partial-parse
+
+      - name: Build snapshot prerequisites for pull requests
+        if: github.event_name == 'pull_request'
+        run: dbt build --select path:models/staging --no-partial-parse
+
+      - name: Capture slowly changing dimensions
+        run: dbt snapshot --no-partial-parse
+
+      - name: Validate snapshot history
+        run: dbt test --select assert_snapshot_history_validity --no-partial-parse
+
+      - name: Build and test project
+        if: github.event_name != 'schedule'
+        run: dbt build --exclude resource_type:snapshot --no-partial-parse
+
+      - name: Generate dbt documentation
+        if: github.event_name != 'schedule'
+        run: dbt docs generate --no-partial-parse
+
+      - name: Check documentation coverage
+        if: github.event_name != 'schedule'
+        run: python scripts/check_documentation_coverage.py
+
+      - name: Clean up pull request datasets
+        if: always() && github.event_name == 'pull_request'
+        run: python scripts/cleanup_ci_datasets.py
+
+      - name: Upload dbt artifacts
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: dbt-artifacts-${{ github.run_id }}
+          path: |
+            target/manifest.json
+            target/catalog.json
+            target/run_results.json
+            target/sources.json
+          if-no-files-found: ignore
+          retention-days: 14

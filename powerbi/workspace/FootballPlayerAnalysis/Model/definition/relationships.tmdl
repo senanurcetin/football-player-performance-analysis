@@ -1,0 +1,408 @@
+relationship c7b2052c-d1d6-4efa-a8f3-749a4155939b
+	joinOnDateBehavior: datePartOnly
+	fromColumn: dim_players.birth_date
+	toColumn: LocalDateTable_f7e5ed87-c2d7-4b84-9d17-659cbdb1695e.Date
+
+relationship 2546c02f-2be1-4df0-aa94-e54f1e359b4a
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fct_market_value_history.valuation_date
+	toColumn: LocalDateTable_35944a08-163d-4892-8b0a-c095ccc10fb1.Date
+
+relationship 27e35766-aba7-4c99-a070-6e83b823098f
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fct_player_career_timeline.season_market_value_date
+	toColumn: LocalDateTable_90aeb1aa-b5a1-4096-8d33-41027e607dd9.Date
+
+relationship 54a3f1e0-9d9f-4452-9c4b-cda5c503f94d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fct_transfers.transfer_date
+	toColumn: LocalDateTable_e54a5994-a864-4823-a406-b30df3d17c6f.Date
+
+relationship AutoDetected_0cecbede-189f-4064-a592-72723e293d22
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: fct_competition_performance.competition_id
+	toColumn: dim_competitions.competition_id
+
+relationship AutoDetected_18bd6e1d-3cff-4775-ad4c-09d2ae567742
+	fromColumn: fct_market_value_history.competition_id
+	toColumn: dim_competitions.competition_id
+
+relationship AutoDetected_7f01d074-0ff4-4dfb-8640-a24596aee53b
+	fromColumn: fct_player_career_timeline.competition_id
+	toColumn: dim_competitions.competition_id
+
+relationship AutoDetected_2fa7de5b-561d-4a8d-95f4-6459d8e23134
+	fromColumn: fct_market_value_history.player_id
+	toColumn: dim_players.player_id
+
+relationship AutoDetected_0f55aa31-d758-498e-be24-f27ac75ba6c7
+	fromColumn: fct_player_career_timeline.player_id
+	toColumn: dim_players.player_id
+
+relationship AutoDetected_65e0d77a-f5d5-4da9-b180-51ad6650b65a
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: fct_player_performance.player_id
+	toColumn: dim_players.player_id
+
+relationship AutoDetected_e6a01580-4587-43c0-85db-e9caf4ee04ab
+	fromColumn: fct_transfers.player_id
+	toColumn: dim_players.player_id
+
+relationship AutoDetected_7e118d53-7b3b-4c9b-82b2-451dd525bc24
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: fct_club_performance.club_id
+	toColumn: dim_clubs.club_id
+
+relationship 6f2fa2a2-8b6e-4a61-a4fc-588566d1d374
+	joinOnDateBehavior: datePartOnly
+	fromColumn: dim_date.date_day
+	toColumn: LocalDateTable_9f5aadfb-4263-4caf-9506-79e4cd0e50aa.Date
+
+relationship 65faa3e4-1c52-401b-9425-a120bfb087ef
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fct_analytics_refresh_audit.audit_generated_at_utc
+	toColumn: LocalDateTable_9aad1ec0-b250-48f2-ba51-b24ede5f4327.Date
+
+relationship 112c73cf-2101-4467-bf88-38e44a8f6cb6
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fct_club_season_performance.season_start_date
+	toColumn: LocalDateTable_71a90387-bbfa-4391-a844-bb61a57df9e3.Date
+
+relationship a1bc7d00-acdc-4a1d-baa1-2711eb835bb0
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fct_match.game_date
+	toColumn: LocalDateTable_0b225b6b-a5e7-4563-8b62-04f2e617fc08.Date
+
+relationship e484e9bf-8d9d-4679-b313-4e2b1339cc12
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fct_player_match_performance.appearance_date
+	toColumn: LocalDateTable_8c7ab90b-e50b-4759-81b0-b489a1d97d36.Date
+
+relationship 2eb5a693-7847-4e5a-986a-d96c204b4914
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fct_player_rolling_form.appearance_date
+	toColumn: LocalDateTable_27442457-9c27-41f0-a2d1-637177c79376.Date
+
+relationship 839200fd-e9a3-403d-8d0b-f8b556b2e1df
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fct_transfer_fixed_horizon_outcomes.transfer_date
+	toColumn: LocalDateTable_9471789b-8fc6-4a93-bc5d-ece970224d96.Date
+
+relationship c6f42cd8-5b63-40ee-8948-775acb925e0e
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fct_transfer_fixed_horizon_outcomes.target_90d_date
+	toColumn: LocalDateTable_96ef6f98-09e0-4440-8bbe-d1841e54d770.Date
+
+relationship 2050e409-00cf-4136-a8ba-9d0577f25da0
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fct_transfer_fixed_horizon_outcomes.valuation_90d_date
+	toColumn: LocalDateTable_745d42c6-0841-451b-9a31-8971f8ea639e.Date
+
+relationship 29c15af9-6832-46fc-b311-66984fee1b17
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fct_transfer_fixed_horizon_outcomes.target_180d_date
+	toColumn: LocalDateTable_2eeaecd2-845e-435b-a06f-e623c83dc023.Date
+
+relationship 800d1e06-971f-4e85-8525-a06c5ce1babf
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fct_transfer_fixed_horizon_outcomes.valuation_180d_date
+	toColumn: LocalDateTable_dd586d0e-b32f-40c3-9107-c75be0f7a936.Date
+
+relationship f3d0846a-3d6e-4673-aa3a-fa9dc27a680c
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fct_transfer_fixed_horizon_outcomes.target_365d_date
+	toColumn: LocalDateTable_c7324ce7-1b9f-4cda-a634-dad43a67df9f.Date
+
+relationship 8f0f702f-2448-431c-a463-ed640a0bf4e9
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fct_transfer_fixed_horizon_outcomes.valuation_365d_date
+	toColumn: LocalDateTable_8042e8d8-2f9f-4cf3-a2b3-94b7ad0ab0d4.Date
+
+relationship 2a74f4d7-6b52-45aa-8709-9113073ab2ad
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fct_transfer_fixed_horizon_outcomes.source_latest_valuation_date
+	toColumn: LocalDateTable_f6277356-9996-4f13-b556-b05b3dba16ee.Date
+
+relationship 54592705-61b1-4989-9614-24453e8f03b1
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fct_transfer_market_value_analysis.birth_date
+	toColumn: LocalDateTable_ee0c45f5-5ce6-412a-b743-c5e9780a29a6.Date
+
+relationship edad52db-35ab-4cc1-bac7-3b6b4a3ac969
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fct_transfer_market_value_analysis.transfer_date
+	toColumn: LocalDateTable_402390ed-838f-413f-8b34-00e012dc29fa.Date
+
+relationship 2de34f5f-a9d7-49b8-89f7-afb75293ff40
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fct_transfer_market_value_analysis.previous_transfer_date
+	toColumn: LocalDateTable_1665a1cb-5e3c-4d65-9651-6326caba3068.Date
+
+relationship de28e0ad-71e4-40a5-9420-39e9b91a7920
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fct_transfer_market_value_analysis.next_transfer_date
+	toColumn: LocalDateTable_48709e1d-bf47-47cc-94d5-7511b4ad5222.Date
+
+relationship 88ee5f87-a47b-4fc6-936a-b4b62473d503
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fct_transfer_market_value_analysis.market_value_baseline_date
+	toColumn: LocalDateTable_17e963b7-e819-4176-97e6-c3277aa03c52.Date
+
+relationship 9b01f1c4-f1f8-4867-b55e-8d2e5aa30f61
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fct_transfer_market_value_analysis.prior_valuation_date
+	toColumn: LocalDateTable_08a49516-31cd-48b4-89ba-dc2db016d8cf.Date
+
+relationship 8f773ac8-a682-4482-bac5-0edd297dcbe2
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fct_transfer_market_value_analysis.next_valuation_date
+	toColumn: LocalDateTable_2dd0becb-a826-4faa-adbd-8dbd411a199d.Date
+
+relationship 65e79f51-5217-4e34-8840-ed34620c5c11
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fct_transfer_market_value_analysis.first_valuation_date
+	toColumn: LocalDateTable_d105d730-64ba-4e7d-8133-fcecdbcb7bfc.Date
+
+relationship 5b64f022-0d68-48e3-8711-115d0c7617e4
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fct_transfer_market_value_analysis.latest_valuation_date
+	toColumn: LocalDateTable_6ae1fcc1-20a1-4422-b9b3-8e685bffd029.Date
+
+relationship d747153d-d8b7-46d4-bdef-aeebf7783ce0
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fct_transfer_success_labels.transfer_date
+	toColumn: LocalDateTable_ac631afb-868d-4b22-8b54-49e0aa7efa07.Date
+
+relationship a8909e64-eafa-44b4-8ee2-6381ba75d9f3
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fct_transfer_success_labels.outcome_valuation_date
+	toColumn: LocalDateTable_61c1976a-f0c7-4add-a43f-8e55830234b4.Date
+
+relationship bf4c05f7-b8e7-4f10-bfcc-203eb018de5d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: time_spine_daily.date_day
+	toColumn: LocalDateTable_2052972a-65cc-4057-97e7-e13e4c9bf374.Date
+
+relationship AutoDetected_c1dd7f6e-99ac-4b46-84b4-5e977070622a
+	fromColumn: fct_club_season_performance.competition_id
+	toColumn: dim_competitions.competition_id
+
+relationship AutoDetected_13dd5bfc-e24b-4851-8086-aad6bebd1181
+	fromColumn: fct_match.competition_id
+	toColumn: dim_competitions.competition_id
+
+relationship AutoDetected_6ae223c2-4f74-4c39-8ac5-cbb967f34aa4
+	fromColumn: fct_player_match_performance.competition_id
+	toColumn: dim_competitions.competition_id
+
+relationship AutoDetected_a2b9cf44-9f9b-4179-9b56-c36f0c732083
+	fromColumn: fct_player_rolling_form.competition_id
+	toColumn: dim_competitions.competition_id
+
+
+relationship AutoDetected_aa270e73-8b03-4fb0-82e0-a5ee54164efd
+	fromColumn: fct_player_match_performance.player_id
+	toColumn: dim_players.player_id
+
+relationship AutoDetected_d2bea8ce-37a5-4881-9a14-a4b583f3aaaa
+	fromColumn: fct_player_rolling_form.player_id
+	toColumn: dim_players.player_id
+
+relationship AutoDetected_36dacbde-a634-44aa-94aa-fdc3a36a13c2
+	fromColumn: fct_transfer_fixed_horizon_outcomes.player_id
+	toColumn: dim_players.player_id
+
+relationship AutoDetected_bd7b2f01-b994-4e66-a165-038f03976af6
+	fromColumn: fct_transfer_market_value_analysis.player_id
+	toColumn: dim_players.player_id
+
+relationship AutoDetected_58e2c351-b704-439f-876e-fe2ab491013e
+	fromColumn: fct_transfer_success_labels.player_id
+	toColumn: dim_players.player_id
+
+relationship AutoDetected_e08d0480-64ba-45c2-9cfb-ea8c4f579ee3
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: fct_club_risk_profile.club_id
+	toColumn: dim_clubs.club_id
+
+relationship AutoDetected_384b70af-7611-4269-ac99-cc0d37db7d35
+	fromColumn: fct_club_season_performance.club_id
+	toColumn: dim_clubs.club_id
+
+relationship AutoDetected_39c2770a-bf94-40f2-b8c9-678f2d8a5366
+	fromColumn: fct_club_transfer_portfolio.club_id
+	toColumn: dim_clubs.club_id
+
+relationship AutoDetected_83ecd2f3-2c26-4a1f-87dc-0143fb63d679
+	isActive: false
+	fromColumn: fct_player_match_performance.game_id
+	toColumn: fct_match.game_id
+
+relationship AutoDetected_b186b33a-8bd6-4192-81bc-8f200733cf43
+	isActive: false
+	fromColumn: fct_player_rolling_form.game_id
+	toColumn: fct_match.game_id
+
+relationship AutoDetected_7ce0a326-49f3-4229-bd77-4511808272d6
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: fct_player_rolling_form.appearance_id
+	toColumn: fct_player_match_performance.appearance_id
+
+relationship AutoDetected_dbec3419-c335-4768-afa1-4eb112997e7b
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: fct_transfer_fixed_horizon_outcomes.transfer_key
+	toColumn: fct_transfer_market_value_analysis.transfer_key
+
+relationship AutoDetected_19238aa3-8b5e-47ea-b6ef-761d57d16985
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: fct_transfer_success_labels.transfer_key
+	toColumn: fct_transfer_market_value_analysis.transfer_key
+
+relationship 9e57c1db-d822-46c3-81e8-824de18519c3
+	joinOnDateBehavior: datePartOnly
+	fromColumn: ml_player_market_value_current_predictions.prediction_as_of_date
+	toColumn: LocalDateTable_b8320c0b-7c0a-405e-855b-4099d40c196f.Date
+
+relationship 9b8c44b4-93b9-4108-a3ff-4f8ebac5e9ac
+	joinOnDateBehavior: datePartOnly
+	fromColumn: ml_player_market_value_current_predictions.model_generated_at_utc
+	toColumn: LocalDateTable_ad25d67e-0f83-42c8-8ecc-07ea59db5e35.Date
+
+relationship fee3734a-d773-4e48-9c46-e0b2d23ac475
+	joinOnDateBehavior: datePartOnly
+	fromColumn: ml_player_market_value_evaluation_predictions.target_market_value_date
+	toColumn: LocalDateTable_565478d7-8cee-4baf-8fcc-a60316ddc2b6.Date
+
+relationship 7c251df3-090e-4b8f-a5bd-aac9a10250aa
+	joinOnDateBehavior: datePartOnly
+	fromColumn: ml_player_market_value_evaluation_predictions.model_generated_at_utc
+	toColumn: LocalDateTable_dbe5bd2e-9215-4abc-90e9-cc6e843bc4be.Date
+
+relationship 5159fd64-6971-4060-8901-5d12f9566837
+	joinOnDateBehavior: datePartOnly
+	fromColumn: ml_player_market_value_model_registry.model_generated_at_utc
+	toColumn: LocalDateTable_07b985b9-f0a4-4750-856a-79d1f9bb8263.Date
+
+relationship 03cafd66-ff66-432d-bf6b-70531783366d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: ml_player_market_value_quality_gates.model_generated_at_utc
+	toColumn: LocalDateTable_2479d009-7b9e-498a-abed-6be0634ad2bd.Date
+
+relationship 53433bed-3b65-41f7-b3f0-b4ba0193b5f8
+	joinOnDateBehavior: datePartOnly
+	fromColumn: ml_player_market_value_scoring.feature_last_appearance_date
+	toColumn: LocalDateTable_2053dd28-f19a-48f9-b6ff-b168f4909de1.Date
+
+relationship 23c22847-b6cb-4a67-b92f-bbd87ccbd7ad
+	joinOnDateBehavior: datePartOnly
+	fromColumn: ml_player_market_value_scoring.previous_market_value_date
+	toColumn: LocalDateTable_d544d295-0cdb-46de-bcc2-c1a641dfac2d.Date
+
+relationship a3f2b8a2-a9fb-4825-b380-3bc0c8ef2dac
+	joinOnDateBehavior: datePartOnly
+	fromColumn: ml_player_market_value_scoring.prediction_as_of_date
+	toColumn: LocalDateTable_94c3fb4e-8f20-425f-add6-9421f4784e7e.Date
+
+relationship c4baf9ae-8e18-451b-9eeb-b0822e5f27e8
+	joinOnDateBehavior: datePartOnly
+	fromColumn: ml_player_market_value_training.feature_last_appearance_date
+	toColumn: LocalDateTable_3338950d-7964-44bf-957f-cdc867996936.Date
+
+relationship 25d2067a-cc9f-4dfd-af2e-b8bc8f2d944e
+	joinOnDateBehavior: datePartOnly
+	fromColumn: ml_player_market_value_training.previous_market_value_date
+	toColumn: LocalDateTable_5d6fb133-38ee-4e3a-98a5-e5c28fcf5071.Date
+
+relationship 656fa47f-a8a3-40d4-921b-cc1a54a1cef0
+	joinOnDateBehavior: datePartOnly
+	fromColumn: ml_player_market_value_training.target_market_value_date
+	toColumn: LocalDateTable_da3b9f1a-d1ce-4530-a1d4-5492b28b95fc.Date
+
+relationship AutoDetected_89988760-b13b-4d7d-8b17-41470a9d7227
+	fromColumn: ml_player_market_value_current_predictions.competition_id
+	toColumn: dim_competitions.competition_id
+
+relationship AutoDetected_4a8d3c41-848b-400d-acf9-6a5de96fe873
+	fromColumn: ml_player_market_value_evaluation_predictions.competition_id
+	toColumn: dim_competitions.competition_id
+
+relationship AutoDetected_1a710e21-ca9b-4d80-afaf-2f1aea64f2a8
+	fromColumn: ml_player_market_value_scoring.competition_id
+	toColumn: dim_competitions.competition_id
+
+relationship AutoDetected_f1b2b4ac-1bdb-4c91-9d8c-430f7a58605f
+	fromColumn: ml_player_market_value_training.competition_id
+	toColumn: dim_competitions.competition_id
+
+relationship AutoDetected_56170089-4a1e-4665-882e-2da95a60fdbf
+	crossFilteringBehavior: bothDirections
+	fromColumn: ml_player_market_value_current_predictions.player_id
+	toColumn: dim_players.player_id
+
+relationship AutoDetected_c1c04de0-0cd7-4b18-8702-c6c863ec8764
+	fromColumn: ml_player_market_value_evaluation_predictions.player_id
+	toColumn: dim_players.player_id
+
+relationship AutoDetected_e309a53c-b8af-4647-a5b7-96404c8d5f08
+	fromColumn: ml_player_market_value_scoring.player_id
+	toColumn: dim_players.player_id
+
+relationship AutoDetected_080d4473-f607-469c-9dfb-e05070644eaa
+	fromColumn: ml_player_market_value_training.player_id
+	toColumn: dim_players.player_id
+
+relationship AutoDetected_28c8452d-cecb-4b40-b774-86f9ea4d2b3a
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: ml_player_market_value_scoring.scoring_row_key
+	toColumn: ml_player_market_value_current_predictions.scoring_row_key
+
+relationship AutoDetected_cd1f018a-a9bb-4aa6-9210-ded2f76f7124
+	fromColumn: ml_player_market_value_current_predictions.model_version
+	toColumn: ml_player_market_value_model_registry.model_version
+
+relationship AutoDetected_a03c65b6-08f4-47f3-8d64-1306393c06d6
+	fromColumn: ml_player_market_value_evaluation_metrics.model_version
+	toColumn: ml_player_market_value_model_registry.model_version
+
+relationship AutoDetected_f3fa6847-c82d-4ac5-aac4-68133c80ec6f
+	fromColumn: ml_player_market_value_evaluation_predictions.model_version
+	toColumn: ml_player_market_value_model_registry.model_version
+
+relationship AutoDetected_94179d2c-6fd2-485b-bfa4-0d547726f571
+	fromColumn: ml_player_market_value_feature_drift.model_version
+	toColumn: ml_player_market_value_model_registry.model_version
+
+relationship AutoDetected_f2abf5ad-6af6-4737-bbe3-11291399611b
+	fromColumn: ml_player_market_value_feature_importance.model_version
+	toColumn: ml_player_market_value_model_registry.model_version
+
+relationship AutoDetected_057633af-5871-4ed5-8c73-aa23b9c1ac12
+	fromColumn: ml_player_market_value_quality_gates.model_version
+	toColumn: ml_player_market_value_model_registry.model_version
+
+relationship AutoDetected_e4ab58b0-1006-42db-876a-f2bdb0bfed15
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: ml_player_market_value_evaluation_predictions.training_row_key
+	toColumn: ml_player_market_value_training.training_row_key
+
+relationship AutoDetected_58e5eaa4-9327-4624-ac1a-34a3fcf829e1
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: ml_player_market_value_feature_importance.feature
+	toColumn: ml_player_market_value_feature_drift.feature
+

@@ -1,0 +1,176 @@
+table fct_player_career_timeline
+
+	column player_id
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: player_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column player_name
+		dataType: string
+		summarizeBy: none
+		sourceColumn: player_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column position
+		dataType: string
+		summarizeBy: none
+		sourceColumn: position
+
+		annotation SummarizationSetBy = Automatic
+
+	column current_club_name
+		dataType: string
+		summarizeBy: none
+		sourceColumn: current_club_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column season
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: season
+
+		annotation SummarizationSetBy = Automatic
+
+	column competition_id
+		dataType: string
+		summarizeBy: none
+		sourceColumn: competition_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column matches_played
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: matches_played
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_goals
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: total_goals
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_assists
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: total_assists
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_minutes_played
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: total_minutes_played
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_yellow_cards
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: total_yellow_cards
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_red_cards
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: total_red_cards
+
+		annotation SummarizationSetBy = Automatic
+
+	column goals_per_match
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: goals_per_match
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column assists_per_match
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: assists_per_match
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column goals_per_90
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: goals_per_90
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column assists_per_90
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: assists_per_90
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column season_market_value
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: season_market_value
+
+		annotation SummarizationSetBy = Automatic
+
+	column season_market_value_date
+		dataType: dateTime
+		formatString: Long Date
+		summarizeBy: none
+		sourceColumn: season_market_value_date
+
+		variation Variation
+			isDefault
+			relationship: 27e35766-aba7-4c99-a070-6e83b823098f
+			defaultHierarchy: LocalDateTable_90aeb1aa-b5a1-4096-8d33-41027e607dd9.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column has_season_market_value
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		summarizeBy: none
+		sourceColumn: has_season_market_value
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fct_player_career_timeline = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database([UseStorageApi=false]),
+				    #"data-analiz-490513" = Source{[Name="data-analiz-490513"]}[Data],
+				    football_mart_Schema = #"data-analiz-490513"{[Name="football_mart",Kind="Schema"]}[Data],
+				    fct_player_career_timeline_Table = football_mart_Schema{[Name="fct_player_career_timeline",Kind="Table"]}[Data]
+				in
+				    fct_player_career_timeline_Table
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

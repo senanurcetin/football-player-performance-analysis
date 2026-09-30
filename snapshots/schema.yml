@@ -1,0 +1,33 @@
+version: 2
+
+snapshots:
+  - name: snap_player_profiles
+    description: Type-2 history of current player profile, club, agent, contract, and market-value attributes
+    columns:
+      - {name: player_id, description: Player identifier}
+      - {name: player_name, description: Player name at this version}
+      - {name: current_club_id, description: Current club identifier at this version}
+      - {name: position, description: Broad position at this version}
+      - {name: sub_position, description: Detailed position at this version}
+      - {name: agent_name, description: Agent name at this version}
+      - {name: market_value_in_eur, description: Current profile market value at this version}
+      - {name: contract_expiration_date, description: Contract expiration date at this version}
+      - {name: dbt_scd_id, description: dbt-generated snapshot version identifier}
+      - {name: dbt_updated_at, description: Timestamp at which dbt observed this version}
+      - {name: dbt_valid_from, description: Inclusive validity start timestamp}
+      - {name: dbt_valid_to, description: Exclusive validity end timestamp; null for the current version}
+
+  - name: snap_club_profiles
+    description: Type-2 history of current club profile, squad, coach, and transfer-record attributes
+    columns:
+      - {name: club_id, description: Club identifier}
+      - {name: club_name, description: Club name at this version}
+      - {name: domestic_competition_id, description: Domestic competition identifier at this version}
+      - {name: squad_size, description: Squad size at this version}
+      - {name: average_age, description: Average squad age at this version}
+      - {name: coach_name, description: Coach name at this version}
+      - {name: net_transfer_record, description: Source net transfer record at this version}
+      - {name: dbt_scd_id, description: dbt-generated snapshot version identifier}
+      - {name: dbt_updated_at, description: Timestamp at which dbt observed this version}
+      - {name: dbt_valid_from, description: Inclusive validity start timestamp}
+      - {name: dbt_valid_to, description: Exclusive validity end timestamp; null for the current version}

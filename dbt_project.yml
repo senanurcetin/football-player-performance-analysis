@@ -1,0 +1,48 @@
+name: football_player_performance_analysis
+version: 1.0.0
+config-version: 2
+
+require-dbt-version: [">=1.11.0", "<2.0.0"]
+
+profile: default
+
+flags:
+  bigquery_use_batch_source_freshness: true
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+target-path: target
+clean-targets:
+  - target
+  - dbt_packages
+
+models:
+  football_player_performance_analysis:
+    +persist_docs:
+      relation: true
+      columns: true
+
+    staging:
+      +materialized: view
+      +schema: staging
+      +tags: ["staging"]
+
+    intermediate:
+      +materialized: view
+      +schema: intermediate
+      +tags: ["intermediate"]
+
+    marts:
+      +materialized: table
+      +schema: mart
+      +tags: ["marts"]
+
+    ml:
+      +materialized: table
+      +schema: ml
+      +tags: ["ml"]

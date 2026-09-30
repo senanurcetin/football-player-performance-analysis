@@ -1,0 +1,178 @@
+table dim_clubs
+
+	column club_id
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: club_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column club_code
+		dataType: string
+		summarizeBy: none
+		sourceColumn: club_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column club_name
+		dataType: string
+		summarizeBy: none
+		sourceColumn: club_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column domestic_competition_id
+		dataType: string
+		summarizeBy: none
+		sourceColumn: domestic_competition_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_market_value
+		dataType: string
+		summarizeBy: none
+		sourceColumn: total_market_value
+
+		annotation SummarizationSetBy = Automatic
+
+	column squad_size
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: squad_size
+
+		annotation SummarizationSetBy = Automatic
+
+	column average_age
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: average_age
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column foreigners_number
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: foreigners_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column foreigners_percentage
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: foreigners_percentage
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column national_team_players
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: national_team_players
+
+		annotation SummarizationSetBy = Automatic
+
+	column stadium_name
+		dataType: string
+		summarizeBy: none
+		sourceColumn: stadium_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column stadium_seats
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: stadium_seats
+
+		annotation SummarizationSetBy = Automatic
+
+	column net_transfer_record
+		dataType: string
+		summarizeBy: none
+		sourceColumn: net_transfer_record
+
+		annotation SummarizationSetBy = Automatic
+
+	column coach_name
+		dataType: string
+		summarizeBy: none
+		sourceColumn: coach_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_season
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: last_season
+
+		annotation SummarizationSetBy = Automatic
+
+	column club_record_type
+		dataType: string
+		summarizeBy: none
+		sourceColumn: club_record_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column club_profile_completeness_pct
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: club_profile_completeness_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column club_name_display
+		dataType: string
+		summarizeBy: none
+		sourceColumn: club_name_display
+
+		annotation SummarizationSetBy = Automatic
+
+	column has_club_name
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		summarizeBy: none
+		sourceColumn: has_club_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column has_current_profile
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		summarizeBy: none
+		sourceColumn: has_current_profile
+
+		annotation SummarizationSetBy = Automatic
+
+	column club_profile_completeness_status
+		dataType: string
+		summarizeBy: none
+		sourceColumn: club_profile_completeness_status
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_clubs = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database([UseStorageApi=false]),
+				    #"data-analiz-490513" = Source{[Name="data-analiz-490513"]}[Data],
+				    football_mart_Schema = #"data-analiz-490513"{[Name="football_mart",Kind="Schema"]}[Data],
+				    dim_clubs_Table = football_mart_Schema{[Name="dim_clubs",Kind="Table"]}[Data]
+				in
+				    dim_clubs_Table
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,25 @@
+[
+  {
+    "name": "NotBlank_ml_player_market_value_c_preferred_foot",
+    "expression": {
+      "Not": {
+        "Expression": {
+          "IsEmpty": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "ml_player_market_value_current_predictions"
+                  }
+                },
+                "Property": "preferred_foot"
+              }
+            }
+          }
+        }
+      }
+    },
+    "type": "Advanced",
+    "howCreated": 0
+  }
+]

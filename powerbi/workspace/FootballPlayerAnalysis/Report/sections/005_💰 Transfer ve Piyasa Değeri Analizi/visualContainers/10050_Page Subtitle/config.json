@@ -1,0 +1,57 @@
+{
+  "name": "e7c73867bb304fc4319a",
+  "layouts": [
+    {
+      "id": 0,
+      "position": {
+        "x": 310,
+        "y": 52,
+        "z": 10050,
+        "width": 680,
+        "height": 15,
+        "tabOrder": 10050
+      }
+    }
+  ],
+  "singleVisual": {
+    "visualType": "textbox",
+    "drillFilterOtherVisuals": true,
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Tarihsel transfer ücretleri  |  Piyasa değeri hareketleri  |  Sezon & pozisyon analizi",
+                    "textStyle": {
+                      "fontWeight": "normal",
+                      "fontSize": "7.5pt",
+                      "color": "#C8F5C0"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "vcObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

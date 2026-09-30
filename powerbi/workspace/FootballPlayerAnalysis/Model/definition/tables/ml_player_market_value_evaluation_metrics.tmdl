@@ -1,0 +1,148 @@
+table ml_player_market_value_evaluation_metrics
+
+	column model_version
+		dataType: string
+		summarizeBy: none
+		sourceColumn: model_version
+
+		annotation SummarizationSetBy = Automatic
+
+	column segment_type
+		dataType: string
+		summarizeBy: none
+		sourceColumn: segment_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column segment_value
+		dataType: string
+		summarizeBy: none
+		sourceColumn: segment_value
+
+		annotation SummarizationSetBy = Automatic
+
+	column row_count
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: row_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column minimum_sample_size
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: minimum_sample_size
+
+		annotation SummarizationSetBy = Automatic
+
+	column meets_minimum_sample_size
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		summarizeBy: none
+		sourceColumn: meets_minimum_sample_size
+
+		annotation SummarizationSetBy = Automatic
+
+	column mae_eur
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: mae_eur
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column rmse_eur
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: rmse_eur
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column r2
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: r2
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column wape_pct
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: wape_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column median_absolute_percentage_error_pct
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: median_absolute_percentage_error_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column mean_error_eur
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: mean_error_eur
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column within_25_pct
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: within_25_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column baseline_mae_eur
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: baseline_mae_eur
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column mae_improvement_vs_baseline_pct
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: mae_improvement_vs_baseline_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column interval_coverage_pct
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: interval_coverage_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition ml_player_market_value_evaluation_metrics = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database([UseStorageApi=false]),
+				    #"data-analiz-490513" = Source{[Name="data-analiz-490513"]}[Data],
+				    football_ml_Schema = #"data-analiz-490513"{[Name="football_ml",Kind="Schema"]}[Data],
+				    ml_player_market_value_evaluation_metrics_Table = football_ml_Schema{[Name="ml_player_market_value_evaluation_metrics",Kind="Table"]}[Data]
+				in
+				    ml_player_market_value_evaluation_metrics_Table
+

@@ -1,0 +1,41 @@
+{
+  "name": "404e0a1723e792a7d69c",
+  "layouts": [
+    {
+      "id": 0,
+      "position": {
+        "x": 93.243243243243242,
+        "y": 75.675675675675677,
+        "z": 16000,
+        "width": 338.1081246040963,
+        "height": 32.432432432432435,
+        "tabOrder": 16000
+      }
+    }
+  ],
+  "singleVisual": {
+    "visualType": "textbox",
+    "drillFilterOtherVisuals": true,
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "⚽ Oyuncu şu an sahada ne kadar verimli?",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "12pt"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

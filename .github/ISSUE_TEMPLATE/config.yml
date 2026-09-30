@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Documentation
+    url: https://github.com/senanurcetin/football-player-analysis/tree/main/docs
+    about: Read the full project documentation before opening an issue.

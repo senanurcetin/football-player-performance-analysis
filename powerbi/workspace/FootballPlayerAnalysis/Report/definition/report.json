@@ -1,0 +1,124 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/3.3.0/schema.json",
+  "themeCollection": {
+    "baseTheme": {
+      "name": "CY25SU12",
+      "reportVersionAtImport": {
+        "visual": "2.5.0",
+        "report": "3.1.0",
+        "page": "2.3.0"
+      },
+      "type": "SharedResources"
+    },
+    "customTheme": {
+      "name": "AccessibleTidal",
+      "reportVersionAtImport": {
+        "visual": "2.5.0",
+        "report": "3.1.0",
+        "page": "2.3.0"
+      },
+      "type": "SharedResources"
+    }
+  },
+  "objects": {
+    "section": [
+      {
+        "properties": {
+          "verticalAlignment": {
+            "expr": {
+              "Literal": {
+                "Value": "'Top'"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "outspacePane": [
+      {
+        "properties": {
+          "expanded": {
+            "expr": {
+              "Literal": {
+                "Value": "true"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "publicCustomVisuals": [
+    "lollipopChart50393786178B4137A75F3257CB590B96",
+    "lollipopColumnChart0D874BBC87DE40189C387BBA89739F6C",
+    "RadarChart1446119667547",
+    "RiskHeatmapA1E4D7191E504BBA9F44FE76C254B319"
+  ],
+  "resourcePackages": [
+    {
+      "name": "RegisteredResources",
+      "type": "RegisteredResources",
+      "items": [
+        {
+          "name": "5061175413510348275.png",
+          "path": "5061175413510348275.png",
+          "type": "Image"
+        },
+        {
+          "name": "54827512027331907.png",
+          "path": "54827512027331907.png",
+          "type": "Image"
+        },
+        {
+          "name": "5524522758602528.png",
+          "path": "5524522758602528.png",
+          "type": "Image"
+        },
+        {
+          "name": "57452169215971814.png",
+          "path": "57452169215971814.png",
+          "type": "Image"
+        },
+        {
+          "name": "58317669654115695.png",
+          "path": "58317669654115695.png",
+          "type": "Image"
+        },
+        {
+          "name": "FOOTBALL_PLAYER_PERFORMANCE_AN4269772881925902.png",
+          "path": "FOOTBALL_PLAYER_PERFORMANCE_AN4269772881925902.png",
+          "type": "Image"
+        },
+        {
+          "name": "FOOTBALL_PLAYER_PERFORMANCE_AN6499681784313924.png",
+          "path": "FOOTBALL_PLAYER_PERFORMANCE_AN6499681784313924.png",
+          "type": "Image"
+        }
+      ]
+    },
+    {
+      "name": "SharedResources",
+      "type": "SharedResources",
+      "items": [
+        {
+          "name": "AccessibleTidal",
+          "path": "BuiltInThemes/AccessibleTidal.json",
+          "type": "CustomTheme"
+        },
+        {
+          "name": "CY25SU12",
+          "path": "BaseThemes/CY25SU12.json",
+          "type": "BaseTheme"
+        }
+      ]
+    }
+  ],
+  "settings": {
+    "useStylableVisualContainerHeader": true,
+    "exportDataMode": "AllowSummarized",
+    "defaultDrillFilterOtherVisuals": true,
+    "allowChangeFilterTypes": true,
+    "useEnhancedTooltips": true,
+    "useDefaultAggregateDisplayName": true
+  }
+}

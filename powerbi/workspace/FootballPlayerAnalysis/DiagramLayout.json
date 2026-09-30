@@ -1,0 +1,464 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 4411,
+        "y": 614
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 5693.645054261433,
+            "y": 1151.9518699916657
+          },
+          "nodeIndex": "dim_clubs",
+          "nodeLineageTag": "41d711f2-9877-4968-9cca-bc7755542e75",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 4209.6706018104951,
+            "y": 1172.2514821261213
+          },
+          "nodeIndex": "dim_competitions",
+          "nodeLineageTag": "19618c7f-522f-4aa1-88aa-db937875a1c1",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 4809.0984688028657,
+            "y": 1197.9898122632903
+          },
+          "nodeIndex": "dim_players",
+          "nodeLineageTag": "dc87d2f6-3f7d-4663-9247-0f2a30ce8137",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 5409.645054261433,
+            "y": 1151.9518699916657
+          },
+          "nodeIndex": "fct_club_performance",
+          "nodeLineageTag": "d57b91be-a66e-48cd-bb74-ecc21138ea36",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 3925.4313769545151,
+            "y": 1189.3117877677728
+          },
+          "nodeIndex": "fct_competition_performance",
+          "nodeLineageTag": "212aa953-590c-4013-94cc-e9ac84e2a44d",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 4496.7254733007885,
+            "y": 1004.3984065648106
+          },
+          "nodeIndex": "fct_market_value_history",
+          "nodeLineageTag": "7cb0da67-458e-4eea-846e-fc23da5e9a82",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 4522.04769055333,
+            "y": 1358.1014836358704
+          },
+          "nodeIndex": "fct_player_career_timeline",
+          "nodeLineageTag": "268f9030-b8ac-474b-b658-1efb6e6387e2",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 5096.1312623754384,
+            "y": 945.80225634746091
+          },
+          "nodeIndex": "fct_player_performance",
+          "nodeLineageTag": "0b1de1c7-38cf-4b3d-a672-3c16b2ea2b11",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 5125.6450542614321,
+            "y": 1299.6010806886939
+          },
+          "nodeIndex": "fct_transfers",
+          "nodeLineageTag": "65147c99-33a4-4257-a791-d1bf1b10fb77",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2221.4313769545151,
+            "y": 1201.9518699916657
+          },
+          "nodeIndex": "dim_date",
+          "nodeLineageTag": "115aacc1-b758-4c3d-a21c-45d12134887a",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 326.592462945953,
+            "y": 1231.1806367511695
+          },
+          "nodeIndex": "dim_national_teams",
+          "nodeLineageTag": "e5426baa-a4a8-4cfd-bbc2-cd84bd61d50f",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2505.4313769545151,
+            "y": 1201.9518699916657
+          },
+          "nodeIndex": "fct_agent_portfolio",
+          "nodeLineageTag": "7e17efa4-1942-4709-b589-9512d18bd0a1",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2789.4313769545151,
+            "y": 1201.9518699916657
+          },
+          "nodeIndex": "fct_analytics_refresh_audit",
+          "nodeLineageTag": "25332581-dfbf-49ba-a33b-f9343c3cfe73",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 626.72175366898819,
+            "y": -50
+          },
+          "nodeIndex": "fct_club_risk_profile",
+          "nodeLineageTag": "3d28d1e0-03dd-463b-a5f1-44fac85df159",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 621.074642391108,
+            "y": 671.19581799319758
+          },
+          "nodeIndex": "fct_club_season_performance",
+          "nodeLineageTag": "79b6cc04-3d2c-4985-93c7-7dc21651eb74",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 339.19027427162837,
+            "y": 310.85074719315344
+          },
+          "nodeIndex": "fct_club_transfer_portfolio",
+          "nodeLineageTag": "d0b17552-5ec1-41f8-b4ba-f0fdd3bac86f",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 3073.4313769545151,
+            "y": 1201.9518699916657
+          },
+          "nodeIndex": "fct_data_coverage_bias",
+          "nodeLineageTag": "3baa596f-f12d-4812-add9-8ad53dedae4e",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 50,
+            "y": 1590.38725124874
+          },
+          "nodeIndex": "fct_match",
+          "nodeLineageTag": "ba8fe5c3-eb94-4543-a390-0d3026a4b226",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 910.67318196346616,
+            "y": 1480.4721497591734
+          },
+          "nodeIndex": "fct_player_match_performance",
+          "nodeLineageTag": "e90d3496-de7c-48df-9dbd-fc9cd5ff4a0b",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 789.590496050655,
+            "y": 1841.213515172064
+          },
+          "nodeIndex": "fct_player_rolling_form",
+          "nodeLineageTag": "e5b97224-962e-43a6-a246-82f470756228",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 3357.4313769545151,
+            "y": 1201.9518699916657
+          },
+          "nodeIndex": "fct_transfer_cohort_performance",
+          "nodeLineageTag": "55f8727d-70bc-4b89-9bb2-23160fdff26a",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1045.0973479203826,
+            "y": 2202.2081379675706
+          },
+          "nodeIndex": "fct_transfer_fixed_horizon_outcomes",
+          "nodeLineageTag": "29538639-9398-47a4-9d36-7fe91a99eeb6",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1544.7478422691643,
+            "y": 2353.9037399833314
+          },
+          "nodeIndex": "fct_transfer_market_value_analysis",
+          "nodeLineageTag": "2b23b8d9-46f8-4eb6-8562-7a6fd7321c9b",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1836.4968540623934,
+            "y": 2281.6564077257713
+          },
+          "nodeIndex": "fct_transfer_success_labels",
+          "nodeLineageTag": "c81116d9-675c-4c49-bcd9-104d41986524",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 3641.4313769545151,
+            "y": 1299.9518699916657
+          },
+          "nodeIndex": "time_spine_daily",
+          "nodeLineageTag": "546eecad-72f3-456f-a92d-33a9a79b2630",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 6838.7825916993179,
+            "y": 981.66266205793977
+          },
+          "nodeIndex": "ml_player_market_value_current_predictions",
+          "nodeLineageTag": "4db27fe5-41a3-4f5c-94af-eb6c25bc0b9b",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 6977.102532958399,
+            "y": 1334.8086556421088
+          },
+          "nodeIndex": "ml_player_market_value_evaluation_metrics",
+          "nodeLineageTag": "f3a5022d-4865-4948-ac68-9a22ff9e41fe",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 6264.6697186804959,
+            "y": 916.64449607938514
+          },
+          "nodeIndex": "ml_player_market_value_evaluation_predictions",
+          "nodeLineageTag": "12871226-0c89-476d-b1a4-7327503ef724",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 6268.7311817504506,
+            "y": 1611.9899279755546
+          },
+          "nodeIndex": "ml_player_market_value_feature_drift",
+          "nodeLineageTag": "d59ccc27-c51b-4479-9bc8-a4b11efa1a09",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 6080.09263134598,
+            "y": 1334.752145225305
+          },
+          "nodeIndex": "ml_player_market_value_feature_importance",
+          "nodeLineageTag": "9c3c6bce-d710-4f82-a26b-501ef86109c9",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 6551.7189933460795,
+            "y": 1258.2933481850771
+          },
+          "nodeIndex": "ml_player_market_value_model_registry",
+          "nodeLineageTag": "eaed4dd4-8c62-4445-97bd-7e666016c832",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 6690.1091711978006,
+            "y": 1647.4156432870932
+          },
+          "nodeIndex": "ml_player_market_value_quality_gates",
+          "nodeLineageTag": "c0d699b0-94e7-48b9-8113-c4463c2d3b10",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 7125.8147925484882,
+            "y": 710.94764387436044
+          },
+          "nodeIndex": "ml_player_market_value_scoring",
+          "nodeLineageTag": "d7e08a8d-d17a-484d-bf61-ab90646006e6",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 5977.645054261433,
+            "y": 660.48809669623824
+          },
+          "nodeIndex": "ml_player_market_value_training",
+          "nodeLineageTag": "e267b347-9427-4e8e-8844-aef015517a52",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

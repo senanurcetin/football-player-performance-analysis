@@ -1,0 +1,48 @@
+version: 2
+
+exposures:
+  - name: power_bi_transfer_market_value
+    label: Power BI Transfer and Market Value Analysis
+    type: dashboard
+    maturity: high
+    url: https://github.com/ilknurdenizozturk/football-player-performance-analysis
+    description: Decision-facing transfer cohort, fixed-horizon outcome, club portfolio, and coverage-bias dashboard
+    depends_on:
+      - ref('fct_transfer_market_value_analysis')
+      - ref('fct_transfer_fixed_horizon_outcomes')
+      - ref('fct_transfer_cohort_performance')
+      - ref('fct_club_transfer_portfolio')
+      - ref('fct_club_risk_profile')
+      - ref('fct_data_coverage_bias')
+    owner:
+      name: Analytics Team
+      email: senanur.cetin.work@gmail.com
+
+  - name: power_bi_player_and_match_analysis
+    label: Power BI Player and Match Analysis
+    type: dashboard
+    maturity: high
+    url: https://github.com/ilknurdenizozturk/football-player-performance-analysis
+    description: Player match performance, rolling form, match context, and club-season dashboard
+    depends_on:
+      - ref('fct_match')
+      - ref('fct_player_match_performance')
+      - ref('fct_player_rolling_form')
+      - ref('fct_club_season_performance')
+      - ref('fct_agent_portfolio')
+    owner:
+      name: Analytics Team
+      email: senanur.cetin.work@gmail.com
+
+  - name: player_market_value_ml_production
+    label: Player Market Value ML Production
+    type: ml
+    maturity: high
+    url: https://github.com/ilknurdenizozturk/football-player-performance-analysis/actions/workflows/ml-production.yml
+    description: Governed market-value training, scoring, release gating, and monitoring workflow
+    depends_on:
+      - ref('ml_player_market_value_training')
+      - ref('ml_player_market_value_scoring')
+    owner:
+      name: Analytics Team
+      email: senanur.cetin.work@gmail.com

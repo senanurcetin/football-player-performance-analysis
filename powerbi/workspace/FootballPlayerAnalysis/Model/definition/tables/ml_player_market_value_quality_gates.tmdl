@@ -1,0 +1,87 @@
+table ml_player_market_value_quality_gates
+
+	column model_version
+		dataType: string
+		summarizeBy: none
+		sourceColumn: model_version
+
+		annotation SummarizationSetBy = Automatic
+
+	column model_generated_at_utc
+		dataType: dateTime
+		formatString: General Date
+		summarizeBy: none
+		sourceColumn: model_generated_at_utc
+
+		variation Variation
+			isDefault
+			relationship: 03cafd66-ff66-432d-bf6b-70531783366d
+			defaultHierarchy: LocalDateTable_2479d009-7b9e-498a-abed-6be0634ad2bd.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column gate_name
+		dataType: string
+		summarizeBy: none
+		sourceColumn: gate_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column actual_value
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: actual_value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column threshold_operator
+		dataType: string
+		summarizeBy: none
+		sourceColumn: threshold_operator
+
+		annotation SummarizationSetBy = Automatic
+
+	column threshold_value
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: threshold_value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column passed
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		summarizeBy: none
+		sourceColumn: passed
+
+		annotation SummarizationSetBy = Automatic
+
+	column severity
+		dataType: string
+		summarizeBy: none
+		sourceColumn: severity
+
+		annotation SummarizationSetBy = Automatic
+
+	column details
+		dataType: string
+		summarizeBy: none
+		sourceColumn: details
+
+		annotation SummarizationSetBy = Automatic
+
+	partition ml_player_market_value_quality_gates = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database([UseStorageApi=false]),
+				    #"data-analiz-490513" = Source{[Name="data-analiz-490513"]}[Data],
+				    football_ml_Schema = #"data-analiz-490513"{[Name="football_ml",Kind="Schema"]}[Data],
+				    ml_player_market_value_quality_gates_Table = football_ml_Schema{[Name="ml_player_market_value_quality_gates",Kind="Table"]}[Data]
+				in
+				    ml_player_market_value_quality_gates_Table
+
