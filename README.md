@@ -25,6 +25,8 @@
 
 **Kaggle notebook:** [Your Market-Value R2 Is Mostly Last Year's Price](https://www.kaggle.com/code/senanuretin/your-market-value-r2-is-mostly-last-year-s-price) — on the same Transfermarkt data, "next value = current value" already reaches R² 0.967; a time-split model reaches 0.972 on the value and 0.22 on the *change*, which is the honest measure of skill (compare the baseline column in the ML table below).
 
+**Model on Hugging Face:** [senanurcetin/transfermarkt-value-change-lgbm](https://huggingface.co/senanurcetin/transfermarkt-value-change-lgbm) — the notebook's LightGBM, trained before July 2023 and tested on later predictions, with the persistence baseline in the model card.
+
 ## Project Status
 
 Validated against BigQuery — June 15, 2026
