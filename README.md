@@ -27,6 +27,8 @@
 
 **Model on Hugging Face:** [senanurcetin/transfermarkt-value-change-lgbm](https://huggingface.co/senanurcetin/transfermarkt-value-change-lgbm) — the notebook's LightGBM, trained before July 2023 and tested on later predictions, with the persistence baseline in the model card.
 
+**Attribution:** this repository is a fork of an earlier collaborative project. 28 of the 46 dbt models, plus the source definitions and their tests, come from upstream; the other 16 models, the singular tests, the semantic layer, snapshots, CI, the market-value ML pipeline and the Power BI report were added in this fork.
+
 ## Project Status
 
 Validated against BigQuery — June 15, 2026
