@@ -23,10 +23,10 @@
                       "Entity": "ml_player_market_value_current_predictions"
                     }
                   },
-                  "Property": "pozisyon_tr"
+                  "Property": "position_tr"
                 }
               },
-              "queryRef": "ml_player_market_value_current_predictions.pozisyon_tr",
+              "queryRef": "ml_player_market_value_current_predictions.position_tr",
               "nativeQueryRef": "Position",
               "active": true,
               "displayName": "Position"

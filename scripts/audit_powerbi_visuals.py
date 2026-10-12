@@ -52,9 +52,14 @@ def audit(root: Path, mode: str):
     errors, warnings = [], []
     metadata = read_json(report / "pages" / "pages.json")
     ordered = metadata.get("pageOrder", [])
+    if not ordered:
+        errors.append("PBIR pageOrder is empty; no report pages are registered")
     if len(ordered) != len(set(ordered)):
         errors.append("Duplicate page identifiers in pageOrder")
-    if metadata.get("activePageName") != ordered[0]:
+    active = metadata.get("activePageName")
+    if active not in ordered:
+        errors.append(f"Active PBIR page is missing from pageOrder: {active!r}")
+    elif active != ordered[0]:
         warnings.append("Report does not open on first page (Home)")
     summary = []
     all_pages = set()
@@ -83,12 +88,13 @@ def audit(root: Path, mode: str):
                 charts += 1
                 if not state:
                     errors.append(f"{vp}: data visual has no queryState")
-            # CountNonNull on a rate/value is usually an invalid Power BI summary.
+            # Power BI aggregate codes: 4 = Max, 5 = CountNonNull.
+            # CountNonNull on a rate/value is generally an invalid summary.
             for role, definition in state.items():
                 for projection in definition.get("projections", []):
                     fn = projection.get("field", {}).get("Aggregation", {}).get("Function")
                     label = (projection.get("displayName") or projection.get("nativeQueryRef") or "").lower()
-                    if fn == 4 and any(x in label for x in ("per 90", "value (€)", "market value")):
+                    if fn == 5 and any(x in label for x in ("per 90", "value (€)", "market value")):
                         errors.append(f"{vp}: {role} counts non-null rows but displays metric {label}")
             for entity, prop in set(references(state)):
                 if entity not in tables:
@@ -107,7 +113,7 @@ def audit(root: Path, mode: str):
                     warnings.append(f"{vp}: legacy green/teal color {color}")
         display = page.get("displayName", page_id)
         is_main = bool(pwidth and pheight and pwidth >= 1200 and pheight >= 700)
-        exempt = any(x in display.lower() for x in ("home", "closing", "tooltip"))
+        exempt = any(x in display.lower() for x in ("home", "closing", "thank you", "tooltip"))
         if is_main and not exempt and page.get("visibility") != "HiddenInViewMode" and charts == 0:
             errors.append(f"{display}: analytics page has ZERO data visuals")
         if mode == "offline-demo" and is_main and not watermark:
@@ -117,8 +123,9 @@ def audit(root: Path, mode: str):
     for page_id in ordered:
         if page_id not in all_pages:
             errors.append(f"pageOrder references absent page {page_id}")
-    if set(ordered) != all_pages:
-        warnings.append("pageOrder does not exactly match page directories")
+    unregistered = sorted(all_pages - set(ordered))
+    for page_id in unregistered:
+        errors.append(f"PBIR page directory omitted from pageOrder: {page_id}")
     return {"mode": mode, "pages": len(summary), "visuals": sum(s["visuals"] for s in summary),
             "data_visuals": sum(s["data_visuals"] for s in summary),
             "model_tables": len(tables), "page_details": summary,
