@@ -13,7 +13,7 @@
 **Reviewer quick brief:** [Project evidence, model baselines and contribution attribution](docs/hiring-summary.md).
 ![Football Player Performance Analysis — editorial illustration](docs/assets/football-analytics-cover.svg)
 
-> Cover illustration for portfolio presentation; not a Power BI screenshot or model output. [View the real report captures](#dashboard-preview) for evidence of the implemented dashboard.
+> **Editorial cover, not a Power BI screenshot.** The six images in the [dashboard gallery](#dashboard-preview) are historical report captures, not evidence that the latest PBIR source currently renders correctly. See the [Power BI visual QA and release gate](docs/POWER_BI_VISUAL_QA.md) for open verification items.
 
 
 <p align="center">
@@ -87,7 +87,7 @@ Full lineage, grains, and model responsibilities → [Architecture & Model Catal
 
 > **Reading dashboard units:** The report uses Turkish abbreviations. **B** stands for *bin* (thousand), not billion. For example, `14B` means approximately 14,000 and `171B` means approximately 171,000. The original visual labels are preserved in screenshots.
 
-The Power BI report contains **9 pages** and **2 drill-through pages**, all backed by governed BigQuery marts.
+**Evidence status (12 October 2026):** The repository contains PBIR sources for **11 report pages** (9 standard pages plus 2 drill-through pages). The production model is configured for BigQuery; the separate offline demo uses **synthetic fixtures**. The six PNGs below are **historical captures** and are not a complete or freshly validated 11-page gallery. A static [PBIR structure audit](docs/POWER_BI_VISUAL_QA.md) exists, but the latest source has **not yet passed Power BI Desktop open, refresh, visual, and DAX review**. Publication of refreshed screenshots is on hold until that gate is complete. Numbers in the historical captions are not independently reverified by this README update.
 
 ### Player Performance Analysis
 
@@ -135,7 +135,7 @@ The Power BI report contains **9 pages** and **2 drill-through pages**, all back
 
 > **40,208** transfers · Known fee rate: **64.2%** · Avg. fee: **€0.4M** · Avg. overpay: **-79.1%** · Total volume: **€9,803.9M**
 >
-> Clubs systematically acquire players at **~79% below market value** across all positions. Forwards carry the smallest discount (-74.6%), goalkeepers the largest (-87.4%). Transfer budgets peaked at **€0.8M/season** in 2016/17 and have since tightened to **€0.3M**. Only **19.7%** of transfers result in post-transfer value appreciation.
+> The historical screenshot shows an **average overpay proxy of −79.1%** for the measured subset; this is not evidence that clubs systematically underpay in the wider transfer market. Forwards and goalkeepers display different proxy values (−74.6% and −87.4%). The depicted seasonal averages and **19.7%** post-transfer appreciation rate describe this particular report snapshot, subject to fee coverage and selection bias.
 
 ---
 
@@ -145,7 +145,7 @@ The Power BI report contains **9 pages** and **2 drill-through pages**, all back
 
 > **7,841** players scored · Decision-ready: **72.9%** · Avg. prediction: **€5.3M** · Avg. previous: **€6.7M** · Value growth: **+18.3%**
 >
-> ML predictions by position (Midfield & Forward: €5.8M, Goalkeeper: €3.0M), quality distribution (**56%** high, **17%** medium, **27%** limited), and per-player confidence intervals. Goalkeepers show the highest predicted value growth (**+24.7%**) — the most systematically underpriced segment.
+> Historical model outputs by position (Midfield & Forward: €5.8M, Goalkeeper: €3.0M), quality distribution (**56%** high, **17%** medium, **27%** limited), and per-player confidence intervals. The depicted **+24.7%** projected goalkeeper growth is a model estimate, **not proof of market mispricing or an actionable valuation recommendation**.
 
 ---
 
