@@ -45,6 +45,11 @@ ASYMMETRIC_LAYOUT = {
 }
 
 
+TRANSFER_SUCCESS_LAYOUT = [
+    (105, 191, 630, 220), (759, 191, 474, 220),
+    (105, 432, 670, 260), (799, 432, 434, 260),
+]
+
 def visual(mode, name, page=PAGE):
     path = (ROOT / "powerbi" / mode / "FootballPlayerAnalysis" /
             "Report" / "definition" / "pages" / page / "visuals" / name / "visual.json")
@@ -131,6 +136,17 @@ class TransferDashboardDesignTests(unittest.TestCase):
                         or y + h <= y2 or y2 + h2 <= y,
                         f"Overlapping native PBIR charts on {page}",
                     )
+
+    def test_transfer_success_has_distinct_evidence_first_geometry(self):
+        for mode in ("offline-demo", "workspace"):
+            for i, name in enumerate(EXPECTED):
+                node = visual(mode, name)
+                self.assertTrue(node["visual"]["query"]["queryState"])
+                position = node["position"]
+                rect = tuple(position[k] for k in ("x", "y", "width", "height"))
+                self.assertEqual(rect, TRANSFER_SUCCESS_LAYOUT[i])
+                self.assertLessEqual(position["x"] + position["width"], 1280)
+                self.assertLessEqual(position["y"] + position["height"], 720)
 
     def test_offline_and_workspace_have_identical_report_visuals(self):
         for name in EXPECTED:
