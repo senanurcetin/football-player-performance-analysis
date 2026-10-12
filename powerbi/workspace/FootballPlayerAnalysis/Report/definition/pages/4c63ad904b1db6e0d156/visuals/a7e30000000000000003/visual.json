@@ -3,9 +3,9 @@
   "name": "a7e30000000000000003",
   "position": {
     "x": 105,
-    "y": 403,
+    "y": 432,
     "width": 552,
-    "height": 280,
+    "height": 260,
     "z": 14300,
     "tabOrder": 14300
   },
@@ -43,12 +43,12 @@
                       "Entity": "fct_transfer_success_labels"
                     }
                   },
-                  "Property": "Transfer Success Rate (90d)"
+                  "Property": "Transfer Success Rate (365d)"
                 }
               },
-              "queryRef": "fct_transfer_success_labels.Transfer Success Rate (90d)",
-              "nativeQueryRef": "Transfer Success Rate (90d)",
-              "displayName": "Transfer Success Rate (90d)"
+              "queryRef": "fct_transfer_success_labels.Transfer Success Rate (365d)",
+              "nativeQueryRef": "Transfer Success Rate (365d)",
+              "displayName": "Transfer Success Rate (365d)"
             }
           ]
         }
@@ -173,7 +173,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Success Rate by Position (90d)'"
+                  "Value": "'365d Success Rate by Position'"
                 }
               }
             },
