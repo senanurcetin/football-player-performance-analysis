@@ -47,6 +47,7 @@ def check_project():
                 elif not (REPORT / by_path["path"] / "definition.pbism").is_file():
                     errors.append("Missing semantic model referenced by definition.pbir")
 
+    names: set[str] = set()
     model_path = MODEL / "model.tmdl"
     if not model_path.is_file():
         errors.append("Missing Model/definition/model.tmdl")
