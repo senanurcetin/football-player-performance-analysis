@@ -25,6 +25,11 @@ jobs:
             python -m unittest discover -s tests -p 'test_powerbi_audit.py' -v
             python -m unittest discover -s tests -p 'test_powerbi_chart_design.py' -v
             python scripts/audit_powerbi_visuals.py --mode both
+      - run:
+          name: Verify production PBIR and deterministic offline Power BI fixtures
+          command: |
+            python scripts/check_powerbi_project.py
+            python scripts/check_powerbi_offline_demo.py
 
   ml-contract-smoke:
     docker:
