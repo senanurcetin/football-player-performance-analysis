@@ -1,0 +1,49 @@
+# GitHub is the canonical source; CircleCI provides independent public-code
+# verification without GitHub Actions minutes or GCP credentials.
+# Live dbt/BigQuery validation remains gated by an explicit opt-in on GitHub.
+version: 2.1
+
+jobs:
+  dbt-source-preflight:
+    docker:
+      - image: cimg/python:3.11
+    resource_class: small
+    steps:
+      - checkout
+      - run:
+          name: Install offline YAML/Jinja validators
+          command: python -m pip install --disable-pip-version-check PyYAML==6.0.3 Jinja2==3.1.6
+      - run:
+          name: Syntax check Python scripts
+          command: python -m compileall -q scripts
+      - run:
+          name: Check dbt YAML and model Jinja sources
+          command: python scripts/check_offline_ci.py
+
+  ml-contract-smoke:
+    docker:
+      - image: cimg/python:3.11
+    resource_class: medium
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - football-ml-pip-v1-{{ checksum "requirements-ml.txt" }}
+      - run:
+          name: Install ML test dependencies (no BigQuery authentication)
+          command: python -m pip install --disable-pip-version-check -r requirements-ml.txt
+          no_output_timeout: 20m
+      - save_cache:
+          key: football-ml-pip-v1-{{ checksum "requirements-ml.txt" }}
+          paths:
+            - ~/.cache/pip
+      - run:
+          name: Run deterministic synthetic ML pipeline and quality gates
+          command: python scripts/check_ml_pipeline.py
+          no_output_timeout: 20m
+
+workflows:
+  verify-offline-source:
+    jobs:
+      - dbt-source-preflight
+      - ml-contract-smoke
