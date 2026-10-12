@@ -44,7 +44,31 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  offline-preflight:
+    name: Offline dbt source verification
+    if: github.event_name != 'schedule'
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+      - name: Install source validators
+        run: pip install PyYAML==6.0.3 Jinja2==3.1.6
+      - name: Verify SQL/Jinja/YAML and Python syntax (no GCP credentials)
+        run: |
+          python -m compileall -q scripts
+          python scripts/check_offline_ci.py
+
   validate:
+    # BigQuery CI is intentionally opt-in. A missing GCP secret must never
+    # make the independent offline CI red on every push or PR.
+    if: vars.ENABLE_BIGQUERY_CI == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 30
     env:
