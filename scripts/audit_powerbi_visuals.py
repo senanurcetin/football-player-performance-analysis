@@ -88,12 +88,13 @@ def audit(root: Path, mode: str):
                 charts += 1
                 if not state:
                     errors.append(f"{vp}: data visual has no queryState")
-            # CountNonNull on a rate/value is usually an invalid Power BI summary.
+            # Power BI aggregate codes: 4 = Max, 5 = CountNonNull.
+            # CountNonNull on a rate/value is generally an invalid summary.
             for role, definition in state.items():
                 for projection in definition.get("projections", []):
                     fn = projection.get("field", {}).get("Aggregation", {}).get("Function")
                     label = (projection.get("displayName") or projection.get("nativeQueryRef") or "").lower()
-                    if fn == 4 and any(x in label for x in ("per 90", "value (€)", "market value")):
+                    if fn == 5 and any(x in label for x in ("per 90", "value (€)", "market value")):
                         errors.append(f"{vp}: {role} counts non-null rows but displays metric {label}")
             for entity, prop in set(references(state)):
                 if entity not in tables:
@@ -112,7 +113,7 @@ def audit(root: Path, mode: str):
                     warnings.append(f"{vp}: legacy green/teal color {color}")
         display = page.get("displayName", page_id)
         is_main = bool(pwidth and pheight and pwidth >= 1200 and pheight >= 700)
-        exempt = any(x in display.lower() for x in ("home", "closing", "tooltip"))
+        exempt = any(x in display.lower() for x in ("home", "closing", "thank you", "tooltip"))
         if is_main and not exempt and page.get("visibility") != "HiddenInViewMode" and charts == 0:
             errors.append(f"{display}: analytics page has ZERO data visuals")
         if mode == "offline-demo" and is_main and not watermark:
