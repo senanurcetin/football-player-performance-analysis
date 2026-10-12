@@ -270,6 +270,8 @@ The report is stored in PBIP/PBIR format at `powerbi/workspace/FootballPlayerAna
 
 Two hidden detail pages and two tooltip pages are also in the PBIR page order.
 
+**All-dashboard modernization:** The [13-page implementation and test plan](docs/POWER_BI_ALL_DASHBOARDS_PLAN.md) covers both report editions, versioned NEXUS theme registration, accessible visuals and the pending Desktop release gate.
+
 **Verification status:** Definition files have been edited; real Desktop opening, data refresh, visuals, interactions and production BigQuery values are **not yet verified**. Do not use historical screenshot KPI numbers as proof of current results.
 
 

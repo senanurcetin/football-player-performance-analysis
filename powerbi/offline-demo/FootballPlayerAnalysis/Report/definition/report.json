@@ -11,13 +11,13 @@
       "type": "SharedResources"
     },
     "customTheme": {
-      "name": "AccessibleTidal",
+      "name": "NEXUSMidnight-20261012-v2.json",
       "reportVersionAtImport": {
         "visual": "2.5.0",
         "report": "3.1.0",
         "page": "2.3.0"
       },
-      "type": "SharedResources"
+      "type": "RegisteredResources"
     }
   },
   "objects": {
@@ -93,6 +93,11 @@
           "name": "FOOTBALL_PLAYER_PERFORMANCE_AN6499681784313924.png",
           "path": "FOOTBALL_PLAYER_PERFORMANCE_AN6499681784313924.png",
           "type": "Image"
+        },
+        {
+          "name": "NEXUSMidnight-20261012-v2.json",
+          "path": "NEXUSMidnight-20261012-v2.json",
+          "type": "CustomTheme"
         }
       ]
     },

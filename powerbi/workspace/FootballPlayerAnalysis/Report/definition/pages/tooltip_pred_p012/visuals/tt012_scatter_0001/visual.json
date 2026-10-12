@@ -312,6 +312,19 @@
             }
           }
         }
+      ],
+      "general": [
+        {
+          "properties": {
+            "altText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Shows the relationship between average predicted player value in euros and modeled upside percentage by position. Not an observed return.'"
+                }
+              }
+            }
+          }
+        }
       ]
     }
   }
