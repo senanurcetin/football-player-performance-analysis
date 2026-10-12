@@ -49,3 +49,45 @@ def validate_query_order(annotation: str, table_names: set[str]) -> list[str]:
         if name not in table_names:
             errors.append(f"Stale PBI_QueryOrder table: {name}")
     return errors
+
+
+def validate_relationships(source: str, table_names: set[str]) -> list[str]:
+    """Validate static TMDL relationship endpoints against table files.
+
+    This checks presence/shape and table references, not column existence or
+    whether Power BI can successfully load the semantic model.
+    """
+    import re
+
+    errors: list[str] = []
+    blocks = re.split(r"(?=^relationship\s+)", source, flags=re.MULTILINE)
+    seen: set[str] = set()
+    count = 0
+    for block in blocks:
+        header = re.search(r"^relationship[ \t]+(\S+)[ \t]*$", block, re.MULTILINE)
+        if not header:
+            continue
+        count += 1
+        name = header.group(1)
+        if name in seen:
+            errors.append(f"Duplicate relationship ID: {name}")
+        seen.add(name)
+        for direction in ("fromColumn", "toColumn"):
+            occurrences = re.findall(
+                rf"^\s*{direction}:\s*(.*?)\s*$", block, flags=re.MULTILINE
+            )
+            if len(occurrences) != 1:
+                errors.append(f"Relationship {name}: expected exactly one {direction}")
+                continue
+            endpoint = occurrences[0]
+            if "." not in endpoint:
+                errors.append(f"Relationship {name}: invalid {direction}: {endpoint}")
+                continue
+            table, column = endpoint.rsplit(".", 1)
+            if not table.strip() or not column.strip():
+                errors.append(f"Relationship {name}: invalid {direction}: {endpoint}")
+            elif table not in table_names:
+                errors.append(f"Relationship {name}: missing table {table} ({direction})")
+    if not count:
+        errors.append("No relationships found in relationships.tmdl")
+    return errors
