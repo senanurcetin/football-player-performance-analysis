@@ -8,6 +8,7 @@ import json
 import re
 import sys
 from pathlib import Path
+from pbir_registry import validate_pages, validate_query_order
 
 ROOT = Path(__file__).resolve().parents[1]
 PROJECT = ROOT / "powerbi" / "workspace" / "FootballPlayerAnalysis"
@@ -35,9 +36,16 @@ def check_project():
             if path and not (PROJECT / path / "definition.pbir").is_file():
                 errors.append(f"Missing report artifact: {path}")
     if isinstance(pbir, dict):
-        dataset_path = pbir.get("datasetReference", {}).get("byPath", {})
-        if dataset_path and not (REPORT / dataset_path["path"] / "definition.pbism").is_file():
-            errors.append("Missing semantic model referenced by definition.pbir")
+        reference = pbir.get("datasetReference")
+        if reference is not None and not isinstance(reference, dict):
+            errors.append("Invalid datasetReference in definition.pbir")
+        elif isinstance(reference, dict):
+            by_path = reference.get("byPath")
+            if by_path is not None:
+                if not isinstance(by_path, dict) or not isinstance(by_path.get("path"), str) or not by_path["path"]:
+                    errors.append("Invalid datasetReference.byPath.path in definition.pbir")
+                elif not (REPORT / by_path["path"] / "definition.pbism").is_file():
+                    errors.append("Missing semantic model referenced by definition.pbir")
 
     model_path = MODEL / "model.tmdl"
     if not model_path.is_file():
@@ -52,25 +60,18 @@ def check_project():
             errors.append(f"Orphan TMDL table reference: {name}")
         for name in unlisted:
             errors.append(f"Table file omitted from model.tmdl: {name}")
-        query_order = re.search(r"^annotation PBI_QueryOrder = (\[.*\])$", model, flags=re.MULTILINE)
+        query_order = re.search(r"^annotation PBI_QueryOrder = (.+)$", model, flags=re.MULTILINE)
         if query_order:
-            for name in json.loads(query_order.group(1)):
-                if name not in names:
-                    errors.append(f"Stale PBI_QueryOrder table: {name}")
+            errors.extend(validate_query_order(query_order.group(1), names))
 
     if (REPORT / "report.json").exists():
         errors.append("Legacy Report/report.json conflicts with Report/definition/ (PBIR)")
 
     report = load_json(DEFINITION / "report.json")
     pages = load_json(DEFINITION / "pages" / "pages.json")
-    if isinstance(pages, dict):
+    if pages is not None:
         available = {p.parent.name for p in (DEFINITION / "pages").glob("*/page.json")}
-        for name in pages.get("pageOrder", []):
-            if name not in available:
-                errors.append(f"Missing PBIR page: {name}")
-        active = pages.get("activePageName")
-        if active and active not in available:
-            errors.append(f"Missing active PBIR page: {active}")
+        errors.extend(validate_pages(pages, available))
     if isinstance(report, dict):
         for package in report.get("resourcePackages", []):
             for item in package.get("items", []):
