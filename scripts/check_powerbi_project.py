@@ -8,7 +8,7 @@ import json
 import re
 import sys
 from pathlib import Path
-from pbir_registry import validate_pages, validate_query_order
+from pbir_registry import validate_pages, validate_query_order, validate_relationships
 
 ROOT = Path(__file__).resolve().parents[1]
 PROJECT = ROOT / "powerbi" / "workspace" / "FootballPlayerAnalysis"
@@ -63,6 +63,13 @@ def check_project():
         query_order = re.search(r"^annotation PBI_QueryOrder = (.+)$", model, flags=re.MULTILINE)
         if query_order:
             errors.extend(validate_query_order(query_order.group(1), names))
+
+    relationships_path = MODEL / "relationships.tmdl"
+    try:
+        relationships = relationships_path.read_text(encoding="utf-8-sig")
+        errors.extend(validate_relationships(relationships, names))
+    except OSError as exc:
+        errors.append(f"Missing or unreadable relationships.tmdl: {exc}")
 
     if (REPORT / "report.json").exists():
         errors.append("Legacy Report/report.json conflicts with Report/definition/ (PBIR)")
