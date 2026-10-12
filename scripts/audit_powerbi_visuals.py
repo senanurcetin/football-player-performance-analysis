@@ -52,9 +52,14 @@ def audit(root: Path, mode: str):
     errors, warnings = [], []
     metadata = read_json(report / "pages" / "pages.json")
     ordered = metadata.get("pageOrder", [])
+    if not ordered:
+        errors.append("PBIR pageOrder is empty; no report pages are registered")
     if len(ordered) != len(set(ordered)):
         errors.append("Duplicate page identifiers in pageOrder")
-    if metadata.get("activePageName") != ordered[0]:
+    active = metadata.get("activePageName")
+    if active not in ordered:
+        errors.append(f"Active PBIR page is missing from pageOrder: {active!r}")
+    elif active != ordered[0]:
         warnings.append("Report does not open on first page (Home)")
     summary = []
     all_pages = set()
@@ -117,8 +122,9 @@ def audit(root: Path, mode: str):
     for page_id in ordered:
         if page_id not in all_pages:
             errors.append(f"pageOrder references absent page {page_id}")
-    if set(ordered) != all_pages:
-        warnings.append("pageOrder does not exactly match page directories")
+    unregistered = sorted(all_pages - set(ordered))
+    for page_id in unregistered:
+        errors.append(f"PBIR page directory omitted from pageOrder: {page_id}")
     return {"mode": mode, "pages": len(summary), "visuals": sum(s["visuals"] for s in summary),
             "data_visuals": sum(s["data_visuals"] for s in summary),
             "model_tables": len(tables), "page_details": summary,
