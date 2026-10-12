@@ -9,7 +9,7 @@ import check_powerbi_offline_demo as checker
 
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("scope", choices=("transfer", "relationships"))
+    parser.add_argument("scope", choices=("transfer", "relationships", "joins", "keys", "rates"))
     args = parser.parse_args()
 
     tables = checker.DEMO / "Model" / "definition" / "tables"
@@ -24,6 +24,32 @@ def main() -> int:
     else:
         count, relations = checker.check_demo_relationships(tables)
         label = f"{count} fixture tables and {relations} relationships"
+        if args.scope == "joins":
+            checker.errors[:] = [
+                e for e in checker.errors
+                if any(k in e for k in (
+                    "relationship", "reference field", "reference target",
+                    "one-side key",
+                ))
+            ]
+            label += " (join constraints)"
+        elif args.scope == "keys":
+            checker.errors[:] = [
+                e for e in checker.errors
+                if any(k in e for k in (
+                    "Missing fixture rows", "NULL/missing", "Duplicate key",
+                ))
+            ]
+            label += " (unique keys)"
+        elif args.scope == "rates":
+            checker.errors[:] = [
+                e for e in checker.errors
+                if any(k in e for k in (
+                    "player", "Club", "Competition", "Malformed",
+                    "Zero", "goals", "assists",
+                )) and "relationship" not in e
+            ]
+            label += " (metric arithmetic)"
 
     if checker.errors:
         print(f"{label} FAILED:")
