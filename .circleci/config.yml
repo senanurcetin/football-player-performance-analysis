@@ -73,6 +73,47 @@ jobs:
           name: Verify synthetic offline PBIR fixtures only
           command: python scripts/check_powerbi_offline_demo.py
 
+  transfer-fixture-probe:
+    docker:
+      - image: cimg/python:3.11
+    resource_class: small
+    steps:
+      - checkout
+      - run:
+          name: Validate deterministic 365-day transfer arithmetic in isolation
+          command: |
+            python - <<'PY'
+            from scripts import check_powerbi_offline_demo as m
+            fixtures = {
+                p.stem: m.load_inline_fixture(p)
+                for p in (m.DEMO / "Model" / "definition" / "tables").glob("*.tmdl")
+                if not p.name.startswith(("LocalDateTable_", "DateTableTemplate_"))
+            }
+            m.check_365_day_transfer_contract(fixtures)
+            if m.errors:
+                raise SystemExit("Transfer fixture errors: " + " | ".join(m.errors))
+            print("365-day sample transfer arithmetic OK")
+            PY
+
+  relationship-fixture-probe:
+    docker:
+      - image: cimg/python:3.11
+    resource_class: small
+    steps:
+      - checkout
+      - run:
+          name: Validate offline relationship keys and model fixture values
+          command: |
+            python - <<'PY'
+            from scripts import check_powerbi_offline_demo as m
+            count, relations = m.check_demo_relationships(
+                m.DEMO / "Model" / "definition" / "tables"
+            )
+            if m.errors:
+                raise SystemExit("Fixture errors: " + " | ".join(m.errors))
+            print(f"{count} fixtures and {relations} relationships OK")
+            PY
+
 workflows:
   verify-offline-source:
     jobs:
@@ -80,3 +121,5 @@ workflows:
       - ml-contract-smoke
       - pbir-project-probe
       - pbir-demo-probe
+      - transfer-fixture-probe
+      - relationship-fixture-probe
