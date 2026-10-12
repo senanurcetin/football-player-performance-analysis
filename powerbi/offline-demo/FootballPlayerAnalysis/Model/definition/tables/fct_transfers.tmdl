@@ -120,13 +120,35 @@ table fct_transfers
 	partition fct_transfers = m
 		mode: import
 		source =
-				let
-				    Source = GoogleBigQuery.Database([UseStorageApi=false]),
-				    #"data-analiz-490513" = Source{[Name="data-analiz-490513"]}[Data],
-				    football_mart_Schema = #"data-analiz-490513"{[Name="football_mart",Kind="Schema"]}[Data],
-				    fct_transfers_Table = football_mart_Schema{[Name="fct_transfers",Kind="Table"]}[Data]
-				in
-				    fct_transfers_Table
+				#table(
+				    type table [#"player_id" = Int64.Type, #"position" = text, #"sub_position" = text, #"player_name" = text, #"transfer_date" = datetime, #"transfer_season" = text, #"from_club_id" = Int64.Type, #"to_club_id" = Int64.Type, #"from_club_name" = text, #"to_club_name" = text, #"transfer_fee" = number, #"market_value_in_eur" = number, #"fee_market_value_difference" = number, #"fee_market_value_difference_pct" = number],
+				    {
+				        {1, "Attack", "Centre-Forward", "Demo Player 01", #datetime(2025,5,1,0,0,0), "2024/25", 1, 1, "Demo North FC", "Demo North FC", 2200000, 2200000, 2200000, 0.200},
+				        {2, "Defender", "Centre-Back", "Demo Player 02", #datetime(2025,5,2,0,0,0), "2024/25", 2, 2, "Demo Coast United", "Demo Coast United", 3300000, 3300000, 3300000, 0.270},
+				        {3, "Midfield", "Central Midfield", "Demo Player 03", #datetime(2025,5,3,0,0,0), "2024/25", 3, 3, "Demo City FC", "Demo City FC", 4400000, 4400000, 4400000, 0.340},
+				        {4, "Goalkeeper", "Goalkeeper", "Demo Player 04", #datetime(2025,5,4,0,0,0), "2024/25", 4, 4, "Demo Athletic", "Demo Athletic", 5500000, 5500000, 5500000, 0.410},
+				        {5, "Attack", "Centre-Forward", "Demo Player 05", #datetime(2025,5,5,0,0,0), "2024/25", 5, 5, "Demo Rangers", "Demo Rangers", 6600000, 6600000, 6600000, 0.480},
+				        {6, "Defender", "Centre-Back", "Demo Player 06", #datetime(2025,5,6,0,0,0), "2024/25", 6, 6, "Demo Vale", "Demo Vale", 7700000, 7700000, 7700000, 0.550},
+				        {7, "Midfield", "Central Midfield", "Demo Player 07", #datetime(2025,5,7,0,0,0), "2024/25", 1, 1, "Demo North FC", "Demo North FC", 8800000, 8800000, 8800000, 0.620},
+				        {8, "Goalkeeper", "Goalkeeper", "Demo Player 08", #datetime(2025,5,8,0,0,0), "2024/25", 2, 2, "Demo Coast United", "Demo Coast United", 9900000, 9900000, 9900000, 0.690},
+				        {9, "Attack", "Centre-Forward", "Demo Player 09", #datetime(2025,5,9,0,0,0), "2024/25", 3, 3, "Demo City FC", "Demo City FC", 11000000, 11000000, 11000000, 0.760},
+				        {10, "Defender", "Centre-Back", "Demo Player 10", #datetime(2025,5,10,0,0,0), "2024/25", 4, 4, "Demo Athletic", "Demo Athletic", 12100000, 12100000, 12100000, 0.200},
+				        {11, "Midfield", "Central Midfield", "Demo Player 11", #datetime(2025,5,11,0,0,0), "2024/25", 5, 5, "Demo Rangers", "Demo Rangers", 13200000, 13200000, 13200000, 0.270},
+				        {12, "Goalkeeper", "Goalkeeper", "Demo Player 12", #datetime(2025,5,12,0,0,0), "2024/25", 6, 6, "Demo Vale", "Demo Vale", 14300000, 14300000, 14300000, 0.340},
+				        {13, "Attack", "Centre-Forward", "Demo Player 13", #datetime(2025,5,13,0,0,0), "2024/25", 1, 1, "Demo North FC", "Demo North FC", 15400000, 15400000, 15400000, 0.410},
+				        {14, "Defender", "Centre-Back", "Demo Player 14", #datetime(2025,5,14,0,0,0), "2024/25", 2, 2, "Demo Coast United", "Demo Coast United", 16500000, 16500000, 16500000, 0.480},
+				        {15, "Midfield", "Central Midfield", "Demo Player 15", #datetime(2025,5,15,0,0,0), "2024/25", 3, 3, "Demo City FC", "Demo City FC", 17600000, 17600000, 17600000, 0.550},
+				        {16, "Goalkeeper", "Goalkeeper", "Demo Player 16", #datetime(2025,5,16,0,0,0), "2024/25", 4, 4, "Demo Athletic", "Demo Athletic", 2200000, 2200000, 2200000, 0.620},
+				        {17, "Attack", "Centre-Forward", "Demo Player 17", #datetime(2025,5,17,0,0,0), "2024/25", 5, 5, "Demo Rangers", "Demo Rangers", 3300000, 3300000, 3300000, 0.690},
+				        {18, "Defender", "Centre-Back", "Demo Player 18", #datetime(2025,5,18,0,0,0), "2024/25", 6, 6, "Demo Vale", "Demo Vale", 4400000, 4400000, 4400000, 0.760},
+				        {19, "Midfield", "Central Midfield", "Demo Player 19", #datetime(2025,5,19,0,0,0), "2024/25", 1, 1, "Demo North FC", "Demo North FC", 5500000, 5500000, 5500000, 0.200},
+				        {20, "Goalkeeper", "Goalkeeper", "Demo Player 20", #datetime(2025,5,20,0,0,0), "2024/25", 2, 2, "Demo Coast United", "Demo Coast United", 6600000, 6600000, 6600000, 0.270},
+				        {21, "Attack", "Centre-Forward", "Demo Player 21", #datetime(2025,5,21,0,0,0), "2024/25", 3, 3, "Demo City FC", "Demo City FC", 7700000, 7700000, 7700000, 0.340},
+				        {22, "Defender", "Centre-Back", "Demo Player 22", #datetime(2025,5,22,0,0,0), "2024/25", 4, 4, "Demo Athletic", "Demo Athletic", 8800000, 8800000, 8800000, 0.410},
+				        {23, "Midfield", "Central Midfield", "Demo Player 23", #datetime(2025,5,23,0,0,0), "2024/25", 5, 5, "Demo Rangers", "Demo Rangers", 9900000, 9900000, 9900000, 0.480},
+				        {24, "Goalkeeper", "Goalkeeper", "Demo Player 24", #datetime(2025,5,24,0,0,0), "2024/25", 6, 6, "Demo Vale", "Demo Vale", 11000000, 11000000, 11000000, 0.550}
+				    }
+				)
 
 	annotation PBI_NavigationStepName = Navigation
 

@@ -18,11 +18,32 @@ table time_spine_daily
 	partition time_spine_daily = m
 		mode: import
 		source =
-				let
-				    Source = GoogleBigQuery.Database([UseStorageApi=false]),
-				    #"data-analiz-490513" = Source{[Name="data-analiz-490513"]}[Data],
-				    football_mart_Schema = #"data-analiz-490513"{[Name="football_mart",Kind="Schema"]}[Data],
-				    time_spine_daily_Table = football_mart_Schema{[Name="time_spine_daily",Kind="Table"]}[Data]
-				in
-				    time_spine_daily_Table
-
+				#table(
+				    type table [#"date_day" = datetime],
+				    {
+				        {#datetime(2025,5,1,0,0,0)},
+				        {#datetime(2025,5,2,0,0,0)},
+				        {#datetime(2025,5,3,0,0,0)},
+				        {#datetime(2025,5,4,0,0,0)},
+				        {#datetime(2025,5,5,0,0,0)},
+				        {#datetime(2025,5,6,0,0,0)},
+				        {#datetime(2025,5,7,0,0,0)},
+				        {#datetime(2025,5,8,0,0,0)},
+				        {#datetime(2025,5,9,0,0,0)},
+				        {#datetime(2025,5,10,0,0,0)},
+				        {#datetime(2025,5,11,0,0,0)},
+				        {#datetime(2025,5,12,0,0,0)},
+				        {#datetime(2025,5,13,0,0,0)},
+				        {#datetime(2025,5,14,0,0,0)},
+				        {#datetime(2025,5,15,0,0,0)},
+				        {#datetime(2025,5,16,0,0,0)},
+				        {#datetime(2025,5,17,0,0,0)},
+				        {#datetime(2025,5,18,0,0,0)},
+				        {#datetime(2025,5,19,0,0,0)},
+				        {#datetime(2025,5,20,0,0,0)},
+				        {#datetime(2025,5,21,0,0,0)},
+				        {#datetime(2025,5,22,0,0,0)},
+				        {#datetime(2025,5,23,0,0,0)},
+				        {#datetime(2025,5,24,0,0,0)}
+				    }
+				)
