@@ -2,7 +2,7 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
   "name": "tooltip_transfer_p011",
   "displayName": "Tooltip Transfer",
-  "displayOption": "DeprecatedDynamic",
+  "displayOption": "ActualSize",
   "objects": {
     "background": [
       {
@@ -28,5 +28,13 @@
         }
       }
     ]
+  },
+  "width": 560,
+  "height": 320,
+  "visibility": "HiddenInViewMode",
+  "pageBinding": {
+    "name": "a1100000000000000012",
+    "type": "Tooltip",
+    "parameters": []
   }
 }
