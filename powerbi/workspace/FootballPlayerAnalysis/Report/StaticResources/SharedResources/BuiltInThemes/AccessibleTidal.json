@@ -1,49 +1,49 @@
 {
-  "name": "Accessible Tidal",
+  "name": "NEXUS Midnight Blue",
   "dataColors": [
-    "#25C9B8",
-    "#4BA3F2",
-    "#82D7BB",
-    "#A0B8FF",
-    "#F0BC79",
-    "#BBA5FF",
-    "#79BAC1",
-    "#F48491"
+    "#4EA8FF",
+    "#8F9BFF",
+    "#F6B95F",
+    "#F27E90",
+    "#3974D0",
+    "#BFACFF",
+    "#83BFFF",
+    "#E59AB8"
   ],
-  "foreground": "#142635",
+  "foreground": "#122942",
   "background": "#FFFFFF",
-  "foregroundNeutralSecondary": "#536A7A",
-  "backgroundLight": "#F1F6F8",
-  "foregroundNeutralTertiary": "#7F95A3",
-  "backgroundNeutral": "#D8E5EA",
-  "tableAccent": "#21A99C",
-  "maximum": "#0D3350",
-  "center": "#43B8AA",
-  "minimum": "#C5F5E7",
-  "bad": "#C9495B",
-  "neutral": "#D39B45",
-  "good": "#16876F",
-  "hyperlink": "#217FA2",
+  "foregroundNeutralSecondary": "#5D748A",
+  "backgroundLight": "#F1F5FB",
+  "foregroundNeutralTertiary": "#8295A9",
+  "backgroundNeutral": "#CEDCEC",
+  "tableAccent": "#4EA8FF",
+  "maximum": "#183C69",
+  "center": "#589BDA",
+  "minimum": "#D6E8FF",
+  "bad": "#DA5974",
+  "neutral": "#E2A347",
+  "good": "#487FD8",
+  "hyperlink": "#276DD0",
   "textClasses": {
     "title": {
       "fontFace": "Segoe UI Semibold",
-      "fontSize": 12,
-      "color": "#0C273C"
+      "fontSize": 13,
+      "color": "#122942"
     },
     "header": {
       "fontFace": "Segoe UI Semibold",
       "fontSize": 11,
-      "color": "#0C273C"
+      "color": "#122942"
     },
     "label": {
       "fontFace": "Segoe UI",
       "fontSize": 10,
-      "color": "#536A7A"
+      "color": "#526C83"
     },
     "callout": {
       "fontFace": "Segoe UI Semibold",
-      "fontSize": 24,
-      "color": "#0D263A"
+      "fontSize": 26,
+      "color": "#183C69"
     }
   }
 }
