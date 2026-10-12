@@ -80,7 +80,7 @@ class PbirRegistryTests(unittest.TestCase):
     def write_rate_tooltip(self, function: int):
         model_path = self.base / "Model" / "definition" / "tables" / "fct_player_performance.tmdl"
         model_path.write_text(
-            "table fct_player_performance\\n\\tcolumn goals_per_90\\n",
+            "table fct_player_performance\n\tcolumn goals_per_90\n",
             encoding="utf-8",
         )
         self.write_json(
