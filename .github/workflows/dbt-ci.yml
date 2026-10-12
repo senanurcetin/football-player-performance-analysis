@@ -64,6 +64,8 @@ jobs:
         run: |
           python -m compileall -q scripts
           python scripts/check_offline_ci.py
+          python -m unittest discover -s tests -p 'test_powerbi_audit.py' -v
+          python scripts/audit_powerbi_visuals.py --mode both
 
   validate:
     # BigQuery CI is intentionally opt-in. A missing GCP secret must never
