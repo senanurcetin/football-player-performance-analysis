@@ -9,6 +9,11 @@
 
 <h1 align="center">Football Player Performance Analysis</h1>
 
+![Football Player Performance Analysis — editorial illustration](docs/assets/football-analytics-cover.svg)
+
+> Cover illustration for portfolio presentation; not a Power BI screenshot or model output. [View the real report captures](#dashboard-preview) for evidence of the implemented dashboard.
+
+
 <p align="center">
   An end-to-end football analytics project, from Transfermarkt data and governed dbt marts to leakage-aware market-value modeling and interactive Power BI dashboards.
 </p>
