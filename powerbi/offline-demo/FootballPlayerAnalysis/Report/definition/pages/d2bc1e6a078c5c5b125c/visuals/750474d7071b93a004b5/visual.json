@@ -210,7 +210,7 @@
                           "min": {
                             "color": {
                               "Literal": {
-                                "Value": "'#B7D9D8'"
+                                "Value": "'#C5DDFC'"
                               }
                             }
                           },
@@ -284,7 +284,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#476A7A'"
+                      "Value": "'#496B98'"
                     }
                   }
                 }
