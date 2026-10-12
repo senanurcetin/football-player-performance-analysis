@@ -1,6 +1,6 @@
 """PBIR NEXUS design and page-registry contracts (source-level, not Desktop proof).
 
-Run with: python -m unittest tests.test_powerbi_all_dashboard_quality
+Run with: python -m unittest discover -s tests -p 'test_powerbi_all_dashboard_quality.py'
 """
 from __future__ import annotations
 
@@ -163,6 +163,51 @@ class EveryDashboardSourceContract(unittest.TestCase):
             self.assertTrue(set(targets).issubset(PAGES))
             self.assertNotIn("tooltip_pred_p012", targets)
             self.assertNotIn("tooltip_transfer_p011", targets)
+
+    def test_data_visuals_have_synchronized_accessible_descriptions(self):
+        expected = {
+            "24c53960ddc19662d824": [f"a7e1{i:016d}" for i in range(1, 5)],
+            "25f58efd2bb140e62be9": [f"a7e2{i:016d}" for i in range(1, 5)],
+            "4c63ad904b1db6e0d156": [
+                *[f"a7e3{i:016d}" for i in range(1, 5)],
+                *[f"a7e4{i:016d}" for i in range(1, 5)],
+            ],
+            "d2bc1e6a078c5c5b125c": [
+                "6c68e020599db75da880", "750474d7071b93a004b5",
+                "81f5bb0995b4428b2b0d", "a61aa3c509a6b3e3b1b4",
+            ],
+            "292e3d92e92693c05047": [
+                "0839d8ed3d7479a01f32", "5bbe3e0865c55bbeade1",
+                "1c4d73ece1a64f57c0fc", "9c728e8d682165354da4",
+            ],
+            "1f4c5c8000149b2e2be8": [
+                "4d304949cba7dd247021", "8b67c00a69b995fd3db6",
+                "3ccd5a45594119af9bb7", "be92253a5130bdec9028",
+            ],
+            "MLModelPerformance": [
+                "44ef7cfce32d97d2bb52", "6a52894b1eadaab185b4",
+                "9cac2684a07ca1c85ca6", "162f01fa99bf4b660a1e",
+            ],
+            "tooltip_pred_p012": ["tt012_scatter_0001", "tt012_stats_0001"],
+            "tooltip_transfer_p011": ["tt011_scatter_0001", "tt011_stats_0001"],
+        }
+        self.assertEqual(sum(len(ids) for ids in expected.values()), 36)
+        for page_id, visual_ids in expected.items():
+            for visual_id in visual_ids:
+                with self.subTest(page=page_id, visual=visual_id):
+                    results = []
+                    for mode in MODES:
+                        path = (project(mode) / "Report" / "definition" /
+                                "pages" / page_id / "visuals" / visual_id / "visual.json")
+                        node = obj(path)
+                        props = node["visual"]["visualContainerObjects"]["general"][0]["properties"]
+                        alt = props["altText"]["expr"]["Literal"]["Value"].strip("'")
+                        self.assertTrue(20 <= len(alt) <= 250)
+                        self.assertNotIn("SYNTHETIC DEMO", alt)
+                        results.append(alt)
+                    self.assertEqual(results[0], results[1])
+
+
 
 
 if __name__ == "__main__":
