@@ -41,6 +41,17 @@ All 13 pages receive the registered `NEXUSMidnight-20261012-v2.json` custom repo
 - [x] Remove legacy green surface literals from the four identified ML prediction slicer/KPI/chart visuals in both report editions; add a regression test for these objects
 - [ ] Run all preflight scripts and Python unit tests on a full working copy
 
+### Stage A.2 — Single editorial report and repository diet
+
+- [x] Give each of the 13 editable PBIR pages its own coordinated NEXUS canvas
+- [x] Introduce different asymmetric chart compositions on Player Segmentation and Club & League pages; preserve original Category/Y query roles
+- [x] Keep Home / Closing dark and maintain demo-versus-production naming distinction
+- [x] Remove the six outdated green Power BI screenshot PNGs, their archive index and the superseded SVG cover
+- [x] Keep production workspace and deterministic offline-demo because they serve different data sources, **not** two exported PowerPoint presentations
+- [x] Add static regression checks for palette, native chart geometry and workspace/demo role parity
+- [ ] Confirm all native visual overlaps and browser/Power BI Desktop rendering; no engine-level validation was run here
+- [ ] Audit PBIR RegisteredResources binary image references before considering any further asset removal
+
 ### Stage B — Engine-level verification (blocked)
 
 - [ ] Open the offline PBIP in a supported Power BI Desktop
