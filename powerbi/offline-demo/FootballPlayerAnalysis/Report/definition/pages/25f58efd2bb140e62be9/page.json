@@ -1,7 +1,7 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
   "name": "25f58efd2bb140e62be9",
-  "displayName": "[DEMO] 🏆 Club & League Analysis",
+  "displayName": "[DEMO] Club & League Analysis",
   "displayOption": "FitToPage",
   "height": 720,
   "width": 1280,
