@@ -11,9 +11,9 @@
 
 ## Repeatable source checks
 
-From the repository root, run `python scripts/audit_powerbi_visuals.py` to inspect structural PBIR integrity and referenced fields in both editions. The release test plan and precise Desktop limitations are in [`docs/POWER_BI_VISUAL_QA.md`](../../docs/POWER_BI_VISUAL_QA.md).
+From repository root, run `python scripts/check_powerbi_offline_demo.py` for demo fixture reconciliation and the 365-day SQL contract, then `python scripts/audit_powerbi_visuals.py` to inspect PBIR structure and referenced fields in both editions. The release test plan and precise Desktop limitations are in [`docs/POWER_BI_VISUAL_QA.md`](../../docs/POWER_BI_VISUAL_QA.md).
 
-The Transfer Success charts explicitly use **90-day DAX measures** to avoid mixing different label horizons. Demo transfer fixtures have been corrected for binary success status and consistent direction/date arithmetic, but the 33-table demo is still synthetic and not end-to-end statistically validated.
+The Transfer Success Analysis uses the governed **365-day / 20%** observed-outcome contract, with four cohort/coverage/reliability cards and four breakdown charts. All 24 demo transfer records and fixed-horizon outcomes have been reconciled to this fictional model; the 33-table demo is still synthetic and not end-to-end statistically validated.
 
 ## How to run after source verification
 
