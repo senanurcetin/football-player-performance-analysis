@@ -1,26 +1,49 @@
 {
   "name": "Accessible Tidal",
   "dataColors": [
-    "#0F3D6E",
-    "#1F84FF",
-    "#19423F",
-    "#59A472",
-    "#0F3A69",
-    "#0E94FF",
-    "#0B2623",
-    "#59A472"
+    "#25C9B8",
+    "#4BA3F2",
+    "#82D7BB",
+    "#A0B8FF",
+    "#F0BC79",
+    "#BBA5FF",
+    "#79BAC1",
+    "#F48491"
   ],
-  "foreground": "#121212",
+  "foreground": "#142635",
   "background": "#FFFFFF",
-  "foregroundNeutralSecondary": "#6C6966",
-  "backgroundLight": "#E5E0DA",
-  "foregroundNeutralTertiary": "#ABA7A2",
-  "backgroundNeutral": "#C6C2BE",
-  "tableAccent": "#4E9466",
-  "maximum": "#0B2F54",
-  "center": "#59A472",
-  "minimum": "#0E94FF",
-  "bad": "#0F3D6E",
-  "neutral": "#186DD5",
-  "good": "#46835A"
+  "foregroundNeutralSecondary": "#536A7A",
+  "backgroundLight": "#F1F6F8",
+  "foregroundNeutralTertiary": "#7F95A3",
+  "backgroundNeutral": "#D8E5EA",
+  "tableAccent": "#21A99C",
+  "maximum": "#0D3350",
+  "center": "#43B8AA",
+  "minimum": "#C5F5E7",
+  "bad": "#C9495B",
+  "neutral": "#D39B45",
+  "good": "#16876F",
+  "hyperlink": "#217FA2",
+  "textClasses": {
+    "title": {
+      "fontFace": "Segoe UI Semibold",
+      "fontSize": 12,
+      "color": "#0C273C"
+    },
+    "header": {
+      "fontFace": "Segoe UI Semibold",
+      "fontSize": 11,
+      "color": "#0C273C"
+    },
+    "label": {
+      "fontFace": "Segoe UI",
+      "fontSize": 10,
+      "color": "#536A7A"
+    },
+    "callout": {
+      "fontFace": "Segoe UI Semibold",
+      "fontSize": 24,
+      "color": "#0D263A"
+    }
+  }
 }

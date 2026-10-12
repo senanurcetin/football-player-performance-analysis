@@ -50,7 +50,7 @@
               "color": {
                 "expr": {
                   "Literal": {
-                    "Value": "'#CFF8C9'"
+                    "Value": "'#0B1B2B'"
                   }
                 }
               }
@@ -60,6 +60,23 @@
             "expr": {
               "Literal": {
                 "Value": "0D"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "outspace": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#081522'"
+                  }
+                }
               }
             }
           }

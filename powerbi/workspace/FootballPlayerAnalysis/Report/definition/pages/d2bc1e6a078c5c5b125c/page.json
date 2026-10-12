@@ -69,40 +69,12 @@
     "background": [
       {
         "properties": {
-          "image": {
-            "image": {
-              "name": {
-                "expr": {
-                  "Literal": {
-                    "Value": "'5.png'"
-                  }
-                }
-              },
-              "url": {
-                "expr": {
-                  "ResourcePackageItem": {
-                    "PackageName": "RegisteredResources",
-                    "PackageType": 1,
-                    "ItemName": "57452169215971814.png"
-                  }
-                }
-              },
-              "scaling": {
-                "expr": {
-                  "Literal": {
-                    "Value": "'Fill'"
-                  }
-                }
-              }
-            }
-          },
           "color": {
             "solid": {
               "color": {
                 "expr": {
-                  "ThemeDataColor": {
-                    "ColorId": 0,
-                    "Percent": 0
+                  "Literal": {
+                    "Value": "'#0B1B2B'"
                   }
                 }
               }
@@ -126,7 +98,7 @@
               "color": {
                 "expr": {
                   "Literal": {
-                    "Value": "'#E8F5E9'"
+                    "Value": "'#081522'"
                   }
                 }
               }

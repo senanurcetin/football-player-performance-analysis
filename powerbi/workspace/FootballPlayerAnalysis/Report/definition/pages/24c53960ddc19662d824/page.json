@@ -14,30 +14,12 @@
     "background": [
       {
         "properties": {
-          "image": {
-            "image": {
-              "name": {
-                "expr": {
-                  "Literal": {
-                    "Value": "''"
-                  }
-                }
-              },
-              "url": {
-                "expr": {
-                  "Literal": {
-                    "Value": "''"
-                  }
-                }
-              }
-            }
-          },
           "color": {
             "solid": {
               "color": {
                 "expr": {
                   "Literal": {
-                    "Value": "'#E8F5E9'"
+                    "Value": "'#0B1B2B'"
                   }
                 }
               }
@@ -47,6 +29,23 @@
             "expr": {
               "Literal": {
                 "Value": "0D"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "outspace": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#081522'"
+                  }
+                }
               }
             }
           }
