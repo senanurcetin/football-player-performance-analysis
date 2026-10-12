@@ -3,10 +3,10 @@
   "name": "750474d7071b93a004b5",
   "position": {
     "x": 420.33106699301965,
-    "y": 451.52171154020488,
+    "y": 451.5217115402049,
     "z": 23000,
     "height": 249.52515637748164,
-    "width": 326.75913335146407,
+    "width": 326.7591333514641,
     "tabOrder": 23000
   },
   "visual": {
@@ -210,14 +210,14 @@
                           "min": {
                             "color": {
                               "Literal": {
-                                "Value": "'#bddbc7'"
+                                "Value": "'#B7D9D8'"
                               }
                             }
                           },
                           "max": {
                             "color": {
                               "Literal": {
-                                "Value": "'#2d5239'"
+                                "Value": "'#146D72'"
                               }
                             }
                           },
@@ -297,5 +297,69 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "visualContainerObjects": {
+    "background": [
+      {
+        "properties": {
+          "show": {
+            "expr": {
+              "Literal": {
+                "Value": "true"
+              }
+            }
+          },
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#F7FBFC'"
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "border": [
+      {
+        "properties": {
+          "show": {
+            "expr": {
+              "Literal": {
+                "Value": "true"
+              }
+            }
+          },
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#476A7A'"
+                  }
+                }
+              }
+            }
+          },
+          "radius": {
+            "expr": {
+              "Literal": {
+                "Value": "12D"
+              }
+            }
+          }
+        }
+      }
+    ]
   }
 }
