@@ -77,6 +77,15 @@ class EveryDashboardSourceContract(unittest.TestCase):
                 self.assertEqual(len(ids), len(set(ids)))
                 self.assertEqual(ids[0], "5cb4db7e746975558322")
                 self.assertEqual(manifest["activePageName"], ids[0])
+                self.assertLess(
+                    ids.index("MLModelPerformance"),
+                    ids.index("c83db10673c28e3346ae"),
+                    "Technical ML reliability evidence belongs before closing",
+                )
+                self.assertEqual(
+                    ids.index("c83db10673c28e3346ae"), 8,
+                    "Closing must be the last normal full-size presentation page",
+                )
                 self.assertEqual(
                     {p.parent.name for p in pages.glob("*/page.json")},
                     set(ids),
@@ -90,6 +99,11 @@ class EveryDashboardSourceContract(unittest.TestCase):
                     page = obj(root / page_id / "page.json")
                     self.assertEqual(page["name"], page_id)
                     self.assertEqual(literal_color(page), PAGE_CANVASES[page_id])
+                    self.assertNotRegex(
+                        page["displayName"],
+                        r"[⭐👥🏆💰📊]",
+                        "Decorative legacy emoji is not an editorial page title",
+                    )
                     if mode == "offline-demo":
                         self.assertTrue(page["displayName"].startswith("[DEMO]"))
                     else:
@@ -219,6 +233,13 @@ class EveryDashboardSourceContract(unittest.TestCase):
                     self.assertEqual(results[0], results[1])
 
 
+
+    def test_legacy_presentation_artifacts_are_not_shipped(self):
+        legacy_gallery = ROOT / "docs" / "assets" / "screenshots"
+        self.assertFalse(legacy_gallery.exists())
+        self.assertFalse(
+            (ROOT / "docs" / "assets" / "football-analytics-cover.svg").exists()
+        )
 
     def test_ml_dashboard_no_legacy_green_accent(self):
         legacy = ("#F6FBF5", "#EAF6E8")
