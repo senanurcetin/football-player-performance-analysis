@@ -37,6 +37,21 @@ python scripts/audit_powerbi_visuals.py
 
 The demo preflight includes a 365-day SQL-contract guard and fixtures reconciliation. The visual audit checks page count/order, visual binding fields, watermark presence on normal demo pages, basic bounds and obviously incorrect CountNonNull summarization. These scripts **do not** execute Power BI DAX, Microsoft custom visuals, Power Query or BigQuery queries; source validation is not Desktop acceptance.
 
+## Implemented Power BI PBIR source design — 12 October 2026
+
+**Actual editable report change:** the 365-day Transfer Success Analysis page has four **native data charts** edited in both `powerbi/workspace/FootballPlayerAnalysis` and `powerbi/offline-demo/FootballPlayerAnalysis`. The source changes are in each chart's `Report/definition/pages/4c63ad904b1db6e0d156/visuals/*/visual.json`, **not** generated cover art.
+
+| Panel | Visual type | Display title | NEXUS series color |
+| --- | --- | --- | --- |
+| Transfer count by position | Clustered bar | Observed transfers by position · 365d | `#4EA8FF` |
+| Mean transfer fee | Clustered column | Average transfer fee by position · 365d | `#8F9BFF` |
+| Observed success rate | Clustered bar | Observed success rate by position · 365d | `#487FD8` |
+| Outcome follow-up | Donut chart | 365d outcome follow-up status | `#8F9BFF` |
+
+These concrete PBIR edits standardize 13 pt chart titles, 11 pt data labels, dark-blue label contrast and 12 pt corner radius. Existing queryState bindings and underlying models are untouched. The native report still uses BigQuery in workspace and deterministic synthetic inputs in offline-demo; the four chart JSON payloads match across both modes.
+
+An offline source parity test is provided at [`tests/test_powerbi_chart_design.py`](../tests/test_powerbi_chart_design.py). **No new Power BI report screenshot has been produced or approved**: actual Desktop open/refresh, chart interactions, DAX evaluation, cross-filters and final display quality still require testing on the authorized Windows machine. The historical green-themed screenshots stay historical.
+
 ## Required Power BI Desktop acceptance
 
 1. Open **offline demo** `powerbi/offline-demo/FootballPlayerAnalysis/FootballPlayerAnalysis.pbip`. Refresh all 33 inline fixture tables; no BigQuery credentials should be requested.
