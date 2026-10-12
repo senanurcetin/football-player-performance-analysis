@@ -93,6 +93,8 @@ The six files in [historical screenshots](docs/assets/screenshots/) depict a **l
 
 **Native PBIR design update (12 October 2026):** The four live-bound data charts on the 365-day Transfer Success page were edited directly in **both** report projects: NEXUS blue/lavender series, readable chart titles and labels, and consistent card borders. These are changes to editable Power BI visuals—not illustrated concept covers. [Source specifications and Desktop test gate](docs/POWER_BI_VISUAL_QA.md).
 
+**Additional native report design (13 October 2026):** Eight data-bound charts on **Player Segmentation** and **Club & League Analysis** now use the same readable title, data-label and panel-radius settings in both the BigQuery workspace and synthetic offline demo PBIR sources. Original measure/category bindings and chart types were preserved. The historical screenshots below have not been replaced because a current Power BI Desktop render is still unverified.
+
 The transfer-success visualizations use observed transfer outcomes, **not machine-learning predictions**. Their label source is the 365-day BigQuery mart with a 20-percentage-point value-growth threshold. Demo fixtures are synthetic; no sample result can be cited as a real football outcome.
 
 See [Power BI visual QA and release gate](docs/POWER_BI_VISUAL_QA.md) for the remaining Desktop acceptance tests. Publish new screenshots only after the actual Power BI Desktop report is open, refreshed and inspected.

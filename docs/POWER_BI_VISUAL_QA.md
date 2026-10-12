@@ -52,6 +52,19 @@ These concrete PBIR edits standardize 13 pt chart titles, 11 pt data labels, dar
 
 An offline source parity test is provided at [`tests/test_powerbi_chart_design.py`](../tests/test_powerbi_chart_design.py). **No new Power BI report screenshot has been produced or approved**: actual Desktop open/refresh, chart interactions, DAX evaluation, cross-filters and final display quality still require testing on the authorized Windows machine. The historical green-themed screenshots stay historical.
 
+## Additional native report design — 13 October 2026 (CI-free source review)
+
+Two more **editable PBIR pages** now match the 365-day report's card and typography system in **both** `workspace` and `offline-demo`:
+
+| Page | Actual bound chart panels | Source directory |
+| --- | --- | --- |
+| Player Segmentation | Players by Position; Age Group Distribution; Goals by Club; Market Value by Position | `Report/definition/pages/24c53960ddc19662d824/visuals/a7e1*/visual.json` |
+| Club & League Analysis | Club Win Rate; Goal Difference by Club; Competition Matches; Goals by Competition | `Report/definition/pages/25f58efd2bb140e62be9/visuals/a7e2*/visual.json` |
+
+All **eight real charts** retain their original category/value query bindings and chart types. Each receives 13 pt navy titles, 11 pt high-contrast data labels and consistent 12 pt panel corners. The existing blue/lavender series scheme remains intact. There are **16 native visual-source edits**: 8 charts × 2 report editions. Textbox decorations, page backgrounds and underlying measurements are untouched.
+
+The expanded [source regression](../tests/test_powerbi_chart_design.py) checks JSON parity, chart types, visual titles, display settings and nonempty data query state. This is a **static source review without CI** — not evidence that Power BI Desktop refreshes, cross-filtering or dashboard page renders pass. Historic PNGs remain historic until the actual PBIR project is opened and visually captured.
+
 ## Required Power BI Desktop acceptance
 
 1. Open **offline demo** `powerbi/offline-demo/FootballPlayerAnalysis/FootballPlayerAnalysis.pbip`. Refresh all 33 inline fixture tables; no BigQuery credentials should be requested.
