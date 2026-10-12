@@ -53,8 +53,30 @@ jobs:
           command: python scripts/check_ml_pipeline.py
           no_output_timeout: 20m
 
+  pbir-project-probe:
+    docker:
+      - image: cimg/python:3.11
+    resource_class: small
+    steps:
+      - checkout
+      - run:
+          name: Verify editable production PBIR project only
+          command: python scripts/check_powerbi_project.py
+
+  pbir-demo-probe:
+    docker:
+      - image: cimg/python:3.11
+    resource_class: small
+    steps:
+      - checkout
+      - run:
+          name: Verify synthetic offline PBIR fixtures only
+          command: python scripts/check_powerbi_offline_demo.py
+
 workflows:
   verify-offline-source:
     jobs:
       - dbt-source-preflight
       - ml-contract-smoke
+      - pbir-project-probe
+      - pbir-demo-probe
