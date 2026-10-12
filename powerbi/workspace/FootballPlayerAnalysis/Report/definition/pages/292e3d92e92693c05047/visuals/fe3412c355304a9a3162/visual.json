@@ -23,10 +23,10 @@
                       "Entity": "fct_transfer_market_value_analysis"
                     }
                   },
-                  "Property": "pozisyon_tr"
+                  "Property": "position_tr"
                 }
               },
-              "queryRef": "fct_transfer_market_value_analysis.pozisyon_tr",
+              "queryRef": "fct_transfer_market_value_analysis.position_tr",
               "nativeQueryRef": "Position",
               "active": true,
               "displayName": "Position"
