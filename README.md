@@ -13,7 +13,7 @@
 **Reviewer quick brief:** [Project evidence, model baselines and contribution attribution](docs/hiring-summary.md).
 ![Football Player Performance Analysis — editorial illustration](docs/assets/football-analytics-cover.svg)
 
-> Cover illustration for portfolio presentation; not a Power BI screenshot or model output. [View the real report captures](#dashboard-preview) for evidence of the implemented dashboard.
+> **Editorial cover, not a Power BI screenshot.** The six historical captures are archived, not verified output from the current NEXUS PBIR. See the [dashboard source overview](#dashboard-preview) and [Desktop verification gate](docs/POWER_BI_VISUAL_QA.md).
 
 
 <p align="center">
