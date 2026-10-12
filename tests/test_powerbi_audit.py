@@ -77,5 +77,51 @@ class PbirRegistryTests(unittest.TestCase):
         self.assertTrue(any("data visual has no queryState" in e for e in self.errors()))
 
 
+    def write_rate_tooltip(self, function: int):
+        model_path = self.base / "Model" / "definition" / "tables" / "fct_player_performance.tmdl"
+        model_path.write_text(
+            "table fct_player_performance\\n\\tcolumn goals_per_90\\n",
+            encoding="utf-8",
+        )
+        self.write_json(
+            self.pages / "home" / "visuals" / "player-rates" / "visual.json",
+            {
+                "name": "player-rates",
+                "visual": {
+                    "visualType": "barChart",
+                    "query": {
+                        "queryState": {
+                            "Tooltips": {
+                                "projections": [{
+                                    "field": {
+                                        "Aggregation": {
+                                            "Expression": {"Column": {
+                                                "Expression": {"SourceRef": {
+                                                    "Entity": "fct_player_performance",
+                                                }},
+                                                "Property": "goals_per_90",
+                                            }},
+                                            "Function": function,
+                                        },
+                                    },
+                                    "displayName": "Goals per 90",
+                                }],
+                            },
+                        },
+                    },
+                },
+            },
+        )
+
+    def test_max_tooltip_for_rate_does_not_trigger_count_nonnull_error(self):
+        self.write_rate_tooltip(4)  # 4 is Max, not CountNonNull
+        self.assertEqual(self.errors(), [])
+
+    def test_count_nonnull_tooltip_for_rate_is_flagged(self):
+        self.write_rate_tooltip(5)  # 5 is CountNonNull
+        self.assertTrue(any("counts non-null rows" in e for e in self.errors()))
+
+
+
 if __name__ == "__main__":
     unittest.main()
