@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "8b91d598c732aba58217",
   "position": {
-    "x": 559.94633306137246,
+    "x": 559.9463330613725,
     "y": 196.05548001087843,
     "z": 20000,
     "height": 239.12827486175325,
-    "width": 351.41464962378751,
+    "width": 351.4146496237875,
     "tabOrder": 20000
   },
   "visual": {
@@ -270,7 +270,7 @@
                           },
                           "Value": {
                             "Literal": {
-                              "Value": "'#437b56'"
+                              "Value": "'#207982'"
                             }
                           }
                         }
@@ -449,6 +449,70 @@
               }
             }
           ]
+        }
+      }
+    ]
+  },
+  "visualContainerObjects": {
+    "background": [
+      {
+        "properties": {
+          "show": {
+            "expr": {
+              "Literal": {
+                "Value": "true"
+              }
+            }
+          },
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#F7FBFC'"
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "border": [
+      {
+        "properties": {
+          "show": {
+            "expr": {
+              "Literal": {
+                "Value": "true"
+              }
+            }
+          },
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#476A7A'"
+                  }
+                }
+              }
+            }
+          },
+          "radius": {
+            "expr": {
+              "Literal": {
+                "Value": "12D"
+              }
+            }
+          }
         }
       }
     ]

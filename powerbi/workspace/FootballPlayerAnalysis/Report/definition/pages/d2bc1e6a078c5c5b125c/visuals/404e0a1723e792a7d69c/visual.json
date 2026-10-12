@@ -22,7 +22,8 @@
                     "value": "⚽ How effective is the player on the field right now?",
                     "textStyle": {
                       "fontWeight": "bold",
-                      "fontSize": "12pt"
+                      "fontSize": "12pt",
+                      "color": "#F2FAFC"
                     }
                   }
                 ]
