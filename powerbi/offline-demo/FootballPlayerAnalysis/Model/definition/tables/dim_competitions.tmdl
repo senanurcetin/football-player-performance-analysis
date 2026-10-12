@@ -1,0 +1,93 @@
+table dim_competitions
+
+	column competition_id
+		dataType: string
+		summarizeBy: none
+		sourceColumn: competition_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column competition_code
+		dataType: string
+		summarizeBy: none
+		sourceColumn: competition_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column competition_name
+		dataType: string
+		summarizeBy: none
+		sourceColumn: competition_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column competition_sub_type
+		dataType: string
+		summarizeBy: none
+		sourceColumn: competition_sub_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column competition_type
+		dataType: string
+		summarizeBy: none
+		sourceColumn: competition_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column country_id
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: country_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column country_name
+		dataType: string
+		summarizeBy: none
+		sourceColumn: country_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column domestic_league_code
+		dataType: string
+		summarizeBy: none
+		sourceColumn: domestic_league_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column confederation
+		dataType: string
+		summarizeBy: none
+		sourceColumn: confederation
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_clubs
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: total_clubs
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_competitions = m
+		mode: import
+		source =
+				#table(
+				    type table [#"competition_id" = text, #"competition_code" = text, #"competition_name" = text, #"competition_sub_type" = text, #"competition_type" = text, #"country_id" = Int64.Type, #"country_name" = text, #"domestic_league_code" = text, #"confederation" = text, #"total_clubs" = Int64.Type],
+				    {
+				        {"Demo competition id", "Demo competition code", "Demo Premier Division", "Demo competition sub type", "Demo competition type", 1, "England", "Demo domestic league code", "Demo confederation", 1},
+				        {"Demo competition id", "Demo competition code", "Demo National League", "Demo competition sub type", "Demo competition type", 2, "Germany", "Demo domestic league code", "Demo confederation", 2},
+				        {"Demo competition id", "Demo competition code", "Demo Continental Cup", "Demo competition sub type", "Demo competition type", 3, "France", "Demo domestic league code", "Demo confederation", 3},
+				        {"Demo competition id", "Demo competition code", "Demo Premier Division", "Demo competition sub type", "Demo competition type", 4, "Spain", "Demo domestic league code", "Demo confederation", 4},
+				        {"Demo competition id", "Demo competition code", "Demo National League", "Demo competition sub type", "Demo competition type", 5, "England", "Demo domestic league code", "Demo confederation", 5},
+				        {"Demo competition id", "Demo competition code", "Demo Continental Cup", "Demo competition sub type", "Demo competition type", 6, "Germany", "Demo domestic league code", "Demo confederation", 6}
+				    }
+				)
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

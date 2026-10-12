@@ -1,0 +1,223 @@
+table fct_player_performance
+
+	measure 'Total Goals' = SUM(fct_player_performance[total_goals])
+		formatString: 0
+
+	measure 'Total Assists' = SUM(fct_player_performance[total_assists])
+		formatString: 0
+
+	measure 'Total Minutes' = SUM(fct_player_performance[total_minutes_played])
+		formatString: 0
+
+	measure 'Total Players Count' = DISTINCTCOUNT(fct_player_performance[player_id])
+		formatString: 0
+
+	measure 'Player G+A per 90' = MAX(fct_player_performance[goals_per_90]) + MAX(fct_player_performance[assists_per_90])
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg G+A per 90' =
+
+			AVERAGEX(
+			    fct_player_performance,
+			    fct_player_performance[goals_per_90] + fct_player_performance[assists_per_90]
+			)
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Average Minutes' =
+			
+			AVERAGE(fct_player_performance[avg_minutes_per_match])
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column player_id
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: player_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column player_name
+		dataType: string
+		summarizeBy: none
+		sourceColumn: player_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column position
+		dataType: string
+		summarizeBy: none
+		sourceColumn: position
+
+		annotation SummarizationSetBy = Automatic
+
+	column sub_position
+		dataType: string
+		summarizeBy: none
+		sourceColumn: sub_position
+
+		annotation SummarizationSetBy = Automatic
+
+	column current_club_id
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: current_club_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column current_club_name
+		dataType: string
+		summarizeBy: none
+		sourceColumn: current_club_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column market_value_in_eur
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: market_value_in_eur
+
+		annotation SummarizationSetBy = Automatic
+
+	column has_current_market_value
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		summarizeBy: none
+		sourceColumn: has_current_market_value
+
+		annotation SummarizationSetBy = Automatic
+
+	column matches_played
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: matches_played
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_goals
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: total_goals
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_assists
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: total_assists
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_minutes_played
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: total_minutes_played
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_yellow_cards
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: total_yellow_cards
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_red_cards
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: total_red_cards
+
+		annotation SummarizationSetBy = Automatic
+
+	column avg_minutes_per_match
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: avg_minutes_per_match
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column goals_per_match
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: goals_per_match
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column assists_per_match
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: assists_per_match
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column goals_per_90
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: goals_per_90
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column assists_per_90
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: assists_per_90
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition fct_player_performance = m
+		mode: import
+		source =
+				#table(
+				    type table [#"player_id" = Int64.Type, #"player_name" = text, #"position" = text, #"sub_position" = text, #"current_club_id" = Int64.Type, #"current_club_name" = text, #"market_value_in_eur" = Int64.Type, #"has_current_market_value" = logical, #"matches_played" = Int64.Type, #"total_goals" = Int64.Type, #"total_assists" = Int64.Type, #"total_minutes_played" = Int64.Type, #"total_yellow_cards" = Int64.Type, #"total_red_cards" = Int64.Type, #"avg_minutes_per_match" = number, #"goals_per_match" = number, #"assists_per_match" = number, #"goals_per_90" = number, #"assists_per_90" = number],
+				    {
+				        {1, "Demo Player 01", "Attack", "Centre-Forward", 1, "Demo North FC", 3000000, true, 10, 2, 1, 900, 1, 1, 70, 0.150, 0.150, 0.150, 0.150},
+				        {2, "Demo Player 02", "Defender", "Centre-Back", 2, "Demo Coast United", 4000000, true, 11, 3, 2, 1020, 2, 2, 71, 0.340, 0.340, 0.340, 0.340},
+				        {3, "Demo Player 03", "Midfield", "Central Midfield", 3, "Demo City FC", 5000000, true, 12, 4, 3, 1140, 3, 3, 72, 0.530, 0.530, 0.530, 0.530},
+				        {4, "Demo Player 04", "Goalkeeper", "Goalkeeper", 4, "Demo Athletic", 6000000, true, 13, 5, 4, 1260, 4, 4, 73, 0.720, 0.720, 0.720, 0.720},
+				        {5, "Demo Player 05", "Attack", "Centre-Forward", 5, "Demo Rangers", 7000000, true, 14, 6, 5, 1380, 5, 5, 74, 0.910, 0.910, 0.910, 0.910},
+				        {6, "Demo Player 06", "Defender", "Centre-Back", 6, "Demo Vale", 8000000, true, 15, 7, 6, 1500, 6, 6, 75, 1.100, 1.100, 1.100, 1.100},
+				        {7, "Demo Player 07", "Midfield", "Central Midfield", 1, "Demo North FC", 9000000, true, 16, 8, 7, 1620, 7, 7, 76, 1.290, 1.290, 1.290, 1.290},
+				        {8, "Demo Player 08", "Goalkeeper", "Goalkeeper", 2, "Demo Coast United", 10000000, true, 17, 9, 8, 1740, 8, 8, 77, 1.480, 1.480, 1.480, 1.480},
+				        {9, "Demo Player 09", "Attack", "Centre-Forward", 3, "Demo City FC", 11000000, true, 18, 10, 9, 1860, 9, 9, 78, 1.670, 1.670, 1.670, 1.670},
+				        {10, "Demo Player 10", "Defender", "Centre-Back", 4, "Demo Athletic", 12000000, true, 19, 11, 10, 1980, 10, 10, 79, 1.860, 1.860, 1.860, 1.860},
+				        {11, "Demo Player 11", "Midfield", "Central Midfield", 5, "Demo Rangers", 13000000, true, 20, 12, 1, 2100, 11, 11, 80, 2.050, 2.050, 2.050, 2.050},
+				        {12, "Demo Player 12", "Goalkeeper", "Goalkeeper", 6, "Demo Vale", 14000000, true, 21, 13, 2, 2220, 12, 12, 81, 2.240, 2.240, 2.240, 2.240},
+				        {13, "Demo Player 13", "Attack", "Centre-Forward", 1, "Demo North FC", 3000000, true, 22, 14, 3, 900, 13, 13, 82, 2.430, 2.430, 2.430, 2.430},
+				        {14, "Demo Player 14", "Defender", "Centre-Back", 2, "Demo Coast United", 4000000, true, 23, 15, 4, 1020, 14, 14, 83, 0.150, 0.150, 0.150, 0.150},
+				        {15, "Demo Player 15", "Midfield", "Central Midfield", 3, "Demo City FC", 5000000, true, 24, 16, 5, 1140, 15, 15, 84, 0.340, 0.340, 0.340, 0.340},
+				        {16, "Demo Player 16", "Goalkeeper", "Goalkeeper", 4, "Demo Athletic", 6000000, true, 25, 17, 6, 1260, 16, 16, 85, 0.530, 0.530, 0.530, 0.530},
+				        {17, "Demo Player 17", "Attack", "Centre-Forward", 5, "Demo Rangers", 7000000, true, 26, 18, 7, 1380, 17, 17, 86, 0.720, 0.720, 0.720, 0.720},
+				        {18, "Demo Player 18", "Defender", "Centre-Back", 6, "Demo Vale", 8000000, true, 27, 19, 8, 1500, 18, 18, 87, 0.910, 0.910, 0.910, 0.910},
+				        {19, "Demo Player 19", "Midfield", "Central Midfield", 1, "Demo North FC", 9000000, true, 28, 2, 9, 1620, 19, 19, 88, 1.100, 1.100, 1.100, 1.100},
+				        {20, "Demo Player 20", "Goalkeeper", "Goalkeeper", 2, "Demo Coast United", 10000000, true, 29, 3, 10, 1740, 20, 20, 89, 1.290, 1.290, 1.290, 1.290},
+				        {21, "Demo Player 21", "Attack", "Centre-Forward", 3, "Demo City FC", 11000000, true, 10, 4, 1, 1860, 21, 21, 90, 1.480, 1.480, 1.480, 1.480},
+				        {22, "Demo Player 22", "Defender", "Centre-Back", 4, "Demo Athletic", 12000000, true, 11, 5, 2, 1980, 22, 22, 70, 1.670, 1.670, 1.670, 1.670},
+				        {23, "Demo Player 23", "Midfield", "Central Midfield", 5, "Demo Rangers", 13000000, true, 12, 6, 3, 2100, 23, 23, 71, 1.860, 1.860, 1.860, 1.860},
+				        {24, "Demo Player 24", "Goalkeeper", "Goalkeeper", 6, "Demo Vale", 14000000, true, 13, 7, 4, 2220, 24, 24, 72, 2.050, 2.050, 2.050, 2.050}
+				    }
+				)
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

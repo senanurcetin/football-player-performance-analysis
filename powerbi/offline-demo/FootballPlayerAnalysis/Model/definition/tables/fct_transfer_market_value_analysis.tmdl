@@ -1,0 +1,800 @@
+table fct_transfer_market_value_analysis
+
+	/// Distinct transfer records in the active filter context.
+	measure 'Transfer Count' = DISTINCTCOUNT(fct_transfer_market_value_analysis[transfer_key])
+		formatString: #,0 "transfers"
+		displayFolder: Market Value Analysis\01 Scope
+
+	/// Transfers with a known transfer fee.
+	measure 'Known Fee Transfer Count' = CALCULATE([Transfer Count], fct_transfer_market_value_analysis[has_known_transfer_fee] = TRUE())
+		formatString: #,0 "transfers"
+		displayFolder: Market Value Analysis\01 Scope
+
+	/// Share of transfer records with a known transfer fee.
+	measure 'Known Fee Coverage %' = COALESCE(DIVIDE([Known Fee Transfer Count], [Transfer Count]), 0)
+		formatString: 0.0%
+		displayFolder: Market Value Analysis\02 Data Trust
+
+	/// Average transfer fee, excluding unknown fee records.
+	measure 'Average Known Transfer Fee' = CALCULATE(AVERAGE(fct_transfer_market_value_analysis[transfer_fee]), fct_transfer_market_value_analysis[has_known_transfer_fee] = TRUE())
+		formatString: €0.0
+		displayFolder: Market Value Analysis\03 Commercial Value
+
+	/// Total known transfer fee in the active filter context.
+	measure 'Total Known Transfer Fee' = CALCULATE(SUM(fct_transfer_market_value_analysis[transfer_fee]), fct_transfer_market_value_analysis[has_known_transfer_fee] = TRUE())
+		formatString: €0.0
+		displayFolder: Market Value Analysis\03 Commercial Value
+
+	/// Transfers with both a known fee and a market-value baseline.
+	measure 'Comparable Transfer Count' = CALCULATE([Transfer Count], fct_transfer_market_value_analysis[has_fee_market_value_comparison] = TRUE())
+		formatString: #,0 "transfers"
+		displayFolder: Market Value Analysis\02 Data Trust
+
+	/// Share of transfer records eligible for fee versus market-value comparison.
+	measure 'Comparison Coverage %' = DIVIDE([Comparable Transfer Count], [Transfer Count])
+		formatString: 0.0%
+		displayFolder: Market Value Analysis\02 Data Trust
+
+	/// Average fee premium or discount versus the market-value baseline.
+	measure 'Average Fee Premium Discount %' = DIVIDE(CALCULATE(AVERAGE(fct_transfer_market_value_analysis[fee_market_value_difference_pct]), fct_transfer_market_value_analysis[has_fee_market_value_comparison] = TRUE()), 100)
+		formatString: 0.0%
+		displayFolder: Market Value Analysis\03 Commercial Value
+
+	/// Transfers with an observable post-transfer market-value outcome.
+	measure 'Post Transfer Outcome Count' = CALCULATE([Transfer Count], fct_transfer_market_value_analysis[has_post_transfer_value_change] = TRUE())
+		formatString: #,0 "transfers"
+		displayFolder: Market Value Analysis\02 Data Trust
+
+	/// Share of transfers with an observable post-transfer value outcome.
+	measure 'Post Transfer Outcome Coverage %' = COALESCE(DIVIDE([Post Transfer Outcome Count], [Transfer Count]), 0)
+		formatString: 0.0%
+		displayFolder: Market Value Analysis\02 Data Trust
+
+	/// Average post-transfer market-value change for observable outcomes.
+	measure 'Average Post Transfer Value Change %' = DIVIDE(CALCULATE(AVERAGE(fct_transfer_market_value_analysis[market_value_change_after_transfer_pct]), fct_transfer_market_value_analysis[has_post_transfer_value_change] = TRUE()), 100)
+		formatString: 0.0%
+		displayFolder: Market Value Analysis\04 Outcomes
+
+	/// Share of observable transfer outcomes with a market-value increase.
+	measure 'Value Increase Rate %' = COALESCE(DIVIDE(CALCULATE([Transfer Count], fct_transfer_market_value_analysis[market_value_direction_after_transfer] = "increase"), [Post Transfer Outcome Count]), 0)
+		formatString: 0.0%
+		displayFolder: Market Value Analysis\04 Outcomes
+
+	/// Selected player label for drill-through pages.
+	measure 'Selected Transfer Player' = SELECTEDVALUE(fct_transfer_market_value_analysis[player_name], "Oyuncu secilmedi")
+		displayFolder: Market Value Analysis\05 Dynamic Context
+
+	/// Dynamic context summary driven by active filters.
+	measure 'Transfer Context Summary' = VAR SeasonLabel = SELECTEDVALUE(fct_transfer_market_value_analysis[transfer_season], "Tüm Sezonlar") VAR PositionLabel = SELECTEDVALUE(fct_transfer_market_value_analysis[position_tr], "All Positions") RETURN SeasonLabel & " | " & PositionLabel & " | " & FORMAT([Transfer Count], "#,0") & " transfer"
+		displayFolder: Market Value Analysis\05 Dynamic Context
+
+	/// Dynamic page title driven by active slicer selections.
+	measure 'Page 005 Dynamic Title' = VAR s = SELECTEDVALUE(fct_transfer_market_value_analysis[transfer_season], "Tüm Sezonlar") VAR p = SELECTEDVALUE(fct_transfer_market_value_analysis[position_tr], "All Positions") RETURN "💰 Transfer & Piyasa Değeri  │  " & s & "  │  " & p
+		displayFolder: Market Value Analysis\05 Dynamic Context
+
+	/// Transfers where the fee exceeds market value by more than 30% — competitive bidding or star effect signal.
+	measure 'High Premium Transfer Count' = CALCULATE([Transfer Count], fct_transfer_market_value_analysis[fee_market_value_difference_pct] > 30)
+		formatString: #,0 "transfers"
+		displayFolder: Market Value Analysis\03 Commercial Value
+
+	/// Ratio of total known fees to total market value baselines — overall market efficiency index.
+	measure 'Transfer Value Index' = DIVIDE(CALCULATE(SUM(fct_transfer_market_value_analysis[transfer_fee]), fct_transfer_market_value_analysis[has_known_transfer_fee] = TRUE()), CALCULATE(SUM(fct_transfer_market_value_analysis[market_value_baseline]), fct_transfer_market_value_analysis[has_market_value_baseline] = TRUE()))
+		formatString: 0.00x
+		displayFolder: Market Value Analysis\03 Commercial Value
+
+	/// Year-over-year change in average known transfer fee.
+	measure 'YoY Avg Fee Change %' = VAR CY = CALCULATE([Average Known Transfer Fee]) VAR PY = CALCULATE([Average Known Transfer Fee], FILTER(ALL(fct_transfer_market_value_analysis[transfer_year]), fct_transfer_market_value_analysis[transfer_year] = MAX(fct_transfer_market_value_analysis[transfer_year]) - 1)) RETURN DIVIDE(CY - PY, PY)
+		formatString: +0.0%;-0.0%;0.0%
+		displayFolder: Market Value Analysis\03 Commercial Value
+
+	/// Maximum known transfer fee in the active filter context.
+	measure 'Max Known Transfer Fee' = CALCULATE(MAX(fct_transfer_market_value_analysis[transfer_fee]), fct_transfer_market_value_analysis[has_known_transfer_fee] = TRUE())
+		formatString: €0.0
+		displayFolder: Market Value Analysis\03 Commercial Value
+
+	column transfer_key
+		dataType: string
+		summarizeBy: none
+		sourceColumn: transfer_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column player_id
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: player_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column player_name
+		dataType: string
+		summarizeBy: none
+		sourceColumn: player_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column position
+		dataType: string
+		summarizeBy: none
+		sourceColumn: position
+
+		annotation SummarizationSetBy = Automatic
+
+	column sub_position
+		dataType: string
+		summarizeBy: none
+		sourceColumn: sub_position
+
+		annotation SummarizationSetBy = Automatic
+
+	column birth_date
+		dataType: dateTime
+		formatString: Long Date
+		summarizeBy: none
+		sourceColumn: birth_date
+
+		variation Variation
+			isDefault
+			relationship: 54592705-61b1-4989-9614-24453e8f03b1
+			defaultHierarchy: LocalDateTable_ee0c45f5-5ce6-412a-b743-c5e9780a29a6.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column country_of_citizenship
+		dataType: string
+		summarizeBy: none
+		sourceColumn: country_of_citizenship
+
+		annotation SummarizationSetBy = Automatic
+
+	column age_at_transfer
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: age_at_transfer
+
+		annotation SummarizationSetBy = Automatic
+
+	column transfer_date
+		dataType: dateTime
+		formatString: Long Date
+		summarizeBy: none
+		sourceColumn: transfer_date
+
+		variation Variation
+			isDefault
+			relationship: edad52db-35ab-4cc1-bac7-3b6b4a3ac969
+			defaultHierarchy: LocalDateTable_402390ed-838f-413f-8b34-00e012dc29fa.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column transfer_year
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: transfer_year
+
+		annotation SummarizationSetBy = Automatic
+
+	column transfer_month
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: transfer_month
+
+		annotation SummarizationSetBy = Automatic
+
+	column transfer_season
+		dataType: string
+		summarizeBy: none
+		sourceColumn: transfer_season
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_future_transfer
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		summarizeBy: none
+		sourceColumn: is_future_transfer
+
+		annotation SummarizationSetBy = Automatic
+
+	column transfer_sequence_number
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: transfer_sequence_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column player_transfer_count
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: player_transfer_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column known_fee_transfer_count
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: known_fee_transfer_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_latest_transfer
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		summarizeBy: none
+		sourceColumn: is_latest_transfer
+
+		annotation SummarizationSetBy = Automatic
+
+	column previous_transfer_date
+		dataType: dateTime
+		formatString: Long Date
+		summarizeBy: none
+		sourceColumn: previous_transfer_date
+
+		variation Variation
+			isDefault
+			relationship: 2de34f5f-a9d7-49b8-89f7-afb75293ff40
+			defaultHierarchy: LocalDateTable_1665a1cb-5e3c-4d65-9651-6326caba3068.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column days_since_previous_transfer
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: days_since_previous_transfer
+
+		annotation SummarizationSetBy = Automatic
+
+	column next_transfer_date
+		dataType: dateTime
+		formatString: Long Date
+		summarizeBy: none
+		sourceColumn: next_transfer_date
+
+		variation Variation
+			isDefault
+			relationship: de28e0ad-71e4-40a5-9420-39e9b91a7920
+			defaultHierarchy: LocalDateTable_48709e1d-bf47-47cc-94d5-7511b4ad5222.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column days_to_next_transfer
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: days_to_next_transfer
+
+		annotation SummarizationSetBy = Automatic
+
+	column from_club_id
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: from_club_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column from_club_name
+		dataType: string
+		summarizeBy: none
+		sourceColumn: from_club_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column to_club_id
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: to_club_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column to_club_name
+		dataType: string
+		summarizeBy: none
+		sourceColumn: to_club_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column transfer_fee
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: transfer_fee
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column cumulative_known_transfer_fee
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: cumulative_known_transfer_fee
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column total_transfer_fee
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: total_transfer_fee
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_transfer_fee
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: avg_transfer_fee
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column max_transfer_fee
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: max_transfer_fee
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column fee_status
+		dataType: string
+		summarizeBy: none
+		sourceColumn: fee_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column has_known_transfer_fee
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		summarizeBy: none
+		sourceColumn: has_known_transfer_fee
+
+		annotation SummarizationSetBy = Automatic
+
+	column transfer_record_market_value
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: transfer_record_market_value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column has_transfer_record_market_value
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		summarizeBy: none
+		sourceColumn: has_transfer_record_market_value
+
+		annotation SummarizationSetBy = Automatic
+
+	column market_value_baseline_date
+		dataType: dateTime
+		formatString: Long Date
+		summarizeBy: none
+		sourceColumn: market_value_baseline_date
+
+		variation Variation
+			isDefault
+			relationship: 88ee5f87-a47b-4fc6-936a-b4b62473d503
+			defaultHierarchy: LocalDateTable_17e963b7-e819-4176-97e6-c3277aa03c52.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column market_value_baseline
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: market_value_baseline
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column market_value_baseline_source
+		dataType: string
+		summarizeBy: none
+		sourceColumn: market_value_baseline_source
+
+		annotation SummarizationSetBy = Automatic
+
+	column has_market_value_baseline
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		summarizeBy: none
+		sourceColumn: has_market_value_baseline
+
+		annotation SummarizationSetBy = Automatic
+
+	column has_fee_market_value_comparison
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		summarizeBy: none
+		sourceColumn: has_fee_market_value_comparison
+
+		annotation SummarizationSetBy = Automatic
+
+	column days_since_market_value_baseline
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: days_since_market_value_baseline
+
+		annotation SummarizationSetBy = Automatic
+
+	column fee_market_value_difference
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: fee_market_value_difference
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column fee_market_value_difference_pct
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: fee_market_value_difference_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column fee_to_market_value_ratio
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: fee_to_market_value_ratio
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column prior_valuation_date
+		dataType: dateTime
+		formatString: Long Date
+		summarizeBy: none
+		sourceColumn: prior_valuation_date
+
+		variation Variation
+			isDefault
+			relationship: 9b01f1c4-f1f8-4867-b55e-8d2e5aa30f61
+			defaultHierarchy: LocalDateTable_08a49516-31cd-48b4-89ba-dc2db016d8cf.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column prior_market_value
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: prior_market_value
+
+		annotation SummarizationSetBy = Automatic
+
+	column prior_valuation_club_id
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: prior_valuation_club_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column prior_valuation_club_name
+		dataType: string
+		summarizeBy: none
+		sourceColumn: prior_valuation_club_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column prior_valuation_competition_id
+		dataType: string
+		summarizeBy: none
+		sourceColumn: prior_valuation_competition_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column prior_competition_name
+		dataType: string
+		summarizeBy: none
+		sourceColumn: prior_competition_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column prior_competition_country_name
+		dataType: string
+		summarizeBy: none
+		sourceColumn: prior_competition_country_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column prior_competition_confederation
+		dataType: string
+		summarizeBy: none
+		sourceColumn: prior_competition_confederation
+
+		annotation SummarizationSetBy = Automatic
+
+	column has_prior_valuation
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		summarizeBy: none
+		sourceColumn: has_prior_valuation
+
+		annotation SummarizationSetBy = Automatic
+
+	column days_since_prior_valuation
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: days_since_prior_valuation
+
+		annotation SummarizationSetBy = Automatic
+
+	column next_valuation_date
+		dataType: dateTime
+		formatString: Long Date
+		summarizeBy: none
+		sourceColumn: next_valuation_date
+
+		variation Variation
+			isDefault
+			relationship: 8f773ac8-a682-4482-bac5-0edd297dcbe2
+			defaultHierarchy: LocalDateTable_2dd0becb-a826-4faa-adbd-8dbd411a199d.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column next_market_value
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: next_market_value
+
+		annotation SummarizationSetBy = Automatic
+
+	column next_valuation_club_id
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: next_valuation_club_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column next_valuation_club_name
+		dataType: string
+		summarizeBy: none
+		sourceColumn: next_valuation_club_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column next_valuation_competition_id
+		dataType: string
+		summarizeBy: none
+		sourceColumn: next_valuation_competition_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column next_competition_name
+		dataType: string
+		summarizeBy: none
+		sourceColumn: next_competition_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column next_competition_country_name
+		dataType: string
+		summarizeBy: none
+		sourceColumn: next_competition_country_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column next_competition_confederation
+		dataType: string
+		summarizeBy: none
+		sourceColumn: next_competition_confederation
+
+		annotation SummarizationSetBy = Automatic
+
+	column has_next_valuation
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		summarizeBy: none
+		sourceColumn: has_next_valuation
+
+		annotation SummarizationSetBy = Automatic
+
+	column days_to_next_valuation
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: days_to_next_valuation
+
+		annotation SummarizationSetBy = Automatic
+
+	column market_value_change_after_transfer
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: market_value_change_after_transfer
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column market_value_change_after_transfer_pct
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: market_value_change_after_transfer_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column has_post_transfer_value_change
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		summarizeBy: none
+		sourceColumn: has_post_transfer_value_change
+
+		annotation SummarizationSetBy = Automatic
+
+	column market_value_direction_after_transfer
+		dataType: string
+		summarizeBy: none
+		sourceColumn: market_value_direction_after_transfer
+
+		annotation SummarizationSetBy = Automatic
+
+	column valuation_context_change
+		dataType: string
+		summarizeBy: none
+		sourceColumn: valuation_context_change
+
+		annotation SummarizationSetBy = Automatic
+
+	column first_valuation_date
+		dataType: dateTime
+		formatString: Long Date
+		summarizeBy: none
+		sourceColumn: first_valuation_date
+
+		variation Variation
+			isDefault
+			relationship: 65e79f51-5217-4e34-8840-ed34620c5c11
+			defaultHierarchy: LocalDateTable_d105d730-64ba-4e7d-8133-fcecdbcb7bfc.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column latest_valuation_date
+		dataType: dateTime
+		formatString: Long Date
+		summarizeBy: none
+		sourceColumn: latest_valuation_date
+
+		variation Variation
+			isDefault
+			relationship: 5b64f022-0d68-48e3-8711-115d0c7617e4
+			defaultHierarchy: LocalDateTable_6ae1fcc1-20a1-4422-b9b3-8e685bffd029.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column first_market_value
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: first_market_value
+
+		annotation SummarizationSetBy = Automatic
+
+	column current_market_value
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: current_market_value
+
+		annotation SummarizationSetBy = Automatic
+
+	column highest_market_value
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: highest_market_value
+
+		annotation SummarizationSetBy = Automatic
+
+	column career_market_value_growth
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: career_market_value_growth
+
+		annotation SummarizationSetBy = Automatic
+
+	column career_market_value_growth_pct
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: career_market_value_growth_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column yon_etiketi_tr
+		dataType: string
+		summarizeBy: none
+		sourceColumn: yon_etiketi_tr
+
+		annotation SummarizationSetBy = Automatic
+
+	column position_tr
+		dataType: string
+		summarizeBy: none
+		sourceColumn: position_tr
+
+		annotation SummarizationSetBy = Automatic
+
+	column fee_range_category_tr = SWITCH(TRUE(), [transfer_fee] >= 50000000, "Mega Transfer (≥50M€)", [transfer_fee] >= 20000000, "Büyük Transfer (20-50M€)", [transfer_fee] >= 5000000, "Orta Transfer (5-20M€)", [transfer_fee] > 0, "Küçük Transfer (<5M€)", NOT([has_known_transfer_fee]), "Ücretsiz/Bilinmiyor", "Veri Yok")
+		dataType: string
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fct_transfer_market_value_analysis = m
+		mode: import
+		source =
+				#table(
+				    type table [#"transfer_key" = text, #"player_id" = Int64.Type, #"player_name" = text, #"position" = text, #"sub_position" = text, #"birth_date" = datetime, #"country_of_citizenship" = text, #"age_at_transfer" = Int64.Type, #"transfer_date" = datetime, #"transfer_year" = Int64.Type, #"transfer_month" = Int64.Type, #"transfer_season" = text, #"is_future_transfer" = logical, #"transfer_sequence_number" = Int64.Type, #"player_transfer_count" = Int64.Type, #"known_fee_transfer_count" = Int64.Type, #"is_latest_transfer" = logical, #"previous_transfer_date" = datetime, #"days_since_previous_transfer" = Int64.Type, #"next_transfer_date" = datetime, #"days_to_next_transfer" = Int64.Type, #"from_club_id" = Int64.Type, #"from_club_name" = text, #"to_club_id" = Int64.Type, #"to_club_name" = text, #"transfer_fee" = number, #"cumulative_known_transfer_fee" = number, #"total_transfer_fee" = number, #"avg_transfer_fee" = number, #"max_transfer_fee" = number, #"fee_status" = text, #"has_known_transfer_fee" = logical, #"transfer_record_market_value" = number, #"has_transfer_record_market_value" = logical, #"market_value_baseline_date" = datetime, #"market_value_baseline" = number, #"market_value_baseline_source" = text, #"has_market_value_baseline" = logical, #"has_fee_market_value_comparison" = logical, #"days_since_market_value_baseline" = Int64.Type, #"fee_market_value_difference" = number, #"fee_market_value_difference_pct" = number, #"fee_to_market_value_ratio" = number, #"prior_valuation_date" = datetime, #"prior_market_value" = Int64.Type, #"prior_valuation_club_id" = Int64.Type, #"prior_valuation_club_name" = text, #"prior_valuation_competition_id" = text, #"prior_competition_name" = text, #"prior_competition_country_name" = text, #"prior_competition_confederation" = text, #"has_prior_valuation" = logical, #"days_since_prior_valuation" = Int64.Type, #"next_valuation_date" = datetime, #"next_market_value" = Int64.Type, #"next_valuation_club_id" = Int64.Type, #"next_valuation_club_name" = text, #"next_valuation_competition_id" = text, #"next_competition_name" = text, #"next_competition_country_name" = text, #"next_competition_confederation" = text, #"has_next_valuation" = logical, #"days_to_next_valuation" = Int64.Type, #"market_value_change_after_transfer" = number, #"market_value_change_after_transfer_pct" = number, #"has_post_transfer_value_change" = logical, #"market_value_direction_after_transfer" = text, #"valuation_context_change" = text, #"first_valuation_date" = datetime, #"latest_valuation_date" = datetime, #"first_market_value" = Int64.Type, #"current_market_value" = Int64.Type, #"highest_market_value" = Int64.Type, #"career_market_value_growth" = Int64.Type, #"career_market_value_growth_pct" = number, #"yon_etiketi_tr" = text, #"position_tr" = text],
+				    {
+				        {"DEMO_transfer_key_1", 1, "Demo Player 01", "Attack", "Centre-Forward", #datetime(1990,1,1,0,0,0), "England", 19, #datetime(2025,5,1,0,0,0), 2025, 5, "2024/25", false, 1, 1, 1, true, #datetime(2025,5,1,0,0,0), 1, #datetime(2025,5,1,0,0,0), 1, 1, "Demo North FC", 1, "Demo North FC", 2200000, 2200000, 2200000, 2200000, 2200000, "high", true, 2200000, true, #datetime(2025,5,1,0,0,0), 2200000, "Demo market value baseline source", true, true, 3000000, 2200000, 0.200, 0.200, #datetime(2025,5,1,0,0,0), 3000000, 1, "Demo North FC", "Demo prior valuation competition id", "Demo Premier Division", "England", "Demo prior competition confederation", true, 3000000, #datetime(2025,5,1,0,0,0), 3000000, 1, "Demo North FC", "Demo next valuation competition id", "Demo Premier Division", "England", "Demo next competition confederation", true, 3000000, 2200000, 0.200, true, "Demo market value direction after transfer", "Demo valuation context change", #datetime(2025,5,1,0,0,0), #datetime(2025,5,1,0,0,0), 3000000, 3000000, 3000000, 3000000, 0.200, "Demo yon etiketi tr", "Attack"},
+				        {"DEMO_transfer_key_2", 2, "Demo Player 02", "Defender", "Centre-Back", #datetime(1991,2,2,0,0,0), "Germany", 20, #datetime(2025,5,2,0,0,0), 2025, 5, "2024/25", false, 2, 2, 2, true, #datetime(2025,5,2,0,0,0), 2, #datetime(2025,5,2,0,0,0), 2, 2, "Demo Coast United", 2, "Demo Coast United", 3300000, 3300000, 3300000, 3300000, 3300000, "medium", true, 3300000, true, #datetime(2025,5,2,0,0,0), 3300000, "Demo market value baseline source", true, true, 4000000, 3300000, 0.270, 0.270, #datetime(2025,5,2,0,0,0), 4000000, 2, "Demo Coast United", "Demo prior valuation competition id", "Demo National League", "Germany", "Demo prior competition confederation", true, 4000000, #datetime(2025,5,2,0,0,0), 4000000, 2, "Demo Coast United", "Demo next valuation competition id", "Demo National League", "Germany", "Demo next competition confederation", true, 4000000, 3300000, 0.270, true, "Demo market value direction after transfer", "Demo valuation context change", #datetime(2025,5,2,0,0,0), #datetime(2025,5,2,0,0,0), 4000000, 4000000, 4000000, 4000000, 0.270, "Demo yon etiketi tr", "Defender"},
+				        {"DEMO_transfer_key_3", 3, "Demo Player 03", "Midfield", "Central Midfield", #datetime(1992,3,3,0,0,0), "France", 21, #datetime(2025,5,3,0,0,0), 2025, 5, "2024/25", false, 3, 3, 3, true, #datetime(2025,5,3,0,0,0), 3, #datetime(2025,5,3,0,0,0), 3, 3, "Demo City FC", 3, "Demo City FC", 4400000, 4400000, 4400000, 4400000, 4400000, "high", true, 4400000, true, #datetime(2025,5,3,0,0,0), 4400000, "Demo market value baseline source", true, true, 5000000, 4400000, 0.340, 0.340, #datetime(2025,5,3,0,0,0), 5000000, 3, "Demo City FC", "Demo prior valuation competition id", "Demo Continental Cup", "France", "Demo prior competition confederation", true, 5000000, #datetime(2025,5,3,0,0,0), 5000000, 3, "Demo City FC", "Demo next valuation competition id", "Demo Continental Cup", "France", "Demo next competition confederation", true, 5000000, 4400000, 0.340, true, "Demo market value direction after transfer", "Demo valuation context change", #datetime(2025,5,3,0,0,0), #datetime(2025,5,3,0,0,0), 5000000, 5000000, 5000000, 5000000, 0.340, "Demo yon etiketi tr", "Midfield"},
+				        {"DEMO_transfer_key_4", 4, "Demo Player 04", "Goalkeeper", "Goalkeeper", #datetime(1993,4,4,0,0,0), "Spain", 22, #datetime(2025,5,4,0,0,0), 2025, 5, "2024/25", false, 4, 4, 4, true, #datetime(2025,5,4,0,0,0), 4, #datetime(2025,5,4,0,0,0), 4, 4, "Demo Athletic", 4, "Demo Athletic", 5500000, 5500000, 5500000, 5500000, 5500000, "high", true, 5500000, true, #datetime(2025,5,4,0,0,0), 5500000, "Demo market value baseline source", true, true, 6000000, 5500000, 0.410, 0.410, #datetime(2025,5,4,0,0,0), 6000000, 4, "Demo Athletic", "Demo prior valuation competition id", "Demo Premier Division", "Spain", "Demo prior competition confederation", true, 6000000, #datetime(2025,5,4,0,0,0), 6000000, 4, "Demo Athletic", "Demo next valuation competition id", "Demo Premier Division", "Spain", "Demo next competition confederation", true, 6000000, 5500000, 0.410, true, "Demo market value direction after transfer", "Demo valuation context change", #datetime(2025,5,4,0,0,0), #datetime(2025,5,4,0,0,0), 6000000, 6000000, 6000000, 6000000, 0.410, "Demo yon etiketi tr", "Goalkeeper"},
+				        {"DEMO_transfer_key_5", 5, "Demo Player 05", "Attack", "Centre-Forward", #datetime(1994,5,5,0,0,0), "England", 23, #datetime(2025,5,5,0,0,0), 2025, 5, "2024/25", false, 5, 5, 5, true, #datetime(2025,5,5,0,0,0), 5, #datetime(2025,5,5,0,0,0), 5, 5, "Demo Rangers", 5, "Demo Rangers", 6600000, 6600000, 6600000, 6600000, 6600000, "high", true, 6600000, true, #datetime(2025,5,5,0,0,0), 6600000, "Demo market value baseline source", true, true, 7000000, 6600000, 0.480, 0.480, #datetime(2025,5,5,0,0,0), 7000000, 5, "Demo Rangers", "Demo prior valuation competition id", "Demo National League", "England", "Demo prior competition confederation", true, 7000000, #datetime(2025,5,5,0,0,0), 7000000, 5, "Demo Rangers", "Demo next valuation competition id", "Demo National League", "England", "Demo next competition confederation", true, 7000000, 6600000, 0.480, true, "Demo market value direction after transfer", "Demo valuation context change", #datetime(2025,5,5,0,0,0), #datetime(2025,5,5,0,0,0), 7000000, 7000000, 7000000, 7000000, 0.480, "Demo yon etiketi tr", "Attack"},
+				        {"DEMO_transfer_key_6", 6, "Demo Player 06", "Defender", "Centre-Back", #datetime(1995,6,6,0,0,0), "Germany", 24, #datetime(2025,5,6,0,0,0), 2025, 5, "2024/25", false, 6, 6, 6, true, #datetime(2025,5,6,0,0,0), 6, #datetime(2025,5,6,0,0,0), 6, 6, "Demo Vale", 6, "Demo Vale", 7700000, 7700000, 7700000, 7700000, 7700000, "medium", true, 7700000, true, #datetime(2025,5,6,0,0,0), 7700000, "Demo market value baseline source", true, true, 8000000, 7700000, 0.550, 0.550, #datetime(2025,5,6,0,0,0), 8000000, 6, "Demo Vale", "Demo prior valuation competition id", "Demo Continental Cup", "Germany", "Demo prior competition confederation", true, 8000000, #datetime(2025,5,6,0,0,0), 8000000, 6, "Demo Vale", "Demo next valuation competition id", "Demo Continental Cup", "Germany", "Demo next competition confederation", true, 8000000, 7700000, 0.550, true, "Demo market value direction after transfer", "Demo valuation context change", #datetime(2025,5,6,0,0,0), #datetime(2025,5,6,0,0,0), 8000000, 8000000, 8000000, 8000000, 0.550, "Demo yon etiketi tr", "Defender"},
+				        {"DEMO_transfer_key_7", 7, "Demo Player 07", "Midfield", "Central Midfield", #datetime(1996,7,7,0,0,0), "France", 25, #datetime(2025,5,7,0,0,0), 2025, 5, "2024/25", false, 7, 7, 7, true, #datetime(2025,5,7,0,0,0), 7, #datetime(2025,5,7,0,0,0), 7, 1, "Demo North FC", 1, "Demo North FC", 8800000, 8800000, 8800000, 8800000, 8800000, "high", true, 8800000, true, #datetime(2025,5,7,0,0,0), 8800000, "Demo market value baseline source", true, true, 9000000, 8800000, 0.620, 0.620, #datetime(2025,5,7,0,0,0), 9000000, 1, "Demo North FC", "Demo prior valuation competition id", "Demo Premier Division", "France", "Demo prior competition confederation", true, 9000000, #datetime(2025,5,7,0,0,0), 9000000, 1, "Demo North FC", "Demo next valuation competition id", "Demo Premier Division", "France", "Demo next competition confederation", true, 9000000, 8800000, 0.620, true, "Demo market value direction after transfer", "Demo valuation context change", #datetime(2025,5,7,0,0,0), #datetime(2025,5,7,0,0,0), 9000000, 9000000, 9000000, 9000000, 0.620, "Demo yon etiketi tr", "Midfield"},
+				        {"DEMO_transfer_key_8", 8, "Demo Player 08", "Goalkeeper", "Goalkeeper", #datetime(1997,8,8,0,0,0), "Spain", 26, #datetime(2025,5,8,0,0,0), 2025, 5, "2024/25", false, 8, 8, 8, true, #datetime(2025,5,8,0,0,0), 8, #datetime(2025,5,8,0,0,0), 8, 2, "Demo Coast United", 2, "Demo Coast United", 9900000, 9900000, 9900000, 9900000, 9900000, "high", true, 9900000, true, #datetime(2025,5,8,0,0,0), 9900000, "Demo market value baseline source", true, true, 10000000, 9900000, 0.690, 0.690, #datetime(2025,5,8,0,0,0), 10000000, 2, "Demo Coast United", "Demo prior valuation competition id", "Demo National League", "Spain", "Demo prior competition confederation", true, 10000000, #datetime(2025,5,8,0,0,0), 10000000, 2, "Demo Coast United", "Demo next valuation competition id", "Demo National League", "Spain", "Demo next competition confederation", true, 10000000, 9900000, 0.690, true, "Demo market value direction after transfer", "Demo valuation context change", #datetime(2025,5,8,0,0,0), #datetime(2025,5,8,0,0,0), 10000000, 10000000, 10000000, 10000000, 0.690, "Demo yon etiketi tr", "Goalkeeper"},
+				        {"DEMO_transfer_key_9", 9, "Demo Player 09", "Attack", "Centre-Forward", #datetime(1998,9,9,0,0,0), "England", 27, #datetime(2025,5,9,0,0,0), 2025, 5, "2024/25", false, 9, 9, 9, true, #datetime(2025,5,9,0,0,0), 9, #datetime(2025,5,9,0,0,0), 9, 3, "Demo City FC", 3, "Demo City FC", 11000000, 11000000, 11000000, 11000000, 11000000, "high", true, 11000000, true, #datetime(2025,5,9,0,0,0), 11000000, "Demo market value baseline source", true, true, 11000000, 11000000, 0.760, 0.760, #datetime(2025,5,9,0,0,0), 11000000, 3, "Demo City FC", "Demo prior valuation competition id", "Demo Continental Cup", "England", "Demo prior competition confederation", true, 11000000, #datetime(2025,5,9,0,0,0), 11000000, 3, "Demo City FC", "Demo next valuation competition id", "Demo Continental Cup", "England", "Demo next competition confederation", true, 11000000, 11000000, 0.760, true, "Demo market value direction after transfer", "Demo valuation context change", #datetime(2025,5,9,0,0,0), #datetime(2025,5,9,0,0,0), 11000000, 11000000, 11000000, 11000000, 0.760, "Demo yon etiketi tr", "Attack"},
+				        {"DEMO_transfer_key_10", 10, "Demo Player 10", "Defender", "Centre-Back", #datetime(1999,10,10,0,0,0), "Germany", 28, #datetime(2025,5,10,0,0,0), 2025, 5, "2024/25", false, 10, 10, 10, true, #datetime(2025,5,10,0,0,0), 10, #datetime(2025,5,10,0,0,0), 10, 4, "Demo Athletic", 4, "Demo Athletic", 12100000, 12100000, 12100000, 12100000, 12100000, "medium", true, 12100000, true, #datetime(2025,5,10,0,0,0), 12100000, "Demo market value baseline source", true, true, 12000000, 12100000, 0.200, 0.200, #datetime(2025,5,10,0,0,0), 12000000, 4, "Demo Athletic", "Demo prior valuation competition id", "Demo Premier Division", "Germany", "Demo prior competition confederation", true, 12000000, #datetime(2025,5,10,0,0,0), 12000000, 4, "Demo Athletic", "Demo next valuation competition id", "Demo Premier Division", "Germany", "Demo next competition confederation", true, 12000000, 12100000, 0.200, true, "Demo market value direction after transfer", "Demo valuation context change", #datetime(2025,5,10,0,0,0), #datetime(2025,5,10,0,0,0), 12000000, 12000000, 12000000, 12000000, 0.200, "Demo yon etiketi tr", "Defender"},
+				        {"DEMO_transfer_key_11", 11, "Demo Player 11", "Midfield", "Central Midfield", #datetime(2000,11,11,0,0,0), "France", 29, #datetime(2025,5,11,0,0,0), 2025, 5, "2024/25", false, 11, 11, 11, true, #datetime(2025,5,11,0,0,0), 11, #datetime(2025,5,11,0,0,0), 11, 5, "Demo Rangers", 5, "Demo Rangers", 13200000, 13200000, 13200000, 13200000, 13200000, "high", true, 13200000, true, #datetime(2025,5,11,0,0,0), 13200000, "Demo market value baseline source", true, true, 13000000, 13200000, 0.270, 0.270, #datetime(2025,5,11,0,0,0), 13000000, 5, "Demo Rangers", "Demo prior valuation competition id", "Demo National League", "France", "Demo prior competition confederation", true, 13000000, #datetime(2025,5,11,0,0,0), 13000000, 5, "Demo Rangers", "Demo next valuation competition id", "Demo National League", "France", "Demo next competition confederation", true, 13000000, 13200000, 0.270, true, "Demo market value direction after transfer", "Demo valuation context change", #datetime(2025,5,11,0,0,0), #datetime(2025,5,11,0,0,0), 13000000, 13000000, 13000000, 13000000, 0.270, "Demo yon etiketi tr", "Midfield"},
+				        {"DEMO_transfer_key_12", 12, "Demo Player 12", "Goalkeeper", "Goalkeeper", #datetime(2001,12,12,0,0,0), "Spain", 30, #datetime(2025,5,12,0,0,0), 2025, 5, "2024/25", false, 12, 12, 12, true, #datetime(2025,5,12,0,0,0), 12, #datetime(2025,5,12,0,0,0), 12, 6, "Demo Vale", 6, "Demo Vale", 14300000, 14300000, 14300000, 14300000, 14300000, "high", true, 14300000, true, #datetime(2025,5,12,0,0,0), 14300000, "Demo market value baseline source", true, true, 14000000, 14300000, 0.340, 0.340, #datetime(2025,5,12,0,0,0), 14000000, 6, "Demo Vale", "Demo prior valuation competition id", "Demo Continental Cup", "Spain", "Demo prior competition confederation", true, 14000000, #datetime(2025,5,12,0,0,0), 14000000, 6, "Demo Vale", "Demo next valuation competition id", "Demo Continental Cup", "Spain", "Demo next competition confederation", true, 14000000, 14300000, 0.340, true, "Demo market value direction after transfer", "Demo valuation context change", #datetime(2025,5,12,0,0,0), #datetime(2025,5,12,0,0,0), 14000000, 14000000, 14000000, 14000000, 0.340, "Demo yon etiketi tr", "Goalkeeper"},
+				        {"DEMO_transfer_key_13", 13, "Demo Player 13", "Attack", "Centre-Forward", #datetime(2002,1,13,0,0,0), "England", 31, #datetime(2025,5,13,0,0,0), 2025, 5, "2024/25", false, 13, 13, 13, true, #datetime(2025,5,13,0,0,0), 13, #datetime(2025,5,13,0,0,0), 13, 1, "Demo North FC", 1, "Demo North FC", 15400000, 15400000, 15400000, 15400000, 15400000, "high", true, 15400000, true, #datetime(2025,5,13,0,0,0), 15400000, "Demo market value baseline source", true, true, 3000000, 15400000, 0.410, 0.410, #datetime(2025,5,13,0,0,0), 3000000, 1, "Demo North FC", "Demo prior valuation competition id", "Demo Premier Division", "England", "Demo prior competition confederation", true, 3000000, #datetime(2025,5,13,0,0,0), 3000000, 1, "Demo North FC", "Demo next valuation competition id", "Demo Premier Division", "England", "Demo next competition confederation", true, 3000000, 15400000, 0.410, true, "Demo market value direction after transfer", "Demo valuation context change", #datetime(2025,5,13,0,0,0), #datetime(2025,5,13,0,0,0), 3000000, 3000000, 3000000, 3000000, 0.410, "Demo yon etiketi tr", "Attack"},
+				        {"DEMO_transfer_key_14", 14, "Demo Player 14", "Defender", "Centre-Back", #datetime(2003,2,14,0,0,0), "Germany", 32, #datetime(2025,5,14,0,0,0), 2025, 5, "2024/25", false, 14, 14, 14, true, #datetime(2025,5,14,0,0,0), 14, #datetime(2025,5,14,0,0,0), 14, 2, "Demo Coast United", 2, "Demo Coast United", 16500000, 16500000, 16500000, 16500000, 16500000, "medium", true, 16500000, true, #datetime(2025,5,14,0,0,0), 16500000, "Demo market value baseline source", true, true, 4000000, 16500000, 0.480, 0.480, #datetime(2025,5,14,0,0,0), 4000000, 2, "Demo Coast United", "Demo prior valuation competition id", "Demo National League", "Germany", "Demo prior competition confederation", true, 4000000, #datetime(2025,5,14,0,0,0), 4000000, 2, "Demo Coast United", "Demo next valuation competition id", "Demo National League", "Germany", "Demo next competition confederation", true, 4000000, 16500000, 0.480, true, "Demo market value direction after transfer", "Demo valuation context change", #datetime(2025,5,14,0,0,0), #datetime(2025,5,14,0,0,0), 4000000, 4000000, 4000000, 4000000, 0.480, "Demo yon etiketi tr", "Defender"},
+				        {"DEMO_transfer_key_15", 15, "Demo Player 15", "Midfield", "Central Midfield", #datetime(2004,3,15,0,0,0), "France", 33, #datetime(2025,5,15,0,0,0), 2025, 5, "2024/25", false, 15, 15, 15, true, #datetime(2025,5,15,0,0,0), 15, #datetime(2025,5,15,0,0,0), 15, 3, "Demo City FC", 3, "Demo City FC", 17600000, 17600000, 17600000, 17600000, 17600000, "high", true, 17600000, true, #datetime(2025,5,15,0,0,0), 17600000, "Demo market value baseline source", true, true, 5000000, 17600000, 0.550, 0.550, #datetime(2025,5,15,0,0,0), 5000000, 3, "Demo City FC", "Demo prior valuation competition id", "Demo Continental Cup", "France", "Demo prior competition confederation", true, 5000000, #datetime(2025,5,15,0,0,0), 5000000, 3, "Demo City FC", "Demo next valuation competition id", "Demo Continental Cup", "France", "Demo next competition confederation", true, 5000000, 17600000, 0.550, true, "Demo market value direction after transfer", "Demo valuation context change", #datetime(2025,5,15,0,0,0), #datetime(2025,5,15,0,0,0), 5000000, 5000000, 5000000, 5000000, 0.550, "Demo yon etiketi tr", "Midfield"},
+				        {"DEMO_transfer_key_16", 16, "Demo Player 16", "Goalkeeper", "Goalkeeper", #datetime(1990,4,16,0,0,0), "Spain", 34, #datetime(2025,5,16,0,0,0), 2025, 5, "2024/25", false, 16, 16, 16, true, #datetime(2025,5,16,0,0,0), 16, #datetime(2025,5,16,0,0,0), 16, 4, "Demo Athletic", 4, "Demo Athletic", 2200000, 2200000, 2200000, 2200000, 2200000, "high", true, 2200000, true, #datetime(2025,5,16,0,0,0), 2200000, "Demo market value baseline source", true, true, 6000000, 2200000, 0.620, 0.620, #datetime(2025,5,16,0,0,0), 6000000, 4, "Demo Athletic", "Demo prior valuation competition id", "Demo Premier Division", "Spain", "Demo prior competition confederation", true, 6000000, #datetime(2025,5,16,0,0,0), 6000000, 4, "Demo Athletic", "Demo next valuation competition id", "Demo Premier Division", "Spain", "Demo next competition confederation", true, 6000000, 2200000, 0.620, true, "Demo market value direction after transfer", "Demo valuation context change", #datetime(2025,5,16,0,0,0), #datetime(2025,5,16,0,0,0), 6000000, 6000000, 6000000, 6000000, 0.620, "Demo yon etiketi tr", "Goalkeeper"},
+				        {"DEMO_transfer_key_17", 17, "Demo Player 17", "Attack", "Centre-Forward", #datetime(1991,5,17,0,0,0), "England", 35, #datetime(2025,5,17,0,0,0), 2025, 5, "2024/25", false, 17, 17, 17, true, #datetime(2025,5,17,0,0,0), 17, #datetime(2025,5,17,0,0,0), 17, 5, "Demo Rangers", 5, "Demo Rangers", 3300000, 3300000, 3300000, 3300000, 3300000, "high", true, 3300000, true, #datetime(2025,5,17,0,0,0), 3300000, "Demo market value baseline source", true, true, 7000000, 3300000, 0.690, 0.690, #datetime(2025,5,17,0,0,0), 7000000, 5, "Demo Rangers", "Demo prior valuation competition id", "Demo National League", "England", "Demo prior competition confederation", true, 7000000, #datetime(2025,5,17,0,0,0), 7000000, 5, "Demo Rangers", "Demo next valuation competition id", "Demo National League", "England", "Demo next competition confederation", true, 7000000, 3300000, 0.690, true, "Demo market value direction after transfer", "Demo valuation context change", #datetime(2025,5,17,0,0,0), #datetime(2025,5,17,0,0,0), 7000000, 7000000, 7000000, 7000000, 0.690, "Demo yon etiketi tr", "Attack"},
+				        {"DEMO_transfer_key_18", 18, "Demo Player 18", "Defender", "Centre-Back", #datetime(1992,6,18,0,0,0), "Germany", 19, #datetime(2025,5,18,0,0,0), 2025, 5, "2024/25", false, 18, 18, 18, true, #datetime(2025,5,18,0,0,0), 18, #datetime(2025,5,18,0,0,0), 18, 6, "Demo Vale", 6, "Demo Vale", 4400000, 4400000, 4400000, 4400000, 4400000, "medium", true, 4400000, true, #datetime(2025,5,18,0,0,0), 4400000, "Demo market value baseline source", true, true, 8000000, 4400000, 0.760, 0.760, #datetime(2025,5,18,0,0,0), 8000000, 6, "Demo Vale", "Demo prior valuation competition id", "Demo Continental Cup", "Germany", "Demo prior competition confederation", true, 8000000, #datetime(2025,5,18,0,0,0), 8000000, 6, "Demo Vale", "Demo next valuation competition id", "Demo Continental Cup", "Germany", "Demo next competition confederation", true, 8000000, 4400000, 0.760, true, "Demo market value direction after transfer", "Demo valuation context change", #datetime(2025,5,18,0,0,0), #datetime(2025,5,18,0,0,0), 8000000, 8000000, 8000000, 8000000, 0.760, "Demo yon etiketi tr", "Defender"},
+				        {"DEMO_transfer_key_19", 19, "Demo Player 19", "Midfield", "Central Midfield", #datetime(1993,7,19,0,0,0), "France", 20, #datetime(2025,5,19,0,0,0), 2025, 5, "2024/25", false, 19, 19, 19, true, #datetime(2025,5,19,0,0,0), 19, #datetime(2025,5,19,0,0,0), 19, 1, "Demo North FC", 1, "Demo North FC", 5500000, 5500000, 5500000, 5500000, 5500000, "high", true, 5500000, true, #datetime(2025,5,19,0,0,0), 5500000, "Demo market value baseline source", true, true, 9000000, 5500000, 0.200, 0.200, #datetime(2025,5,19,0,0,0), 9000000, 1, "Demo North FC", "Demo prior valuation competition id", "Demo Premier Division", "France", "Demo prior competition confederation", true, 9000000, #datetime(2025,5,19,0,0,0), 9000000, 1, "Demo North FC", "Demo next valuation competition id", "Demo Premier Division", "France", "Demo next competition confederation", true, 9000000, 5500000, 0.200, true, "Demo market value direction after transfer", "Demo valuation context change", #datetime(2025,5,19,0,0,0), #datetime(2025,5,19,0,0,0), 9000000, 9000000, 9000000, 9000000, 0.200, "Demo yon etiketi tr", "Midfield"},
+				        {"DEMO_transfer_key_20", 20, "Demo Player 20", "Goalkeeper", "Goalkeeper", #datetime(1994,8,20,0,0,0), "Spain", 21, #datetime(2025,5,20,0,0,0), 2025, 5, "2024/25", false, 20, 20, 20, true, #datetime(2025,5,20,0,0,0), 20, #datetime(2025,5,20,0,0,0), 20, 2, "Demo Coast United", 2, "Demo Coast United", 6600000, 6600000, 6600000, 6600000, 6600000, "high", true, 6600000, true, #datetime(2025,5,20,0,0,0), 6600000, "Demo market value baseline source", true, true, 10000000, 6600000, 0.270, 0.270, #datetime(2025,5,20,0,0,0), 10000000, 2, "Demo Coast United", "Demo prior valuation competition id", "Demo National League", "Spain", "Demo prior competition confederation", true, 10000000, #datetime(2025,5,20,0,0,0), 10000000, 2, "Demo Coast United", "Demo next valuation competition id", "Demo National League", "Spain", "Demo next competition confederation", true, 10000000, 6600000, 0.270, true, "Demo market value direction after transfer", "Demo valuation context change", #datetime(2025,5,20,0,0,0), #datetime(2025,5,20,0,0,0), 10000000, 10000000, 10000000, 10000000, 0.270, "Demo yon etiketi tr", "Goalkeeper"},
+				        {"DEMO_transfer_key_21", 21, "Demo Player 21", "Attack", "Centre-Forward", #datetime(1995,9,21,0,0,0), "England", 22, #datetime(2025,5,21,0,0,0), 2025, 5, "2024/25", false, 21, 21, 21, true, #datetime(2025,5,21,0,0,0), 21, #datetime(2025,5,21,0,0,0), 21, 3, "Demo City FC", 3, "Demo City FC", 7700000, 7700000, 7700000, 7700000, 7700000, "high", true, 7700000, true, #datetime(2025,5,21,0,0,0), 7700000, "Demo market value baseline source", true, true, 11000000, 7700000, 0.340, 0.340, #datetime(2025,5,21,0,0,0), 11000000, 3, "Demo City FC", "Demo prior valuation competition id", "Demo Continental Cup", "England", "Demo prior competition confederation", true, 11000000, #datetime(2025,5,21,0,0,0), 11000000, 3, "Demo City FC", "Demo next valuation competition id", "Demo Continental Cup", "England", "Demo next competition confederation", true, 11000000, 7700000, 0.340, true, "Demo market value direction after transfer", "Demo valuation context change", #datetime(2025,5,21,0,0,0), #datetime(2025,5,21,0,0,0), 11000000, 11000000, 11000000, 11000000, 0.340, "Demo yon etiketi tr", "Attack"},
+				        {"DEMO_transfer_key_22", 22, "Demo Player 22", "Defender", "Centre-Back", #datetime(1996,10,22,0,0,0), "Germany", 23, #datetime(2025,5,22,0,0,0), 2025, 5, "2024/25", false, 22, 22, 22, true, #datetime(2025,5,22,0,0,0), 22, #datetime(2025,5,22,0,0,0), 22, 4, "Demo Athletic", 4, "Demo Athletic", 8800000, 8800000, 8800000, 8800000, 8800000, "medium", true, 8800000, true, #datetime(2025,5,22,0,0,0), 8800000, "Demo market value baseline source", true, true, 12000000, 8800000, 0.410, 0.410, #datetime(2025,5,22,0,0,0), 12000000, 4, "Demo Athletic", "Demo prior valuation competition id", "Demo Premier Division", "Germany", "Demo prior competition confederation", true, 12000000, #datetime(2025,5,22,0,0,0), 12000000, 4, "Demo Athletic", "Demo next valuation competition id", "Demo Premier Division", "Germany", "Demo next competition confederation", true, 12000000, 8800000, 0.410, true, "Demo market value direction after transfer", "Demo valuation context change", #datetime(2025,5,22,0,0,0), #datetime(2025,5,22,0,0,0), 12000000, 12000000, 12000000, 12000000, 0.410, "Demo yon etiketi tr", "Defender"},
+				        {"DEMO_transfer_key_23", 23, "Demo Player 23", "Midfield", "Central Midfield", #datetime(1997,11,23,0,0,0), "France", 24, #datetime(2025,5,23,0,0,0), 2025, 5, "2024/25", false, 23, 23, 23, true, #datetime(2025,5,23,0,0,0), 23, #datetime(2025,5,23,0,0,0), 23, 5, "Demo Rangers", 5, "Demo Rangers", 9900000, 9900000, 9900000, 9900000, 9900000, "high", true, 9900000, true, #datetime(2025,5,23,0,0,0), 9900000, "Demo market value baseline source", true, true, 13000000, 9900000, 0.480, 0.480, #datetime(2025,5,23,0,0,0), 13000000, 5, "Demo Rangers", "Demo prior valuation competition id", "Demo National League", "France", "Demo prior competition confederation", true, 13000000, #datetime(2025,5,23,0,0,0), 13000000, 5, "Demo Rangers", "Demo next valuation competition id", "Demo National League", "France", "Demo next competition confederation", true, 13000000, 9900000, 0.480, true, "Demo market value direction after transfer", "Demo valuation context change", #datetime(2025,5,23,0,0,0), #datetime(2025,5,23,0,0,0), 13000000, 13000000, 13000000, 13000000, 0.480, "Demo yon etiketi tr", "Midfield"},
+				        {"DEMO_transfer_key_24", 24, "Demo Player 24", "Goalkeeper", "Goalkeeper", #datetime(1998,12,24,0,0,0), "Spain", 25, #datetime(2025,5,24,0,0,0), 2025, 5, "2024/25", false, 24, 24, 24, true, #datetime(2025,5,24,0,0,0), 24, #datetime(2025,5,24,0,0,0), 24, 6, "Demo Vale", 6, "Demo Vale", 11000000, 11000000, 11000000, 11000000, 11000000, "high", true, 11000000, true, #datetime(2025,5,24,0,0,0), 11000000, "Demo market value baseline source", true, true, 14000000, 11000000, 0.550, 0.550, #datetime(2025,5,24,0,0,0), 14000000, 6, "Demo Vale", "Demo prior valuation competition id", "Demo Continental Cup", "Spain", "Demo prior competition confederation", true, 14000000, #datetime(2025,5,24,0,0,0), 14000000, 6, "Demo Vale", "Demo next valuation competition id", "Demo Continental Cup", "Spain", "Demo next competition confederation", true, 14000000, 11000000, 0.550, true, "Demo market value direction after transfer", "Demo valuation context change", #datetime(2025,5,24,0,0,0), #datetime(2025,5,24,0,0,0), 14000000, 14000000, 14000000, 14000000, 0.550, "Demo yon etiketi tr", "Goalkeeper"}
+				    }
+				)

@@ -1,0 +1,195 @@
+table fct_club_transfer_portfolio
+
+	column club_id
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: club_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column club_name
+		dataType: string
+		summarizeBy: none
+		sourceColumn: club_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column transfer_season
+		dataType: string
+		summarizeBy: none
+		sourceColumn: transfer_season
+
+		annotation SummarizationSetBy = Automatic
+
+	column inbound_transfers
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: inbound_transfers
+
+		annotation SummarizationSetBy = Automatic
+
+	column outbound_transfers
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: outbound_transfers
+
+		annotation SummarizationSetBy = Automatic
+
+	column inbound_known_fee_transfers
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: inbound_known_fee_transfers
+
+		annotation SummarizationSetBy = Automatic
+
+	column outbound_known_fee_transfers
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: outbound_known_fee_transfers
+
+		annotation SummarizationSetBy = Automatic
+
+	column inbound_transfer_spend
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: inbound_transfer_spend
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column outbound_transfer_income
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: outbound_transfer_income
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column net_transfer_spend
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: net_transfer_spend
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_inbound_transfer_fee
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: avg_inbound_transfer_fee
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_outbound_transfer_fee
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: avg_outbound_transfer_fee
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_inbound_fee_premium_pct
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: avg_inbound_fee_premium_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_outbound_fee_premium_pct
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: avg_outbound_fee_premium_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_inbound_post_transfer_value_change_pct
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: avg_inbound_post_transfer_value_change_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column inbound_transfers_with_value_outcome
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: inbound_transfers_with_value_outcome
+
+		annotation SummarizationSetBy = Automatic
+
+	column inbound_positive_value_outcome_rate_pct
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: inbound_positive_value_outcome_rate_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column inbound_fee_coverage_pct
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: inbound_fee_coverage_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column outbound_fee_coverage_pct
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: outbound_fee_coverage_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition fct_club_transfer_portfolio = m
+		mode: import
+		source =
+				#table(
+				    type table [#"club_id" = Int64.Type, #"club_name" = text, #"transfer_season" = text, #"inbound_transfers" = Int64.Type, #"outbound_transfers" = Int64.Type, #"inbound_known_fee_transfers" = Int64.Type, #"outbound_known_fee_transfers" = Int64.Type, #"inbound_transfer_spend" = number, #"outbound_transfer_income" = number, #"net_transfer_spend" = number, #"avg_inbound_transfer_fee" = number, #"avg_outbound_transfer_fee" = number, #"avg_inbound_fee_premium_pct" = number, #"avg_outbound_fee_premium_pct" = number, #"avg_inbound_post_transfer_value_change_pct" = number, #"inbound_transfers_with_value_outcome" = Int64.Type, #"inbound_positive_value_outcome_rate_pct" = number, #"inbound_fee_coverage_pct" = number, #"outbound_fee_coverage_pct" = number],
+				    {
+				        {1, "Demo North FC", "2024/25", 1, 1, 1, 1, 0.150, 0.150, 0.150, 2200000, 2200000, 0.200, 0.200, 0.200, 1, 0.200, 0.200, 0.200},
+				        {2, "Demo Coast United", "2023/24", 2, 2, 2, 2, 0.340, 0.340, 0.340, 3300000, 3300000, 0.270, 0.270, 0.270, 2, 0.270, 0.270, 0.270},
+				        {3, "Demo City FC", "2024/25", 3, 3, 3, 3, 0.530, 0.530, 0.530, 4400000, 4400000, 0.340, 0.340, 0.340, 3, 0.340, 0.340, 0.340},
+				        {4, "Demo Athletic", "2023/24", 4, 4, 4, 4, 0.720, 0.720, 0.720, 5500000, 5500000, 0.410, 0.410, 0.410, 4, 0.410, 0.410, 0.410},
+				        {5, "Demo Rangers", "2024/25", 5, 5, 5, 5, 0.910, 0.910, 0.910, 6600000, 6600000, 0.480, 0.480, 0.480, 5, 0.480, 0.480, 0.480},
+				        {6, "Demo Vale", "2023/24", 6, 6, 6, 6, 1.100, 1.100, 1.100, 7700000, 7700000, 0.550, 0.550, 0.550, 6, 0.550, 0.550, 0.550},
+				        {1, "Demo North FC", "2024/25", 7, 7, 7, 7, 1.290, 1.290, 1.290, 8800000, 8800000, 0.620, 0.620, 0.620, 7, 0.620, 0.620, 0.620},
+				        {2, "Demo Coast United", "2023/24", 8, 8, 8, 8, 1.480, 1.480, 1.480, 9900000, 9900000, 0.690, 0.690, 0.690, 8, 0.690, 0.690, 0.690},
+				        {3, "Demo City FC", "2024/25", 9, 9, 9, 9, 1.670, 1.670, 1.670, 11000000, 11000000, 0.760, 0.760, 0.760, 9, 0.760, 0.760, 0.760},
+				        {4, "Demo Athletic", "2023/24", 10, 10, 10, 10, 1.860, 1.860, 1.860, 12100000, 12100000, 0.200, 0.200, 0.200, 10, 0.200, 0.200, 0.200},
+				        {5, "Demo Rangers", "2024/25", 11, 11, 11, 11, 2.050, 2.050, 2.050, 13200000, 13200000, 0.270, 0.270, 0.270, 11, 0.270, 0.270, 0.270},
+				        {6, "Demo Vale", "2023/24", 12, 12, 12, 12, 2.240, 2.240, 2.240, 14300000, 14300000, 0.340, 0.340, 0.340, 12, 0.340, 0.340, 0.340},
+				        {1, "Demo North FC", "2024/25", 13, 13, 13, 13, 2.430, 2.430, 2.430, 15400000, 15400000, 0.410, 0.410, 0.410, 13, 0.410, 0.410, 0.410},
+				        {2, "Demo Coast United", "2023/24", 14, 14, 14, 14, 0.150, 0.150, 0.150, 16500000, 16500000, 0.480, 0.480, 0.480, 14, 0.480, 0.480, 0.480},
+				        {3, "Demo City FC", "2024/25", 15, 15, 15, 15, 0.340, 0.340, 0.340, 17600000, 17600000, 0.550, 0.550, 0.550, 15, 0.550, 0.550, 0.550},
+				        {4, "Demo Athletic", "2023/24", 16, 16, 16, 16, 0.530, 0.530, 0.530, 2200000, 2200000, 0.620, 0.620, 0.620, 16, 0.620, 0.620, 0.620},
+				        {5, "Demo Rangers", "2024/25", 17, 17, 17, 17, 0.720, 0.720, 0.720, 3300000, 3300000, 0.690, 0.690, 0.690, 17, 0.690, 0.690, 0.690},
+				        {6, "Demo Vale", "2023/24", 18, 18, 18, 18, 0.910, 0.910, 0.910, 4400000, 4400000, 0.760, 0.760, 0.760, 18, 0.760, 0.760, 0.760},
+				        {1, "Demo North FC", "2024/25", 19, 19, 19, 19, 1.100, 1.100, 1.100, 5500000, 5500000, 0.200, 0.200, 0.200, 19, 0.200, 0.200, 0.200},
+				        {2, "Demo Coast United", "2023/24", 20, 20, 20, 20, 1.290, 1.290, 1.290, 6600000, 6600000, 0.270, 0.270, 0.270, 20, 0.270, 0.270, 0.270},
+				        {3, "Demo City FC", "2024/25", 21, 21, 21, 21, 1.480, 1.480, 1.480, 7700000, 7700000, 0.340, 0.340, 0.340, 21, 0.340, 0.340, 0.340},
+				        {4, "Demo Athletic", "2023/24", 22, 22, 22, 22, 1.670, 1.670, 1.670, 8800000, 8800000, 0.410, 0.410, 0.410, 22, 0.410, 0.410, 0.410},
+				        {5, "Demo Rangers", "2024/25", 23, 23, 23, 23, 1.860, 1.860, 1.860, 9900000, 9900000, 0.480, 0.480, 0.480, 23, 0.480, 0.480, 0.480},
+				        {6, "Demo Vale", "2023/24", 24, 24, 24, 24, 2.050, 2.050, 2.050, 11000000, 11000000, 0.550, 0.550, 0.550, 24, 0.550, 0.550, 0.550}
+				    }
+				)

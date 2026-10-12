@@ -1,0 +1,201 @@
+table fct_transfer_cohort_performance
+
+	column horizon_days
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: horizon_days
+
+		annotation SummarizationSetBy = Automatic
+
+	column cohort_type
+		dataType: string
+		summarizeBy: none
+		sourceColumn: cohort_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column cohort_value
+		dataType: string
+		summarizeBy: none
+		sourceColumn: cohort_value
+
+		annotation SummarizationSetBy = Automatic
+
+	column transfer_count
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: transfer_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column observed_outcome_count
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: observed_outcome_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column missing_baseline_count
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: missing_baseline_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column not_yet_observable_count
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: not_yet_observable_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column missing_followup_count
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: missing_followup_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column outcome_coverage_pct
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: outcome_coverage_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_market_value_change_pct
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: avg_market_value_change_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column median_market_value_change_pct
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: median_market_value_change_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column p25_market_value_change_pct
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: p25_market_value_change_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column p75_market_value_change_pct
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: p75_market_value_change_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column stddev_market_value_change_pct
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: stddev_market_value_change_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column positive_outcome_rate_pct
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: positive_outcome_rate_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_fee_premium_pct
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: avg_fee_premium_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_change_ci95_lower_pct
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: avg_change_ci95_lower_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_change_ci95_upper_pct
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: avg_change_ci95_upper_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column meets_minimum_sample_size
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		summarizeBy: none
+		sourceColumn: meets_minimum_sample_size
+
+		annotation SummarizationSetBy = Automatic
+
+	column analytical_reliability
+		dataType: string
+		summarizeBy: none
+		sourceColumn: analytical_reliability
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fct_transfer_cohort_performance = m
+		mode: import
+		source =
+				#table(
+				    type table [#"horizon_days" = Int64.Type, #"cohort_type" = text, #"cohort_value" = text, #"transfer_count" = Int64.Type, #"observed_outcome_count" = Int64.Type, #"missing_baseline_count" = Int64.Type, #"not_yet_observable_count" = Int64.Type, #"missing_followup_count" = Int64.Type, #"outcome_coverage_pct" = number, #"avg_market_value_change_pct" = number, #"median_market_value_change_pct" = number, #"p25_market_value_change_pct" = number, #"p75_market_value_change_pct" = number, #"stddev_market_value_change_pct" = number, #"positive_outcome_rate_pct" = number, #"avg_fee_premium_pct" = number, #"avg_change_ci95_lower_pct" = number, #"avg_change_ci95_upper_pct" = number, #"meets_minimum_sample_size" = logical, #"analytical_reliability" = text],
+				    {
+				        {1, "Demo cohort type", "Demo cohort value", 1, 1, 1, 1, 1, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, true, "Demo analytical reliability"},
+				        {2, "Demo cohort type", "Demo cohort value", 2, 2, 2, 2, 2, 0.270, 0.270, 0.270, 0.270, 0.270, 0.270, 0.270, 0.270, 0.270, 0.270, true, "Demo analytical reliability"},
+				        {3, "Demo cohort type", "Demo cohort value", 3, 3, 3, 3, 3, 0.340, 0.340, 0.340, 0.340, 0.340, 0.340, 0.340, 0.340, 0.340, 0.340, true, "Demo analytical reliability"},
+				        {4, "Demo cohort type", "Demo cohort value", 4, 4, 4, 4, 4, 0.410, 0.410, 0.410, 0.410, 0.410, 0.410, 0.410, 0.410, 0.410, 0.410, true, "Demo analytical reliability"},
+				        {5, "Demo cohort type", "Demo cohort value", 5, 5, 5, 5, 5, 0.480, 0.480, 0.480, 0.480, 0.480, 0.480, 0.480, 0.480, 0.480, 0.480, true, "Demo analytical reliability"},
+				        {6, "Demo cohort type", "Demo cohort value", 6, 6, 6, 6, 6, 0.550, 0.550, 0.550, 0.550, 0.550, 0.550, 0.550, 0.550, 0.550, 0.550, true, "Demo analytical reliability"},
+				        {7, "Demo cohort type", "Demo cohort value", 7, 7, 7, 7, 7, 0.620, 0.620, 0.620, 0.620, 0.620, 0.620, 0.620, 0.620, 0.620, 0.620, true, "Demo analytical reliability"},
+				        {8, "Demo cohort type", "Demo cohort value", 8, 8, 8, 8, 8, 0.690, 0.690, 0.690, 0.690, 0.690, 0.690, 0.690, 0.690, 0.690, 0.690, true, "Demo analytical reliability"},
+				        {9, "Demo cohort type", "Demo cohort value", 9, 9, 9, 9, 9, 0.760, 0.760, 0.760, 0.760, 0.760, 0.760, 0.760, 0.760, 0.760, 0.760, true, "Demo analytical reliability"},
+				        {10, "Demo cohort type", "Demo cohort value", 10, 10, 10, 10, 10, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, true, "Demo analytical reliability"},
+				        {11, "Demo cohort type", "Demo cohort value", 11, 11, 11, 11, 11, 0.270, 0.270, 0.270, 0.270, 0.270, 0.270, 0.270, 0.270, 0.270, 0.270, true, "Demo analytical reliability"},
+				        {12, "Demo cohort type", "Demo cohort value", 12, 12, 12, 12, 12, 0.340, 0.340, 0.340, 0.340, 0.340, 0.340, 0.340, 0.340, 0.340, 0.340, true, "Demo analytical reliability"},
+				        {13, "Demo cohort type", "Demo cohort value", 13, 13, 13, 13, 13, 0.410, 0.410, 0.410, 0.410, 0.410, 0.410, 0.410, 0.410, 0.410, 0.410, true, "Demo analytical reliability"},
+				        {14, "Demo cohort type", "Demo cohort value", 14, 14, 14, 14, 14, 0.480, 0.480, 0.480, 0.480, 0.480, 0.480, 0.480, 0.480, 0.480, 0.480, true, "Demo analytical reliability"},
+				        {15, "Demo cohort type", "Demo cohort value", 15, 15, 15, 15, 15, 0.550, 0.550, 0.550, 0.550, 0.550, 0.550, 0.550, 0.550, 0.550, 0.550, true, "Demo analytical reliability"},
+				        {16, "Demo cohort type", "Demo cohort value", 16, 16, 16, 16, 16, 0.620, 0.620, 0.620, 0.620, 0.620, 0.620, 0.620, 0.620, 0.620, 0.620, true, "Demo analytical reliability"},
+				        {17, "Demo cohort type", "Demo cohort value", 17, 17, 17, 17, 17, 0.690, 0.690, 0.690, 0.690, 0.690, 0.690, 0.690, 0.690, 0.690, 0.690, true, "Demo analytical reliability"},
+				        {18, "Demo cohort type", "Demo cohort value", 18, 18, 18, 18, 18, 0.760, 0.760, 0.760, 0.760, 0.760, 0.760, 0.760, 0.760, 0.760, 0.760, true, "Demo analytical reliability"},
+				        {19, "Demo cohort type", "Demo cohort value", 19, 19, 19, 19, 19, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, true, "Demo analytical reliability"},
+				        {20, "Demo cohort type", "Demo cohort value", 20, 20, 20, 20, 20, 0.270, 0.270, 0.270, 0.270, 0.270, 0.270, 0.270, 0.270, 0.270, 0.270, true, "Demo analytical reliability"},
+				        {21, "Demo cohort type", "Demo cohort value", 21, 21, 21, 21, 21, 0.340, 0.340, 0.340, 0.340, 0.340, 0.340, 0.340, 0.340, 0.340, 0.340, true, "Demo analytical reliability"},
+				        {22, "Demo cohort type", "Demo cohort value", 22, 22, 22, 22, 22, 0.410, 0.410, 0.410, 0.410, 0.410, 0.410, 0.410, 0.410, 0.410, 0.410, true, "Demo analytical reliability"},
+				        {23, "Demo cohort type", "Demo cohort value", 23, 23, 23, 23, 23, 0.480, 0.480, 0.480, 0.480, 0.480, 0.480, 0.480, 0.480, 0.480, 0.480, true, "Demo analytical reliability"},
+				        {24, "Demo cohort type", "Demo cohort value", 24, 24, 24, 24, 24, 0.550, 0.550, 0.550, 0.550, 0.550, 0.550, 0.550, 0.550, 0.550, 0.550, true, "Demo analytical reliability"}
+				    }
+				)

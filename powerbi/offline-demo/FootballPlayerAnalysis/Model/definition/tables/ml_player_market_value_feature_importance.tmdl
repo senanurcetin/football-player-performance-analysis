@@ -1,0 +1,81 @@
+table ml_player_market_value_feature_importance
+
+	column model_version
+		dataType: string
+		summarizeBy: none
+		sourceColumn: model_version
+
+		annotation SummarizationSetBy = Automatic
+
+	column feature
+		dataType: string
+		summarizeBy: none
+		sourceColumn: feature
+
+		annotation SummarizationSetBy = Automatic
+
+	column feature_type
+		dataType: string
+		summarizeBy: none
+		sourceColumn: feature_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column mae_increase_eur_mean
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: mae_increase_eur_mean
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column mae_increase_eur_std
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: mae_increase_eur_std
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column importance_rank
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: importance_rank
+
+		annotation SummarizationSetBy = Automatic
+
+	partition ml_player_market_value_feature_importance = m
+		mode: import
+		source =
+				#table(
+				    type table [#"model_version" = text, #"feature" = text, #"feature_type" = text, #"mae_increase_eur_mean" = number, #"mae_increase_eur_std" = number, #"importance_rank" = Int64.Type],
+				    {
+				        {"SYNTHETIC_DEMO_v1", "Demo feature", "Demo feature type", 2200000, 2200000, 1},
+				        {"SYNTHETIC_DEMO_v1", "Demo feature", "Demo feature type", 3300000, 3300000, 2},
+				        {"SYNTHETIC_DEMO_v1", "Demo feature", "Demo feature type", 4400000, 4400000, 3},
+				        {"SYNTHETIC_DEMO_v1", "Demo feature", "Demo feature type", 5500000, 5500000, 4},
+				        {"SYNTHETIC_DEMO_v1", "Demo feature", "Demo feature type", 6600000, 6600000, 5},
+				        {"SYNTHETIC_DEMO_v1", "Demo feature", "Demo feature type", 7700000, 7700000, 6},
+				        {"SYNTHETIC_DEMO_v1", "Demo feature", "Demo feature type", 8800000, 8800000, 7},
+				        {"SYNTHETIC_DEMO_v1", "Demo feature", "Demo feature type", 9900000, 9900000, 8},
+				        {"SYNTHETIC_DEMO_v1", "Demo feature", "Demo feature type", 11000000, 11000000, 9},
+				        {"SYNTHETIC_DEMO_v1", "Demo feature", "Demo feature type", 12100000, 12100000, 10},
+				        {"SYNTHETIC_DEMO_v1", "Demo feature", "Demo feature type", 13200000, 13200000, 11},
+				        {"SYNTHETIC_DEMO_v1", "Demo feature", "Demo feature type", 14300000, 14300000, 12},
+				        {"SYNTHETIC_DEMO_v1", "Demo feature", "Demo feature type", 15400000, 15400000, 13},
+				        {"SYNTHETIC_DEMO_v1", "Demo feature", "Demo feature type", 16500000, 16500000, 14},
+				        {"SYNTHETIC_DEMO_v1", "Demo feature", "Demo feature type", 17600000, 17600000, 15},
+				        {"SYNTHETIC_DEMO_v1", "Demo feature", "Demo feature type", 2200000, 2200000, 16},
+				        {"SYNTHETIC_DEMO_v1", "Demo feature", "Demo feature type", 3300000, 3300000, 17},
+				        {"SYNTHETIC_DEMO_v1", "Demo feature", "Demo feature type", 4400000, 4400000, 18},
+				        {"SYNTHETIC_DEMO_v1", "Demo feature", "Demo feature type", 5500000, 5500000, 19},
+				        {"SYNTHETIC_DEMO_v1", "Demo feature", "Demo feature type", 6600000, 6600000, 20},
+				        {"SYNTHETIC_DEMO_v1", "Demo feature", "Demo feature type", 7700000, 7700000, 21},
+				        {"SYNTHETIC_DEMO_v1", "Demo feature", "Demo feature type", 8800000, 8800000, 22},
+				        {"SYNTHETIC_DEMO_v1", "Demo feature", "Demo feature type", 9900000, 9900000, 23},
+				        {"SYNTHETIC_DEMO_v1", "Demo feature", "Demo feature type", 11000000, 11000000, 24}
+				    }
+				)

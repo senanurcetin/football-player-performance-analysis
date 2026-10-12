@@ -1,0 +1,116 @@
+table fct_competition_performance
+
+	column competition_id
+		dataType: string
+		summarizeBy: none
+		sourceColumn: competition_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column competition_name
+		dataType: string
+		summarizeBy: none
+		sourceColumn: competition_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column competition_type
+		dataType: string
+		summarizeBy: none
+		sourceColumn: competition_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column country_name
+		dataType: string
+		summarizeBy: none
+		sourceColumn: country_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column confederation
+		dataType: string
+		summarizeBy: none
+		sourceColumn: confederation
+
+		annotation SummarizationSetBy = Automatic
+
+	column matches_played
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: matches_played
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_goals
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: total_goals
+
+		annotation SummarizationSetBy = Automatic
+
+	column avg_goals_per_match
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: avg_goals_per_match
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column club_participation_count
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: club_participation_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column avg_attendance
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: avg_attendance
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition fct_competition_performance = m
+		mode: import
+		source =
+				#table(
+				    type table [#"competition_id" = text, #"competition_name" = text, #"competition_type" = text, #"country_name" = text, #"confederation" = text, #"matches_played" = Int64.Type, #"total_goals" = Int64.Type, #"avg_goals_per_match" = number, #"club_participation_count" = Int64.Type, #"avg_attendance" = number],
+				    {
+				        {"Demo competition id", "Demo Premier Division", "Demo competition type", "England", "Demo confederation", 10, 2, 0.150, 1, 0.150},
+				        {"Demo competition id", "Demo National League", "Demo competition type", "Germany", "Demo confederation", 11, 3, 0.340, 2, 0.340},
+				        {"Demo competition id", "Demo Continental Cup", "Demo competition type", "France", "Demo confederation", 12, 4, 0.530, 3, 0.530},
+				        {"Demo competition id", "Demo Premier Division", "Demo competition type", "Spain", "Demo confederation", 13, 5, 0.720, 4, 0.720},
+				        {"Demo competition id", "Demo National League", "Demo competition type", "England", "Demo confederation", 14, 6, 0.910, 5, 0.910},
+				        {"Demo competition id", "Demo Continental Cup", "Demo competition type", "Germany", "Demo confederation", 15, 7, 1.100, 6, 1.100},
+				        {"Demo competition id", "Demo Premier Division", "Demo competition type", "France", "Demo confederation", 16, 8, 1.290, 7, 1.290},
+				        {"Demo competition id", "Demo National League", "Demo competition type", "Spain", "Demo confederation", 17, 9, 1.480, 8, 1.480},
+				        {"Demo competition id", "Demo Continental Cup", "Demo competition type", "England", "Demo confederation", 18, 10, 1.670, 9, 1.670},
+				        {"Demo competition id", "Demo Premier Division", "Demo competition type", "Germany", "Demo confederation", 19, 11, 1.860, 10, 1.860},
+				        {"Demo competition id", "Demo National League", "Demo competition type", "France", "Demo confederation", 20, 12, 2.050, 11, 2.050},
+				        {"Demo competition id", "Demo Continental Cup", "Demo competition type", "Spain", "Demo confederation", 21, 13, 2.240, 12, 2.240},
+				        {"Demo competition id", "Demo Premier Division", "Demo competition type", "England", "Demo confederation", 22, 14, 2.430, 13, 2.430},
+				        {"Demo competition id", "Demo National League", "Demo competition type", "Germany", "Demo confederation", 23, 15, 0.150, 14, 0.150},
+				        {"Demo competition id", "Demo Continental Cup", "Demo competition type", "France", "Demo confederation", 24, 16, 0.340, 15, 0.340},
+				        {"Demo competition id", "Demo Premier Division", "Demo competition type", "Spain", "Demo confederation", 25, 17, 0.530, 16, 0.530},
+				        {"Demo competition id", "Demo National League", "Demo competition type", "England", "Demo confederation", 26, 18, 0.720, 17, 0.720},
+				        {"Demo competition id", "Demo Continental Cup", "Demo competition type", "Germany", "Demo confederation", 27, 19, 0.910, 18, 0.910},
+				        {"Demo competition id", "Demo Premier Division", "Demo competition type", "France", "Demo confederation", 28, 2, 1.100, 19, 1.100},
+				        {"Demo competition id", "Demo National League", "Demo competition type", "Spain", "Demo confederation", 29, 3, 1.290, 20, 1.290},
+				        {"Demo competition id", "Demo Continental Cup", "Demo competition type", "England", "Demo confederation", 10, 4, 1.480, 21, 1.480},
+				        {"Demo competition id", "Demo Premier Division", "Demo competition type", "Germany", "Demo confederation", 11, 5, 1.670, 22, 1.670},
+				        {"Demo competition id", "Demo National League", "Demo competition type", "France", "Demo confederation", 12, 6, 1.860, 23, 1.860},
+				        {"Demo competition id", "Demo Continental Cup", "Demo competition type", "Spain", "Demo confederation", 13, 7, 2.050, 24, 2.050}
+				    }
+				)
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

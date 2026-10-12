@@ -1,0 +1,108 @@
+table ml_player_market_value_quality_gates
+
+	column model_version
+		dataType: string
+		summarizeBy: none
+		sourceColumn: model_version
+
+		annotation SummarizationSetBy = Automatic
+
+	column model_generated_at_utc
+		dataType: dateTime
+		formatString: General Date
+		summarizeBy: none
+		sourceColumn: model_generated_at_utc
+
+		variation Variation
+			isDefault
+			relationship: 03cafd66-ff66-432d-bf6b-70531783366d
+			defaultHierarchy: LocalDateTable_2479d009-7b9e-498a-abed-6be0634ad2bd.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column gate_name
+		dataType: string
+		summarizeBy: none
+		sourceColumn: gate_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column actual_value
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: actual_value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column threshold_operator
+		dataType: string
+		summarizeBy: none
+		sourceColumn: threshold_operator
+
+		annotation SummarizationSetBy = Automatic
+
+	column threshold_value
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: threshold_value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column passed
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		summarizeBy: none
+		sourceColumn: passed
+
+		annotation SummarizationSetBy = Automatic
+
+	column severity
+		dataType: string
+		summarizeBy: none
+		sourceColumn: severity
+
+		annotation SummarizationSetBy = Automatic
+
+	column details
+		dataType: string
+		summarizeBy: none
+		sourceColumn: details
+
+		annotation SummarizationSetBy = Automatic
+
+	partition ml_player_market_value_quality_gates = m
+		mode: import
+		source =
+				#table(
+				    type table [#"model_version" = text, #"model_generated_at_utc" = datetime, #"gate_name" = text, #"actual_value" = number, #"threshold_operator" = text, #"threshold_value" = number, #"passed" = logical, #"severity" = text, #"details" = text],
+				    {
+				        {"SYNTHETIC_DEMO_v1", #datetime(2025,5,1,0,0,0), "Demo gate name", 0.150, "Demo threshold operator", 0.150, true, "Demo severity", "Demo details"},
+				        {"SYNTHETIC_DEMO_v1", #datetime(2025,5,2,0,0,0), "Demo gate name", 0.340, "Demo threshold operator", 0.340, true, "Demo severity", "Demo details"},
+				        {"SYNTHETIC_DEMO_v1", #datetime(2025,5,3,0,0,0), "Demo gate name", 0.530, "Demo threshold operator", 0.530, true, "Demo severity", "Demo details"},
+				        {"SYNTHETIC_DEMO_v1", #datetime(2025,5,4,0,0,0), "Demo gate name", 0.720, "Demo threshold operator", 0.720, true, "Demo severity", "Demo details"},
+				        {"SYNTHETIC_DEMO_v1", #datetime(2025,5,5,0,0,0), "Demo gate name", 0.910, "Demo threshold operator", 0.910, true, "Demo severity", "Demo details"},
+				        {"SYNTHETIC_DEMO_v1", #datetime(2025,5,6,0,0,0), "Demo gate name", 1.100, "Demo threshold operator", 1.100, true, "Demo severity", "Demo details"},
+				        {"SYNTHETIC_DEMO_v1", #datetime(2025,5,7,0,0,0), "Demo gate name", 1.290, "Demo threshold operator", 1.290, true, "Demo severity", "Demo details"},
+				        {"SYNTHETIC_DEMO_v1", #datetime(2025,5,8,0,0,0), "Demo gate name", 1.480, "Demo threshold operator", 1.480, true, "Demo severity", "Demo details"},
+				        {"SYNTHETIC_DEMO_v1", #datetime(2025,5,9,0,0,0), "Demo gate name", 1.670, "Demo threshold operator", 1.670, true, "Demo severity", "Demo details"},
+				        {"SYNTHETIC_DEMO_v1", #datetime(2025,5,10,0,0,0), "Demo gate name", 1.860, "Demo threshold operator", 1.860, true, "Demo severity", "Demo details"},
+				        {"SYNTHETIC_DEMO_v1", #datetime(2025,5,11,0,0,0), "Demo gate name", 2.050, "Demo threshold operator", 2.050, true, "Demo severity", "Demo details"},
+				        {"SYNTHETIC_DEMO_v1", #datetime(2025,5,12,0,0,0), "Demo gate name", 2.240, "Demo threshold operator", 2.240, true, "Demo severity", "Demo details"},
+				        {"SYNTHETIC_DEMO_v1", #datetime(2025,5,13,0,0,0), "Demo gate name", 2.430, "Demo threshold operator", 2.430, true, "Demo severity", "Demo details"},
+				        {"SYNTHETIC_DEMO_v1", #datetime(2025,5,14,0,0,0), "Demo gate name", 0.150, "Demo threshold operator", 0.150, true, "Demo severity", "Demo details"},
+				        {"SYNTHETIC_DEMO_v1", #datetime(2025,5,15,0,0,0), "Demo gate name", 0.340, "Demo threshold operator", 0.340, true, "Demo severity", "Demo details"},
+				        {"SYNTHETIC_DEMO_v1", #datetime(2025,5,16,0,0,0), "Demo gate name", 0.530, "Demo threshold operator", 0.530, true, "Demo severity", "Demo details"},
+				        {"SYNTHETIC_DEMO_v1", #datetime(2025,5,17,0,0,0), "Demo gate name", 0.720, "Demo threshold operator", 0.720, true, "Demo severity", "Demo details"},
+				        {"SYNTHETIC_DEMO_v1", #datetime(2025,5,18,0,0,0), "Demo gate name", 0.910, "Demo threshold operator", 0.910, true, "Demo severity", "Demo details"},
+				        {"SYNTHETIC_DEMO_v1", #datetime(2025,5,19,0,0,0), "Demo gate name", 1.100, "Demo threshold operator", 1.100, true, "Demo severity", "Demo details"},
+				        {"SYNTHETIC_DEMO_v1", #datetime(2025,5,20,0,0,0), "Demo gate name", 1.290, "Demo threshold operator", 1.290, true, "Demo severity", "Demo details"},
+				        {"SYNTHETIC_DEMO_v1", #datetime(2025,5,21,0,0,0), "Demo gate name", 1.480, "Demo threshold operator", 1.480, true, "Demo severity", "Demo details"},
+				        {"SYNTHETIC_DEMO_v1", #datetime(2025,5,22,0,0,0), "Demo gate name", 1.670, "Demo threshold operator", 1.670, true, "Demo severity", "Demo details"},
+				        {"SYNTHETIC_DEMO_v1", #datetime(2025,5,23,0,0,0), "Demo gate name", 1.860, "Demo threshold operator", 1.860, true, "Demo severity", "Demo details"},
+				        {"SYNTHETIC_DEMO_v1", #datetime(2025,5,24,0,0,0), "Demo gate name", 2.050, "Demo threshold operator", 2.050, true, "Demo severity", "Demo details"}
+				    }
+				)

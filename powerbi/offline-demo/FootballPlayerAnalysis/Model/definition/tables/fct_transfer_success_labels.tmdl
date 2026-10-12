@@ -1,0 +1,229 @@
+table fct_transfer_success_labels
+
+	column transfer_key
+		dataType: string
+		summarizeBy: none
+		sourceColumn: transfer_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column player_id
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: player_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column player_name
+		dataType: string
+		summarizeBy: none
+		sourceColumn: player_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column position
+		dataType: string
+		summarizeBy: none
+		sourceColumn: position
+
+		annotation SummarizationSetBy = Automatic
+
+	column age_at_transfer
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: age_at_transfer
+
+		annotation SummarizationSetBy = Automatic
+
+	column transfer_date
+		dataType: dateTime
+		formatString: Long Date
+		summarizeBy: none
+		sourceColumn: transfer_date
+
+		variation Variation
+			isDefault
+			relationship: d747153d-d8b7-46d4-bdef-aeebf7783ce0
+			defaultHierarchy: LocalDateTable_ac631afb-868d-4b22-8b54-49e0aa7efa07.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column transfer_year
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: transfer_year
+
+		annotation SummarizationSetBy = Automatic
+
+	column transfer_season
+		dataType: string
+		summarizeBy: none
+		sourceColumn: transfer_season
+
+		annotation SummarizationSetBy = Automatic
+
+	column from_club_id
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: from_club_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column from_club_name
+		dataType: string
+		summarizeBy: none
+		sourceColumn: from_club_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column to_club_id
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: to_club_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column to_club_name
+		dataType: string
+		summarizeBy: none
+		sourceColumn: to_club_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column transfer_fee
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: transfer_fee
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column has_known_transfer_fee
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		summarizeBy: none
+		sourceColumn: has_known_transfer_fee
+
+		annotation SummarizationSetBy = Automatic
+
+	column market_value_baseline
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: market_value_baseline
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column fee_market_value_difference_pct
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: fee_market_value_difference_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column label_horizon_days
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: label_horizon_days
+
+		annotation SummarizationSetBy = Automatic
+
+	column outcome_valuation_date
+		dataType: dateTime
+		formatString: Long Date
+		summarizeBy: none
+		sourceColumn: outcome_valuation_date
+
+		variation Variation
+			isDefault
+			relationship: a8909e64-eafa-44b4-8ee2-6381ba75d9f3
+			defaultHierarchy: LocalDateTable_61c1976a-f0c7-4add-a43f-8e55830234b4.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column outcome_market_value
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: outcome_market_value
+
+		annotation SummarizationSetBy = Automatic
+
+	column market_value_change_at_horizon_pct
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: market_value_change_at_horizon_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column label_status
+		dataType: string
+		summarizeBy: none
+		sourceColumn: label_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column success_threshold_pct
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: success_threshold_pct
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_successful_transfer
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: is_successful_transfer
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fct_transfer_success_labels = m
+		mode: import
+		source =
+				#table(
+				    type table [#"transfer_key" = text, #"player_id" = Int64.Type, #"player_name" = text, #"position" = text, #"age_at_transfer" = Int64.Type, #"transfer_date" = datetime, #"transfer_year" = Int64.Type, #"transfer_season" = text, #"from_club_id" = Int64.Type, #"from_club_name" = text, #"to_club_id" = Int64.Type, #"to_club_name" = text, #"transfer_fee" = number, #"has_known_transfer_fee" = logical, #"market_value_baseline" = number, #"fee_market_value_difference_pct" = number, #"label_horizon_days" = Int64.Type, #"outcome_valuation_date" = datetime, #"outcome_market_value" = Int64.Type, #"market_value_change_at_horizon_pct" = number, #"label_status" = text, #"success_threshold_pct" = Int64.Type, #"is_successful_transfer" = Int64.Type],
+				    {
+				        {"DEMO_transfer_key_1", 1, "Demo Player 01", "Attack", 19, #datetime(2025,5,1,0,0,0), 2025, "2024/25", 1, "Demo North FC", 1, "Demo North FC", 2200000, true, 2200000, 0.200, 1, #datetime(2025,5,1,0,0,0), 3000000, 0.200, "high", 1, 1},
+				        {"DEMO_transfer_key_2", 2, "Demo Player 02", "Defender", 20, #datetime(2025,5,2,0,0,0), 2025, "2024/25", 2, "Demo Coast United", 2, "Demo Coast United", 3300000, true, 3300000, 0.270, 2, #datetime(2025,5,2,0,0,0), 4000000, 0.270, "medium", 2, 2},
+				        {"DEMO_transfer_key_3", 3, "Demo Player 03", "Midfield", 21, #datetime(2025,5,3,0,0,0), 2025, "2024/25", 3, "Demo City FC", 3, "Demo City FC", 4400000, true, 4400000, 0.340, 3, #datetime(2025,5,3,0,0,0), 5000000, 0.340, "high", 3, 3},
+				        {"DEMO_transfer_key_4", 4, "Demo Player 04", "Goalkeeper", 22, #datetime(2025,5,4,0,0,0), 2025, "2024/25", 4, "Demo Athletic", 4, "Demo Athletic", 5500000, true, 5500000, 0.410, 4, #datetime(2025,5,4,0,0,0), 6000000, 0.410, "high", 4, 4},
+				        {"DEMO_transfer_key_5", 5, "Demo Player 05", "Attack", 23, #datetime(2025,5,5,0,0,0), 2025, "2024/25", 5, "Demo Rangers", 5, "Demo Rangers", 6600000, true, 6600000, 0.480, 5, #datetime(2025,5,5,0,0,0), 7000000, 0.480, "high", 5, 5},
+				        {"DEMO_transfer_key_6", 6, "Demo Player 06", "Defender", 24, #datetime(2025,5,6,0,0,0), 2025, "2024/25", 6, "Demo Vale", 6, "Demo Vale", 7700000, true, 7700000, 0.550, 6, #datetime(2025,5,6,0,0,0), 8000000, 0.550, "medium", 6, 6},
+				        {"DEMO_transfer_key_7", 7, "Demo Player 07", "Midfield", 25, #datetime(2025,5,7,0,0,0), 2025, "2024/25", 1, "Demo North FC", 1, "Demo North FC", 8800000, true, 8800000, 0.620, 7, #datetime(2025,5,7,0,0,0), 9000000, 0.620, "high", 7, 7},
+				        {"DEMO_transfer_key_8", 8, "Demo Player 08", "Goalkeeper", 26, #datetime(2025,5,8,0,0,0), 2025, "2024/25", 2, "Demo Coast United", 2, "Demo Coast United", 9900000, true, 9900000, 0.690, 8, #datetime(2025,5,8,0,0,0), 10000000, 0.690, "high", 8, 8},
+				        {"DEMO_transfer_key_9", 9, "Demo Player 09", "Attack", 27, #datetime(2025,5,9,0,0,0), 2025, "2024/25", 3, "Demo City FC", 3, "Demo City FC", 11000000, true, 11000000, 0.760, 9, #datetime(2025,5,9,0,0,0), 11000000, 0.760, "high", 9, 9},
+				        {"DEMO_transfer_key_10", 10, "Demo Player 10", "Defender", 28, #datetime(2025,5,10,0,0,0), 2025, "2024/25", 4, "Demo Athletic", 4, "Demo Athletic", 12100000, true, 12100000, 0.200, 10, #datetime(2025,5,10,0,0,0), 12000000, 0.200, "medium", 10, 10},
+				        {"DEMO_transfer_key_11", 11, "Demo Player 11", "Midfield", 29, #datetime(2025,5,11,0,0,0), 2025, "2024/25", 5, "Demo Rangers", 5, "Demo Rangers", 13200000, true, 13200000, 0.270, 11, #datetime(2025,5,11,0,0,0), 13000000, 0.270, "high", 11, 11},
+				        {"DEMO_transfer_key_12", 12, "Demo Player 12", "Goalkeeper", 30, #datetime(2025,5,12,0,0,0), 2025, "2024/25", 6, "Demo Vale", 6, "Demo Vale", 14300000, true, 14300000, 0.340, 12, #datetime(2025,5,12,0,0,0), 14000000, 0.340, "high", 12, 12},
+				        {"DEMO_transfer_key_13", 13, "Demo Player 13", "Attack", 31, #datetime(2025,5,13,0,0,0), 2025, "2024/25", 1, "Demo North FC", 1, "Demo North FC", 15400000, true, 15400000, 0.410, 13, #datetime(2025,5,13,0,0,0), 3000000, 0.410, "high", 13, 13},
+				        {"DEMO_transfer_key_14", 14, "Demo Player 14", "Defender", 32, #datetime(2025,5,14,0,0,0), 2025, "2024/25", 2, "Demo Coast United", 2, "Demo Coast United", 16500000, true, 16500000, 0.480, 14, #datetime(2025,5,14,0,0,0), 4000000, 0.480, "medium", 14, 14},
+				        {"DEMO_transfer_key_15", 15, "Demo Player 15", "Midfield", 33, #datetime(2025,5,15,0,0,0), 2025, "2024/25", 3, "Demo City FC", 3, "Demo City FC", 17600000, true, 17600000, 0.550, 15, #datetime(2025,5,15,0,0,0), 5000000, 0.550, "high", 15, 15},
+				        {"DEMO_transfer_key_16", 16, "Demo Player 16", "Goalkeeper", 34, #datetime(2025,5,16,0,0,0), 2025, "2024/25", 4, "Demo Athletic", 4, "Demo Athletic", 2200000, true, 2200000, 0.620, 16, #datetime(2025,5,16,0,0,0), 6000000, 0.620, "high", 16, 16},
+				        {"DEMO_transfer_key_17", 17, "Demo Player 17", "Attack", 35, #datetime(2025,5,17,0,0,0), 2025, "2024/25", 5, "Demo Rangers", 5, "Demo Rangers", 3300000, true, 3300000, 0.690, 17, #datetime(2025,5,17,0,0,0), 7000000, 0.690, "high", 17, 17},
+				        {"DEMO_transfer_key_18", 18, "Demo Player 18", "Defender", 19, #datetime(2025,5,18,0,0,0), 2025, "2024/25", 6, "Demo Vale", 6, "Demo Vale", 4400000, true, 4400000, 0.760, 18, #datetime(2025,5,18,0,0,0), 8000000, 0.760, "medium", 18, 18},
+				        {"DEMO_transfer_key_19", 19, "Demo Player 19", "Midfield", 20, #datetime(2025,5,19,0,0,0), 2025, "2024/25", 1, "Demo North FC", 1, "Demo North FC", 5500000, true, 5500000, 0.200, 19, #datetime(2025,5,19,0,0,0), 9000000, 0.200, "high", 19, 19},
+				        {"DEMO_transfer_key_20", 20, "Demo Player 20", "Goalkeeper", 21, #datetime(2025,5,20,0,0,0), 2025, "2024/25", 2, "Demo Coast United", 2, "Demo Coast United", 6600000, true, 6600000, 0.270, 20, #datetime(2025,5,20,0,0,0), 10000000, 0.270, "high", 20, 20},
+				        {"DEMO_transfer_key_21", 21, "Demo Player 21", "Attack", 22, #datetime(2025,5,21,0,0,0), 2025, "2024/25", 3, "Demo City FC", 3, "Demo City FC", 7700000, true, 7700000, 0.340, 21, #datetime(2025,5,21,0,0,0), 11000000, 0.340, "high", 21, 21},
+				        {"DEMO_transfer_key_22", 22, "Demo Player 22", "Defender", 23, #datetime(2025,5,22,0,0,0), 2025, "2024/25", 4, "Demo Athletic", 4, "Demo Athletic", 8800000, true, 8800000, 0.410, 22, #datetime(2025,5,22,0,0,0), 12000000, 0.410, "medium", 22, 22},
+				        {"DEMO_transfer_key_23", 23, "Demo Player 23", "Midfield", 24, #datetime(2025,5,23,0,0,0), 2025, "2024/25", 5, "Demo Rangers", 5, "Demo Rangers", 9900000, true, 9900000, 0.480, 23, #datetime(2025,5,23,0,0,0), 13000000, 0.480, "high", 23, 23},
+				        {"DEMO_transfer_key_24", 24, "Demo Player 24", "Goalkeeper", 25, #datetime(2025,5,24,0,0,0), 2025, "2024/25", 6, "Demo Vale", 6, "Demo Vale", 11000000, true, 11000000, 0.550, 24, #datetime(2025,5,24,0,0,0), 14000000, 0.550, "high", 24, 24}
+				    }
+				)

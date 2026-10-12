@@ -1,0 +1,169 @@
+table ml_player_market_value_evaluation_metrics
+
+	column model_version
+		dataType: string
+		summarizeBy: none
+		sourceColumn: model_version
+
+		annotation SummarizationSetBy = Automatic
+
+	column segment_type
+		dataType: string
+		summarizeBy: none
+		sourceColumn: segment_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column segment_value
+		dataType: string
+		summarizeBy: none
+		sourceColumn: segment_value
+
+		annotation SummarizationSetBy = Automatic
+
+	column row_count
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: row_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column minimum_sample_size
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: minimum_sample_size
+
+		annotation SummarizationSetBy = Automatic
+
+	column meets_minimum_sample_size
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		summarizeBy: none
+		sourceColumn: meets_minimum_sample_size
+
+		annotation SummarizationSetBy = Automatic
+
+	column mae_eur
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: mae_eur
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column rmse_eur
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: rmse_eur
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column r2
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: r2
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column wape_pct
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: wape_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column median_absolute_percentage_error_pct
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: median_absolute_percentage_error_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column mean_error_eur
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: mean_error_eur
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column within_25_pct
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: within_25_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column baseline_mae_eur
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: baseline_mae_eur
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column mae_improvement_vs_baseline_pct
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: mae_improvement_vs_baseline_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column interval_coverage_pct
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: interval_coverage_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition ml_player_market_value_evaluation_metrics = m
+		mode: import
+		source =
+				#table(
+				    type table [#"model_version" = text, #"segment_type" = text, #"segment_value" = text, #"row_count" = Int64.Type, #"minimum_sample_size" = Int64.Type, #"meets_minimum_sample_size" = logical, #"mae_eur" = number, #"rmse_eur" = number, #"r2" = number, #"wape_pct" = number, #"median_absolute_percentage_error_pct" = number, #"mean_error_eur" = number, #"within_25_pct" = number, #"baseline_mae_eur" = number, #"mae_improvement_vs_baseline_pct" = number, #"interval_coverage_pct" = number],
+				    {
+				        {"SYNTHETIC_DEMO_v1", "position", "Attack", 120, 120, true, 2200000, 2200000, 0.780, 0.200, 0.200, 2200000, 0.200, 2200000, 0.200, 0.200},
+				        {"SYNTHETIC_DEMO_v1", "position", "Defender", 120, 120, true, 3300000, 3300000, 0.800, 0.270, 0.270, 3300000, 0.270, 3300000, 0.270, 0.270},
+				        {"SYNTHETIC_DEMO_v1", "position", "Midfield", 120, 120, true, 4400000, 4400000, 0.820, 0.340, 0.340, 4400000, 0.340, 4400000, 0.340, 0.340},
+				        {"SYNTHETIC_DEMO_v1", "position", "Goalkeeper", 120, 120, true, 5500000, 5500000, 0.840, 0.410, 0.410, 5500000, 0.410, 5500000, 0.410, 0.410},
+				        {"SYNTHETIC_DEMO_v1", "position", "Attack", 120, 120, true, 6600000, 6600000, 0.860, 0.480, 0.480, 6600000, 0.480, 6600000, 0.480, 0.480},
+				        {"SYNTHETIC_DEMO_v1", "position", "Defender", 120, 120, true, 7700000, 7700000, 0.880, 0.550, 0.550, 7700000, 0.550, 7700000, 0.550, 0.550},
+				        {"SYNTHETIC_DEMO_v1", "position", "Midfield", 120, 120, true, 8800000, 8800000, 0.780, 0.620, 0.620, 8800000, 0.620, 8800000, 0.620, 0.620},
+				        {"SYNTHETIC_DEMO_v1", "position", "Goalkeeper", 120, 120, true, 9900000, 9900000, 0.800, 0.690, 0.690, 9900000, 0.690, 9900000, 0.690, 0.690},
+				        {"SYNTHETIC_DEMO_v1", "position", "Attack", 120, 120, true, 11000000, 11000000, 0.820, 0.760, 0.760, 11000000, 0.760, 11000000, 0.760, 0.760},
+				        {"SYNTHETIC_DEMO_v1", "position", "Defender", 120, 120, true, 12100000, 12100000, 0.840, 0.200, 0.200, 12100000, 0.200, 12100000, 0.200, 0.200},
+				        {"SYNTHETIC_DEMO_v1", "position", "Midfield", 120, 120, true, 13200000, 13200000, 0.860, 0.270, 0.270, 13200000, 0.270, 13200000, 0.270, 0.270},
+				        {"SYNTHETIC_DEMO_v1", "position", "Goalkeeper", 120, 120, true, 14300000, 14300000, 0.880, 0.340, 0.340, 14300000, 0.340, 14300000, 0.340, 0.340},
+				        {"SYNTHETIC_DEMO_v1", "position", "Attack", 120, 120, true, 15400000, 15400000, 0.780, 0.410, 0.410, 15400000, 0.410, 15400000, 0.410, 0.410},
+				        {"SYNTHETIC_DEMO_v1", "position", "Defender", 120, 120, true, 16500000, 16500000, 0.800, 0.480, 0.480, 16500000, 0.480, 16500000, 0.480, 0.480},
+				        {"SYNTHETIC_DEMO_v1", "position", "Midfield", 120, 120, true, 17600000, 17600000, 0.820, 0.550, 0.550, 17600000, 0.550, 17600000, 0.550, 0.550},
+				        {"SYNTHETIC_DEMO_v1", "position", "Goalkeeper", 120, 120, true, 2200000, 2200000, 0.840, 0.620, 0.620, 2200000, 0.620, 2200000, 0.620, 0.620},
+				        {"SYNTHETIC_DEMO_v1", "position", "Attack", 120, 120, true, 3300000, 3300000, 0.860, 0.690, 0.690, 3300000, 0.690, 3300000, 0.690, 0.690},
+				        {"SYNTHETIC_DEMO_v1", "position", "Defender", 120, 120, true, 4400000, 4400000, 0.880, 0.760, 0.760, 4400000, 0.760, 4400000, 0.760, 0.760},
+				        {"SYNTHETIC_DEMO_v1", "position", "Midfield", 120, 120, true, 5500000, 5500000, 0.780, 0.200, 0.200, 5500000, 0.200, 5500000, 0.200, 0.200},
+				        {"SYNTHETIC_DEMO_v1", "position", "Goalkeeper", 120, 120, true, 6600000, 6600000, 0.800, 0.270, 0.270, 6600000, 0.270, 6600000, 0.270, 0.270},
+				        {"SYNTHETIC_DEMO_v1", "position", "Attack", 120, 120, true, 7700000, 7700000, 0.820, 0.340, 0.340, 7700000, 0.340, 7700000, 0.340, 0.340},
+				        {"SYNTHETIC_DEMO_v1", "position", "Defender", 120, 120, true, 8800000, 8800000, 0.840, 0.410, 0.410, 8800000, 0.410, 8800000, 0.410, 0.410},
+				        {"SYNTHETIC_DEMO_v1", "position", "Midfield", 120, 120, true, 9900000, 9900000, 0.860, 0.480, 0.480, 9900000, 0.480, 9900000, 0.480, 0.480},
+				        {"SYNTHETIC_DEMO_v1", "position", "Goalkeeper", 120, 120, true, 11000000, 11000000, 0.880, 0.550, 0.550, 11000000, 0.550, 11000000, 0.550, 0.550}
+				    }
+				)

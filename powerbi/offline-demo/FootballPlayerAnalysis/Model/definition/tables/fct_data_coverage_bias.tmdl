@@ -1,0 +1,208 @@
+table fct_data_coverage_bias
+
+	column segment_type
+		dataType: string
+		summarizeBy: none
+		sourceColumn: segment_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column segment_value
+		dataType: string
+		summarizeBy: none
+		sourceColumn: segment_value
+
+		annotation SummarizationSetBy = Automatic
+
+	column transfer_count
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: transfer_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column known_fee_count
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: known_fee_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column known_fee_coverage_pct
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: known_fee_coverage_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column market_value_baseline_count
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: market_value_baseline_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column market_value_baseline_coverage_pct
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: market_value_baseline_coverage_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column fee_value_comparison_count
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: fee_value_comparison_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column fee_value_comparison_coverage_pct
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: fee_value_comparison_coverage_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column outcome_90d_count
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: outcome_90d_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column outcome_90d_coverage_pct
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: outcome_90d_coverage_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column outcome_180d_count
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: outcome_180d_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column outcome_180d_coverage_pct
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: outcome_180d_coverage_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column outcome_365d_count
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: outcome_365d_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column outcome_365d_coverage_pct
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: outcome_365d_coverage_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column pre_180d_performance_count
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: pre_180d_performance_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column pre_180d_performance_coverage_pct
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: pre_180d_performance_coverage_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column post_180d_performance_count
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: post_180d_performance_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column post_180d_performance_coverage_pct
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: post_180d_performance_coverage_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column maximum_material_missingness_pct
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: maximum_material_missingness_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column coverage_bias_risk
+		dataType: string
+		summarizeBy: none
+		sourceColumn: coverage_bias_risk
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fct_data_coverage_bias = m
+		mode: import
+		source =
+				#table(
+				    type table [#"segment_type" = text, #"segment_value" = text, #"transfer_count" = Int64.Type, #"known_fee_count" = Int64.Type, #"known_fee_coverage_pct" = number, #"market_value_baseline_count" = Int64.Type, #"market_value_baseline_coverage_pct" = number, #"fee_value_comparison_count" = Int64.Type, #"fee_value_comparison_coverage_pct" = number, #"outcome_90d_count" = Int64.Type, #"outcome_90d_coverage_pct" = number, #"outcome_180d_count" = Int64.Type, #"outcome_180d_coverage_pct" = number, #"outcome_365d_count" = Int64.Type, #"outcome_365d_coverage_pct" = number, #"pre_180d_performance_count" = Int64.Type, #"pre_180d_performance_coverage_pct" = number, #"post_180d_performance_count" = Int64.Type, #"post_180d_performance_coverage_pct" = number, #"maximum_material_missingness_pct" = number, #"coverage_bias_risk" = text],
+				    {
+				        {"position", "Attack", 1, 1, 0.200, 3000000, 0.200, 1, 0.200, 1, 0.200, 1, 0.200, 1, 0.200, 1, 0.200, 1, 0.200, 0.200, "Demo coverage bias risk"},
+				        {"position", "Defender", 2, 2, 0.270, 4000000, 0.270, 2, 0.270, 2, 0.270, 2, 0.270, 2, 0.270, 2, 0.270, 2, 0.270, 0.270, "Demo coverage bias risk"},
+				        {"position", "Midfield", 3, 3, 0.340, 5000000, 0.340, 3, 0.340, 3, 0.340, 3, 0.340, 3, 0.340, 3, 0.340, 3, 0.340, 0.340, "Demo coverage bias risk"},
+				        {"position", "Goalkeeper", 4, 4, 0.410, 6000000, 0.410, 4, 0.410, 4, 0.410, 4, 0.410, 4, 0.410, 4, 0.410, 4, 0.410, 0.410, "Demo coverage bias risk"},
+				        {"position", "Attack", 5, 5, 0.480, 7000000, 0.480, 5, 0.480, 5, 0.480, 5, 0.480, 5, 0.480, 5, 0.480, 5, 0.480, 0.480, "Demo coverage bias risk"},
+				        {"position", "Defender", 6, 6, 0.550, 8000000, 0.550, 6, 0.550, 6, 0.550, 6, 0.550, 6, 0.550, 6, 0.550, 6, 0.550, 0.550, "Demo coverage bias risk"},
+				        {"position", "Midfield", 7, 7, 0.620, 9000000, 0.620, 7, 0.620, 7, 0.620, 7, 0.620, 7, 0.620, 7, 0.620, 7, 0.620, 0.620, "Demo coverage bias risk"},
+				        {"position", "Goalkeeper", 8, 8, 0.690, 10000000, 0.690, 8, 0.690, 8, 0.690, 8, 0.690, 8, 0.690, 8, 0.690, 8, 0.690, 0.690, "Demo coverage bias risk"},
+				        {"position", "Attack", 9, 9, 0.760, 11000000, 0.760, 9, 0.760, 9, 0.760, 9, 0.760, 9, 0.760, 9, 0.760, 9, 0.760, 0.760, "Demo coverage bias risk"},
+				        {"position", "Defender", 10, 10, 0.200, 12000000, 0.200, 10, 0.200, 10, 0.200, 10, 0.200, 10, 0.200, 10, 0.200, 10, 0.200, 0.200, "Demo coverage bias risk"},
+				        {"position", "Midfield", 11, 11, 0.270, 13000000, 0.270, 11, 0.270, 11, 0.270, 11, 0.270, 11, 0.270, 11, 0.270, 11, 0.270, 0.270, "Demo coverage bias risk"},
+				        {"position", "Goalkeeper", 12, 12, 0.340, 14000000, 0.340, 12, 0.340, 12, 0.340, 12, 0.340, 12, 0.340, 12, 0.340, 12, 0.340, 0.340, "Demo coverage bias risk"},
+				        {"position", "Attack", 13, 13, 0.410, 3000000, 0.410, 13, 0.410, 13, 0.410, 13, 0.410, 13, 0.410, 13, 0.410, 13, 0.410, 0.410, "Demo coverage bias risk"},
+				        {"position", "Defender", 14, 14, 0.480, 4000000, 0.480, 14, 0.480, 14, 0.480, 14, 0.480, 14, 0.480, 14, 0.480, 14, 0.480, 0.480, "Demo coverage bias risk"},
+				        {"position", "Midfield", 15, 15, 0.550, 5000000, 0.550, 15, 0.550, 15, 0.550, 15, 0.550, 15, 0.550, 15, 0.550, 15, 0.550, 0.550, "Demo coverage bias risk"},
+				        {"position", "Goalkeeper", 16, 16, 0.620, 6000000, 0.620, 16, 0.620, 16, 0.620, 16, 0.620, 16, 0.620, 16, 0.620, 16, 0.620, 0.620, "Demo coverage bias risk"},
+				        {"position", "Attack", 17, 17, 0.690, 7000000, 0.690, 17, 0.690, 17, 0.690, 17, 0.690, 17, 0.690, 17, 0.690, 17, 0.690, 0.690, "Demo coverage bias risk"},
+				        {"position", "Defender", 18, 18, 0.760, 8000000, 0.760, 18, 0.760, 18, 0.760, 18, 0.760, 18, 0.760, 18, 0.760, 18, 0.760, 0.760, "Demo coverage bias risk"},
+				        {"position", "Midfield", 19, 19, 0.200, 9000000, 0.200, 19, 0.200, 19, 0.200, 19, 0.200, 19, 0.200, 19, 0.200, 19, 0.200, 0.200, "Demo coverage bias risk"},
+				        {"position", "Goalkeeper", 20, 20, 0.270, 10000000, 0.270, 20, 0.270, 20, 0.270, 20, 0.270, 20, 0.270, 20, 0.270, 20, 0.270, 0.270, "Demo coverage bias risk"},
+				        {"position", "Attack", 21, 21, 0.340, 11000000, 0.340, 21, 0.340, 21, 0.340, 21, 0.340, 21, 0.340, 21, 0.340, 21, 0.340, 0.340, "Demo coverage bias risk"},
+				        {"position", "Defender", 22, 22, 0.410, 12000000, 0.410, 22, 0.410, 22, 0.410, 22, 0.410, 22, 0.410, 22, 0.410, 22, 0.410, 0.410, "Demo coverage bias risk"},
+				        {"position", "Midfield", 23, 23, 0.480, 13000000, 0.480, 23, 0.480, 23, 0.480, 23, 0.480, 23, 0.480, 23, 0.480, 23, 0.480, 0.480, "Demo coverage bias risk"},
+				        {"position", "Goalkeeper", 24, 24, 0.550, 14000000, 0.550, 24, 0.550, 24, 0.550, 24, 0.550, 24, 0.550, 24, 0.550, 24, 0.550, 0.550, "Demo coverage bias risk"}
+				    }
+				)

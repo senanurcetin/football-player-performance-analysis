@@ -1,0 +1,203 @@
+table dim_players
+
+	measure 'Total Players' = DISTINCTCOUNT(dim_players[player_id])
+		formatString: 0
+
+	column player_id
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: player_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column player_name
+		dataType: string
+		summarizeBy: none
+		sourceColumn: player_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column position
+		dataType: string
+		summarizeBy: none
+		sourceColumn: position
+
+		annotation SummarizationSetBy = Automatic
+
+	column sub_position
+		dataType: string
+		summarizeBy: none
+		sourceColumn: sub_position
+
+		annotation SummarizationSetBy = Automatic
+
+	column birth_date
+		dataType: dateTime
+		formatString: Long Date
+		summarizeBy: none
+		sourceColumn: birth_date
+
+		variation Variation
+			isDefault
+			relationship: c7b2052c-d1d6-4efa-a8f3-749a4155939b
+			defaultHierarchy: LocalDateTable_f7e5ed87-c2d7-4b84-9d17-659cbdb1695e.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column country_of_birth
+		dataType: string
+		summarizeBy: none
+		sourceColumn: country_of_birth
+
+		annotation SummarizationSetBy = Automatic
+
+	column country_of_citizenship
+		dataType: string
+		summarizeBy: none
+		sourceColumn: country_of_citizenship
+
+		annotation SummarizationSetBy = Automatic
+
+	column height_in_cm
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: height_in_cm
+
+		annotation SummarizationSetBy = Automatic
+
+	column preferred_foot
+		dataType: string
+		summarizeBy: none
+		sourceColumn: preferred_foot
+
+		annotation SummarizationSetBy = Automatic
+
+	column agent_name
+		dataType: string
+		summarizeBy: none
+		sourceColumn: agent_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column current_club_id
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: current_club_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column current_club_name
+		dataType: string
+		summarizeBy: none
+		sourceColumn: current_club_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_season
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: last_season
+
+		annotation SummarizationSetBy = Automatic
+
+	column player_record_type
+		dataType: string
+		summarizeBy: none
+		sourceColumn: player_record_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column player_profile_completeness_pct
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: player_profile_completeness_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column player_name_display
+		dataType: string
+		summarizeBy: none
+		sourceColumn: player_name_display
+
+		annotation SummarizationSetBy = Automatic
+
+	column position_display
+		dataType: string
+		summarizeBy: none
+		sourceColumn: position_display
+
+		annotation SummarizationSetBy = Automatic
+
+	column current_club_name_display
+		dataType: string
+		summarizeBy: none
+		sourceColumn: current_club_name_display
+
+		annotation SummarizationSetBy = Automatic
+
+	column has_current_profile
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		summarizeBy: none
+		sourceColumn: has_current_profile
+
+		annotation SummarizationSetBy = Automatic
+
+	column player_profile_completeness_status
+		dataType: string
+		summarizeBy: none
+		sourceColumn: player_profile_completeness_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Age Group' = SWITCH(TRUE(), DATEDIFF(dim_players[birth_date], TODAY(), YEAR) < 22, "18-21", DATEDIFF(dim_players[birth_date], TODAY(), YEAR) < 26, "22-25", DATEDIFF(dim_players[birth_date], TODAY(), YEAR) < 30, "26-29", DATEDIFF(dim_players[birth_date], TODAY(), YEAR) < 34, "30-33", "34+")
+		dataType: string
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_players = m
+		mode: import
+		source =
+				#table(
+				    type table [#"player_id" = Int64.Type, #"player_name" = text, #"position" = text, #"sub_position" = text, #"birth_date" = datetime, #"country_of_birth" = text, #"country_of_citizenship" = text, #"height_in_cm" = Int64.Type, #"preferred_foot" = text, #"agent_name" = text, #"current_club_id" = Int64.Type, #"current_club_name" = text, #"last_season" = Int64.Type, #"player_record_type" = text, #"player_profile_completeness_pct" = number, #"player_name_display" = text, #"position_display" = text, #"current_club_name_display" = text, #"has_current_profile" = logical, #"player_profile_completeness_status" = text],
+				    {
+				        {1, "Demo Player 01", "Attack", "Centre-Forward", #datetime(1990, 1, 1, 0, 0, 0), "England", "England", 1, "Right", "Demo Agent 1", 1, "Demo North FC", 2024, "current_profile", 0.200, "Demo Player 01", "Attack", "Demo North FC", true, "high"},
+				        {2, "Demo Player 02", "Defender", "Centre-Back", #datetime(1991, 2, 2, 0, 0, 0), "Germany", "Germany", 2, "Left", "Demo Agent 2", 2, "Demo Coast United", 2024, "current_profile", 0.270, "Demo Player 02", "Defender", "Demo Coast United", true, "medium"},
+				        {3, "Demo Player 03", "Midfield", "Central Midfield", #datetime(1992, 3, 3, 0, 0, 0), "France", "France", 3, "Right", "Demo Agent 3", 3, "Demo City FC", 2024, "current_profile", 0.340, "Demo Player 03", "Midfield", "Demo City FC", true, "high"},
+				        {4, "Demo Player 04", "Goalkeeper", "Goalkeeper", #datetime(1993, 4, 4, 0, 0, 0), "Spain", "Spain", 4, "Left", "Demo Agent 4", 4, "Demo Athletic", 2024, "current_profile", 0.410, "Demo Player 04", "Goalkeeper", "Demo Athletic", true, "high"},
+				        {5, "Demo Player 05", "Attack", "Centre-Forward", #datetime(1994, 5, 5, 0, 0, 0), "England", "England", 5, "Right", "Demo Agent 5", 5, "Demo Rangers", 2024, "current_profile", 0.480, "Demo Player 05", "Attack", "Demo Rangers", true, "high"},
+				        {6, "Demo Player 06", "Defender", "Centre-Back", #datetime(1995, 6, 6, 0, 0, 0), "Germany", "Germany", 6, "Left", "Demo Agent 1", 6, "Demo Vale", 2024, "current_profile", 0.550, "Demo Player 06", "Defender", "Demo Vale", true, "medium"},
+				        {7, "Demo Player 07", "Midfield", "Central Midfield", #datetime(1996, 7, 7, 0, 0, 0), "France", "France", 7, "Right", "Demo Agent 2", 1, "Demo North FC", 2024, "current_profile", 0.620, "Demo Player 07", "Midfield", "Demo North FC", true, "high"},
+				        {8, "Demo Player 08", "Goalkeeper", "Goalkeeper", #datetime(1997, 8, 8, 0, 0, 0), "Spain", "Spain", 8, "Left", "Demo Agent 3", 2, "Demo Coast United", 2024, "current_profile", 0.690, "Demo Player 08", "Goalkeeper", "Demo Coast United", true, "high"},
+				        {9, "Demo Player 09", "Attack", "Centre-Forward", #datetime(1998, 9, 9, 0, 0, 0), "England", "England", 9, "Right", "Demo Agent 4", 3, "Demo City FC", 2024, "current_profile", 0.760, "Demo Player 09", "Attack", "Demo City FC", true, "high"},
+				        {10, "Demo Player 10", "Defender", "Centre-Back", #datetime(1999, 10, 10, 0, 0, 0), "Germany", "Germany", 10, "Left", "Demo Agent 5", 4, "Demo Athletic", 2024, "current_profile", 0.200, "Demo Player 10", "Defender", "Demo Athletic", true, "medium"},
+				        {11, "Demo Player 11", "Midfield", "Central Midfield", #datetime(2000, 11, 11, 0, 0, 0), "France", "France", 11, "Right", "Demo Agent 1", 5, "Demo Rangers", 2024, "current_profile", 0.270, "Demo Player 11", "Midfield", "Demo Rangers", true, "high"},
+				        {12, "Demo Player 12", "Goalkeeper", "Goalkeeper", #datetime(2001, 12, 12, 0, 0, 0), "Spain", "Spain", 12, "Left", "Demo Agent 2", 6, "Demo Vale", 2024, "current_profile", 0.340, "Demo Player 12", "Goalkeeper", "Demo Vale", true, "high"},
+				        {13, "Demo Player 13", "Attack", "Centre-Forward", #datetime(2002, 1, 13, 0, 0, 0), "England", "England", 13, "Right", "Demo Agent 3", 1, "Demo North FC", 2024, "current_profile", 0.410, "Demo Player 13", "Attack", "Demo North FC", true, "high"},
+				        {14, "Demo Player 14", "Defender", "Centre-Back", #datetime(2003, 2, 14, 0, 0, 0), "Germany", "Germany", 14, "Left", "Demo Agent 4", 2, "Demo Coast United", 2024, "current_profile", 0.480, "Demo Player 14", "Defender", "Demo Coast United", true, "medium"},
+				        {15, "Demo Player 15", "Midfield", "Central Midfield", #datetime(2004, 3, 15, 0, 0, 0), "France", "France", 15, "Right", "Demo Agent 5", 3, "Demo City FC", 2024, "current_profile", 0.550, "Demo Player 15", "Midfield", "Demo City FC", true, "high"},
+				        {16, "Demo Player 16", "Goalkeeper", "Goalkeeper", #datetime(1990, 4, 16, 0, 0, 0), "Spain", "Spain", 16, "Left", "Demo Agent 1", 4, "Demo Athletic", 2024, "current_profile", 0.620, "Demo Player 16", "Goalkeeper", "Demo Athletic", true, "high"},
+				        {17, "Demo Player 17", "Attack", "Centre-Forward", #datetime(1991, 5, 17, 0, 0, 0), "England", "England", 17, "Right", "Demo Agent 2", 5, "Demo Rangers", 2024, "current_profile", 0.690, "Demo Player 17", "Attack", "Demo Rangers", true, "high"},
+				        {18, "Demo Player 18", "Defender", "Centre-Back", #datetime(1992, 6, 18, 0, 0, 0), "Germany", "Germany", 18, "Left", "Demo Agent 3", 6, "Demo Vale", 2024, "current_profile", 0.760, "Demo Player 18", "Defender", "Demo Vale", true, "medium"},
+				        {19, "Demo Player 19", "Midfield", "Central Midfield", #datetime(1993, 7, 19, 0, 0, 0), "France", "France", 19, "Right", "Demo Agent 4", 1, "Demo North FC", 2024, "current_profile", 0.200, "Demo Player 19", "Midfield", "Demo North FC", true, "high"},
+				        {20, "Demo Player 20", "Goalkeeper", "Goalkeeper", #datetime(1994, 8, 20, 0, 0, 0), "Spain", "Spain", 20, "Left", "Demo Agent 5", 2, "Demo Coast United", 2024, "current_profile", 0.270, "Demo Player 20", "Goalkeeper", "Demo Coast United", true, "high"},
+				        {21, "Demo Player 21", "Attack", "Centre-Forward", #datetime(1995, 9, 21, 0, 0, 0), "England", "England", 21, "Right", "Demo Agent 1", 3, "Demo City FC", 2024, "current_profile", 0.340, "Demo Player 21", "Attack", "Demo City FC", true, "high"},
+				        {22, "Demo Player 22", "Defender", "Centre-Back", #datetime(1996, 10, 22, 0, 0, 0), "Germany", "Germany", 22, "Left", "Demo Agent 2", 4, "Demo Athletic", 2024, "current_profile", 0.410, "Demo Player 22", "Defender", "Demo Athletic", true, "medium"},
+				        {23, "Demo Player 23", "Midfield", "Central Midfield", #datetime(1997, 11, 23, 0, 0, 0), "France", "France", 23, "Right", "Demo Agent 3", 5, "Demo Rangers", 2024, "current_profile", 0.480, "Demo Player 23", "Midfield", "Demo Rangers", true, "high"},
+				        {24, "Demo Player 24", "Goalkeeper", "Goalkeeper", #datetime(1998, 12, 24, 0, 0, 0), "Spain", "Spain", 24, "Left", "Demo Agent 4", 6, "Demo Vale", 2024, "current_profile", 0.550, "Demo Player 24", "Goalkeeper", "Demo Vale", true, "high"}
+				    }
+				)
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
