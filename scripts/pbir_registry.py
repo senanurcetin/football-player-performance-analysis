@@ -64,7 +64,7 @@ def validate_relationships(source: str, table_names: set[str]) -> list[str]:
     seen: set[str] = set()
     count = 0
     for block in blocks:
-        header = re.match(r"^relationship\s+(\S+)\s*$", block)
+        header = re.search(r"^relationship[ \t]+(\S+)[ \t]*$", block, re.MULTILINE)
         if not header:
             continue
         count += 1
