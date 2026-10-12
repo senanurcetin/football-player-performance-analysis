@@ -1,0 +1,134 @@
+table fct_transfers
+
+	column player_id
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: player_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column position
+		dataType: string
+		summarizeBy: none
+		sourceColumn: position
+
+		annotation SummarizationSetBy = Automatic
+
+	column sub_position
+		dataType: string
+		summarizeBy: none
+		sourceColumn: sub_position
+
+		annotation SummarizationSetBy = Automatic
+
+	column player_name
+		dataType: string
+		summarizeBy: none
+		sourceColumn: player_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column transfer_date
+		dataType: dateTime
+		formatString: Long Date
+		summarizeBy: none
+		sourceColumn: transfer_date
+
+		variation Variation
+			isDefault
+			relationship: 54a3f1e0-9d9f-4452-9c4b-cda5c503f94d
+			defaultHierarchy: LocalDateTable_e54a5994-a864-4823-a406-b30df3d17c6f.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column transfer_season
+		dataType: string
+		summarizeBy: none
+		sourceColumn: transfer_season
+
+		annotation SummarizationSetBy = Automatic
+
+	column from_club_id
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: from_club_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column to_club_id
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: to_club_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column from_club_name
+		dataType: string
+		summarizeBy: none
+		sourceColumn: from_club_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column to_club_name
+		dataType: string
+		summarizeBy: none
+		sourceColumn: to_club_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column transfer_fee
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: transfer_fee
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column market_value_in_eur
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: market_value_in_eur
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column fee_market_value_difference
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: fee_market_value_difference
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column fee_market_value_difference_pct
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: fee_market_value_difference_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition fct_transfers = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database([UseStorageApi=false]),
+				    #"data-analiz-490513" = Source{[Name="data-analiz-490513"]}[Data],
+				    football_mart_Schema = #"data-analiz-490513"{[Name="football_mart",Kind="Schema"]}[Data],
+				    fct_transfers_Table = football_mart_Schema{[Name="fct_transfers",Kind="Table"]}[Data]
+				in
+				    fct_transfers_Table
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

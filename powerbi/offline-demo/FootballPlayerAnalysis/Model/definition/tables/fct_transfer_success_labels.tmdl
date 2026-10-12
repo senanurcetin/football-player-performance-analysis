@@ -1,0 +1,208 @@
+table fct_transfer_success_labels
+
+	column transfer_key
+		dataType: string
+		summarizeBy: none
+		sourceColumn: transfer_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column player_id
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: player_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column player_name
+		dataType: string
+		summarizeBy: none
+		sourceColumn: player_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column position
+		dataType: string
+		summarizeBy: none
+		sourceColumn: position
+
+		annotation SummarizationSetBy = Automatic
+
+	column age_at_transfer
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: age_at_transfer
+
+		annotation SummarizationSetBy = Automatic
+
+	column transfer_date
+		dataType: dateTime
+		formatString: Long Date
+		summarizeBy: none
+		sourceColumn: transfer_date
+
+		variation Variation
+			isDefault
+			relationship: d747153d-d8b7-46d4-bdef-aeebf7783ce0
+			defaultHierarchy: LocalDateTable_ac631afb-868d-4b22-8b54-49e0aa7efa07.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column transfer_year
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: transfer_year
+
+		annotation SummarizationSetBy = Automatic
+
+	column transfer_season
+		dataType: string
+		summarizeBy: none
+		sourceColumn: transfer_season
+
+		annotation SummarizationSetBy = Automatic
+
+	column from_club_id
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: from_club_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column from_club_name
+		dataType: string
+		summarizeBy: none
+		sourceColumn: from_club_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column to_club_id
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: to_club_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column to_club_name
+		dataType: string
+		summarizeBy: none
+		sourceColumn: to_club_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column transfer_fee
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: transfer_fee
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column has_known_transfer_fee
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		summarizeBy: none
+		sourceColumn: has_known_transfer_fee
+
+		annotation SummarizationSetBy = Automatic
+
+	column market_value_baseline
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: market_value_baseline
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column fee_market_value_difference_pct
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: fee_market_value_difference_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column label_horizon_days
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: label_horizon_days
+
+		annotation SummarizationSetBy = Automatic
+
+	column outcome_valuation_date
+		dataType: dateTime
+		formatString: Long Date
+		summarizeBy: none
+		sourceColumn: outcome_valuation_date
+
+		variation Variation
+			isDefault
+			relationship: a8909e64-eafa-44b4-8ee2-6381ba75d9f3
+			defaultHierarchy: LocalDateTable_61c1976a-f0c7-4add-a43f-8e55830234b4.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column outcome_market_value
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: outcome_market_value
+
+		annotation SummarizationSetBy = Automatic
+
+	column market_value_change_at_horizon_pct
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: market_value_change_at_horizon_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column label_status
+		dataType: string
+		summarizeBy: none
+		sourceColumn: label_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column success_threshold_pct
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: success_threshold_pct
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_successful_transfer
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: is_successful_transfer
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fct_transfer_success_labels = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database([UseStorageApi=false]),
+				    #"data-analiz-490513" = Source{[Name="data-analiz-490513"]}[Data],
+				    football_mart_Schema = #"data-analiz-490513"{[Name="football_mart",Kind="Schema"]}[Data],
+				    fct_transfer_success_labels_Table = football_mart_Schema{[Name="fct_transfer_success_labels",Kind="Table"]}[Data]
+				in
+				    fct_transfer_success_labels_Table
+

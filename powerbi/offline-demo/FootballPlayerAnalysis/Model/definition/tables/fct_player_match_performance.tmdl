@@ -1,0 +1,252 @@
+table fct_player_match_performance
+
+	column appearance_id
+		dataType: string
+		summarizeBy: none
+		sourceColumn: appearance_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column game_id
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: game_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column player_id
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: player_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column player_name
+		dataType: string
+		summarizeBy: none
+		sourceColumn: player_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column position
+		dataType: string
+		summarizeBy: none
+		sourceColumn: position
+
+		annotation SummarizationSetBy = Automatic
+
+	column sub_position
+		dataType: string
+		summarizeBy: none
+		sourceColumn: sub_position
+
+		annotation SummarizationSetBy = Automatic
+
+	column player_club_id
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: player_club_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column player_club_name
+		dataType: string
+		summarizeBy: none
+		sourceColumn: player_club_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column competition_id
+		dataType: string
+		summarizeBy: none
+		sourceColumn: competition_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column season
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: season
+
+		annotation SummarizationSetBy = Automatic
+
+	column appearance_date
+		dataType: dateTime
+		formatString: Long Date
+		summarizeBy: none
+		sourceColumn: appearance_date
+
+		variation Variation
+			isDefault
+			relationship: e484e9bf-8d9d-4679-b313-4e2b1339cc12
+			defaultHierarchy: LocalDateTable_8c7ab90b-e50b-4759-81b0-b489a1d97d36.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column hosting
+		dataType: string
+		summarizeBy: none
+		sourceColumn: hosting
+
+		annotation SummarizationSetBy = Automatic
+
+	column opponent_club_id
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: opponent_club_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column opponent_club_name
+		dataType: string
+		summarizeBy: none
+		sourceColumn: opponent_club_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column club_goals
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: club_goals
+
+		annotation SummarizationSetBy = Automatic
+
+	column opponent_goals
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: opponent_goals
+
+		annotation SummarizationSetBy = Automatic
+
+	column club_result
+		dataType: string
+		summarizeBy: none
+		sourceColumn: club_result
+
+		annotation SummarizationSetBy = Automatic
+
+	column club_points
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: club_points
+
+		annotation SummarizationSetBy = Automatic
+
+	column minutes_played
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: minutes_played
+
+		annotation SummarizationSetBy = Automatic
+
+	column goals
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: goals
+
+		annotation SummarizationSetBy = Automatic
+
+	column assists
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: assists
+
+		annotation SummarizationSetBy = Automatic
+
+	column yellow_cards
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: yellow_cards
+
+		annotation SummarizationSetBy = Automatic
+
+	column red_cards
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: red_cards
+
+		annotation SummarizationSetBy = Automatic
+
+	column goals_per_90
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: goals_per_90
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column assists_per_90
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: assists_per_90
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column is_starter
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		summarizeBy: none
+		sourceColumn: is_starter
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_captain
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		summarizeBy: none
+		sourceColumn: is_captain
+
+		annotation SummarizationSetBy = Automatic
+
+	column lineup_position
+		dataType: string
+		summarizeBy: none
+		sourceColumn: lineup_position
+
+		annotation SummarizationSetBy = Automatic
+
+	column has_lineup_context
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		summarizeBy: none
+		sourceColumn: has_lineup_context
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_future_appearance
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		summarizeBy: none
+		sourceColumn: is_future_appearance
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fct_player_match_performance = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database([UseStorageApi=false]),
+				    #"data-analiz-490513" = Source{[Name="data-analiz-490513"]}[Data],
+				    football_mart_Schema = #"data-analiz-490513"{[Name="football_mart",Kind="Schema"]}[Data],
+				    fct_player_match_performance_Table = football_mart_Schema{[Name="fct_player_match_performance",Kind="Table"]}[Data]
+				in
+				    fct_player_match_performance_Table
+

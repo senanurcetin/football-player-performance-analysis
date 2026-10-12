@@ -1,0 +1,25 @@
+[
+  {
+    "name": "NotBlank_ml_player_market_value_e_segment_type",
+    "expression": {
+      "Not": {
+        "Expression": {
+          "IsEmpty": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "ml_player_market_value_evaluation_metrics"
+                  }
+                },
+                "Property": "segment_type"
+              }
+            }
+          }
+        }
+      }
+    },
+    "type": "Advanced",
+    "howCreated": 0
+  }
+]

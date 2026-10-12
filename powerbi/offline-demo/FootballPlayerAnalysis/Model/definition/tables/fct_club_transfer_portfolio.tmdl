@@ -1,0 +1,174 @@
+table fct_club_transfer_portfolio
+
+	column club_id
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: club_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column club_name
+		dataType: string
+		summarizeBy: none
+		sourceColumn: club_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column transfer_season
+		dataType: string
+		summarizeBy: none
+		sourceColumn: transfer_season
+
+		annotation SummarizationSetBy = Automatic
+
+	column inbound_transfers
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: inbound_transfers
+
+		annotation SummarizationSetBy = Automatic
+
+	column outbound_transfers
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: outbound_transfers
+
+		annotation SummarizationSetBy = Automatic
+
+	column inbound_known_fee_transfers
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: inbound_known_fee_transfers
+
+		annotation SummarizationSetBy = Automatic
+
+	column outbound_known_fee_transfers
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: outbound_known_fee_transfers
+
+		annotation SummarizationSetBy = Automatic
+
+	column inbound_transfer_spend
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: inbound_transfer_spend
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column outbound_transfer_income
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: outbound_transfer_income
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column net_transfer_spend
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: net_transfer_spend
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_inbound_transfer_fee
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: avg_inbound_transfer_fee
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_outbound_transfer_fee
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: avg_outbound_transfer_fee
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_inbound_fee_premium_pct
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: avg_inbound_fee_premium_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_outbound_fee_premium_pct
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: avg_outbound_fee_premium_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_inbound_post_transfer_value_change_pct
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: avg_inbound_post_transfer_value_change_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column inbound_transfers_with_value_outcome
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: inbound_transfers_with_value_outcome
+
+		annotation SummarizationSetBy = Automatic
+
+	column inbound_positive_value_outcome_rate_pct
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: inbound_positive_value_outcome_rate_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column inbound_fee_coverage_pct
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: inbound_fee_coverage_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column outbound_fee_coverage_pct
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: outbound_fee_coverage_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition fct_club_transfer_portfolio = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database([UseStorageApi=false]),
+				    #"data-analiz-490513" = Source{[Name="data-analiz-490513"]}[Data],
+				    football_mart_Schema = #"data-analiz-490513"{[Name="football_mart",Kind="Schema"]}[Data],
+				    fct_club_transfer_portfolio_Table = football_mart_Schema{[Name="fct_club_transfer_portfolio",Kind="Table"]}[Data]
+				in
+				    fct_club_transfer_portfolio_Table
+

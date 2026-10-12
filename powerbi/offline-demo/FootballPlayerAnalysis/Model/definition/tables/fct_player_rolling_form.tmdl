@@ -1,0 +1,278 @@
+table fct_player_rolling_form
+
+	column appearance_id
+		dataType: string
+		summarizeBy: none
+		sourceColumn: appearance_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column game_id
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: game_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column player_id
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: player_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column player_name
+		dataType: string
+		summarizeBy: none
+		sourceColumn: player_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column position
+		dataType: string
+		summarizeBy: none
+		sourceColumn: position
+
+		annotation SummarizationSetBy = Automatic
+
+	column sub_position
+		dataType: string
+		summarizeBy: none
+		sourceColumn: sub_position
+
+		annotation SummarizationSetBy = Automatic
+
+	column player_club_id
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: player_club_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column player_club_name
+		dataType: string
+		summarizeBy: none
+		sourceColumn: player_club_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column competition_id
+		dataType: string
+		summarizeBy: none
+		sourceColumn: competition_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column season
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: season
+
+		annotation SummarizationSetBy = Automatic
+
+	column appearance_date
+		dataType: dateTime
+		formatString: Long Date
+		summarizeBy: none
+		sourceColumn: appearance_date
+
+		variation Variation
+			isDefault
+			relationship: 2eb5a693-7847-4e5a-986a-d96c204b4914
+			defaultHierarchy: LocalDateTable_27442457-9c27-41f0-a2d1-637177c79376.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column hosting
+		dataType: string
+		summarizeBy: none
+		sourceColumn: hosting
+
+		annotation SummarizationSetBy = Automatic
+
+	column opponent_club_id
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: opponent_club_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column opponent_club_name
+		dataType: string
+		summarizeBy: none
+		sourceColumn: opponent_club_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column club_result
+		dataType: string
+		summarizeBy: none
+		sourceColumn: club_result
+
+		annotation SummarizationSetBy = Automatic
+
+	column club_points
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: club_points
+
+		annotation SummarizationSetBy = Automatic
+
+	column minutes_played
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: minutes_played
+
+		annotation SummarizationSetBy = Automatic
+
+	column goals
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: goals
+
+		annotation SummarizationSetBy = Automatic
+
+	column assists
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: assists
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_starter
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		summarizeBy: none
+		sourceColumn: is_starter
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_captain
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		summarizeBy: none
+		sourceColumn: is_captain
+
+		annotation SummarizationSetBy = Automatic
+
+	column rolling_5_appearances
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: rolling_5_appearances
+
+		annotation SummarizationSetBy = Automatic
+
+	column rolling_5_minutes
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: rolling_5_minutes
+
+		annotation SummarizationSetBy = Automatic
+
+	column rolling_5_goals
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: rolling_5_goals
+
+		annotation SummarizationSetBy = Automatic
+
+	column rolling_5_assists
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: rolling_5_assists
+
+		annotation SummarizationSetBy = Automatic
+
+	column rolling_5_yellow_cards
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: rolling_5_yellow_cards
+
+		annotation SummarizationSetBy = Automatic
+
+	column rolling_5_red_cards
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: rolling_5_red_cards
+
+		annotation SummarizationSetBy = Automatic
+
+	column rolling_5_club_points
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: rolling_5_club_points
+
+		annotation SummarizationSetBy = Automatic
+
+	column rolling_5_goals_per_90
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: rolling_5_goals_per_90
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column rolling_5_assists_per_90
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: rolling_5_assists_per_90
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column rolling_5_avg_minutes
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: rolling_5_avg_minutes
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column rolling_5_starts
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: rolling_5_starts
+
+		annotation SummarizationSetBy = Automatic
+
+	column rolling_5_captain_appearances
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: rolling_5_captain_appearances
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fct_player_rolling_form = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database([UseStorageApi=false]),
+				    #"data-analiz-490513" = Source{[Name="data-analiz-490513"]}[Data],
+				    football_mart_Schema = #"data-analiz-490513"{[Name="football_mart",Kind="Schema"]}[Data],
+				    fct_player_rolling_form_Table = football_mart_Schema{[Name="fct_player_rolling_form",Kind="Table"]}[Data]
+				in
+				    fct_player_rolling_form_Table
+

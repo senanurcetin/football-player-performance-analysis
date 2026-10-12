@@ -1,0 +1,25 @@
+[
+  {
+    "name": "NotBlank_ml_player_market_value_f_feature_type",
+    "expression": {
+      "Not": {
+        "Expression": {
+          "IsEmpty": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "ml_player_market_value_feature_importance"
+                  }
+                },
+                "Property": "feature_type"
+              }
+            }
+          }
+        }
+      }
+    },
+    "type": "Advanced",
+    "howCreated": 0
+  }
+]
