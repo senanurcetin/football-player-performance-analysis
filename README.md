@@ -433,3 +433,10 @@ Contributions, issues, and feature requests are welcome. See [CONTRIBUTING.md](C
 ## License
 
 Licensed under the terms in [LICENSE](LICENSE). The source Transfermarkt dataset is subject to its own terms and attribution requirements — see [Kaggle: Football Data from Transfermarkt](https://www.kaggle.com/datasets/davidcariboo/player-scores).
+
+
+## Offline Demonstration (Synthetic Data)
+
+For local visual inspection without a Google BigQuery login, the repository also includes a **separately labeled synthetic sample** at `powerbi/offline-demo/FootballPlayerAnalysis/FootballPlayerAnalysis.pbip` (see `powerbi/offline-demo/README.md`). It preserves the original report structure but uses deterministic illustrative data. **Do not use its numbers, screenshots or machine-learning diagnostics as genuine research results.**
+
+To check source structure offline, run `python scripts/check_powerbi_offline_demo.py`. This is a static inspection; only a Power BI Desktop open, Refresh and page-by-page verification can establish that the demo renders.
