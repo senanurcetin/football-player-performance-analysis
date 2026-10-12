@@ -13,7 +13,7 @@ Inspect:
 - powerbi/workspace/FootballPlayerAnalysis/Model/definition/relationships.tmdl
 - README.md and relevant architecture/model descriptions
 
-Without commands, edits or remote services:
+Do not edit any files, execute commands, or contact remote services. Instead, answer:
 
 1. Specify which PBIR registry and relationship checks are structural, and why they do not prove a successful Power BI Desktop render.
 2. Differentiate modeled real data, synthetic demonstrations, editorial covers and actual screenshots.
