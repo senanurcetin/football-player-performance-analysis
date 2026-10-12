@@ -9,6 +9,8 @@
 
 <h1 align="center">Football Player Performance Analysis</h1>
 
+
+**Reviewer quick brief:** [Project evidence, model baselines and contribution attribution](docs/hiring-summary.md).
 ![Football Player Performance Analysis — editorial illustration](docs/assets/football-analytics-cover.svg)
 
 > Cover illustration for portfolio presentation; not a Power BI screenshot or model output. [View the real report captures](#dashboard-preview) for evidence of the implemented dashboard.
