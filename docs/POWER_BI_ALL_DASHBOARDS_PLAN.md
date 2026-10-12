@@ -39,6 +39,7 @@ All 13 pages receive the registered `NEXUSMidnight-20261012-v2.json` custom repo
 - [x] Add automated whole-report page/theme/tooltip/accessibility regression tests
 - [ ] Verify remaining hardcoded theme overrides across **all** pre-existing visual objects (not automatically overruled by theme)
 - [x] Remove legacy green surface literals from the four identified ML prediction slicer/KPI/chart visuals in both report editions; add a regression test for these objects
+- [x] Replace legacy green/gray hardcoded accents in 16 principal analytics visuals per edition (Player Performance, Transfer & Market Value, Market Value Prediction, ML Model Reliability); preserve their query roles
 - [ ] Run all preflight scripts and Python unit tests on a full working copy
 
 ### Stage A.2 — Single editorial report and repository diet
@@ -46,6 +47,8 @@ All 13 pages receive the registered `NEXUSMidnight-20261012-v2.json` custom repo
 - [x] Give each of the 13 editable PBIR pages its own coordinated NEXUS canvas
 - [x] Introduce different asymmetric chart compositions on Player Segmentation and Club & League pages; preserve original Category/Y query roles
 - [x] Keep Home / Closing dark and maintain demo-versus-production naming distinction
+- [x] Remove decorative emoji page-name prefixes; move ML reliability before Closing in visible storytelling order
+- [x] Give 365-day Transfer Success its own 63/37 and 67/33 data-chart hierarchy
 - [x] Remove the six outdated green Power BI screenshot PNGs, their archive index and the superseded SVG cover
 - [x] Keep production workspace and deterministic offline-demo because they serve different data sources, **not** two exported PowerPoint presentations
 - [x] Add static regression checks for palette, native chart geometry and workspace/demo role parity
