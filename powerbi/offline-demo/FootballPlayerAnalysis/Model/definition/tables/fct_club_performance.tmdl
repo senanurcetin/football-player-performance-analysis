@@ -111,12 +111,12 @@ table fct_club_performance
 				#table(
 				    type table [#"club_id" = Int64.Type, #"club_name" = text, #"domestic_competition_id" = text, #"matches_played" = Int64.Type, #"wins" = Int64.Type, #"draws" = Int64.Type, #"losses" = Int64.Type, #"goals_scored" = Int64.Type, #"goals_conceded" = Int64.Type, #"goal_difference" = Int64.Type, #"win_rate" = number, #"avg_goals_scored" = number, #"avg_goals_conceded" = number],
 				    {
-				        {1, "Demo North FC", "DEMO-COMP-1", 20, 8, 5, 7, 29, 21, 8, "0.40000", "1.45000", "1.05000"},
-				        {2, "Demo Coast United", "DEMO-COMP-2", 22, 9, 5, 8, 33, 24, 9, "0.40909", "1.50000", "1.09091"},
-				        {3, "Demo City FC", "DEMO-COMP-3", 24, 10, 5, 9, 37, 27, 10, "0.41667", "1.54167", "1.12500"},
-				        {4, "Demo Athletic", "DEMO-COMP-4", 26, 11, 5, 10, 41, 30, 11, "0.42308", "1.57692", "1.15385"},
-				        {5, "Demo Rangers", "DEMO-COMP-5", 28, 12, 5, 11, 45, 33, 12, "0.42857", "1.60714", "1.17857"},
-				        {6, "Demo Vale", "DEMO-COMP-6", 30, 13, 5, 12, 49, 36, 13, "0.43333", "1.63333", "1.20000"}
+				        {1, "Demo North FC", "DEMO-COMP-1", 20, 8, 5, 7, 29, 21, 8, 0.40000, 1.45000, 1.05000},
+				        {2, "Demo Coast United", "DEMO-COMP-2", 22, 9, 5, 8, 33, 24, 9, 0.40909, 1.50000, 1.09091},
+				        {3, "Demo City FC", "DEMO-COMP-3", 24, 10, 5, 9, 37, 27, 10, 0.41667, 1.54167, 1.12500},
+				        {4, "Demo Athletic", "DEMO-COMP-4", 26, 11, 5, 10, 41, 30, 11, 0.42308, 1.57692, 1.15385},
+				        {5, "Demo Rangers", "DEMO-COMP-5", 28, 12, 5, 11, 45, 33, 12, 0.42857, 1.60714, 1.17857},
+				        {6, "Demo Vale", "DEMO-COMP-6", 30, 13, 5, 12, 49, 36, 13, 0.43333, 1.63333, 1.20000}
 				    }
 				)
 
