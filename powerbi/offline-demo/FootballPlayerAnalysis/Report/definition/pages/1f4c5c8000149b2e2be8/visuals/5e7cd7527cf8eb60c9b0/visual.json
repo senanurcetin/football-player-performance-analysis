@@ -23,7 +23,7 @@
                     "textStyle": {
                       "fontWeight": "bold",
                       "fontSize": "8pt",
-                      "color": "#ffffff"
+                      "color": "#FFFFFF"
                     }
                   }
                 ]
@@ -49,7 +49,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#2E6B45'"
+                      "Value": "'#296393'"
                     }
                   }
                 }
