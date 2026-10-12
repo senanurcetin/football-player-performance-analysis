@@ -164,13 +164,23 @@ table dim_clubs
 	partition dim_clubs = m
 		mode: import
 		source =
-				let
-				    Source = GoogleBigQuery.Database([UseStorageApi=false]),
-				    #"data-analiz-490513" = Source{[Name="data-analiz-490513"]}[Data],
-				    football_mart_Schema = #"data-analiz-490513"{[Name="football_mart",Kind="Schema"]}[Data],
-				    dim_clubs_Table = football_mart_Schema{[Name="dim_clubs",Kind="Table"]}[Data]
-				in
-				    dim_clubs_Table
+				#table(
+				    type table [#"club_id" = Int64.Type, #"club_code" = text, #"club_name" = text, #"domestic_competition_id" = text, #"total_market_value" = text, #"squad_size" = Int64.Type, #"average_age" = number, #"foreigners_number" = Int64.Type, #"foreigners_percentage" = number, #"national_team_players" = Int64.Type, #"stadium_name" = text, #"stadium_seats" = Int64.Type, #"net_transfer_record" = text, #"coach_name" = text, #"last_season" = Int64.Type, #"club_record_type" = text, #"club_profile_completeness_pct" = number, #"club_name_display" = text, #"has_club_name" = logical, #"has_current_profile" = logical, #"club_profile_completeness_status" = text],
+				    {
+				        {1, "Demo club code", "Demo North FC", "Demo domestic competition id", "Demo total market value", 1, 0.150, 1, 0.150, 1, "Demo stadium name", 1, "Demo net transfer record", "Demo coach name", 2024, "current_profile", 0.200, "Demo North FC", true, true, "high"},
+				        {2, "Demo club code", "Demo Coast United", "Demo domestic competition id", "Demo total market value", 2, 0.340, 2, 0.340, 2, "Demo stadium name", 2, "Demo net transfer record", "Demo coach name", 2024, "current_profile", 0.270, "Demo Coast United", true, true, "medium"},
+				        {3, "Demo club code", "Demo City FC", "Demo domestic competition id", "Demo total market value", 3, 0.530, 3, 0.530, 3, "Demo stadium name", 3, "Demo net transfer record", "Demo coach name", 2024, "current_profile", 0.340, "Demo City FC", true, true, "high"},
+				        {4, "Demo club code", "Demo Athletic", "Demo domestic competition id", "Demo total market value", 4, 0.720, 4, 0.720, 4, "Demo stadium name", 4, "Demo net transfer record", "Demo coach name", 2024, "current_profile", 0.410, "Demo Athletic", true, true, "high"},
+				        {5, "Demo club code", "Demo Rangers", "Demo domestic competition id", "Demo total market value", 5, 0.910, 5, 0.910, 5, "Demo stadium name", 5, "Demo net transfer record", "Demo coach name", 2024, "current_profile", 0.480, "Demo Rangers", true, true, "high"},
+				        {6, "Demo club code", "Demo Vale", "Demo domestic competition id", "Demo total market value", 6, 1.100, 6, 1.100, 6, "Demo stadium name", 6, "Demo net transfer record", "Demo coach name", 2024, "current_profile", 0.550, "Demo Vale", true, true, "medium"},
+				        {1, "Demo club code", "Demo North FC", "Demo domestic competition id", "Demo total market value", 7, 1.290, 7, 1.290, 7, "Demo stadium name", 7, "Demo net transfer record", "Demo coach name", 2024, "current_profile", 0.620, "Demo North FC", true, true, "high"},
+				        {2, "Demo club code", "Demo Coast United", "Demo domestic competition id", "Demo total market value", 8, 1.480, 8, 1.480, 8, "Demo stadium name", 8, "Demo net transfer record", "Demo coach name", 2024, "current_profile", 0.690, "Demo Coast United", true, true, "high"},
+				        {3, "Demo club code", "Demo City FC", "Demo domestic competition id", "Demo total market value", 9, 1.670, 9, 1.670, 9, "Demo stadium name", 9, "Demo net transfer record", "Demo coach name", 2024, "current_profile", 0.760, "Demo City FC", true, true, "high"},
+				        {4, "Demo club code", "Demo Athletic", "Demo domestic competition id", "Demo total market value", 10, 1.860, 10, 1.860, 10, "Demo stadium name", 10, "Demo net transfer record", "Demo coach name", 2024, "current_profile", 0.200, "Demo Athletic", true, true, "medium"},
+				        {5, "Demo club code", "Demo Rangers", "Demo domestic competition id", "Demo total market value", 11, 2.050, 11, 2.050, 11, "Demo stadium name", 11, "Demo net transfer record", "Demo coach name", 2024, "current_profile", 0.270, "Demo Rangers", true, true, "high"},
+				        {6, "Demo club code", "Demo Vale", "Demo domestic competition id", "Demo total market value", 12, 2.240, 12, 2.240, 12, "Demo stadium name", 12, "Demo net transfer record", "Demo coach name", 2024, "current_profile", 0.340, "Demo Vale", true, true, "high"}
+				    }
+				)
 
 	annotation PBI_NavigationStepName = Navigation
 

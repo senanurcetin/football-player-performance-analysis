@@ -75,13 +75,17 @@ table dim_competitions
 	partition dim_competitions = m
 		mode: import
 		source =
-				let
-				    Source = GoogleBigQuery.Database([UseStorageApi=false]),
-				    #"data-analiz-490513" = Source{[Name="data-analiz-490513"]}[Data],
-				    football_mart_Schema = #"data-analiz-490513"{[Name="football_mart",Kind="Schema"]}[Data],
-				    dim_competitions_Table = football_mart_Schema{[Name="dim_competitions",Kind="Table"]}[Data]
-				in
-				    dim_competitions_Table
+				#table(
+				    type table [#"competition_id" = text, #"competition_code" = text, #"competition_name" = text, #"competition_sub_type" = text, #"competition_type" = text, #"country_id" = Int64.Type, #"country_name" = text, #"domestic_league_code" = text, #"confederation" = text, #"total_clubs" = Int64.Type],
+				    {
+				        {"Demo competition id", "Demo competition code", "Demo Premier Division", "Demo competition sub type", "Demo competition type", 1, "England", "Demo domestic league code", "Demo confederation", 1},
+				        {"Demo competition id", "Demo competition code", "Demo National League", "Demo competition sub type", "Demo competition type", 2, "Germany", "Demo domestic league code", "Demo confederation", 2},
+				        {"Demo competition id", "Demo competition code", "Demo Continental Cup", "Demo competition sub type", "Demo competition type", 3, "France", "Demo domestic league code", "Demo confederation", 3},
+				        {"Demo competition id", "Demo competition code", "Demo Premier Division", "Demo competition sub type", "Demo competition type", 4, "Spain", "Demo domestic league code", "Demo confederation", 4},
+				        {"Demo competition id", "Demo competition code", "Demo National League", "Demo competition sub type", "Demo competition type", 5, "England", "Demo domestic league code", "Demo confederation", 5},
+				        {"Demo competition id", "Demo competition code", "Demo Continental Cup", "Demo competition sub type", "Demo competition type", 6, "Germany", "Demo domestic league code", "Demo confederation", 6}
+				    }
+				)
 
 	annotation PBI_NavigationStepName = Navigation
 

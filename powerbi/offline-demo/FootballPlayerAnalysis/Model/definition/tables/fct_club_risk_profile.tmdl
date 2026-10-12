@@ -109,11 +109,32 @@ table fct_club_risk_profile
 	partition fct_club_risk_profile = m
 		mode: import
 		source =
-				let
-				    Source = GoogleBigQuery.Database([UseStorageApi=false]),
-				    #"data-analiz-490513" = Source{[Name="data-analiz-490513"]}[Data],
-				    football_mart_Schema = #"data-analiz-490513"{[Name="football_mart",Kind="Schema"]}[Data],
-				    fct_club_risk_profile_Table = football_mart_Schema{[Name="fct_club_risk_profile",Kind="Table"]}[Data]
-				in
-				    fct_club_risk_profile_Table
-
+				#table(
+				    type table [#"club_id" = Int64.Type, #"club_name" = text, #"total_incoming_transfers" = Int64.Type, #"transfers_with_known_fee" = Int64.Type, #"known_fee_coverage_pct" = number, #"observed_365d_transfers" = Int64.Type, #"outcome_365d_coverage_pct" = number, #"avg_overpay_pct" = number, #"successful_transfers" = Int64.Type, #"unsuccessful_transfers" = Int64.Type, #"transfer_success_rate_pct" = number, #"meets_minimum_sample_size" = logical, #"transfer_risk_category" = text],
+				    {
+				        {1, "Demo North FC", 1, 1, 0.200, 1, 0.200, 0.200, 1, 1, 0.200, true, "Demo transfer risk category"},
+				        {2, "Demo Coast United", 2, 2, 0.270, 2, 0.270, 0.270, 2, 2, 0.270, true, "Demo transfer risk category"},
+				        {3, "Demo City FC", 3, 3, 0.340, 3, 0.340, 0.340, 3, 3, 0.340, true, "Demo transfer risk category"},
+				        {4, "Demo Athletic", 4, 4, 0.410, 4, 0.410, 0.410, 4, 4, 0.410, true, "Demo transfer risk category"},
+				        {5, "Demo Rangers", 5, 5, 0.480, 5, 0.480, 0.480, 5, 5, 0.480, true, "Demo transfer risk category"},
+				        {6, "Demo Vale", 6, 6, 0.550, 6, 0.550, 0.550, 6, 6, 0.550, true, "Demo transfer risk category"},
+				        {1, "Demo North FC", 7, 7, 0.620, 7, 0.620, 0.620, 7, 7, 0.620, true, "Demo transfer risk category"},
+				        {2, "Demo Coast United", 8, 8, 0.690, 8, 0.690, 0.690, 8, 8, 0.690, true, "Demo transfer risk category"},
+				        {3, "Demo City FC", 9, 9, 0.760, 9, 0.760, 0.760, 9, 9, 0.760, true, "Demo transfer risk category"},
+				        {4, "Demo Athletic", 10, 10, 0.200, 10, 0.200, 0.200, 10, 10, 0.200, true, "Demo transfer risk category"},
+				        {5, "Demo Rangers", 11, 11, 0.270, 11, 0.270, 0.270, 11, 11, 0.270, true, "Demo transfer risk category"},
+				        {6, "Demo Vale", 12, 12, 0.340, 12, 0.340, 0.340, 12, 12, 0.340, true, "Demo transfer risk category"},
+				        {1, "Demo North FC", 13, 13, 0.410, 13, 0.410, 0.410, 13, 13, 0.410, true, "Demo transfer risk category"},
+				        {2, "Demo Coast United", 14, 14, 0.480, 14, 0.480, 0.480, 14, 14, 0.480, true, "Demo transfer risk category"},
+				        {3, "Demo City FC", 15, 15, 0.550, 15, 0.550, 0.550, 15, 15, 0.550, true, "Demo transfer risk category"},
+				        {4, "Demo Athletic", 16, 16, 0.620, 16, 0.620, 0.620, 16, 16, 0.620, true, "Demo transfer risk category"},
+				        {5, "Demo Rangers", 17, 17, 0.690, 17, 0.690, 0.690, 17, 17, 0.690, true, "Demo transfer risk category"},
+				        {6, "Demo Vale", 18, 18, 0.760, 18, 0.760, 0.760, 18, 18, 0.760, true, "Demo transfer risk category"},
+				        {1, "Demo North FC", 19, 19, 0.200, 19, 0.200, 0.200, 19, 19, 0.200, true, "Demo transfer risk category"},
+				        {2, "Demo Coast United", 20, 20, 0.270, 20, 0.270, 0.270, 20, 20, 0.270, true, "Demo transfer risk category"},
+				        {3, "Demo City FC", 21, 21, 0.340, 21, 0.340, 0.340, 21, 21, 0.340, true, "Demo transfer risk category"},
+				        {4, "Demo Athletic", 22, 22, 0.410, 22, 0.410, 0.410, 22, 22, 0.410, true, "Demo transfer risk category"},
+				        {5, "Demo Rangers", 23, 23, 0.480, 23, 0.480, 0.480, 23, 23, 0.480, true, "Demo transfer risk category"},
+				        {6, "Demo Vale", 24, 24, 0.550, 24, 0.550, 0.550, 24, 24, 0.550, true, "Demo transfer risk category"}
+				    }
+				)

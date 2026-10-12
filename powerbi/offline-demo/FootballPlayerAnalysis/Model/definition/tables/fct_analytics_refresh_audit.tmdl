@@ -129,11 +129,32 @@ table fct_analytics_refresh_audit
 	partition fct_analytics_refresh_audit = m
 		mode: import
 		source =
-				let
-				    Source = GoogleBigQuery.Database([UseStorageApi=false]),
-				    #"data-analiz-490513" = Source{[Name="data-analiz-490513"]}[Data],
-				    football_mart_Schema = #"data-analiz-490513"{[Name="football_mart",Kind="Schema"]}[Data],
-				    fct_analytics_refresh_audit_Table = football_mart_Schema{[Name="fct_analytics_refresh_audit",Kind="Table"]}[Data]
-				in
-				    fct_analytics_refresh_audit_Table
-
+				#table(
+				    type table [#"audit_key" = text, #"audit_generated_at_utc" = datetime, #"dbt_target_name" = text, #"source_game_rows" = Int64.Type, #"source_appearance_rows" = Int64.Type, #"source_transfer_rows" = Int64.Type, #"source_valuation_rows" = Int64.Type, #"match_rows" = Int64.Type, #"player_match_rows" = Int64.Type, #"historical_transfer_rows" = Int64.Type, #"overall_known_fee_coverage_pct" = number, #"overall_fee_value_comparison_coverage_pct" = number, #"overall_365d_outcome_coverage_pct" = number, #"high_bias_risk_segment_count" = Int64.Type, #"insufficient_sample_cohort_count" = Int64.Type],
+				    {
+				        {"Demo audit key", #datetime(2025, 5, 1, 0, 0, 0), "Demo dbt target name", 1, 10, 1, 3000000, 10, 10, 1, 0.200, 0.200, 0.200, 1, 1},
+				        {"Demo audit key", #datetime(2025, 5, 2, 0, 0, 0), "Demo dbt target name", 2, 11, 2, 4000000, 11, 11, 2, 0.270, 0.270, 0.270, 2, 2},
+				        {"Demo audit key", #datetime(2025, 5, 3, 0, 0, 0), "Demo dbt target name", 3, 12, 3, 5000000, 12, 12, 3, 0.340, 0.340, 0.340, 3, 3},
+				        {"Demo audit key", #datetime(2025, 5, 4, 0, 0, 0), "Demo dbt target name", 4, 13, 4, 6000000, 13, 13, 4, 0.410, 0.410, 0.410, 4, 4},
+				        {"Demo audit key", #datetime(2025, 5, 5, 0, 0, 0), "Demo dbt target name", 5, 14, 5, 7000000, 14, 14, 5, 0.480, 0.480, 0.480, 5, 5},
+				        {"Demo audit key", #datetime(2025, 5, 6, 0, 0, 0), "Demo dbt target name", 6, 15, 6, 8000000, 15, 15, 6, 0.550, 0.550, 0.550, 6, 6},
+				        {"Demo audit key", #datetime(2025, 5, 7, 0, 0, 0), "Demo dbt target name", 7, 16, 7, 9000000, 16, 16, 7, 0.620, 0.620, 0.620, 7, 7},
+				        {"Demo audit key", #datetime(2025, 5, 8, 0, 0, 0), "Demo dbt target name", 8, 17, 8, 10000000, 17, 17, 8, 0.690, 0.690, 0.690, 8, 8},
+				        {"Demo audit key", #datetime(2025, 5, 9, 0, 0, 0), "Demo dbt target name", 9, 18, 9, 11000000, 18, 18, 9, 0.760, 0.760, 0.760, 9, 9},
+				        {"Demo audit key", #datetime(2025, 5, 10, 0, 0, 0), "Demo dbt target name", 10, 19, 10, 12000000, 19, 19, 10, 0.200, 0.200, 0.200, 10, 10},
+				        {"Demo audit key", #datetime(2025, 5, 11, 0, 0, 0), "Demo dbt target name", 11, 20, 11, 13000000, 20, 20, 11, 0.270, 0.270, 0.270, 11, 11},
+				        {"Demo audit key", #datetime(2025, 5, 12, 0, 0, 0), "Demo dbt target name", 12, 21, 12, 14000000, 21, 21, 12, 0.340, 0.340, 0.340, 12, 12},
+				        {"Demo audit key", #datetime(2025, 5, 13, 0, 0, 0), "Demo dbt target name", 13, 22, 13, 3000000, 22, 22, 13, 0.410, 0.410, 0.410, 13, 13},
+				        {"Demo audit key", #datetime(2025, 5, 14, 0, 0, 0), "Demo dbt target name", 14, 23, 14, 4000000, 23, 23, 14, 0.480, 0.480, 0.480, 14, 14},
+				        {"Demo audit key", #datetime(2025, 5, 15, 0, 0, 0), "Demo dbt target name", 15, 24, 15, 5000000, 24, 24, 15, 0.550, 0.550, 0.550, 15, 15},
+				        {"Demo audit key", #datetime(2025, 5, 16, 0, 0, 0), "Demo dbt target name", 16, 25, 16, 6000000, 25, 25, 16, 0.620, 0.620, 0.620, 16, 16},
+				        {"Demo audit key", #datetime(2025, 5, 17, 0, 0, 0), "Demo dbt target name", 17, 26, 17, 7000000, 26, 26, 17, 0.690, 0.690, 0.690, 17, 17},
+				        {"Demo audit key", #datetime(2025, 5, 18, 0, 0, 0), "Demo dbt target name", 18, 27, 18, 8000000, 27, 27, 18, 0.760, 0.760, 0.760, 18, 18},
+				        {"Demo audit key", #datetime(2025, 5, 19, 0, 0, 0), "Demo dbt target name", 19, 28, 19, 9000000, 28, 28, 19, 0.200, 0.200, 0.200, 19, 19},
+				        {"Demo audit key", #datetime(2025, 5, 20, 0, 0, 0), "Demo dbt target name", 20, 29, 20, 10000000, 29, 29, 20, 0.270, 0.270, 0.270, 20, 20},
+				        {"Demo audit key", #datetime(2025, 5, 21, 0, 0, 0), "Demo dbt target name", 21, 10, 21, 11000000, 10, 10, 21, 0.340, 0.340, 0.340, 21, 21},
+				        {"Demo audit key", #datetime(2025, 5, 22, 0, 0, 0), "Demo dbt target name", 22, 11, 22, 12000000, 11, 11, 22, 0.410, 0.410, 0.410, 22, 22},
+				        {"Demo audit key", #datetime(2025, 5, 23, 0, 0, 0), "Demo dbt target name", 23, 12, 23, 13000000, 12, 12, 23, 0.480, 0.480, 0.480, 23, 23},
+				        {"Demo audit key", #datetime(2025, 5, 24, 0, 0, 0), "Demo dbt target name", 24, 13, 24, 14000000, 13, 13, 24, 0.550, 0.550, 0.550, 24, 24}
+				    }
+				)

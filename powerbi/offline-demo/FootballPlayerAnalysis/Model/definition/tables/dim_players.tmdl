@@ -167,13 +167,35 @@ table dim_players
 	partition dim_players = m
 		mode: import
 		source =
-				let
-				    Source = GoogleBigQuery.Database([UseStorageApi=false]),
-				    #"data-analiz-490513" = Source{[Name="data-analiz-490513"]}[Data],
-				    football_mart_Schema = #"data-analiz-490513"{[Name="football_mart",Kind="Schema"]}[Data],
-				    dim_players_Table = football_mart_Schema{[Name="dim_players",Kind="Table"]}[Data]
-				in
-				    dim_players_Table
+				#table(
+				    type table [#"player_id" = Int64.Type, #"player_name" = text, #"position" = text, #"sub_position" = text, #"birth_date" = datetime, #"country_of_birth" = text, #"country_of_citizenship" = text, #"height_in_cm" = Int64.Type, #"preferred_foot" = text, #"agent_name" = text, #"current_club_id" = Int64.Type, #"current_club_name" = text, #"last_season" = Int64.Type, #"player_record_type" = text, #"player_profile_completeness_pct" = number, #"player_name_display" = text, #"position_display" = text, #"current_club_name_display" = text, #"has_current_profile" = logical, #"player_profile_completeness_status" = text],
+				    {
+				        {1, "Demo Player 01", "Attack", "Centre-Forward", #datetime(1990, 1, 1, 0, 0, 0), "England", "England", 1, "Right", "Demo Agent 1", 1, "Demo North FC", 2024, "current_profile", 0.200, "Demo Player 01", "Attack", "Demo North FC", true, "high"},
+				        {2, "Demo Player 02", "Defender", "Centre-Back", #datetime(1991, 2, 2, 0, 0, 0), "Germany", "Germany", 2, "Left", "Demo Agent 2", 2, "Demo Coast United", 2024, "current_profile", 0.270, "Demo Player 02", "Defender", "Demo Coast United", true, "medium"},
+				        {3, "Demo Player 03", "Midfield", "Central Midfield", #datetime(1992, 3, 3, 0, 0, 0), "France", "France", 3, "Right", "Demo Agent 3", 3, "Demo City FC", 2024, "current_profile", 0.340, "Demo Player 03", "Midfield", "Demo City FC", true, "high"},
+				        {4, "Demo Player 04", "Goalkeeper", "Goalkeeper", #datetime(1993, 4, 4, 0, 0, 0), "Spain", "Spain", 4, "Left", "Demo Agent 4", 4, "Demo Athletic", 2024, "current_profile", 0.410, "Demo Player 04", "Goalkeeper", "Demo Athletic", true, "high"},
+				        {5, "Demo Player 05", "Attack", "Centre-Forward", #datetime(1994, 5, 5, 0, 0, 0), "England", "England", 5, "Right", "Demo Agent 5", 5, "Demo Rangers", 2024, "current_profile", 0.480, "Demo Player 05", "Attack", "Demo Rangers", true, "high"},
+				        {6, "Demo Player 06", "Defender", "Centre-Back", #datetime(1995, 6, 6, 0, 0, 0), "Germany", "Germany", 6, "Left", "Demo Agent 1", 6, "Demo Vale", 2024, "current_profile", 0.550, "Demo Player 06", "Defender", "Demo Vale", true, "medium"},
+				        {7, "Demo Player 07", "Midfield", "Central Midfield", #datetime(1996, 7, 7, 0, 0, 0), "France", "France", 7, "Right", "Demo Agent 2", 1, "Demo North FC", 2024, "current_profile", 0.620, "Demo Player 07", "Midfield", "Demo North FC", true, "high"},
+				        {8, "Demo Player 08", "Goalkeeper", "Goalkeeper", #datetime(1997, 8, 8, 0, 0, 0), "Spain", "Spain", 8, "Left", "Demo Agent 3", 2, "Demo Coast United", 2024, "current_profile", 0.690, "Demo Player 08", "Goalkeeper", "Demo Coast United", true, "high"},
+				        {9, "Demo Player 09", "Attack", "Centre-Forward", #datetime(1998, 9, 9, 0, 0, 0), "England", "England", 9, "Right", "Demo Agent 4", 3, "Demo City FC", 2024, "current_profile", 0.760, "Demo Player 09", "Attack", "Demo City FC", true, "high"},
+				        {10, "Demo Player 10", "Defender", "Centre-Back", #datetime(1999, 10, 10, 0, 0, 0), "Germany", "Germany", 10, "Left", "Demo Agent 5", 4, "Demo Athletic", 2024, "current_profile", 0.200, "Demo Player 10", "Defender", "Demo Athletic", true, "medium"},
+				        {11, "Demo Player 11", "Midfield", "Central Midfield", #datetime(2000, 11, 11, 0, 0, 0), "France", "France", 11, "Right", "Demo Agent 1", 5, "Demo Rangers", 2024, "current_profile", 0.270, "Demo Player 11", "Midfield", "Demo Rangers", true, "high"},
+				        {12, "Demo Player 12", "Goalkeeper", "Goalkeeper", #datetime(2001, 12, 12, 0, 0, 0), "Spain", "Spain", 12, "Left", "Demo Agent 2", 6, "Demo Vale", 2024, "current_profile", 0.340, "Demo Player 12", "Goalkeeper", "Demo Vale", true, "high"},
+				        {13, "Demo Player 13", "Attack", "Centre-Forward", #datetime(2002, 1, 13, 0, 0, 0), "England", "England", 13, "Right", "Demo Agent 3", 1, "Demo North FC", 2024, "current_profile", 0.410, "Demo Player 13", "Attack", "Demo North FC", true, "high"},
+				        {14, "Demo Player 14", "Defender", "Centre-Back", #datetime(2003, 2, 14, 0, 0, 0), "Germany", "Germany", 14, "Left", "Demo Agent 4", 2, "Demo Coast United", 2024, "current_profile", 0.480, "Demo Player 14", "Defender", "Demo Coast United", true, "medium"},
+				        {15, "Demo Player 15", "Midfield", "Central Midfield", #datetime(2004, 3, 15, 0, 0, 0), "France", "France", 15, "Right", "Demo Agent 5", 3, "Demo City FC", 2024, "current_profile", 0.550, "Demo Player 15", "Midfield", "Demo City FC", true, "high"},
+				        {16, "Demo Player 16", "Goalkeeper", "Goalkeeper", #datetime(1990, 4, 16, 0, 0, 0), "Spain", "Spain", 16, "Left", "Demo Agent 1", 4, "Demo Athletic", 2024, "current_profile", 0.620, "Demo Player 16", "Goalkeeper", "Demo Athletic", true, "high"},
+				        {17, "Demo Player 17", "Attack", "Centre-Forward", #datetime(1991, 5, 17, 0, 0, 0), "England", "England", 17, "Right", "Demo Agent 2", 5, "Demo Rangers", 2024, "current_profile", 0.690, "Demo Player 17", "Attack", "Demo Rangers", true, "high"},
+				        {18, "Demo Player 18", "Defender", "Centre-Back", #datetime(1992, 6, 18, 0, 0, 0), "Germany", "Germany", 18, "Left", "Demo Agent 3", 6, "Demo Vale", 2024, "current_profile", 0.760, "Demo Player 18", "Defender", "Demo Vale", true, "medium"},
+				        {19, "Demo Player 19", "Midfield", "Central Midfield", #datetime(1993, 7, 19, 0, 0, 0), "France", "France", 19, "Right", "Demo Agent 4", 1, "Demo North FC", 2024, "current_profile", 0.200, "Demo Player 19", "Midfield", "Demo North FC", true, "high"},
+				        {20, "Demo Player 20", "Goalkeeper", "Goalkeeper", #datetime(1994, 8, 20, 0, 0, 0), "Spain", "Spain", 20, "Left", "Demo Agent 5", 2, "Demo Coast United", 2024, "current_profile", 0.270, "Demo Player 20", "Goalkeeper", "Demo Coast United", true, "high"},
+				        {21, "Demo Player 21", "Attack", "Centre-Forward", #datetime(1995, 9, 21, 0, 0, 0), "England", "England", 21, "Right", "Demo Agent 1", 3, "Demo City FC", 2024, "current_profile", 0.340, "Demo Player 21", "Attack", "Demo City FC", true, "high"},
+				        {22, "Demo Player 22", "Defender", "Centre-Back", #datetime(1996, 10, 22, 0, 0, 0), "Germany", "Germany", 22, "Left", "Demo Agent 2", 4, "Demo Athletic", 2024, "current_profile", 0.410, "Demo Player 22", "Defender", "Demo Athletic", true, "medium"},
+				        {23, "Demo Player 23", "Midfield", "Central Midfield", #datetime(1997, 11, 23, 0, 0, 0), "France", "France", 23, "Right", "Demo Agent 3", 5, "Demo Rangers", 2024, "current_profile", 0.480, "Demo Player 23", "Midfield", "Demo Rangers", true, "high"},
+				        {24, "Demo Player 24", "Goalkeeper", "Goalkeeper", #datetime(1998, 12, 24, 0, 0, 0), "Spain", "Spain", 24, "Left", "Demo Agent 4", 6, "Demo Vale", 2024, "current_profile", 0.550, "Demo Player 24", "Goalkeeper", "Demo Vale", true, "high"}
+				    }
+				)
 
 	annotation PBI_NavigationStepName = Navigation
 

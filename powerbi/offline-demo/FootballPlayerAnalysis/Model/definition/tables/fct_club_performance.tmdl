@@ -108,13 +108,35 @@ table fct_club_performance
 	partition fct_club_performance = m
 		mode: import
 		source =
-				let
-				    Source = GoogleBigQuery.Database([UseStorageApi=false]),
-				    #"data-analiz-490513" = Source{[Name="data-analiz-490513"]}[Data],
-				    football_mart_Schema = #"data-analiz-490513"{[Name="football_mart",Kind="Schema"]}[Data],
-				    fct_club_performance_Table = football_mart_Schema{[Name="fct_club_performance",Kind="Table"]}[Data]
-				in
-				    fct_club_performance_Table
+				#table(
+				    type table [#"club_id" = Int64.Type, #"club_name" = text, #"domestic_competition_id" = text, #"matches_played" = Int64.Type, #"wins" = Int64.Type, #"draws" = Int64.Type, #"losses" = Int64.Type, #"goals_scored" = Int64.Type, #"goals_conceded" = Int64.Type, #"goal_difference" = Int64.Type, #"win_rate" = number, #"avg_goals_scored" = number, #"avg_goals_conceded" = number],
+				    {
+				        {1, "Demo North FC", "Demo domestic competition id", 10, 1, 1, 1, 2, 2, 2, 0.200, 0.200, 0.150},
+				        {2, "Demo Coast United", "Demo domestic competition id", 11, 2, 2, 2, 3, 3, 3, 0.270, 0.270, 0.340},
+				        {3, "Demo City FC", "Demo domestic competition id", 12, 3, 3, 3, 4, 4, 4, 0.340, 0.340, 0.530},
+				        {4, "Demo Athletic", "Demo domestic competition id", 13, 4, 4, 4, 5, 5, 5, 0.410, 0.410, 0.720},
+				        {5, "Demo Rangers", "Demo domestic competition id", 14, 5, 5, 5, 6, 6, 6, 0.480, 0.480, 0.910},
+				        {6, "Demo Vale", "Demo domestic competition id", 15, 6, 6, 6, 7, 7, 7, 0.550, 0.550, 1.100},
+				        {1, "Demo North FC", "Demo domestic competition id", 16, 7, 7, 7, 8, 8, 8, 0.620, 0.620, 1.290},
+				        {2, "Demo Coast United", "Demo domestic competition id", 17, 8, 8, 8, 9, 9, 9, 0.690, 0.690, 1.480},
+				        {3, "Demo City FC", "Demo domestic competition id", 18, 9, 9, 9, 10, 10, 10, 0.760, 0.760, 1.670},
+				        {4, "Demo Athletic", "Demo domestic competition id", 19, 10, 10, 10, 11, 11, 11, 0.200, 0.200, 1.860},
+				        {5, "Demo Rangers", "Demo domestic competition id", 20, 11, 11, 11, 12, 12, 12, 0.270, 0.270, 2.050},
+				        {6, "Demo Vale", "Demo domestic competition id", 21, 12, 12, 12, 13, 13, 13, 0.340, 0.340, 2.240},
+				        {1, "Demo North FC", "Demo domestic competition id", 22, 13, 13, 13, 14, 14, 14, 0.410, 0.410, 2.430},
+				        {2, "Demo Coast United", "Demo domestic competition id", 23, 14, 14, 14, 15, 15, 15, 0.480, 0.480, 0.150},
+				        {3, "Demo City FC", "Demo domestic competition id", 24, 15, 15, 15, 16, 16, 16, 0.550, 0.550, 0.340},
+				        {4, "Demo Athletic", "Demo domestic competition id", 25, 16, 16, 16, 17, 17, 17, 0.620, 0.620, 0.530},
+				        {5, "Demo Rangers", "Demo domestic competition id", 26, 17, 17, 17, 18, 18, 18, 0.690, 0.690, 0.720},
+				        {6, "Demo Vale", "Demo domestic competition id", 27, 18, 18, 18, 19, 19, 19, 0.760, 0.760, 0.910},
+				        {1, "Demo North FC", "Demo domestic competition id", 28, 19, 19, 19, 2, 2, 2, 0.200, 0.200, 1.100},
+				        {2, "Demo Coast United", "Demo domestic competition id", 29, 20, 20, 20, 3, 3, 3, 0.270, 0.270, 1.290},
+				        {3, "Demo City FC", "Demo domestic competition id", 10, 21, 21, 21, 4, 4, 4, 0.340, 0.340, 1.480},
+				        {4, "Demo Athletic", "Demo domestic competition id", 11, 22, 22, 22, 5, 5, 5, 0.410, 0.410, 1.670},
+				        {5, "Demo Rangers", "Demo domestic competition id", 12, 23, 23, 23, 6, 6, 6, 0.480, 0.480, 1.860},
+				        {6, "Demo Vale", "Demo domestic competition id", 13, 24, 24, 24, 7, 7, 7, 0.550, 0.550, 2.050}
+				    }
+				)
 
 	annotation PBI_NavigationStepName = Navigation
 
