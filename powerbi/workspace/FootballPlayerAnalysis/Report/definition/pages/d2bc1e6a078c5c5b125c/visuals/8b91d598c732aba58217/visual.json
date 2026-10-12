@@ -323,6 +323,24 @@
                   "Value": "true"
                 }
               }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#476A7A'"
+                    }
+                  }
+                }
+              }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
             }
           }
         }
@@ -334,6 +352,37 @@
               "expr": {
                 "Literal": {
                   "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#F7FBFC'"
+                    }
+                  }
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
                 }
               }
             }
@@ -449,70 +498,6 @@
               }
             }
           ]
-        }
-      }
-    ]
-  },
-  "visualContainerObjects": {
-    "background": [
-      {
-        "properties": {
-          "show": {
-            "expr": {
-              "Literal": {
-                "Value": "true"
-              }
-            }
-          },
-          "color": {
-            "solid": {
-              "color": {
-                "expr": {
-                  "Literal": {
-                    "Value": "'#F7FBFC'"
-                  }
-                }
-              }
-            }
-          },
-          "transparency": {
-            "expr": {
-              "Literal": {
-                "Value": "0D"
-              }
-            }
-          }
-        }
-      }
-    ],
-    "border": [
-      {
-        "properties": {
-          "show": {
-            "expr": {
-              "Literal": {
-                "Value": "true"
-              }
-            }
-          },
-          "color": {
-            "solid": {
-              "color": {
-                "expr": {
-                  "Literal": {
-                    "Value": "'#476A7A'"
-                  }
-                }
-              }
-            }
-          },
-          "radius": {
-            "expr": {
-              "Literal": {
-                "Value": "12D"
-              }
-            }
-          }
         }
       }
     ]

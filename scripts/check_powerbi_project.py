@@ -80,7 +80,13 @@ def check_project():
 
     for path in DEFINITION.rglob("*.json"):
         if path not in {DEFINITION / "report.json", DEFINITION / "pages" / "pages.json"}:
-            load_json(path)
+            definition = load_json(path)
+            if path.name == "visual.json" and isinstance(definition, dict):
+                if "visualContainerObjects" in definition:
+                    errors.append(
+                        f"Invalid root-level visualContainerObjects in {path.relative_to(ROOT)}: "
+                        "must be nested under visual"
+                    )
 
     return errors
 
