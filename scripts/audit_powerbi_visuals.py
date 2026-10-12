@@ -83,6 +83,13 @@ def audit(root: Path, mode: str):
                 charts += 1
                 if not state:
                     errors.append(f"{vp}: data visual has no queryState")
+            # CountNonNull on a rate/value is usually an invalid Power BI summary.
+            for role, definition in state.items():
+                for projection in definition.get("projections", []):
+                    fn = projection.get("field", {}).get("Aggregation", {}).get("Function")
+                    label = (projection.get("displayName") or projection.get("nativeQueryRef") or "").lower()
+                    if fn == 4 and any(x in label for x in ("per 90", "value (€)", "market value")):
+                        errors.append(f"{vp}: {role} counts non-null rows but displays metric {label}")
             for entity, prop in set(references(state)):
                 if entity not in tables:
                     errors.append(f"{vp}: unknown model table {entity}")
