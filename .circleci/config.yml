@@ -93,6 +93,36 @@ jobs:
           name: Validate offline relationship keys and model fixture values
           command: python scripts/probe_powerbi_fixtures.py relationships
 
+  fixture-joins-probe:
+    docker:
+      - image: cimg/python:3.11
+    resource_class: small
+    steps:
+      - checkout
+      - run:
+          name: Check joins in synthetic Power BI fixture
+          command: python scripts/probe_powerbi_fixtures.py joins
+
+  fixture-keys-probe:
+    docker:
+      - image: cimg/python:3.11
+    resource_class: small
+    steps:
+      - checkout
+      - run:
+          name: Check keys in synthetic Power BI fixture
+          command: python scripts/probe_powerbi_fixtures.py keys
+
+  fixture-rates-probe:
+    docker:
+      - image: cimg/python:3.11
+    resource_class: small
+    steps:
+      - checkout
+      - run:
+          name: Check rates in synthetic Power BI fixture
+          command: python scripts/probe_powerbi_fixtures.py rates
+
 workflows:
   verify-offline-source:
     jobs:
@@ -102,3 +132,6 @@ workflows:
       - pbir-demo-probe
       - transfer-fixture-probe
       - relationship-fixture-probe
+      - fixture-joins-probe
+      - fixture-keys-probe
+      - fixture-rates-probe
