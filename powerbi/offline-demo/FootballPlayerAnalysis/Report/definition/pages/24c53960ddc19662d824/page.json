@@ -1,7 +1,7 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
   "name": "24c53960ddc19662d824",
-  "displayName": "👥 Player Segmentation",
+  "displayName": "[DEMO] 👥 Player Segmentation",
   "displayOption": "FitToPage",
   "height": 720,
   "width": 1280,
