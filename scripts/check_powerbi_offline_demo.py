@@ -259,12 +259,27 @@ def check_demo_relationships(demo_tables):
               f"Club {row['club_id']} results do not sum to matches")
         check(row["goals_scored"] - row["goals_conceded"] == row["goal_difference"],
               f"Club {row['club_id']} goal difference mismatch")
+        games = row.get("matches_played")
+        for column, numerator in (
+            ("win_rate", row["wins"]),
+            ("avg_goals_scored", row["goals_scored"]),
+            ("avg_goals_conceded", row["goals_conceded"]),
+        ):
+            value = row.get(column)
+            if not isinstance(value, (int, float)) or not isinstance(games, (int, float)) or games <= 0:
+                errors.append(f"Club {row['club_id']} invalid numeric {column}")
+            else:
+                check(abs(value - numerator / games) < 0.00002,
+                      f"Club {row['club_id']} {column} arithmetic mismatch")
 
     for row in fixtures.get("fct_competition_performance", []):
         if row.get("matches_played"):
-            check(abs(row["avg_goals_per_match"] -
-                      row["total_goals"] / row["matches_played"]) < 0.00002,
-                  f"Competition {row['competition_id']} goal average mismatch")
+            average = row.get("avg_goals_per_match")
+            if not isinstance(average, (int, float)):
+                errors.append(f"Competition {row['competition_id']} goal average must be numeric")
+            else:
+                check(abs(average - row["total_goals"] / row["matches_played"]) < 0.00002,
+                      f"Competition {row['competition_id']} goal average mismatch")
 
     check_365_day_transfer_contract(fixtures)
 

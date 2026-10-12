@@ -25,6 +25,11 @@ jobs:
             python -m unittest discover -s tests -p 'test_powerbi_audit.py' -v
             python -m unittest discover -s tests -p 'test_powerbi_chart_design.py' -v
             python scripts/audit_powerbi_visuals.py --mode both
+      - run:
+          name: Verify production PBIR and deterministic offline Power BI fixtures
+          command: |
+            python scripts/check_powerbi_project.py
+            python scripts/check_powerbi_offline_demo.py
 
   ml-contract-smoke:
     docker:
@@ -48,8 +53,85 @@ jobs:
           command: python scripts/check_ml_pipeline.py
           no_output_timeout: 20m
 
+  pbir-project-probe:
+    docker:
+      - image: cimg/python:3.11
+    resource_class: small
+    steps:
+      - checkout
+      - run:
+          name: Verify editable production PBIR project only
+          command: python scripts/check_powerbi_project.py
+
+  pbir-demo-probe:
+    docker:
+      - image: cimg/python:3.11
+    resource_class: small
+    steps:
+      - checkout
+      - run:
+          name: Verify synthetic offline PBIR fixtures only
+          command: python scripts/check_powerbi_offline_demo.py
+
+  transfer-fixture-probe:
+    docker:
+      - image: cimg/python:3.11
+    resource_class: small
+    steps:
+      - checkout
+      - run:
+          name: Validate deterministic 365-day transfer arithmetic in isolation
+          command: python scripts/probe_powerbi_fixtures.py transfer
+
+  relationship-fixture-probe:
+    docker:
+      - image: cimg/python:3.11
+    resource_class: small
+    steps:
+      - checkout
+      - run:
+          name: Validate offline relationship keys and model fixture values
+          command: python scripts/probe_powerbi_fixtures.py relationships
+
+  fixture-joins-probe:
+    docker:
+      - image: cimg/python:3.11
+    resource_class: small
+    steps:
+      - checkout
+      - run:
+          name: Check joins in synthetic Power BI fixture
+          command: python scripts/probe_powerbi_fixtures.py joins
+
+  fixture-keys-probe:
+    docker:
+      - image: cimg/python:3.11
+    resource_class: small
+    steps:
+      - checkout
+      - run:
+          name: Check keys in synthetic Power BI fixture
+          command: python scripts/probe_powerbi_fixtures.py keys
+
+  fixture-rates-probe:
+    docker:
+      - image: cimg/python:3.11
+    resource_class: small
+    steps:
+      - checkout
+      - run:
+          name: Check rates in synthetic Power BI fixture
+          command: python scripts/probe_powerbi_fixtures.py rates
+
 workflows:
   verify-offline-source:
     jobs:
       - dbt-source-preflight
       - ml-contract-smoke
+      - pbir-project-probe
+      - pbir-demo-probe
+      - transfer-fixture-probe
+      - relationship-fixture-probe
+      - fixture-joins-probe
+      - fixture-keys-probe
+      - fixture-rates-probe
