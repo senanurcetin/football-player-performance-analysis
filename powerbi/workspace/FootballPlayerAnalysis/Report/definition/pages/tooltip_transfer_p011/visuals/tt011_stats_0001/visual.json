@@ -229,6 +229,19 @@
             }
           }
         }
+      ],
+      "general": [
+        {
+          "properties": {
+            "altText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Summarizes transfer fee, fee premium percentage, transfer count and high-premium transfers for the current context.'"
+                }
+              }
+            }
+          }
+        }
       ]
     }
   }
