@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+<title id="title">Football Player Performance Analysis — portfolio illustration</title>
+<desc id="desc">Designed editorial cover with football pitch geometry. An illustration, not a screenshot of the Power BI report or a model result.</desc>
+<defs><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#081323"/><stop offset="1" stop-color="#163347"/></linearGradient><linearGradient id="glow" x2="0.7" y2="1"><stop stop-color="#92F0CC" stop-opacity=".18"/><stop offset="1" stop-color="#92F0CC" stop-opacity="0"/></linearGradient><pattern id="dots" width="28" height="28" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="#A7CDDA" opacity=".14"/></pattern></defs>
+<rect width="1200" height="630" fill="url(#bg)"/><rect width="1200" height="630" fill="url(#dots)"/><circle cx="1050" cy="116" r="360" fill="url(#glow)"/>
+<rect x="64" y="58" width="228" height="31" rx="15" fill="#193D48" stroke="#426E72"/><text x="178" y="79" text-anchor="middle" font-size="13" font-family="Arial,sans-serif" font-weight="700" letter-spacing="2" fill="#9DEBD4">FOOTBALL INTELLIGENCE</text>
+<text x="64" y="181" font-size="61" font-family="Arial,sans-serif" font-weight="700" fill="#F5FAFC">Player Performance</text>
+<text x="64" y="252" font-size="61" font-family="Arial,sans-serif" font-weight="700" fill="#B2F0D7">Analytics</text>
+<rect x="64" y="283" width="94" height="4" rx="2" fill="#91EEC6"/>
+<text x="64" y="331" font-size="22" font-family="Arial,sans-serif" fill="#C6D7DD">From player-level metrics to interpretable</text>
+<text x="64" y="362" font-size="22" font-family="Arial,sans-serif" fill="#C6D7DD">market-value and transfer analysis.</text>
+<g font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#DBEDF1">
+<rect x="64" y="423" width="151" height="46" rx="12" fill="#183B4A" stroke="#385B66"/><text x="139" y="452" text-anchor="middle">POWER BI</text>
+<rect x="228" y="423" width="151" height="46" rx="12" fill="#183B4A" stroke="#385B66"/><text x="304" y="452" text-anchor="middle">BIGQUERY</text>
+<rect x="391" y="423" width="119" height="46" rx="12" fill="#183B4A" stroke="#385B66"/><text x="451" y="452" text-anchor="middle">dbt + ML</text></g>
+<text x="64" y="554" font-size="14" font-family="Arial,sans-serif" letter-spacing="1.6" fill="#99B6C1">CASE STUDY  /  ANALYTICS ENGINEERING + MACHINE LEARNING</text>
+<g transform="translate(783 71)">
+<rect width="349" height="482" rx="22" fill="#0C2732" stroke="#4D8B80" stroke-width="2"/>
+<rect x="28" y="25" width="293" height="430" rx="3" fill="none" stroke="#B9EBDD" opacity=".6" stroke-width="2"/>
+<path d="M28 240H321 M28 120H100V360H28 M321 120H249V360H321" fill="none" stroke="#B9EBDD" opacity=".55" stroke-width="2"/>
+<circle cx="174.5" cy="240" r="65" fill="none" stroke="#B9EBDD" opacity=".65" stroke-width="2"/><circle cx="174.5" cy="240" r="4" fill="#B9EBDD"/>
+<path d="M28 162H95V318H28 M321 162H254V318H321" fill="none" stroke="#B9EBDD" opacity=".45" stroke-width="1.5"/>
+<path d="M104 364C119 303 139 292 174 255S228 192 253 122" fill="none" stroke="#96E9C8" stroke-width="4" stroke-dasharray="10 9" stroke-linecap="round"/>
+<g fill="#C7F67F" stroke="#163C3B" stroke-width="5"><circle cx="104" cy="364" r="11"/><circle cx="174" cy="255" r="11"/><circle cx="253" cy="122" r="11"/></g>
+<g fill="#E7F9F6" opacity=".9"><circle cx="123" cy="192" r="7"/><circle cx="218" cy="322" r="7"/><circle cx="88" cy="105" r="7"/><circle cx="278" cy="402" r="7"/></g>
+<rect x="58" y="415" width="231" height="30" rx="9" fill="#153D48"/><text x="174" y="435" fill="#B2E8D9" text-anchor="middle" font-size="12" font-family="Arial,sans-serif" letter-spacing="1.4">TACTICAL DATA · CONCEPT ART</text>
+</g>
+</svg>
