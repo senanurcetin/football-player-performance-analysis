@@ -3,10 +3,10 @@
   "name": "be100000000000000001",
   "position": {
     "x": 70,
-    "y": 60,
+    "y": 56,
     "z": 60000,
-    "height": 40,
-    "width": 1160,
+    "height": 43,
+    "width": 1150,
     "tabOrder": 60000
   },
   "visual": {
@@ -19,11 +19,11 @@
               {
                 "textRuns": [
                   {
-                    "value": "NEXUS   /   SPORTS ANALYTICS",
+                    "value": "NEXUS  /  FOOTBALL INTELLIGENCE",
                     "textStyle": {
                       "fontWeight": "bold",
                       "fontSize": "15pt",
-                      "color": "#69AEFF",
+                      "color": "#8F9BFF",
                       "fontFamily": "Segoe UI"
                     }
                   }
