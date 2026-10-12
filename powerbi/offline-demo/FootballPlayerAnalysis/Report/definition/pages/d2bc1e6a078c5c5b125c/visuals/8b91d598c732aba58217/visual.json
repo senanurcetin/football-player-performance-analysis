@@ -151,12 +151,12 @@
                       "Property": "goals_per_90"
                     }
                   },
-                  "Function": 4
+                  "Function": 1
                 }
               },
-              "queryRef": "Max(fct_player_performance.goals_per_90)",
-              "nativeQueryRef": "Goals per 90",
-              "displayName": "Goals per 90"
+              "queryRef": "Average(fct_player_performance.goals_per_90)",
+              "nativeQueryRef": "Average Goals per 90",
+              "displayName": "Average Goals per 90"
             }
           ]
         }
@@ -329,7 +329,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#476A7A'"
+                      "Value": "'#496B98'"
                     }
                   }
                 }
@@ -456,7 +456,7 @@
                                 "Property": "goals_per_90"
                               }
                             },
-                            "Function": 4
+                            "Function": 1
                           }
                         }
                       }

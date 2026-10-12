@@ -48,12 +48,12 @@
                       "Property": "goals_per_90"
                     }
                   },
-                  "Function": 4
+                  "Function": 1
                 }
               },
-              "queryRef": "CountNonNull(fct_player_performance.goals_per_90)",
-              "nativeQueryRef": "Goals Per 90",
-              "displayName": "Goals Per 90"
+              "queryRef": "Average(fct_player_performance.goals_per_90)",
+              "nativeQueryRef": "Avg Goals per 90",
+              "displayName": "Avg Goals per 90"
             },
             {
               "field": {
@@ -68,12 +68,12 @@
                       "Property": "assists_per_90"
                     }
                   },
-                  "Function": 4
+                  "Function": 1
                 }
               },
-              "queryRef": "CountNonNull(fct_player_performance.assists_per_90)",
-              "nativeQueryRef": "Assists Per 90",
-              "displayName": "Assists Per 90"
+              "queryRef": "Average(fct_player_performance.assists_per_90)",
+              "nativeQueryRef": "Avg Assists per 90",
+              "displayName": "Avg Assists per 90"
             },
             {
               "field": {
@@ -102,12 +102,12 @@
                       "Property": "market_value_in_eur"
                     }
                   },
-                  "Function": 4
+                  "Function": 0
                 }
               },
               "queryRef": "Sum(fct_player_performance.market_value_in_eur)",
-              "nativeQueryRef": "Value (€)",
-              "displayName": "Value (€)"
+              "nativeQueryRef": "Market Value (€)",
+              "displayName": "Market Value (€)"
             }
           ]
         }
@@ -291,7 +291,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#476A7A'"
+                      "Value": "'#496B98'"
                     }
                   }
                 }
