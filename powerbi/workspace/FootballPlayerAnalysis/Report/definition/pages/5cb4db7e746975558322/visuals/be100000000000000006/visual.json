@@ -1,0 +1,39 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "be100000000000000006",
+  "position": {
+    "x": 557,
+    "y": 454,
+    "z": 60000,
+    "height": 124,
+    "width": 620,
+    "tabOrder": 60000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Review player form, position comparisons, transfers and modeled valuations. Filter and explore the underlying data in each section.",
+                    "textStyle": {
+                      "fontWeight": "normal",
+                      "fontSize": "15pt",
+                      "color": "#B0C5D8",
+                      "fontFamily": "Segoe UI"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

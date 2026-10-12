@@ -1,0 +1,39 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "be10000000000000000a",
+  "position": {
+    "x": 74,
+    "y": 337,
+    "z": 60000,
+    "height": 65,
+    "width": 1090,
+    "tabOrder": 60000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Data quality  ·  Explainable analytics  ·  Reliable models",
+                    "textStyle": {
+                      "fontWeight": "normal",
+                      "fontSize": "20pt",
+                      "color": "#B4C9DD",
+                      "fontFamily": "Segoe UI"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}
