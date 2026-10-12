@@ -23,7 +23,7 @@ The reporting cutoff is `MIN(TODAY(), MAX(source_latest_valuation_date))`. This 
 
 ## Historical images vs. present PBIR
 
-The six files in `docs/assets/screenshots/` belong to an older **green** presentation. They are retained as historical files and have been removed from the current README dashboard preview. They must not be used as current NEXUS screenshots. The two PBIR definitions have a NEXUS navy/blue theme, but have **not** been rendered in Desktop to verify actual contrast, content or labels.
+The obsolete six-image **green-era dashboard gallery and its README were deleted from the active repository**. The superseded editorial-cover SVG was removed too. No historical slide deck is shipped as the active product. The authoritative deliverable is the native, editable PBIR in `powerbi/workspace` and `powerbi/offline-demo`. The two report definitions have a NEXUS palette, but **have not been rendered in Desktop** to verify contrast, data, refresh or charts. Never substitute an invented dashboard screenshot.
 
 ## Repeatable source-level checks (without CI quota)
 
@@ -50,7 +50,7 @@ The demo preflight includes a 365-day SQL-contract guard and fixtures reconcilia
 
 These concrete PBIR edits standardize 13 pt chart titles, 11 pt data labels, dark-blue label contrast and 12 pt corner radius. Existing queryState bindings and underlying models are untouched. The native report still uses BigQuery in workspace and deterministic synthetic inputs in offline-demo; the four chart JSON payloads match across both modes.
 
-An offline source parity test is provided at [`tests/test_powerbi_chart_design.py`](../tests/test_powerbi_chart_design.py). **No new Power BI report screenshot has been produced or approved**: actual Desktop open/refresh, chart interactions, DAX evaluation, cross-filters and final display quality still require testing on the authorized Windows machine. The historical green-themed screenshots stay historical.
+An offline source parity test is provided at [`tests/test_powerbi_chart_design.py`](../tests/test_powerbi_chart_design.py). **No new Power BI report screenshot has been produced or approved**: actual Desktop open/refresh, chart interactions, DAX evaluation, cross-filters and final display quality still require testing on the authorized Windows machine. The old green-era captures were removed rather than retained in the active repository.
 
 ## Additional native report design — 13 October 2026 (CI-free source review)
 
@@ -64,6 +64,14 @@ Two more **editable PBIR pages** now match the 365-day report's card and typogra
 All **eight real charts** retain their original category/value query bindings and chart types. Each receives 13 pt navy titles, 11 pt high-contrast data labels and consistent 12 pt panel corners. The existing blue/lavender series scheme remains intact. There are **16 native visual-source edits**: 8 charts × 2 report editions. Textbox decorations, page backgrounds and underlying measurements are untouched.
 
 The expanded [source regression](../tests/test_powerbi_chart_design.py) checks JSON parity, chart types, visual titles, display settings and nonempty data query state. This is a **static source review without CI** — not evidence that Power BI Desktop refreshes, cross-filtering or dashboard page renders pass. Historic PNGs remain historic until the actual PBIR project is opened and visually captured.
+
+## Editorial NEXUS page compositions — 13 October 2026
+
+The presentation is a single native PBIR report with **distinct, coordinated page identities**: dark navy Home, deep-blue performance control room, soft lavender player segmentation, ice-blue club/league, slate-blue transfer market, cool-blue market-value prediction and technical blue ML reliability. Both drillthrough detail pages and both tooltips have subdued corresponding backgrounds. All 13 pages keep their Power BI-native objects; there are no exported slide duplicates.
+
+The four principal native charts on **Player Segmentation** and **Club & League Analysis** were given page-specific asymmetric layouts while respecting 1280×720 bounds, existing navigation bands and original data-binding roles. Source tests now assert paired workspace/offline positions, page background palette and no overlap among those four per-page chart objects. This is *source geometry only*; visible visual collision with other legacy objects still requires Desktop review.
+
+The six obsolete green-era PNG files, their gallery index and the superseded editorial cover were deleted; no current screenshot was fabricated or substituted. RegisteredResources embedded in the PBIR are **not deleted without confirming that report object bindings no longer reference them**.
 
 ## Required Power BI Desktop acceptance
 
