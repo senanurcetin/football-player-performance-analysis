@@ -64,7 +64,7 @@ def audit(root: Path, mode: str):
         all_pages.add(page_id)
         if page.get("name") != page_id:
             errors.append(f"{page_id}: page.name and directory differ")
-        pwidth, pheight = page.get("width", 1280), page.get("height", 720)
+        pwidth, pheight = page.get("width"), page.get("height")
         charts, count, watermark = 0, 0, False
         for vp in sorted((page_path.parent / "visuals").glob("*/visual.json")):
             count += 1
@@ -99,7 +99,7 @@ def audit(root: Path, mode: str):
                 if color.lower() in raw.lower():
                     warnings.append(f"{vp}: legacy green/teal color {color}")
         display = page.get("displayName", page_id)
-        is_main = pwidth >= 1200 and pheight >= 700
+        is_main = bool(pwidth and pheight and pwidth >= 1200 and pheight >= 700)
         exempt = any(x in display.lower() for x in ("home", "closing", "tooltip"))
         if is_main and not exempt and page.get("visibility") != "HiddenInViewMode" and charts == 0:
             errors.append(f"{display}: analytics page has ZERO data visuals")
