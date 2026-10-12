@@ -28,6 +28,21 @@ PAGES = {
 TOOLTIPS = {"tooltip_transfer_p011", "tooltip_pred_p012"}
 DRILLTHROUGHS = {"91edaa93bbbdbbc8e854", "MLPlayerDetail"}
 DARK = {"5cb4db7e746975558322", "c83db10673c28e3346ae"}
+PAGE_CANVASES = {
+    "5cb4db7e746975558322": "#071829",  # Executive home / dark navy
+    "d2bc1e6a078c5c5b125c": "#091E33",  # Player performance / data control room
+    "24c53960ddc19662d824": "#EDEBFA",  # Segmentation / lavender
+    "25f58efd2bb140e62be9": "#E7F2FD",  # Clubs / blue
+    "4c63ad904b1db6e0d156": "#E9F1FA",  # Transfer outcomes / neutral
+    "292e3d92e92693c05047": "#E8ECF8",  # Transfer market / blue slate
+    "1f4c5c8000149b2e2be8": "#E7EFFB",  # Player valuation / blue
+    "MLModelPerformance": "#E6EDF9",  # ML reliability / technical blue
+    "c83db10673c28e3346ae": "#071829",  # Closing / navy
+    "91edaa93bbbdbbc8e854": "#EBEFF9",  # Transfer detail / slate lavender
+    "MLPlayerDetail": "#E8EBF6",  # Prediction detail / soft lavender
+    "tooltip_transfer_p011": "#E7F0FC",  # Transfer tooltip / pale blue
+    "tooltip_pred_p012": "#E8ECFA",  # Prediction tooltip / blue lavender
+}
 THEME = "NEXUSMidnight-20261012-v2.json"
 CHART_TYPES = {
     "clusteredBarChart", "clusteredColumnChart", "lineChart", "scatterChart",
@@ -74,11 +89,7 @@ class EveryDashboardSourceContract(unittest.TestCase):
                 with self.subTest(mode=mode, page=page_id):
                     page = obj(root / page_id / "page.json")
                     self.assertEqual(page["name"], page_id)
-                    self.assertEqual(literal_color(page),
-                        "#071829" if page_id in DARK else (
-                            "#091E33" if page_id == "d2bc1e6a078c5c5b125c"
-                            else "#EAF1FA"
-                        ))
+                    self.assertEqual(literal_color(page), PAGE_CANVASES[page_id])
                     if mode == "offline-demo":
                         self.assertTrue(page["displayName"].startswith("[DEMO]"))
                     else:
