@@ -210,14 +210,14 @@
                           "min": {
                             "color": {
                               "Literal": {
-                                "Value": "'#C5DDFC'"
+                                "Value": "'#E8EFFB'"
                               }
                             }
                           },
                           "max": {
                             "color": {
                               "Literal": {
-                                "Value": "'#296393'"
+                                "Value": "'#487FD8'"
                               }
                             }
                           },
@@ -284,7 +284,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#496B98'"
+                      "Value": "'#487FD8'"
                     }
                   }
                 }
@@ -328,7 +328,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#F7FBFC'"
+                      "Value": "'#FFFFFF'"
                     }
                   }
                 }
