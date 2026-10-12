@@ -1,7 +1,23 @@
-# Offline sample Power BI model (synthetic, not real football data)
+# Football Player Analysis — fully offline demonstration workspace
 
-This independent copy of the Football Player Analysis PBIP is intended for local, login-free **demonstration**, preview and visual QA. It is derived from the actual report but its imported tables will be populated with deterministic **synthetic** rows, not production BigQuery records. This must not be presented as genuine match/transfer observations, ML outcomes, or validated business KPIs. Actual research metrics are only in the original BigQuery-backed report.
+**SYNTHETIC DEMONSTRATION DATA ONLY.** This is a *separate* copy of the report stored under `powerbi/offline-demo/FootballPlayerAnalysis/`. The original model at `powerbi/workspace/FootballPlayerAnalysis/` still uses **real BigQuery sources** and is not modified to fabricate research outcomes.
 
-After the sample generator is fully prepared, open `FootballPlayerAnalysis/FootballPlayerAnalysis.pbip` in Power BI Desktop. Do not confuse this sample folder with `powerbi/workspace/FootballPlayerAnalysis`, which is the original BigQuery report. The demo does not validate access to real data.
+## What is included
 
-No screenshot should be marketed as an authentic football-data dashboard without a visible DEMO/SYNTHETIC label. File integrity must be checked before distribution.
+- All original PBIR report pages, visuals, relationships and DAX expressions.
+- A parallel semantic model in which **33 external BigQuery M partitions** are replaced by small, deterministic inline Power Query `#table` data fixtures.
+- All 13 page names include a clear `[DEMO]` label, and Home states that the values are synthetic.
+- A blue/navy NEXUS home design. No credentials or Google Cloud account are needed to evaluate inline sample tables.
+
+## How to run after source verification
+
+1. Download and unzip the repository. Use Power BI Desktop (PBIR format support enabled as appropriate for the installed version).
+2. Open `powerbi/offline-demo/FootballPlayerAnalysis/FootballPlayerAnalysis.pbip`, **not** the production `powerbi/workspace/...` file.
+3. Use **Home → Refresh** to import inline fixtures if the report opens without cached data. No BigQuery login is expected for the demo partitions.
+4. If there are schema or DAX errors, preserve the exact **Details** message and fix before making portfolio screenshots.
+
+## Strict limitations
+
+Fixtures are fictional, generated from column names and simple deterministic patterns; they do **not** preserve real entity distributions, temporal consistency, football performance calculations, actual transfer events or ML quality. Existing DAX may yield unusual or blank numbers and some heavily filtered visuals may remain empty. **Opening and refresh have not yet been verified inside Power BI Desktop.** This is a test/demo artifact, not a validated substitute for authenticated production data. All screenshots from it must visibly say **DEMO / SYNTHETIC DATA** and must not be presented as actual football analysis.
+
+For real football visualizations, authenticate and refresh the original BigQuery-backed PBIP instead. Never commit credentials, refresh tokens or account keys.
