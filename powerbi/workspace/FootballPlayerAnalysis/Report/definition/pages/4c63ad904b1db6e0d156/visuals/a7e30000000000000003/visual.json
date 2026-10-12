@@ -37,23 +37,18 @@
           "projections": [
             {
               "field": {
-                "Aggregation": {
+                "Measure": {
                   "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "fct_transfer_success_labels"
-                        }
-                      },
-                      "Property": "is_successful_transfer"
+                    "SourceRef": {
+                      "Entity": "fct_transfer_success_labels"
                     }
                   },
-                  "Function": 1
+                  "Property": "Transfer Success Rate (90d)"
                 }
               },
-              "queryRef": "Average(fct_transfer_success_labels.is_successful_transfer)",
-              "nativeQueryRef": "is_successful_transfer",
-              "displayName": "is_successful_transfer"
+              "queryRef": "fct_transfer_success_labels.Transfer Success Rate (90d)",
+              "nativeQueryRef": "Transfer Success Rate (90d)",
+              "displayName": "Transfer Success Rate (90d)"
             }
           ]
         }
@@ -178,7 +173,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Success Rate by Position (Demo)'"
+                  "Value": "'Success Rate by Position (90d)'"
                 }
               }
             },
