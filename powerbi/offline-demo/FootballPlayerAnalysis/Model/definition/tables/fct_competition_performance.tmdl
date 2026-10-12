@@ -83,30 +83,12 @@ table fct_competition_performance
 				#table(
 				    type table [#"competition_id" = text, #"competition_name" = text, #"competition_type" = text, #"country_name" = text, #"confederation" = text, #"matches_played" = Int64.Type, #"total_goals" = Int64.Type, #"avg_goals_per_match" = number, #"club_participation_count" = Int64.Type, #"avg_attendance" = number],
 				    {
-				        {"Demo competition id", "Demo Premier Division", "Demo competition type", "England", "Demo confederation", 10, 2, 0.150, 1, 0.150},
-				        {"Demo competition id", "Demo National League", "Demo competition type", "Germany", "Demo confederation", 11, 3, 0.340, 2, 0.340},
-				        {"Demo competition id", "Demo Continental Cup", "Demo competition type", "France", "Demo confederation", 12, 4, 0.530, 3, 0.530},
-				        {"Demo competition id", "Demo Premier Division", "Demo competition type", "Spain", "Demo confederation", 13, 5, 0.720, 4, 0.720},
-				        {"Demo competition id", "Demo National League", "Demo competition type", "England", "Demo confederation", 14, 6, 0.910, 5, 0.910},
-				        {"Demo competition id", "Demo Continental Cup", "Demo competition type", "Germany", "Demo confederation", 15, 7, 1.100, 6, 1.100},
-				        {"Demo competition id", "Demo Premier Division", "Demo competition type", "France", "Demo confederation", 16, 8, 1.290, 7, 1.290},
-				        {"Demo competition id", "Demo National League", "Demo competition type", "Spain", "Demo confederation", 17, 9, 1.480, 8, 1.480},
-				        {"Demo competition id", "Demo Continental Cup", "Demo competition type", "England", "Demo confederation", 18, 10, 1.670, 9, 1.670},
-				        {"Demo competition id", "Demo Premier Division", "Demo competition type", "Germany", "Demo confederation", 19, 11, 1.860, 10, 1.860},
-				        {"Demo competition id", "Demo National League", "Demo competition type", "France", "Demo confederation", 20, 12, 2.050, 11, 2.050},
-				        {"Demo competition id", "Demo Continental Cup", "Demo competition type", "Spain", "Demo confederation", 21, 13, 2.240, 12, 2.240},
-				        {"Demo competition id", "Demo Premier Division", "Demo competition type", "England", "Demo confederation", 22, 14, 2.430, 13, 2.430},
-				        {"Demo competition id", "Demo National League", "Demo competition type", "Germany", "Demo confederation", 23, 15, 0.150, 14, 0.150},
-				        {"Demo competition id", "Demo Continental Cup", "Demo competition type", "France", "Demo confederation", 24, 16, 0.340, 15, 0.340},
-				        {"Demo competition id", "Demo Premier Division", "Demo competition type", "Spain", "Demo confederation", 25, 17, 0.530, 16, 0.530},
-				        {"Demo competition id", "Demo National League", "Demo competition type", "England", "Demo confederation", 26, 18, 0.720, 17, 0.720},
-				        {"Demo competition id", "Demo Continental Cup", "Demo competition type", "Germany", "Demo confederation", 27, 19, 0.910, 18, 0.910},
-				        {"Demo competition id", "Demo Premier Division", "Demo competition type", "France", "Demo confederation", 28, 2, 1.100, 19, 1.100},
-				        {"Demo competition id", "Demo National League", "Demo competition type", "Spain", "Demo confederation", 29, 3, 1.290, 20, 1.290},
-				        {"Demo competition id", "Demo Continental Cup", "Demo competition type", "England", "Demo confederation", 10, 4, 1.480, 21, 1.480},
-				        {"Demo competition id", "Demo Premier Division", "Demo competition type", "Germany", "Demo confederation", 11, 5, 1.670, 22, 1.670},
-				        {"Demo competition id", "Demo National League", "Demo competition type", "France", "Demo confederation", 12, 6, 1.860, 23, 1.860},
-				        {"Demo competition id", "Demo Continental Cup", "Demo competition type", "Spain", "Demo confederation", 13, 7, 2.050, 24, 2.050}
+				        {"DEMO-COMP-1", "Demo Premier Division", "Demo competition type", "England", "Demo confederation", 120, 235, "1.95833", 6, 18500},
+				        {"DEMO-COMP-2", "Demo National League", "Demo competition type", "Germany", "Demo confederation", 136, 256, "1.88235", 6, 19900},
+				        {"DEMO-COMP-3", "Demo Continental Cup", "Demo competition type", "France", "Demo confederation", 152, 277, "1.82237", 6, 21300},
+				        {"DEMO-COMP-4", "Demo Championship", "Demo competition type", "Spain", "Demo confederation", 168, 298, "1.77381", 6, 22700},
+				        {"DEMO-COMP-5", "Demo Coastal League", "Demo competition type", "England", "Demo confederation", 184, 319, "1.73370", 6, 24100},
+				        {"DEMO-COMP-6", "Demo Central League", "Demo competition type", "Germany", "Demo confederation", 200, 340, "1.70000", 6, 25500}
 				    }
 				)
 

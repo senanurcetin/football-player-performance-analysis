@@ -21,6 +21,172 @@ def load_json(path):
         errors.append(f"Missing/bad JSON: {path.relative_to(ROOT)} ({exc})")
         return {}
 
+
+
+def split_m_csv(row):
+    """Split a simple #table row without splitting #date/#datetime arguments."""
+    values, current, in_string, depth = [], [], False, 0
+    i = 0
+    while i < len(row):
+        char = row[i]
+        if char == '"':
+            current.append(char)
+            if in_string and i + 1 < len(row) and row[i + 1] == '"':
+                current.append('"')
+                i += 2
+                continue
+            in_string = not in_string
+        elif not in_string and char == "(":
+            depth += 1
+            current.append(char)
+        elif not in_string and char == ")":
+            depth -= 1
+            current.append(char)
+        elif not in_string and char == "," and depth == 0:
+            values.append("".join(current).strip())
+            current = []
+        else:
+            current.append(char)
+        i += 1
+    values.append("".join(current).strip())
+    if in_string or depth:
+        raise ValueError("Unbalanced M literal in sample row")
+    return values
+
+
+def decode_literal(value):
+    if len(value) >= 2 and value.startswith('"') and value.endswith('"'):
+        return value[1:-1].replace('""', '"')
+    if value in ("true", "false"):
+        return value == "true"
+    if value == "null":
+        return None
+    try:
+        return float(value) if "." in value else int(value)
+    except ValueError:
+        return value  # e.g. #datetime(2025, 5, 1, 0, 0, 0)
+
+
+def load_inline_fixture(table_file):
+    text = table_file.read_text(encoding="utf-8-sig")
+    match = re.search(r"type table \[([^\]]+)\],", text)
+    if not match:
+        errors.append(f"Missing typed #table schema in {table_file.name}")
+        return []
+    fields = re.findall(r'#"((?:[^"]|"")*)"\s*=', match.group(1))
+    fields = [field.replace('""', '"') for field in fields]
+    if not fields:
+        errors.append(f"No named columns in fixture {table_file.name}")
+        return []
+    source = text[match.end():]
+    records = re.findall(r"^[\t ]+\{(.+)\},?$", source, re.MULTILINE)
+    if not records:
+        errors.append(f"No inline rows in fixture {table_file.name}")
+        return []
+    output = []
+    for lineno, record in enumerate(records, 1):
+        try:
+            values = split_m_csv(record)
+        except ValueError as exc:
+            errors.append(f"{table_file.name} row {lineno}: {exc}")
+            continue
+        if len(values) != len(fields):
+            errors.append(
+                f"{table_file.name} row {lineno}: {len(values)} cells "
+                f"but {len(fields)} schema fields"
+            )
+            continue
+        output.append(dict(zip(fields, (decode_literal(v) for v in values))))
+    return output
+
+
+def check_demo_relationships(demo_tables):
+    """Check fixture values and their keys; this is NOT a Power BI engine test."""
+    fixtures = {
+        p.stem: load_inline_fixture(p)
+        for p in demo_tables.glob("*.tmdl")
+        if not p.name.startswith(("LocalDateTable_", "DateTableTemplate_"))
+    }
+
+    unique_keys = {
+        "dim_players": "player_id",
+        "dim_clubs": "club_id",
+        "dim_competitions": "competition_id",
+        "fct_player_performance": "player_id",
+        "fct_club_performance": "club_id",
+        "fct_club_risk_profile": "club_id",
+        "fct_competition_performance": "competition_id",
+        "ml_player_market_value_model_registry": "model_version",
+        "ml_player_market_value_feature_drift": "feature",
+    }
+    for table, col in unique_keys.items():
+        rows = fixtures.get(table, [])
+        keys = [r.get(col) for r in rows]
+        check(bool(rows), f"Missing fixture rows for {table}")
+        check(None not in keys, f"NULL/missing {table}.{col}")
+        check(len(keys) == len(set(keys)), f"Duplicate key {table}.{col}")
+
+    relations_path = DEMO / "Model" / "definition" / "relationships.tmdl"
+    relations = relations_path.read_text(encoding="utf-8-sig")
+    count = 0
+    for block in re.split(r"(?=^relationship )", relations, flags=re.MULTILINE):
+        from_match = re.search(r"^\s*fromColumn: ([^\s]+)$", block, re.MULTILINE)
+        to_match = re.search(r"^\s*toColumn: ([^\s]+)$", block, re.MULTILINE)
+        if not from_match or not to_match:
+            continue
+        a = from_match.group(1).split(".", 1)
+        b = to_match.group(1).split(".", 1)
+        if len(a) != 2 or len(b) != 2 or a[0] not in fixtures or b[0] not in fixtures:
+            continue  # Power BI's calculated LocalDateTables are not inline fixtures
+        src_rows, dst_rows = fixtures[a[0]], fixtures[b[0]]
+        src = [r.get(a[1]) for r in src_rows]
+        dst = [r.get(b[1]) for r in dst_rows]
+        check(None not in src, f"NULL / missing reference field {from_match.group(1)}")
+        check(None not in dst, f"NULL / missing reference target {to_match.group(1)}")
+        target = set(dst)
+        missing = {key for key in src if key not in target and key is not None}
+        check(not missing, f"Unmatched relationship {from_match.group(1)} -> "
+              f"{to_match.group(1)}: {list(missing)[:3]}")
+        if re.search(r"^\s*fromCardinality: one$", block, re.MULTILINE):
+            check(len(src) == len(set(src)), f"Declared one-side key not unique: "
+                  f"{from_match.group(1)}")
+        if re.search(r"^\s*toCardinality: one$", block, re.MULTILINE):
+            check(len(dst) == len(set(dst)), f"Declared one-side key not unique: "
+                  f"{to_match.group(1)}")
+        count += 1
+
+    players = fixtures.get("fct_player_performance", [])
+    for row in players:
+        games, minutes = row.get("matches_played"), row.get("total_minutes_played")
+        if not isinstance(games, (float, int)) or not isinstance(minutes, (float, int)):
+            errors.append("Malformed player performance fixture")
+            break
+        if games <= 0 or minutes <= 0:
+            errors.append("Zero player minutes/matches in fixture")
+            break
+        for part in ("goals", "assists"):
+            raw = row.get("total_" + part)
+            rate = row.get(part + "_per_90")
+            if not isinstance(raw, (float, int)) or not isinstance(rate, (float, int)):
+                errors.append("Malformed per-90 player statistic")
+                continue
+            check(abs(rate - raw * 90 / minutes) < 0.00002,
+                  f"Incorrect synthetic {part}_per_90 for player {row.get('player_id')}")
+
+    for row in fixtures.get("fct_club_performance", []):
+        check(row["wins"] + row["draws"] + row["losses"] == row["matches_played"],
+              f"Club {row['club_id']} results do not sum to matches")
+        check(row["goals_scored"] - row["goals_conceded"] == row["goal_difference"],
+              f"Club {row['club_id']} goal difference mismatch")
+
+    for row in fixtures.get("fct_competition_performance", []):
+        if row.get("matches_played"):
+            check(abs(row["avg_goals_per_match"] -
+                      row["total_goals"] / row["matches_played"]) < 0.00002,
+                  f"Competition {row['competition_id']} goal average mismatch")
+
+    return len(fixtures), count
+
 def main():
     check((DEMO / "FootballPlayerAnalysis.pbip").is_file(), "Missing offline PBIP entry")
     check((DEMO / "Model" / "definition.pbism").is_file(), "Missing offline semantic model")
@@ -64,11 +230,13 @@ def main():
                       "BuiltInThemes" / "AccessibleTidal.json")
     check(theme.get("dataColors", [None])[0] == "#4EA8FF",
           "Demo theme differs from NEXUS blue palette")
+    table_count, relation_count = check_demo_relationships(demo_tables)
     if errors:
         print("Offline PBIP checks FAILED:")
         for issue in errors:
             print(" - " + issue)
         return 1
+    print(f"Fixture integrity OK: {table_count} tables; {relation_count} cross-table relationships checked.")
     print(f"Offline PBIP static preflight OK: {len(physical)} inline tables, "
           f"{len(pages.get('pageOrder', []))} labeled pages.")
     print("NOT a Power BI Desktop load, refresh, or chart-rendering test.")
