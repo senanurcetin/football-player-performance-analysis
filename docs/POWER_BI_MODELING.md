@@ -131,3 +131,12 @@ Use `football_ml.ml_player_market_value_evaluation_metrics` for season, position
 Use `football_ml.ml_player_market_value_quality_gates` on the model-monitoring page. Decision-facing reports should only refresh when all `blocking` rows pass. Use `football_ml.ml_player_market_value_feature_importance` for predictive-driver visuals, and label them as model dependence rather than causal explanation.
 
 The latest validation passed all 241 project tests, all 43 ML-feature tests, and documentation for all 878 model columns.
+
+
+## Local PBIP Preflight and Opening Errors
+
+Before opening the PBIP project, run `python scripts/check_powerbi_project.py` from the repository root. This offline check verifies TMDL table references, PBIR pages, required resources and report JSON without connecting to BigQuery. A successful result verifies source-file consistency, **not** that Power BI Desktop successfully loaded the report.
+
+The report is opened from `powerbi/workspace/FootballPlayerAnalysis/FootballPlayerAnalysis.pbip`, **not** the model or report JSON files. Open it from an extracted/cloned folder with the entire `Model/` and `Report/` trees present. If prompted, enable the Enhanced Report Format (PBIR) preview option, restart Power BI Desktop and reopen the file. Verify that your Power BI Desktop version supports this PBIR format. Problems with Google BigQuery login, permissions or refresh are separate from PBIP structure errors: do not insert credentials into GitHub.
+
+If Desktop still reports an error, capture the **exact error text and Details** dialog. The offline preflight cannot diagnose Desktop-specific compatibility, unavailable custom visuals, or credentials.

@@ -8,7 +8,7 @@ model Model
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
-annotation PBI_QueryOrder = ["dim_competitions","dim_players","dim_clubs","fct_club_performance","fct_competition_performance","fct_market_value_history","fct_player_career_timeline","fct_player_performance","fct_transfers","dim_date","dim_national_teams","fct_agent_portfolio","fct_analytics_refresh_audit","fct_club_risk_profile","fct_club_season_performance","fct_club_transfer_portfolio","fct_data_coverage_bias","fct_match","fct_player_match_performance","fct_player_rolling_form","fct_transfer_cohort_performance","fct_transfer_fixed_horizon_outcomes","fct_transfer_market_value_analysis","fct_transfer_success_labels","time_spine_daily","ml_player_market_value_current_predictions","ml_player_market_value_evaluation_metrics","ml_player_market_value_evaluation_predictions","ml_player_market_value_feature_drift","ml_player_market_value_feature_importance","ml_player_market_value_model_registry","ml_player_market_value_quality_gates","ml_player_market_value_scoring","ml_player_market_value_training"]
+annotation PBI_QueryOrder = ["dim_competitions","dim_players","dim_clubs","fct_club_performance","fct_competition_performance","fct_market_value_history","fct_player_career_timeline","fct_player_performance","fct_transfers","dim_date","fct_agent_portfolio","fct_analytics_refresh_audit","fct_club_risk_profile","fct_club_season_performance","fct_club_transfer_portfolio","fct_data_coverage_bias","fct_match","fct_player_match_performance","fct_player_rolling_form","fct_transfer_cohort_performance","fct_transfer_fixed_horizon_outcomes","fct_transfer_market_value_analysis","fct_transfer_success_labels","time_spine_daily","ml_player_market_value_current_predictions","ml_player_market_value_evaluation_metrics","ml_player_market_value_evaluation_predictions","ml_player_market_value_feature_drift","ml_player_market_value_feature_importance","ml_player_market_value_model_registry","ml_player_market_value_quality_gates","ml_player_market_value_scoring","ml_player_market_value_training"]
 
 ref table dim_competitions
 ref table DateTableTemplate_113ccf3a-815d-4df1-997e-c029d6cde0dc
@@ -26,7 +26,6 @@ ref table fct_transfers
 ref table LocalDateTable_e54a5994-a864-4823-a406-b30df3d17c6f
 ref table dim_date
 ref table LocalDateTable_9f5aadfb-4263-4caf-9506-79e4cd0e50aa
-ref table dim_national_teams
 ref table fct_agent_portfolio
 ref table fct_analytics_refresh_audit
 ref table LocalDateTable_9aad1ec0-b250-48f2-ba51-b24ede5f4327
