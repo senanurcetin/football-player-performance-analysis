@@ -37,7 +37,8 @@ All 13 pages receive the registered `NEXUSMidnight-20261012-v2.json` custom repo
 - [x] Repair both tooltip pages per edition: `pageBinding.type=Tooltip`, hidden tab, `ActualSize`, 560×320
 - [x] Add metric-specific alternative text for 36 chart/KPI objects in both editions (72 files)
 - [x] Add automated whole-report page/theme/tooltip/accessibility regression tests
-- [ ] Verify any remaining hardcoded theme overrides across **all** pre-existing legacy visual objects (not automatically overruled by theme)
+- [ ] Verify remaining hardcoded theme overrides across **all** pre-existing visual objects (not automatically overruled by theme)
+- [x] Remove legacy green surface literals from the four identified ML prediction slicer/KPI/chart visuals in both report editions; add a regression test for these objects
 - [ ] Run all preflight scripts and Python unit tests on a full working copy
 
 ### Stage B — Engine-level verification (blocked)
