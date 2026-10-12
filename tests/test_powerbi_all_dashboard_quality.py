@@ -209,6 +209,25 @@ class EveryDashboardSourceContract(unittest.TestCase):
 
 
 
+    def test_ml_dashboard_no_legacy_green_accent(self):
+        legacy = ("#F6FBF5", "#EAF6E8")
+        ml_visuals = (
+            "1129c5d18f0c86361eb8",
+            "2beada4d32fcdc1ff094",
+            "31824c579723a8252662",
+            "3ccd5a45594119af9bb7",
+        )
+        for mode in MODES:
+            for visual_id in ml_visuals:
+                path = (project(mode) / "Report" / "definition" / "pages" /
+                        "1f4c5c8000149b2e2be8" / "visuals" / visual_id / "visual.json")
+                content = path.read_text(encoding="utf-8-sig").upper()
+                for color in legacy:
+                    with self.subTest(mode=mode, visual=visual_id, color=color):
+                        self.assertNotIn(color, content)
+
+
+
 
 if __name__ == "__main__":
     unittest.main()
