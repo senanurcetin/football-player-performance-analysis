@@ -69,6 +69,10 @@ The expanded [source regression](../tests/test_powerbi_chart_design.py) checks J
 
 The presentation is a single native PBIR report with **distinct, coordinated page identities**: dark navy Home, deep-blue performance control room, soft lavender player segmentation, ice-blue club/league, slate-blue transfer market, cool-blue market-value prediction and technical blue ML reliability. Both drillthrough detail pages and both tooltips have subdued corresponding backgrounds. All 13 pages keep their Power BI-native objects; there are no exported slide duplicates.
 
+The visible report storyline now places **ML Model Reliability before Closing**, keeps the Home entry first, and uses clean page/tab labels without decorative emojis. The 365-day Transfer Success page has its own asymmetric evidence-chart composition.
+
+**In addition, 16 primary query-bound chart/table/card objects per report edition were recolored** at the object level, not just via the global theme. These cover Player Performance, Transfer & Market Value, Market Value Prediction and ML Model Reliability. Obsolete green or unbranded gray accents were replaced with NEXUS blue, lavender, navy and neutral shades. All existing DAX, query state and chart types are preserved. Smaller secondary objects still require visual inspection.
+
 The four principal native charts on **Player Segmentation** and **Club & League Analysis** were given page-specific asymmetric layouts while respecting 1280×720 bounds, existing navigation bands and original data-binding roles. Source tests now assert paired workspace/offline positions, page background palette and no overlap among those four per-page chart objects. This is *source geometry only*; visible visual collision with other legacy objects still requires Desktop review.
 
 The six obsolete green-era PNG files, their gallery index and the superseded editorial cover were deleted; no current screenshot was fabricated or substituted. RegisteredResources embedded in the PBIR are **not deleted without confirming that report object bindings no longer reference them**.
