@@ -60,11 +60,11 @@ def validate_relationships(source: str, table_names: set[str]) -> list[str]:
     import re
 
     errors: list[str] = []
-    blocks = re.split(r"(?=^relationship\\s+)", source, flags=re.MULTILINE)
+    blocks = re.split(r"(?=^relationship\s+)", source, flags=re.MULTILINE)
     seen: set[str] = set()
     count = 0
     for block in blocks:
-        header = re.match(r"^relationship\\s+(\\S+)\\s*$", block)
+        header = re.match(r"^relationship\s+(\S+)\s*$", block)
         if not header:
             continue
         count += 1
@@ -74,7 +74,7 @@ def validate_relationships(source: str, table_names: set[str]) -> list[str]:
         seen.add(name)
         for direction in ("fromColumn", "toColumn"):
             occurrences = re.findall(
-                rf"^\\s*{direction}:\\s*(.*?)\\s*$", block, flags=re.MULTILINE
+                rf"^\s*{direction}:\s*(.*?)\s*$", block, flags=re.MULTILINE
             )
             if len(occurrences) != 1:
                 errors.append(f"Relationship {name}: expected exactly one {direction}")
