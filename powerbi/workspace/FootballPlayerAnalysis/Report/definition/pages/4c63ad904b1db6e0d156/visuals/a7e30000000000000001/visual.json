@@ -3,9 +3,9 @@
   "name": "a7e30000000000000001",
   "position": {
     "x": 105,
-    "y": 121,
+    "y": 191,
     "width": 552,
-    "height": 256,
+    "height": 220,
     "z": 14100,
     "tabOrder": 14100
   },
@@ -43,12 +43,12 @@
                       "Entity": "fct_transfer_success_labels"
                     }
                   },
-                  "Property": "Transfers (90d)"
+                  "Property": "Transfers (365d)"
                 }
               },
-              "queryRef": "fct_transfer_success_labels.Transfers (90d)",
-              "nativeQueryRef": "Transfers (90d)",
-              "displayName": "Transfers (90d)"
+              "queryRef": "fct_transfer_success_labels.Transfers (365d)",
+              "nativeQueryRef": "Transfers (365d)",
+              "displayName": "Transfers (365d)"
             }
           ]
         }
@@ -173,7 +173,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'90d Transfers by Position'"
+                  "Value": "'Transfers by Position (365d)'"
                 }
               }
             },

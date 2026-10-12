@@ -3,9 +3,9 @@
   "name": "a7e30000000000000002",
   "position": {
     "x": 681,
-    "y": 121,
+    "y": 191,
     "width": 552,
-    "height": 256,
+    "height": 220,
     "z": 14200,
     "tabOrder": 14200
   },
@@ -43,12 +43,12 @@
                       "Entity": "fct_transfer_success_labels"
                     }
                   },
-                  "Property": "Average Transfer Fee (90d)"
+                  "Property": "Average Transfer Fee (365d)"
                 }
               },
-              "queryRef": "fct_transfer_success_labels.Average Transfer Fee (90d)",
-              "nativeQueryRef": "Average Transfer Fee (90d)",
-              "displayName": "Average Transfer Fee (90d)"
+              "queryRef": "fct_transfer_success_labels.Average Transfer Fee (365d)",
+              "nativeQueryRef": "Average Transfer Fee (365d)",
+              "displayName": "Average Transfer Fee (365d)"
             }
           ]
         }
@@ -173,7 +173,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Average Fee by Position (90d)'"
+                  "Value": "'Avg Fee by Position (365d)'"
                 }
               }
             },

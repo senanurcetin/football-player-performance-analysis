@@ -13,7 +13,7 @@
 **Reviewer quick brief:** [Project evidence, model baselines and contribution attribution](docs/hiring-summary.md).
 ![Football Player Performance Analysis — editorial illustration](docs/assets/football-analytics-cover.svg)
 
-> **Editorial cover, not a Power BI screenshot.** The six images in the [dashboard gallery](#dashboard-preview) are historical report captures, not evidence that the latest PBIR source currently renders correctly. See the [Power BI visual QA and release gate](docs/POWER_BI_VISUAL_QA.md) for open verification items.
+> **Editorial cover, not a Power BI screenshot.** The six historical captures are archived, not verified output from the current NEXUS PBIR. See the [dashboard source overview](#dashboard-preview) and [Desktop verification gate](docs/POWER_BI_VISUAL_QA.md).
 
 
 <p align="center">
@@ -85,67 +85,15 @@ Full lineage, grains, and model responsibilities → [Architecture & Model Catal
 
 ## Dashboard Preview
 
-> **Reading dashboard units:** The report uses Turkish abbreviations. **B** stands for *bin* (thousand), not billion. For example, `14B` means approximately 14,000 and `171B` means approximately 171,000. The original visual labels are preserved in screenshots.
+**Current release status: Power BI Desktop render verification pending.** The repository contains two PBIP editions: the BigQuery-backed [production report](powerbi/workspace/FootballPlayerAnalysis/) and a separately labeled [offline synthetic demo](powerbi/offline-demo/). Both report definitions have been updated to NEXUS navy-and-blue; a local Desktop open/refresh and page-by-page screenshot review is still required.
 
-**Evidence status (12 October 2026):** The repository contains PBIR sources for **11 report pages** (9 standard pages plus 2 drill-through pages). The production model is configured for BigQuery; the separate offline demo uses **synthetic fixtures**. The six PNGs below are **historical captures** and are not a complete or freshly validated 11-page gallery. A static [PBIR structure audit](docs/POWER_BI_VISUAL_QA.md) exists, but the latest source has **not yet passed Power BI Desktop open, refresh, visual, and DAX review**. Publication of refreshed screenshots is on hold until that gate is complete. Numbers in the historical captions are not independently reverified by this README update.
+The six files in [historical screenshots](docs/assets/screenshots/) depict a **legacy green-themed version**. They are retained only as an archive and are **not screenshots of the current PBIR**, nor evidence that current metrics or visuals render correctly. They are deliberately not shown as current portfolio previews.
 
-### Player Performance Analysis
+**Current report contents (source-verified):** Home; Player Performance; Player Segmentation (position, age groups, goals and value); Club & League (win rate, goal difference, competition activity); Transfer Success Analysis (observed 365-day outcomes, fee, coverage and reliability); Transfer & Market Value; Player Market Value Prediction; ML Model Reliability; Closing; two hidden detail pages; and two tooltip pages.
 
-![Player Performance Analysis](docs/assets/screenshots/01_player_performance.png)
+The transfer-success visualizations use observed transfer outcomes, **not machine-learning predictions**. Their label source is the 365-day BigQuery mart with a 20-percentage-point value-growth threshold. Demo fixtures are synthetic; no sample result can be cited as a real football outcome.
 
-> 14B total players · 171B goals · 135B assists · Avg 69.7 min/match · Avg G+A per 90: 0.21
->
-> Top-10 efficiency ranking (G+A per 90), treemap breakdowns by goals and assists per 90, position scatter, and age vs. performance & market value trend.
-
----
-
-### Player Segmentation
-
-![Player Segmentation](docs/assets/screenshots/02_player_segmentation.png)
-
-> **341** Elite Stars · **3,977** Key Players · **7,612** Developing Players · **1,974** Experienced Veterans
->
-> Segment distribution, performance characteristics by segment (goals/assists per 90), and average market value by segment — Elite Stars average **€49M**, Developing Players **€1M**.
-
----
-
-### Club & League Analysis
-
-![Club & League Analysis](docs/assets/screenshots/03_club_league_analysis.png)
-
-> **33** leagues · **9,032** clubs · Avg. success rate: **0.41** · Avg. overpay: **-89.71** · High-risk clubs: **10**
->
-> Club transfer success rate ranking, risk vs. success scatter matrix, and success rate by league. **56.82%** of clubs are low-risk, **42.83%** medium-risk, **0.35%** high-risk.
-
----
-
-### Transfer Success Prediction
-
-![Transfer Success Prediction](docs/assets/screenshots/04_transfer_success_prediction.png)
-
-> **7,406** predictions · Avg. success rate: **39.20%** · Model accuracy: **70.58%** · Avg. prediction probability: **0.43**
->
-> Success rate by position (Defenders: 0.45, highest), success rate by country of birth, predicted vs. actual outcome table. **74.87%** of predictions are historical, **25.13%** future.
-
----
-
-### Transfer & Market Value Analysis
-
-![Transfer & Market Value Analysis](docs/assets/screenshots/05_transfer_market_value.png)
-
-> **40,208** transfers · Known fee rate: **64.2%** · Avg. fee: **€0.4M** · Avg. overpay: **-79.1%** · Total volume: **€9,803.9M**
->
-> The historical screenshot shows an **average overpay proxy of −79.1%** for the measured subset; this is not evidence that clubs systematically underpay in the wider transfer market. Forwards and goalkeepers display different proxy values (−74.6% and −87.4%). The depicted seasonal averages and **19.7%** post-transfer appreciation rate describe this particular report snapshot, subject to fee coverage and selection bias.
-
----
-
-### Player Market Value Prediction (ML)
-
-![Player Market Value Prediction](docs/assets/screenshots/06_market_value_prediction.png)
-
-> **7,841** players scored · Decision-ready: **72.9%** · Avg. prediction: **€5.3M** · Avg. previous: **€6.7M** · Value growth: **+18.3%**
->
-> Historical model outputs by position (Midfield & Forward: €5.8M, Goalkeeper: €3.0M), quality distribution (**56%** high, **17%** medium, **27%** limited), and per-player confidence intervals. The depicted **+24.7%** projected goalkeeper growth is a model estimate, **not proof of market mispricing or an actionable valuation recommendation**.
+See [Power BI visual QA and release gate](docs/POWER_BI_VISUAL_QA.md) for the remaining Desktop acceptance tests. Publish new screenshots only after the actual Power BI Desktop report is open, refreshed and inspected.
 
 ---
 
@@ -302,27 +250,26 @@ Full deployment and troubleshooting → [Operations Runbook](docs/RUNBOOK.md)
 
 ## Power BI Dashboard
 
-The report is stored as a PBIP project at `powerbi/workspace/FootballPlayerAnalysis/` in **PBIR v4** format. Open `FootballPlayerAnalysis.pbip` in Power BI Desktop June 2026 (v2.155+).
+The report is stored in PBIP/PBIR format at `powerbi/workspace/FootballPlayerAnalysis/`; a credential-free, fictional-data copy is at `powerbi/offline-demo/FootballPlayerAnalysis/`. Start by opening the offline `FootballPlayerAnalysis.pbip` in a compatible Power BI Desktop installation and refreshing. Source-level validation alone cannot certify rendering.
 
 ### Report Pages
 
-| Page | Description |
+| Page | Current scope |
 |---|---|
-| 🏠 Home | Landing page with navigation |
-| 📊 Player Performance Analysis | KPIs, top-10 rankings, position scatter, age curve |
-| 👥 Player Segmentation | Elite Stars / Key Players / Developing / Veterans segmentation |
-| 🏆 Club & League Analysis | Risk matrix, success rates, league comparison |
-| 🔄 Transfer Success Prediction | ML-based transfer outcome prediction |
-| 💰 Transfer & Market Value Analysis | Fee vs. value, premium/discount, volume by season |
-| ⭐ Player Market Value Prediction | ML predictions, quality segments, confidence intervals |
-| ML Model Reliability | Backtest results, feature importance, model registry |
+| Home | Navigation and report introduction |
+| Player Performance Analysis | Per-90 rate tables, ranking and position comparisons |
+| Player Segmentation | Position, age, goal and market-value breakdowns |
+| Club & League Analysis | Club win rate and goal difference; competition activity |
+| Transfer Success Analysis (365d) | Observed 365-day outcomes, 20% threshold, sample size and follow-up coverage |
+| Transfer & Market Value Analysis | Fees, volume and premium/discount measures |
+| Player Market Value Prediction | ML scoring and quality indicators (not authenticated yet) |
+| ML Model Reliability | Model quality gates, feature diagnostics and evaluation tables |
+| Closing | End page |
 
-### Drill-Through Pages (hidden in view mode)
+Two hidden detail pages and two tooltip pages are also in the PBIR page order.
 
-| Page | Trigger |
-|---|---|
-| Transfer Player Detail | Right-click player name in any transfer table → **Drill through** |
-| Player Prediction Detail | Right-click player name in ML prediction table → **Drill through** |
+**Verification status:** Definition files have been edited; real Desktop opening, data refresh, visuals, interactions and production BigQuery values are **not yet verified**. Do not use historical screenshot KPI numbers as proof of current results.
+
 
 ---
 

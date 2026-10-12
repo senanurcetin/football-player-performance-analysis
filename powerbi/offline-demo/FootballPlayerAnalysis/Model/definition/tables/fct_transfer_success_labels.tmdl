@@ -1,23 +1,23 @@
 table fct_transfer_success_labels
 
-	measure 'Transfers (90d)' =
+	measure 'Transfers (365d)' =
 			CALCULATE(
 			    DISTINCTCOUNT(fct_transfer_success_labels[transfer_key]),
-			    fct_transfer_success_labels[label_horizon_days] = 90
+			    fct_transfer_success_labels[label_horizon_days] = 365
 			)
 		formatString: 0
 
-	measure 'Average Transfer Fee (90d)' =
+	measure 'Average Transfer Fee (365d)' =
 			CALCULATE(
 			    AVERAGE(fct_transfer_success_labels[transfer_fee]),
-			    fct_transfer_success_labels[label_horizon_days] = 90
+			    fct_transfer_success_labels[label_horizon_days] = 365
 			)
 		formatString: "#,0"
 
-	measure 'Transfer Success Rate (90d)' =
+	measure 'Transfer Success Rate (365d)' =
 			CALCULATE(
 			    AVERAGE(fct_transfer_success_labels[is_successful_transfer]),
-			    fct_transfer_success_labels[label_horizon_days] = 90
+			    fct_transfer_success_labels[label_horizon_days] = 365
 			)
 		formatString: 0.0%
 
@@ -222,29 +222,29 @@ table fct_transfer_success_labels
 				#table(
 				    type table [#"transfer_key" = text, #"player_id" = Int64.Type, #"player_name" = text, #"position" = text, #"age_at_transfer" = Int64.Type, #"transfer_date" = datetime, #"transfer_year" = Int64.Type, #"transfer_season" = text, #"from_club_id" = Int64.Type, #"from_club_name" = text, #"to_club_id" = Int64.Type, #"to_club_name" = text, #"transfer_fee" = number, #"has_known_transfer_fee" = logical, #"market_value_baseline" = number, #"fee_market_value_difference_pct" = number, #"label_horizon_days" = Int64.Type, #"outcome_valuation_date" = datetime, #"outcome_market_value" = Int64.Type, #"market_value_change_at_horizon_pct" = number, #"label_status" = text, #"success_threshold_pct" = Int64.Type, #"is_successful_transfer" = Int64.Type],
 				    {
-				        {"DEMO-TRANSFER-001", 1, "Demo Player 01", "Attack", 20, #datetime(2025,5,1,0,0,0), 2025, "2024/25", 1, "Demo North FC", 2, "Demo Coast United", 2200000, true, 1833333.33, 0.20000, 90, #datetime(2025,7,30,0,0,0), 1613000, -0.12018, "high", 15, 0},
-				        {"DEMO-TRANSFER-002", 2, "Demo Player 02", "Defender", 27, #datetime(2025,5,2,0,0,0), 2025, "2024/25", 2, "Demo Coast United", 3, "Demo City FC", 3300000, true, 2598425.20, 0.27000, 90, #datetime(2025,7,31,0,0,0), 3482000, 0.34004, "medium", 15, 1},
-				        {"DEMO-TRANSFER-003", 3, "Demo Player 03", "Midfield", 34, #datetime(2025,5,3,0,0,0), 2025, "2024/25", 3, "Demo City FC", 4, "Demo Athletic", 4400000, true, 3283582.09, 0.34000, 90, #datetime(2025,8,1,0,0,0), 3546000, 0.07992, "high", 15, 0},
-				        {"DEMO-TRANSFER-004", 4, "Demo Player 04", "Goalkeeper", 26, #datetime(2025,5,4,0,0,0), 2025, "2024/25", 4, "Demo Athletic", 5, "Demo Rangers", 5500000, true, 3900709.22, 0.41000, 90, #datetime(2025,8,2,0,0,0), 5656000, 0.44999, "high", 15, 1},
-				        {"DEMO-TRANSFER-005", 5, "Demo Player 05", "Attack", 33, #datetime(2025,5,5,0,0,0), 2025, "2024/25", 5, "Demo Rangers", 6, "Demo Vale", 6600000, true, 4459459.46, 0.48000, 90, #datetime(2025,8,3,0,0,0), 5396000, 0.21001, "high", 15, 1},
-				        {"DEMO-TRANSFER-006", 6, "Demo Player 06", "Defender", 24, #datetime(2025,5,6,0,0,0), 2025, "2024/25", 6, "Demo Vale", 1, "Demo North FC", 7700000, true, 4967741.94, 0.55000, 90, #datetime(2025,8,4,0,0,0), 4024000, -0.18997, "medium", 15, 0},
-				        {"DEMO-TRANSFER-007", 7, "Demo Player 07", "Midfield", 31, #datetime(2025,5,7,0,0,0), 2025, "2024/25", 1, "Demo North FC", 2, "Demo Coast United", 8800000, true, 5432098.77, 0.62000, 90, #datetime(2025,8,5,0,0,0), 6084000, 0.12001, "high", 15, 0},
-				        {"DEMO-TRANSFER-008", 8, "Demo Player 08", "Goalkeeper", 23, #datetime(2025,5,8,0,0,0), 2025, "2024/25", 2, "Demo Coast United", 3, "Demo City FC", 9900000, true, 5857988.17, 0.69000, 90, #datetime(2025,8,6,0,0,0), 8260000, 0.41004, "high", 15, 1},
-				        {"DEMO-TRANSFER-009", 9, "Demo Player 09", "Attack", 30, #datetime(2025,5,9,0,0,0), 2025, "2024/25", 3, "Demo City FC", 4, "Demo Athletic", 11000000, true, 6250000.00, 0.76000, 90, #datetime(2025,8,7,0,0,0), 6438000, 0.03008, "high", 15, 0},
-				        {"DEMO-TRANSFER-010", 10, "Demo Player 10", "Defender", 22, #datetime(2025,5,10,0,0,0), 2025, "2024/25", 4, "Demo Athletic", 5, "Demo Rangers", 12100000, true, 10083333.33, 0.20000, 90, #datetime(2025,8,8,0,0,0), 12604000, 0.24998, "medium", 15, 1},
-				        {"DEMO-TRANSFER-011", 11, "Demo Player 11", "Midfield", 29, #datetime(2025,5,11,0,0,0), 2025, "2024/25", 5, "Demo Rangers", 6, "Demo Vale", 13200000, true, 10393700.79, 0.27000, 90, #datetime(2025,8,9,0,0,0), 9043000, -0.12995, "high", 15, 0},
-				        {"DEMO-TRANSFER-012", 12, "Demo Player 12", "Goalkeeper", 21, #datetime(2025,5,12,0,0,0), 2025, "2024/25", 6, "Demo Vale", 1, "Demo North FC", 14300000, true, 10671641.79, 0.34000, 90, #datetime(2025,8,10,0,0,0), 13980000, 0.31001, "high", 15, 1},
-				        {"DEMO-TRANSFER-013", 13, "Demo Player 13", "Attack", 29, #datetime(2025,5,13,0,0,0), 2025, "2024/25", 1, "Demo North FC", 2, "Demo Coast United", 15400000, true, 10921985.82, 0.41000, 90, #datetime(2025,8,11,0,0,0), 16055000, 0.46997, "high", 15, 1},
-				        {"DEMO-TRANSFER-014", 14, "Demo Player 14", "Defender", 21, #datetime(2025,5,14,0,0,0), 2025, "2024/25", 2, "Demo Coast United", 3, "Demo City FC", 16500000, true, 11148648.65, 0.48000, 90, #datetime(2025,8,12,0,0,0), 10591000, -0.05002, "medium", 15, 0},
-				        {"DEMO-TRANSFER-015", 15, "Demo Player 15", "Midfield", 28, #datetime(2025,5,15,0,0,0), 2025, "2024/25", 3, "Demo City FC", 4, "Demo Athletic", 17600000, true, 11354838.71, 0.55000, 90, #datetime(2025,8,13,0,0,0), 13512000, 0.18998, "high", 15, 1},
-				        {"DEMO-TRANSFER-016", 16, "Demo Player 16", "Goalkeeper", 20, #datetime(2025,5,16,0,0,0), 2025, "2024/25", 4, "Demo Athletic", 5, "Demo Rangers", 2200000, true, 1358024.69, 0.62000, 90, #datetime(2025,8,14,0,0,0), 1236000, -0.08985, "high", 15, 0},
-				        {"DEMO-TRANSFER-017", 17, "Demo Player 17", "Attack", 27, #datetime(2025,5,17,0,0,0), 2025, "2024/25", 5, "Demo Rangers", 6, "Demo Vale", 3300000, true, 1952662.72, 0.69000, 90, #datetime(2025,8,15,0,0,0), 2499000, 0.27979, "high", 15, 1},
-				        {"DEMO-TRANSFER-018", 18, "Demo Player 18", "Defender", 33, #datetime(2025,5,18,0,0,0), 2025, "2024/25", 6, "Demo Vale", 1, "Demo North FC", 4400000, true, 2500000.00, 0.76000, 90, #datetime(2025,8,16,0,0,0), 2650000, 0.06000, "medium", 15, 0},
-				        {"DEMO-TRANSFER-019", 19, "Demo Player 19", "Midfield", 25, #datetime(2025,5,19,0,0,0), 2025, "2024/25", 1, "Demo North FC", 2, "Demo Coast United", 5500000, true, 4583333.33, 0.20000, 90, #datetime(2025,8,17,0,0,0), 6325000, 0.38000, "high", 15, 1},
-				        {"DEMO-TRANSFER-020", 20, "Demo Player 20", "Goalkeeper", 32, #datetime(2025,5,20,0,0,0), 2025, "2024/25", 2, "Demo Coast United", 3, "Demo City FC", 6600000, true, 5196850.39, 0.27000, 90, #datetime(2025,8,18,0,0,0), 4313000, -0.17007, "high", 15, 0},
-				        {"DEMO-TRANSFER-021", 21, "Demo Player 21", "Attack", 24, #datetime(2025,5,21,0,0,0), 2025, "2024/25", 3, "Demo City FC", 4, "Demo Athletic", 7700000, true, 5746268.66, 0.34000, 90, #datetime(2025,8,19,0,0,0), 6551000, 0.14004, "high", 15, 0},
-				        {"DEMO-TRANSFER-022", 22, "Demo Player 22", "Defender", 31, #datetime(2025,5,22,0,0,0), 2025, "2024/25", 4, "Demo Athletic", 5, "Demo Rangers", 8800000, true, 6241134.75, 0.41000, 90, #datetime(2025,8,20,0,0,0), 7739000, 0.24000, "medium", 15, 1},
-				        {"DEMO-TRANSFER-023", 23, "Demo Player 23", "Midfield", 23, #datetime(2025,5,23,0,0,0), 2025, "2024/25", 5, "Demo Rangers", 6, "Demo Vale", 9900000, true, 6689189.19, 0.48000, 90, #datetime(2025,8,21,0,0,0), 6154000, -0.08001, "high", 15, 0},
-				        {"DEMO-TRANSFER-024", 24, "Demo Player 24", "Goalkeeper", 30, #datetime(2025,5,24,0,0,0), 2025, "2024/25", 6, "Demo Vale", 1, "Demo North FC", 11000000, true, 7096774.19, 0.55000, 90, #datetime(2025,8,22,0,0,0), 9439000, 0.33004, "high", 15, 1}
+				        {"DEMO-TRANSFER-001", 1, "Demo Player 01", "Attack", 20, #datetime(2025,5,1,0,0,0), 2025, "2024/25", 1, "Demo North FC", 2, "Demo Coast United", 2200000, true, 1833333.33, 20.00, 365, #datetime(2026,5,1,0,0,0), 1613000, -12.02, "observed", 20, 0},
+				        {"DEMO-TRANSFER-002", 2, "Demo Player 02", "Defender", 27, #datetime(2025,5,2,0,0,0), 2025, "2024/25", 2, "Demo Coast United", 3, "Demo City FC", 3300000, true, 2598425.20, 27.00, 365, #datetime(2026,5,2,0,0,0), 3482000, 34.00, "observed", 20, 1},
+				        {"DEMO-TRANSFER-003", 3, "Demo Player 03", "Midfield", 34, #datetime(2025,5,3,0,0,0), 2025, "2024/25", 3, "Demo City FC", 4, "Demo Athletic", 4400000, true, 3283582.09, 34.00, 365, #datetime(2026,5,3,0,0,0), 3546000, 7.99, "observed", 20, 0},
+				        {"DEMO-TRANSFER-004", 4, "Demo Player 04", "Goalkeeper", 26, #datetime(2025,5,4,0,0,0), 2025, "2024/25", 4, "Demo Athletic", 5, "Demo Rangers", 5500000, true, 3900709.22, 41.00, 365, #datetime(2026,5,4,0,0,0), 5656000, 45.00, "observed", 20, 1},
+				        {"DEMO-TRANSFER-005", 5, "Demo Player 05", "Attack", 33, #datetime(2025,5,5,0,0,0), 2025, "2024/25", 5, "Demo Rangers", 6, "Demo Vale", 6600000, true, 4459459.46, 48.00, 365, #datetime(2026,5,5,0,0,0), 5396000, 21.00, "observed", 20, 1},
+				        {"DEMO-TRANSFER-006", 6, "Demo Player 06", "Defender", 24, #datetime(2025,5,6,0,0,0), 2025, "2024/25", 6, "Demo Vale", 1, "Demo North FC", 7700000, true, 4967741.94, 55.00, 365, #datetime(2026,5,6,0,0,0), 4024000, -19.00, "observed", 20, 0},
+				        {"DEMO-TRANSFER-007", 7, "Demo Player 07", "Midfield", 31, #datetime(2025,5,7,0,0,0), 2025, "2024/25", 1, "Demo North FC", 2, "Demo Coast United", 8800000, true, 5432098.77, 62.00, 365, #datetime(2026,5,7,0,0,0), 6084000, 12.00, "observed", 20, 0},
+				        {"DEMO-TRANSFER-008", 8, "Demo Player 08", "Goalkeeper", 23, #datetime(2025,5,8,0,0,0), 2025, "2024/25", 2, "Demo Coast United", 3, "Demo City FC", 9900000, true, 5857988.17, 69.00, 365, #datetime(2026,5,8,0,0,0), 8260000, 41.00, "observed", 20, 1},
+				        {"DEMO-TRANSFER-009", 9, "Demo Player 09", "Attack", 30, #datetime(2025,5,9,0,0,0), 2025, "2024/25", 3, "Demo City FC", 4, "Demo Athletic", 11000000, true, 6250000.00, 76.00, 365, #datetime(2026,5,9,0,0,0), 6438000, 3.01, "observed", 20, 0},
+				        {"DEMO-TRANSFER-010", 10, "Demo Player 10", "Defender", 22, #datetime(2025,5,10,0,0,0), 2025, "2024/25", 4, "Demo Athletic", 5, "Demo Rangers", 12100000, true, 10083333.33, 20.00, 365, #datetime(2026,5,10,0,0,0), 12604000, 25.00, "observed", 20, 1},
+				        {"DEMO-TRANSFER-011", 11, "Demo Player 11", "Midfield", 29, #datetime(2025,5,11,0,0,0), 2025, "2024/25", 5, "Demo Rangers", 6, "Demo Vale", 13200000, true, 10393700.79, 27.00, 365, #datetime(2026,5,11,0,0,0), 9043000, -13.00, "observed", 20, 0},
+				        {"DEMO-TRANSFER-012", 12, "Demo Player 12", "Goalkeeper", 21, #datetime(2025,5,12,0,0,0), 2025, "2024/25", 6, "Demo Vale", 1, "Demo North FC", 14300000, true, 10671641.79, 34.00, 365, #datetime(2026,5,12,0,0,0), 13980000, 31.00, "observed", 20, 1},
+				        {"DEMO-TRANSFER-013", 13, "Demo Player 13", "Attack", 29, #datetime(2025,5,13,0,0,0), 2025, "2024/25", 1, "Demo North FC", 2, "Demo Coast United", 15400000, true, 10921985.82, 41.00, 365, #datetime(2026,5,13,0,0,0), 16055000, 47.00, "observed", 20, 1},
+				        {"DEMO-TRANSFER-014", 14, "Demo Player 14", "Defender", 21, #datetime(2025,5,14,0,0,0), 2025, "2024/25", 2, "Demo Coast United", 3, "Demo City FC", 16500000, true, 11148648.65, 48.00, 365, #datetime(2026,5,14,0,0,0), 10591000, -5.00, "observed", 20, 0},
+				        {"DEMO-TRANSFER-015", 15, "Demo Player 15", "Midfield", 28, #datetime(2025,5,15,0,0,0), 2025, "2024/25", 3, "Demo City FC", 4, "Demo Athletic", 17600000, true, 11354838.71, 55.00, 365, #datetime(2026,5,15,0,0,0), 13512000, 19.00, "observed", 20, 0},
+				        {"DEMO-TRANSFER-016", 16, "Demo Player 16", "Goalkeeper", 20, #datetime(2025,5,16,0,0,0), 2025, "2024/25", 4, "Demo Athletic", 5, "Demo Rangers", 2200000, true, 1358024.69, 62.00, 365, #datetime(2026,5,16,0,0,0), 1236000, -8.99, "observed", 20, 0},
+				        {"DEMO-TRANSFER-017", 17, "Demo Player 17", "Attack", 27, #datetime(2025,5,17,0,0,0), 2025, "2024/25", 5, "Demo Rangers", 6, "Demo Vale", 3300000, true, 1952662.72, 69.00, 365, #datetime(2026,5,17,0,0,0), 2499000, 27.98, "observed", 20, 1},
+				        {"DEMO-TRANSFER-018", 18, "Demo Player 18", "Defender", 33, #datetime(2025,5,18,0,0,0), 2025, "2024/25", 6, "Demo Vale", 1, "Demo North FC", 4400000, true, 2500000.00, 76.00, 365, #datetime(2026,5,18,0,0,0), 2650000, 6.00, "observed", 20, 0},
+				        {"DEMO-TRANSFER-019", 19, "Demo Player 19", "Midfield", 25, #datetime(2025,5,19,0,0,0), 2025, "2024/25", 1, "Demo North FC", 2, "Demo Coast United", 5500000, true, 4583333.33, 20.00, 365, #datetime(2026,5,19,0,0,0), 6325000, 38.00, "observed", 20, 1},
+				        {"DEMO-TRANSFER-020", 20, "Demo Player 20", "Goalkeeper", 32, #datetime(2025,5,20,0,0,0), 2025, "2024/25", 2, "Demo Coast United", 3, "Demo City FC", 6600000, true, 5196850.39, 27.00, 365, #datetime(2026,5,20,0,0,0), 4313000, -17.01, "observed", 20, 0},
+				        {"DEMO-TRANSFER-021", 21, "Demo Player 21", "Attack", 24, #datetime(2025,5,21,0,0,0), 2025, "2024/25", 3, "Demo City FC", 4, "Demo Athletic", 7700000, true, 5746268.66, 34.00, 365, #datetime(2026,5,21,0,0,0), 6551000, 14.00, "observed", 20, 0},
+				        {"DEMO-TRANSFER-022", 22, "Demo Player 22", "Defender", 31, #datetime(2025,5,22,0,0,0), 2025, "2024/25", 4, "Demo Athletic", 5, "Demo Rangers", 8800000, true, 6241134.75, 41.00, 365, #datetime(2026,5,22,0,0,0), 7739000, 24.00, "observed", 20, 1},
+				        {"DEMO-TRANSFER-023", 23, "Demo Player 23", "Midfield", 23, #datetime(2025,5,23,0,0,0), 2025, "2024/25", 5, "Demo Rangers", 6, "Demo Vale", 9900000, true, 6689189.19, 48.00, 365, #datetime(2026,5,23,0,0,0), 6154000, -8.00, "observed", 20, 0},
+				        {"DEMO-TRANSFER-024", 24, "Demo Player 24", "Goalkeeper", 30, #datetime(2025,5,24,0,0,0), 2025, "2024/25", 6, "Demo Vale", 1, "Demo North FC", 11000000, true, 7096774.19, 55.00, 365, #datetime(2026,5,24,0,0,0), 9439000, 33.00, "observed", 20, 1}
 				    }
 				)

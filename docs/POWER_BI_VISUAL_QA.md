@@ -1,55 +1,55 @@
-# Power BI visual QA and release gate (12 October 2026)
+# Football Power BI visual quality and release gate
 
-## Scope and authoritative source
+## Verified source contract — October 2026
 
-Both `powerbi/offline-demo/FootballPlayerAnalysis/` and `powerbi/workspace/FootballPlayerAnalysis/` are PBIP/PBIR sources. The **production** report queries BigQuery. The **offline demo** uses deterministic synthetic import fixtures. Do not confuse synthetic data with real football metrics.
+The authoritative production mart at `models/marts/fct_transfer_success_labels.sql` emits **only observed 365-day outcomes**, using **20 percentage points of market-value growth** as the binary success threshold. This is an *observational transfer outcome*, **not** an ML transfer-success prediction. The staging mart `fct_transfer_fixed_horizon_outcomes.sql` separately holds 90-, 180- and 365-day outcome records and their completeness statuses.
 
-The old `Report/sections/` directory is legacy metadata; the editable PBIR source for this review is `Report/definition/pages/*/visuals/*/visual.json`. Microsoft PBIR uses one `page.json` per page and one `visual.json` per visual. The old screenshot gallery is not proof of a successful current Desktop render.
+Both `powerbi/workspace/FootballPlayerAnalysis` and `powerbi/offline-demo/FootballPlayerAnalysis` now use matching 365-day measures for the Transfer Success Analysis page. Using a filter of `label_horizon_days = 90` on the production labels table would return no rows.
 
-## Source changes in this branch
+The offline demonstration uses 24 fictional transfer rows, with coherent fixture keys, fee-to-value percentage **points** (not fractions), 365-day valuation dates, observed result statuses, and 20% success flags. The demo currently contains 11 positive and 13 negative examples. It is not representative of source distributions or real players.
 
-| Page / control | Source issue | Applied change |
-|---|---|---|
-| Player Segmentation | 11 objects, no data visuals | Players by position; age-group distribution; goals by club; market value by position; page title |
-| Club & League Analysis | 11 objects, no data visuals | Club win rate; goal difference; competition matches; goals by competition; page title |
-| Transfer Success Prediction | no data visuals | Transfers by position; average fee; 0/1 success-rate chart; outcome status; page title |
-| Startup navigation | Transfer & Market Value selected by default | Home as active page |
-| Player Performance treemap | CountNonNull on assists/90 while labeling a rate | Average of assists/90 for treemap sizing |
-| Player Performance accent | teal present on selected visuals | Replaced known teal with NEXUS blue |
-| Synthetic transfer fixtures | same from/to club, impossible 1-24 success flags, same-day outcome | Rotated club destinations, recalculated synthetic fee/baseline ratios, ages and 90-day outcomes, binary success flags |
+## Transfer Success Analysis page — required evidence
 
-Changes to fixtures are *illustrative*, not validated football research. The new visible report charts have PBIR queryState bindings to existing tables/columns and stay inside 1280×720 page boundaries. The production BigQuery model partitions were not changed.
+The page includes four breakdowns (transfers by position, average fee, success rate, and follow-up status), plus these four indicators:
 
-## Repeatable source-level check (no CI quota)
+| Metric | Definition |
+|---|---|
+| Eligible transfers (365d) | Distinct transfer keys whose 365-day target plus 30-day observation window is before the latest valuation cutoff |
+| Observed outcomes (365d) | Eligible transfer keys with a non-missing observed 365-day outcome |
+| Follow-up coverage (365d) | Observed / eligible, in percent |
+| Reliability notice | Small observed sample (<30), low follow-up coverage (<80%), or observational-only reminder; none implies causal validity |
 
-From repository root, with Python 3.10+:
+The reporting cutoff is `MIN(TODAY(), MAX(source_latest_valuation_date))`. This avoids presenting recent, not-yet-observable transfers as failed follow-ups. Rates and outcomes must be reconciled to the live warehouse before production publication.
+
+## Historical images vs. present PBIR
+
+The six files in `docs/assets/screenshots/` belong to an older **green** presentation. They are retained as historical files and have been removed from the current README dashboard preview. They must not be used as current NEXUS screenshots. The two PBIR definitions have a NEXUS navy/blue theme, but have **not** been rendered in Desktop to verify actual contrast, content or labels.
+
+## Repeatable source-level checks (without CI quota)
+
+From repository root with Python 3.10+:
 
 ```powershell
+python scripts/check_powerbi_project.py
+python scripts/check_powerbi_offline_demo.py
 python scripts/audit_powerbi_visuals.py
 ```
 
-This inspects page ordering, page/visual names, missing data visuals, model field references, invalid root-level `visualContainerObjects`, layout overflow, visible demo watermarks, and a list of legacy teal colors. Exit code 1 means at least one structural error. A clean static check **does not** prove Power BI Desktop can render, refresh, or evaluate DAX successfully. Treat warnings as review items.
+The demo preflight includes a 365-day SQL-contract guard and fixtures reconciliation. The visual audit checks page count/order, visual binding fields, watermark presence on normal demo pages, basic bounds and obviously incorrect CountNonNull summarization. These scripts **do not** execute Power BI DAX, Microsoft custom visuals, Power Query or BigQuery queries; source validation is not Desktop acceptance.
 
-## Power BI Desktop acceptance checklist (not yet executed)
+## Required Power BI Desktop acceptance
 
-Use the **offline-demo** PBIP first, not the production PBIP.
+1. Open **offline demo** `powerbi/offline-demo/FootballPlayerAnalysis/FootballPlayerAnalysis.pbip`. Refresh all 33 inline fixture tables; no BigQuery credentials should be requested.
+2. Confirm Home opens initially. Test left-nav and Home links, plus hidden detail drillthroughs and both tooltips.
+3. Inspect every visible page, especially the three rebuilt pages. Verify chart types, populated data, units, titles, native and custom visuals, tooltips, axes and cross-filter behavior.
+4. Verify Transfer Success Analysis has four chart panels **and** four cohort/reliability cards. The success threshold is 20% over 365 days, not 90-day, and observed/eligible counts must reconcile. The demo reliability warning must not suggest the sample is decision-ready.
+5. Inspect Player Performance rates and Top N charts to ensure counts are not used in place of per-90 values. Check panel contrast against NEXUS dark/light surfaces and ensure no teal/green fragments remain.
+6. Verify the `SYNTHETIC DEMO / NOT REAL DATA` watermark is readable on **all 11 full-size pages**, including when images are cropped.
+7. Capture authentic current Desktop-rendered screenshots only after passes 1–6. Do not edit old images to simulate success.
+8. On the production PBIP, authenticate BigQuery separately; reconcile source counts, transfer cohorts, labels and costs to governed SQL; check that DAX uses the populated 365-day label mart.
 
-1. Open `powerbi/offline-demo/FootballPlayerAnalysis/FootballPlayerAnalysis.pbip`; preserve *exact* error details if a parsing/model problem occurs.
-2. Refresh the semantic model locally. Verify all 33 import tables and no unexpected BigQuery authentication requests.
-3. Open each of the 11 full-size pages; review every KPI, chart, segment, axis scale, title and data label. The two tooltip pages must behave as tooltips, not standard tabs.
-4. Verify new pages: four rendered data charts each (Segmentation, Club/League, Transfer Success); confirm positive/negative signs, rates bounded by 0–1 where applicable, and filters propagate through relationships as expected.
-5. Check that the Home page opens first, page-navigation action buttons work, and the hidden drillthrough detail pages are reachable only by intended interactions.
-6. Check the **SYNTHETIC DEMO / NOT REAL DATA** watermark remains visible on every full-size screenshot and the NEXUS navy/blue contrast is legible; exclude green/teal remnants.
-7. Validate report-page tooltips, bookmarks, slicers and any custom visuals. A JSON query binding does not guarantee that a third-party custom visual package is installed.
-8. Collect actual Desktop-rendered screenshots at 100% scale. Replace placeholder/gallery images only after the visual pass.
+## Known blockers and release decision
 
-For **production**, separately authenticate BigQuery and reconcile at least the core `Total Goals`, `Total Assists`, `Total Minutes`, transfer counts, market value and model-quality measures to governed SQL/warehouse outputs. Do not extrapolate observed demo fixtures to production claims.
+The authorized Desktop Commander device was **offline at the latest check**. No open/refresh/render tests or real BigQuery reconciliation have been completed. Source-level structural tests can run without CI quotas; **passing them is insufficient for visual signoff**. The remaining synthetic marts are illustrative and may contain other implausible relationships or time-series values.
 
-## Remaining release blockers
-
-- A Power BI Desktop open/refresh pass is required. As of this review the authorized Desktop Commander machine is offline.
-- The completeness, metric plausibility and time-series coherence of all 33 **synthetic** tables are not fully verified; this branch corrects the identified transfer counterexamples but is **not** a general data-quality certification.
-- Actual screenshots and accessibility/contrast inspection require rendered visuals.
-- Confirm custom visual compatibility and model/visual performance locally; no CI workflows were changed.
-
-**Release decision: HOLD for Desktop verification.** Source changes can be reviewed or merged without representing the report as rendered or production-validated.
+**Decision: HOLD portfolio release until a local Desktop evidence pass is recorded.**

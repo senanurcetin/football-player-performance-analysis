@@ -4,6 +4,7 @@ import json
 import re
 import sys
 from pathlib import Path
+from datetime import date
 
 ROOT = Path(__file__).resolve().parents[1]
 DEMO = ROOT / "powerbi" / "offline-demo" / "FootballPlayerAnalysis"
@@ -100,6 +101,86 @@ def load_inline_fixture(table_file):
     return output
 
 
+
+
+def parse_fixture_date(value):
+    """Read an inline Power Query #datetime literal without evaluating M."""
+    match = re.fullmatch(r"#datetime\((\d+),\s*(\d+),\s*(\d+),\s*\d+,\s*\d+,\s*\d+\)", str(value))
+    if not match:
+        raise ValueError(f"Unexpected fixture datetime: {value}")
+    return date(*(int(v) for v in match.groups()))
+
+
+def check_365_day_transfer_contract(fixtures):
+    """Check synthetic outcome arithmetic against the production 365d SQL contract."""
+    sql_path = ROOT / "models" / "marts" / "fct_transfer_success_labels.sql"
+    sql = sql_path.read_text(encoding="utf-8-sig")
+    check("365 as label_horizon_days" in sql and "20 as success_threshold_pct" in sql,
+          "Source SQL contract changed; review the 365-day Power BI model")
+    check("where outcomes.has_365d_outcome" in sql,
+          "Transfer labels are no longer restricted to observed outcomes")
+    for mode in ("offline-demo", "workspace"):
+        label_model = ROOT / "powerbi" / mode / "FootballPlayerAnalysis" / "Model" / "definition" / "tables" / "fct_transfer_success_labels.tmdl"
+        content = label_model.read_text(encoding="utf-8-sig")
+        check(content.count("label_horizon_days] = 365") == 3,
+              f"{mode} transfer measures must all use the SQL 365-day horizon")
+        check("label_horizon_days] = 90" not in content,
+              f"{mode} contains stale 90-day transfer measures")
+
+    labels = fixtures.get("fct_transfer_success_labels", [])
+    horizons = fixtures.get("fct_transfer_fixed_horizon_outcomes", [])
+    transfers = fixtures.get("fct_transfers", [])
+    check(len(labels) == 24 and len(horizons) == 24 and len(transfers) == 24,
+          "Expected 24 deterministic transfer-demo rows per fact table")
+    by_horizon = {v["transfer_key"]: v for v in horizons}
+    by_transfer = {v["player_id"]: v for v in transfers}
+    check(len(by_horizon) == len(horizons), "Duplicate horizon transfer_key")
+    check(len(by_transfer) == len(transfers), "Duplicate demo transfer player_id")
+    flags = set()
+    for row in labels:
+        key = row["transfer_key"]
+        other = by_horizon.get(key)
+        tx = by_transfer.get(row["player_id"])
+        if not other or not tx:
+            errors.append(f"Missing transfer/fixed horizon row for {key}")
+            continue
+        base = row["market_value_baseline"]
+        fee = row["transfer_fee"]
+        result = row["outcome_market_value"]
+        if not isinstance(base, (int, float)) or base <= 0:
+            errors.append(f"{key}: invalid market value baseline")
+            continue
+        fee_pct = (fee / base - 1) * 100
+        outcome_pct = (result / base - 1) * 100
+        check(row["label_horizon_days"] == 365, f"{key}: wrong label horizon")
+        check(row["success_threshold_pct"] == 20, f"{key}: wrong success threshold")
+        check(row["label_status"] == "observed", f"{key}: wrong observed label")
+        check(row["from_club_id"] != row["to_club_id"], f"{key}: same-club transfer")
+        check((parse_fixture_date(row["outcome_valuation_date"]) -
+               parse_fixture_date(row["transfer_date"])).days == 365,
+              f"{key}: outcome date does not match 365 days")
+        check(abs(row["market_value_change_at_horizon_pct"] - outcome_pct) <= 0.02,
+              f"{key}: expected percentage points, not fractional returns")
+        check(abs(row["fee_market_value_difference_pct"] - fee_pct) <= 0.02,
+              f"{key}: fee premium uses wrong percent unit")
+        expected = int(outcome_pct >= 20)
+        flags.add(row["is_successful_transfer"])
+        check(row["is_successful_transfer"] == expected,
+              f"{key}: incorrect binary success label")
+        check(other["has_365d_outcome"] is True and other["outcome_365d_status"] == "observed",
+              f"{key}: inconsistent horizon status")
+        check(other["market_value_365d"] == result, f"{key}: outcome market-value mismatch")
+        check(abs(other["market_value_change_365d_pct"] - outcome_pct) <= 0.02,
+              f"{key}: fixed horizon percent mismatch")
+        check(abs(tx["fee_market_value_difference_pct"] - fee_pct) <= 0.02,
+              f"{key}: fact transfer fee percentage mismatch")
+        check(abs(tx["fee_market_value_difference"] - (fee - base)) <= 0.02,
+              f"{key}: fact transfer fee difference mismatch")
+        check((parse_fixture_date(other["source_latest_valuation_date"]) -
+               parse_fixture_date(other["target_365d_date"])).days >= 30,
+              f"{key}: demo outcome cannot yet be observed")
+    check(flags == {0, 1}, "Demo must exercise both successful and unsuccessful outcomes")
+
 def check_demo_relationships(demo_tables):
     """Check fixture values and their keys; this is NOT a Power BI engine test."""
     fixtures = {
@@ -184,6 +265,8 @@ def check_demo_relationships(demo_tables):
             check(abs(row["avg_goals_per_match"] -
                       row["total_goals"] / row["matches_played"]) < 0.00002,
                   f"Competition {row['competition_id']} goal average mismatch")
+
+    check_365_day_transfer_contract(fixtures)
 
     return len(fixtures), count
 
