@@ -224,6 +224,19 @@
             }
           }
         }
+      ],
+      "general": [
+        {
+          "properties": {
+            "altText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Summarizes average prediction, upside, player count and number of high-upside predictions for the current context.'"
+                }
+              }
+            }
+          }
+        }
       ]
     }
   }

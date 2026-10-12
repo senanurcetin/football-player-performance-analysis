@@ -312,6 +312,19 @@
             }
           }
         }
+      ],
+      "general": [
+        {
+          "properties": {
+            "altText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Compares average transfer fee with the percentage premium or discount versus reference market value by position.'"
+                }
+              }
+            }
+          }
+        }
       ]
     }
   }
