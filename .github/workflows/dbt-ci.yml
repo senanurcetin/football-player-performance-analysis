@@ -1,39 +1,8 @@
 name: dbt CI
 
+# GitHub Actions minutes are exhausted: offline checks run automatically on
+# CircleCI. Manual GitHub runs require an explicit repository variable opt-in.
 on:
-  push:
-    branches: [main]
-    paths:
-      - ".github/workflows/**"
-      - "models/**"
-      - "analyses/**"
-      - "docs/**"
-      - "powerbi/**"
-      - "tests/**"
-      - "macros/**"
-      - "seeds/**"
-      - "snapshots/**"
-      - "scripts/**"
-      - "requirements*.txt"
-      - "dbt_project.yml"
-      - "selectors.yml"
-  pull_request:
-    paths:
-      - ".github/workflows/**"
-      - "models/**"
-      - "analyses/**"
-      - "docs/**"
-      - "powerbi/**"
-      - "tests/**"
-      - "macros/**"
-      - "seeds/**"
-      - "snapshots/**"
-      - "scripts/**"
-      - "requirements*.txt"
-      - "dbt_project.yml"
-      - "selectors.yml"
-  schedule:
-    - cron: "0 3 * * *"
   workflow_dispatch:
 
 permissions:
@@ -46,7 +15,7 @@ concurrency:
 jobs:
   offline-preflight:
     name: Offline dbt source verification
-    if: github.event_name != 'schedule'
+    if: vars.ENABLE_GITHUB_ACTIONS_CI == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 8
     steps:
@@ -70,7 +39,7 @@ jobs:
   validate:
     # BigQuery CI is intentionally opt-in. A missing GCP secret must never
     # make the independent offline CI red on every push or PR.
-    if: vars.ENABLE_BIGQUERY_CI == 'true'
+    if: vars.ENABLE_GITHUB_ACTIONS_CI == 'true' && vars.ENABLE_BIGQUERY_CI == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 30
     env:
