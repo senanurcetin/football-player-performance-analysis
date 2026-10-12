@@ -45,7 +45,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'👥 Player Segmentation'"
+                  "Value": "'Player Segmentation'"
                 }
               }
             },
@@ -117,7 +117,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'👥 Player Segmentation'"
+                  "Value": "'Player Segmentation'"
                 }
               }
             }
@@ -131,7 +131,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'👥 Player Segmentation'"
+                  "Value": "'Player Segmentation'"
                 }
               }
             },
