@@ -4,10 +4,16 @@
 
 ## What is included
 
-- All original PBIR report pages, visuals, relationships and DAX expressions.
+- All original PBIR report pages, relationships and DAX expressions, plus **12 new query-bound analytic visuals and three page headings** on previously empty Segmentation, Club/League and Transfer Success pages.
 - A parallel semantic model in which **33 external BigQuery M partitions** are replaced by small, deterministic inline Power Query `#table` data fixtures.
 - All 13 page names include a clear `[DEMO]` label, and Home states that the values are synthetic.
 - A blue/navy NEXUS home design. No credentials or Google Cloud account are needed to evaluate inline sample tables.
+
+## Repeatable source checks
+
+From the repository root, run `python scripts/audit_powerbi_visuals.py` to inspect structural PBIR integrity and referenced fields in both editions. The release test plan and precise Desktop limitations are in [`docs/POWER_BI_VISUAL_QA.md`](../../docs/POWER_BI_VISUAL_QA.md).
+
+The Transfer Success charts explicitly use **90-day DAX measures** to avoid mixing different label horizons. Demo transfer fixtures have been corrected for binary success status and consistent direction/date arithmetic, but the 33-table demo is still synthetic and not end-to-end statistically validated.
 
 ## How to run after source verification
 

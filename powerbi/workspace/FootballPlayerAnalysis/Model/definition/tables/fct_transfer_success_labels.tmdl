@@ -1,5 +1,26 @@
 table fct_transfer_success_labels
 
+	measure 'Transfers (90d)' =
+			CALCULATE(
+			    DISTINCTCOUNT(fct_transfer_success_labels[transfer_key]),
+			    fct_transfer_success_labels[label_horizon_days] = 90
+			)
+		formatString: 0
+
+	measure 'Average Transfer Fee (90d)' =
+			CALCULATE(
+			    AVERAGE(fct_transfer_success_labels[transfer_fee]),
+			    fct_transfer_success_labels[label_horizon_days] = 90
+			)
+		formatString: "#,0"
+
+	measure 'Transfer Success Rate (90d)' =
+			CALCULATE(
+			    AVERAGE(fct_transfer_success_labels[is_successful_transfer]),
+			    fct_transfer_success_labels[label_horizon_days] = 90
+			)
+		formatString: 0.0%
+
 	column transfer_key
 		dataType: string
 		summarizeBy: none
