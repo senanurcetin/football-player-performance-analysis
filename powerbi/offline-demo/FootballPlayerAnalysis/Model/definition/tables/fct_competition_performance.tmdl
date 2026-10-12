@@ -83,12 +83,12 @@ table fct_competition_performance
 				#table(
 				    type table [#"competition_id" = text, #"competition_name" = text, #"competition_type" = text, #"country_name" = text, #"confederation" = text, #"matches_played" = Int64.Type, #"total_goals" = Int64.Type, #"avg_goals_per_match" = number, #"club_participation_count" = Int64.Type, #"avg_attendance" = number],
 				    {
-				        {"DEMO-COMP-1", "Demo Premier Division", "Demo competition type", "England", "Demo confederation", 120, 235, "1.95833", 6, 18500},
-				        {"DEMO-COMP-2", "Demo National League", "Demo competition type", "Germany", "Demo confederation", 136, 256, "1.88235", 6, 19900},
-				        {"DEMO-COMP-3", "Demo Continental Cup", "Demo competition type", "France", "Demo confederation", 152, 277, "1.82237", 6, 21300},
-				        {"DEMO-COMP-4", "Demo Championship", "Demo competition type", "Spain", "Demo confederation", 168, 298, "1.77381", 6, 22700},
-				        {"DEMO-COMP-5", "Demo Coastal League", "Demo competition type", "England", "Demo confederation", 184, 319, "1.73370", 6, 24100},
-				        {"DEMO-COMP-6", "Demo Central League", "Demo competition type", "Germany", "Demo confederation", 200, 340, "1.70000", 6, 25500}
+				        {"DEMO-COMP-1", "Demo Premier Division", "Demo competition type", "England", "Demo confederation", 120, 235, 1.95833, 6, 18500},
+				        {"DEMO-COMP-2", "Demo National League", "Demo competition type", "Germany", "Demo confederation", 136, 256, 1.88235, 6, 19900},
+				        {"DEMO-COMP-3", "Demo Continental Cup", "Demo competition type", "France", "Demo confederation", 152, 277, 1.82237, 6, 21300},
+				        {"DEMO-COMP-4", "Demo Championship", "Demo competition type", "Spain", "Demo confederation", 168, 298, 1.77381, 6, 22700},
+				        {"DEMO-COMP-5", "Demo Coastal League", "Demo competition type", "England", "Demo confederation", 184, 319, 1.73370, 6, 24100},
+				        {"DEMO-COMP-6", "Demo Central League", "Demo competition type", "Germany", "Demo confederation", 200, 340, 1.70000, 6, 25500}
 				    }
 				)
 
