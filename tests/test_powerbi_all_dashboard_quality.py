@@ -241,6 +241,39 @@ class EveryDashboardSourceContract(unittest.TestCase):
             (ROOT / "docs" / "assets" / "football-analytics-cover.svg").exists()
         )
 
+    def test_primary_analytics_keep_nexus_accents_not_old_green(self):
+        primary = {
+            "d2bc1e6a078c5c5b125c": [
+                "6c68e020599db75da880", "750474d7071b93a004b5",
+                "81f5bb0995b4428b2b0d", "a61aa3c509a6b3e3b1b4",
+            ],
+            "292e3d92e92693c05047": [
+                "0839d8ed3d7479a01f32", "5bbe3e0865c55bbeade1",
+                "1c4d73ece1a64f57c0fc", "9c728e8d682165354da4",
+            ],
+            "1f4c5c8000149b2e2be8": [
+                "4d304949cba7dd247021", "8b67c00a69b995fd3db6",
+                "3ccd5a45594119af9bb7", "be92253a5130bdec9028",
+            ],
+            "MLModelPerformance": [
+                "44ef7cfce32d97d2bb52", "6a52894b1eadaab185b4",
+                "9cac2684a07ca1c85ca6", "162f01fa99bf4b660a1e",
+            ],
+        }
+        legacy = ("#285D3D", "#F6FBF5", "#EAF6E8",
+                  "#8BC99A", "#6FA56D", "#296393", "#496B98")
+        for mode in MODES:
+            for page, ids in primary.items():
+                for visual_id in ids:
+                    with self.subTest(mode=mode, page=page, visual=visual_id):
+                        path = (project(mode) / "Report" / "definition" /
+                                "pages" / page / "visuals" / visual_id / "visual.json")
+                        node = obj(path)
+                        self.assertTrue(node["visual"]["query"]["queryState"])
+                        raw = path.read_text(encoding="utf-8-sig").upper()
+                        for bad in legacy:
+                            self.assertNotIn(bad, raw)
+
     def test_ml_dashboard_no_legacy_green_accent(self):
         legacy = ("#F6FBF5", "#EAF6E8")
         ml_visuals = (
