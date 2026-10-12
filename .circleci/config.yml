@@ -19,9 +19,22 @@ jobs:
       - run:
           name: Check dbt YAML and model Jinja sources
           command: python scripts/check_offline_ci.py
+  powerbi-project-preflight:
+    docker:
+      - image: cimg/python:3.11
+    resource_class: small
+    steps:
+      - checkout
       - run:
           name: Verify production PBIR structure and visual JSON
           command: python scripts/check_powerbi_project.py
+
+  powerbi-demo-preflight:
+    docker:
+      - image: cimg/python:3.11
+    resource_class: small
+    steps:
+      - checkout
       - run:
           name: Verify offline Power BI fixtures, relationships and demo labels
           command: python scripts/check_powerbi_offline_demo.py
@@ -52,4 +65,6 @@ workflows:
   verify-offline-source:
     jobs:
       - dbt-source-preflight
+      - powerbi-project-preflight
+      - powerbi-demo-preflight
       - ml-contract-smoke
