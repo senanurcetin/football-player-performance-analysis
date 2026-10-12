@@ -17,6 +17,25 @@ No fluorescent green or green/teal should be used in the palette. Keep the seman
 
 The Power BI report includes native graphics that may have their own explicit fill/font formatting; change those per-visual settings separately and check dark/light contrast in Power BI Desktop.
 
+## Page-specific editorial art direction (2026-10-13)
+
+**One report; no duplicate slide presentations.** All native Power BI page, DAX, query and navigation bindings remain editable in the two intentional editions (BigQuery production workspace and deterministic offline-demo).
+
+| Page | Canvas | Art direction |
+| --- | --- | --- |
+| Home / Closing | `#071829` | Dark editorial opening and closing |
+| Player Performance | `#091E33` | Deep-blue tactical operations dashboard |
+| Player Segmentation | `#EDEBFA` | Lavender audience/cohort analysis; 60/40 then 40/60 chart balance |
+| Club & League | `#E7F2FD` | Ice-blue club benchmarking; 45/55 then 60/40 chart balance |
+| Transfer Success 365d | `#E9F1FA` | Neutral blue-white evidence pages |
+| Transfer & Market Value | `#E8ECF8` | Cool slate-blue financial analysis |
+| Player Market Value Prediction | `#E7EFFB` | Light blue forecast/valuation surface |
+| ML Model Reliability | `#E6EDF9` | Pale technical blue and high data contrast |
+| Transfer Detail / Prediction Detail | `#EBEFF9` / `#E8EBF6` | Muted contextual drillthroughs |
+| Transfer Tooltip / Prediction Tooltip | `#E7F0FC` / `#E8ECFA` | Legible 560×320 hover explanations |
+
+These colors belong to the NEXUS navy, blue and lavender family. Chart components remain white with dark navy labels and blue/lavender data marks. Page changes are performed in **real PBIR JSON**, not images or rendered marketing slides. Final contrast/overflow must still be checked in Power BI Desktop.
+
 ## Versioned, report-wide implementation
 
 The current source theme is `Report/StaticResources/RegisteredResources/NEXUSMidnight-20261012-v2.json`, registered in `Report/definition/report.json` in **both** the workspace and offline-demo reports. It defines standard visual-title typography, white content panels and subtle blue borders for 13 native visual types. It is a fallback: explicit `visual.json` formatting can take precedence, so further hardcoded color sweeps and Desktop contrast checks remain required.

@@ -11,9 +11,7 @@
 
 
 **Reviewer quick brief:** [Project evidence, model baselines and contribution attribution](docs/hiring-summary.md).
-![Football Player Performance Analysis — editorial illustration](docs/assets/football-analytics-cover.svg)
-
-> **Editorial cover, not a Power BI screenshot.** The six historical captures are archived, not verified output from the current NEXUS PBIR. See the [dashboard source overview](#dashboard-preview) and [Desktop verification gate](docs/POWER_BI_VISUAL_QA.md).
+**Power BI source:** [Editable workspace report](powerbi/workspace/FootballPlayerAnalysis) · [Offline-demo report](powerbi/offline-demo/FootballPlayerAnalysis) · [Design and Desktop validation](docs/POWER_BI_VISUAL_QA.md). The repository contains the current editable report rather than outdated slide/screenshot presentations.
 
 
 <p align="center">
@@ -87,13 +85,15 @@ Full lineage, grains, and model responsibilities → [Architecture & Model Catal
 
 **Current release status: Power BI Desktop render verification pending.** The repository contains two PBIP editions: the BigQuery-backed [production report](powerbi/workspace/FootballPlayerAnalysis/) and a separately labeled [offline synthetic demo](powerbi/offline-demo/). Both report definitions have been updated to NEXUS navy-and-blue; a local Desktop open/refresh and page-by-page screenshot review is still required.
 
-The six files in [historical screenshots](docs/assets/screenshots/) depict a **legacy green-themed version**. They are retained only as an archive and are **not screenshots of the current PBIR**, nor evidence that current metrics or visuals render correctly. They are deliberately not shown as current portfolio previews.
+**Legacy screenshots removed:** the six green-era PNG captures were removed rather than archived in this repo. The Power BI report is the canonical editable deliverable; current screenshot evidence is deferred until Desktop refresh and visual acceptance.
+
+**NEXUS editorial report refresh (13 October 2026):** The 13 real PBIR pages now use page-specific navy, ice-blue and lavender identities instead of a single repeated canvas. The Player Segmentation, Club & League and 365-day Transfer Success pages use different asymmetric, non-overlapping native data-chart layouts. ML Model Reliability now appears before the final Closing page, and decorative emoji prefixes were removed from page names. Workspace and synthetic offline-demo remain the only two editable data-source editions, not duplicate slide presentations. No synthetic screenshot or static replacement report was added.
 
 **Current report contents (source-verified):** Home; Player Performance; Player Segmentation (position, age groups, goals and value); Club & League (win rate, goal difference, competition activity); Transfer Success Analysis (observed 365-day outcomes, fee, coverage and reliability); Transfer & Market Value; Player Market Value Prediction; ML Model Reliability; Closing; two hidden detail pages; and two tooltip pages.
 
 **Native PBIR design update (12 October 2026):** The four live-bound data charts on the 365-day Transfer Success page were edited directly in **both** report projects: NEXUS blue/lavender series, readable chart titles and labels, and consistent card borders. These are changes to editable Power BI visuals—not illustrated concept covers. [Source specifications and Desktop test gate](docs/POWER_BI_VISUAL_QA.md).
 
-**Additional native report design (13 October 2026):** Eight data-bound charts on **Player Segmentation** and **Club & League Analysis** now use the same readable title, data-label and panel-radius settings in both the BigQuery workspace and synthetic offline demo PBIR sources. Original measure/category bindings and chart types were preserved. The historical screenshots below have not been replaced because a current Power BI Desktop render is still unverified.
+**Additional native report design (13 October 2026):** Eight data-bound charts on **Player Segmentation** and **Club & League Analysis** now use the same readable title, data-label and panel-radius settings in both the BigQuery workspace and synthetic offline demo PBIR sources. Original measure/category bindings and chart types were preserved. The obsolete screenshot set has been deleted; new evidence will only be captured from a verified Power BI Desktop render.
 
 The transfer-success visualizations use observed transfer outcomes, **not machine-learning predictions**. Their label source is the 365-day BigQuery mart with a 20-percentage-point value-growth threshold. Demo fixtures are synthetic; no sample result can be cited as a real football outcome.
 
@@ -345,7 +345,6 @@ Full test results and known source limitations → [Data Quality](docs/DATA_QUAL
 │   ├── MODEL_SPEC.md
 │   └── MEASURES.dax
 ├── docs/
-│   ├── assets/screenshots/                 # Dashboard screenshots
 │   ├── ARCHITECTURE.md
 │   ├── PLAYER_MARKET_VALUE_ML.md
 │   ├── TRANSFER_MARKET_VALUE_ANALYSIS.md

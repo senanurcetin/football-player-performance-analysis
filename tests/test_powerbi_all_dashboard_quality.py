@@ -28,6 +28,21 @@ PAGES = {
 TOOLTIPS = {"tooltip_transfer_p011", "tooltip_pred_p012"}
 DRILLTHROUGHS = {"91edaa93bbbdbbc8e854", "MLPlayerDetail"}
 DARK = {"5cb4db7e746975558322", "c83db10673c28e3346ae"}
+PAGE_CANVASES = {
+    "5cb4db7e746975558322": "#071829",  # Executive home / dark navy
+    "d2bc1e6a078c5c5b125c": "#091E33",  # Player performance / data control room
+    "24c53960ddc19662d824": "#EDEBFA",  # Segmentation / lavender
+    "25f58efd2bb140e62be9": "#E7F2FD",  # Clubs / blue
+    "4c63ad904b1db6e0d156": "#E9F1FA",  # Transfer outcomes / neutral
+    "292e3d92e92693c05047": "#E8ECF8",  # Transfer market / blue slate
+    "1f4c5c8000149b2e2be8": "#E7EFFB",  # Player valuation / blue
+    "MLModelPerformance": "#E6EDF9",  # ML reliability / technical blue
+    "c83db10673c28e3346ae": "#071829",  # Closing / navy
+    "91edaa93bbbdbbc8e854": "#EBEFF9",  # Transfer detail / slate lavender
+    "MLPlayerDetail": "#E8EBF6",  # Prediction detail / soft lavender
+    "tooltip_transfer_p011": "#E7F0FC",  # Transfer tooltip / pale blue
+    "tooltip_pred_p012": "#E8ECFA",  # Prediction tooltip / blue lavender
+}
 THEME = "NEXUSMidnight-20261012-v2.json"
 CHART_TYPES = {
     "clusteredBarChart", "clusteredColumnChart", "lineChart", "scatterChart",
@@ -62,6 +77,15 @@ class EveryDashboardSourceContract(unittest.TestCase):
                 self.assertEqual(len(ids), len(set(ids)))
                 self.assertEqual(ids[0], "5cb4db7e746975558322")
                 self.assertEqual(manifest["activePageName"], ids[0])
+                self.assertLess(
+                    ids.index("MLModelPerformance"),
+                    ids.index("c83db10673c28e3346ae"),
+                    "Technical ML reliability evidence belongs before closing",
+                )
+                self.assertEqual(
+                    ids.index("c83db10673c28e3346ae"), 8,
+                    "Closing must be the last normal full-size presentation page",
+                )
                 self.assertEqual(
                     {p.parent.name for p in pages.glob("*/page.json")},
                     set(ids),
@@ -74,11 +98,12 @@ class EveryDashboardSourceContract(unittest.TestCase):
                 with self.subTest(mode=mode, page=page_id):
                     page = obj(root / page_id / "page.json")
                     self.assertEqual(page["name"], page_id)
-                    self.assertEqual(literal_color(page),
-                        "#071829" if page_id in DARK else (
-                            "#091E33" if page_id == "d2bc1e6a078c5c5b125c"
-                            else "#EAF1FA"
-                        ))
+                    self.assertEqual(literal_color(page), PAGE_CANVASES[page_id])
+                    self.assertNotRegex(
+                        page["displayName"],
+                        r"[⭐👥🏆💰📊]",
+                        "Decorative legacy emoji is not an editorial page title",
+                    )
                     if mode == "offline-demo":
                         self.assertTrue(page["displayName"].startswith("[DEMO]"))
                     else:
@@ -208,6 +233,46 @@ class EveryDashboardSourceContract(unittest.TestCase):
                     self.assertEqual(results[0], results[1])
 
 
+
+    def test_legacy_presentation_artifacts_are_not_shipped(self):
+        legacy_gallery = ROOT / "docs" / "assets" / "screenshots"
+        self.assertFalse(legacy_gallery.exists())
+        self.assertFalse(
+            (ROOT / "docs" / "assets" / "football-analytics-cover.svg").exists()
+        )
+
+    def test_primary_analytics_keep_nexus_accents_not_old_green(self):
+        primary = {
+            "d2bc1e6a078c5c5b125c": [
+                "6c68e020599db75da880", "750474d7071b93a004b5",
+                "81f5bb0995b4428b2b0d", "a61aa3c509a6b3e3b1b4",
+            ],
+            "292e3d92e92693c05047": [
+                "0839d8ed3d7479a01f32", "5bbe3e0865c55bbeade1",
+                "1c4d73ece1a64f57c0fc", "9c728e8d682165354da4",
+            ],
+            "1f4c5c8000149b2e2be8": [
+                "4d304949cba7dd247021", "8b67c00a69b995fd3db6",
+                "3ccd5a45594119af9bb7", "be92253a5130bdec9028",
+            ],
+            "MLModelPerformance": [
+                "44ef7cfce32d97d2bb52", "6a52894b1eadaab185b4",
+                "9cac2684a07ca1c85ca6", "162f01fa99bf4b660a1e",
+            ],
+        }
+        legacy = ("#285D3D", "#F6FBF5", "#EAF6E8",
+                  "#8BC99A", "#6FA56D", "#296393", "#496B98")
+        for mode in MODES:
+            for page, ids in primary.items():
+                for visual_id in ids:
+                    with self.subTest(mode=mode, page=page, visual=visual_id):
+                        path = (project(mode) / "Report" / "definition" /
+                                "pages" / page / "visuals" / visual_id / "visual.json")
+                        node = obj(path)
+                        self.assertTrue(node["visual"]["query"]["queryState"])
+                        raw = path.read_text(encoding="utf-8-sig").upper()
+                        for bad in legacy:
+                            self.assertNotIn(bad, raw)
 
     def test_ml_dashboard_no_legacy_green_accent(self):
         legacy = ("#F6FBF5", "#EAF6E8")

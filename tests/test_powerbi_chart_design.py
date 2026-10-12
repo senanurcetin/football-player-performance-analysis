@@ -33,6 +33,23 @@ ADDITIONAL_PAGES = {
 }
 
 
+ASYMMETRIC_LAYOUT = {
+    "24c53960ddc19662d824": [
+        (105, 121, 660, 256), (789, 121, 444, 256),
+        (105, 403, 458, 280), (587, 403, 646, 280),
+    ],
+    "25f58efd2bb140e62be9": [
+        (105, 121, 490, 256), (619, 121, 614, 256),
+        (105, 403, 640, 280), (769, 403, 464, 280),
+    ],
+}
+
+
+TRANSFER_SUCCESS_LAYOUT = [
+    (105, 191, 630, 220), (759, 191, 474, 220),
+    (105, 432, 670, 260), (799, 432, 434, 260),
+]
+
 def visual(mode, name, page=PAGE):
     path = (ROOT / "powerbi" / mode / "FootballPlayerAnalysis" /
             "Report" / "definition" / "pages" / page / "visuals" / name / "visual.json")
@@ -94,6 +111,42 @@ class TransferDashboardDesignTests(unittest.TestCase):
                     self.assertEqual(
                         literal(labels["color"]["solid"]["color"]), "'#122942'"
                     )
+
+    def test_distinct_page_compositions_are_valid_and_data_bound(self):
+        for page, expected in ADDITIONAL_PAGES.items():
+            rects = []
+            for i, name in enumerate(expected):
+                offline = visual("offline-demo", name, page)
+                workspace = visual("workspace", name, page)
+                self.assertEqual(offline["position"], workspace["position"])
+                position = offline["position"]
+                rect = tuple(position[k] for k in ("x", "y", "width", "height"))
+                self.assertEqual(rect, ASYMMETRIC_LAYOUT[page][i])
+                self.assertLessEqual(position["x"] + position["width"], 1280)
+                self.assertLessEqual(position["y"] + position["height"], 720)
+                rects.append(rect)
+                self.assertEqual(
+                    offline["visual"]["query"]["queryState"],
+                    workspace["visual"]["query"]["queryState"],
+                )
+            for i, (x, y, w, h) in enumerate(rects):
+                for x2, y2, w2, h2 in rects[i + 1:]:
+                    self.assertTrue(
+                        x + w <= x2 or x2 + w2 <= x
+                        or y + h <= y2 or y2 + h2 <= y,
+                        f"Overlapping native PBIR charts on {page}",
+                    )
+
+    def test_transfer_success_has_distinct_evidence_first_geometry(self):
+        for mode in ("offline-demo", "workspace"):
+            for i, name in enumerate(EXPECTED):
+                node = visual(mode, name)
+                self.assertTrue(node["visual"]["query"]["queryState"])
+                position = node["position"]
+                rect = tuple(position[k] for k in ("x", "y", "width", "height"))
+                self.assertEqual(rect, TRANSFER_SUCCESS_LAYOUT[i])
+                self.assertLessEqual(position["x"] + position["width"], 1280)
+                self.assertLessEqual(position["y"] + position["height"], 720)
 
     def test_offline_and_workspace_have_identical_report_visuals(self):
         for name in EXPECTED:
