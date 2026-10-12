@@ -37,23 +37,18 @@
           "projections": [
             {
               "field": {
-                "Aggregation": {
+                "Measure": {
                   "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "fct_transfer_success_labels"
-                        }
-                      },
-                      "Property": "transfer_key"
+                    "SourceRef": {
+                      "Entity": "fct_transfer_success_labels"
                     }
                   },
-                  "Function": 2
+                  "Property": "Transfers (90d)"
                 }
               },
-              "queryRef": "Count(fct_transfer_success_labels.transfer_key)",
-              "nativeQueryRef": "transfer_key",
-              "displayName": "transfer_key"
+              "queryRef": "fct_transfer_success_labels.Transfers (90d)",
+              "nativeQueryRef": "Transfers (90d)",
+              "displayName": "Transfers (90d)"
             }
           ]
         }
@@ -178,7 +173,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Transfer Outcome Label Status'"
+                  "Value": "'90d Outcome Label Status'"
                 }
               }
             },
