@@ -287,7 +287,7 @@ class EveryDashboardSourceContract(unittest.TestCase):
             ]:
                 v = read_visual(home, visual_id)
                 self.assertEqual(v["visual"]["visualType"], "actionButton")
-                self.assertIn("action", v["visual"]["objects"])
+                self.assertTrue(v["visual"]["visualContainerObjects"]["visualLink"])
                 for config in v["visual"]["objects"]["text"]:
                     t = config["properties"].get("text", {}).get(
                         "expr", {}
