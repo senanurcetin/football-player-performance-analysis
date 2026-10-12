@@ -91,6 +91,8 @@ The six files in [historical screenshots](docs/assets/screenshots/) depict a **l
 
 **Current report contents (source-verified):** Home; Player Performance; Player Segmentation (position, age groups, goals and value); Club & League (win rate, goal difference, competition activity); Transfer Success Analysis (observed 365-day outcomes, fee, coverage and reliability); Transfer & Market Value; Player Market Value Prediction; ML Model Reliability; Closing; two hidden detail pages; and two tooltip pages.
 
+**Native PBIR design update (12 October 2026):** The four live-bound data charts on the 365-day Transfer Success page were edited directly in **both** report projects: NEXUS blue/lavender series, readable chart titles and labels, and consistent card borders. These are changes to editable Power BI visuals—not illustrated concept covers. [Source specifications and Desktop test gate](docs/POWER_BI_VISUAL_QA.md).
+
 The transfer-success visualizations use observed transfer outcomes, **not machine-learning predictions**. Their label source is the 365-day BigQuery mart with a 20-percentage-point value-growth threshold. Demo fixtures are synthetic; no sample result can be cited as a real football outcome.
 
 See [Power BI visual QA and release gate](docs/POWER_BI_VISUAL_QA.md) for the remaining Desktop acceptance tests. Publish new screenshots only after the actual Power BI Desktop report is open, refreshed and inspected.
