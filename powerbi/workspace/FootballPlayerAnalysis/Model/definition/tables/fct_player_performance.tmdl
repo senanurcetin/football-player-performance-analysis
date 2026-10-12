@@ -12,7 +12,12 @@ table fct_player_performance
 	measure 'Total Players Count' = DISTINCTCOUNT(fct_player_performance[player_id])
 		formatString: 0
 
-	measure 'Player G+A per 90' = MAX(fct_player_performance[goals_per_90]) + MAX(fct_player_performance[assists_per_90])
+	measure 'Player G+A per 90' =
+			DIVIDE(
+			    [Total Goals] + [Total Assists],
+			    [Total Minutes],
+			    BLANK()
+			) * 90
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
