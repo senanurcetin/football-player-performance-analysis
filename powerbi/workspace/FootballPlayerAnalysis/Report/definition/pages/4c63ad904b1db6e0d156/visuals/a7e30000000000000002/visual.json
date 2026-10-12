@@ -37,23 +37,18 @@
           "projections": [
             {
               "field": {
-                "Aggregation": {
+                "Measure": {
                   "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "fct_transfer_success_labels"
-                        }
-                      },
-                      "Property": "transfer_fee"
+                    "SourceRef": {
+                      "Entity": "fct_transfer_success_labels"
                     }
                   },
-                  "Function": 1
+                  "Property": "Average Transfer Fee (90d)"
                 }
               },
-              "queryRef": "Average(fct_transfer_success_labels.transfer_fee)",
-              "nativeQueryRef": "transfer_fee",
-              "displayName": "transfer_fee"
+              "queryRef": "fct_transfer_success_labels.Average Transfer Fee (90d)",
+              "nativeQueryRef": "Average Transfer Fee (90d)",
+              "displayName": "Average Transfer Fee (90d)"
             }
           ]
         }
@@ -178,7 +173,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Average Transfer Fee by Position'"
+                  "Value": "'Average Fee by Position (90d)'"
                 }
               }
             },
