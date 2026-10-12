@@ -1,5 +1,73 @@
 table fct_transfer_fixed_horizon_outcomes
 
+	measure 'Eligible Transfers (365d)' =
+			VAR SourceCutoff =
+			    MIN(
+			        TODAY(),
+			        MAX(fct_transfer_fixed_horizon_outcomes[source_latest_valuation_date])
+			    )
+			RETURN
+			    IF(
+			        ISBLANK(SourceCutoff),
+			        BLANK(),
+			        CALCULATE(
+			            DISTINCTCOUNT(fct_transfer_fixed_horizon_outcomes[transfer_key]),
+			            FILTER(
+			                fct_transfer_fixed_horizon_outcomes,
+			                NOT ISBLANK(fct_transfer_fixed_horizon_outcomes[target_365d_date])
+			                    && fct_transfer_fixed_horizon_outcomes[target_365d_date] + 30 <= SourceCutoff
+			            )
+			        )
+			    )
+		formatString: 0
+
+	measure 'Observed Transfers (365d)' =
+			VAR SourceCutoff =
+			    MIN(
+			        TODAY(),
+			        MAX(fct_transfer_fixed_horizon_outcomes[source_latest_valuation_date])
+			    )
+			RETURN
+			    IF(
+			        ISBLANK(SourceCutoff),
+			        BLANK(),
+			        CALCULATE(
+			            DISTINCTCOUNT(fct_transfer_fixed_horizon_outcomes[transfer_key]),
+			            FILTER(
+			                fct_transfer_fixed_horizon_outcomes,
+			                NOT ISBLANK(fct_transfer_fixed_horizon_outcomes[target_365d_date])
+			                    && fct_transfer_fixed_horizon_outcomes[target_365d_date] + 30 <= SourceCutoff
+			                    && fct_transfer_fixed_horizon_outcomes[has_365d_outcome] = TRUE()
+			            )
+			        )
+			    )
+		formatString: 0
+
+	measure 'Outcome Coverage (365d)' =
+			DIVIDE(
+			    [Observed Transfers (365d)],
+			    [Eligible Transfers (365d)]
+			)
+		formatString: 0.0%
+
+	measure 'Reliability Notice (365d)' =
+			VAR Eligible = [Eligible Transfers (365d)]
+			VAR Observed = [Observed Transfers (365d)]
+			VAR Coverage = [Outcome Coverage (365d)]
+			RETURN
+			    SWITCH(
+			        TRUE(),
+			        ISBLANK(Eligible) || Eligible = 0, "NO MATURED COHORT",
+			        ISBLANK(Observed) || Observed < 30, "SMALL OBSERVED SAMPLE",
+			        ISBLANK(Coverage) || Coverage < 0.8, "LOW FOLLOW-UP COVERAGE",
+			        "OBSERVATIONAL ONLY"
+			    )
+
+	measure 'Transfers by Outcome Status (365d)' =
+			DISTINCTCOUNT(fct_transfer_fixed_horizon_outcomes[transfer_key])
+		formatString: 0
+
+
 	column transfer_key
 		dataType: string
 		summarizeBy: none
