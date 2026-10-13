@@ -215,9 +215,8 @@
               "solid": {
                 "color": {
                   "expr": {
-                    "ThemeDataColor": {
-                      "ColorId": 5,
-                      "Percent": 0.6
+                    "Literal": {
+                      "Value": "'#EAF2FF'"
                     }
                   }
                 }
@@ -233,9 +232,8 @@
               "solid": {
                 "color": {
                   "expr": {
-                    "ThemeDataColor": {
-                      "ColorId": 9,
-                      "Percent": -0.5
+                    "Literal": {
+                      "Value": "'#173451'"
                     }
                   }
                 }
@@ -245,9 +243,8 @@
               "solid": {
                 "color": {
                   "expr": {
-                    "ThemeDataColor": {
-                      "ColorId": 0,
-                      "Percent": 0
+                    "Literal": {
+                      "Value": "'#FFFFFF'"
                     }
                   }
                 }
@@ -263,9 +260,8 @@
               "solid": {
                 "color": {
                   "expr": {
-                    "ThemeDataColor": {
-                      "ColorId": 5,
-                      "Percent": 0.6
+                    "Literal": {
+                      "Value": "'#D6E8FB'"
                     }
                   }
                 }
@@ -291,7 +287,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#496B98'"
+                      "Value": "'#2B5078'"
                     }
                   }
                 }
@@ -300,7 +296,7 @@
             "radius": {
               "expr": {
                 "Literal": {
-                  "Value": "12D"
+                  "Value": "8D"
                 }
               }
             }
@@ -313,7 +309,7 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
             }

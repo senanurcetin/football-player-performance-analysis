@@ -31,15 +31,15 @@ DARK = {"5cb4db7e746975558322", "c83db10673c28e3346ae"}
 PAGE_CANVASES = {
     "5cb4db7e746975558322": "#071829",  # Executive home / dark navy
     "d2bc1e6a078c5c5b125c": "#091E33",  # Player performance / data control room
-    "24c53960ddc19662d824": "#EDEBFA",  # Segmentation / lavender
-    "25f58efd2bb140e62be9": "#E7F2FD",  # Clubs / blue
-    "4c63ad904b1db6e0d156": "#E9F1FA",  # Transfer outcomes / neutral
-    "292e3d92e92693c05047": "#E8ECF8",  # Transfer market / blue slate
-    "1f4c5c8000149b2e2be8": "#E7EFFB",  # Player valuation / blue
-    "MLModelPerformance": "#E6EDF9",  # ML reliability / technical blue
+    "24c53960ddc19662d824": "#091E33",  # Segmentation / lavender
+    "25f58efd2bb140e62be9": "#091E33",  # Clubs / blue
+    "4c63ad904b1db6e0d156": "#091E33",  # Transfer outcomes / neutral
+    "292e3d92e92693c05047": "#091E33",  # Transfer market / blue slate
+    "1f4c5c8000149b2e2be8": "#091E33",  # Player valuation / blue
+    "MLModelPerformance": "#091E33",  # ML reliability / technical blue
     "c83db10673c28e3346ae": "#071829",  # Closing / navy
-    "91edaa93bbbdbbc8e854": "#EBEFF9",  # Transfer detail / slate lavender
-    "MLPlayerDetail": "#E8EBF6",  # Prediction detail / soft lavender
+    "91edaa93bbbdbbc8e854": "#091E33",  # Transfer detail / slate lavender
+    "MLPlayerDetail": "#091E33",  # Prediction detail / soft lavender
     "tooltip_transfer_p011": "#E7F0FC",  # Transfer tooltip / pale blue
     "tooltip_pred_p012": "#E8ECFA",  # Prediction tooltip / blue lavender
 }
@@ -272,7 +272,7 @@ class EveryDashboardSourceContract(unittest.TestCase):
                 )
             for page, visual_id, title in [
                 (home, "be100000000000000002", "THE GAME, IN DATA."),
-                (closing, "be100000000000000009", "EVIDENCE DRIVES DECISIONS."),
+                (closing, "be100000000000000009", "EVIDENCE. INSIGHT. ACTION."),
             ]:
                 with self.subTest(mode=mode, page=page):
                     v = read_visual(page, visual_id)

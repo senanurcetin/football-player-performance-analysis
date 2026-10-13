@@ -126,3 +126,21 @@ or new data models. Source test:
 `python -m unittest discover -s tests -p 'test_powerbi_evidence_tables.py'`.
 Power BI Desktop rendering, table horizontal scrolling and full-resolution
 column clipping remain an independent **HOLD** criterion.
+
+## NEXUS Desktop screenshot corrections — 13 October 2026
+
+For compact page mastheads the registered `nexus-wordmark-crop.svg` wraps the
+**unmodified, byte-identical canonical PNG** in a centered viewBox crop. This
+removes the oversized circular dark padding from the source artwork; the
+underlying logo pixels are not redrawn. The original square PNG remains on
+Home and Closing as hero artwork and in the resource manifest for provenance.
+
+The nine analysis/detail pages use `#091E33` canvas, with `#071829` outspace;
+Home/Closing retain `#071829` editorial navy. All 8 theme data colours have
+been aligned with the restrained NEXUS blue/cyan/lavender palette. Primary
+Performance KPI cards use navy `#102B47` surfaces, white values and pale labels
+instead of translucent gray/maroon.
+
+**SVG support must be verified with Power BI Desktop.** If it cannot load the
+cropped embedded PNG SVG, restore the original PNG reference rather than
+publishing a missing brand asset. This remains a Desktop acceptance gate.
