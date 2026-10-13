@@ -78,6 +78,17 @@ The existing `tests/test_powerbi_transfer_value_editorial.py` now expects 11pt f
 
 **Acceptance still blocked:** source parity alone cannot establish accurate actual values, table scroll quality, interactions, or dark/light contrast in Power BI Desktop. Keep **HOLD** until authentic real-data 100%-zoom captures and warehouse reconciliation are reviewed.
 
+## Stage 5 source implementation — Home / Closing navigation
+
+The original NEXUS logo and established hero copy on the dark `#071829` canvas are preserved. This narrow native Power BI interaction pass improves **all seven Home module links** and the Closing-to-Home CTA in both `workspace` and `offline-demo`.
+
+- The Home module links now use uniform **13pt** button text (previously 12pt), with each default, hover and selected state carrying an explicit identical label. Previously the Player Performance hover/selected states and Clubs & Leagues hover state had no own text literal and relied on inherited formatting.
+- Keep the original seven PageNavigation destinations, 392×34 button geometry, 37px vertical rhythm, and NEXUS surfaces: default `#173451`, hover `#245078`, selected `#285E9D`. Keep the short, numbered module names and accessible alternative text.
+- The Closing action now reads **← BACK TO HOME** in all states (was **← EXPLORE THE REPORT**, despite always navigating to Home), grows from 13pt to 14pt, and has a distinct NEXUS selected fill `#285E9D`. Its native Home route, alt text, size, position and brand/logo geometry stay intact.
+- New `tests/test_powerbi_home_closing_states.py` checks both report editions, full native PageNavigation destinations, per-state labels/font sizes, control colors, and Closing CTA semantics.
+
+This is a PBIR source-state contract; Power BI Desktop must still establish actual hover, focus, keyboard navigation and label wrapping behavior. There is no claim of a rendered screenshot, passing BigQuery refresh or finished release. **HOLD** remains until engine-level acceptance.
+
 ## Required local checks (no GitHub Actions quota)
 
 ```powershell
