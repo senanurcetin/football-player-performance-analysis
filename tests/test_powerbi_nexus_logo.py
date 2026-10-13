@@ -112,7 +112,12 @@ class NexusLogoSourceContract(unittest.TestCase):
             left = logo["position"]["x"]
             for i in (1, 2, 3):
                 node = read_json(page / "visuals" / f"be10000000000000000{i}" / "visual.json")
-                self.assertLessEqual(node["position"]["x"] + node["position"]["width"], left)
+                a, b = node["position"], logo["position"]
+                intersects = (
+                    max(a["x"], b["x"]) < min(a["x"] + a["width"], b["x"] + b["width"])
+                    and max(a["y"], b["y"]) < min(a["y"] + a["height"], b["y"] + b["height"])
+                )
+                self.assertFalse(intersects, "Signature logo must clear cover typography")
 
 
 if __name__ == "__main__":
