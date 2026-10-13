@@ -11,6 +11,7 @@
 
 
 **Reviewer quick brief:** [Project evidence, model baselines and contribution attribution](docs/hiring-summary.md).
+**Power BI product:** [NEXUS Football Intelligence workbench & release handoff](docs/FOOTBALL_INTELLIGENCE_PRODUCT.md).
 **Power BI source:** [Editable workspace report](powerbi/workspace/FootballPlayerAnalysis) · [Offline-demo report](powerbi/offline-demo/FootballPlayerAnalysis) · [Design and Desktop validation](docs/POWER_BI_VISUAL_QA.md). The repository contains the current editable report rather than outdated slide/screenshot presentations.
 
 
