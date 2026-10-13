@@ -29,7 +29,7 @@
               "queryRef": "fct_transfer_market_value_analysis.transfer_season",
               "nativeQueryRef": "transfer_season",
               "active": true,
-              "displayName": "transfer_season"
+              "displayName": "Transfer season"
             }
           ]
         },
@@ -48,7 +48,7 @@
               },
               "queryRef": "fct_transfer_market_value_analysis.Average Known Transfer Fee",
               "nativeQueryRef": "Avg. Fee (Season)",
-              "displayName": "Avg. Fee (Season)"
+              "displayName": "Average known fee (€)"
             }
           ]
         }
@@ -86,7 +86,7 @@
             "showAxisTitle": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             },
@@ -95,7 +95,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#487FD8'"
+                      "Value": "'#526981'"
                     }
                   }
                 }
@@ -104,7 +104,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "8D"
+                  "Value": "10D"
                 }
               }
             },
@@ -112,6 +112,31 @@
               "expr": {
                 "Literal": {
                   "Value": "1D"
+                }
+              }
+            },
+            "titleText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Transfer season'"
+                }
+              }
+            },
+            "titleFontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            },
+            "titleColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#526981'"
+                    }
+                  }
                 }
               }
             }
@@ -131,7 +156,7 @@
             "showAxisTitle": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             },
@@ -140,7 +165,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#487FD8'"
+                      "Value": "'#526981'"
                     }
                   }
                 }
@@ -149,7 +174,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "8D"
+                  "Value": "10D"
                 }
               }
             },
@@ -157,6 +182,31 @@
               "expr": {
                 "Literal": {
                   "Value": "1000000D"
+                }
+              }
+            },
+            "titleText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Average known fee (€m)'"
+                }
+              }
+            },
+            "titleFontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            },
+            "titleColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#526981'"
+                    }
+                  }
                 }
               }
             }
@@ -340,7 +390,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Avg. Fee (Season)'"
+                  "Value": "'Average known transfer fee by season'"
                 }
               }
             },
@@ -385,7 +435,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Shows average recorded transfer fees across seasons, subject to missing fees and transfer coverage.'"
+                  "Value": "'Average recorded transfer fees by season, displayed in millions of euros on the axis. Missing fees are excluded.'"
                 }
               }
             }

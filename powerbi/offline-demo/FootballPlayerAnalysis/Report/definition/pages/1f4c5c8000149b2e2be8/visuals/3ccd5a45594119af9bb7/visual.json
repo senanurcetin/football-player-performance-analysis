@@ -29,7 +29,7 @@
               "queryRef": "ml_player_market_value_current_predictions.kalite_etiketi_tr",
               "nativeQueryRef": "kalite_etiketi_tr",
               "active": true,
-              "displayName": "kalite_etiketi_tr"
+              "displayName": "Prediction quality"
             }
           ]
         },
@@ -53,7 +53,7 @@
               },
               "queryRef": "Count(ml_player_market_value_current_predictions.scoring_row_key)",
               "nativeQueryRef": "Kayit Sayisi",
-              "displayName": "Kayit Sayisi",
+              "displayName": "Players",
               "format": "#,0"
             }
           ]
