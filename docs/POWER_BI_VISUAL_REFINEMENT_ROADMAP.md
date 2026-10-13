@@ -106,6 +106,21 @@ The new `tests/test_powerbi_tooltip_and_prediction_context.py` checks the two na
 
 **Desktop acceptance required:** render tooltips from actual parent report visuals and verify the compact legends/headers are not clipped. Confirm Prediction Detail text fits at 100% zoom and actual player-context drillthrough filters work. Source-only tests do not prove hover/keyboard behavior. Hosted CI remains explicitly gated by the separate CI-last policy; release is **HOLD**.
 
+## Stage 7 local-source preflight repair — CI remains gated
+
+With the authorized Windows device reachable, the current source repository was cloned into a **temporary local audit checkout**, without any hosted CI run. Real local execution initially reported **2 failures among 79** Power BI source unittests: a stale Transfer Success lower-row expectation (260px instead of native 239px), and an authentic ML Reliability Home-button overlap with the registered logo. This work corrects both source defects and strengthens their regression coverage.
+
+The comprehensive handoff additionally exposed **two layout warnings** (one per PBIP edition): the legacy **Transfer Hacmi** column chart at x=353, y=470 overlapped the 615px transaction evidence table by approximately 87% and extended below the footer. It has been preserved, relabeled **Transfers by Position**, given NEXUS styling, and moved to the unoccupied lower-right panel at **x=985, y=470, 248×201**. The 615×201 table remains in place, and the source measures and queryState are unmodified. An explicit test now asserts right-side placement, native Transfer Count aggregation and footer clearance in both report editions.
+
+**Executed Windows local evidence on the repaired branch:**
+- **80/80** `test_powerbi_*.py` tests PASS, including the added table/chart collision guard and enhanced Reliability masthead guard.
+- `python -m compileall -q scripts` PASS; `python scripts/check_offline_ci.py` PASS (**11 YAML / 51 SQL-Jinja** files).
+- Production PBIP structural, synthetic demo fixture and query binding checks PASS; **33 fixture tables**, 13 pages, model provenance maintained.
+- `python scripts/audit_powerbi_layout.py` PASS with **0 layout warnings** across workspace/demo.
+- `python scripts/check_powerbi_release_handoff.py` PASS with `source_checks=PASS` and **6/6 preflight components passing**.
+
+**Still not release acceptance:** no authenticated BigQuery refresh or screenshot-based Desktop rendering was performed. Power BI Desktop was detected as installed on the device, but this does not prove the report opened, refreshed or rendered. The `fct_club_risk_profile` production issue, win-rate reconciliation, hover/drillthrough tests and 13-page real-data screenshots remain gated. The prior CircleCI failure was locally reproduced and repaired, not re-run in hosted CircleCI. **Portfolio release remains HOLD.**
+
 ## Required local checks (no GitHub Actions quota)
 
 ```powershell
