@@ -123,11 +123,15 @@ def check_club_risk_demo_contract(fixtures):
         observed = row.get("observed_365d_transfers")
         successes = row.get("successful_transfers")
         failures = row.get("unsuccessful_transfers")
+        numeric_rates = all(isinstance(row.get(name), (int, float)) and
+                            not isinstance(row.get(name), bool) for name in
+                            ("known_fee_coverage_pct", "outcome_365d_coverage_pct",
+                             "avg_overpay_pct", "transfer_success_rate_pct"))
         for field in ("known_fee_coverage_pct", "outcome_365d_coverage_pct",
                       "avg_overpay_pct", "transfer_success_rate_pct"):
             check(isinstance(row.get(field), (int, float)) and not isinstance(row.get(field), bool),
                   f"Club-risk {key}: {field} is a text literal, not a number")
-        if all(isinstance(v, (int, float)) for v in (count, known, observed, successes, failures)) and count > 0:
+        if numeric_rates and all(isinstance(v, (int, float)) for v in (count, known, observed, successes, failures)) and count > 0:
             check(abs(row["known_fee_coverage_pct"] - 100 * known / count) < 0.02,
                   f"Club-risk {key}: known-fee coverage must be percentage points")
             check(abs(row["outcome_365d_coverage_pct"] - 100 * observed / count) < 0.02,

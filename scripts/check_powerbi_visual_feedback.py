@@ -74,7 +74,7 @@ def inspect(root=ROOT):
                 errors.append(f"{edition}/{page}: invalid PBIR source: {exc}")
         for page, ids in (
             ("5cb4db7e746975558322", [f"be10000000000000000{i}" for i in range(1, 8)]),
-            ("c83db10673c28e3346ae", [f"be10000000000000000{i}" for i in range(8, 11)]),
+            ("c83db10673c28e3346ae", ["be100000000000000008", "be100000000000000009", "be10000000000000000a"]),
         ):
             for vid in ids:
                 try:
