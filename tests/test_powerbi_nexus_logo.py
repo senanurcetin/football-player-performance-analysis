@@ -12,6 +12,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 IMAGE = "nexus-brand-original-20261013.png"
+CROPPED = "nexus-wordmark-crop.svg"
 ORIGINAL_BLOB = "e8a72df6f117ef1cbcc0002e28395b50cc752c74"
 PAGES = (
     "5cb4db7e746975558322",  # Home
@@ -56,6 +57,18 @@ class NexusLogoSourceContract(unittest.TestCase):
             entries = [x for x in registered["items"] if x["name"] == IMAGE]
             self.assertEqual(entries, [{"name": IMAGE, "path": IMAGE, "type": "Image"}])
         self.assertEqual(payloads[0], payloads[1])
+        for edition in ("workspace", "offline-demo"):
+            report = ROOT / "powerbi" / edition / "FootballPlayerAnalysis" / "Report"
+            svg = (report / "StaticResources" / "RegisteredResources" / CROPPED).read_text(encoding="utf-8")
+            self.assertIn('viewBox="245 385 535 255"', svg)
+            self.assertIn("data:image/png;base64,", svg)
+            import base64
+            embedded = svg.split("data:image/png;base64,", 1)[1].split('"', 1)[0]
+            self.assertEqual(base64.b64decode(embedded), payloads[0])
+            registry = read_json(report / "definition" / "report.json")
+            items = next(r["items"] for r in registry["resourcePackages"]
+                         if r["name"] == "RegisteredResources")
+            self.assertIn({"name": CROPPED, "path": CROPPED, "type": "Image"}, items)
 
     def test_each_full_size_page_contains_native_registered_logo(self):
         for edition in ("workspace", "offline-demo"):
@@ -69,10 +82,11 @@ class NexusLogoSourceContract(unittest.TestCase):
                     self.assertEqual(node["visual"]["visualType"], "image")
                     self.assertNotIn("query", node["visual"])
                     package = node["visual"]["objects"]["general"][0]["properties"]["imageUrl"]["expr"]["ResourcePackageItem"]
+                    expected = IMAGE if page in (PAGES[0], PAGES[8]) else CROPPED
                     self.assertEqual(package, {
                         "PackageName": "RegisteredResources",
                         "PackageType": 1,
-                        "ItemName": IMAGE,
+                        "ItemName": expected,
                     })
                     vco = node["visual"]["visualContainerObjects"]
                     self.assertEqual(vco["title"][0]["properties"]["show"]["expr"]["Literal"]["Value"], "false")
