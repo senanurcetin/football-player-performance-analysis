@@ -45,3 +45,5 @@ The offline demo uses fictional fixture tables and must *never* be described as 
 - Final customer/portfolio publication remains **on hold** until real Power BI Desktop refresh, rendering and measurement validation are recorded in [the visual QA release gate](POWER_BI_VISUAL_QA.md).
 
 **Related specifications:** [NEXUS design system](BI_DESIGN_SYSTEM.md) · [Report modernization plan](POWER_BI_ALL_DASHBOARDS_PLAN.md) · [Power BI modeling](POWER_BI_MODELING.md).
+
+**Production refresh troubleshooting:** [club-risk table schema and error triage](POWER_BI_CLUB_RISK_REFRESH_TRIAGE.md). The previously reported six-row production error is not confirmed resolved.
