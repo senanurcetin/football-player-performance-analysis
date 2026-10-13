@@ -143,6 +143,27 @@ class TransferDashboardDesignTests(unittest.TestCase):
                         f"Overlapping native PBIR charts on {page}",
                     )
 
+    def test_clarified_chart_titles_describe_real_aggregates(self):
+        contracts = (
+            ("24c53960ddc19662d824", "a7e10000000000000003",
+             "Sum(fct_player_performance.total_goals)"),
+            ("24c53960ddc19662d824", "a7e10000000000000004",
+             "Sum(fct_player_performance.market_value_in_eur)"),
+            ("25f58efd2bb140e62be9", "a7e20000000000000001",
+             "Average(fct_club_performance.win_rate)"),
+            ("25f58efd2bb140e62be9", "a7e20000000000000003",
+             "Sum(fct_competition_performance.matches_played)"),
+        )
+        for page, visual_id, metric in contracts:
+            for mode in ("workspace", "offline-demo"):
+                with self.subTest(page=page, visual=visual_id, mode=mode):
+                    state = visual(mode, visual_id, page)["visual"]["query"]["queryState"]
+                    self.assertEqual(
+                        [p["queryRef"] for p in state["Y"]["projections"]],
+                        [metric],
+                        "Chart titles must represent the currently bound statistic",
+                    )
+
     def test_transfer_success_has_distinct_evidence_first_geometry(self):
         for mode in ("offline-demo", "workspace"):
             for i, name in enumerate(EXPECTED):
