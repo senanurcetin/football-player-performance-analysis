@@ -51,6 +51,21 @@ A concrete footer collision was found in the source geometry: the Goals vs Assis
 
 New `tests/test_powerbi_player_performance_layout.py` checks KPI rhythm, all bound Player Performance visuals against the footer, and workspace/demo query parity. Source-file position checks do not prove the chart's scroll/render behavior: inspect scatter axes, pivot table rows and footer reachability at 100% zoom in **real Power BI Desktop** before acceptance.
 
+## Stage 3 source implementation — Segmentation / Club & League
+
+Both editions now present the 8 native, data-bound two-page charts with **11pt category/value-axis titles** (previously 10pt). The 13pt chart headings, 11pt data labels, white panels, NEXUS blue/lavender data accents, filtering, original category/value projections, and the asymmetric 1280×720 compositions remain intact.
+
+Business titles now reveal what is aggregated:
+- Segmentation: **Player Goals by Club** for `Sum(fct_player_performance.total_goals)`, and **Total Market Value by Position** for `Sum(fct_player_performance.market_value_in_eur)`.
+- Club & League: **Matches by Competition** for `Sum(fct_competition_performance.matches_played)`.
+- Club Win Rate, Goal Difference by Club, and remaining charts retain their established titles. Source regression guards now pin the relevant aggregation queryRefs.
+
+The earlier layout regression had accidentally retained obsolete **280px** lower-row heights, but the current PBIR lower panels are already **268px**: starting at y=403, they end at **y=671**, preserving 8px before the footer at y=679. This turn fixes the stale `test_powerbi_chart_design.py` expectation and tightens its footer gate; `test_powerbi_ux_polish.py` likewise now checks the current y=679 footer and 11pt axes. No further relocation of those well-positioned panels was warranted.
+
+### P0 observation — verify win-rate scale before publishing
+
+A separate source-level data contract mismatch remains: production `models/intermediate/int_club_performance_summary.sql` multiplies the club win rate by **100**, whereas the offline demo `fct_club_performance.tmdl` contains fractions (e.g. 0.40000). **Both** semantic-model columns currently declare `formatString: 0.0%`, whose percent scaling may display production ratios incorrectly (40.0 raw → 4,000% displayed), even if the underlying warehouse metric is correct. This is **not** an axis-font defect and must not be concealed with a new label or confused with the unrelated `fct_club_risk_profile` refresh errors. Reconcile the live BigQuery club rate to `wins / matches` in Power BI Desktop and choose one proven scale before promoting the report. No production mart, query, or model type was modified in this visual-only batch.
+
 ## Required local checks (no GitHub Actions quota)
 
 ```powershell

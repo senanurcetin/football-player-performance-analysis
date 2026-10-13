@@ -21,13 +21,13 @@ ADDITIONAL_PAGES = {
     "24c53960ddc19662d824": {
         "a7e10000000000000001": "Players by Position",
         "a7e10000000000000002": "Age Group Distribution",
-        "a7e10000000000000003": "Goals by Club",
-        "a7e10000000000000004": "Market Value by Position",
+        "a7e10000000000000003": "Player Goals by Club",
+        "a7e10000000000000004": "Total Market Value by Position",
     },
     "25f58efd2bb140e62be9": {
         "a7e20000000000000001": "Club Win Rate",
         "a7e20000000000000002": "Goal Difference by Club",
-        "a7e20000000000000003": "Competition Matches",
+        "a7e20000000000000003": "Matches by Competition",
         "a7e20000000000000004": "Goals by Competition",
     },
 }
@@ -36,11 +36,11 @@ ADDITIONAL_PAGES = {
 ASYMMETRIC_LAYOUT = {
     "24c53960ddc19662d824": [
         (105, 121, 660, 256), (789, 121, 444, 256),
-        (105, 403, 458, 280), (587, 403, 646, 280),
+        (105, 403, 458, 268), (587, 403, 646, 268),
     ],
     "25f58efd2bb140e62be9": [
         (105, 121, 490, 256), (619, 121, 614, 256),
-        (105, 403, 640, 280), (769, 403, 464, 280),
+        (105, 403, 640, 268), (769, 403, 464, 268),
     ],
 }
 
@@ -111,6 +111,11 @@ class TransferDashboardDesignTests(unittest.TestCase):
                     self.assertEqual(
                         literal(labels["color"]["solid"]["color"]), "'#122942'"
                     )
+                    for axis in ("categoryAxis", "valueAxis"):
+                        self.assertEqual(
+                            literal(v["objects"][axis][0]["properties"]["titleFontSize"]),
+                            "11D", "Axis titles should remain readable on 1280×720 report pages"
+                        )
 
     def test_distinct_page_compositions_are_valid_and_data_bound(self):
         for page, expected in ADDITIONAL_PAGES.items():
@@ -123,7 +128,8 @@ class TransferDashboardDesignTests(unittest.TestCase):
                 rect = tuple(position[k] for k in ("x", "y", "width", "height"))
                 self.assertEqual(rect, ASYMMETRIC_LAYOUT[page][i])
                 self.assertLessEqual(position["x"] + position["width"], 1280)
-                self.assertLessEqual(position["y"] + position["height"], 720)
+                self.assertLessEqual(position["y"] + position["height"], 671,
+                                     "Native charts must clear the footer starting at y=679")
                 rects.append(rect)
                 self.assertEqual(
                     offline["visual"]["query"]["queryState"],
@@ -135,6 +141,27 @@ class TransferDashboardDesignTests(unittest.TestCase):
                         x + w <= x2 or x2 + w2 <= x
                         or y + h <= y2 or y2 + h2 <= y,
                         f"Overlapping native PBIR charts on {page}",
+                    )
+
+    def test_clarified_chart_titles_describe_real_aggregates(self):
+        contracts = (
+            ("24c53960ddc19662d824", "a7e10000000000000003",
+             "Sum(fct_player_performance.total_goals)"),
+            ("24c53960ddc19662d824", "a7e10000000000000004",
+             "Sum(fct_player_performance.market_value_in_eur)"),
+            ("25f58efd2bb140e62be9", "a7e20000000000000001",
+             "Average(fct_club_performance.win_rate)"),
+            ("25f58efd2bb140e62be9", "a7e20000000000000003",
+             "Sum(fct_competition_performance.matches_played)"),
+        )
+        for page, visual_id, metric in contracts:
+            for mode in ("workspace", "offline-demo"):
+                with self.subTest(page=page, visual=visual_id, mode=mode):
+                    state = visual(mode, visual_id, page)["visual"]["query"]["queryState"]
+                    self.assertEqual(
+                        [p["queryRef"] for p in state["Y"]["projections"]],
+                        [metric],
+                        "Chart titles must represent the currently bound statistic",
                     )
 
     def test_transfer_success_has_distinct_evidence_first_geometry(self):

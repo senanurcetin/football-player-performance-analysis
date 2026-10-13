@@ -80,7 +80,7 @@ class DesignUnguardedRegression(unittest.TestCase):
                     legend = visual(edition, page, "b8b" + str(i).zfill(17))
                     self.assertEqual(bg["visual"]["visualType"], "shape")
                     self.assertEqual(legend["visual"]["visualType"], "textbox")
-                    self.assertEqual(bg["position"]["y"], 694)
+                    self.assertEqual(bg["position"]["y"], 679)
                     self.assertLessEqual(bg["position"]["y"] + bg["position"]["height"], 720)
                     self.assertEqual(legend["position"]["y"], 687)
                     self.assertEqual(legend["position"]["height"], 25)
@@ -106,7 +106,7 @@ class DesignUnguardedRegression(unittest.TestCase):
                         props = v["objects"][obj][0]["properties"]
                         self.assertEqual(value(props["showAxisTitle"]), "true")
                         self.assertEqual(value(props["titleText"]), expected)
-                        self.assertEqual(value(props["titleFontSize"]), "10D")
+                        self.assertEqual(value(props["titleFontSize"]), "11D")
         self.assertEqual(
             visual("workspace", "25f58efd2bb140e62be9",
                    "a7e20000000000000004")["visual"]["visualType"], "clusteredBarChart"
