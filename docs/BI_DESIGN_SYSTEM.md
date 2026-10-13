@@ -55,3 +55,28 @@ The 11 full-size pages use 1280 × 720 layouts. The two report-page tooltips are
 At least 36 primary chart/KPI objects per report edition now have descriptive `visual.visualContainerObjects.general[].properties.altText`, including both tooltips. Static alt text describes metrics and filters rather than invented current statistics; it cannot substitute for a rendered screen-reader/keyboard test.
 
 For page-level delivery progress, check [the all-dashboard development plan](POWER_BI_ALL_DASHBOARDS_PLAN.md), then [the render/refresh acceptance gate](POWER_BI_VISUAL_QA.md). A source-level theme commit is **not** evidence of a visually passed Power BI Desktop report.
+
+## Canonical NEXUS logo in editable Football Power BI (13 October 2026)
+
+The **original** `nexus-web-v2/public/nexus-logo-canva.png` has been transferred
+byte-for-byte to the Football repository; its original Git blob SHA is
+`e8a72df6f117ef1cbcc0002e28395b50cc752c74`.
+The destination resource is `Report/StaticResources/RegisteredResources/nexus-brand-original-20261013.png`,
+registered as an `Image` in **both** production and synthetic report manifests.
+It is not a newly generated or imitation logo.
+
+Eleven full-size pages (nine user-visible and two hidden drillthroughs) have
+one NEXUS `image` visual each using a PBIR `ResourcePackageItem` expression,
+rather than a remote URL or flattened screenshot. Home/Closing place it as
+editorial hero art; the seven analytics pages keep it in the 72px navy
+masthead; drillthrough pages carry a smaller logo.
+
+**Source constraints:** All images are editable native PBIR visuals.
+No model queries, relationships, DAX or PageNavigation links are modified.
+Home text widths and three analytic headings reserve space for the logo;
+the logo must not cover analytic charts or demo provenance watermarks.
+
+**Local QA:** `python -m unittest discover -s tests -p 'test_powerbi_nexus_logo.py'`.
+Static validation checks image SHA, resource registration, references and bounds.
+A real Power BI Desktop open/refresh is still required to validate image
+rendering, small-logo legibility and visual contrast before portfolio use.

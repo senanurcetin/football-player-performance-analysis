@@ -95,6 +95,11 @@
           "type": "Image"
         },
         {
+          "name": "nexus-brand-original-20261013.png",
+          "path": "nexus-brand-original-20261013.png",
+          "type": "Image"
+        },
+        {
           "name": "NEXUSMidnight-20261012-v2.json",
           "path": "NEXUSMidnight-20261012-v2.json",
           "type": "CustomTheme"
