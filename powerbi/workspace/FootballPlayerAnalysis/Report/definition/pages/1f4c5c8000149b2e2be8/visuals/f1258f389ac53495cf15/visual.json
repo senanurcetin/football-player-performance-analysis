@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "f1258f389ac53495cf15",
   "position": {
-    "x": 105,
-    "y": 104,
+    "x": 355,
+    "y": 105,
     "z": 12000,
-    "height": 86,
-    "width": 170,
+    "height": 82,
+    "width": 133,
     "tabOrder": 12000
   },
   "visual": {
@@ -72,7 +72,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "18D"
+                  "Value": "16D"
                 }
               }
             },
@@ -219,7 +219,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Predicted Players'"
+                  "Value": "'Scored players'"
                 }
               }
             },

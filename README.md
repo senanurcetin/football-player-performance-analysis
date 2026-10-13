@@ -12,7 +12,7 @@
 
 **Reviewer quick brief:** [Project evidence, model baselines and contribution attribution](docs/hiring-summary.md).
 **Power BI product:** [NEXUS Football Intelligence workbench & release handoff](docs/FOOTBALL_INTELLIGENCE_PRODUCT.md).
-**Power BI source:** [Editable workspace report](powerbi/workspace/FootballPlayerAnalysis) · [Offline-demo report](powerbi/offline-demo/FootballPlayerAnalysis) · [Design and Desktop validation](docs/POWER_BI_VISUAL_QA.md). The repository contains the current editable report rather than outdated slide/screenshot presentations.
+**Power BI production report:** [NEXUS Football Intelligence — BigQuery PBIP](powerbi/workspace/FootballPlayerAnalysis) · [Institutional design system and validation](docs/POWER_BI_INSTITUTIONAL_PRODUCTION_REBUILD.md). Only the connected BigQuery edition is intended for presentation and publication; separate data fixtures are reserved for internal regression testing.
 
 
 <p align="center">
@@ -84,7 +84,7 @@ Full lineage, grains, and model responsibilities → [Architecture & Model Catal
 
 ## Dashboard Preview
 
-**Current release status: Power BI Desktop render verification pending.** The repository contains two PBIP editions: the BigQuery-backed [production report](powerbi/workspace/FootballPlayerAnalysis/) and a separately labeled [offline synthetic demo](powerbi/offline-demo/). Both report definitions have been updated to NEXUS navy-and-blue; a local Desktop open/refresh and page-by-page screenshot review is still required.
+**Current release status: HOLD — Desktop visual acceptance and BigQuery production refresh are still pending.** The only presentation/publication artifact is the [NEXUS BigQuery-backed production report](powerbi/workspace/FootballPlayerAnalysis/). Internal data fixtures are not a publishable portfolio report. Production-facing page copy is checked for test-data labels and the original BigQuery partitions are contract-tested.
 
 **Legacy screenshots removed:** the six green-era PNG captures were removed rather than archived in this repo. The Power BI report is the canonical editable deliverable; current screenshot evidence is deferred until Desktop refresh and visual acceptance.
 

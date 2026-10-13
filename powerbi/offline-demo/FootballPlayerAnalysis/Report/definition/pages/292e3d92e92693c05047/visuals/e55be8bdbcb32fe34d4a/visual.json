@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "e55be8bdbcb32fe34d4a",
   "position": {
-    "x": 805,
-    "y": 104,
+    "x": 841,
+    "y": 105,
     "z": 15000,
-    "height": 86,
-    "width": 170,
+    "height": 82,
+    "width": 134,
     "tabOrder": 15000
   },
   "visual": {
@@ -72,7 +72,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "18D"
+                  "Value": "16D"
                 }
               }
             },
@@ -219,7 +219,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Total Volume'"
+                  "Value": "'Known fee total'"
                 }
               }
             },

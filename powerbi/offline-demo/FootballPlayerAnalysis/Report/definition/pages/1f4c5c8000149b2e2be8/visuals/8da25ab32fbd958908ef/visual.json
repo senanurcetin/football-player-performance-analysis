@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "8da25ab32fbd958908ef",
   "position": {
-    "x": 105.1690067602704,
-    "y": 185.70982839313572,
+    "x": 105,
+    "y": 191,
     "z": 15500,
-    "height": 25.9594383775351,
-    "width": 869.9739989599583,
+    "height": 24,
+    "width": 870,
     "tabOrder": 15500
   },
   "visual": {
@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "PREDICTION ANALYSIS",
+                    "value": "02    /    MODEL ESTIMATES AND QUALITY",
                     "textStyle": {
                       "fontWeight": "bold",
                       "fontSize": "8pt",
