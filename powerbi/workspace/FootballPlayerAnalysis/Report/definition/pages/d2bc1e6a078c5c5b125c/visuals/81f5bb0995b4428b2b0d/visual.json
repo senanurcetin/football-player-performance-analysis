@@ -180,9 +180,8 @@
               "solid": {
                 "color": {
                   "expr": {
-                    "ThemeDataColor": {
-                      "ColorId": 1,
-                      "Percent": 0
+                    "Literal": {
+                      "Value": "'#FFFFFF'"
                     }
                   }
                 }
@@ -198,9 +197,8 @@
               "solid": {
                 "color": {
                   "expr": {
-                    "ThemeDataColor": {
-                      "ColorId": 5,
-                      "Percent": -0.5
+                    "Literal": {
+                      "Value": "'#346BAF'"
                     }
                   }
                 }
@@ -216,45 +214,8 @@
               "solid": {
                 "color": {
                   "expr": {
-                    "Conditional": {
-                      "Cases": [
-                        {
-                          "Condition": {
-                            "Comparison": {
-                              "ComparisonKind": 0,
-                              "Left": {
-                                "Aggregation": {
-                                  "Expression": {
-                                    "Column": {
-                                      "Expression": {
-                                        "SourceRef": {
-                                          "Entity": "dim_players"
-                                        }
-                                      },
-                                      "Property": "player_name"
-                                    }
-                                  },
-                                  "Function": 3
-                                }
-                              },
-                              "Right": {
-                                "Literal": {
-                                  "Value": "''"
-                                }
-                              }
-                            },
-                            "Annotations": {
-                              "PowerBI.SQExprEvaluationKind": 1,
-                              "PowerBI.SQExprTextOperatorOption": 2
-                            }
-                          },
-                          "Value": {
-                            "Literal": {
-                              "Value": "'#4EA8FF'"
-                            }
-                          }
-                        }
-                      ]
+                    "Literal": {
+                      "Value": "'#FFFFFF'"
                     }
                   }
                 }
