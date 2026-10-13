@@ -59,7 +59,7 @@
               },
               "queryRef": "ml_player_market_value_feature_importance.feature_type",
               "nativeQueryRef": "Tür",
-              "displayName": "Tür"
+              "displayName": "Feature Type"
             },
             {
               "field": {
