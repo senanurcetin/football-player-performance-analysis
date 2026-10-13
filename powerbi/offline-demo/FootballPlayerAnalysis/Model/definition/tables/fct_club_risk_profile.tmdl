@@ -112,11 +112,11 @@ table fct_club_risk_profile
 				#table(
 				    type table [#"club_id" = Int64.Type, #"club_name" = text, #"total_incoming_transfers" = Int64.Type, #"transfers_with_known_fee" = Int64.Type, #"known_fee_coverage_pct" = number, #"observed_365d_transfers" = Int64.Type, #"outcome_365d_coverage_pct" = number, #"avg_overpay_pct" = number, #"successful_transfers" = Int64.Type, #"unsuccessful_transfers" = Int64.Type, #"transfer_success_rate_pct" = number, #"meets_minimum_sample_size" = logical, #"transfer_risk_category" = text],
 				    {
-				        {1, "Demo North FC", 20, 16, "0.80000", 12, "0.60000", 0.200, 8, 4, "0.66667", true, "low"},
-				        {2, "Demo Coast United", 22, 18, "0.81818", 14, "0.63636", 0.270, 9, 5, "0.64286", true, "medium"},
-				        {3, "Demo City FC", 24, 20, "0.83333", 16, "0.66667", 0.340, 10, 6, "0.62500", true, "high"},
-				        {4, "Demo Athletic", 26, 22, "0.84615", 18, "0.69231", 0.410, 11, 7, "0.61111", true, "low"},
-				        {5, "Demo Rangers", 28, 24, "0.85714", 20, "0.71429", 0.480, 12, 8, "0.60000", true, "medium"},
-				        {6, "Demo Vale", 30, 26, "0.86667", 22, "0.73333", 0.550, 13, 9, "0.59091", true, "high"}
+				        {1, "Demo North FC", 20, 16, 80, 12, 60, 20, 8, 4, 66.67, false, "insufficient_data"},
+				        {2, "Demo Coast United", 22, 18, 81.82, 14, 63.64, 27, 9, 5, 64.29, false, "insufficient_data"},
+				        {3, "Demo City FC", 24, 20, 83.33, 16, 66.67, 34, 10, 6, 62.50, false, "insufficient_data"},
+				        {4, "Demo Athletic", 26, 22, 84.62, 18, 69.23, 41, 11, 7, 61.11, false, "insufficient_data"},
+				        {5, "Demo Rangers", 28, 24, 85.71, 20, 71.43, 48, 12, 8, 60, false, "insufficient_data"},
+				        {6, "Demo Vale", 30, 26, 86.67, 22, 73.33, 55, 13, 9, 59.09, false, "insufficient_data"}
 				    }
 				)
