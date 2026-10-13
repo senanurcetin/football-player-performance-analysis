@@ -210,3 +210,13 @@ The test checks source content, Power BI JSON parity, side-panel geometry
 and WCAG-inspired text/background contrast calculations. It **does not**
 replace real Power BI Desktop rendering, model evaluation or screen-reader
 testing. Release remains **HOLD** until visually accepted.
+
+## Read-only production club-risk refresh diagnosis
+
+For the reported **six-row production** `fct_club_risk_profile` import error,
+use [the schema and row triage procedure](POWER_BI_CLUB_RISK_REFRESH_TRIAGE.md).
+This separates the BigQuery connector/warehouse issue from the already
+corrected **synthetic six-row fixture**. It includes a live schema query and
+checks for null/range/count anomalies; no production model or data is
+silently altered and the root cause remains **unverified** until Desktop
+provides the exact error column and message.
