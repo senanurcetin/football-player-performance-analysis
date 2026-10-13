@@ -105,3 +105,24 @@ format *only*: source data and aggregation remain unchanged.
 positions, fonts, chart bindings and semantic-model display formats. They
 cannot establish pixel-level quality or Desktop behavior. Review screenshots
 at 100% and verify navigation and percentage formatting before publication.
+
+## Evidence table legibility — 13 October 2026
+
+A source audit found the Transfer Market transaction table constrained to
+**362px for seven columns**, despite free space between the 235px fee/value
+composition and the filter sidebar. The transaction table now spans 615px
+at x=355 with clear gutters; both bottom-row visuals end at y=690, four
+pixels above the navigational footer. This retains every original table
+projection, field ordering and filter context.
+
+Player Valuation's prediction table uses concise, unit-aware column headings:
+**Position**, **Prior (€)**, **Predicted (€)**, **Change (%)**,
+**Lower (€)** and **Upper (€)**. The transfer table names its fee/value
+comparison without exposing internal `*_tr` fields. The native charts and
+tables on the Valuation bottom row likewise clear the footer at y=694.
+
+These are real PBIR visual geometry and metadata changes, *not* screenshots
+or new data models. Source test:
+`python -m unittest discover -s tests -p 'test_powerbi_evidence_tables.py'`.
+Power BI Desktop rendering, table horizontal scrolling and full-resolution
+column clipping remain an independent **HOLD** criterion.
