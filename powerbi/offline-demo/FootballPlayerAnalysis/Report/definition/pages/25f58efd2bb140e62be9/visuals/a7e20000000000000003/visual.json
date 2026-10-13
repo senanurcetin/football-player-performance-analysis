@@ -28,7 +28,7 @@
               },
               "queryRef": "fct_competition_performance.competition_name",
               "nativeQueryRef": "competition_name",
-              "displayName": "competition_name",
+              "displayName": "Competition",
               "active": true
             }
           ]
@@ -53,7 +53,7 @@
               },
               "queryRef": "Sum(fct_competition_performance.matches_played)",
               "nativeQueryRef": "matches_played",
-              "displayName": "matches_played"
+              "displayName": "Matches"
             }
           ]
         }
@@ -102,6 +102,82 @@
               "expr": {
                 "Literal": {
                   "Value": "11D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "categoryAxis": [
+        {
+          "properties": {
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "titleText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Competition'"
+                }
+              }
+            },
+            "titleFontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            },
+            "titleColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#526981'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "valueAxis": [
+        {
+          "properties": {
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "titleText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Matches'"
+                }
+              }
+            },
+            "titleFontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            },
+            "titleColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#526981'"
+                    }
+                  }
                 }
               }
             }

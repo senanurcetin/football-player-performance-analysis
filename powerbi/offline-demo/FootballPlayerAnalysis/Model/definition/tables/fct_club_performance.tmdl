@@ -80,6 +80,7 @@ table fct_club_performance
 
 	column win_rate
 		dataType: double
+		formatString: 0.0%
 		summarizeBy: sum
 		sourceColumn: win_rate
 
