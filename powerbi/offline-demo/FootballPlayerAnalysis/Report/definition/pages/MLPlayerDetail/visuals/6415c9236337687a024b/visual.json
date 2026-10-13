@@ -46,7 +46,7 @@
                     "textStyle": {
                       "fontWeight": "normal",
                       "fontSize": "8pt",
-                      "color": "#E6F2E8"
+                      "color": "#E7EFFB"
                     }
                   }
                 ]
@@ -58,7 +58,7 @@
                     "textStyle": {
                       "fontWeight": "normal",
                       "fontSize": "8pt",
-                      "color": "#E6F2E8"
+                      "color": "#E7EFFB"
                     }
                   }
                 ]
@@ -70,7 +70,7 @@
                     "textStyle": {
                       "fontWeight": "normal",
                       "fontSize": "8pt",
-                      "color": "#E6F2E8"
+                      "color": "#E7EFFB"
                     }
                   }
                 ]
@@ -82,7 +82,7 @@
                     "textStyle": {
                       "fontWeight": "normal",
                       "fontSize": "8pt",
-                      "color": "#E6F2E8"
+                      "color": "#E7EFFB"
                     }
                   }
                 ]
@@ -94,7 +94,7 @@
                     "textStyle": {
                       "fontWeight": "normal",
                       "fontSize": "8pt",
-                      "color": "#E6F2E8"
+                      "color": "#E7EFFB"
                     }
                   }
                 ]
@@ -120,7 +120,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#285D3D'"
+                      "Value": "'#091E33'"
                     }
                   }
                 }
@@ -151,7 +151,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#2E6B45'"
+                      "Value": "'#122942'"
                     }
                   }
                 }
