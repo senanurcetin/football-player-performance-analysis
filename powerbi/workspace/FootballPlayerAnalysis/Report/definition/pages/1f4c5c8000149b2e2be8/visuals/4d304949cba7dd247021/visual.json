@@ -29,7 +29,7 @@
               "queryRef": "ml_player_market_value_current_predictions.position_tr",
               "nativeQueryRef": "position_tr",
               "active": true,
-              "displayName": "position_tr"
+              "displayName": "Position"
             }
           ]
         },
@@ -48,7 +48,7 @@
               },
               "queryRef": "ml_player_market_value_current_predictions.Average Prediction Upside %",
               "nativeQueryRef": "Prediction Upside % (Position)",
-              "displayName": "Prediction Upside % (Position)"
+              "displayName": "Predicted upside (%)"
             }
           ]
         }
@@ -86,7 +86,7 @@
             "showAxisTitle": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             },
@@ -95,7 +95,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#487FD8'"
+                      "Value": "'#526981'"
                     }
                   }
                 }
@@ -104,7 +104,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "8D"
+                  "Value": "10D"
                 }
               }
             },
@@ -112,6 +112,31 @@
               "expr": {
                 "Literal": {
                   "Value": "1D"
+                }
+              }
+            },
+            "titleText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Position'"
+                }
+              }
+            },
+            "titleFontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            },
+            "titleColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#526981'"
+                    }
+                  }
                 }
               }
             }
@@ -131,7 +156,7 @@
             "showAxisTitle": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             },
@@ -140,7 +165,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#487FD8'"
+                      "Value": "'#526981'"
                     }
                   }
                 }
@@ -149,7 +174,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "8D"
+                  "Value": "10D"
                 }
               }
             },
@@ -157,6 +182,31 @@
               "expr": {
                 "Literal": {
                   "Value": "1D"
+                }
+              }
+            },
+            "titleText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Predicted upside (%)'"
+                }
+              }
+            },
+            "titleFontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            },
+            "titleColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#526981'"
+                    }
+                  }
                 }
               }
             }
@@ -367,7 +417,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Prediction Upside % (Position)'"
+                  "Value": "'Predicted upside by position'"
                 }
               }
             },
@@ -412,7 +462,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Compares modeled market-value upside percentages by player position. Predictions are estimates, not realized outcomes.'"
+                  "Value": "'Modeled value change relative to the previous observation, not a realized return, by player position.'"
                 }
               }
             }

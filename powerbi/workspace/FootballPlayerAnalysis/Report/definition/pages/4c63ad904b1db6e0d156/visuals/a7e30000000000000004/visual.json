@@ -10,7 +10,7 @@
     "tabOrder": 14400
   },
   "visual": {
-    "visualType": "donutChart",
+    "visualType": "clusteredBarChart",
     "query": {
       "queryState": {
         "Category": {
@@ -48,7 +48,7 @@
               },
               "queryRef": "fct_transfer_fixed_horizon_outcomes.Transfers by Outcome Status (365d)",
               "nativeQueryRef": "Transfers by Outcome Status (365d)",
-              "displayName": "Transfers by Outcome Status (365d)"
+              "displayName": "Transfers by follow-up status"
             }
           ]
         }
@@ -97,6 +97,82 @@
               "expr": {
                 "Literal": {
                   "Value": "11D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "categoryAxis": [
+        {
+          "properties": {
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "titleText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Follow-up status'"
+                }
+              }
+            },
+            "titleFontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            },
+            "titleColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#526981'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "valueAxis": [
+        {
+          "properties": {
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "titleText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Transfers'"
+                }
+              }
+            },
+            "titleFontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            },
+            "titleColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#526981'"
+                    }
+                  }
                 }
               }
             }
@@ -218,7 +294,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Groups transfers by whether 365-day follow-up has been observed or is missing.'"
+                  "Value": "'Horizontal bars compare recorded 365-day follow-up statuses; missing follow-up is not counted as failed transfer performance.'"
                 }
               }
             }

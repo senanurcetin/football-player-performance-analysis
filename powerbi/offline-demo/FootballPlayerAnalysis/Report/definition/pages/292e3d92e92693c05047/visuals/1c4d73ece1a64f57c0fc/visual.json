@@ -29,7 +29,7 @@
               "queryRef": "fct_transfer_market_value_analysis.yon_etiketi_tr",
               "nativeQueryRef": "yon_etiketi_tr",
               "active": true,
-              "displayName": "yon_etiketi_tr"
+              "displayName": "Value direction"
             }
           ]
         },
@@ -53,7 +53,7 @@
               },
               "queryRef": "Count(fct_transfer_market_value_analysis.transfer_key)",
               "nativeQueryRef": "Kayit Sayisi",
-              "displayName": "Kayit Sayisi",
+              "displayName": "Transfers",
               "format": "#,0"
             }
           ]
