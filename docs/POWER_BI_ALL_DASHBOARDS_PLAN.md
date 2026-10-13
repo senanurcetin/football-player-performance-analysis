@@ -1,5 +1,7 @@
 # All-dashboard Power BI modernization plan
 
+> **Production Desktop handoff:** [Open the real BigQuery PBIP and record source checks](POWER_BI_DESKTOP_HANDOFF.md). Run `python scripts/check_powerbi_release_handoff.py --output powerbi-handoff.json` from the repository root. Passing source checks does not remove Desktop/BigQuery acceptance HOLD.
+
 ## Güncel plan — 13 Ekim 2026 / PR #44 sonrası
 
 > **Karar: SOURCE UPDATED / DESKTOP QA HOLD / PRODUCTION DATA HOLD.**
