@@ -7,6 +7,8 @@
 
 **CI execution policy:** Complete source development, offline checks and real Desktop/BigQuery acceptance **before** triggering hosted CI. CircleCI workflows are opt-in through `run_final_ci=true`; see [CI-last release policy](CI_RELEASE_GATE_POLICY.md).
 
+**Next implementation plan (visual redesign, not another palette pass):** [Professional Power BI Design Execution Plan](POWER_BI_PROFESSIONAL_REDESIGN_EXECUTION_PLAN.md). Start with actual Power BI Desktop screenshots and one deep, evidence-led pilot page; complete all 13 surfaces, interaction QA and BigQuery reconciliation before triggering CircleCI.
+
 ## Product direction
 
 One editable 13-page PBIR report with a restrained dark NEXUS identity; not a duplicate deck, generated dashboard image, or redesign that destroys analytic bindings. Apply typography and spacing improvements **inside native visuals**, protect honest metric semantics and accessibility, and keep production/demo PBIR styles in parity.
