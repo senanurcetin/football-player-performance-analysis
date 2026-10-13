@@ -125,3 +125,14 @@ Instead of five equal cards and three near-equal charts, the page has a **larger
 Implementation is mirrored between production and honest offline-demo sources. A local Git diff replay verified that the **24 original touched PBIR source visuals (12 per edition)** retained their original native visual types, query objects and PageNavigation, with **16 added pure shape/text nodes** and no changes to the data model or registered branding resources. The rewritten source regression covers all 11 original data-bound controls per edition, queryRefs, non-overlap, source parity, footer clearance and section hierarchy.
 
 **Current evidence:** 89/89 Power BI unit tests PASS, dbt offline source preflight PASS, all six Power BI source handoff checks PASS, zero native layout warnings. **Still not approved:** genuine 100% zoom Desktop screenshot, narrow treemap labels, 496px pivot horizontal scrolling, actual click/hover/selection and production refresh. This is a committed *pilot*, not completion of the remaining report pages or a fully accepted visual redesign. CI remains final-stage opt-in.
+
+## Implementation update — Segmentation and Club/League native editorial redesign (13 October 2026)
+
+After the Player Performance pilot, the next two full-size analytical pages have source-level evidence hierarchies:
+
+- **Player Segmentation**: deliberate observed roster-cohort composition (position-count hero, age distribution, then club goals and aggregate EUR market value by position), never mislabeled as an unsupervised ML segment model.
+- **Club & League Analysis**: club win-rate ranking as the dominant outcome, goal difference as supporting evidence, then competition match and goal volumes at an explicitly distinct observational grain.
+
+The two pages no longer share the old geometric four-panel template. There are 16 changed data-bound native charts (8 original visual IDs in each of the two source editions) and 24 new non-query editorial labels/rules (12 per edition). Native chart type, complete queryState/query content, navigation, registered logos and production vs offline data partitions are preserved. See [exact geometry, tests and Desktop acceptance checklist](POWER_BI_COHORT_LEAGUE_EDITORIAL_REDESIGN.md).
+
+**Executed local checks:** 93/93 Power BI source unit tests PASS, offline YAML/Jinja preflight PASS, 6/6 source handoff gates PASS and zero source layout warnings. This is not a claimed real Desktop screenshot or final design approval. The next stage is visually verifying this composition in Power BI Desktop before revising its smaller labels or proceeding to the three transfer/valuation pages. CircleCI remains off by default and release remains HOLD.

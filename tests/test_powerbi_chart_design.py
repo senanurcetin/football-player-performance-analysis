@@ -35,12 +35,12 @@ ADDITIONAL_PAGES = {
 
 ASYMMETRIC_LAYOUT = {
     "24c53960ddc19662d824": [
-        (105, 121, 660, 256), (789, 121, 444, 256),
-        (105, 403, 458, 268), (587, 403, 646, 268),
+        (105, 151, 754, 252), (882, 151, 351, 252),
+        (105, 452, 532, 219), (660, 452, 573, 219),
     ],
     "25f58efd2bb140e62be9": [
-        (105, 121, 490, 256), (619, 121, 614, 256),
-        (105, 403, 640, 268), (769, 403, 464, 268),
+        (105, 151, 721, 252), (849, 151, 384, 252),
+        (105, 452, 542, 219), (670, 452, 563, 219),
     ],
 }
 
@@ -98,7 +98,8 @@ class TransferDashboardDesignTests(unittest.TestCase):
                     self.assertTrue(v["query"]["queryState"])
                     props = v["visualContainerObjects"]["title"][0]["properties"]
                     self.assertEqual(literal(props["text"]), "'" + title + "'")
-                    self.assertEqual(literal(props["fontSize"]), "13D")
+                    self.assertEqual(literal(props["fontSize"]),
+                                     "15D" if name.endswith("01") else "12D")
                     self.assertEqual(
                         literal(props["fontColor"]["solid"]["color"]), "'#122942'"
                     )
@@ -107,7 +108,8 @@ class TransferDashboardDesignTests(unittest.TestCase):
                                 ["properties"]["radius"]), "12D"
                     )
                     labels = v["objects"]["labels"][0]["properties"]
-                    self.assertEqual(literal(labels["fontSize"]), "11D")
+                    self.assertEqual(literal(labels["fontSize"]),
+                                     "12D" if name.endswith("01") else "10D")
                     self.assertEqual(
                         literal(labels["color"]["solid"]["color"]), "'#122942'"
                     )
