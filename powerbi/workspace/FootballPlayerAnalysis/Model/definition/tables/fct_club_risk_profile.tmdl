@@ -113,7 +113,11 @@ table fct_club_risk_profile
 				    Source = GoogleBigQuery.Database([UseStorageApi=false]),
 				    #"data-analiz-490513" = Source{[Name="data-analiz-490513"]}[Data],
 				    football_mart_Schema = #"data-analiz-490513"{[Name="football_mart",Kind="Schema"]}[Data],
-				    fct_club_risk_profile_Table = football_mart_Schema{[Name="fct_club_risk_profile",Kind="Table"]}[Data]
+				    fct_club_risk_profile_Table = football_mart_Schema{[Name="fct_club_risk_profile",Kind="Table"]}[Data],
+				    #"Overpay Percent As Number" = Table.TransformColumns(
+				        fct_club_risk_profile_Table,
+				        {{"avg_overpay_pct", each if _ = null then null else Number.From(_), type nullable number}}
+				    )
 				in
-				    fct_club_risk_profile_Table
+				    #"Overpay Percent As Number"
 
