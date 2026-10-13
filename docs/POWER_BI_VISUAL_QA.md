@@ -164,3 +164,28 @@ Desktop testing.
 Source gate: `python -m unittest discover -s tests -p 'test_powerbi_navigation_completion.py'`
 plus `python scripts/audit_powerbi_layout.py`. No hosted CI was invoked;
 real Power BI Desktop open/refresh/render acceptance is still **HOLD**.
+
+## Transfer and modeled-value visual terminology — 13 October 2026
+
+The four **365-day Transfer Outcomes** breakdowns now show native chart axis
+titles with business labels instead of internal fields (for example,
+`position`). The 365-day follow-up *status* breakdown uses horizontal bars
+rather than a monochrome donut; its accessibility description explicitly says
+missing follow-up is **not** a failed player transfer. The page header reads
+**Observed Transfer Outcomes / 365 Days** to distinguish observed evidence
+from predictions. Existing queries, row context, target horizon and KPI
+definitions are untouched.
+
+The Transfer Market and Player Valuation report pages now explicitly name
+positions, seasons, fee premium/discount (%), modeled upside (%), and
+predicted value. Known fee and predicted value axes use `€m` **only where
+the existing PBIR `labelDisplayUnits` is set to 1,000,000**; source model
+values are euros and are not rescaled or rewritten. Percentage measures
+remain model-formatted as `0.0%`. Category labels in the two remaining
+composition donuts are now readable English instead of internal Turkish
+field identifiers; these charts retain their original grouping queries.
+
+Source guard: `python -m unittest discover -s tests -p 'test_powerbi_transfer_value_editorial.py'`.
+Real chart rendering, responsive text clipping, DAX outputs and production
+BigQuery refresh are **not** verified here. The portfolio release gate remains
+**HOLD** pending the owner's Power BI Desktop screenshot review.
