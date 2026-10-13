@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "750474d7071b93a004b5",
   "position": {
-    "x": 420.33106699301965,
-    "y": 451.5217115402049,
+    "x": 440,
+    "y": 474,
     "z": 23000,
-    "height": 219.47828845979512,
-    "width": 326.7591333514641,
+    "height": 197,
+    "width": 327,
     "tabOrder": 23000
   },
   "visual": {
@@ -255,14 +255,14 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Age vs Performance & Market Value'"
+                  "Value": "'Age Group: Rate + Market Value'"
                 }
               }
             },
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "12D"
+                  "Value": "11D"
                 }
               }
             }

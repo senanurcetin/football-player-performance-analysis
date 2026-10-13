@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "6c68e020599db75da880",
   "position": {
-    "x": 85.84856314024114,
-    "y": 451.22463965189013,
+    "x": 86,
+    "y": 474,
     "z": 19000,
-    "height": 219,
-    "width": 328.24440213942523,
+    "height": 197,
+    "width": 343,
     "tabOrder": 19000
   },
   "visual": {
@@ -367,7 +367,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Goals vs Assists by Position'"
+                  "Value": "'Goal / Assist Profile by Position'"
                 }
               }
             },
@@ -386,7 +386,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "12D"
+                  "Value": "11D"
                 }
               }
             }
