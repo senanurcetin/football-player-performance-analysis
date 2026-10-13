@@ -22,7 +22,7 @@ LEGACY = {
 }
 HEX = re.compile(r"#[0-9a-fA-F]{6}\b")
 EXPECTED_PAGES = 13
-EXPECTED_DETAIL_VISUALS = 15
+EXPECTED_DETAIL_VISUALS = 16  # 15 native detail visuals plus the canonical NEXUS logo
 
 
 def load(path: Path) -> dict:
