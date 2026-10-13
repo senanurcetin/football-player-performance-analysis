@@ -79,7 +79,8 @@ class EditorialSourceContract(unittest.TestCase):
                         props = v["objects"][axis][0]["properties"]
                         self.assertEqual(literal(props["showAxisTitle"]), "true")
                         self.assertEqual(literal(props["titleText"]), expected)
-                        self.assertEqual(literal(props["titleFontSize"]), "10D")
+                        self.assertEqual(literal(props["titleFontSize"]),
+                                         "10D" if page == TRANSFER else "11D")
                     self.assertEqual(v["visualContainerObjects"]["background"][0]["properties"]
                                      ["show"]["expr"]["Literal"]["Value"], "true")
 
