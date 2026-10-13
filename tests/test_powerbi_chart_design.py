@@ -21,13 +21,13 @@ ADDITIONAL_PAGES = {
     "24c53960ddc19662d824": {
         "a7e10000000000000001": "Players by Position",
         "a7e10000000000000002": "Age Group Distribution",
-        "a7e10000000000000003": "Goals by Club",
-        "a7e10000000000000004": "Market Value by Position",
+        "a7e10000000000000003": "Player Goals by Club",
+        "a7e10000000000000004": "Total Market Value by Position",
     },
     "25f58efd2bb140e62be9": {
         "a7e20000000000000001": "Club Win Rate",
         "a7e20000000000000002": "Goal Difference by Club",
-        "a7e20000000000000003": "Competition Matches",
+        "a7e20000000000000003": "Matches by Competition",
         "a7e20000000000000004": "Goals by Competition",
     },
 }
@@ -36,11 +36,11 @@ ADDITIONAL_PAGES = {
 ASYMMETRIC_LAYOUT = {
     "24c53960ddc19662d824": [
         (105, 121, 660, 256), (789, 121, 444, 256),
-        (105, 403, 458, 280), (587, 403, 646, 280),
+        (105, 403, 458, 268), (587, 403, 646, 268),
     ],
     "25f58efd2bb140e62be9": [
         (105, 121, 490, 256), (619, 121, 614, 256),
-        (105, 403, 640, 280), (769, 403, 464, 280),
+        (105, 403, 640, 268), (769, 403, 464, 268),
     ],
 }
 
@@ -111,6 +111,11 @@ class TransferDashboardDesignTests(unittest.TestCase):
                     self.assertEqual(
                         literal(labels["color"]["solid"]["color"]), "'#122942'"
                     )
+                    for axis in ("categoryAxis", "valueAxis"):
+                        self.assertEqual(
+                            literal(v["objects"][axis][0]["properties"]["titleFontSize"]),
+                            "11D", "Axis titles should remain readable on 1280×720 report pages"
+                        )
 
     def test_distinct_page_compositions_are_valid_and_data_bound(self):
         for page, expected in ADDITIONAL_PAGES.items():
@@ -123,7 +128,8 @@ class TransferDashboardDesignTests(unittest.TestCase):
                 rect = tuple(position[k] for k in ("x", "y", "width", "height"))
                 self.assertEqual(rect, ASYMMETRIC_LAYOUT[page][i])
                 self.assertLessEqual(position["x"] + position["width"], 1280)
-                self.assertLessEqual(position["y"] + position["height"], 720)
+                self.assertLessEqual(position["y"] + position["height"], 671,
+                                     "Native charts must clear the footer starting at y=679")
                 rects.append(rect)
                 self.assertEqual(
                     offline["visual"]["query"]["queryState"],
