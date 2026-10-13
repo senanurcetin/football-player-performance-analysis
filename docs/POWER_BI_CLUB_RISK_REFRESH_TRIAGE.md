@@ -123,3 +123,11 @@ python scripts/check_powerbi_offline_demo.py
 ```
 
 These checks validate file contracts only; they do not query BigQuery.
+
+## 13 October 2026 — live production inspection update
+
+A read-only audit of the **actual** EU BigQuery warehouse has now been completed. Detailed results are recorded in [POWER_BI_BIGQUERY_PRODUCTION_AUDIT_20261013.md](POWER_BI_BIGQUERY_PRODUCTION_AUDIT_20261013.md).
+
+The current `fct_club_risk_profile` warehouse mart has **5,714** valid, uniquely keyed rows. No invalid counter, coverage/rate-range, missing category or unsafe `NUMERIC→FLOAT64` conversion anomalies were found in the aggregate checks. **The real `avg_overpay_pct` warehouse column is NUMERIC, whereas the PBIR model declares double.** This is now normalized explicitly in the *production* Power Query `Overpay Percent As Number` step with a null-preserving `Number.From` conversion. The synthetic six-row PBIP partition remains independent and unchanged.
+
+**Do not treat warehouse health as proof of Desktop refresh success.** The historical row-level refresh error remains unconfirmed without a real Desktop load and Applied Step evidence. Successful BI source tests and BigQuery aggregates establish source contracts only. The actual mart was last modified in June 2026, so data snapshot freshness must also be checked before marketing it as up-to-date football intelligence.

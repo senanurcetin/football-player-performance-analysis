@@ -56,6 +56,18 @@ class ClubRiskSourceContract(unittest.TestCase):
         self.assertIn('Name="fct_club_risk_profile",Kind="Table"', model)
         self.assertNotIn("#table(", model)
 
+    def test_live_numeric_to_double_import_is_explicit_and_null_preserving(self):
+        """Warehouse avg_overpay_pct is NUMERIC, semantic model is double."""
+        prod = source("workspace")
+        self.assertIn('#"Overpay Percent As Number" = Table.TransformColumns(', prod)
+        self.assertIn(
+            '{{"avg_overpay_pct", each if _ = null then null else Number.From(_), type nullable number}}',
+            prod,
+        )
+        self.assertRegex(prod, r'in\s+#"Overpay Percent As Number"')
+        self.assertNotIn('"avg_overpay_pct", each', source("offline-demo"))
+        self.assertIn('column avg_overpay_pct\n\t\tdataType: double', prod)
+
     def test_demo_fixture_is_local_typed_and_distinct(self):
         demo = source("offline-demo")
         self.assertIn("#table(", demo)
