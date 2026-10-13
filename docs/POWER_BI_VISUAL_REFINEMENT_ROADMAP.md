@@ -43,6 +43,14 @@ Previously all had 8pt title/header/value and row padding 3pt. The first typogra
 
 **Verification boundary:** Live PBIR JSON/source comparisons can prove exactly which fields changed, but cannot prove Power BI actually renders 10pt table text as intended. This stage remains **SOURCE UPDATED / DESKTOP QA HOLD** until the user tests in Microsoft Power BI Desktop.
 
+## Stage 2 source implementation — Player Performance
+
+The five bound KPI cards on page `d2bc1e6a078c5c5b125c` now share a 64px height, y=118 baseline, 200px widths, and exact 12px gaps (x=157,369,581,793,1005). The minutes card title is shortened to **Avg Minutes / Match** without changing its average/minutes measure.
+
+A concrete footer collision was found in the source geometry: the Goals vs Assists scatter originally ended at y=699.26 and the pivot performance table ended at y=702.53, **below the footer starting at y=679**. They now end at approximately y=670.22 and y=670.04, preserving an approximately 9px clearance before the footer. The combo chart already ended at y≈671 and remains unchanged. Two PBIP editions share the identical layout and underlying query bindings.
+
+New `tests/test_powerbi_player_performance_layout.py` checks KPI rhythm, all bound Player Performance visuals against the footer, and workspace/demo query parity. Source-file position checks do not prove the chart's scroll/render behavior: inspect scatter axes, pivot table rows and footer reachability at 100% zoom in **real Power BI Desktop** before acceptance.
+
 ## Required local checks (no GitHub Actions quota)
 
 ```powershell

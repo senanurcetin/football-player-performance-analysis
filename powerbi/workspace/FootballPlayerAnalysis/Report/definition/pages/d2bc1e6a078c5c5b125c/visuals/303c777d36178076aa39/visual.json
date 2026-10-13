@@ -2,10 +2,10 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "303c777d36178076aa39",
   "position": {
-    "x": 795.1013348553631,
-    "y": 117.50000824799407,
+    "x": 793,
+    "y": 118,
     "z": 12000,
-    "height": 60,
+    "height": 64,
     "width": 200,
     "tabOrder": 12000
   },
@@ -194,7 +194,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Avg Minutes per Match(min)'"
+                  "Value": "'Avg Minutes / Match'"
                 }
               }
             },
