@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "8b91d598c732aba58217",
   "position": {
-    "x": 559.9463330613725,
-    "y": 196.05548001087843,
+    "x": 780,
+    "y": 220,
     "z": 20000,
-    "height": 239.12827486175325,
-    "width": 351.4146496237875,
+    "height": 223,
+    "width": 243,
     "tabOrder": 20000
   },
   "visual": {
@@ -261,14 +261,14 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Top 10 Goals per 90'"
+                  "Value": "'Top Players / Goals per 90'"
                 }
               }
             },
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "12D"
+                  "Value": "11D"
                 }
               }
             }

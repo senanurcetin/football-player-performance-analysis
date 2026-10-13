@@ -115,3 +115,13 @@ Each implementation PR needs: before/after **real** Desktop evidence (when Deskt
 **Current known blockers:** no accepted 13-page actual Desktop screenshot set; live Desktop refresh outcome unverified; older BigQuery marts require freshness/context evaluation. These are independent of the latest logo redesign PR #60 and must not be mislabeled completed.
 
 **First next action:** capture and score the *current* 13 Desktop views, select one page (Player Performance or ML Reliability) as a high-impact **pilot**, and approve its actual rendered direction **before** applying that component hierarchy across the other report pages. This is how to stop repeatedly polishing the old layout.
+
+## First pilot implementation — Player Performance (13 October 2026)
+
+The first native source-level pilot has begun on **Player Performance Analysis** (page d2bc1e6a078c5c5b125c). See [the visual-specific pilot design and Desktop review checklist](POWER_BI_PLAYER_PERFORMANCE_PILOT.md).
+
+Instead of five equal cards and three near-equal charts, the page has a **larger first-read G+A / 90 KPI** (278x74), a 510px-wide primary player-efficiency bar ranking, two supporting rate distributions and a separate bottom evidence row. The left-side position and club filters stay operational at their original coordinates. Two restrained numbered text dividers signal the analysis sequence without introducing fake values.
+
+Implementation is mirrored between production and honest offline-demo sources. A local Git diff replay verified that the **24 original touched PBIR source visuals (12 per edition)** retained their original native visual types, query objects and PageNavigation, with **16 added pure shape/text nodes** and no changes to the data model or registered branding resources. The rewritten source regression covers all 11 original data-bound controls per edition, queryRefs, non-overlap, source parity, footer clearance and section hierarchy.
+
+**Current evidence:** 89/89 Power BI unit tests PASS, dbt offline source preflight PASS, all six Power BI source handoff checks PASS, zero native layout warnings. **Still not approved:** genuine 100% zoom Desktop screenshot, narrow treemap labels, 496px pivot horizontal scrolling, actual click/hover/selection and production refresh. This is a committed *pilot*, not completion of the remaining report pages or a fully accepted visual redesign. CI remains final-stage opt-in.

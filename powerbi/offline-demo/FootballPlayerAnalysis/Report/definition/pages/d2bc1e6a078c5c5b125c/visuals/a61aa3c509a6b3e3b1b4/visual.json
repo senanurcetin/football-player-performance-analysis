@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "a61aa3c509a6b3e3b1b4",
   "position": {
-    "x": 258.43676910524886,
-    "y": 196.05548001087843,
+    "x": 257,
+    "y": 220,
     "z": 16000,
-    "height": 239.12827486175325,
-    "width": 292.59795122835646,
+    "height": 223,
+    "width": 510,
     "tabOrder": 16000
   },
   "visual": {
@@ -317,7 +317,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "8D"
+                  "Value": "10D"
                 }
               }
             },
@@ -337,7 +337,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "8D"
+                  "Value": "10D"
                 }
               }
             }
@@ -372,14 +372,14 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Top 10 Most Efficient Players'"
+                  "Value": "'Player Efficiency Ranking / G+A per 90'"
                 }
               }
             },
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "12D"
+                  "Value": "13D"
                 }
               }
             },
