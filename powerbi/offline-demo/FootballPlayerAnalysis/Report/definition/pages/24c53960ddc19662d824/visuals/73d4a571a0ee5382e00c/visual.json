@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "73d4a571a0ee5382e00c",
   "position": {
-    "x": 15.14383629822391,
+    "x": 16,
     "y": 469.4589252449412,
     "z": 6000,
     "height": 51.25606131706554,
-    "width": 44.26659841019296,
+    "width": 44,
     "tabOrder": 6000
   },
   "visual": {
@@ -37,6 +37,13 @@
                   "Value": "true"
                 }
               }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
             }
           }
         },
@@ -45,7 +52,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'🔄'"
+                  "Value": "'T'"
                 }
               }
             },
@@ -53,9 +60,8 @@
               "solid": {
                 "color": {
                   "expr": {
-                    "ThemeDataColor": {
-                      "ColorId": 0,
-                      "Percent": 0
+                    "Literal": {
+                      "Value": "'#DFEFFF'"
                     }
                   }
                 }
@@ -64,7 +70,7 @@
             "horizontalAlignment": {
               "expr": {
                 "Literal": {
-                  "Value": "'left'"
+                  "Value": "'center'"
                 }
               }
             },
@@ -78,7 +84,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "20D"
+                  "Value": "14D"
                 }
               }
             }
@@ -94,7 +100,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#F6B95F'"
+                      "Value": "'#4EA8FF'"
                     }
                   }
                 }
@@ -110,14 +116,14 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "23D"
+                  "Value": "14D"
                 }
               }
             },
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'🔄'"
+                  "Value": "'T'"
                 }
               }
             }
@@ -131,7 +137,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'🔄'"
+                  "Value": "'T'"
                 }
               }
             },
@@ -140,7 +146,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#69AEFF'"
+                      "Value": "'#FFFFFF'"
                     }
                   }
                 }
@@ -149,7 +155,14 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "20D"
+                  "Value": "14D"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }
@@ -203,9 +216,8 @@
               "solid": {
                 "color": {
                   "expr": {
-                    "ThemeDataColor": {
-                      "ColorId": 0,
-                      "Percent": -0.2
+                    "Literal": {
+                      "Value": "'#1C3D61'"
                     }
                   }
                 }
@@ -214,7 +226,7 @@
             "transparency": {
               "expr": {
                 "Literal": {
-                  "Value": "11D"
+                  "Value": "0D"
                 }
               }
             }
@@ -230,7 +242,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#69AEFF'"
+                      "Value": "'#2A5D9C'"
                     }
                   }
                 }

@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "ff4cb16decd3ab839c9b",
   "position": {
-    "x": 17.473657267181434,
+    "x": 16,
     "y": 556.8272115808484,
     "z": 3000,
     "height": 51.25606131706554,
-    "width": 41.93677744123544,
+    "width": 44,
     "tabOrder": 2000
   },
   "visual": {
@@ -45,7 +45,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'💰'"
+                  "Value": "'V'"
                 }
               }
             },
@@ -53,9 +53,8 @@
               "solid": {
                 "color": {
                   "expr": {
-                    "ThemeDataColor": {
-                      "ColorId": 0,
-                      "Percent": 0
+                    "Literal": {
+                      "Value": "'#DFEFFF'"
                     }
                   }
                 }
@@ -64,14 +63,14 @@
             "horizontalAlignment": {
               "expr": {
                 "Literal": {
-                  "Value": "'left'"
+                  "Value": "'center'"
                 }
               }
             },
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "20D"
+                  "Value": "14D"
                 }
               }
             },
@@ -94,7 +93,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#F6B95F'"
+                      "Value": "'#4EA8FF'"
                     }
                   }
                 }
@@ -110,14 +109,14 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "23D"
+                  "Value": "14D"
                 }
               }
             },
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'💰'"
+                  "Value": "'V'"
                 }
               }
             }
@@ -131,14 +130,14 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'💰'"
+                  "Value": "'V'"
                 }
               }
             },
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "20D"
+                  "Value": "14D"
                 }
               }
             },
@@ -147,7 +146,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#69AEFF'"
+                      "Value": "'#FFFFFF'"
                     }
                   }
                 }
@@ -203,9 +202,8 @@
               "solid": {
                 "color": {
                   "expr": {
-                    "ThemeDataColor": {
-                      "ColorId": 0,
-                      "Percent": -0.2
+                    "Literal": {
+                      "Value": "'#1C3D61'"
                     }
                   }
                 }
@@ -214,7 +212,7 @@
             "transparency": {
               "expr": {
                 "Literal": {
-                  "Value": "11D"
+                  "Value": "0D"
                 }
               }
             }
@@ -230,7 +228,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#69AEFF'"
+                      "Value": "'#2A5D9C'"
                     }
                   }
                 }

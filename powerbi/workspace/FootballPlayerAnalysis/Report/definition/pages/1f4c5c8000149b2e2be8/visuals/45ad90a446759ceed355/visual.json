@@ -19,11 +19,11 @@
               {
                 "textRuns": [
                   {
-                    "value": "ML v5 Ensemble  |  R2=0.976, WAPE=%12.5  |  %90 güven aralığı  |  Quality tabanlı yönlendirme",
+                    "value": "MODEL ESTIMATES  /  BASELINE COMPARISON  /  UNCERTAINTY  /  QUALITY GATES",
                     "textStyle": {
                       "fontWeight": "normal",
                       "fontSize": "7.5pt",
-                      "color": "#C4E0FF"
+                      "color": "#BDD2E8"
                     }
                   }
                 ]

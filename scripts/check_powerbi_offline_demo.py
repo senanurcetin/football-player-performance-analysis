@@ -111,6 +111,41 @@ def parse_fixture_date(value):
     return date(*(int(v) for v in match.groups()))
 
 
+
+def check_club_risk_demo_contract(fixtures):
+    """Catch incorrectly typed #table cells, fraction/percent and sample-size drift."""
+    rows = fixtures.get("fct_club_risk_profile", [])
+    check(len(rows) == 6, "Expected six deterministic club-risk demo rows")
+    for row in rows:
+        key = row.get("club_id")
+        count = row.get("total_incoming_transfers")
+        known = row.get("transfers_with_known_fee")
+        observed = row.get("observed_365d_transfers")
+        successes = row.get("successful_transfers")
+        failures = row.get("unsuccessful_transfers")
+        numeric_rates = all(isinstance(row.get(name), (int, float)) and
+                            not isinstance(row.get(name), bool) for name in
+                            ("known_fee_coverage_pct", "outcome_365d_coverage_pct",
+                             "avg_overpay_pct", "transfer_success_rate_pct"))
+        for field in ("known_fee_coverage_pct", "outcome_365d_coverage_pct",
+                      "avg_overpay_pct", "transfer_success_rate_pct"):
+            check(isinstance(row.get(field), (int, float)) and not isinstance(row.get(field), bool),
+                  f"Club-risk {key}: {field} is a text literal, not a number")
+        if numeric_rates and all(isinstance(v, (int, float)) for v in (count, known, observed, successes, failures)) and count > 0:
+            check(abs(row["known_fee_coverage_pct"] - 100 * known / count) < 0.02,
+                  f"Club-risk {key}: known-fee coverage must be percentage points")
+            check(abs(row["outcome_365d_coverage_pct"] - 100 * observed / count) < 0.02,
+                  f"Club-risk {key}: 365d coverage must be percentage points")
+            if successes + failures:
+                check(abs(row["transfer_success_rate_pct"] -
+                          100 * successes / (successes + failures)) < 0.02,
+                      f"Club-risk {key}: success rate must be percentage points")
+            check(row.get("meets_minimum_sample_size") is (observed >= 30),
+                  f"Club-risk {key}: minimum sample-size flag differs from SQL")
+            if observed < 30:
+                check(row.get("transfer_risk_category") == "insufficient_data",
+                      f"Club-risk {key}: small cohort must be classified insufficient_data")
+
 def check_365_day_transfer_contract(fixtures):
     """Check synthetic outcome arithmetic against the production 365d SQL contract."""
     sql_path = ROOT / "models" / "marts" / "fct_transfer_success_labels.sql"
@@ -282,6 +317,7 @@ def check_demo_relationships(demo_tables):
                       f"Competition {row['competition_id']} goal average mismatch")
 
     check_365_day_transfer_contract(fixtures)
+    check_club_risk_demo_contract(fixtures)
 
     return len(fixtures), count
 
