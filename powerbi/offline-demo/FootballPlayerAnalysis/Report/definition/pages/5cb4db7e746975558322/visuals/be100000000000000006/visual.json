@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "be100000000000000006",
   "position": {
-    "x": 557,
-    "y": 454,
+    "x": 853,
+    "y": 474,
     "z": 60000,
-    "height": 124,
-    "width": 620,
+    "height": 141,
+    "width": 353,
     "tabOrder": 60000
   },
   "visual": {
@@ -19,11 +19,11 @@
               {
                 "textRuns": [
                   {
-                    "value": "Explore player performance, transfer outcomes and market valuation with transparent metrics. Use filters to investigate the evidence.",
+                    "value": "Seven connected perspectives on players, clubs and market decisions. Compare observed outcomes with model estimates, and check the strength of the evidence.",
                     "textStyle": {
                       "fontWeight": "normal",
-                      "fontSize": "15pt",
-                      "color": "#B0C5D8",
+                      "fontSize": "13pt",
+                      "color": "#B4C9DD",
                       "fontFamily": "Segoe UI"
                     }
                   }

@@ -21,7 +21,7 @@ The Power BI report includes native graphics that may have their own explicit fi
 
 The **current** editable PBIR uses a unified NEXUS dark background for the nine analytics and drillthrough pages. Home and Closing use the deeper hero navy. Only the two compact, hidden tooltip pages retain pale contextual canvases; they are **not** normal report tabs. Prior pastel full-page designs are historical and must not be described as the present source.
 
-This table describes the actual `Report/definition/pages/*/page.json` backgrounds in **both** editions; `offline-demo` adds `[DEMO]` to page display names without changing these backgrounds.
+This table describes the actual `Report/definition/pages/*/page.json` backgrounds in **both** editions; `offline-demo` now uses the same clean page-tab names as production, but retains an explicit, readable synthetic-data disclosure on every full-size page. The two contextual tooltips are bound to these clearly disclosed synthetic parent pages. There is no implied production-data provenance.
 
 <!-- CURRENT_PBIR_CANVASES_START -->
 | PBIR page ID | Page | Surface | Current background |

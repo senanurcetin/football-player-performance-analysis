@@ -104,10 +104,8 @@ class EveryDashboardSourceContract(unittest.TestCase):
                         r"[⭐👥🏆💰📊]",
                         "Decorative legacy emoji is not an editorial page title",
                     )
-                    if mode == "offline-demo":
-                        self.assertTrue(page["displayName"].startswith("[DEMO]"))
-                    else:
-                        self.assertFalse(page["displayName"].startswith("[DEMO]"))
+                    self.assertFalse(page["displayName"].startswith("[DEMO]"),
+                                     "Clean tabs are paired with explicit on-page provenance")
                     if page_id in TOOLTIPS:
                         self.assertEqual((page["width"], page["height"]), (560, 320))
                         self.assertEqual(page["displayOption"], "ActualSize")
@@ -271,8 +269,8 @@ class EveryDashboardSourceContract(unittest.TestCase):
                      )
                 )
             for page, visual_id, title in [
-                (home, "be100000000000000002", "THE GAME, IN DATA."),
-                (closing, "be100000000000000009", "EVIDENCE. INSIGHT. ACTION."),
+                (home, "be100000000000000002", "FOOTBALL, DECODED."),
+                (closing, "be100000000000000009", "FROM EVIDENCE TO DECISIONS."),
             ]:
                 with self.subTest(mode=mode, page=page):
                     v = read_visual(page, visual_id)

@@ -3,10 +3,10 @@
   "name": "be100000000000000002",
   "position": {
     "x": 70,
-    "y": 115,
+    "y": 107,
     "z": 60000,
-    "height": 110,
-    "width": 790,
+    "height": 98,
+    "width": 816,
     "tabOrder": 60000
   },
   "visual": {
@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "THE GAME, IN DATA.",
+                    "value": "FOOTBALL, DECODED.",
                     "textStyle": {
                       "fontWeight": "bold",
                       "fontSize": "43pt",

@@ -56,7 +56,7 @@ def audit(root: Path) -> dict:
             issues.append(f"{edition}: expected {EXPECTED_PAGES} unique report pages")
         if not order or order[0] != HOME:
             issues.append(f"{edition}: Home is not the opening page")
-        titles = ("Home", "Closing") if edition == "workspace" else ("[DEMO] Home", "[DEMO] Closing")
+        titles = ("Home", "Closing")
         if (home.get("displayName"), closing.get("displayName")) != titles:
             issues.append(f"{edition}: Home/Closing product tab titles do not match {titles}")
         custom = report.get("themeCollection", {}).get("customTheme", {}).get("name")

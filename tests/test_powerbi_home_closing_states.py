@@ -42,7 +42,9 @@ def state(visual: dict, group: str, selection: str) -> dict:
 
 class HomeClosingNavigationStateTests(unittest.TestCase):
     def test_all_home_module_links_have_explicit_labels_in_every_state(self):
-        for visual_id, destination, label in HOME_LINKS:
+        positions = ((68,412),(431,412),(68,482),(431,482),
+                     (68,552),(431,552),(68,622))
+        for (visual_id, destination, label), (x,y) in zip(HOME_LINKS, positions):
             prod = read("workspace", HOME, visual_id)
             demo = read("offline-demo", HOME, visual_id)
             with self.subTest(module=label):
@@ -55,7 +57,8 @@ class HomeClosingNavigationStateTests(unittest.TestCase):
                 self.assertTrue(node["visualContainerObjects"]["general"][0]
                                 ["properties"]["altText"])
                 self.assertEqual(tuple(prod["position"][key]
-                                       for key in ("x", "width", "height")), (59, 392, 34))
+                                       for key in ("x", "y", "width", "height")),
+                                 (x, y, 347, 54))
                 for mode in ("default", "hover", "selected"):
                     t = state(node, "text", mode)
                     self.assertEqual(literal(t["text"]), label)

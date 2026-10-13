@@ -82,7 +82,7 @@ class NexusLogoSourceContract(unittest.TestCase):
                     self.assertEqual(node["visual"]["visualType"], "image")
                     self.assertNotIn("query", node["visual"])
                     package = node["visual"]["objects"]["general"][0]["properties"]["imageUrl"]["expr"]["ResourcePackageItem"]
-                    expected = IMAGE if page in (PAGES[0], PAGES[8]) else CROPPED
+                    expected = CROPPED
                     self.assertEqual(package, {
                         "PackageName": "RegisteredResources",
                         "PackageType": 1,

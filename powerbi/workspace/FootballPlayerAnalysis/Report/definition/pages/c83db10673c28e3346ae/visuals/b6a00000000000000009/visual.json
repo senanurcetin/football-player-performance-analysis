@@ -2,10 +2,10 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "b6a00000000000000009",
   "position": {
-    "x": 890,
-    "y": 108,
-    "width": 300,
-    "height": 300,
+    "x": 924,
+    "y": 165,
+    "width": 278,
+    "height": 133,
     "z": 9600,
     "tabOrder": 9600
   },
@@ -20,7 +20,7 @@
                 "ResourcePackageItem": {
                   "PackageName": "RegisteredResources",
                   "PackageType": 1,
-                  "ItemName": "nexus-brand-original-20261013.png"
+                  "ItemName": "nexus-wordmark-crop.svg"
                 }
               }
             }

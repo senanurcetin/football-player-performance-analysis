@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "be10000000000000000a",
   "position": {
-    "x": 74,
-    "y": 341,
+    "x": 78,
+    "y": 367,
     "z": 60000,
-    "height": 70,
-    "width": 784,
+    "height": 93,
+    "width": 785,
     "tabOrder": 60000
   },
   "visual": {
@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Compare cohorts. Verify coverage. Challenge predictions.",
+                    "value": "Compare performance. Scrutinize transfer outcomes. Challenge predictions against model quality.",
                     "textStyle": {
                       "fontWeight": "normal",
                       "fontSize": "17pt",

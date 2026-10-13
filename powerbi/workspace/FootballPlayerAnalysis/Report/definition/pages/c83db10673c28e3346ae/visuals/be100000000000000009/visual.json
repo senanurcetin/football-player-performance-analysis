@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "be100000000000000009",
   "position": {
-    "x": 73,
-    "y": 218,
+    "x": 75,
+    "y": 232,
     "z": 60000,
-    "height": 105,
-    "width": 790,
+    "height": 115,
+    "width": 812,
     "tabOrder": 60000
   },
   "visual": {
@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "EVIDENCE. INSIGHT. ACTION.",
+                    "value": "FROM EVIDENCE TO DECISIONS.",
                     "textStyle": {
                       "fontWeight": "bold",
                       "fontSize": "36pt",

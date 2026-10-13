@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "be100000000000000007",
   "position": {
-    "x": 557,
-    "y": 615,
+    "x": 855,
+    "y": 632,
     "z": 60000,
-    "height": 51,
-    "width": 620,
+    "height": 44,
+    "width": 354,
     "tabOrder": 60000
   },
   "visual": {
@@ -19,11 +19,11 @@
               {
                 "textRuns": [
                   {
-                    "value": "SAMPLE DATA  /  NO BIGQUERY LOGIN REQUIRED",
+                    "value": "OFFLINE SAMPLE   /   SYNTHETIC INPUTS",
                     "textStyle": {
                       "fontWeight": "bold",
-                      "fontSize": "12pt",
-                      "color": "#81A8CD",
+                      "fontSize": "10pt",
+                      "color": "#8F9BFF",
                       "fontFamily": "Segoe UI"
                     }
                   }

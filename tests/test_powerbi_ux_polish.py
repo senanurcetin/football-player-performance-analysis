@@ -51,7 +51,9 @@ def visual(edition, page, vid):
 class DesignUnguardedRegression(unittest.TestCase):
     def test_home_has_seven_readable_clickable_destinations(self):
         for edition in ("workspace", "offline-demo"):
-            y_values = []
+            expected_positions = ((68,412),(431,412),(68,482),(431,482),
+                                  (68,552),(431,552),(68,622))
+            positions = []
             for vid, destination, label in HOME_LINKS:
                 with self.subTest(edition=edition, label=label):
                     node = visual(edition, HOME, vid)
@@ -66,11 +68,10 @@ class DesignUnguardedRegression(unittest.TestCase):
                     self.assertTrue(v["visualContainerObjects"]["general"][0]["properties"]["altText"])
                     self.assertEqual(value(v["objects"]["fill"][0]["properties"]["show"]), "true")
                     p = node["position"]
-                    self.assertEqual((p["x"], p["width"], p["height"]), (59, 392, 34))
+                    self.assertEqual((p["width"], p["height"]), (347, 54))
                     self.assertLessEqual(p["y"] + p["height"], 695)
-                    y_values.append(p["y"])
-            self.assertEqual(y_values, sorted(y_values))
-            self.assertEqual(len(set(y_values)), 7)
+                    positions.append((p["x"], p["y"]))
+            self.assertEqual(tuple(positions), expected_positions)
 
     def test_letter_navigation_is_explained_on_six_analytical_pages(self):
         for edition in ("workspace", "offline-demo"):
