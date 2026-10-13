@@ -220,3 +220,34 @@ corrected **synthetic six-row fixture**. It includes a live schema query and
 checks for null/range/count anomalies; no production model or data is
 silently altered and the root cause remains **unverified** until Desktop
 provides the exact error column and message.
+
+## Desktop screenshot remediation — 13 October 2026
+
+The user-reported six errors on **offline-demo `dim_clubs`** can be traced in
+source to 12 quoted floating-point literals (`average_age` and
+`foreigners_percentage`) in six typed Power Query `#table` rows. These were
+changed to numeric literals with the original values preserved. This
+is a **source fix**; a fresh Desktop refresh is required to verify the six
+errors disappear. It does not establish anything about production BigQuery.
+
+The active report's source changes in both editions now cover:
+- A tightly cropped official NEXUS masthead wordmark (original brand bytes
+  retained) at larger size; Home/Closing keep the original brand image.
+- Nine standard `#091E33` analytic/drillthrough canvases, unified blue
+  chart palette and dark, high-contrast Performance KPI cards.
+- Performance filter title contrast, treemap text accents, scatter-series
+  accent and pivot-table striping, without changing any data queries.
+- Six highly visible and readable bottom navigation legends, with lower
+  visuals ending at or above y=671, legends beginning y=679, and no overlap.
+- Both 1280×720 legacy pastel full-page shapes in Transfer Detail and
+  Prediction Detail changed to NEXUS navy; green table stripe colors removed.
+- Original demo provenance remains **only in the synthetic edition**.
+  The production workspace edition never displays the synthetic watermark.
+
+Release remains **HOLD**: manually inspect Power BI Desktop for SVG image
+support, data refresh (especially `dim_clubs`), readable charts/filters,
+footer fit, and transfer/prediction detail chart contrast. No fabricated
+screen captures or unverified success claims.
+
+Static guard:
+`python -m unittest discover -s tests -p 'test_powerbi_desktop_feedback_fixes.py'`.
