@@ -66,6 +66,18 @@ The earlier layout regression had accidentally retained obsolete **280px** lower
 
 A separate source-level data contract mismatch was identified: production `models/intermediate/int_club_performance_summary.sql` emits the club win rate on a **0–100** scale, while the offline demo `fct_club_performance.tmdl` holds **0–1** fractions. Both semantic-model columns use `formatString: 0.0%`, which multiplies its underlying numeric value by 100 for display. In the subsequent **dedicated P0 fix**, the production TMDL Power Query now adds a null-preserving **Win Rate Fraction** step, dividing **only** `win_rate` by 100 before import. The warehouse/dbt mart and demo fixture remain unmodified, and all existing chart bindings still target `win_rate`. The read-only model test `tests/test_powerbi_win_rate_scale_contract.py` protects this distinction. **Still required:** actual Power BI Desktop refresh and a comparison of the displayed club rate with `wins / matches` from live BigQuery; do not mark the product accepted from static M source alone. This is separate from the unresolved production `fct_club_risk_profile` refresh errors.
 
+## Stage 4 source implementation — Transfer Market / Player Valuation
+
+Both editable PBIR editions received a typography and contrast improvement across eight bound visuals: four financial comparison charts, two category-distribution donuts and two multi-column evidence tables. The common dark page canvas `#091E33` and white/light native visual panels are unchanged.
+
+- **Two evidence tables:** `Transfer transaction details` (615px / 7 fields) and `Player valuation estimates` (≈512px / 8 fields). Title 8→13pt, column-header/body 8→10pt, row padding 3→4pt and header background `#487FD8`→`#173451` under white text. Existing unit-aware headers, data projections, sorting and panel widths are unchanged. Review horizontal scrolling with actual data.
+- **Four financial bar/column charts:** Title 8→13pt, data labels 8→10pt and both axis title fonts 10→11pt; values, measures, categories, sorting, colors and geometry are unchanged.
+- **Two donut charts:** Title 8→13pt; legend/label text 8→9pt, and label colors `#487FD8`→dark `#122942` on light panels for improved small-text contrast. The 235px market donut remains compact and may require Desktop inspection for truncated category names.
+
+The existing `tests/test_powerbi_transfer_value_editorial.py` now expects 11pt finance/valuation axes but retains its 10pt 365-day transfer-outcome contract, so this pass does not alter the distinct observational outcomes page. The new `tests/test_powerbi_financial_visual_typography.py` guards both editions, table surfaces, native title/label sizes and the footer boundary (y=679, at least 8px clearance). No fake performance metrics, transfer outcomes or model predictions were introduced.
+
+**Acceptance still blocked:** source parity alone cannot establish accurate actual values, table scroll quality, interactions, or dark/light contrast in Power BI Desktop. Keep **HOLD** until authentic real-data 100%-zoom captures and warehouse reconciliation are reviewed.
+
 ## Required local checks (no GitHub Actions quota)
 
 ```powershell
