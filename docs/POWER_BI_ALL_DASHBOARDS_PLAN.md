@@ -1,5 +1,72 @@
 # All-dashboard Power BI modernization plan
 
+## Güncel plan — 13 Ekim 2026 / PR #44 sonrası
+
+> **Karar: SOURCE UPDATED / DESKTOP QA HOLD / PRODUCTION DATA HOLD.**
+> Bu bölüm, aşağıdaki tarihsel Stage A listesinden daha günceldir. Kaynakta değişmiş bir PBIR nesnesi, Power BI Desktop'ta çalıştığı veya ürün kalitesini geçtiği anlamına gelmez.
+
+### Kanıtlanmış değişiklikler ve tamamlanmamış doğrulama
+
+| Konu | 13 Ekim kaynak durumu | Kabul için eksik kanıt |
+| --- | --- | --- |
+| Sentetik `dim_clubs` (6/6) | PR #44 ile `average_age` ve `foreigners_percentage` alanlarındaki toplam 12 tırnaklı sayısal literal sayısal değerlere çevrildi; kaynak testi eklendi | Offline-demo Desktop refresh sonrası 6 satır / 0 error ve ilişki doğrulaması |
+| Gerçek `fct_club_risk_profile` (6 hata bildirimi) | PR #42 ile 13 kolon sözleşmesi ve read-only BigQuery triage dokümanı eklendi; üretim modeline dokunulmadı | Hatalı Power Query adımı, kolon, hata metni, BigQuery şema/örnek satır farkı; gerçek refresh 0 error |
+| Demo/production ayrımı | `workspace` gerçek BigQuery; `offline-demo` sentetik `#table` tabloları; üretimde DEMO ibareleri yok | Üretim ekranındaki tüm KPI'lar için gerçek veri kökeni; demo ekranlarında SYNTHETIC uyarısının korunması |
+| NEXUS logo | Orijinal PNG kayıtlı; 9 analiz/detail masthead için içine özgün PNG gömülü kırpılmış SVG; Home/Closing hero orijinal görsel | Desktop'ta SVG kaynak çözümleme, boyut, netlik ve başlık çakışması kontrolü |
+| Global görsel sistem | 9 analitik/detail sayfada `#091E33`, Home/Closing'de `#071829`; grafik paleti mavi/cyan/lavender; KPI ve detay sayfa kaçakları kaynakta düzeltildi | 13 sayfada gerçek 100% zoom kontrast, sonradan baskın çıkan object-level stiller ve tooltip görünümü |
+| Sayfa akışı | 13 PBIR sayfası: 9 görünür, 2 gizli drillthrough, 2 tooltip; Home 7 modül, footer 6 analiz sayfasında yenilendi | Tıklama, keyboard-focus, selected-state, çapraz filtre, drillthrough/tooltip ve footer kapanma testi |
+| Veri tabloları | Transfer tablosu 362→615 px genişletildi, değerleme başlıkları birimleriyle sadeleştirildi | Gerçek satırlarla kolon kırpılması, scroll, toplam satırı, veri tipleri ve ölçü biçimi |
+| Test ve yayın | Kaynak regresyon testleri mevcut; son düzeltmeler [skip ci] ile birleşti | Yerel Python/testler, gerçek Desktop render, BigQuery reconciliation, onaylı ekran görüntüleri |
+
+**Önemli:** `dim_clubs` sentetik hatasının kaynak düzeltmesini, üretimdeki `fct_club_risk_profile` sorununun giderildiği şeklinde yorumlama. Gerçek veri verilirken sentetik uyarılarını silmek yerine **üretim PBIP** sürümünü kullan.
+
+### Yeni öncelik sırası ve tamamlanma ölçütleri
+
+**P0-A — Veri güvenilirliği (yayın engelleyici)**
+1. Offline PBIP: 33 sentetik model partition'ını Desktop'ta yenile; `dim_clubs` için 6 satır / **0 hata**, referans/ilişki bütünlüğü ve otomatik tür adımlarını doğrula.
+2. Production PBIP: `fct_club_risk_profile` için Power Query **Keep Errors / View Errors** adım, kolon, native hata ve `club_id` kanıtlarını kaydet. `docs/POWER_BI_CLUB_RISK_REFRESH_TRIAGE.md` içindeki BigQuery INFORMATION_SCHEMA ve anomali SQL'lerini yalnızca salt-okunur çalıştır.
+3. Hata nedenine göre yalnızca gerekli Power Query/TMDL veya otoritatif dbt modeli düzelt; `NULL` değerleri körlemesine 0 yapma ve yüzdelik 0–100 birimleri ile 0–1 formatını karıştırma.
+4. Production BigQuery refresh sonucu **0 conversion error**; tablo satır sayısı, club_id anahtarları, risk kategori ve kaynak mart metrikleri uzlaştırılmış olmalı.
+
+**P0-B — Tek ürün kimliği ve okunabilirlik (kaynak hazır, görsel kabul açık)**
+1. Home/Closing `#071829`, analitik/detail `#091E33` koyu NEXUS yüzeyini Desktop'ta doğrula; iki tooltip'in açık mavi bağlamsal yüzeyini ayrıca kontrasttan geçir. Eski açık/lavanta sayfa zeminlerini anlatan dokümantasyon, güncel PBIR ile eşitlenmeli.
+2. Kırpılmış wordmark'ı Desktop'ta yükle; resmi logo okunaklı olmalı ve karanlık yuvarlak padding görünmemeli. Desteklenmiyorsa sahte/eksik logo yayımlamak yerine orijinal PNG'ye dön.
+3. Eski pembe/somon/mint/yeşil serileri treemap, scatter, tablolardaki striping, ML ve iki detay sayfasında tek tek kontrol et; semantik uyarı rengi dışında palet dışına çıkma.
+4. Alt navigasyon ve sol rail ilk kez kullanan bir kişinin sayfa hedeflerini okuyabileceği şekilde incelenmeli: ikon + kısa metin, aktif/hover/focus durumları, yeterli tıklama alanı. Kaynakta yalnız H/P/S/C/T/V/M monogramları bırakılmış olması UX kabulü değildir; ML Reliability'ye erişimi açıkça denetle.
+5. Footer için 679–718 source bölgesi; veri görselleri y=671 öncesinde bitmeli. Desktop'ta alt barın görünebilirliği ve tablo/slicer ile çakışma testi şart.
+
+**P1 — Sayfa bazlı görsel ve metrik kabulü**
+
+| Sayfa / tür | Değişikliklerden kalan ürün düzeyi kontrol |
+| --- | --- |
+| Home | Büyük orijinal NEXUS logo, net hero tipografi, 7 anlamlı modül kartı, tüm linklerin doğru hedefi ve odağı |
+| Player Performance | 5 koyu KPI kartında değer/label kontrastı, per-90/Top N semantiği, slicer, tooltip ve görsel kalabalık |
+| Player Segmentation | Gerçek grup dağılımı, market-value yatay karşılaştırma, düzgün treemap/bar eksenleri ve küçük etiketler |
+| Club & League | Win-rate % gösterimi, eksi gol farkı, kulüp/lig slicer, kulüp risk verisiyle ilişki |
+| Transfer Success 365d | Gözlenmiş sonuç ile tahmin ayrımı; 365 gün, 20 yüzde puanı eşiği, eligible/observed paydalar, follow-up coverage |
+| Transfer & Market Value | 615px evidence tablosunda 7 kolon, € ve % birimleri, değeri bilinen ücret kapsamı, yatay scroll |
+| Player Market Value Prediction | Önceki/tahmini değer, alt/üst belirsizlik sınırı ve model tahmininin gözlenen gerçekle karışmaması |
+| ML Model Reliability | Navy panel kontrastı, baseline/WAPE/R² ve veri tazeliği kanıtı; gerekçesiz başarı eşiği yok |
+| Closing | Başlık/logo çakışması yok, okunabilir hiyerarşi, Home dönüş linki |
+| Transfer Detail + Prediction Detail | 1280×720 dark canvas, mint/pastel yok, drillthrough filtre bağlamı, boş veri ve uzun isim senaryoları |
+| İki tooltip | 560×320 küçük tuvalde taşma yok, filtre bağlamı ve hover doğru; dashboard sayfası gibi sunulmaz |
+
+**P2 — Test ve ürün kabulü**
+1. Yerelde **CI kotası harcamadan** `python scripts/check_powerbi_project.py`, `python scripts/check_powerbi_offline_demo.py`, `python scripts/audit_powerbi_visuals.py`, `python scripts/audit_powerbi_layout.py`, `python scripts/check_powerbi_nexus_product.py`, `python -m unittest discover -s tests -p 'test_powerbi_*.py'` çalıştır; exit code ve uyarıları kayıt altına al.
+2. Power BI Desktop'ta 9 görünür + 2 gizli drillthrough + 2 tooltip olmak üzere **13 sayfa** için screenshot matrix oluştur. En az 100% zoom'da tekst kırpma, taşma, renk ve etkileşim incelemesi kaydet.
+3. Gerçek BigQuery'ye karşı satır/anahtar/metrik/kur/para birimi / veri tazeliği karşılaştırması yap; 365d outcome vs ML prediction terminolojisi doğru olmalı.
+4. Yalnızca **üretim workspace** render'ından alınmış, doğrulanmış ekran görüntülerini portfolyo için kullan. Demo capture yayımlanırsa kaynak açıklaması mutlaka görünür kalmalı.
+5. Kabul kaydı: rapor Git SHA, PBIP edition, veri kaynağı, refresh timestamp, 0 error, test sonuçları, screenshot referansları, open blocker=0. Ancak bundan sonra **HOLD → ACCEPTED**.
+
+### Yönetim ilkeleri
+
+- Yeni pazarlama mockup'ı, PowerPoint kopyası veya photoshop'lu sözde Power BI ekranı üretme. Gerçek çıktı editable PBIR/PBIP.
+- Güncel kodun durumu `PR #44` merged/commit `04e60ebc` ile gösterilir; önceki kaynak testlerinin varlığı **çalıştırıldıklarını** göstermez.
+- `docs/BI_DESIGN_SYSTEM.md` ve `docs/POWER_BI_VISUAL_QA.md` içindeki önceki açık pastel sayfa anlatımlarını PBIR son sürümüyle karşılaştır; geçmişi silmeden güncel nihai paletteki sapmayı gider.
+- Nihai onay Power BI Desktop ve BigQuery ölçüm kanıtına bağlı; salt GitHub merge veya kaynak JSON denetimi yeterli değil.
+
+---
+
 **Project:** `senanurcetin/football-player-performance-analysis`  
 **Report editions:** `powerbi/workspace/FootballPlayerAnalysis/` (BigQuery) and `powerbi/offline-demo/FootballPlayerAnalysis/` (synthetic fixtures)  
 **Source of truth:** `Report/definition/` (PBIR), not legacy `Report/sections/` or historical screenshot PNGs.
