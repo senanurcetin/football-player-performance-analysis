@@ -14,36 +14,13 @@
     "objects": {
       "general": [
         {
-          "properties": {}
-        }
-      ],
-      "image": [
-        {
           "properties": {
-            "sourceFile": {
-              "image": {
-                "name": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'nexus-logo-canva.png'"
-                    }
-                  }
-                },
-                "url": {
-                  "expr": {
-                    "ResourcePackageItem": {
-                      "PackageName": "RegisteredResources",
-                      "PackageType": 1,
-                      "ItemName": "nexus-brand-original-20261013.png"
-                    }
-                  }
-                },
-                "scaling": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'Fit'"
-                    }
-                  }
+            "imageUrl": {
+              "expr": {
+                "ResourcePackageItem": {
+                  "PackageName": "RegisteredResources",
+                  "PackageType": 1,
+                  "ItemName": "nexus-brand-original-20261013.png"
                 }
               }
             }
@@ -84,7 +61,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Official NEXUS brand logo, from the NEXUS portfolio source.'"
+                  "Value": "'Official NEXUS wordmark from the original NEXUS portfolio logo.'"
                 }
               }
             }
