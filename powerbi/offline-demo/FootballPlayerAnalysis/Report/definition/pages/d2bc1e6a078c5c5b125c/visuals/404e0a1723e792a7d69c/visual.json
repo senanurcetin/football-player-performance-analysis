@@ -19,11 +19,11 @@
               {
                 "textRuns": [
                   {
-                    "value": "⚽ How effective is the player on the field right now?",
+                    "value": "SCOUTING VIEW  /  MINUTES-QUALIFIED PERFORMANCE",
                     "textStyle": {
                       "fontWeight": "bold",
                       "fontSize": "12pt",
-                      "color": "#F2FAFC"
+                      "color": "#BCD0E6"
                     }
                   }
                 ]
@@ -33,6 +33,21 @@
         }
       ]
     },
-    "drillFilterOtherVisuals": true
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
   }
 }
