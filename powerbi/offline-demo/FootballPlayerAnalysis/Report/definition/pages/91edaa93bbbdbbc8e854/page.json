@@ -50,7 +50,7 @@
               "color": {
                 "expr": {
                   "Literal": {
-                    "Value": "'#EBEFF9'"
+                    "Value": "'#091E33'"
                   }
                 }
               }
