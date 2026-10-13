@@ -4,7 +4,7 @@ description: Read-only acceptance test for Power BI Evidence QA custom agent
 
 # Power BI Evidence QA — manual acceptance
 
-Select Power BI Evidence QA manually in a supported GitHub Copilot IDE. If selection cannot be confirmed, record NOT RUN.
+Agent invocation: use a supported IDE agent selector **or** GitHub Copilot CLI with `--agent=powerbi-evidence-qa`. CLI agent selection is valid; do not mark this test NOT RUN merely because no IDE selector was used. The wrapper must record the requested agent ID and CLI exit status independently. If the actual loaded profile cannot be independently confirmed, report agent identity UNVERIFIED separately from the source-review checks. Do not infer successful runtime tests from a read-only answer.
 
 Inspect:
 - scripts/check_powerbi_project.py
