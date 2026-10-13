@@ -47,7 +47,7 @@ ASYMMETRIC_LAYOUT = {
 
 TRANSFER_SUCCESS_LAYOUT = [
     (105, 191, 630, 220), (759, 191, 474, 220),
-    (105, 432, 670, 260), (799, 432, 434, 260),
+    (105, 432, 670, 239), (799, 432, 434, 239),
 ]
 
 def visual(mode, name, page=PAGE):
@@ -173,7 +173,10 @@ class TransferDashboardDesignTests(unittest.TestCase):
                 rect = tuple(position[k] for k in ("x", "y", "width", "height"))
                 self.assertEqual(rect, TRANSFER_SUCCESS_LAYOUT[i])
                 self.assertLessEqual(position["x"] + position["width"], 1280)
-                self.assertLessEqual(position["y"] + position["height"], 720)
+                self.assertLessEqual(
+                    position["y"] + position["height"], 671,
+                    "Transfer-outcomes panels must clear the footer starting at y=679"
+                )
 
     def test_offline_and_workspace_have_identical_report_visuals(self):
         for name in EXPECTED:
