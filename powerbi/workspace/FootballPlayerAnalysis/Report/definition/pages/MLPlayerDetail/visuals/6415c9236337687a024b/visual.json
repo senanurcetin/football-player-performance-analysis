@@ -42,10 +42,10 @@
               {
                 "textRuns": [
                   {
-                    "value": "• Positive 'Delta %': indicates growth potential not yet fully priced in the market.li taşır.",
+                    "value": "• Delta (%) compares predicted and prior value; it is not realized profit.",
                     "textStyle": {
                       "fontWeight": "normal",
-                      "fontSize": "8pt",
+                      "fontSize": "9pt",
                       "color": "#E7EFFB"
                     }
                   }
@@ -54,10 +54,10 @@
               {
                 "textRuns": [
                   {
-                    "value": "• 'Limited' quality: prediction provides direction only; the value is not precise.",
+                    "value": "• 'Limited' quality means the estimate is directional, not precise.",
                     "textStyle": {
                       "fontWeight": "normal",
-                      "fontSize": "8pt",
+                      "fontSize": "9pt",
                       "color": "#E7EFFB"
                     }
                   }
@@ -66,10 +66,10 @@
               {
                 "textRuns": [
                   {
-                    "value": "• Narrow confidence interval measures the model's high confidence about that player.",
+                    "value": "• Prediction intervals show model-estimated ranges, not guarantees.",
                     "textStyle": {
                       "fontWeight": "normal",
-                      "fontSize": "8pt",
+                      "fontSize": "9pt",
                       "color": "#E7EFFB"
                     }
                   }
@@ -78,10 +78,10 @@
               {
                 "textRuns": [
                   {
-                    "value": "• Previous değer ile tahmin karşılaştırması scouting kararlarında referans noktasıdır.",
+                    "value": "• Compare prior, predicted and interval values when evaluating a player.",
                     "textStyle": {
                       "fontWeight": "normal",
-                      "fontSize": "8pt",
+                      "fontSize": "9pt",
                       "color": "#E7EFFB"
                     }
                   }
@@ -90,10 +90,10 @@
               {
                 "textRuns": [
                   {
-                    "value": "• Use the Back button in the top-left to return to the home page.",
+                    "value": "• Back returns to Football Intelligence Home.",
                     "textStyle": {
                       "fontWeight": "normal",
-                      "fontSize": "8pt",
+                      "fontSize": "9pt",
                       "color": "#E7EFFB"
                     }
                   }

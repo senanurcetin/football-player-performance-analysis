@@ -19,10 +19,10 @@
               {
                 "textRuns": [
                   {
-                    "value": "💰 Transfer Detail — Fee & Value Comparison",
+                    "value": "TRANSFER / FEE VS VALUE",
                     "textStyle": {
                       "fontWeight": "bold",
-                      "fontSize": "9pt",
+                      "fontSize": "11pt",
                       "color": "#FFFFFF"
                     }
                   }
@@ -49,7 +49,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#2E6B45'"
+                      "Value": "'#173451'"
                     }
                   }
                 }
