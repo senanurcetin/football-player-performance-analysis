@@ -91,6 +91,21 @@ The original NEXUS logo and established hero copy on the dark `#071829` canvas a
 
 This is a PBIR source-state contract; Power BI Desktop must still establish actual hover, focus, keyboard navigation and label wrapping behavior. There is no claim of a rendered screenshot, passing BigQuery refresh or finished release. **HOLD** remains until engine-level acceptance.
 
+## Stage 6 source implementation — native contextual tooltip polish
+
+An audit of the **two hidden 560×320 tooltip pages** found lingering legacy green visuals, despite already-correct pale NEXUS page canvases. The visual-level background of the transfer and prediction header was `#2E6B45`, chart/card panels used `#F6FBF5`, and axis labels were green-gray `#536A60`. Each tooltip still presented mixed-language labels, a 9pt title, and 8pt chart labels.
+
+This source pass revises three existing native visuals per tooltip, in **both** production and synthetic PBIR editions:
+
+- Header strips use NEXUS navy `#173451`, concise English module labels and 11pt white text; original positions (x=10, y=8, 540×28) remain unchanged.
+- Existing scatter and multi-row metric cards retain bound queryState, tooltip filter context and 560×320 geometry. Their light surfaces are white, 11pt title text is `#122942`, scatter axis/legend and card headings are 9pt, with slate axis labels `#526981`.
+- Scatter headings now distinguish **average fee versus premium/discount (%)** and **predicted value versus upside (%)**, rather than mixing unrelated or ambiguous translated terms.
+- The 1280×720 hidden **Prediction Detail** report had an obviously corrupt bilingual string (`li taşır.`) and an ungrounded suggestion that a narrow interval proves high model confidence. Its five 9pt explanatory bullets now distinguish forecast upside from realized outcomes, clarify that model intervals are not guarantees, and keep the scouting judgment appropriately qualified.
+
+The new `tests/test_powerbi_tooltip_and_prediction_context.py` checks the two native tooltip canvases, geometry, per-visual NEXUS styles and edition parity, plus the Prediction Detail explanation. **No** DAX, schema, BigQuery source, visuals’ underlying projections, model uncertainty computation or original logo resource has changed.
+
+**Desktop acceptance required:** render tooltips from actual parent report visuals and verify the compact legends/headers are not clipped. Confirm Prediction Detail text fits at 100% zoom and actual player-context drillthrough filters work. Source-only tests do not prove hover/keyboard behavior. Hosted CI remains explicitly gated by the separate CI-last policy; release is **HOLD**.
+
 ## Required local checks (no GitHub Actions quota)
 
 ```powershell
