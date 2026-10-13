@@ -234,6 +234,66 @@ class EveryDashboardSourceContract(unittest.TestCase):
 
 
 
+    def test_single_registered_resource_location_without_duplicate_old_assets(self):
+        for mode in MODES:
+            with self.subTest(mode=mode):
+                project = ROOT / "powerbi" / mode / "FootballPlayerAnalysis"
+                # Current PBIR resourcePackages points to Report/StaticResources.
+                # Former project-root mirrors duplicated 9.1MB per edition.
+                self.assertFalse(
+                    (project / "StaticResources" / "RegisteredResources").exists()
+                )
+                current = project / "Report" / "StaticResources" / "RegisteredResources"
+                self.assertTrue(current.is_dir())
+                report = json.loads(
+                    (project / "Report" / "definition" / "report.json").read_text(
+                        encoding="utf-8-sig"
+                    )
+                )
+                packages = [
+                    x for x in report["resourcePackages"]
+                    if x["name"] == "RegisteredResources"
+                ]
+                self.assertEqual(len(packages), 1)
+                for item in packages[0]["items"]:
+                    self.assertTrue((current / item["path"]).is_file(), item["path"])
+
+    def test_single_nexus_editorial_home_and_closing_with_intact_navigation(self):
+        home = "5cb4db7e746975558322"
+        closing = "c83db10673c28e3346ae"
+        for mode in MODES:
+            def read_visual(page, visual_id):
+                return json.loads(
+                    (ROOT / "powerbi" / mode / "FootballPlayerAnalysis"
+                     / "Report" / "definition" / "pages" / page
+                     / "visuals" / visual_id / "visual.json").read_text(
+                         encoding="utf-8-sig"
+                     )
+                )
+            for page, visual_id, title in [
+                (home, "be100000000000000002", "THE GAME, IN DATA."),
+                (closing, "be100000000000000009", "EVIDENCE DRIVES DECISIONS."),
+            ]:
+                with self.subTest(mode=mode, page=page):
+                    v = read_visual(page, visual_id)
+                    self.assertEqual(
+                        v["visual"]["objects"]["general"][0]["properties"]
+                        ["paragraphs"][0]["textRuns"][0]["value"], title,
+                    )
+            for visual_id in [
+                "18a7cb26e6d2e25c2688", "6f2ba3d04798d16080ed",
+                "8265664407e23bc40e16", "87d5ca309c5c9145d3ba",
+                "e05ec85d07e31d70040e", "f3c57a30e5671c050a79",
+            ]:
+                v = read_visual(home, visual_id)
+                self.assertEqual(v["visual"]["visualType"], "actionButton")
+                self.assertTrue(v["visual"]["visualContainerObjects"]["visualLink"])
+                for config in v["visual"]["objects"]["text"]:
+                    t = config["properties"].get("text", {}).get(
+                        "expr", {}
+                    ).get("Literal", {}).get("Value", "")
+                    self.assertNotRegex(t, r"[📊👥🏆💰🔄⭐]")
+
     def test_legacy_presentation_artifacts_are_not_shipped(self):
         legacy_gallery = ROOT / "docs" / "assets" / "screenshots"
         self.assertFalse(legacy_gallery.exists())

@@ -45,7 +45,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'🔄 Transfer Success (365d)'"
+                  "Value": "'Transfer Success (365d)'"
                 }
               }
             },
@@ -117,7 +117,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'🔄 Transfer Success (365d)'"
+                  "Value": "'Transfer Success (365d)'"
                 }
               }
             }
@@ -131,7 +131,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'🔄 Transfer Success (365d)'"
+                  "Value": "'Transfer Success (365d)'"
                 }
               }
             },

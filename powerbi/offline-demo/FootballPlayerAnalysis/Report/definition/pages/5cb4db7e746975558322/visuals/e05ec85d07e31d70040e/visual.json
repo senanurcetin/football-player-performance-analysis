@@ -45,7 +45,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'📊 Player Performance Analysis'"
+                  "Value": "'Player Performance Analysis'"
                 }
               }
             },

@@ -3,10 +3,10 @@
   "name": "be100000000000000002",
   "position": {
     "x": 70,
-    "y": 119,
+    "y": 115,
     "z": 60000,
-    "height": 100,
-    "width": 1110,
+    "height": 110,
+    "width": 1150,
     "tabOrder": 60000
   },
   "visual": {
@@ -19,10 +19,10 @@
               {
                 "textRuns": [
                   {
-                    "value": "Football Player Analytics",
+                    "value": "THE GAME, IN DATA.",
                     "textStyle": {
                       "fontWeight": "bold",
-                      "fontSize": "37pt",
+                      "fontSize": "43pt",
                       "color": "#EFF7FF",
                       "fontFamily": "Segoe UI"
                     }

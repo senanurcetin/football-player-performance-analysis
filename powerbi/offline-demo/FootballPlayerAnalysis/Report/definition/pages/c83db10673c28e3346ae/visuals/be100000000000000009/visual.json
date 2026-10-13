@@ -3,9 +3,9 @@
   "name": "be100000000000000009",
   "position": {
     "x": 73,
-    "y": 217,
+    "y": 218,
     "z": 60000,
-    "height": 98,
+    "height": 105,
     "width": 1120,
     "tabOrder": 60000
   },
@@ -19,10 +19,10 @@
               {
                 "textRuns": [
                   {
-                    "value": "Research that informs decisions.",
+                    "value": "EVIDENCE DRIVES DECISIONS.",
                     "textStyle": {
                       "fontWeight": "bold",
-                      "fontSize": "34pt",
+                      "fontSize": "37pt",
                       "color": "#EFF7FF",
                       "fontFamily": "Segoe UI"
                     }

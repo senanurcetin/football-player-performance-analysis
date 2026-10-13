@@ -36,6 +36,16 @@ The Power BI report includes native graphics that may have their own explicit fi
 
 These colors belong to the NEXUS navy, blue and lavender family. Chart components remain white with dark navy labels and blue/lavender data marks. Page changes are performed in **real PBIR JSON**, not images or rendered marketing slides. Final contrast/overflow must still be checked in Power BI Desktop.
 
+## One current presentation, no redundant asset mirrors (13 October 2026)
+
+- The current presentation is the **single editable PBIR report**, with two intentional source variants: `workspace` (BigQuery) and `offline-demo` (deterministic synthetic fixtures). Neither variant is a legacy slide deck.
+- Home and Closing use a consistent navy editorial treatment, with distinct headlines (`THE GAME, IN DATA.` / `EVIDENCE DRIVES DECISIONS.`). Home navigation is typographic rather than decorative emoji buttons; all Power BI page-navigation references remain intact.
+- The intervening 11 primary/detail/tooltip pages use **different NEXUS-coordinated canvases and asymmetric chart layouts** documented above; the report is not a sequence of identically laid-out graphics.
+- Seven duplicate PNG resources in each variant's *project-root* `StaticResources/RegisteredResources` folder were byte-identical to their correctly registered copies under `Report/StaticResources/RegisteredResources`. The **14 redundant mirrors (18,263,794 bytes in tracked file sizes)** have been deleted; the seven assets still referenced in the registered PBIR resource package are retained in both variants.
+- Historical green Power BI galleries and superseded editorial cover illustrations remain excluded from this repository. **Do not add separate PDF/PPTX exports or replacement mockup PNGs** solely to represent this source report.
+
+These statements are based on Git trees, SHA equivalence and PBIR JSON inspection. **Engine-level validation remains required** before claiming the report can be opened and refreshed in Power BI Desktop, before deleting further registered assets, or before publishing current screenshots.
+
 ## Versioned, report-wide implementation
 
 The current source theme is `Report/StaticResources/RegisteredResources/NEXUSMidnight-20261012-v2.json`, registered in `Report/definition/report.json` in **both** the workspace and offline-demo reports. It defines standard visual-title typography, white content panels and subtle blue borders for 13 native visual types. It is a fallback: explicit `visual.json` formatting can take precedence, so further hardcoded color sweeps and Desktop contrast checks remain required.
