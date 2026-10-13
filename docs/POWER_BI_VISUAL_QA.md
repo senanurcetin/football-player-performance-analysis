@@ -131,3 +131,17 @@ python scripts/audit_powerbi_layout.py
 **Release remains HOLD:** no updated Power BI Desktop reload, DAX/Power Query
 execution, full-page contrast inspection or current screenshot recapture was
 observed. The next release must use new authentic Desktop screenshots.
+
+## Original NEXUS brand image — 13 October 2026
+
+The official NEXUS logo has been registered as a binary PBIR resource in the
+BigQuery workspace and synthetic offline edition. Nine visible pages and two
+hidden drillthrough pages reference the same canonical image per edition.
+Original source identity is guarded by its Git blob SHA. A source-level
+`test_powerbi_nexus_logo.py` checks every image reference and its placement.
+
+**Not yet verified in Desktop:** whether the `visualType=image` rendering,
+resource-loading behavior, default scaling and hero contrast are acceptable.
+Capture screenshots only after loading the updated PBIP in Power BI Desktop;
+keep the mandatory synthetic watermark in demo screenshots and no fabricated
+real-world model claims. Portfolio release remains **HOLD** until reviewed.
