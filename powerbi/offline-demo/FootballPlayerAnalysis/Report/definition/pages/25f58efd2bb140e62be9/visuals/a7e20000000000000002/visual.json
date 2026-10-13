@@ -28,7 +28,7 @@
               },
               "queryRef": "fct_club_performance.club_name",
               "nativeQueryRef": "club_name",
-              "displayName": "club_name",
+              "displayName": "Club",
               "active": true
             }
           ]
@@ -53,7 +53,7 @@
               },
               "queryRef": "Sum(fct_club_performance.goal_difference)",
               "nativeQueryRef": "goal_difference",
-              "displayName": "goal_difference"
+              "displayName": "Goal difference"
             }
           ]
         }
@@ -102,6 +102,82 @@
               "expr": {
                 "Literal": {
                   "Value": "11D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "categoryAxis": [
+        {
+          "properties": {
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "titleText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Club'"
+                }
+              }
+            },
+            "titleFontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            },
+            "titleColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#526981'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "valueAxis": [
+        {
+          "properties": {
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "titleText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Goal difference'"
+                }
+              }
+            },
+            "titleFontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            },
+            "titleColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#526981'"
+                    }
+                  }
                 }
               }
             }

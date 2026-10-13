@@ -80,3 +80,28 @@ the logo must not cover analytic charts or demo provenance watermarks.
 Static validation checks image SHA, resource registration, references and bounds.
 A real Power BI Desktop open/refresh is still required to validate image
 rendering, small-logo legibility and visual contrast before portfolio use.
+
+## Screenshot-driven interaction and chart polish — October 2026
+
+The seven Home links now form one scan-friendly 01–07 list with distinct
+hover/selected treatment and a native route to **ML Model Reliability**, which
+was missing from the previous six-link Home list. They retain native Power BI
+page-navigation semantics and accessible alternative text.
+
+On the six core analytical pages, the existing **H/P/S/C/T/V/M** rail remains
+compact to preserve the full graph canvas. Each page now has a narrow footer
+legend spelling out Home, Performance, Player Segments, Clubs, Transfer
+Outcomes, Transfer Market, and Valuation. The rail and the key are designed
+to work together; glyphs alone were insufficient for first-time users.
+
+The eight native Segmentation and Club & League charts have explicit
+business-facing axis labels rather than default query identifiers such as
+`player_id` or `club_name`. The competition-goal breakdown uses horizontal
+bars for side-by-side comparison rather than a same-hue donut. The
+`fct_club_performance.win_rate` model column uses the `0.0%` display
+format *only*: source data and aggregation remain unchanged.
+
+**Proof boundary:** source tests can validate object types, destinations,
+positions, fonts, chart bindings and semantic-model display formats. They
+cannot establish pixel-level quality or Desktop behavior. Review screenshots
+at 100% and verify navigation and percentage formatting before publication.

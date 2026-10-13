@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "f3c57a30e5671c050a79",
   "position": {
-    "x": 71.0595395532045,
-    "y": 549.8377486739757,
-    "z": 5000,
-    "height": 39.606956472277915,
-    "width": 316.15669837748675,
-    "tabOrder": 5000
+    "x": 59,
+    "y": 527,
+    "z": 5003,
+    "width": 392,
+    "height": 34,
+    "tabOrder": 5003
   },
   "visual": {
     "visualType": "actionButton",
@@ -45,7 +45,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Transfer Success (365d)'"
+                  "Value": "'04  TRANSFER OUTCOMES · 365D'"
                 }
               }
             },
@@ -53,9 +53,8 @@
               "solid": {
                 "color": {
                   "expr": {
-                    "ThemeDataColor": {
-                      "ColorId": 0,
-                      "Percent": 0
+                    "Literal": {
+                      "Value": "'#EAF3FF'"
                     }
                   }
                 }
@@ -78,7 +77,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "14D"
+                  "Value": "12D"
                 }
               }
             }
@@ -94,7 +93,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#F6B95F'"
+                      "Value": "'#77C2FF'"
                     }
                   }
                 }
@@ -110,14 +109,14 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "16D"
+                  "Value": "12D"
                 }
               }
             },
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Transfer Success (365d)'"
+                  "Value": "'04  TRANSFER OUTCOMES · 365D'"
                 }
               }
             }
@@ -131,7 +130,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Transfer Success (365d)'"
+                  "Value": "'04  TRANSFER OUTCOMES · 365D'"
                 }
               }
             },
@@ -140,7 +139,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#69AEFF'"
+                      "Value": "'#FFFFFF'"
                     }
                   }
                 }
@@ -149,7 +148,14 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "16D"
+                  "Value": "12D"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }
@@ -165,7 +171,7 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             }
@@ -177,9 +183,8 @@
               "solid": {
                 "color": {
                   "expr": {
-                    "ThemeDataColor": {
-                      "ColorId": 1,
-                      "Percent": 0
+                    "Literal": {
+                      "Value": "'#173451'"
                     }
                   }
                 }
@@ -188,7 +193,7 @@
             "transparency": {
               "expr": {
                 "Literal": {
-                  "Value": "83D"
+                  "Value": "0D"
                 }
               }
             }
@@ -203,9 +208,8 @@
               "solid": {
                 "color": {
                   "expr": {
-                    "ThemeDataColor": {
-                      "ColorId": 0,
-                      "Percent": -0.2
+                    "Literal": {
+                      "Value": "'#245078'"
                     }
                   }
                 }
@@ -214,7 +218,7 @@
             "transparency": {
               "expr": {
                 "Literal": {
-                  "Value": "11D"
+                  "Value": "0D"
                 }
               }
             }
@@ -230,7 +234,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#69AEFF'"
+                      "Value": "'#285E9D'"
                     }
                   }
                 }
@@ -305,6 +309,19 @@
               "expr": {
                 "Literal": {
                   "Value": "'Career Analysis'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "altText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Open transfer outcomes  365d analysis page'"
                 }
               }
             }

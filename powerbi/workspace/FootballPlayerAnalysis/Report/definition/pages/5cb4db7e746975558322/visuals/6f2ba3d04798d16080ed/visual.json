@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "6f2ba3d04798d16080ed",
   "position": {
-    "x": 71.0595395532045,
-    "y": 589.4447051462537,
-    "z": 3000,
-    "height": 40.77186695675668,
-    "width": 393.9727045205694,
-    "tabOrder": 2000
+    "x": 59,
+    "y": 564,
+    "z": 5004,
+    "width": 392,
+    "height": 34,
+    "tabOrder": 5004
   },
   "visual": {
     "visualType": "actionButton",
@@ -45,7 +45,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Transfer & Market Value Analysis'"
+                  "Value": "'05  TRANSFER MARKET & VALUE'"
                 }
               }
             },
@@ -53,9 +53,8 @@
               "solid": {
                 "color": {
                   "expr": {
-                    "ThemeDataColor": {
-                      "ColorId": 0,
-                      "Percent": 0
+                    "Literal": {
+                      "Value": "'#EAF3FF'"
                     }
                   }
                 }
@@ -71,7 +70,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "14D"
+                  "Value": "12D"
                 }
               }
             },
@@ -94,7 +93,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#F6B95F'"
+                      "Value": "'#77C2FF'"
                     }
                   }
                 }
@@ -110,14 +109,14 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "16D"
+                  "Value": "12D"
                 }
               }
             },
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Transfer & Market Value Analysis'"
+                  "Value": "'05  TRANSFER MARKET & VALUE'"
                 }
               }
             }
@@ -131,14 +130,14 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Transfer & Market Value Analysis'"
+                  "Value": "'05  TRANSFER MARKET & VALUE'"
                 }
               }
             },
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "16D"
+                  "Value": "12D"
                 }
               }
             },
@@ -147,9 +146,16 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#69AEFF'"
+                      "Value": "'#FFFFFF'"
                     }
                   }
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }
@@ -165,7 +171,7 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             }
@@ -177,9 +183,8 @@
               "solid": {
                 "color": {
                   "expr": {
-                    "ThemeDataColor": {
-                      "ColorId": 1,
-                      "Percent": 0
+                    "Literal": {
+                      "Value": "'#173451'"
                     }
                   }
                 }
@@ -188,7 +193,7 @@
             "transparency": {
               "expr": {
                 "Literal": {
-                  "Value": "83D"
+                  "Value": "0D"
                 }
               }
             }
@@ -203,9 +208,8 @@
               "solid": {
                 "color": {
                   "expr": {
-                    "ThemeDataColor": {
-                      "ColorId": 0,
-                      "Percent": -0.2
+                    "Literal": {
+                      "Value": "'#245078'"
                     }
                   }
                 }
@@ -214,7 +218,7 @@
             "transparency": {
               "expr": {
                 "Literal": {
-                  "Value": "11D"
+                  "Value": "0D"
                 }
               }
             }
@@ -230,7 +234,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#69AEFF'"
+                      "Value": "'#285E9D'"
                     }
                   }
                 }
@@ -305,6 +309,19 @@
               "expr": {
                 "Literal": {
                   "Value": "'Career Analysis'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "altText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Open transfer market & value analysis page'"
                 }
               }
             }
