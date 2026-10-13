@@ -71,7 +71,18 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "20D"
+                  "Value": "22D"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFFFFF'"
+                    }
+                  }
                 }
               }
             }
@@ -95,7 +106,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#FFFFFF'"
+                      "Value": "'#102B47'"
                     }
                   }
                 }
@@ -104,7 +115,7 @@
             "transparency": {
               "expr": {
                 "Literal": {
-                  "Value": "29D"
+                  "Value": "0D"
                 }
               }
             }
@@ -121,10 +132,28 @@
                 }
               }
             },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#2B5078'"
+                    }
+                  }
+                }
+              }
+            },
             "radius": {
               "expr": {
                 "Literal": {
-                  "Value": "15D"
+                  "Value": "8D"
+                }
+              }
+            },
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
                 }
               }
             }
@@ -137,7 +166,7 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
             }
@@ -185,7 +214,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "12D"
+                  "Value": "11D"
                 }
               }
             },
@@ -193,9 +222,8 @@
               "solid": {
                 "color": {
                   "expr": {
-                    "ThemeDataColor": {
-                      "ColorId": 5,
-                      "Percent": -0.5
+                    "Literal": {
+                      "Value": "'#D2E5FB'"
                     }
                   }
                 }
