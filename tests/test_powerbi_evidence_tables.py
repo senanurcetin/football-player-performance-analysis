@@ -88,6 +88,7 @@ class EditorialTableTests(unittest.TestCase):
             chart = visual(mode, MARKET, chart_id)
             table = visual(mode, MARKET, TABLES[MARKET]["id"])
             donut = visual(mode, MARKET, "1c4d73ece1a64f57c0fc")
+            heading = visual(mode, MARKET, "4a534f1eb6b015ddfe63")
             footer = visual(mode, MARKET, "b8a00000000000000005")
             with self.subTest(mode=mode):
                 self.assertEqual(chart["visual"]["visualType"], "clusteredColumnChart")
@@ -99,6 +100,23 @@ class EditorialTableTests(unittest.TestCase):
                 self.assertGreaterEqual(cx - (dx + dw), 12)
                 self.assertLessEqual(cx + cw, 1280)
                 self.assertLessEqual(cy + ch, footer["position"]["y"] - 8)
+                # A former 256px findings textbox at x985/y436 overlapped the
+                # native chart and gave synthetic data ungrounded business claims.
+                self.assertEqual(heading["visual"]["visualType"], "textbox")
+                self.assertEqual(rect(heading), (985, 436, 270, 24))
+                hx, hy, hw, hh = rect(heading)
+                self.assertLessEqual(hy + hh, cy - 8)
+                paragraphs = heading["visual"]["objects"]["general"][0]["properties"]["paragraphs"]
+                self.assertEqual(len(paragraphs), 1)
+                self.assertEqual(
+                    paragraphs[0]["textRuns"][0]["value"],
+                    "TRANSFERS BY POSITION",
+                )
+                header_bg = heading["visual"]["visualContainerObjects"]["background"][0]["properties"]
+                self.assertEqual(
+                    header_bg["color"]["solid"]["color"]["expr"]["Literal"]["Value"],
+                    "'#173451'",
+                )
                 v = chart["visual"]
                 self.assertEqual(
                     v["visualContainerObjects"]["title"][0]["properties"]
