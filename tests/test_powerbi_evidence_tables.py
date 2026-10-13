@@ -73,7 +73,7 @@ class EditorialTableTests(unittest.TestCase):
             footer = visual(edition, MARKET, "b8a00000000000000005")
             tx, ty, tw, th = rect(table)
             dx, dy, dw, dh = rect(donut)
-            self.assertEqual((tx, ty, tw, th), (355, 470, 615, 220))
+            self.assertEqual((tx, ty, tw, th), (355, 470, 615, 201))
             self.assertGreaterEqual(tx - (dx + dw), 12)
             self.assertLessEqual(tx + tw, 975)
             self.assertLessEqual(max(ty + th, dy + dh), footer["position"]["y"] - 4)
@@ -83,8 +83,8 @@ class EditorialTableTests(unittest.TestCase):
             table = visual(edition, VALUATION, TABLES[VALUATION]["id"])
             chart = visual(edition, VALUATION, "4d304949cba7dd247021")
             footer = visual(edition, VALUATION, "b8a00000000000000006")
-            self.assertEqual(table["position"]["height"], 218)
-            self.assertEqual(chart["position"]["height"], 218)
+            self.assertAlmostEqual(table["position"]["y"] + table["position"]["height"], 671)
+            self.assertAlmostEqual(chart["position"]["y"] + chart["position"]["height"], 671)
             for node in (table, chart):
                 self.assertLessEqual(node["position"]["y"] + node["position"]["height"],
                                      footer["position"]["y"] - 4)
