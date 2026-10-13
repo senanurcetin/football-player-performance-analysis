@@ -189,3 +189,24 @@ Source guard: `python -m unittest discover -s tests -p 'test_powerbi_transfer_va
 Real chart rendering, responsive text clipping, DAX outputs and production
 BigQuery refresh are **not** verified here. The portfolio release gate remains
 **HOLD** pending the owner's Power BI Desktop screenshot review.
+
+## ML Reliability readable evidence panel — 13 October 2026
+
+The native ML Reliability page had a source-level contrast defect: the
+model-reading guide rendered pale/white text over a very pale side panel.
+The side panel now uses `#102B47` NEXUS navy with legible `#E7F2FD`
+content, and the content box ends within its colored surface. The filter
+caption is corrected to the same contrast-safe treatment.
+
+The old guide included **unsubstantiated universal WAPE/R² cutoffs** and
+mixed-language labels. It now explains model evaluation using a held-out
+baseline, predictive (not causal) feature importance, blocking quality gates,
+freshness/drift, and segment sample sizes. The feature-importance column
+formerly labeled `Tür` is presented as **Feature Type** without changing
+the underlying queryRef or English report data.
+
+Source gate: `python -m unittest discover -s tests -p 'test_powerbi_ml_reliability_panel.py'`.
+The test checks source content, Power BI JSON parity, side-panel geometry
+and WCAG-inspired text/background contrast calculations. It **does not**
+replace real Power BI Desktop rendering, model evaluation or screen-reader
+testing. Release remains **HOLD** until visually accepted.
