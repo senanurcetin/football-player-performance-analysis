@@ -15,6 +15,12 @@ TABLES = {
     "9cac2684a07ca1c85ca6": ("Quality Gates", 5, (545, 212, 425, 230)),
     "44ef7cfce32d97d2bb52": ("Segment Performance", 8, (105, 470, 870, 225)),
 }
+HEADER_COLORS = {
+    "Feature Importance": "#122942",
+    "Quality Gates": "#122942",
+    "Segment Performance": "#173451",
+}
+
 
 
 def load(edition: str, visual_id: str) -> dict:
@@ -37,7 +43,7 @@ class ModelReliabilityTableTypographyTests(unittest.TestCase):
                 self.assertEqual(production, synthetic)
                 node = production["visual"]
                 self.assertEqual(node["visualType"], "tableEx")
-                self.assertEqual(node["name"] if "name" in node else production["name"], visual_id)
+                self.assertEqual(production["name"], visual_id)
                 position = production["position"]
                 self.assertEqual(tuple(position[key] for key in
                                        ("x", "y", "width", "height")), bounds)
@@ -62,6 +68,11 @@ class ModelReliabilityTableTypographyTests(unittest.TestCase):
                     literal(objects["columnHeaders"][0]["properties"]["wordWrap"]),
                     "true",
                 )
+                header = objects["columnHeaders"][0]["properties"]
+                self.assertEqual(header["backColor"]["solid"]["color"]["expr"]
+                                 ["Literal"]["Value"], f"'{HEADER_COLORS[title]}'")
+                self.assertEqual(header["fontColor"]["solid"]["color"]["expr"]
+                                 ["Literal"]["Value"], "'#FFFFFF'")
 
 
 if __name__ == "__main__":
