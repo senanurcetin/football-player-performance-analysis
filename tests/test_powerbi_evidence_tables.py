@@ -78,6 +78,44 @@ class EditorialTableTests(unittest.TestCase):
             self.assertLessEqual(tx + tw, 975)
             self.assertLessEqual(max(ty + th, dy + dh), footer["position"]["y"] - 4)
 
+    def test_transfer_count_chart_is_visible_beside_the_market_evidence_table(self):
+        """A hidden legacy chart was covering the table and entering the footer."""
+        chart_id = "13ccac612fab8060cf67"
+        production = visual("workspace", MARKET, chart_id)
+        synthetic = visual("offline-demo", MARKET, chart_id)
+        self.assertEqual(production, synthetic)
+        for mode in ("workspace", "offline-demo"):
+            chart = visual(mode, MARKET, chart_id)
+            table = visual(mode, MARKET, TABLES[MARKET]["id"])
+            donut = visual(mode, MARKET, "1c4d73ece1a64f57c0fc")
+            footer = visual(mode, MARKET, "b8a00000000000000005")
+            with self.subTest(mode=mode):
+                self.assertEqual(chart["visual"]["visualType"], "clusteredColumnChart")
+                self.assertEqual(rect(chart), (985, 470, 248, 201))
+                cx, cy, cw, ch = rect(chart)
+                tx, ty, tw, th = rect(table)
+                dx, dy, dw, dh = rect(donut)
+                self.assertGreaterEqual(cx - (tx + tw), 12)
+                self.assertGreaterEqual(cx - (dx + dw), 12)
+                self.assertLessEqual(cx + cw, 1280)
+                self.assertLessEqual(cy + ch, footer["position"]["y"] - 8)
+                v = chart["visual"]
+                self.assertEqual(
+                    v["visualContainerObjects"]["title"][0]["properties"]
+                    ["text"]["expr"]["Literal"]["Value"],
+                    "'Transfers by Position'",
+                )
+                self.assertEqual(
+                    v["visualContainerObjects"]["title"][0]["properties"]
+                    ["fontSize"]["expr"]["Literal"]["Value"], "13D")
+                state = v["query"]["queryState"]
+                self.assertEqual(
+                    state["Y"]["projections"][0]["queryRef"],
+                    "fct_transfer_market_value_analysis.Transfer Count")
+                self.assertEqual(
+                    state["Category"]["projections"][0]["queryRef"],
+                    "fct_transfer_market_value_analysis.position_tr")
+
     def test_valuation_bottom_visuals_clear_navigation(self):
         for edition in ("workspace", "offline-demo"):
             table = visual(edition, VALUATION, TABLES[VALUATION]["id"])
