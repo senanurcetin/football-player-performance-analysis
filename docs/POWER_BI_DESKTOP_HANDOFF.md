@@ -35,6 +35,11 @@ The script calls the repository's existing project, demo, visual-bindings, layou
 4. Distinguish permissions, missing objects, column-type drift and conversion errors before making any transformation or dbt change.
 5. Refresh again and document **0 conversion errors**, row count, distinct club keys and reconciled risk-category metrics. A successful source-only test cannot replace this step.
 
+### Independent check — club win-rate percentage scale
+
+The upstream `int_club_performance_summary.sql` emits `win_rate` as percentage **points** (for example `40.0` for 8 wins in 20 matches). The production Power Query `fct_club_performance` partition now includes a **Win Rate Fraction** step that divides only `win_rate` by 100, preserving nulls; `formatString: 0.0%` should then render 0.4 as 40.0%. The synthetic demo already contains fractions and has **no** conversion step.
+
+After refreshing the **production workspace PBIP**, select a known club with nonzero matches and confirm that displayed Club Win Rate agrees with **100 × wins ÷ matches**, not 100 times that percentage. Inspect the `Win Rate Fraction` Applied Step, row counts and any null/error rows; preserve the distinct production/demo source paths. This is not signed off until a real BigQuery-to-Desktop check succeeds.
 ## 4. Desktop acceptance
 
 | Surface | Expected evidence |
