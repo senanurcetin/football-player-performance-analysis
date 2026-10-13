@@ -28,7 +28,7 @@
               },
               "queryRef": "dim_players.position",
               "nativeQueryRef": "position",
-              "displayName": "position",
+              "displayName": "Position",
               "active": true
             }
           ]
@@ -53,7 +53,7 @@
               },
               "queryRef": "Count(dim_players.player_id)",
               "nativeQueryRef": "player_id",
-              "displayName": "player_id"
+              "displayName": "Players"
             }
           ]
         }
