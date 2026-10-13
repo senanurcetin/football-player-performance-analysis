@@ -130,3 +130,14 @@ python scripts/audit_powerbi_layout.py
 ```
 
 Do not mark the project ready for portfolio screenshots before verifying **real workspace** credentials, error-free refresh and table/tooltip rendering. Synthetic `dim_clubs` 6-row source corrections and the unrelated production `fct_club_risk_profile` refresh triage remain separate acceptance cases.
+
+
+## Stage 7 — Uniform NEXUS card and slicer surfaces (local source proof)
+
+An additional native PBIR audit identified **29 data-bound card and slicer visuals per report edition** across **Transfer & Market Value**, **Player Market Value Prediction**, and **ML Model Reliability**. The older components were visually inconsistent: pale green `#F6FBF5` cards/filters, green-tinted `#EAF6E8` headers, legacy `#75B5EB` borders, grayish `#20323F` text and mostly 8pt titles. Four previously partial replacements were also inconsistent and were included after a new regression test exposed them.
+
+In both production and synthetic PBIR editions, existing native data bindings, filter selection modes, field projections, metric formulas, visual IDs and x/y/width/height are unchanged. The affected card/slicer styling is normalized to NEXUS light-card `#EFF5FF`, white slicer item bodies `#FFFFFF`, light-blue slicer headers `#EAF1FA`, dark legible typography `#122942`, blue value accents `#4EA8FF`, and existing lavender borders `#8F9BFF`. Card and slicer titles use **11pt**, slicer item text **10pt**. NEXUS dark page canvases remain `#091E33`.
+
+**Actual local Windows QA before hosted CI:** `python -m unittest discover -s tests -p 'test_powerbi_*.py' -q` → **81/81 tests PASS**; `python scripts/check_powerbi_release_handoff.py --output local-handoff-evidence.json` → **all six source gates PASS**, **zero layout warnings**. The new `tests/test_powerbi_card_slicer_palette.py` checks visual-type and source parity, unchanged native bound data visuals, readable title/filter text and absence of the targeted legacy colors across the 29 components per edition. `audit_powerbi_visuals.py` reports no legacy-green color warnings in source JSON. This is not a Desktop screenshot or authenticated production refresh.
+
+**CI remains deferred** until the separately documented real Power BI Desktop (13 pages, tooltips, drillthroughs) and BigQuery `fct_club_risk_profile`/KPI acceptance steps pass. Product publication remains **HOLD**.
