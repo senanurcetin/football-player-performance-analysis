@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "9c728e8d682165354da4",
   "position": {
-    "x": 613,
+    "x": 355,
     "y": 470,
     "z": 19000,
-    "height": 225,
-    "width": 362,
+    "height": 220,
+    "width": 615,
     "tabOrder": 19000
   },
   "visual": {
@@ -73,7 +73,7 @@
               },
               "queryRef": "fct_transfer_market_value_analysis.transfer_fee",
               "nativeQueryRef": "Transfer Fee",
-              "displayName": "Transfer Fee",
+              "displayName": "Fee (€)",
               "format": "€#,0"
             },
             {
@@ -89,7 +89,7 @@
               },
               "queryRef": "fct_transfer_market_value_analysis.market_value_baseline",
               "nativeQueryRef": "Market Value",
-              "displayName": "Market Value",
+              "displayName": "Baseline (€)",
               "format": "€#,0"
             },
             {
@@ -105,7 +105,7 @@
               },
               "queryRef": "fct_transfer_market_value_analysis.fee_market_value_difference_pct",
               "nativeQueryRef": "Premium %",
-              "displayName": "Premium %",
+              "displayName": "Fee delta (%)",
               "format": "0.0"
             },
             {
@@ -121,7 +121,7 @@
               },
               "queryRef": "fct_transfer_market_value_analysis.yon_etiketi_tr",
               "nativeQueryRef": "Next Direction",
-              "displayName": "Next Direction"
+              "displayName": "Fee/value direction"
             }
           ]
         }
@@ -417,7 +417,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Record List'"
+                  "Value": "'Transfer transaction details'"
                 }
               }
             },
@@ -462,7 +462,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Transfer detail table showing player, source club, destination club and associated transaction fields.'"
+                  "Value": "'Transaction detail for the filtered cohort, with fees, baseline values and their percentage differences; missing fee observations should not be interpreted as zero.'"
                 }
               }
             }
