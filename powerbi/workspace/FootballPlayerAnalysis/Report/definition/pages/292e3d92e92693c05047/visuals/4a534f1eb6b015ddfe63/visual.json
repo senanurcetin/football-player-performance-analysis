@@ -5,7 +5,7 @@
     "x": 985,
     "y": 436,
     "z": 25000,
-    "height": 256,
+    "height": 24,
     "width": 270,
     "tabOrder": 25000
   },
@@ -19,62 +19,11 @@
               {
                 "textRuns": [
                   {
-                    "value": "KEY FINDINGS",
+                    "value": "TRANSFERS BY POSITION",
                     "textStyle": {
                       "fontWeight": "bold",
                       "fontSize": "11pt",
                       "color": "#ffffff"
-                    }
-                  }
-                ]
-              },
-              {
-                "textRuns": [
-                  {
-                    "value": ""
-                  }
-                ]
-              },
-              {
-                "textRuns": [
-                  {
-                    "value": "• ~60% of transfers occur below market value — clubs systematically buy at a discount.",
-                    "textStyle": {
-                      "fontSize": "8pt",
-                      "color": "#e6f2e8"
-                    }
-                  }
-                ]
-              },
-              {
-                "textRuns": [
-                  {
-                    "value": "• Forwards are transferred at a premium, goalkeepers at a discount: position directly determines pricing.",
-                    "textStyle": {
-                      "fontSize": "8pt",
-                      "color": "#e6f2e8"
-                    }
-                  }
-                ]
-              },
-              {
-                "textRuns": [
-                  {
-                    "value": "• Transfer budgets have been on a declining trend since the 2016–2020 peak period.",
-                    "textStyle": {
-                      "fontSize": "8pt",
-                      "color": "#e6f2e8"
-                    }
-                  }
-                ]
-              },
-              {
-                "textRuns": [
-                  {
-                    "value": "• High premium transfers (>30%) are mostly star-player or competitive-bid situations.",
-                    "textStyle": {
-                      "fontSize": "8pt",
-                      "color": "#e6f2e8"
                     }
                   }
                 ]
@@ -100,7 +49,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#296393'"
+                      "Value": "'#173451'"
                     }
                   }
                 }
@@ -131,7 +80,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#296393'"
+                      "Value": "'#173451'"
                     }
                   }
                 }
