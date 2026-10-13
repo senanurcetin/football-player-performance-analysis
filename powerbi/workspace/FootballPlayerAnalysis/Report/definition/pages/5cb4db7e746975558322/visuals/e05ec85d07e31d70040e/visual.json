@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "e05ec85d07e31d70040e",
   "position": {
-    "x": 71.20090522966923,
-    "y": 428.89216874959914,
-    "z": 1000,
-    "height": 40.30239918660523,
-    "width": 341.22697977992425,
-    "tabOrder": 0
+    "x": 59,
+    "y": 416,
+    "z": 5000,
+    "width": 392,
+    "height": 34,
+    "tabOrder": 5000
   },
   "visual": {
     "visualType": "actionButton",
@@ -45,7 +45,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Player Performance Analysis'"
+                  "Value": "'01  PLAYER PERFORMANCE'"
                 }
               }
             },
@@ -53,9 +53,8 @@
               "solid": {
                 "color": {
                   "expr": {
-                    "ThemeDataColor": {
-                      "ColorId": 0,
-                      "Percent": 0
+                    "Literal": {
+                      "Value": "'#EAF3FF'"
                     }
                   }
                 }
@@ -78,7 +77,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "14D"
+                  "Value": "12D"
                 }
               }
             }
@@ -94,7 +93,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#F6B95F'"
+                      "Value": "'#77C2FF'"
                     }
                   }
                 }
@@ -110,7 +109,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "16D"
+                  "Value": "12D"
                 }
               }
             }
@@ -126,7 +125,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#69AEFF'"
+                      "Value": "'#FFFFFF'"
                     }
                   }
                 }
@@ -135,7 +134,14 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "16D"
+                  "Value": "12D"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }
@@ -151,7 +157,7 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             }
@@ -163,9 +169,8 @@
               "solid": {
                 "color": {
                   "expr": {
-                    "ThemeDataColor": {
-                      "ColorId": 1,
-                      "Percent": 0
+                    "Literal": {
+                      "Value": "'#173451'"
                     }
                   }
                 }
@@ -174,7 +179,7 @@
             "transparency": {
               "expr": {
                 "Literal": {
-                  "Value": "83D"
+                  "Value": "0D"
                 }
               }
             }
@@ -189,9 +194,8 @@
               "solid": {
                 "color": {
                   "expr": {
-                    "ThemeDataColor": {
-                      "ColorId": 0,
-                      "Percent": -0.2
+                    "Literal": {
+                      "Value": "'#245078'"
                     }
                   }
                 }
@@ -200,7 +204,7 @@
             "transparency": {
               "expr": {
                 "Literal": {
-                  "Value": "11D"
+                  "Value": "0D"
                 }
               }
             }
@@ -216,7 +220,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#69AEFF'"
+                      "Value": "'#285E9D'"
                     }
                   }
                 }
@@ -271,6 +275,19 @@
               "expr": {
                 "Literal": {
                   "Value": "'d2bc1e6a078c5c5b125c'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "altText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Open player performance analysis page'"
                 }
               }
             }
