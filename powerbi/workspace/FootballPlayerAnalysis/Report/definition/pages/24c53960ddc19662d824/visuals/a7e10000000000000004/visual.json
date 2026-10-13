@@ -53,7 +53,7 @@
               },
               "queryRef": "Sum(fct_player_performance.market_value_in_eur)",
               "nativeQueryRef": "market_value_in_eur",
-              "displayName": "Market value (€m)"
+              "displayName": "Market value (€)"
             }
           ]
         }
@@ -159,7 +159,7 @@
             "titleText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Market value (€m)'"
+                  "Value": "'Market value (€)'"
                 }
               }
             },

@@ -24,7 +24,7 @@ CHARTS = {
         "a7e10000000000000001": ("Position", "Players"),
         "a7e10000000000000002": ("Age band", "Players"),
         "a7e10000000000000003": ("Club", "Goals"),
-        "a7e10000000000000004": ("Position", "Market value (€m)"),
+        "a7e10000000000000004": ("Position", "Market value (€)"),
     },
     "25f58efd2bb140e62be9": {
         "a7e20000000000000001": ("Club", "Win rate"),
