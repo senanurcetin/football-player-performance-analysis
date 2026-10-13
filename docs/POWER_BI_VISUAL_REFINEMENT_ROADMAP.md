@@ -5,6 +5,8 @@
 **Comparison edition:** `powerbi/offline-demo/FootballPlayerAnalysis/FootballPlayerAnalysis.pbip` (synthetic fixtures)  
 **Product release:** **HOLD** until actual Desktop rendering and production refresh reconciliation.
 
+**CI execution policy:** Complete source development, offline checks and real Desktop/BigQuery acceptance **before** triggering hosted CI. CircleCI workflows are opt-in through `run_final_ci=true`; see [CI-last release policy](CI_RELEASE_GATE_POLICY.md).
+
 ## Product direction
 
 One editable 13-page PBIR report with a restrained dark NEXUS identity; not a duplicate deck, generated dashboard image, or redesign that destroys analytic bindings. Apply typography and spacing improvements **inside native visuals**, protect honest metric semantics and accessibility, and keep production/demo PBIR styles in parity.
