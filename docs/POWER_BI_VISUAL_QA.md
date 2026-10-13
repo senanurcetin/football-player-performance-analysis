@@ -145,3 +145,22 @@ resource-loading behavior, default scaling and hero contrast are acceptable.
 Capture screenshots only after loading the updated PBIP in Power BI Desktop;
 keep the mandatory synthetic watermark in demo screenshots and no fabricated
 real-world model claims. Portfolio release remains **HOLD** until reviewed.
+
+## Closing hero collision and route completion — 13 October 2026
+
+A source-geometry review found the previous Closing editorial text boxes ran
+behind the 300x300 registered NEXUS logo. The Closing text area now ends at
+x=863 while the logo starts at x=890, and the copy is tightened to
+**EVIDENCE. INSIGHT. ACTION.** The original brand image remains unchanged.
+
+The ML Model Reliability header and Closing page now include real native Power
+BI **PageNavigation** buttons returning to Home. All six seven-letter side
+rails include accessible destination names (42 buttons per edition, or 84
+described controls total), without altering their native target IDs or visual
+geometry. These changes improve source-level clarity and keyboard navigation
+semantics, but screen-reader and on-screen interaction behavior still require
+Desktop testing.
+
+Source gate: `python -m unittest discover -s tests -p 'test_powerbi_navigation_completion.py'`
+plus `python scripts/audit_powerbi_layout.py`. No hosted CI was invoked;
+real Power BI Desktop open/refresh/render acceptance is still **HOLD**.

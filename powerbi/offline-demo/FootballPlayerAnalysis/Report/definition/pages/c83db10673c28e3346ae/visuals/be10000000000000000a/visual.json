@@ -6,7 +6,7 @@
     "y": 341,
     "z": 60000,
     "height": 70,
-    "width": 1080,
+    "width": 784,
     "tabOrder": 60000
   },
   "visual": {
@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Compare cohorts. Verify coverage. Challenge every prediction.",
+                    "value": "Compare cohorts. Verify coverage. Challenge predictions.",
                     "textStyle": {
                       "fontWeight": "normal",
                       "fontSize": "17pt",
