@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "560d411928208f871d33",
   "position": {
-    "x": 105.1690067602704,
-    "y": 443.3073322932917,
+    "x": 105,
+    "y": 443,
     "z": 17500,
-    "height": 24.628185127405096,
-    "width": 869.9739989599583,
+    "height": 25,
+    "width": 870,
     "tabOrder": 17500
   },
   "visual": {
@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "TRANSFER OUTCOME ANALYSIS",
+                    "value": "03    /    TRANSACTION-LEVEL EVIDENCE",
                     "textStyle": {
                       "fontWeight": "bold",
                       "fontSize": "8pt",

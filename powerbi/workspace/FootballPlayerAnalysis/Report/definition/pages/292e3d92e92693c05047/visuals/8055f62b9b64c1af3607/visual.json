@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "8055f62b9b64c1af3607",
   "position": {
-    "x": 455,
-    "y": 104,
+    "x": 516,
+    "y": 105,
     "z": 14000,
-    "height": 86,
-    "width": 170,
+    "height": 82,
+    "width": 152,
     "tabOrder": 14000
   },
   "visual": {
@@ -72,7 +72,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "18D"
+                  "Value": "17D"
                 }
               }
             },
@@ -219,7 +219,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Avg. Fee'"
+                  "Value": "'Average known fee'"
                 }
               }
             },

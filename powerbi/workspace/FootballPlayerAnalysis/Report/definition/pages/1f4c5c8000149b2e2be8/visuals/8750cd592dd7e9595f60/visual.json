@@ -5,7 +5,7 @@
     "x": 985,
     "y": 436,
     "z": 25000,
-    "height": 256,
+    "height": 226,
     "width": 270,
     "tabOrder": 25000
   },
@@ -19,82 +19,11 @@
               {
                 "textRuns": [
                   {
-                    "value": "KEY FINDINGS",
+                    "value": "INTERPRETATION PROTOCOL\n• Prediction is not a transfer price or realized profit.\n• Compare prior and predicted values together.\n• Check lower/upper intervals and quality flags.\n• Narrow coverage limits decision readiness.\n• Use the model evaluation page for reliability.",
                     "textStyle": {
                       "fontWeight": "bold",
                       "fontSize": "11pt",
-                      "color": "#FFFFFF"
-                    }
-                  }
-                ]
-              },
-              {
-                "textRuns": [
-                  {
-                    "value": "",
-                    "textStyle": {
-                      "fontSize": "4pt",
-                      "color": "#FFFFFF"
-                    }
-                  }
-                ]
-              },
-              {
-                "textRuns": [
-                  {
-                    "value": "• Forwards carry the highest market value; the model correctly captures this by position.",
-                    "textStyle": {
-                      "fontWeight": "normal",
-                      "fontSize": "8pt",
-                      "color": "#E6F2E8"
-                    }
-                  }
-                ]
-              },
-              {
-                "textRuns": [
-                  {
-                    "value": "• 'Decision Ready %' oranı, modelin güvenilir tahmin ürettiği oyuncu kapsamını gösterir.",
-                    "textStyle": {
-                      "fontWeight": "normal",
-                      "fontSize": "8pt",
-                      "color": "#E6F2E8"
-                    }
-                  }
-                ]
-              },
-              {
-                "textRuns": [
-                  {
-                    "value": "• Positions to the left of the red reference line carry average value loss risk.",
-                    "textStyle": {
-                      "fontWeight": "normal",
-                      "fontSize": "8pt",
-                      "color": "#E6F2E8"
-                    }
-                  }
-                ]
-              },
-              {
-                "textRuns": [
-                  {
-                    "value": "• Prediction kalitesi 'Yüksek' filtresi: müzakereler için en güvenilir veri tabanını izole eder.",
-                    "textStyle": {
-                      "fontWeight": "normal",
-                      "fontSize": "8pt",
-                      "color": "#E6F2E8"
-                    }
-                  }
-                ]
-              },
-              {
-                "textRuns": [
-                  {
-                    "value": "• Narrow CI = model is highly confident about that player; wide CI = more uncertainty.",
-                    "textStyle": {
-                      "fontWeight": "normal",
-                      "fontSize": "8pt",
-                      "color": "#E6F2E8"
+                      "color": "#C9DAEC"
                     }
                   }
                 ]

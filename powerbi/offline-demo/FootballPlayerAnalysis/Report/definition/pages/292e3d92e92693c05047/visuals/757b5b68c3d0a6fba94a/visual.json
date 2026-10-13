@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "757b5b68c3d0a6fba94a",
   "position": {
-    "x": 280,
-    "y": 104,
+    "x": 339,
+    "y": 105,
     "z": 13000,
-    "height": 86,
-    "width": 170,
+    "height": 82,
+    "width": 167,
     "tabOrder": 13000
   },
   "visual": {
@@ -219,7 +219,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Known Fee Coverage %'"
+                  "Value": "'Known fee coverage'"
                 }
               }
             },
