@@ -93,3 +93,41 @@ The six obsolete green-era PNG files, their gallery index and the superseded edi
 The authorized Desktop Commander device was **offline at the latest check**. No open/refresh/render tests or real BigQuery reconciliation have been completed. Source-level structural tests can run without CI quotas; **passing them is insufficient for visual signoff**. The remaining synthetic marts are illustrative and may contain other implausible relationships or time-series values.
 
 **Decision: HOLD portfolio release until a local Desktop evidence pass is recorded.**
+
+## Actual Desktop screenshots and feedback — 13 October 2026
+
+The user provided **real Power BI Desktop screenshots** of the synthetic Home and
+Player Segmentation pages. They showed non-shippable design defects: legacy burgundy
+theme-color shapes in page headers and navigation, emoji sidebar controls, white
+textbox containers obscuring pale hero typography, technical axis labels and an
+undifferentiated lavender value donut. This is **negative visual evidence** and
+supersedes prior source-only claims of completed dashboard modernization.
+
+A subsequent PBIR source change explicitly sets NEXUS navy header/side-panel
+fills on the six main analytical pages; changes the seven navigation shortcuts on
+those pages from emoji to aligned H/P/S/C/T/V/M monograms while **retaining page
+navigation targets**; disables Home/Closing textbox backgrounds; and replaces
+Segmentation's market-value donut with a horizontal bar comparison. Production
+and offline-demo definitions are both updated. The prediction-page hardcoded
+R²/WAPE claim is removed from the editorial subtitle; model-quality metrics
+must be checked from actual evaluated measures.
+
+The **six-row synthetic `fct_club_risk_profile` fixture** had quoted numeric
+literals in typed M columns, fractional values where governed SQL expects
+percentage points, and minimum-cohort flags inconsistent with the 30-observation
+threshold. These have been repaired and a fixture-level check added. If the
+**production BigQuery** table still reports six row errors, use Power BI's
+**View errors / Details** pane and supply the exact column and message; the
+synthetic correction alone does not prove a production-refresh fix.
+
+Source checks without hosted CI:
+
+```bash
+python scripts/check_powerbi_offline_demo.py
+python scripts/check_powerbi_visual_feedback.py
+python scripts/audit_powerbi_layout.py
+```
+
+**Release remains HOLD:** no updated Power BI Desktop reload, DAX/Power Query
+execution, full-page contrast inspection or current screenshot recapture was
+observed. The next release must use new authentic Desktop screenshots.
