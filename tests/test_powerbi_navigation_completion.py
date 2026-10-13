@@ -101,8 +101,20 @@ class NavigationAndHeroTests(unittest.TestCase):
     def test_reliability_home_button_clears_masthead_title_and_logo(self):
         for mode in ("workspace", "offline-demo"):
             back = load(mode, ML, BACK[ML])
-            for vid in ("0b669b19792b26683032", "b6a00000000000000008"):
-                self.assertFalse(overlaps(back, load(mode, ML, vid)))
+            self.assertEqual(
+                (back["position"]["x"], back["position"]["y"],
+                 back["position"]["width"], back["position"]["height"]),
+                (1040, 16, 119, 34),
+                "Home control must not cover NEXUS logo or editorial masthead",
+            )
+            self.assertLessEqual(
+                back["position"]["x"] + back["position"]["width"], 1280)
+            for vid in ("0b669b19792b26683032", "d739c4fef0c04c55f4e3",
+                        "b6a00000000000000008"):
+                self.assertFalse(
+                    overlaps(back, load(mode, ML, vid)),
+                    f"Reliability Home control must clear header element {vid}",
+                )
 
 
 if __name__ == "__main__":
