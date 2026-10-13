@@ -7,7 +7,7 @@ The visual target is the NEXUS portfolio artwork in `nexus-web-v2/public/project
 | Shell / deep navy | `#071829` |
 | Hero / panel navy | `#091E33` |
 | Slate typography | `#122942` |
-| Canvas / visual surface | `#EAF1FA` / `#FFFFFF` |
+| Light panel / tooltip supporting surfaces | `#EAF1FA` / `#FFFFFF` |
 | Primary data blue | `#4EA8FF` |
 | Secondary lavender | `#8F9BFF` |
 | Positive emphasis (blue, not green) | `#487FD8` |
@@ -17,30 +17,37 @@ No fluorescent green or green/teal should be used in the palette. Keep the seman
 
 The Power BI report includes native graphics that may have their own explicit fill/font formatting; change those per-visual settings separately and check dark/light contrast in Power BI Desktop.
 
-## Page-specific editorial art direction (2026-10-13)
+## Current PBIR canvas contract (13 October 2026)
 
-**One report; no duplicate slide presentations.** All native Power BI page, DAX, query and navigation bindings remain editable in the two intentional editions (BigQuery production workspace and deterministic offline-demo).
+The **current** editable PBIR uses a unified NEXUS dark background for the nine analytics and drillthrough pages. Home and Closing use the deeper hero navy. Only the two compact, hidden tooltip pages retain pale contextual canvases; they are **not** normal report tabs. Prior pastel full-page designs are historical and must not be described as the present source.
 
-| Page | Canvas | Art direction |
-| --- | --- | --- |
-| Home / Closing | `#071829` | Dark editorial opening and closing |
-| Player Performance | `#091E33` | Deep-blue tactical operations dashboard |
-| Player Segmentation | `#EDEBFA` | Lavender audience/cohort analysis; 60/40 then 40/60 chart balance |
-| Club & League | `#E7F2FD` | Ice-blue club benchmarking; 45/55 then 60/40 chart balance |
-| Transfer Success 365d | `#E9F1FA` | Neutral blue-white evidence pages |
-| Transfer & Market Value | `#E8ECF8` | Cool slate-blue financial analysis |
-| Player Market Value Prediction | `#E7EFFB` | Light blue forecast/valuation surface |
-| ML Model Reliability | `#E6EDF9` | Pale technical blue and high data contrast |
-| Transfer Detail / Prediction Detail | `#EBEFF9` / `#E8EBF6` | Muted contextual drillthroughs |
-| Transfer Tooltip / Prediction Tooltip | `#E7F0FC` / `#E8ECFA` | Legible 560×320 hover explanations |
+This table describes the actual `Report/definition/pages/*/page.json` backgrounds in **both** editions; `offline-demo` adds `[DEMO]` to page display names without changing these backgrounds.
 
-These colors belong to the NEXUS navy, blue and lavender family. Chart components remain white with dark navy labels and blue/lavender data marks. Page changes are performed in **real PBIR JSON**, not images or rendered marketing slides. Final contrast/overflow must still be checked in Power BI Desktop.
+<!-- CURRENT_PBIR_CANVASES_START -->
+| PBIR page ID | Page | Surface | Current background |
+| --- | --- | --- | --- |
+| `5cb4db7e746975558322` | Home | Hero | `#071829` |
+| `d2bc1e6a078c5c5b125c` | Player Performance Analysis | Analytics | `#091E33` |
+| `24c53960ddc19662d824` | Player Segmentation | Analytics | `#091E33` |
+| `25f58efd2bb140e62be9` | Club & League Analysis | Analytics | `#091E33` |
+| `4c63ad904b1db6e0d156` | Transfer Success Analysis (365d) | Analytics | `#091E33` |
+| `292e3d92e92693c05047` | Transfer & Market Value Analysis | Analytics | `#091E33` |
+| `1f4c5c8000149b2e2be8` | Player Market Value Prediction | Analytics | `#091E33` |
+| `MLModelPerformance` | ML Model Reliability | Analytics | `#091E33` |
+| `c83db10673c28e3346ae` | Closing | Hero | `#071829` |
+| `91edaa93bbbdbbc8e854` | Player Transfer Detail | Hidden drillthrough | `#091E33` |
+| `MLPlayerDetail` | Player Prediction Detail | Hidden drillthrough | `#091E33` |
+| `tooltip_transfer_p011` | Tooltip Transfer | Hidden tooltip (560×320) | `#E7F0FC` |
+| `tooltip_pred_p012` | Tooltip Prediction | Hidden tooltip (560×320) | `#E8ECFA` |
+<!-- CURRENT_PBIR_CANVASES_END -->
+
+Individual visual surfaces and chart layouts remain deliberately asymmetric; unified **page** backgrounds do not mean identical dashboards. Native chart panels may be white/light with dark labels or navy cards with light labels. The blue/cyan/lavender data palette is controlled by the registered theme **and** per-visual overrides; verify both at 100% zoom in Desktop. This is source-level documentation, not evidence of a successful render or data refresh.
 
 ## One current presentation, no redundant asset mirrors (13 October 2026)
 
 - The current presentation is the **single editable PBIR report**, with two intentional source variants: `workspace` (BigQuery) and `offline-demo` (deterministic synthetic fixtures). Neither variant is a legacy slide deck.
 - Home and Closing use a consistent navy editorial treatment, with distinct headlines (`THE GAME, IN DATA.` / `EVIDENCE DRIVES DECISIONS.`). Home navigation is typographic rather than decorative emoji buttons; all Power BI page-navigation references remain intact.
-- The intervening 11 primary/detail/tooltip pages use **different NEXUS-coordinated canvases and asymmetric chart layouts** documented above; the report is not a sequence of identically laid-out graphics.
+- The nine analytics/drillthrough pages share the NEXUS `#091E33` page canvas while retaining differentiated native chart layouts; the two contextual tooltip canvases remain pale as shown in the source contract above.
 - Seven duplicate PNG resources in each variant's *project-root* `StaticResources/RegisteredResources` folder were byte-identical to their correctly registered copies under `Report/StaticResources/RegisteredResources`. The **14 redundant mirrors (18,263,794 bytes in tracked file sizes)** have been deleted; the seven assets still referenced in the registered PBIR resource package are retained in both variants.
 - Historical green Power BI galleries and superseded editorial cover illustrations remain excluded from this repository. **Do not add separate PDF/PPTX exports or replacement mockup PNGs** solely to represent this source report.
 
