@@ -103,6 +103,11 @@
           "name": "NEXUSMidnight-20261012-v2.json",
           "path": "NEXUSMidnight-20261012-v2.json",
           "type": "CustomTheme"
+        },
+        {
+          "name": "nexus-wordmark-crop.svg",
+          "path": "nexus-wordmark-crop.svg",
+          "type": "Image"
         }
       ]
     },
