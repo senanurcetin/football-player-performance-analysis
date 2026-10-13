@@ -36,7 +36,7 @@ class EditorialSourceTests(unittest.TestCase):
   for mode in ("workspace","offline-demo"):
    home=base(mode)/HOME
    logo=vid(mode,HOME,"b6a00000000000000001")
-   self.assertEqual(xywh(logo["position"]),(925,78,288,138))
+   self.assertEqual(xywh(logo["position"]),(88,49,187,89))
    self.assertEqual(
     logo["visual"]["objects"]["general"][0]["properties"]["imageUrl"]
     ["expr"]["ResourcePackageItem"]["ItemName"], CROP)

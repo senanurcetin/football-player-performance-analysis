@@ -22,7 +22,8 @@ LEGACY = {
 }
 HEX = re.compile(r"#[0-9a-fA-F]{6}\b")
 EXPECTED_PAGES = 13
-EXPECTED_DETAIL_VISUALS = {"workspace": 16, "offline-demo": 17}
+# Each detail page includes two non-data brand controls: a signature plate and blue divider.
+EXPECTED_DETAIL_VISUALS = {"workspace": 18, "offline-demo": 19}
 DEMO_DETAIL_WATERMARKS = {
     "91edaa93bbbdbbc8e854": "de9a00000000000000006",
     "MLPlayerDetail": "de9a00000000000000008",

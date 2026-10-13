@@ -162,3 +162,13 @@ The canonical original NEXUS raster resource is retained unchanged. Both cover i
 The source contract in tests/test_powerbi_editorial_provenance.py guards cover wordmark resource links, seven native interactive cards, canvas bounds, clean tab names and actual provenance differences across both editions. The visual/source audit, offline-demo checker and NEXUS project preflight were updated to protect that distinction.
 
 **Desktop acceptance remains HOLD**: run actual Power BI Desktop screenshots at 100% zoom and verify card click targets, logo crop, text wrapping, tooltip context and real BigQuery refresh. Source-only JSON tests are not screenshots.
+
+## Stage 9 — Integrated editorial brand lockup, not a floating logo
+
+The brand mark is now treated as part of a consistent **visual identity architecture**. Two independent cover pages have compact 535:255-aspect official NEXUS wordmarks within aligned dark signature plates, subtle cyan entry lines and slim separators, concise research overlines, spacious hero titles and a disciplined Closing taxonomy. The old isolated upper-right logo placement on Home/Closing is replaced by editorial hierarchy and negative space.
+
+All seven analytical mastheads use a proportion-preserving 140x67 wordmark, dark backing and a consistent accent divider. Both hidden drillthrough views use 128x61 wordmarks with enough clearance from the functional Back button. The original registered PNG/SVG image resources are untouched and already registered; no AI-generated replacement was used. New editable native PBIR shape/text elements are paired identically in production and offline synthetic editions, without changes to queryState, DAX, schema, navigation destinations or synthetic disclosures.
+
+The new test_powerbi_integrated_brand_system.py regression checks signature container bounds, original asset references, proportional sizing, source parity of the native elements and logo/header/Back-button collision clearance. The NEXUS product preflight allows exactly two additional non-data header decorations per drillthrough page, preserving seven bound visuals per page.
+
+**Source validation on Windows:** 87/87 Power BI unit tests PASS, all six handoff source gates PASS, zero PBIR layout warnings, no visual binding errors. This is *not* a screenshot-based product-quality acceptance. User-reported brand aesthetics still need Power BI Desktop at 100% to validate image rendering, spacing and interactive focus. Release stays HOLD and hosted CircleCI remains explicitly deferred.

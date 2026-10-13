@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "be100000000000000008",
   "position": {
-    "x": 76,
-    "y": 144,
+    "x": 321,
+    "y": 87,
     "z": 60000,
-    "height": 43,
-    "width": 760,
+    "height": 33,
+    "width": 382,
     "tabOrder": 60000
   },
   "visual": {
@@ -19,11 +19,11 @@
               {
                 "textRuns": [
                   {
-                    "value": "NEXUS   /   FOOTBALL INTELLIGENCE",
+                    "value": "FOOTBALL INTELLIGENCE",
                     "textStyle": {
                       "fontWeight": "bold",
-                      "fontSize": "18pt",
-                      "color": "#4EA8FF",
+                      "fontSize": "16pt",
+                      "color": "#EFF7FF",
                       "fontFamily": "Segoe UI"
                     }
                   }

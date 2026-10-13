@@ -151,3 +151,16 @@ instead of translucent gray/maroon.
 **SVG support must be verified with Power BI Desktop.** If it cannot load the
 cropped embedded PNG SVG, restore the original PNG reference rather than
 publishing a missing brand asset. This remains a Desktop acceptance gate.
+
+## Integrated NEXUS signature system (13 October 2026)
+
+The original brand artwork is no longer treated as a floating dashboard decoration. It is now a **small editorial signature**, integrated with native Power BI geometry:
+
+- **Home/Closing:** dark signature plate (#020B16), 3px cyan entry rule, existing official cropped wordmark at original 535:255 proportions (Home 187x89; Closing 185x88), a short hairline divider, restrained overline, and an independent research-context line. The hero text starts after the signature; the mark is no longer a huge standalone element on the right.
+- **Seven analytical pages:** unified 140x67 official wordmark, a near-black support plate and 2px blue vertical separator between the brand signature and page heading.
+- **Two hidden drillthrough pages:** compact 128x61 official wordmark shifted clear of the Back action; original navigation and page context preserved.
+- **Closing research rail:** quiet three-part typographic structure (Performance / Market Evidence / Model Quality), with no fake KPI numbers or decorative dashboard screenshot.
+
+The canonical original PNG and pre-existing cropped SVG remain registered and byte-for-byte unchanged. No substitute logo assets, altered letterforms, new reports, query changes, or false model-performance indicators have been introduced. Both production and offline synthetic PBIR editions retain the same editable native brand elements. Distinct honest synthetic-data disclosures remain intact.
+
+**Acceptance is still separate from source integrity:** verify actual Desktop image crop, letterspacing, colors, clickable links, 100% zoom, screen reader focus and data refresh before release. Hosted CircleCI remains opt-in and deferred until those acceptance checks are complete.
