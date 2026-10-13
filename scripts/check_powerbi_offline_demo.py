@@ -353,8 +353,14 @@ def main():
     pages = load_json(page_root / "pages.json")
     for page_id in pages.get("pageOrder", []):
         page = load_json(page_root / page_id / "page.json")
-        check(page.get("displayName", "").startswith("[DEMO]"),
-              f"Demo label missing on page {page_id}")
+        check(not page.get("displayName", "").startswith("[DEMO]"),
+              f"Decorative [DEMO] tab prefix retained on {page_id}")
+        if page.get("width", 0) >= 1200:
+            markers = list((page_root / page_id / "visuals").glob(
+                "de9a*/visual.json"))
+            check(len(markers) == 1 and
+                  "SYNTHETIC DATA  /  NOT REAL" in markers[0].read_text(encoding="utf-8"),
+                  f"Explicit provenance disclaimer missing on {page_id}")
     for vpath in page_root.glob("*/visuals/*/visual.json"):
         v = load_json(vpath)
         check("visualContainerObjects" not in v,

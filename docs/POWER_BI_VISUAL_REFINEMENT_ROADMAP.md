@@ -149,3 +149,16 @@ In both production and synthetic PBIR editions, existing native data bindings, f
 The narrative contained unverified general claims (e.g. approximately 60% of transfers occur at a discount) that did not agree with the synthetic fixture values shown on-screen. The story textbox is now replaced with a compact **TRANSFERS BY POSITION** 11pt NEXUS-navy section heading at x=985, y=436 (270×24). This ends at y=460 and leaves a 10px vertical gap before the bound chart begins at y=470. The original chart, the 615px transfer evidence table, their data projections and all positions are unchanged. The focused evidence-table test now guards the header's size, single paragraph, honest caption, surface color and separation from the chart in **both** PBIR editions.
 
 The Desktop screen evidence confirms the earlier hidden-chart defect but **a screenshot of the corrected state is still needed**. An authenticated **production** BigQuery refresh and 13-page Desktop acceptance remain independent mandatory checks. Hosted CircleCI remains opt-in and must **not** run before those steps. **Release HOLD.**
+
+
+## Stage 8 — Editorial covers and low-noise provenance
+
+Home and Closing no longer present a large square logo plus a single-column navigation rail. The native PBIR changes in both editions add a **two-column, seven-module navigation grid** (347×54 tiles with a 70px row rhythm), a separate editorial description area, new typographic hierarchy and negative space on the NEXUS deep-navy canvas. Existing actionButton PageNavigation targets, text states, click behavior, and analytic data bindings are unchanged.
+
+The canonical original NEXUS raster resource is retained unchanged. Both cover image visuals now reference the existing registered horizontal wordmark crop with a natural 2.1:1 aspect ratio: Home 288×138 and Closing 278×133. Other report logos remain registered as before. The covers now read **FOOTBALL, DECODED.** and **FROM EVIDENCE TO DECISIONS.**, with relevant editorial supporting copy.
+
+**Provenance is explicit but non-intrusive:** workspace/BigQuery pages have no synthetic-watermark components. The offline synthetic edition uses clean tab labels (no decorative DEMO prefix), but each of the 11 full-size pages includes a small visible **SYNTHETIC DATA / NOT REAL** notice; the two 560×320 hidden tooltip views inherit the synthetic parent page context. The offline Home additionally states the data are synthetic. This does not turn synthetic fixture values into real data; publish only honestly labeled captures.
+
+The source contract in tests/test_powerbi_editorial_provenance.py guards cover wordmark resource links, seven native interactive cards, canvas bounds, clean tab names and actual provenance differences across both editions. The visual/source audit, offline-demo checker and NEXUS project preflight were updated to protect that distinction.
+
+**Desktop acceptance remains HOLD**: run actual Power BI Desktop screenshots at 100% zoom and verify card click targets, logo crop, text wrapping, tooltip context and real BigQuery refresh. Source-only JSON tests are not screenshots.

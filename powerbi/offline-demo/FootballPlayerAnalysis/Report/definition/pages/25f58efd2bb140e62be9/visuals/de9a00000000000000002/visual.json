@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "de9a00000000000000002",
   "position": {
-    "x": 974,
-    "y": 12,
+    "x": 1022,
+    "y": 73,
     "z": 99990,
-    "height": 26,
-    "width": 292,
+    "height": 18,
+    "width": 237,
     "tabOrder": 99990
   },
   "visual": {
@@ -19,12 +19,12 @@
               {
                 "textRuns": [
                   {
-                    "value": "SYNTHETIC DEMO  /  NOT REAL DATA",
+                    "value": "SYNTHETIC DATA  /  NOT REAL",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
-                      "fontSize": "10pt",
-                      "fontWeight": "bold",
-                      "color": "#F6B95F"
+                      "fontSize": "8pt",
+                      "fontWeight": "normal",
+                      "color": "#A8BDD1"
                     }
                   }
                 ]

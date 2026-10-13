@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "be100000000000000005",
   "position": {
-    "x": 556,
-    "y": 395,
+    "x": 851,
+    "y": 416,
     "z": 60000,
-    "height": 48,
-    "width": 630,
+    "height": 49,
+    "width": 363,
     "tabOrder": 60000
   },
   "visual": {
@@ -19,11 +19,11 @@
               {
                 "textRuns": [
                   {
-                    "value": "PERFORMANCE RESEARCH",
+                    "value": "BEYOND THE SCORELINE",
                     "textStyle": {
                       "fontWeight": "bold",
-                      "fontSize": "19pt",
-                      "color": "#EDF5FF",
+                      "fontSize": "20pt",
+                      "color": "#EFF7FF",
                       "fontFamily": "Segoe UI"
                     }
                   }

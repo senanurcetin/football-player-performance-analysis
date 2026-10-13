@@ -107,7 +107,8 @@ def audit(root: Path, mode: str):
                 if min(w, h) <= 0 or x < -2 or y < -2 or x + w > pwidth + 2 or y + h > pheight + 2:
                     warnings.append(f"{vp}: outside page bounds")
             raw = json.dumps(visual, ensure_ascii=False)
-            watermark |= "SYNTHETIC DEMO" in raw
+            watermark |= ("SYNTHETIC DATA  /  NOT REAL" in raw or
+                          "SYNTHETIC DEMO" in raw)
             for color in FORBIDDEN:
                 if color.lower() in raw.lower():
                     warnings.append(f"{vp}: legacy green/teal color {color}")

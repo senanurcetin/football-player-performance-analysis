@@ -3,10 +3,10 @@
   "name": "be100000000000000003",
   "position": {
     "x": 71,
-    "y": 226,
+    "y": 224,
     "z": 60000,
-    "height": 56,
-    "width": 800,
+    "height": 50,
+    "width": 810,
     "tabOrder": 60000
   },
   "visual": {
@@ -19,10 +19,10 @@
               {
                 "textRuns": [
                   {
-                    "value": "PERFORMANCE   /   TRANSFERS   /   VALUATION   /   MODEL RELIABILITY",
+                    "value": "PERFORMANCE   /   TRANSFERS   /   VALUATION   /   MODEL QUALITY",
                     "textStyle": {
                       "fontWeight": "normal",
-                      "fontSize": "15pt",
+                      "fontSize": "14pt",
                       "color": "#B4C9DD",
                       "fontFamily": "Segoe UI"
                     }

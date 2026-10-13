@@ -57,10 +57,7 @@ class CanvasDocumentationContractTests(unittest.TestCase):
                     page = json.loads(
                         (pages / page_id / "page.json").read_text(encoding="utf-8-sig")
                     )
-                    expected_name = (
-                        f"[DEMO] {display_name}" if edition == "offline-demo"
-                        else display_name
-                    )
+                    expected_name = display_name
                     self.assertEqual(page["displayName"], expected_name)
                     self.assertEqual(page_background(page), documented_color)
 
