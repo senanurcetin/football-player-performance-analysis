@@ -22,7 +22,11 @@ LEGACY = {
 }
 HEX = re.compile(r"#[0-9a-fA-F]{6}\b")
 EXPECTED_PAGES = 13
-EXPECTED_DETAIL_VISUALS = 16  # 15 native detail visuals plus the canonical NEXUS logo
+EXPECTED_DETAIL_VISUALS = {"workspace": 16, "offline-demo": 17}
+DEMO_DETAIL_WATERMARKS = {
+    "91edaa93bbbdbbc8e854": "de9a00000000000000006",
+    "MLPlayerDetail": "de9a00000000000000008",
+}
 
 
 def load(path: Path) -> dict:
@@ -65,8 +69,12 @@ def audit(root: Path) -> dict:
             except (OSError, ValueError) as exc:
                 issues.append(f"{edition}/{page}: unreadable native visuals: {exc}")
                 continue
-            if len(visuals) != EXPECTED_DETAIL_VISUALS:
-                issues.append(f"{edition}/{page}: expected {EXPECTED_DETAIL_VISUALS} visuals, found {len(visuals)}")
+            if len(visuals) != EXPECTED_DETAIL_VISUALS[edition]:
+                issues.append(f"{edition}/{page}: expected {EXPECTED_DETAIL_VISUALS[edition]} visuals, found {len(visuals)}")
+            if edition == "offline-demo":
+                watermark = DEMO_DETAIL_WATERMARKS[page]
+                if watermark not in visuals or visuals[watermark].get("visual", {}).get("visualType") != "textbox":
+                    issues.append(f"{edition}/{page}: synthetic provenance watermark missing")
             visual_types: dict[str, str] = {}
             bound = 0
             for visual_id, visual in visuals.items():
@@ -89,8 +97,11 @@ def audit(root: Path) -> dict:
         for page in DETAIL_PAGES:
             prod = editions["workspace"]["details"].get(page, {}).get("types")
             demo = editions["offline-demo"]["details"].get(page, {}).get("types")
-            if prod is not None and demo is not None and prod != demo:
-                issues.append(f"{page}: visual types/IDs differ between production and demo")
+            if prod is not None and demo is not None:
+                demo_without_label = {visual_id: kind for visual_id, kind in demo.items()
+                                      if visual_id != DEMO_DETAIL_WATERMARKS[page]}
+                if prod != demo_without_label:
+                    issues.append(f"{page}: production/demo shared visuals differ beyond demo watermark")
     for edition in editions.values():
         for page in edition["details"].values():
             page.pop("types", None)  # keep CLI output compact
