@@ -71,7 +71,7 @@ class TransferDashboardDesignTests(unittest.TestCase):
                     self.assertEqual(literal(props["text"]), "'" + title + "'")
                     self.assertEqual(literal(props["fontSize"]), "13D")
                     self.assertEqual(
-                        literal(props["fontColor"]["solid"]["color"]), "'#122942'"
+                        literal(props["fontColor"]["solid"]["color"]), "'#ECF4FF'"
                     )
                     self.assertEqual(
                         literal(ui["objects"]["dataPoint"][0]["properties"]
@@ -101,7 +101,7 @@ class TransferDashboardDesignTests(unittest.TestCase):
                     self.assertEqual(literal(props["fontSize"]),
                                      "15D" if name.endswith("01") else "12D")
                     self.assertEqual(
-                        literal(props["fontColor"]["solid"]["color"]), "'#122942'"
+                        literal(props["fontColor"]["solid"]["color"]), "'#ECF4FF'"
                     )
                     self.assertEqual(
                         literal(v["visualContainerObjects"]["border"][0]
@@ -111,7 +111,7 @@ class TransferDashboardDesignTests(unittest.TestCase):
                     self.assertEqual(literal(labels["fontSize"]),
                                      "12D" if name.endswith("01") else "10D")
                     self.assertEqual(
-                        literal(labels["color"]["solid"]["color"]), "'#122942'"
+                        literal(labels["color"]["solid"]["color"]), "'#ECF4FF'"
                     )
                     for axis in ("categoryAxis", "valueAxis"):
                         self.assertEqual(

@@ -78,7 +78,7 @@ class FinancialVisualReadabilityTests(unittest.TestCase):
                             props = objects[obj][0]["properties"]
                             self.assertEqual(literal(props["fontSize"]), "9D")
                             self.assertEqual(
-                                literal(props[color_field]["solid"]["color"]), "'#122942'")
+                                literal(props[color_field]["solid"]["color"]), "'#ECF4FF'")
                     else:
                         self.assertEqual(
                             literal(objects["labels"][0]["properties"]["fontSize"]), "10D")
