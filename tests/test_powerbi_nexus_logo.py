@@ -13,6 +13,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 IMAGE = "nexus-brand-original-20261013.png"
 CROPPED = "nexus-wordmark-crop.svg"
+OFFICIAL = "NEXUS_Official_Transparent_Logo.png"
+OFFICIAL_GIT_BLOB = "6faaa1ec7fd4a849c3cffe3fa424f3aba9fe9ab6"
 ORIGINAL_BLOB = "e8a72df6f117ef1cbcc0002e28395b50cc752c74"
 PAGES = (
     "5cb4db7e746975558322",  # Home
@@ -57,6 +59,19 @@ class NexusLogoSourceContract(unittest.TestCase):
             entries = [x for x in registered["items"] if x["name"] == IMAGE]
             self.assertEqual(entries, [{"name": IMAGE, "path": IMAGE, "type": "Image"}])
         self.assertEqual(payloads[0], payloads[1])
+        approved = []
+        for edition in ("workspace", "offline-demo"):
+            report = ROOT / "powerbi" / edition / "FootballPlayerAnalysis" / "Report"
+            asset = (report / "StaticResources" / "RegisteredResources" / OFFICIAL).read_bytes()
+            self.assertEqual(git_blob_sha(asset), OFFICIAL_GIT_BLOB)
+            self.assertEqual(len(asset), 25_171)
+            package = read_json(report / "definition" / "report.json")
+            registered = next(x for x in package["resourcePackages"]
+                              if x["name"] == "RegisteredResources")
+            self.assertIn({"name": OFFICIAL, "path": OFFICIAL, "type": "Image"},
+                          registered["items"])
+            approved.append(asset)
+        self.assertEqual(approved[0], approved[1])
         for edition in ("workspace", "offline-demo"):
             report = ROOT / "powerbi" / edition / "FootballPlayerAnalysis" / "Report"
             svg = (report / "StaticResources" / "RegisteredResources" / CROPPED).read_text(encoding="utf-8")
@@ -82,7 +97,7 @@ class NexusLogoSourceContract(unittest.TestCase):
                     self.assertEqual(node["visual"]["visualType"], "image")
                     self.assertNotIn("query", node["visual"])
                     package = node["visual"]["objects"]["general"][0]["properties"]["imageUrl"]["expr"]["ResourcePackageItem"]
-                    expected = CROPPED
+                    expected = OFFICIAL
                     self.assertEqual(package, {
                         "PackageName": "RegisteredResources",
                         "PackageType": 1,

@@ -9,7 +9,7 @@ import unittest
 ROOT=Path(__file__).resolve().parents[1]
 HOME="5cb4db7e746975558322"
 CLOSING="c83db10673c28e3346ae"
-CROP="nexus-wordmark-crop.svg"
+CROP="NEXUS_Official_Transparent_Logo.png"
 LINKS=(
  ("e05ec85d07e31d70040e",68,412),
  ("18a7cb26e6d2e25c2688",431,412),
@@ -36,7 +36,7 @@ class EditorialSourceTests(unittest.TestCase):
   for mode in ("workspace","offline-demo"):
    home=base(mode)/HOME
    logo=vid(mode,HOME,"b6a00000000000000001")
-   self.assertEqual(xywh(logo["position"]),(88,49,187,89))
+   self.assertEqual(xywh(logo["position"]),(87,60,194,58))
    self.assertEqual(
     logo["visual"]["objects"]["general"][0]["properties"]["imageUrl"]
     ["expr"]["ResourcePackageItem"]["ItemName"], CROP)
