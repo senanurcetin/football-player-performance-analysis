@@ -108,6 +108,11 @@
           "name": "nexus-wordmark-crop.svg",
           "path": "nexus-wordmark-crop.svg",
           "type": "Image"
+        },
+        {
+          "name": "NEXUS_Official_Transparent_Logo.png",
+          "path": "NEXUS_Official_Transparent_Logo.png",
+          "type": "Image"
         }
       ]
     },
