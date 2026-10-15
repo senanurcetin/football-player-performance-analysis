@@ -23,8 +23,8 @@ DRILL=(
 ("91edaa93bbbdbbc8e854","b6a00000000000000010"),
 ("MLPlayerDetail","b6a00000000000000011"),
 )
-COVERS=((HOME,"b6a00000000000000001",(88,49,187,89)),
-        (CLOSING,"b6a00000000000000009",(92,76,185,88)))
+COVERS=((HOME,"b6a00000000000000001",(87,60,194,58)),
+        (CLOSING,"b6a00000000000000009",(88,87,194,58)))
 def folder(edition,page):
     return ROOT/"powerbi"/edition/"FootballPlayerAnalysis"/"Report"/"definition"/"pages"/page/"visuals"
 def read(edition,page,visual):
@@ -47,8 +47,8 @@ class IntegratedBrandVisualTests(unittest.TestCase):
                     brand=read(edition,page,logo)
                     self.assertEqual(pos(brand),expected)
                     res=brand["visual"]["objects"]["general"][0]["properties"]["imageUrl"]["expr"]["ResourcePackageItem"]
-                    self.assertEqual(res["ItemName"],"nexus-wordmark-crop.svg")
-                    self.assertAlmostEqual(expected[2]/expected[3],535/255,delta=0.01)
+                    self.assertEqual(res["ItemName"],"NEXUS_Official_Transparent_Logo.png")
+                    self.assertAlmostEqual(expected[2]/expected[3],1200/360,delta=0.025)
                     surface=read(edition,page,id_for(page,"signature-surface"))
                     self.assertEqual(surface["visual"]["visualType"],"shape")
                     self.assertEqual(value(surface["visual"]["objects"]["fill"][0]["properties"]
@@ -80,12 +80,12 @@ class IntegratedBrandVisualTests(unittest.TestCase):
     def test_analytic_and_drillthrough_headers_share_proportional_branding(self):
         for page,logo in ANALYTIC+DRILL:
             is_detail=(page,logo) in DRILL
-            expect=(127,2,128,61) if is_detail else (102,2,140,67)
+            expect=(126,15,138,41) if is_detail else (101,15,156,47)
             for edition in ("workspace","offline-demo"):
                 with self.subTest(page=page,edition=edition):
                     brand=read(edition,page,logo)
                     self.assertEqual(pos(brand),expect)
-                    self.assertAlmostEqual(expect[2]/expect[3],535/255,delta=0.02)
+                    self.assertAlmostEqual(expect[2]/expect[3],1200/360,delta=0.045)
                     panel=read(edition,page,id_for(page,"header-signature"))
                     divider=read(edition,page,id_for(page,"header-divider"))
                     self.assertEqual(panel["visual"]["visualType"],"shape")
