@@ -100,8 +100,8 @@ class DesktopFeedbackSourceContract(unittest.TestCase):
                                          ["fontColor"]["solid"]["color"]), "#D2E5FB")
 
     def test_palette_and_offline_disclosure_do_not_get_confused(self):
-        expected = ["#4EA8FF", "#7D9FFF", "#31B5D8", "#487FD8",
-                    "#9A8CF0", "#7DC8F4", "#5C7BE5", "#B6CFFA"]
+        expected = ["#4EA8FF", "#8F9BFF", "#00CBEA", "#6E55C6",
+                    "#76B8FF", "#B9C5CE", "#376DBE", "#B3A4F6"]
         for edition in EDITIONS:
             resource = (ROOT / "powerbi" / edition / "FootballPlayerAnalysis" /
                         "Report" / "StaticResources" / "RegisteredResources" /

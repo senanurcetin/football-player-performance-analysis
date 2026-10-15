@@ -210,7 +210,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "8D"
+                  "Value": "10D"
                 }
               }
             },
@@ -230,7 +230,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "8D"
+                  "Value": "10D"
                 }
               }
             },
@@ -447,14 +447,14 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Player Prediction Kaydı — Tüm Detaylar'"
+                  "Value": "'PLAYER VALUATION / FULL PREDICTION RECORD'"
                 }
               }
             },
             "alignment": {
               "expr": {
                 "Literal": {
-                  "Value": "'center'"
+                  "Value": "'left'"
                 }
               }
             },
@@ -468,7 +468,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "8D"
+                  "Value": "12D"
                 }
               }
             },
