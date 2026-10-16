@@ -74,8 +74,8 @@ class DesktopFeedbackSourceContract(unittest.TestCase):
                     legend = pbir(edition, page, "b8b" + str(index).zfill(17))
                     self.assertEqual(footer["position"]["y"], 679)
                     self.assertEqual(footer["position"]["height"], 39)
-                    self.assertEqual(legend["position"]["y"], 687)
-                    self.assertEqual(legend["position"]["height"], 25)
+                    self.assertEqual(legend["position"]["y"], 683)
+                    self.assertEqual(legend["position"]["height"], 35)
                     run = legend["visual"]["objects"]["general"][0]["properties"][
                         "paragraphs"][0]["textRuns"][0]
                     self.assertGreaterEqual(int(run["textStyle"]["fontSize"].rstrip("pt")), 10)

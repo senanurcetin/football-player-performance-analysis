@@ -23,13 +23,13 @@
                       "Entity": "ml_player_market_value_current_predictions"
                     }
                   },
-                  "Property": "Quality Label EN"
+                  "Property": "prediction_quality_status"
                 }
               },
-              "queryRef": "ml_player_market_value_current_predictions.Quality Label EN",
-              "nativeQueryRef": "Quality Label EN",
+              "queryRef": "ml_player_market_value_current_predictions.prediction_quality_status",
+              "nativeQueryRef": "prediction_quality_status",
               "active": true,
-              "displayName": "Quality Label EN"
+              "displayName": "Prediction Quality"
             }
           ]
         },

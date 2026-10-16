@@ -83,8 +83,8 @@ class DesignUnguardedRegression(unittest.TestCase):
                     self.assertEqual(legend["visual"]["visualType"], "textbox")
                     self.assertEqual(bg["position"]["y"], 679)
                     self.assertLessEqual(bg["position"]["y"] + bg["position"]["height"], 720)
-                    self.assertEqual(legend["position"]["y"], 687)
-                    self.assertEqual(legend["position"]["height"], 25)
+                    self.assertEqual(legend["position"]["y"], 683)
+                    self.assertEqual(legend["position"]["height"], 35)
                     run = legend["visual"]["objects"]["general"][0]["properties"]["paragraphs"][0]["textRuns"][0]
                     for word in ("HOME", "PERFORMANCE", "SEGMENTS", "CLUBS", "TRANSFERS", "VALUATION"):
                         self.assertIn(word, run["value"])

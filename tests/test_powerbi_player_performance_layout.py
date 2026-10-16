@@ -118,13 +118,13 @@ class PlayerPerformanceEditorialTests(unittest.TestCase):
                     self.assertFalse(n["visual"].get("query"))
             headline=node(mode,vid("section-rank"))
             subtitle=node(mode,vid("section-evidence"))
-            self.assertEqual(coords(headline),(257,192,728,23))
-            self.assertEqual(coords(subtitle),(86,450,1020,20))
+            self.assertEqual(coords(headline),(257,185,728,31))
+            self.assertEqual(coords(subtitle),(86,443,1020,27))
             self.assertEqual(coords(node(mode,vid("kpi-rate-accent"))),(257,109,278,3))
             self.assertEqual(coords(node(mode,vid("evidence-divider"))),(86,471,1189,1))
             self.assertFalse(collide(subtitle,node(mode,vid("evidence-divider"))))
             descriptive_subtitle=node(mode,"404e0a1723e792a7d69c")
-            self.assertEqual(coords(descriptive_subtitle),(257,77,735,29))
+            self.assertEqual(coords(descriptive_subtitle),(257,77,735,31))
             if mode=="offline-demo":
                 watermark=node(mode,"de9a00000000000000010")
                 self.assertFalse(collide(descriptive_subtitle,watermark),

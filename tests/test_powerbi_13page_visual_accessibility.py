@@ -78,18 +78,22 @@ class ScreenshotBackedAccessibility(unittest.TestCase):
       v=node(edition,page,ident)["visual"]
       self.assertEqual(v["query"]["queryState"]["Values"]["projections"][0]["field"]["Measure"]["Property"],name)
 
- def test_prediction_legend_labels_use_english_computed_column(self):
+ def test_prediction_quality_uses_native_warehouse_english_status(self):
   for edition in EDITIONS:
    table="ml_player_market_value_current_predictions"
    tmdl=(project(edition)/"Model"/"definition"/"tables"/(table+".tmdl")).read_text(encoding="utf-8-sig")
-   for en in ("High","Limited","Medium"):
-    self.assertIn('"'+en+'"',tmdl)
-   self.assertIn("column 'Quality Label EN'",tmdl)
+   self.assertIn("column prediction_quality_status",tmdl)
+   self.assertIn("sourceColumn: prediction_quality_status",tmdl)
+   self.assertNotIn("column 'Quality Label EN'",tmdl)
+   found=0
    for page in ("1f4c5c8000149b2e2be8","MLPlayerDetail"):
     for f in (project(edition)/"Report"/"definition"/"pages"/page/"visuals").glob("*/visual.json"):
      raw=f.read_text(encoding="utf-8-sig")
      if table not in raw:continue
+     self.assertNotIn("Quality Label EN",raw)
      self.assertNotIn(table+".kalite_etiketi_tr",raw)
+     if table+".prediction_quality_status" in raw:found+=1
+   self.assertGreaterEqual(found,5)
 
 if __name__=="__main__":
  unittest.main()

@@ -22,7 +22,7 @@
                     "value": "INTERPRETATION PROTOCOL\n• Prediction is not a transfer price or realized profit.\n• Compare prior and predicted values together.\n• Check lower/upper intervals and quality flags.\n• Narrow coverage limits decision readiness.\n• Use the model evaluation page for reliability.",
                     "textStyle": {
                       "fontWeight": "bold",
-                      "fontSize": "11pt",
+                      "fontSize": "9.5pt",
                       "color": "#C9DAEC"
                     }
                   }
