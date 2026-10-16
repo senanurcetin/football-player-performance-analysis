@@ -13,7 +13,7 @@ FIXTURE = ROOT / "powerbi" / "offline-demo" / "FootballPlayerAnalysis"
 LOGO = "NEXUS_Official_Transparent_Logo.png"
 LOGO_SHA = "6faaa1ec7fd4a849c3cffe3fa424f3aba9fe9ab6"
 PALETTE = (
-    "#4EA8FF", "#8F9BFF", "#00CBEA", "#6E55C6",
+    "#4EA8FF", "#8F9BFF", "#00E0FF", "#6E55C6",
     "#76B8FF", "#B9C5CE", "#376DBE", "#B3A4F6",
 )
 REAL_TABLES = (
