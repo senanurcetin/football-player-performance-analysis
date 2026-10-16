@@ -29,7 +29,7 @@ The Google CLI printed an **Application Default Credentials cache write permissi
 The editable report's top-right Home metadata text (formerly a fixed count of seven views) is now a native Power BI **card**, not a static overlay or an invented figure.
 
 - Measure `fct_analytics_refresh_audit[Last Warehouse Audit Label]` takes the maximum of the **existing BigQuery mart's** `audit_generated_at_utc` column.
-- It formats the actual imported UTC audit date as `QUALITY AUDIT / DD MMM YYYY` in English, or `AUDIT / NOT AVAILABLE` when the evidence is missing.
+- It formats the actual imported UTC audit date in English. If the quality audit is **more than 90 days old** as measured by DAX `UTCNOW()`, the visual shows `HISTORICAL / DD MMM YYYY`; otherwise it shows `QUALITY AUDIT / DD MMM YYYY`. Missing evidence displays `AUDIT / NOT AVAILABLE`.
 - Its report visual is `Report/definition/pages/5cb4db7e746975558322/visuals/fa9241e97af65797688c/visual.json`, in the original 250×35 top-right slot. The card's value is **DAX evaluated from the imported model**, not a literal or project-generated date.
 - Production source remains `GoogleBigQuery.Database([UseStorageApi=false])`. The separate `offline-demo` fixture is unchanged in provenance, and the same semantic measure evaluates only its labeled synthetic QA partition in that internal edition.
 - A **Power BI Desktop refresh is still required** before the new KPI can be said to show this observed date on-screen. Source-only regression asserts the binding and prevents introducing a hard-coded audit date.
@@ -44,6 +44,8 @@ bq.cmd --location=EU show --format=prettyjson data-analiz-490513:football_mart.f
 bq.cmd --location=EU show --format=prettyjson data-analiz-490513:football_mart.fct_player_performance
 bq.cmd --location=EU show --format=prettyjson data-analiz-490513:football_mart.fct_analytics_refresh_audit
 ```
+
+The repeatable `--execute` CLI gate was subsequently run successfully against all three actual warehouse tables. It reported **WARN (0 blocking findings)**, exactly because the latest audit was **117.22 days old** on 16 October 2026. This explicitly confirms the live CLI contract while keeping Desktop refresh `NOT_VERIFIED` and publication `HOLD`.
 
 The verified aggregate was equivalent to:
 
