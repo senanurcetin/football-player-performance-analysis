@@ -11,7 +11,7 @@
       "type": "SharedResources"
     },
     "customTheme": {
-      "name": "NEXUSMidnight-20261012-v2.json",
+      "name": "NEXUSMidnight-20261016-v3.json",
       "reportVersionAtImport": {
         "visual": "2.5.0",
         "report": "3.1.0",
@@ -113,6 +113,11 @@
           "name": "NEXUS_Official_Transparent_Logo.png",
           "path": "NEXUS_Official_Transparent_Logo.png",
           "type": "Image"
+        },
+        {
+          "name": "NEXUSMidnight-20261016-v3.json",
+          "path": "NEXUSMidnight-20261016-v3.json",
+          "type": "CustomTheme"
         }
       ]
     },
