@@ -65,11 +65,11 @@ table fct_transfer_market_value_analysis
 		displayFolder: Market Value Analysis\05 Dynamic Context
 
 	/// Dynamic context summary driven by active filters.
-	measure 'Transfer Context Summary' = VAR SeasonLabel = SELECTEDVALUE(fct_transfer_market_value_analysis[transfer_season], "Tüm Sezonlar") VAR PositionLabel = SELECTEDVALUE(fct_transfer_market_value_analysis[position_tr], "All Positions") RETURN SeasonLabel & " | " & PositionLabel & " | " & FORMAT([Transfer Count], "#,0") & " transfer"
+	measure 'Transfer Context Summary' = VAR SeasonLabel = SELECTEDVALUE(fct_transfer_market_value_analysis[transfer_season], "Tüm Sezonlar") VAR PositionLabel = SELECTEDVALUE(fct_transfer_market_value_analysis[position], "All Positions") RETURN SeasonLabel & " | " & PositionLabel & " | " & FORMAT([Transfer Count], "#,0") & " transfer"
 		displayFolder: Market Value Analysis\05 Dynamic Context
 
 	/// Dynamic page title driven by active slicer selections.
-	measure 'Page 005 Dynamic Title' = VAR s = SELECTEDVALUE(fct_transfer_market_value_analysis[transfer_season], "Tüm Sezonlar") VAR p = SELECTEDVALUE(fct_transfer_market_value_analysis[position_tr], "All Positions") RETURN "💰 Transfer & Piyasa Değeri  │  " & s & "  │  " & p
+	measure 'Page 005 Dynamic Title' = VAR s = SELECTEDVALUE(fct_transfer_market_value_analysis[transfer_season], "Tüm Sezonlar") VAR p = SELECTEDVALUE(fct_transfer_market_value_analysis[position], "All Positions") RETURN "💰 Transfer & Piyasa Değeri  │  " & s & "  │  " & p
 		displayFolder: Market Value Analysis\05 Dynamic Context
 
 	/// Transfers where the fee exceeds market value by more than 30% — competitive bidding or star effect signal.
@@ -750,13 +750,6 @@ table fct_transfer_market_value_analysis
 		dataType: string
 		summarizeBy: none
 		sourceColumn: yon_etiketi_tr
-
-		annotation SummarizationSetBy = Automatic
-
-	column position_tr
-		dataType: string
-		summarizeBy: none
-		sourceColumn: position_tr
 
 		annotation SummarizationSetBy = Automatic
 
