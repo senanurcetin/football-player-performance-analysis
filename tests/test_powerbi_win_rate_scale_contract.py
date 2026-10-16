@@ -28,7 +28,7 @@ class ClubWinRateScaleTests(unittest.TestCase):
         source = (ROOT / "powerbi" / "workspace" / TMDL).read_text(
             encoding="utf-8-sig")
         self.assertIn("formatString: 0.0%", source)
-        self.assertIn("GoogleBigQuery.Database([UseStorageApi=false])", source)
+        self.assertIn('GoogleBigQuery.Database([Implementation="2.0",UseStorageApi=false])', source)
         self.assertIn('fct_club_performance_Table = football_mart_Schema{[Name="fct_club_performance",Kind="Table"]}[Data],', source)
         self.assertEqual(source.count("Table.TransformColumns("), 1)
         self.assertIn('{"win_rate", each if _ = null then null else Number.From(_) / 100, type nullable number}', source)

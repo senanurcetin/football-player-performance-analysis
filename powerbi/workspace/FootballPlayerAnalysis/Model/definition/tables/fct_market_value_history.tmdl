@@ -94,7 +94,7 @@ table fct_market_value_history
 		mode: import
 		source =
 				let
-				    Source = GoogleBigQuery.Database([UseStorageApi=false]),
+				    Source = GoogleBigQuery.Database([Implementation="2.0",UseStorageApi=false]),
 				    #"data-analiz-490513" = Source{[Name="data-analiz-490513"]}[Data],
 				    football_mart_Schema = #"data-analiz-490513"{[Name="football_mart",Kind="Schema"]}[Data],
 				    fct_market_value_history_Table = football_mart_Schema{[Name="fct_market_value_history",Kind="Table"]}[Data]

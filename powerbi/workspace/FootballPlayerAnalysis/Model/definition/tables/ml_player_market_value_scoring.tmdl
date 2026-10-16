@@ -273,7 +273,7 @@ table ml_player_market_value_scoring
 		mode: import
 		source =
 				let
-				    Source = GoogleBigQuery.Database([UseStorageApi=false]),
+				    Source = GoogleBigQuery.Database([Implementation="2.0",UseStorageApi=false]),
 				    #"data-analiz-490513" = Source{[Name="data-analiz-490513"]}[Data],
 				    football_ml_Schema = #"data-analiz-490513"{[Name="football_ml",Kind="Schema"]}[Data],
 				    ml_player_market_value_scoring_Table = football_ml_Schema{[Name="ml_player_market_value_scoring",Kind="Table"]}[Data]

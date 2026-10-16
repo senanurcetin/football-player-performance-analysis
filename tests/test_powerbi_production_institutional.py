@@ -175,7 +175,7 @@ class ProductionInstitutionalContracts(unittest.TestCase):
             p=PRODUCTION/"Model"/"definition"/"tables"/f"{table}.tmdl"
             source=p.read_text(encoding="utf-8-sig")
             with self.subTest(table=table):
-                self.assertIn("GoogleBigQuery.Database([UseStorageApi=false])",source)
+                self.assertIn('GoogleBigQuery.Database([Implementation="2.0",UseStorageApi=false])',source)
                 self.assertIn("data-analiz-490513",source)
                 self.assertIn(f'{schema}_Schema',source)
                 self.assertIn(f'[Name="{table}",Kind="Table"]',source)

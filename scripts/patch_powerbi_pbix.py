@@ -20,7 +20,7 @@ def patch_data_mashup(mashup_bytes: bytes) -> bytes:
             text = files[name].decode("utf-8")
             patched, count = re.subn(
                 r"GoogleBigQuery\.Database\(\s*\)",
-                "GoogleBigQuery.Database([UseStorageApi=false])",
+                'GoogleBigQuery.Database([Implementation="2.0",UseStorageApi=false])',
                 text,
             )
             if count:

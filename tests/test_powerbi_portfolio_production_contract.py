@@ -72,7 +72,7 @@ class ProductionPortfolioSourceContract(unittest.TestCase):
             p = PROD / "Model" / "definition" / "tables" / f"{table}.tmdl"
             source = p.read_text(encoding="utf-8-sig")
             with self.subTest(table=table):
-                self.assertIn("GoogleBigQuery.Database([UseStorageApi=false])", source)
+                self.assertIn('GoogleBigQuery.Database([Implementation="2.0",UseStorageApi=false])', source)
                 self.assertIn('Name="data-analiz-490513"', source)
                 self.assertIn('Name="football_mart",Kind="Schema"', source)
                 self.assertIn(f'Name="{table}",Kind="Table"', source)
