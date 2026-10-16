@@ -61,15 +61,15 @@ table fct_transfer_market_value_analysis
 		displayFolder: Market Value Analysis\04 Outcomes
 
 	/// Selected player label for drill-through pages.
-	measure 'Selected Transfer Player' = SELECTEDVALUE(fct_transfer_market_value_analysis[player_name], "Oyuncu secilmedi")
+	measure 'Selected Transfer Player' = SELECTEDVALUE(fct_transfer_market_value_analysis[player_name], "No player selected")
 		displayFolder: Market Value Analysis\05 Dynamic Context
 
 	/// Dynamic context summary driven by active filters.
-	measure 'Transfer Context Summary' = VAR SeasonLabel = SELECTEDVALUE(fct_transfer_market_value_analysis[transfer_season], "Tüm Sezonlar") VAR PositionLabel = SELECTEDVALUE(fct_transfer_market_value_analysis[position], "All Positions") RETURN SeasonLabel & " | " & PositionLabel & " | " & FORMAT([Transfer Count], "#,0") & " transfer"
+	measure 'Transfer Context Summary' = VAR SeasonLabel = SELECTEDVALUE(fct_transfer_market_value_analysis[transfer_season], "All seasons") VAR PositionLabel = SELECTEDVALUE(fct_transfer_market_value_analysis[position], "All Positions") RETURN SeasonLabel & " | " & PositionLabel & " | " & FORMAT([Transfer Count], "#,0") & " transfer"
 		displayFolder: Market Value Analysis\05 Dynamic Context
 
 	/// Dynamic page title driven by active slicer selections.
-	measure 'Page 005 Dynamic Title' = VAR s = SELECTEDVALUE(fct_transfer_market_value_analysis[transfer_season], "Tüm Sezonlar") VAR p = SELECTEDVALUE(fct_transfer_market_value_analysis[position], "All Positions") RETURN "💰 Transfer & Piyasa Değeri  │  " & s & "  │  " & p
+	measure 'Page 005 Dynamic Title' = VAR s = SELECTEDVALUE(fct_transfer_market_value_analysis[transfer_season], "All seasons") VAR p = SELECTEDVALUE(fct_transfer_market_value_analysis[position], "All Positions") RETURN "Transfer & Market Value  |  " & s & "  │  " & p
 		displayFolder: Market Value Analysis\05 Dynamic Context
 
 	/// Transfers where the fee exceeds market value by more than 30% — competitive bidding or star effect signal.
