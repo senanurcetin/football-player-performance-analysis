@@ -23,10 +23,10 @@
                       "Entity": "ml_player_market_value_current_predictions"
                     }
                   },
-                  "Property": "Average Previous Market Value"
+                  "Property": "Selected Player Previous Value"
                 }
               },
-              "queryRef": "ml_player_market_value_current_predictions.Average Previous Market Value",
+              "queryRef": "ml_player_market_value_current_predictions.Selected Player Previous Value",
               "nativeQueryRef": "Previous Value",
               "displayName": "Previous Value"
             }
@@ -43,7 +43,7 @@
                     "Entity": "ml_player_market_value_current_predictions"
                   }
                 },
-                "Property": "Average Previous Market Value"
+                "Property": "Selected Player Previous Value"
               }
             },
             "direction": "Descending"
@@ -121,7 +121,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#FFFFFF'"
+                      "Value": "'#10283F'"
                     }
                   }
                 }
@@ -152,7 +152,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#8F9BFF'"
+                      "Value": "'#294761'"
                     }
                   }
                 }
@@ -240,7 +240,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "8D"
+                  "Value": "11D"
                 }
               }
             },
@@ -249,9 +249,16 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#122942'"
+                      "Value": "'#EAF3FF'"
                     }
                   }
+                }
+              }
+            },
+            "titleWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }

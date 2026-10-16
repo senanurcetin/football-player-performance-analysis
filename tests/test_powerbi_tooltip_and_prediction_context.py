@@ -108,7 +108,7 @@ class ContextualTooltipDesignTests(unittest.TestCase):
                                 self.assertEqual(literal(p["fontSize"]), "9D")
                                 self.assertEqual(
                                     literal(p["labelColor"]["solid"]["color"]),
-                                    "#AFC5DD")
+                                    "#B9D1E8")
                             self.assertEqual(
                                 literal(visual["objects"]["legend"][0]
                                         ["properties"]["fontSize"]), "9D")

@@ -77,6 +77,21 @@ table ml_player_market_value_current_predictions
 		formatString: #,0 "players"
 		displayFolder: Market Value Prediction\04 Opportunity
 
+	measure 'Selected Player Previous Value' =
+		IF ( HASONEVALUE ( ml_player_market_value_current_predictions[player_id] ), [Average Previous Market Value], BLANK () )
+		formatString: €0.0
+		displayFolder: Drillthrough\Selection-safe KPIs
+
+	measure 'Selected Player Prediction Value' =
+		IF ( HASONEVALUE ( ml_player_market_value_current_predictions[player_id] ), [Average Predicted Market Value], BLANK () )
+		formatString: €0.0
+		displayFolder: Drillthrough\Selection-safe KPIs
+
+	measure 'Selected Player Prediction Change %' =
+		IF ( HASONEVALUE ( ml_player_market_value_current_predictions[player_id] ), [Average Prediction Upside %], BLANK () )
+		formatString: 0.0%
+		displayFolder: Drillthrough\Selection-safe KPIs
+
 	column scoring_row_key
 		dataType: string
 		summarizeBy: none
@@ -436,6 +451,13 @@ table ml_player_market_value_current_predictions
 			defaultHierarchy: LocalDateTable_ad25d67e-0f83-42c8-8ecc-07ea59db5e35.'Date Hierarchy'
 
 		annotation SummarizationSetBy = Automatic
+
+	column 'Quality Label EN' =
+		SWITCH ( ml_player_market_value_current_predictions[kalite_etiketi_tr],
+		    "Yüksek", "High", "Sınırlı", "Limited", "Orta", "Medium",
+		    COALESCE ( ml_player_market_value_current_predictions[kalite_etiketi_tr], "Unknown" ) )
+		dataType: string
+		summarizeBy: none
 
 	column kalite_etiketi_tr
 		dataType: string

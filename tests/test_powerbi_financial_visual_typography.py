@@ -66,7 +66,7 @@ class FinancialVisualReadabilityTests(unittest.TestCase):
                                                  ["rowPadding"]), "4D")
                         self.assertEqual(literal(header["wordWrap"]), "true")
                         self.assertEqual(
-                            literal(header["backColor"]["solid"]["color"]), "'#173451'")
+                            literal(header["backColor"]["solid"]["color"]), "'#10283F'")
                         self.assertEqual(
                             literal(header["fontColor"]["solid"]["color"]), "'#FFFFFF'")
                         self.assertGreaterEqual(

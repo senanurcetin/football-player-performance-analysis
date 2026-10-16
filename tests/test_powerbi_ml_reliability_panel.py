@@ -42,7 +42,7 @@ class ModelQualityEditorialTests(unittest.TestCase):
             with self.subTest(edition=edition):
                 panel = selected[PANEL]
                 background = panel["visual"]["objects"]["fill"][0]["properties"]["fillColor"]["solid"]["color"]
-                self.assertEqual(background["expr"]["Literal"]["Value"], "'#102B47'")
+                self.assertEqual(background["expr"]["Literal"]["Value"], "'#10283F'")
                 guide = selected[GUIDE]
                 self.assertEqual(guide["visual"]["visualType"], "textbox")
                 self.assertLessEqual(

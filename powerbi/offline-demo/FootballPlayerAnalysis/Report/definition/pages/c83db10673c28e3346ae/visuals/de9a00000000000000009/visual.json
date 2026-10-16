@@ -1,39 +1,39 @@
-﻿{
-    "$schema":  "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
-    "name":  "de9a00000000000000009",
-    "position":  {
-                     "x":  1034,
-                     "y":  676,
-                     "z":  99990,
-                     "height":  18,
-                     "width":  237,
-                     "tabOrder":  99990
-                 },
-    "visual":  {
-                   "visualType":  "textbox",
-                   "objects":  {
-                                   "general":  [
-                                                   {
-                                                       "properties":  {
-                                                                          "paragraphs":  [
-                                                                                             {
-                                                                                                 "textRuns":  [
-                                                                                                                  {
-                                                                                                                      "value":  "SYNTHETIC DATA  /  NOT REAL",
-                                                                                                                      "textStyle":  {
-                                                                                                                                        "fontFamily":  "Segoe UI",
-                                                                                                                                        "fontSize":  "8pt",
-                                                                                                                                        "fontWeight":  "normal",
-                                                                                                                                        "color":  "#A8BDD1"
-                                                                                                                                    }
-                                                                                                                  }
-                                                                                                              ]
-                                                                                             }
-                                                                                         ]
-                                                                      }
-                                                   }
-                                               ]
-                               },
-                   "drillFilterOtherVisuals":  true
-               }
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "de9a00000000000000009",
+  "position": {
+    "x": 1034,
+    "y": 676,
+    "z": 99990,
+    "height": 18,
+    "width": 237,
+    "tabOrder": 99990
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "SYNTHETIC DATA  /  NOT REAL",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "8pt",
+                      "fontWeight": "normal",
+                      "color": "#A8BDD1"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
 }

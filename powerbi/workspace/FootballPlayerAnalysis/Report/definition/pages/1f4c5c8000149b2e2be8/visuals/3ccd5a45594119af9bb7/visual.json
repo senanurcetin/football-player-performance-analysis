@@ -23,11 +23,11 @@
                       "Entity": "ml_player_market_value_current_predictions"
                     }
                   },
-                  "Property": "kalite_etiketi_tr"
+                  "Property": "Quality Label EN"
                 }
               },
-              "queryRef": "ml_player_market_value_current_predictions.kalite_etiketi_tr",
-              "nativeQueryRef": "kalite_etiketi_tr",
+              "queryRef": "ml_player_market_value_current_predictions.Quality Label EN",
+              "nativeQueryRef": "Quality Label EN",
               "active": true,
               "displayName": "Prediction quality"
             }
@@ -172,6 +172,16 @@
               }
             }
           }
+        }
+      ],
+      "categoryAxis": [
+        {
+          "properties": {}
+        }
+      ],
+      "valueAxis": [
+        {
+          "properties": {}
         }
       ]
     },
@@ -355,7 +365,7 @@
                 "Entity": "ml_player_market_value_current_predictions"
               }
             },
-            "Property": "kalite_etiketi_tr"
+            "Property": "Quality Label EN"
           }
         },
         "type": "Categorical"

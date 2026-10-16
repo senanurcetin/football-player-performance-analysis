@@ -148,10 +148,10 @@
                       "Entity": "ml_player_market_value_current_predictions"
                     }
                   },
-                  "Property": "kalite_etiketi_tr"
+                  "Property": "Quality Label EN"
                 }
               },
-              "queryRef": "ml_player_market_value_current_predictions.kalite_etiketi_tr",
+              "queryRef": "ml_player_market_value_current_predictions.Quality Label EN",
               "nativeQueryRef": "Quality",
               "displayName": "Quality"
             },
@@ -183,7 +183,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#091E33'"
+                      "Value": "'#10283F'"
                     }
                   }
                 }
@@ -239,7 +239,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#ECF4FF'"
+                      "Value": "'#EFF7FF'"
                     }
                   }
                 }
@@ -250,7 +250,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#ECF4FF'"
+                      "Value": "'#EFF7FF'"
                     }
                   }
                 }
@@ -261,7 +261,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#FFFFFF'"
+                      "Value": "'#10283F'"
                     }
                   }
                 }
@@ -272,7 +272,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#EAF2FF'"
+                      "Value": "'#193650'"
                     }
                   }
                 }
@@ -303,7 +303,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#8F9BFF'"
+                      "Value": "'#294761'"
                     }
                   }
                 }

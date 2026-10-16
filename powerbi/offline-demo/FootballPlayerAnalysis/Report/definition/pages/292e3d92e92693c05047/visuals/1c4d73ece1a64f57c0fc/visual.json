@@ -173,6 +173,16 @@
             }
           }
         }
+      ],
+      "categoryAxis": [
+        {
+          "properties": {}
+        }
+      ],
+      "valueAxis": [
+        {
+          "properties": {}
+        }
       ]
     },
     "visualContainerObjects": {

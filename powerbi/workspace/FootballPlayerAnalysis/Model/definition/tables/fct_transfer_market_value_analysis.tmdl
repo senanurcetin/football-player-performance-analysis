@@ -92,6 +92,21 @@ table fct_transfer_market_value_analysis
 		formatString: €0.0
 		displayFolder: Market Value Analysis\03 Commercial Value
 
+	measure 'Selected Player Post-Transfer Change %' =
+		IF ( HASONEVALUE ( fct_transfer_market_value_analysis[player_id] ), [Average Post Transfer Value Change %], BLANK () )
+		formatString: 0.0%
+		displayFolder: Drillthrough\Selection-safe KPIs
+
+	measure 'Selected Player Transfer Count' =
+		IF ( HASONEVALUE ( fct_transfer_market_value_analysis[player_id] ), [Transfer Count], BLANK () )
+		formatString: #,0
+		displayFolder: Drillthrough\Selection-safe KPIs
+
+	measure 'Selected Player Known Fee' =
+		IF ( HASONEVALUE ( fct_transfer_market_value_analysis[player_id] ), [Total Known Transfer Fee], BLANK () )
+		formatString: €0.0
+		displayFolder: Drillthrough\Selection-safe KPIs
+
 	column transfer_key
 		dataType: string
 		summarizeBy: none

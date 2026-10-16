@@ -23,10 +23,10 @@
                       "Entity": "fct_transfer_market_value_analysis"
                     }
                   },
-                  "Property": "Transfer Count"
+                  "Property": "Selected Player Transfer Count"
                 }
               },
-              "queryRef": "fct_transfer_market_value_analysis.Transfer Count",
+              "queryRef": "fct_transfer_market_value_analysis.Selected Player Transfer Count",
               "nativeQueryRef": "Transfer Count",
               "displayName": "Transfer Count"
             }
@@ -43,7 +43,7 @@
                     "Entity": "fct_transfer_market_value_analysis"
                   }
                 },
-                "Property": "Transfer Count"
+                "Property": "Selected Player Transfer Count"
               }
             },
             "direction": "Descending"
@@ -121,7 +121,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#FFFFFF'"
+                      "Value": "'#10283F'"
                     }
                   }
                 }
@@ -152,7 +152,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#8F9BFF'"
+                      "Value": "'#294761'"
                     }
                   }
                 }
@@ -240,7 +240,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "8D"
+                  "Value": "11D"
                 }
               }
             },
@@ -249,9 +249,16 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#122942'"
+                      "Value": "'#EAF3FF'"
                     }
                   }
+                }
+              }
+            },
+            "titleWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }
