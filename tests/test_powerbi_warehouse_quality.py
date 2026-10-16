@@ -61,6 +61,8 @@ class BigQueryReadOnlyWarehouseContract(unittest.TestCase):
             self.assertIn("--maximum_bytes_billed=10485760", cmd)
             self.assertIn("--use_legacy_sql=false", cmd)
             self.assertIn("--format=json", cmd)
+            self.assertNotIn("\\n", cmd[-1], "Windows bq.cmd cannot safely receive multiline SQL")
+            self.assertIn("FROM " + chr(96) + "data-analiz-490513", cmd[-1])
             self.assertEqual(cmd[0], "bq.cmd")
             self.assertFalse(runner.call_args.kwargs["check"])
             self.assertNotIn("shell", runner.call_args.kwargs)
