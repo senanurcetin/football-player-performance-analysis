@@ -2,12 +2,12 @@ table ml_player_market_value_current_predictions
 
 	/// Distinct players with a current market-value prediction.
 	measure 'Scored Player Count' = DISTINCTCOUNT(ml_player_market_value_current_predictions[player_id])
-		formatString: #,0 "players"
+		formatString: #,0
 		displayFolder: Market Value Prediction\01 Scope
 
 	/// Players with high or medium prediction quality.
 	measure 'Decision Ready Player Count' = CALCULATE([Scored Player Count], ml_player_market_value_current_predictions[prediction_quality_status] IN {"high", "medium"})
-		formatString: #,0 "players"
+		formatString: #,0
 		displayFolder: Market Value Prediction\02 Trust
 
 	/// Share of scored players suitable for decision support.
@@ -32,7 +32,7 @@ table ml_player_market_value_current_predictions
 
 	/// Players with positive predicted upside versus previous market value.
 	measure 'Positive Upside Player Count' = CALCULATE([Scored Player Count], ml_player_market_value_current_predictions[prediction_delta_vs_previous_pct] > 0)
-		formatString: #,0 "players"
+		formatString: #,0
 		displayFolder: Market Value Prediction\04 Opportunity
 
 	/// Share of scored players with positive predicted upside.
@@ -64,7 +64,7 @@ table ml_player_market_value_current_predictions
 
 	/// Players with predicted upside greater than 20% — high-opportunity targets.
 	measure 'High Upside Player Count' = CALCULATE([Scored Player Count], ml_player_market_value_current_predictions[prediction_delta_vs_previous_pct] > 20)
-		formatString: #,0 "players"
+		formatString: #,0
 		displayFolder: Market Value Prediction\04 Opportunity
 
 	/// Inverse of average relative interval — higher means more confident predictions.
@@ -74,7 +74,7 @@ table ml_player_market_value_current_predictions
 
 	/// Decision-ready players with positive upside — actionable long list.
 	measure 'High Upside Decision Ready Count' = CALCULATE([Decision Ready Player Count], ml_player_market_value_current_predictions[prediction_delta_vs_previous_pct] > 0)
-		formatString: #,0 "players"
+		formatString: #,0
 		displayFolder: Market Value Prediction\04 Opportunity
 
 	measure 'Selected Player Previous Value' =
@@ -451,13 +451,6 @@ table ml_player_market_value_current_predictions
 			defaultHierarchy: LocalDateTable_ad25d67e-0f83-42c8-8ecc-07ea59db5e35.'Date Hierarchy'
 
 		annotation SummarizationSetBy = Automatic
-
-	column 'Quality Label EN' =
-		SWITCH ( ml_player_market_value_current_predictions[kalite_etiketi_tr],
-		    "Yüksek", "High", "Sınırlı", "Limited", "Orta", "Medium",
-		    COALESCE ( ml_player_market_value_current_predictions[kalite_etiketi_tr], "Unknown" ) )
-		dataType: string
-		summarizeBy: none
 
 	column kalite_etiketi_tr
 		dataType: string

@@ -53,10 +53,10 @@
                       "Entity": "ml_player_market_value_current_predictions"
                     }
                   },
-                  "Property": "Quality Label EN"
+                  "Property": "prediction_quality_status"
                 }
               },
-              "queryRef": "ml_player_market_value_current_predictions.Quality Label EN",
+              "queryRef": "ml_player_market_value_current_predictions.prediction_quality_status",
               "nativeQueryRef": "Quality",
               "displayName": "Quality"
             },
@@ -528,7 +528,7 @@
                 "Entity": "ml_player_market_value_current_predictions"
               }
             },
-            "Property": "Quality Label EN"
+            "Property": "prediction_quality_status"
           }
         },
         "type": "Categorical"
