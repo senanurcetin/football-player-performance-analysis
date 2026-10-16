@@ -14,7 +14,7 @@ EDITIONS = ("workspace", "offline-demo")
 HOME = "5cb4db7e746975558322"
 CLOSING = "c83db10673c28e3346ae"
 DETAIL_PAGES = ("91edaa93bbbdbbc8e854", "MLPlayerDetail")
-THEME = "NEXUSMidnight-20261012-v2.json"
+THEME = "NEXUSMidnight-20261016-v3.json"
 LEGACY = {
     "#285D3D", "#2E6B45", "#119A91", "#F6FBF5", "#8BC99A",
     "#6FA56D", "#20323F", "#536A60", "#E6F2E8", "#0F4B3B",
@@ -63,6 +63,27 @@ def audit(root: Path) -> dict:
         custom = report.get("themeCollection", {}).get("customTheme", {}).get("name")
         if custom != THEME:
             issues.append(f"{edition}: NEXUS theme not registered (found {custom!r})")
+        theme_resource = (
+            project / "Report" / "StaticResources" / "RegisteredResources" / THEME
+        )
+        if not theme_resource.is_file():
+            issues.append(f"{edition}: registered NEXUS theme file missing")
+        registry = next((pkg.get("items", []) for pkg in report.get("resourcePackages", [])
+                         if pkg.get("name") == "RegisteredResources"), [])
+        if {"name": THEME, "path": THEME, "type": "CustomTheme"} not in registry:
+            issues.append(f"{edition}: NEXUS V3 theme is not present in RegisteredResources manifest")
+        audit_card_path = definition / "pages" / HOME / "visuals" / "fa9241e97af65797688c" / "visual.json"
+        try:
+            audit_card = load(audit_card_path)
+            visual = audit_card["visual"]
+            projected = visual["query"]["queryState"]["Values"]["projections"][0]["field"]["Measure"]
+            if visual["visualType"] != "card" or (
+                projected["Expression"]["SourceRef"]["Entity"],
+                projected["Property"],
+            ) != ("fct_analytics_refresh_audit", "Last Warehouse Audit Label"):
+                issues.append(f"{edition}: Home audit card is not bound to the warehouse quality audit")
+        except (OSError, KeyError, TypeError, IndexError, ValueError) as exc:
+            issues.append(f"{edition}: Home audit badge unavailable or invalid: {exc}")
         details: dict[str, dict] = {}
         for page in DETAIL_PAGES:
             try:

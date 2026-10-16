@@ -40,10 +40,10 @@ PAGE_CANVASES = {
     "c83db10673c28e3346ae": "#071829",  # Closing / navy
     "91edaa93bbbdbbc8e854": "#091E33",  # Transfer detail / slate lavender
     "MLPlayerDetail": "#091E33",  # Prediction detail / soft lavender
-    "tooltip_transfer_p011": "#E7F0FC",  # Transfer tooltip / pale blue
-    "tooltip_pred_p012": "#E8ECFA",  # Prediction tooltip / blue lavender
+    "tooltip_transfer_p011": "#091E33",  # Transfer tooltip / NEXUS midnight
+    "tooltip_pred_p012": "#091E33",  # Prediction tooltip / NEXUS midnight
 }
-THEME = "NEXUSMidnight-20261012-v2.json"
+THEME = "NEXUSMidnight-20261016-v3.json"
 CHART_TYPES = {
     "clusteredBarChart", "clusteredColumnChart", "lineChart", "scatterChart",
     "donutChart", "treemap", "tableEx", "pivotTable", "card",
@@ -134,16 +134,16 @@ class EveryDashboardSourceContract(unittest.TestCase):
             theme = obj(report / "StaticResources" / "RegisteredResources" / THEME)
             self.assertEqual(theme["name"], THEME)
             self.assertEqual(theme["dataColors"][0], "#4EA8FF")
-            self.assertEqual(theme["foreground"], "#122942")
-            self.assertEqual(theme["background"], "#FFFFFF")
+            self.assertEqual(theme["foreground"], "#ECF4FF")
+            self.assertEqual(theme["background"], "#091E33")
             self.assertTrue(CHART_TYPES.issubset(theme["visualStyles"]))
             for typ in CHART_TYPES:
                 props = theme["visualStyles"][typ]["*"]
                 self.assertEqual(
-                    props["background"][0]["color"]["solid"]["color"], "#FFFFFF",
+                    props["background"][0]["color"]["solid"]["color"], "#10283F",
                 )
                 self.assertEqual(
-                    props["border"][0]["color"]["solid"]["color"], "#D3E3F5",
+                    props["border"][0]["color"]["solid"]["color"], "#294761",
                 )
                 self.assertGreaterEqual(props["title"][0]["fontSize"], 10)
 

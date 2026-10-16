@@ -43,7 +43,7 @@ class CanvasDocumentationContractTests(unittest.TestCase):
         self.assertEqual(len({page_id for page_id, _, _, _ in rows}), 13)
         self.assertEqual(
             Counter(color for _, _, _, color in rows),
-            {"#071829": 2, "#091E33": 9, "#E7F0FC": 1, "#E8ECFA": 1},
+            {"#071829": 2, "#091E33": 11},
         )
 
         for edition in EDITIONS:
