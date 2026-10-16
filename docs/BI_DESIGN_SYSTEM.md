@@ -37,11 +37,11 @@ This table describes the actual `Report/definition/pages/*/page.json` background
 | `c83db10673c28e3346ae` | Closing | Hero | `#071829` |
 | `91edaa93bbbdbbc8e854` | Player Transfer Detail | Hidden drillthrough | `#091E33` |
 | `MLPlayerDetail` | Player Prediction Detail | Hidden drillthrough | `#091E33` |
-| `tooltip_transfer_p011` | Tooltip Transfer | Hidden tooltip (560×320) | `#E7F0FC` |
-| `tooltip_pred_p012` | Tooltip Prediction | Hidden tooltip (560×320) | `#E8ECFA` |
+| `tooltip_transfer_p011` | Tooltip Transfer | Hidden tooltip (560×320) | `#091E33` |
+| `tooltip_pred_p012` | Tooltip Prediction | Hidden tooltip (560×320) | `#091E33` |
 <!-- CURRENT_PBIR_CANVASES_END -->
 
-Individual visual surfaces and chart layouts remain deliberately asymmetric; unified **page** backgrounds do not mean identical dashboards. Native chart panels may be white/light with dark labels or navy cards with light labels. The blue/cyan/lavender data palette is controlled by the registered theme **and** per-visual overrides; verify both at 100% zoom in Desktop. This is source-level documentation, not evidence of a successful render or data refresh.
+Individual visual surfaces and chart layouts remain deliberately asymmetric; unified **page** backgrounds do not mean identical dashboards. Native chart panels use integrated NEXUS graphite surfaces with light accessible labels under the current V3 fallback theme; existing per-visual styles may override that default. The blue/cyan/lavender data palette is controlled by the registered theme **and** per-visual overrides; verify both at 100% zoom in Desktop. This is source-level documentation, not evidence of a successful render or data refresh.
 
 ## One current presentation, no redundant asset mirrors (13 October 2026)
 
