@@ -65,6 +65,7 @@ class ContextualTooltipDesignTests(unittest.TestCase):
                         self.assertNotIn("#2E6B45", json.dumps(visual))
                         self.assertNotIn("#F6FBF5", json.dumps(visual))
                         self.assertNotIn("#536A60", json.dumps(visual))
+                        self.assertNotIn("#8BC99A", json.dumps(visual))
 
     def test_all_tooltip_visuals_have_consistent_style_and_query_parity(self):
         for page, spec in TOOLTIPS.items():
