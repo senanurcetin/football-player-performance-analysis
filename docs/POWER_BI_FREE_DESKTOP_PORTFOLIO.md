@@ -16,6 +16,17 @@ The report's 13 editable PBIR pages currently use built-in Power BI report eleme
 
 The new `tests/test_powerbi_free_desktop_visuals.py` checks that neither report edition registers unused public custom visuals and that all current `visualType` values are first-party types. This does *not* prove all installed Desktop versions render all first-party types correctly; test the button slicer and other UI interactions in a current Desktop build.
 
+## Complete native data-visual accessibility coverage
+
+A source-level audit across **89 query-bound visuals per edition** (178 visual JSON objects total) found **52 missing accessible descriptions in each PBIR edition**. A deterministic generator now adds source-grounded `altText` to those **104** native report visuals, using existing field projections, titles, and visual types. It preserves all custom editorial descriptions and never modifies native query states, report coordinates, chart types or data partitions. The post-change validator reports **0 remaining missing descriptions** in both editions.
+
+A semantic comparison of the committed diff verified that **all 104 source edits contain only the added accessibility properties**, with no other JSON-semantic changes. Production and fixture descriptions now match for all 89 shared query-bound visuals; one legacy Turkish fixture description was normalized to the existing English production label. New tests guard presence, length, deterministic idempotence, privacy and source parity. Actual assistive-technology behavior and focus order still require Power BI Desktop inspection.
+
+```powershell
+python scripts/backfill_powerbi_accessibility.py --compact
+python -m unittest discover -s tests -p "test_powerbi_*.py" -q
+```
+
 ## Final visual acceptance: 13-page review
 
 | Surface | Inspect in Power BI Desktop |
