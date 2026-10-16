@@ -48,12 +48,7 @@
       }
     ]
   },
-  "publicCustomVisuals": [
-    "lollipopChart50393786178B4137A75F3257CB590B96",
-    "lollipopColumnChart0D874BBC87DE40189C387BBA89739F6C",
-    "RadarChart1446119667547",
-    "RiskHeatmapA1E4D7191E504BBA9F44FE76C254B319"
-  ],
+  "publicCustomVisuals": [],
   "resourcePackages": [
     {
       "name": "RegisteredResources",
