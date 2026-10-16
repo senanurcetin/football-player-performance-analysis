@@ -1,5 +1,14 @@
 table fct_analytics_refresh_audit
 
+	measure 'Last Warehouse Audit Label' =
+			VAR LatestAuditUtc = MAX ( fct_analytics_refresh_audit[audit_generated_at_utc] )
+			RETURN
+			    IF (
+			        ISBLANK ( LatestAuditUtc ),
+			        "AUDIT / NOT AVAILABLE",
+			        "QUALITY AUDIT / " & UPPER ( FORMAT ( LatestAuditUtc, "dd MMM yyyy", "en-US" ) )
+			    )
+
 	column audit_key
 		dataType: string
 		summarizeBy: none
