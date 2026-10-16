@@ -2,8 +2,8 @@
   "name": "NEXUSMidnight-20261012-v2.json",
   "dataColors": [
     "#4EA8FF",
+    "#00E0FF",
     "#8F9BFF",
-    "#00CBEA",
     "#6E55C6",
     "#76B8FF",
     "#B9C5CE",
@@ -13,7 +13,7 @@
   "foreground": "#122942",
   "background": "#FFFFFF",
   "foregroundNeutralSecondary": "#5D748A",
-  "backgroundLight": "#F1F5FB",
+  "backgroundLight": "#F4F8FD",
   "foregroundNeutralTertiary": "#8295A9",
   "backgroundNeutral": "#CEDCEC",
   "tableAccent": "#4EA8FF",
@@ -56,7 +56,7 @@
                 "color": "#122942"
               }
             },
-            "fontSize": 11,
+            "fontSize": 12,
             "fontFamily": "'Segoe UI Semibold'"
           }
         ],
@@ -76,10 +76,10 @@
             "show": true,
             "color": {
               "solid": {
-                "color": "#D3E3F5"
+                "color": "#DCE8F5"
               }
             },
-            "radius": 8,
+            "radius": 10,
             "width": 1
           }
         ]
@@ -94,7 +94,7 @@
                 "color": "#122942"
               }
             },
-            "fontSize": 11,
+            "fontSize": 12,
             "fontFamily": "'Segoe UI Semibold'"
           }
         ],
@@ -114,10 +114,10 @@
             "show": true,
             "color": {
               "solid": {
-                "color": "#D3E3F5"
+                "color": "#DCE8F5"
               }
             },
-            "radius": 8,
+            "radius": 10,
             "width": 1
           }
         ]
@@ -132,7 +132,7 @@
                 "color": "#122942"
               }
             },
-            "fontSize": 11,
+            "fontSize": 12,
             "fontFamily": "'Segoe UI Semibold'"
           }
         ],
@@ -152,10 +152,10 @@
             "show": true,
             "color": {
               "solid": {
-                "color": "#D3E3F5"
+                "color": "#DCE8F5"
               }
             },
-            "radius": 8,
+            "radius": 10,
             "width": 1
           }
         ]
@@ -170,7 +170,7 @@
                 "color": "#122942"
               }
             },
-            "fontSize": 11,
+            "fontSize": 12,
             "fontFamily": "'Segoe UI Semibold'"
           }
         ],
@@ -190,10 +190,10 @@
             "show": true,
             "color": {
               "solid": {
-                "color": "#D3E3F5"
+                "color": "#DCE8F5"
               }
             },
-            "radius": 8,
+            "radius": 10,
             "width": 1
           }
         ]
@@ -208,7 +208,7 @@
                 "color": "#122942"
               }
             },
-            "fontSize": 11,
+            "fontSize": 12,
             "fontFamily": "'Segoe UI Semibold'"
           }
         ],
@@ -228,10 +228,10 @@
             "show": true,
             "color": {
               "solid": {
-                "color": "#D3E3F5"
+                "color": "#DCE8F5"
               }
             },
-            "radius": 8,
+            "radius": 10,
             "width": 1
           }
         ]
@@ -266,10 +266,10 @@
             "show": true,
             "color": {
               "solid": {
-                "color": "#D3E3F5"
+                "color": "#DCE8F5"
               }
             },
-            "radius": 8,
+            "radius": 10,
             "width": 1
           }
         ]
@@ -284,7 +284,7 @@
                 "color": "#122942"
               }
             },
-            "fontSize": 11,
+            "fontSize": 12,
             "fontFamily": "'Segoe UI Semibold'"
           }
         ],
@@ -304,10 +304,10 @@
             "show": true,
             "color": {
               "solid": {
-                "color": "#D3E3F5"
+                "color": "#DCE8F5"
               }
             },
-            "radius": 8,
+            "radius": 10,
             "width": 1
           }
         ]
@@ -342,10 +342,10 @@
             "show": true,
             "color": {
               "solid": {
-                "color": "#D3E3F5"
+                "color": "#DCE8F5"
               }
             },
-            "radius": 8,
+            "radius": 10,
             "width": 1
           }
         ]
@@ -380,10 +380,10 @@
             "show": true,
             "color": {
               "solid": {
-                "color": "#D3E3F5"
+                "color": "#DCE8F5"
               }
             },
-            "radius": 8,
+            "radius": 10,
             "width": 1
           }
         ]
@@ -418,10 +418,10 @@
             "show": true,
             "color": {
               "solid": {
-                "color": "#D3E3F5"
+                "color": "#DCE8F5"
               }
             },
-            "radius": 8,
+            "radius": 10,
             "width": 1
           }
         ],
@@ -466,10 +466,10 @@
             "show": true,
             "color": {
               "solid": {
-                "color": "#D3E3F5"
+                "color": "#DCE8F5"
               }
             },
-            "radius": 8,
+            "radius": 10,
             "width": 1
           }
         ],
@@ -524,10 +524,10 @@
             "show": true,
             "color": {
               "solid": {
-                "color": "#D3E3F5"
+                "color": "#DCE8F5"
               }
             },
-            "radius": 8,
+            "radius": 10,
             "width": 1
           }
         ]
@@ -562,10 +562,10 @@
             "show": true,
             "color": {
               "solid": {
-                "color": "#D3E3F5"
+                "color": "#DCE8F5"
               }
             },
-            "radius": 8,
+            "radius": 10,
             "width": 1
           }
         ]
