@@ -16,6 +16,10 @@ The report's previous registered theme still defaulted to **white** visualizatio
 - All 13 currently registered native theme visual categories use the same dark default chrome. Existing per-visual settings can override the theme. The two native 560×320 tooltip pages were also restyled explicitly: deep-navy canvas, graphite data panels, muted-blue borders, white chart headings and legible axis labels. Their existing queryState, statistics, hover context, legend roles, placement and navigation are preserved in both source editions.
 - Existing **NEXUS official transparent logo PNG** remains registered and referenced across the report; it is not replaced by a redesigned or generated wordmark.
 
+## Auditable on-screen provenance
+
+The Home cover's former static top-right tag is now a 250×35 native card that evaluates the `Last Warehouse Audit Label` DAX measure on the existing `fct_analytics_refresh_audit` model table. The measure displays the maximum BigQuery audit timestamp as an English date or explicitly reports missing evidence. Both source editions retain the same visual binding but different actual/fixture data partitions. The 16 October 2026 read-only warehouse check verified an audit date of **21 June 2026**; no fabricated real-time freshness value is introduced. Source QA covers card queryState, original position, accessibility description and source contract. See `POWER_BI_BIGQUERY_READONLY_CHECK_20261016.md`.
+
 ## Real-data preservation
 
 The production PBIP remains bound to `GoogleBigQuery.Database([UseStorageApi=false])`, project `data-analiz-490513`, marts `football_mart` and model evidence in `football_ml`. This change does **not** modify semantic TMDL, Power Query M, DAX, filters, slicers, drillthrough, chart queryState, visual geometry or actual metric values. A BigQuery *import model* refreshes when the Desktop report is refreshed; registration of BigQuery source is not itself evidence of a completed refresh.
