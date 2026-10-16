@@ -68,10 +68,12 @@ BLOCKER_KEYS = {
 
 def run_query(sql: str, executable: str, *, timeout_seconds: int = 120) -> dict:
     """Execute a fixed SQL SELECT with the explicit 10 MiB/query billing ceiling."""
+    # Windows .CMD wrappers split embedded newlines in positional SQL arguments.
+    # Flatten immutable SELECT statements before passing them to the bq wrapper.
     command = [
         executable, f"--location={LOCATION}", "query",
         "--use_legacy_sql=false", f"--maximum_bytes_billed={MAX_BYTES_BILLED}",
-        "--format=json", sql,
+        "--format=json", " ".join(sql.split()),
     ]
     process = subprocess.run(
         command, capture_output=True, text=True,
