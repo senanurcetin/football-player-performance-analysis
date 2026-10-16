@@ -84,6 +84,9 @@ Full lineage, grains, and model responsibilities → [Architecture & Model Catal
 
 ## Dashboard Preview
 
+**NEXUS Midnight V3 (16 October 2026, source-tested):** the editable BigQuery PBIP now uses an integrated midnight theme and navy contextual tooltip panels. Its Home audit indicator is a **native data-bound Power BI card**, evaluating `Last Warehouse Audit Label` from the original `football_mart.fct_analytics_refresh_audit` partition rather than showing a hard-coded freshness claim. A read-only warehouse check returned 17 audit rows and last audit time **21 June 2026 10:50 UTC**; the actual latest football event dates and Power BI Desktop refresh remain **unverified**. See [warehouse evidence](docs/POWER_BI_BIGQUERY_READONLY_CHECK_20261016.md) and [source design contract](docs/POWER_BI_NEXUS_THEME_V3_20261016.md). All 13 pages and native interactions still require Desktop sign-off before portfolio screenshots are released.
+
+
 **Current release status: HOLD — Desktop visual acceptance and BigQuery production refresh are still pending.** The only presentation/publication artifact is the [NEXUS BigQuery-backed production report](powerbi/workspace/FootballPlayerAnalysis/). Internal data fixtures are not a publishable portfolio report. Production-facing page copy is checked for test-data labels and the original BigQuery partitions are contract-tested.
 
 **Legacy screenshots removed:** the six green-era PNG captures were removed rather than archived in this repo. The Power BI report is the canonical editable deliverable; current screenshot evidence is deferred until Desktop refresh and visual acceptance.
