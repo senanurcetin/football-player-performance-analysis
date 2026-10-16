@@ -40,8 +40,8 @@ PAGE_CANVASES = {
     "c83db10673c28e3346ae": "#071829",  # Closing / navy
     "91edaa93bbbdbbc8e854": "#091E33",  # Transfer detail / slate lavender
     "MLPlayerDetail": "#091E33",  # Prediction detail / soft lavender
-    "tooltip_transfer_p011": "#E7F0FC",  # Transfer tooltip / pale blue
-    "tooltip_pred_p012": "#E8ECFA",  # Prediction tooltip / blue lavender
+    "tooltip_transfer_p011": "#091E33",  # Transfer tooltip / NEXUS midnight
+    "tooltip_pred_p012": "#091E33",  # Prediction tooltip / NEXUS midnight
 }
 THEME = "NEXUSMidnight-20261016-v3.json"
 CHART_TYPES = {
