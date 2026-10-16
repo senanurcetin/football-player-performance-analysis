@@ -29,7 +29,7 @@ CASES = {
     },
     MARKET: {
         "0839d8ed3d7479a01f32": ("clusteredBarChart", "Position", "Fee premium / discount (%)",
-                                    "fct_transfer_market_value_analysis.position_tr",
+                                    "fct_transfer_market_value_analysis.position",
                                     "fct_transfer_market_value_analysis.Average Fee Premium Discount %"),
         "5bbe3e0865c55bbeade1": ("clusteredColumnChart", "Transfer season", "Average known fee (€m)",
                                     "fct_transfer_market_value_analysis.transfer_season",

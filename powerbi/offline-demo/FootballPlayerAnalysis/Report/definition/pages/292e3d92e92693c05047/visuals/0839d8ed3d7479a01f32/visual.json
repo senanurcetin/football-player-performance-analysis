@@ -23,11 +23,11 @@
                       "Entity": "fct_transfer_market_value_analysis"
                     }
                   },
-                  "Property": "position_tr"
+                  "Property": "position"
                 }
               },
-              "queryRef": "fct_transfer_market_value_analysis.position_tr",
-              "nativeQueryRef": "position_tr",
+              "queryRef": "fct_transfer_market_value_analysis.position",
+              "nativeQueryRef": "position",
               "active": true,
               "displayName": "Position"
             }
@@ -456,7 +456,7 @@
                 "Entity": "fct_transfer_market_value_analysis"
               }
             },
-            "Property": "position_tr"
+            "Property": "position"
           }
         },
         "type": "Categorical"

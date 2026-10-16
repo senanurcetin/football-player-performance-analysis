@@ -132,7 +132,7 @@ class EditorialTableTests(unittest.TestCase):
                     "fct_transfer_market_value_analysis.Transfer Count")
                 self.assertEqual(
                     state["Category"]["projections"][0]["queryRef"],
-                    "fct_transfer_market_value_analysis.position_tr")
+                    "fct_transfer_market_value_analysis.position")
 
     def test_valuation_bottom_visuals_clear_navigation(self):
         for edition in ("workspace", "offline-demo"):
