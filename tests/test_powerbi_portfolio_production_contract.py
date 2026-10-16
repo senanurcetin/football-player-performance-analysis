@@ -42,7 +42,7 @@ class ProductionPortfolioSourceContract(unittest.TestCase):
                              if p["name"] == "RegisteredResources")
             self.assertIn({"name": LOGO, "path": LOGO, "type": "Image"}, resources)
             theme = read(report / "StaticResources" / "RegisteredResources" /
-                         "NEXUSMidnight-20261012-v2.json")
+                         "NEXUSMidnight-20261016-v3.json")
             self.assertEqual(theme["dataColors"], list(PALETTE))
 
     def test_portfolio_pages_are_real_edition_without_development_badges(self):
