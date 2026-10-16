@@ -15,13 +15,13 @@ TOOLTIPS = {
         "header": ("tt011_header_0001", "TRANSFER / FEE VS VALUE"),
         "scatter": ("tt011_scatter_0001", "Fee vs Premium / Discount (%)"),
         "stats": ("tt011_stats_0001", "Transfer Metrics"),
-        "canvas": "#E7F0FC",
+        "canvas": "#091E33",
     },
     "tooltip_pred_p012": {
         "header": ("tt012_header_0001", "MODEL / PLAYER VALUATION"),
         "scatter": ("tt012_scatter_0001", "Predicted Value vs Upside (%)"),
         "stats": ("tt012_stats_0001", "Prediction Metrics"),
-        "canvas": "#E8ECFA",
+        "canvas": "#091E33",
     },
 }
 DETAIL = "MLPlayerDetail"
@@ -97,17 +97,17 @@ class ContextualTooltipDesignTests(unittest.TestCase):
                             literal(ui["title"][0]["properties"]["fontSize"]), "11D")
                         self.assertEqual(
                             literal(ui["title"][0]["properties"]["fontColor"]
-                                    ["solid"]["color"]), "#122942")
+                                    ["solid"]["color"]), "#ECF4FF")
                         self.assertEqual(
                             literal(ui["background"][0]["properties"]["color"]
-                                    ["solid"]["color"]), "#FFFFFF")
+                                    ["solid"]["color"]), "#10283F")
                         if kind == "scatter":
                             for axis in ("categoryAxis", "valueAxis"):
                                 p = visual["objects"][axis][0]["properties"]
                                 self.assertEqual(literal(p["fontSize"]), "9D")
                                 self.assertEqual(
                                     literal(p["labelColor"]["solid"]["color"]),
-                                    "#526981")
+                                    "#AFC5DD")
                             self.assertEqual(
                                 literal(visual["objects"]["legend"][0]
                                         ["properties"]["fontSize"]), "9D")
