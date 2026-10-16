@@ -55,11 +55,11 @@ table ml_player_market_value_current_predictions
 		displayFolder: Market Value Prediction\05 Dynamic Context
 
 	/// Dynamic prediction context summary driven by active filters.
-	measure 'Prediction Context Summary' = VAR PositionLabel = SELECTEDVALUE(ml_player_market_value_current_predictions[position_tr], "All Positions") VAR CountryLabel = SELECTEDVALUE(ml_player_market_value_current_predictions[competition_country_name], "All Countries") RETURN PositionLabel & " | " & CountryLabel & " | " & FORMAT([Scored Player Count], "#,0") & " player"
+	measure 'Prediction Context Summary' = VAR PositionLabel = SELECTEDVALUE(ml_player_market_value_current_predictions[position], "All Positions") VAR CountryLabel = SELECTEDVALUE(ml_player_market_value_current_predictions[competition_country_name], "All Countries") RETURN PositionLabel & " | " & CountryLabel & " | " & FORMAT([Scored Player Count], "#,0") & " player"
 		displayFolder: Market Value Prediction\05 Dynamic Context
 
 	/// Dynamic page title driven by active slicer selections.
-	measure 'ML Page Dynamic Title' = VAR p = SELECTEDVALUE(ml_player_market_value_current_predictions[position_tr], "All Positions") VAR c = SELECTEDVALUE(ml_player_market_value_current_predictions[competition_country_name], "All Countries") RETURN "⭐ Market Value Prediction  │  " & p & "  │  " & c
+	measure 'ML Page Dynamic Title' = VAR p = SELECTEDVALUE(ml_player_market_value_current_predictions[position], "All Positions") VAR c = SELECTEDVALUE(ml_player_market_value_current_predictions[competition_country_name], "All Countries") RETURN "⭐ Market Value Prediction  │  " & p & "  │  " & c
 		displayFolder: Market Value Prediction\05 Dynamic Context
 
 	/// Players with predicted upside greater than 20% — high-opportunity targets.
@@ -437,31 +437,10 @@ table ml_player_market_value_current_predictions
 
 		annotation SummarizationSetBy = Automatic
 
-	column position_tr
-		dataType: string
-		summarizeBy: none
-		sourceColumn: position_tr
-
-		annotation SummarizationSetBy = Automatic
-
 	column kalite_etiketi_tr
 		dataType: string
 		summarizeBy: none
 		sourceColumn: kalite_etiketi_tr
-
-		annotation SummarizationSetBy = Automatic
-
-	column upside_kategori_tr
-		dataType: string
-		summarizeBy: none
-		sourceColumn: upside_kategori_tr
-
-		annotation SummarizationSetBy = Automatic
-
-	column age_group_tr
-		dataType: string
-		summarizeBy: none
-		sourceColumn: age_group_tr
 
 		annotation SummarizationSetBy = Automatic
 

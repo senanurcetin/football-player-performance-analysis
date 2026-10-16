@@ -37,10 +37,10 @@ CASES = {
     },
     VALUATION: {
         "4d304949cba7dd247021": ("clusteredBarChart", "Position", "Predicted upside (%)",
-                                    "ml_player_market_value_current_predictions.position_tr",
+                                    "ml_player_market_value_current_predictions.position",
                                     "ml_player_market_value_current_predictions.Average Prediction Upside %"),
         "8b67c00a69b995fd3db6": ("clusteredBarChart", "Position", "Predicted value (€m)",
-                                    "ml_player_market_value_current_predictions.position_tr",
+                                    "ml_player_market_value_current_predictions.position",
                                     "ml_player_market_value_current_predictions.Average Predicted Market Value"),
     },
 }

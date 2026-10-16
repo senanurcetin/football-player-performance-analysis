@@ -26,7 +26,7 @@ TABLES = {
         "id": "be92253a5130bdec9028",
         "title": "Player valuation estimates",
         "labels": {
-            "ml_player_market_value_current_predictions.position_tr": "Position",
+            "ml_player_market_value_current_predictions.position": "Position",
             "ml_player_market_value_current_predictions.previous_market_value_eur": "Prior (€)",
             "ml_player_market_value_current_predictions.predicted_market_value_eur": "Predicted (€)",
             "ml_player_market_value_current_predictions.prediction_delta_vs_previous_pct": "Change (%)",
