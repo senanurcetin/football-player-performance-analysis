@@ -51,7 +51,7 @@ table ml_player_market_value_current_predictions
 		displayFolder: Market Value Prediction\02 Trust
 
 	/// Selected player label for drill-through pages.
-	measure 'Selected Prediction Player' = SELECTEDVALUE(ml_player_market_value_current_predictions[player_name], "Oyuncu secilmedi")
+	measure 'Selected Prediction Player' = SELECTEDVALUE(ml_player_market_value_current_predictions[player_name], "No player selected")
 		displayFolder: Market Value Prediction\05 Dynamic Context
 
 	/// Dynamic prediction context summary driven by active filters.

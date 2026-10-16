@@ -19,7 +19,7 @@ TABLES = {
             "fct_transfer_market_value_analysis.transfer_fee": "Fee (€)",
             "fct_transfer_market_value_analysis.market_value_baseline": "Baseline (€)",
             "fct_transfer_market_value_analysis.fee_market_value_difference_pct": "Fee delta (%)",
-            "fct_transfer_market_value_analysis.yon_etiketi_tr": "Fee/value direction",
+            "fct_transfer_market_value_analysis.market_value_direction_after_transfer": "Fee/value direction",
         },
     },
     VALUATION: {

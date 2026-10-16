@@ -23,13 +23,13 @@
                       "Entity": "fct_transfer_market_value_analysis"
                     }
                   },
-                  "Property": "yon_etiketi_tr"
+                  "Property": "market_value_direction_after_transfer"
                 }
               },
-              "queryRef": "fct_transfer_market_value_analysis.yon_etiketi_tr",
-              "nativeQueryRef": "yon_etiketi_tr",
+              "queryRef": "fct_transfer_market_value_analysis.market_value_direction_after_transfer",
+              "nativeQueryRef": "market_value_direction_after_transfer",
               "active": true,
-              "displayName": "yon_etiketi_tr"
+              "displayName": "market_value_direction_after_transfer"
             }
           ]
         },

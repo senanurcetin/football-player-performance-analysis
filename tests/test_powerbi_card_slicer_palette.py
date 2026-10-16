@@ -51,13 +51,14 @@ class NexusCardSlicerPaletteTests(unittest.TestCase):
                         title = ui["title"][0]["properties"]
                         self.assertGreaterEqual(int(lit(title["fontSize"]).rstrip("D")), 11)
                         self.assertEqual(
-                            lit(title["fontColor"]["solid"]["color"]), "#122942")
+                            lit(title["fontColor"]["solid"]["color"]),
+                            "#EAF3FF" if page == "292e3d92e92693c05047" else "#122942")
                         if visual["visualType"] == "slicer":
                             items = visual["objects"]["items"][0]["properties"]
                             self.assertEqual(lit(items["textSize"]), "10D")
                             self.assertEqual(
                                 lit(items["background"]["solid"]["color"]),
-                                "#FFFFFF")
+                                "#10283F" if page == "292e3d92e92693c05047" else "#FFFFFF")
                         count[mode] += 1
         self.assertEqual(count["workspace"], 29)
         self.assertEqual(count["offline-demo"], 29)
