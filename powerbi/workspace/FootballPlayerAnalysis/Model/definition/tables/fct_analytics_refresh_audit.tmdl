@@ -144,7 +144,7 @@ table fct_analytics_refresh_audit
 		mode: import
 		source =
 				let
-				    Source = GoogleBigQuery.Database([UseStorageApi=false]),
+				    Source = GoogleBigQuery.Database([Implementation="2.0",UseStorageApi=false]),
 				    #"data-analiz-490513" = Source{[Name="data-analiz-490513"]}[Data],
 				    football_mart_Schema = #"data-analiz-490513"{[Name="football_mart",Kind="Schema"]}[Data],
 				    fct_analytics_refresh_audit_Table = football_mart_Schema{[Name="fct_analytics_refresh_audit",Kind="Table"]}[Data]

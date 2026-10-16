@@ -36,7 +36,7 @@ class WarehouseAuditVisualTests(unittest.TestCase):
             self.assertIn('"AUDIT / NOT AVAILABLE"', tmdl)
             self.assertNotIn("2026-06-21", tmdl, "Do not hard-code today's known audit date into the semantic layer")
             if mode == "workspace":
-                self.assertIn("GoogleBigQuery.Database([UseStorageApi=false])", tmdl)
+                self.assertIn('GoogleBigQuery.Database([Implementation="2.0",UseStorageApi=false])', tmdl)
                 self.assertIn('Name="football_mart"', tmdl)
             else:
                 self.assertIn("#table", tmdl)

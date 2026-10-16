@@ -51,7 +51,7 @@ class ClubRiskSourceContract(unittest.TestCase):
 
     def test_production_partition_is_the_bigquery_mart_not_synthetic(self):
         model = source("workspace")
-        self.assertIn("GoogleBigQuery.Database([UseStorageApi=false])", model)
+        self.assertIn('GoogleBigQuery.Database([Implementation="2.0",UseStorageApi=false])', model)
         self.assertIn('Name="football_mart",Kind="Schema"', model)
         self.assertIn('Name="fct_club_risk_profile",Kind="Table"', model)
         self.assertNotIn("#table(", model)

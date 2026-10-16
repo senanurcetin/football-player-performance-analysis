@@ -329,7 +329,7 @@ def main():
     originals = PROD / "Model" / "definition" / "tables"
     physical = [p for p in originals.glob("*.tmdl") if not
                 p.name.startswith(("LocalDateTable_", "DateTableTemplate_"))]
-    check(len(physical) == 33, f"Expected 33 source tables; found {len(physical)}")
+    check(len(physical) == 31, f"Expected 31 optimized source tables; found {len(physical)}")
     for file in physical:
         copy = demo_tables / file.name
         check(copy.exists(), f"Missing demo table {file.name}")

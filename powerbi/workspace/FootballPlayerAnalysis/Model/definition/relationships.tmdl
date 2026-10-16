@@ -76,16 +76,6 @@ relationship a1bc7d00-acdc-4a1d-baa1-2711eb835bb0
 	fromColumn: fct_match.game_date
 	toColumn: LocalDateTable_0b225b6b-a5e7-4563-8b62-04f2e617fc08.Date
 
-relationship e484e9bf-8d9d-4679-b313-4e2b1339cc12
-	joinOnDateBehavior: datePartOnly
-	fromColumn: fct_player_match_performance.appearance_date
-	toColumn: LocalDateTable_8c7ab90b-e50b-4759-81b0-b489a1d97d36.Date
-
-relationship 2eb5a693-7847-4e5a-986a-d96c204b4914
-	joinOnDateBehavior: datePartOnly
-	fromColumn: fct_player_rolling_form.appearance_date
-	toColumn: LocalDateTable_27442457-9c27-41f0-a2d1-637177c79376.Date
-
 relationship 839200fd-e9a3-403d-8d0b-f8b556b2e1df
 	joinOnDateBehavior: datePartOnly
 	fromColumn: fct_transfer_fixed_horizon_outcomes.transfer_date
@@ -194,23 +184,6 @@ relationship AutoDetected_13dd5bfc-e24b-4851-8086-aad6bebd1181
 	fromColumn: fct_match.competition_id
 	toColumn: dim_competitions.competition_id
 
-relationship AutoDetected_6ae223c2-4f74-4c39-8ac5-cbb967f34aa4
-	fromColumn: fct_player_match_performance.competition_id
-	toColumn: dim_competitions.competition_id
-
-relationship AutoDetected_a2b9cf44-9f9b-4179-9b56-c36f0c732083
-	fromColumn: fct_player_rolling_form.competition_id
-	toColumn: dim_competitions.competition_id
-
-
-relationship AutoDetected_aa270e73-8b03-4fb0-82e0-a5ee54164efd
-	fromColumn: fct_player_match_performance.player_id
-	toColumn: dim_players.player_id
-
-relationship AutoDetected_d2bea8ce-37a5-4881-9a14-a4b583f3aaaa
-	fromColumn: fct_player_rolling_form.player_id
-	toColumn: dim_players.player_id
-
 relationship AutoDetected_36dacbde-a634-44aa-94aa-fdc3a36a13c2
 	fromColumn: fct_transfer_fixed_horizon_outcomes.player_id
 	toColumn: dim_players.player_id
@@ -236,23 +209,6 @@ relationship AutoDetected_384b70af-7611-4269-ac99-cc0d37db7d35
 relationship AutoDetected_39c2770a-bf94-40f2-b8c9-678f2d8a5366
 	fromColumn: fct_club_transfer_portfolio.club_id
 	toColumn: dim_clubs.club_id
-
-relationship AutoDetected_83ecd2f3-2c26-4a1f-87dc-0143fb63d679
-	isActive: false
-	fromColumn: fct_player_match_performance.game_id
-	toColumn: fct_match.game_id
-
-relationship AutoDetected_b186b33a-8bd6-4192-81bc-8f200733cf43
-	isActive: false
-	fromColumn: fct_player_rolling_form.game_id
-	toColumn: fct_match.game_id
-
-relationship AutoDetected_7ce0a326-49f3-4229-bd77-4511808272d6
-	isActive: false
-	crossFilteringBehavior: bothDirections
-	fromCardinality: one
-	fromColumn: fct_player_rolling_form.appearance_id
-	toColumn: fct_player_match_performance.appearance_id
 
 relationship AutoDetected_dbec3419-c335-4768-afa1-4eb112997e7b
 	isActive: false
