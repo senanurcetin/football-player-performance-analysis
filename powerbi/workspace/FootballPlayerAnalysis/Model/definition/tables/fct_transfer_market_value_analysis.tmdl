@@ -2,7 +2,7 @@ table fct_transfer_market_value_analysis
 
 	/// Distinct transfer records in the active filter context.
 	measure 'Transfer Count' = DISTINCTCOUNT(fct_transfer_market_value_analysis[transfer_key])
-		formatString: #,0 "transfers"
+		formatString: #,0
 		displayFolder: Market Value Analysis\01 Scope
 
 	/// Transfers with a known transfer fee.

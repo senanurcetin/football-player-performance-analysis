@@ -3,9 +3,9 @@
   "name": "be100000000000000001",
   "position": {
     "x": 319,
-    "y": 68,
+    "y": 60,
     "z": 60000,
-    "height": 30,
+    "height": 42,
     "width": 397,
     "tabOrder": 60000
   },
@@ -22,7 +22,7 @@
                     "value": "FOOTBALL INTELLIGENCE",
                     "textStyle": {
                       "fontWeight": "bold",
-                      "fontSize": "16pt",
+                      "fontSize": "14pt",
                       "color": "#EFF7FF",
                       "fontFamily": "Segoe UI"
                     }
