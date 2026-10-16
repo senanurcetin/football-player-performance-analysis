@@ -59,3 +59,28 @@ with `bq query --use_legacy_sql=false --location=EU --maximum_bytes_billed=10485
 ## Acceptance boundary
 
 Do not claim a Power BI Desktop refresh, preview image, production data-reconciliation pass, model retraining, automatic schedule or current-season stream. The newly bound card, all 13 pages, interactive filters, model DAX/Power Query execution, credentials and license-dependent sharing remain subject to final owner-controlled Desktop inspection. CI is intentionally gated.
+
+## Independent statistical domain checks — 16 October 2026
+
+Additional **real** BigQuery SELECT aggregates were executed with the same EU billing cap, independent of the native Power BI importer.
+
+| Asserted domain | Verified result |
+| --- | ---: |
+| Club performance records / distinct clubs | 3,270 / 3,270 |
+| Performance rows with no or nonpositive match count | 0 |
+| Club performance win rates disagreeing with 100 × wins / matches (tolerance 0.11 percentage points) | 0 |
+| BigQuery min/max `win_rate` in **percentage points** | 0.0 / 100.0 |
+| Club risk records / distinct clubs | 5,714 / 5,714 |
+| Club risk negative incoming transfer count | 0 |
+| Known-fee, 365-day-outcome and success percentages outside [0, 100] | 0 each |
+| Observed 365-day transfers exceeding total incoming transfers | 0 |
+
+These checks establish selected warehouse-domain consistency, **not** that Power BI Desktop refreshed its Import partitions or that every transfer outcome passed independent reconciliation. They do not imply current-season event coverage.
+
+A repeatable source-only companion command is available in `scripts/check_powerbi_warehouse_quality.py`. It intentionally requires `--execute`, executes three immutable read-only SELECTs, rejects results with duplicate club keys or impossible counts, and warns about historical audit age. Each query carries `--maximum_bytes_billed=10485760`; without explicit execution, no warehouse request occurs.
+
+```powershell
+python scripts/check_powerbi_warehouse_quality.py --execute --output warehouse-quality.json
+```
+
+Its return classifications are **PASS** (domain checks and audit age within configured bounds), **WARN** (no domain anomaly, but stale/missing audit evidence), **FAIL** (actual domain problems), or **BLOCKED** (cannot safely complete query). A WARN is expected from the confirmed June 2026 audit when executed in October 2026. Never substitute simulated data or overwrite the timestamp to make it pass. In every state, actual Desktop visual and refresh acceptance remains HOLD.
