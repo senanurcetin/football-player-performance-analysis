@@ -6,7 +6,7 @@
     "y": 77,
     "z": 65000,
     "width": 995,
-    "height": 21,
+    "height": 23,
     "tabOrder": 65000
   },
   "visual": {
@@ -22,7 +22,7 @@
                     "value": "TRANSFER INTELLIGENCE  /  OBSERVED 365-DAY OUTCOMES",
                     "textStyle": {
                       "fontWeight": "normal",
-                      "fontSize": "11pt",
+                      "fontSize": "10pt",
                       "color": "#AEC7E0"
                     }
                   }

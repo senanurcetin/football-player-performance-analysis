@@ -23,13 +23,13 @@
                       "Entity": "ml_player_market_value_current_predictions"
                     }
                   },
-                  "Property": "kalite_etiketi_tr"
+                  "Property": "Quality Label EN"
                 }
               },
-              "queryRef": "ml_player_market_value_current_predictions.kalite_etiketi_tr",
-              "nativeQueryRef": "kalite_etiketi_tr",
+              "queryRef": "ml_player_market_value_current_predictions.Quality Label EN",
+              "nativeQueryRef": "Quality Label EN",
               "active": true,
-              "displayName": "kalite_etiketi_tr"
+              "displayName": "Quality Label EN"
             }
           ]
         },
@@ -106,7 +106,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#5D748A'"
+                      "Value": "'#ECF4FF'"
                     }
                   }
                 }
@@ -151,7 +151,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#5D748A'"
+                      "Value": "'#ECF4FF'"
                     }
                   }
                 }
@@ -172,6 +172,16 @@
               }
             }
           }
+        }
+      ],
+      "categoryAxis": [
+        {
+          "properties": {}
+        }
+      ],
+      "valueAxis": [
+        {
+          "properties": {}
         }
       ]
     },

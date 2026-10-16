@@ -23,10 +23,10 @@
                       "Entity": "ml_player_market_value_current_predictions"
                     }
                   },
-                  "Property": "Average Prediction Upside %"
+                  "Property": "Selected Player Prediction Change %"
                 }
               },
-              "queryRef": "ml_player_market_value_current_predictions.Average Prediction Upside %",
+              "queryRef": "ml_player_market_value_current_predictions.Selected Player Prediction Change %",
               "nativeQueryRef": "Prediction Delta %",
               "displayName": "Prediction Delta %"
             }
@@ -43,7 +43,7 @@
                     "Entity": "ml_player_market_value_current_predictions"
                   }
                 },
-                "Property": "Average Prediction Upside %"
+                "Property": "Selected Player Prediction Change %"
               }
             },
             "direction": "Descending"
@@ -121,7 +121,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#FFFFFF'"
+                      "Value": "'#10283F'"
                     }
                   }
                 }
@@ -152,7 +152,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#8F9BFF'"
+                      "Value": "'#294761'"
                     }
                   }
                 }
@@ -240,7 +240,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "8D"
+                  "Value": "11D"
                 }
               }
             },
@@ -249,9 +249,16 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#122942'"
+                      "Value": "'#EAF3FF'"
                     }
                   }
+                }
+              }
+            },
+            "titleWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }

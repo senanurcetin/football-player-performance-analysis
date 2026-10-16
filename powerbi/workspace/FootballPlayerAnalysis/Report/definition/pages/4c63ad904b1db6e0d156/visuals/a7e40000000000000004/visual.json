@@ -54,7 +54,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "17D"
+                  "Value": "13D"
                 }
               }
             },
@@ -63,7 +63,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#4E91CC'"
+                      "Value": "'#4EA8FF'"
                     }
                   }
                 }
@@ -103,7 +103,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#FFFFFF'"
+                      "Value": "'#10283F'"
                     }
                   }
                 }
@@ -134,7 +134,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#D3E3F5'"
+                      "Value": "'#294761'"
                     }
                   }
                 }
@@ -231,9 +231,16 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#122942'"
+                      "Value": "'#EAF3FF'"
                     }
                   }
+                }
+              }
+            },
+            "titleWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }

@@ -216,7 +216,40 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#EAF2FF'"
+                      "Value": "'#193650'"
+                    }
+                  }
+                }
+              }
+            },
+            "backColorPrimary": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#10283F'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontColorPrimary": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#EFF7FF'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontColorSecondary": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#EFF7FF'"
                     }
                   }
                 }
@@ -233,7 +266,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#173451'"
+                      "Value": "'#10283F'"
                     }
                   }
                 }
@@ -244,7 +277,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#FFFFFF'"
+                      "Value": "'#EFF7FF'"
                     }
                   }
                 }
@@ -261,7 +294,24 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#D6E8FB'"
+                      "Value": "'#193650'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "rowHeaders": [
+        {
+          "properties": {
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#EFF7FF'"
                     }
                   }
                 }

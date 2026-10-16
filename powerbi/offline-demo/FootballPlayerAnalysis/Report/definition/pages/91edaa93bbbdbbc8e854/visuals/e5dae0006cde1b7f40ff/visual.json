@@ -106,7 +106,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#183C69'"
+                      "Value": "'#ECF4FF'"
                     }
                   }
                 }
@@ -151,7 +151,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#183C69'"
+                      "Value": "'#ECF4FF'"
                     }
                   }
                 }
@@ -172,6 +172,16 @@
               }
             }
           }
+        }
+      ],
+      "categoryAxis": [
+        {
+          "properties": {}
+        }
+      ],
+      "valueAxis": [
+        {
+          "properties": {}
         }
       ]
     },

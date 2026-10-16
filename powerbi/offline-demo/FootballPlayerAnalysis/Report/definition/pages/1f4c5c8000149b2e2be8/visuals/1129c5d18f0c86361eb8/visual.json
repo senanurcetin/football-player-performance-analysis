@@ -23,10 +23,10 @@
                       "Entity": "ml_player_market_value_current_predictions"
                     }
                   },
-                  "Property": "kalite_etiketi_tr"
+                  "Property": "Quality Label EN"
                 }
               },
-              "queryRef": "ml_player_market_value_current_predictions.kalite_etiketi_tr",
+              "queryRef": "ml_player_market_value_current_predictions.Quality Label EN",
               "nativeQueryRef": "Prediction Quality",
               "active": true,
               "displayName": "Prediction Quality"
@@ -84,7 +84,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#122942'"
+                      "Value": "'#EAF3FF'"
                     }
                   }
                 }
@@ -95,7 +95,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#FFFFFF'"
+                      "Value": "'#10283F'"
                     }
                   }
                 }
@@ -119,7 +119,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#122942'"
+                      "Value": "'#EAF3FF'"
                     }
                   }
                 }
@@ -130,7 +130,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#EAF1FA'"
+                      "Value": "'#10283F'"
                     }
                   }
                 }
@@ -163,7 +163,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#FFFFFF'"
+                      "Value": "'#10283F'"
                     }
                   }
                 }
@@ -194,7 +194,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#8F9BFF'"
+                      "Value": "'#294761'"
                     }
                   }
                 }
@@ -291,7 +291,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#122942'"
+                      "Value": "'#EAF3FF'"
                     }
                   }
                 }

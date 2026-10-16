@@ -104,6 +104,13 @@
                   "Value": "10D"
                 }
               }
+            },
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
             }
           }
         }
@@ -137,7 +144,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#AFC5DD'"
+                      "Value": "'#B9D1E8'"
                     }
                   }
                 }
@@ -175,9 +182,16 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#AFC5DD'"
+                      "Value": "'#B9D1E8'"
                     }
                   }
+                }
+              }
+            },
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
                 }
               }
             }
