@@ -38,10 +38,10 @@
                       "Entity": "ml_player_market_value_current_predictions"
                     }
                   },
-                  "Property": "position_tr"
+                  "Property": "position"
                 }
               },
-              "queryRef": "ml_player_market_value_current_predictions.position_tr",
+              "queryRef": "ml_player_market_value_current_predictions.position",
               "nativeQueryRef": "Position",
               "displayName": "Position"
             },
