@@ -234,3 +234,17 @@ artifacts/
 powerbi/**/.pbi/
 *.abf
 .tools/
+
+
+# Local Desktop QA diagnostics and unpublished temporary handoffs
+/_temp_*
+/_temporary_*
+/_current_*qa.json
+/_current_user_acceptance.json
+/_diagnose_after_cancel.json
+/_latest_powerbi_capture.png
+/_new_*_audit.txt
+/_pbi_latest_verify.json
+/powerbi-*.json
+/warehouse-quality-*.json
+**/.pbi/

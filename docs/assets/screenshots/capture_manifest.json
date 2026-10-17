@@ -1,0 +1,140 @@
+{
+  "captured": "2026-10-17",
+  "source_commit_at_capture": "db0819bbcea5aca852e2c06366fb4245bcc39d1e",
+  "source_pbip": "powerbi/workspace/FootballPlayerAnalysis/FootballPlayerAnalysis.pbip",
+  "kind": "genuine Power BI Desktop captures; production-connected historical imported data; NOT offline synthetic demo",
+  "freshness": "A fresh BigQuery import and KPI reconciliation are NOT independently certified.",
+  "acceptance": "Nine main presentation pages visually observed. Two drillthrough pages have unresolved unselected-player placeholder/error states. Final owner sign-off pending.",
+  "captures": [
+    {
+      "page": "Home",
+      "type": "Main",
+      "path": "docs/assets/screenshots/production/01_home.png",
+      "size": [
+        2177,
+        1229
+      ],
+      "sha256": "ae69db206d158d215b06ba232501af18edb8f35736a0ac0b558ca728b66a4ef1"
+    },
+    {
+      "page": "Player Performance Analysis",
+      "type": "Main",
+      "path": "docs/assets/screenshots/production/02_player_performance.png",
+      "size": [
+        2177,
+        1229
+      ],
+      "sha256": "e330e79a15287bd70d1f61b5aa02613b3f34330764d9768ec70ad716c10a7e54"
+    },
+    {
+      "page": "Player Segmentation",
+      "type": "Main",
+      "path": "docs/assets/screenshots/production/03_player_segmentation.png",
+      "size": [
+        2177,
+        1229
+      ],
+      "sha256": "8a10e14687bd4f639e154f33580047206d56683493687349beac6f8f762d74e7"
+    },
+    {
+      "page": "Club & League Analysis",
+      "type": "Main",
+      "path": "docs/assets/screenshots/production/04_club_league.png",
+      "size": [
+        2177,
+        1229
+      ],
+      "sha256": "6620236046ff2e4fe15b49efdb36f6e7a090e85fd818062253216ec224b21f6f"
+    },
+    {
+      "page": "Transfer Success Analysis (365d)",
+      "type": "Main",
+      "path": "docs/assets/screenshots/production/05_transfer_success.png",
+      "size": [
+        2177,
+        1229
+      ],
+      "sha256": "d8be42543d32e5dce0dd52ca78c3d9632822550df2f6f6ebd15c8a135cc103b5"
+    },
+    {
+      "page": "Transfer & Market Value Analysis",
+      "type": "Main",
+      "path": "docs/assets/screenshots/production/06_transfer_market.png",
+      "size": [
+        2177,
+        1229
+      ],
+      "sha256": "f99c61e06f4aa5e8e2040f23fa1879260119ca4af1e00af867bd729f47950302"
+    },
+    {
+      "page": "Player Market Value Prediction",
+      "type": "Main",
+      "path": "docs/assets/screenshots/production/07_market_value_prediction.png",
+      "size": [
+        2177,
+        1229
+      ],
+      "sha256": "5393aef36006934688ed647af987818331432e1cb8cdd8abf070508861423bbf"
+    },
+    {
+      "page": "ML Model Reliability",
+      "type": "Main",
+      "path": "docs/assets/screenshots/production/08_ml_reliability.png",
+      "size": [
+        2177,
+        1229
+      ],
+      "sha256": "a9ffdfc83353c485f583913b00d1092aca673eaeacef9b470007fabeee96ee61"
+    },
+    {
+      "page": "Closing",
+      "type": "Main",
+      "path": "docs/assets/screenshots/production/09_closing.png",
+      "size": [
+        2177,
+        1229
+      ],
+      "sha256": "6b3ab7fc464e424d362978c935da23d53e651a37ede6cf0ce2cc36fd1b864a73"
+    },
+    {
+      "page": "Player Transfer Detail",
+      "type": "Drillthrough",
+      "path": "docs/assets/screenshots/production/10_transfer_detail.png",
+      "size": [
+        2177,
+        1229
+      ],
+      "sha256": "690d5e75d5704f293d3c88e05e8795340ec0813368ca9edbdc2eb45a96f54d5e"
+    },
+    {
+      "page": "Player Prediction Detail",
+      "type": "Drillthrough",
+      "path": "docs/assets/screenshots/production/11_prediction_detail.png",
+      "size": [
+        2177,
+        1229
+      ],
+      "sha256": "b41733a333de1695784eae975ac8cd6447fa2b4525ab3f60bc48b3f8f22fc0a0"
+    },
+    {
+      "page": "Tooltip Transfer",
+      "type": "Tooltip",
+      "path": "docs/assets/screenshots/internal/12_tooltip_transfer.png",
+      "size": [
+        2177,
+        1229
+      ],
+      "sha256": "aa56a3f67915d4703839e7339f7d609ba1acd29c07128eabc738e44e73d7a568"
+    },
+    {
+      "page": "Tooltip Prediction",
+      "type": "Tooltip",
+      "path": "docs/assets/screenshots/internal/13_tooltip_prediction.png",
+      "size": [
+        2177,
+        1229
+      ],
+      "sha256": "66531e4fbc8f2bfde4198c761a38c7084bac22d7c3c67d45ff374e01932b4b16"
+    }
+  ]
+}

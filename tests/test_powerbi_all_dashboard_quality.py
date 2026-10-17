@@ -293,8 +293,14 @@ class EveryDashboardSourceContract(unittest.TestCase):
                     self.assertNotRegex(t, r"[📊👥🏆💰🔄⭐]")
 
     def test_legacy_presentation_artifacts_are_not_shipped(self):
-        legacy_gallery = ROOT / "docs" / "assets" / "screenshots"
-        self.assertFalse(legacy_gallery.exists())
+        # The old green-era screenshot collection was removed. The current
+        # gallery is a new set of genuine 2026-10-17 Desktop captures.
+        evidence_dir = ROOT / "docs" / "assets" / "screenshots"
+        self.assertTrue((evidence_dir / "capture_manifest.json").is_file())
+        self.assertTrue((evidence_dir / "NEXUS_Football_Page_Gallery.png").is_file())
+        self.assertEqual(len(list((evidence_dir / "production").glob("*.png"))), 11)
+        self.assertEqual(len(list((evidence_dir / "portfolio").glob("*.png"))), 9)
+        self.assertEqual(len(list((evidence_dir / "internal").glob("*.png"))), 2)
         self.assertFalse(
             (ROOT / "docs" / "assets" / "football-analytics-cover.svg").exists()
         )
