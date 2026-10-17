@@ -1,6 +1,6 @@
 # Reviewer brief — Football Player Performance Analytics
 
-**Role:** Analytics engineering, BI and leakage-aware player valuation ML. **Project provenance:** an extended fork of collaborative dbt work; upstream authorship and added work are separated in the [README attribution](../README.md).
+**Project type:** Workintech educational team project (collaborative, not individual authorship). **Scope:** analytics engineering, BI and leakage-aware player valuation ML. **Provenance:** an extended fork of earlier collaborative dbt work; upstream authorship and added work are separated in the [README attribution](../README.md).
 
 ## Business decision
 
@@ -16,7 +16,7 @@ Translate Transfermarkt player and club data into consistent performance metrics
 
 ## Contribution boundaries
 
-This repository inherits source definitions and part of the dbt model layer. The README attributes **28 of 46 models** to the upstream work and describes the additional 16 models, singular tests, semantic layer, snapshots, ML pipeline and Power BI reporting in this fork. Do not present all inherited models as newly authored.
+The project was developed as a team during the Workintech training program. This repository inherits source definitions and part of the dbt model layer. The README attributes **28 of 46 models** to the upstream work and describes the additional 16 models, singular tests, semantic layer, snapshots, ML pipeline and Power BI reporting in this fork. Do not present all inherited models as newly authored.
 
 ## Interpretation limits
 

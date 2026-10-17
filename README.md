@@ -17,6 +17,12 @@ End-to-end football intelligence, from Transfermarkt data and governed BigQuery/
 
 > **Status — 17 October 2026:** Nine primary pages were opened and captured from the real Power BI Desktop **production-connected PBIP** with visible imported model data. Two hidden player-detail pages still need selection-state and visual-error remediation. A current-day BigQuery freshness/reconciliation run and final owner acceptance are **not verified**. Screenshots are historical model evidence—not proof of live football data or deployment. **Release: pending final acceptance.**
 
+## Project origin — Workintech team project
+
+**This is a collaborative training project developed with a team during the Workintech Data Pro program, not a solo-authored portfolio project.** The repo's foundation also incorporates earlier collaborative/upstream dbt work. The current fork documents subsequent extensions in its analytics models, semantic layer, Power BI reporting, validation, and player-market-value research. Treat those as **repository-level outputs**, not an assertion that one person created every component.
+
+Attribution and historical model provenance are recorded in the [reviewer brief](docs/hiring-summary.md), upstream Git history, and contributor commits. The verified Power BI screenshots show the latest report presentation, while production data refresh and user acceptance remain separate release checks.
+
 ## What the project delivers
 
 | Component | Scope |
