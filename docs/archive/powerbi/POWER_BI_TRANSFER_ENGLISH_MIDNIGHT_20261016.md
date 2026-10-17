@@ -1,5 +1,8 @@
 # NEXUS Football — Transfer page English & Midnight V3 refinement
 
+> **Archived historical record — 17 October 2026.** This document preserves prior engineering decisions and evidence; it is not the current delivery status. For current verified vs. pending checks, see [Project status](../../PROJECT_STATUS.md) and the [documentation index](../../README.md).
+
+
 **Source implementation date:** 16 October 2026. **Publication:** HOLD pending fresh Power BI Desktop reload, authenticated refresh and image review.
 
 ## Why this change is necessary

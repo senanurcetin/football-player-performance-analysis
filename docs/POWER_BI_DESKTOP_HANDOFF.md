@@ -2,7 +2,7 @@
 
 **Open:** `powerbi/workspace/FootballPlayerAnalysis/FootballPlayerAnalysis.pbip`  
 **Warehouse:** Google BigQuery, `data-analiz-490513.football_mart`  
-**Release:** HOLD until verified by a real Desktop refresh and warehouse reconciliation.
+**Release (17 October 2026):** Desktop presentation captures available; **HOLD** until fresh BigQuery refresh/reconciliation, player-detail interaction QA and owner signoff. See [Project status](PROJECT_STATUS.md).
 
 The `workspace` PBIP is the real-data edition. The `offline-demo` PBIP uses deterministic synthetic `#table` fixtures; do not treat its values as actual player or club results.
 
@@ -30,7 +30,7 @@ The script calls the repository's existing project, demo, visual-bindings, layou
 ## 3. P0: production `fct_club_risk_profile`
 
 1. If refresh errors persist: **Transform data → fct_club_risk_profile → Applied Steps**; inspect the failed column with **Keep Errors / View Errors**. Record exact step, column, message and `club_id` if available.
-2. Follow the read-only BigQuery checks in [POWER_BI_CLUB_RISK_REFRESH_TRIAGE.md](POWER_BI_CLUB_RISK_REFRESH_TRIAGE.md) with the authorized account.
+2. Follow the read-only BigQuery checks in [POWER_BI_CLUB_RISK_REFRESH_TRIAGE.md](archive/powerbi/POWER_BI_CLUB_RISK_REFRESH_TRIAGE.md) with the authorized account.
 3. Reconcile the warehouse against the TMDL's **13 columns**. Percentage measures use **0–100 percentage points**, not 0–1 fractions. NULL can be meaningful; never replace it by zero without evidence.
 4. Distinguish permissions, missing objects, column-type drift and conversion errors before making any transformation or dbt change.
 5. Refresh again and document **0 conversion errors**, row count, distinct club keys and reconciled risk-category metrics. A successful source-only test cannot replace this step.

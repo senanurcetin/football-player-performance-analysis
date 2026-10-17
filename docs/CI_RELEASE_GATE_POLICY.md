@@ -1,5 +1,7 @@
 # NEXUS Football — CI-last release policy
 
+> **As of 17 October 2026:** This is the policy for future final CI runs, not evidence that hosted CI has passed. See [Project status](PROJECT_STATUS.md).
+
 **Current decision (13 October 2026):** development, source repairs, real Desktop acceptance and local tests come **before** any new CircleCI verification run.
 
 ## Trigger policy

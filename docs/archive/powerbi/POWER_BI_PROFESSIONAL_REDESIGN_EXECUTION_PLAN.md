@@ -1,5 +1,8 @@
 # NEXUS Football Intelligence — Professional Design Execution Plan
 
+> **Archived historical record — 17 October 2026.** This document preserves prior engineering decisions and evidence; it is not the current delivery status. For current verified vs. pending checks, see [Project status](../../PROJECT_STATUS.md) and the [documentation index](../../README.md).
+
+
 **Prepared:** 13 October 2026  
 **Repository baseline:** `main` after PR #60 (`a1d48fb` at plan creation)  
 **Canonical deliverable:** editable Power BI PBIR/PBIP; no substitute screenshots, static mockups or fabricated metrics  

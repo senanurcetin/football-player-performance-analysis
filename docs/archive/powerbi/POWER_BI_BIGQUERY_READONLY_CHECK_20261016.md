@@ -1,5 +1,8 @@
 # NEXUS Football — read-only warehouse evidence and Home quality-audit label
 
+> **Archived historical record — 17 October 2026.** This document preserves prior engineering decisions and evidence; it is not the current delivery status. For current verified vs. pending checks, see [Project status](../../PROJECT_STATUS.md) and the [documentation index](../../README.md).
+
+
 **Inspection date:** 16 October 2026  
 **Production project:** `data-analiz-490513` · **Dataset:** `football_mart` · **Location:** `EU`.  
 **Publication state:** **HOLD** pending authenticated Power BI Desktop refresh, render and KPI reconciliation.

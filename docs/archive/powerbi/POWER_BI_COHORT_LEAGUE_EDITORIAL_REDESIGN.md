@@ -1,5 +1,8 @@
 # Native editorial redesign — Player Segmentation and Club & League
 
+> **Archived historical record — 17 October 2026.** This document preserves prior engineering decisions and evidence; it is not the current delivery status. For current verified vs. pending checks, see [Project status](../../PROJECT_STATUS.md) and the [documentation index](../../README.md).
+
+
 **Date:** 13 October 2026
 **Branch:** `design/segmentation-club-evidence-hierarchy-20261013`
 **Sources:** both BigQuery production and clearly synthetic offline-demo PBIR editions.

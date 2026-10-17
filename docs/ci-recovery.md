@@ -1,5 +1,7 @@
 # CI and cloud validation
 
+> **Current evidence boundary (17 October 2026):** Previous CI failures are historical troubleshooting context, not proof of final hosted CI acceptance. See [Project status](PROJECT_STATUS.md).
+
 GitHub is the canonical repository. CircleCI runs the credential-free
 checks in `.circleci/config.yml`. The same lightweight dbt source checks
 are available in the GitHub `dbt CI / offline-preflight` job.

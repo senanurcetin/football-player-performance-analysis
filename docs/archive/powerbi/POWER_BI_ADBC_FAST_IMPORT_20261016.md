@@ -1,5 +1,8 @@
 # Power BI ADBC V2 fast Import — authenticated Desktop acceptance
 
+> **Archived historical record — 17 October 2026.** This document preserves prior engineering decisions and evidence; it is not the current delivery status. For current verified vs. pending checks, see [Project status](../../PROJECT_STATUS.md) and the [documentation index](../../README.md).
+
+
 **Date:** 16 October 2026 · **Repo:** `football-player-performance-analysis` · **Release:** HOLD until all 13 visual pages pass.
 
 ## Actual bottleneck and evidence

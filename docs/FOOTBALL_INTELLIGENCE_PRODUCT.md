@@ -2,7 +2,7 @@
 
 **Product:** Football Intelligence Workbench  
 **Native deliverable:** one editable Power BI project (PBIR/PBIP) in two **data-source editions**, not duplicate slides.  
-**Status:** **SOURCE DESIGN READY / DESKTOP ACCEPTANCE ON HOLD**. Last source work: 13 October 2026.
+**Status (17 October 2026):** Genuine Desktop screenshots are available; owner, selected-player detail and new BigQuery freshness acceptance are still pending. See [Project status](PROJECT_STATUS.md) and the [gallery](assets/screenshots/README.md).
 
 ## What the product enables
 
@@ -44,6 +44,6 @@ The offline demo uses fictional fixture tables and must *never* be described as 
 - CI is intentionally not invoked for this work. The `[skip ci]` commits are **not** evidence of passing tests.
 - Final customer/portfolio publication remains **on hold** until real Power BI Desktop refresh, rendering and measurement validation are recorded in [the visual QA release gate](POWER_BI_VISUAL_QA.md).
 
-**Related specifications:** [NEXUS design system](BI_DESIGN_SYSTEM.md) · [Report modernization plan](POWER_BI_ALL_DASHBOARDS_PLAN.md) · [Power BI modeling](POWER_BI_MODELING.md).
+**Related specifications:** [NEXUS design system](BI_DESIGN_SYSTEM.md) · [Report modernization plan](archive/powerbi/POWER_BI_ALL_DASHBOARDS_PLAN.md) · [Power BI modeling](POWER_BI_MODELING.md).
 
-**Production refresh troubleshooting:** [club-risk table schema and error triage](POWER_BI_CLUB_RISK_REFRESH_TRIAGE.md). The previously reported six-row production error is not confirmed resolved.
+**Production refresh troubleshooting:** [club-risk table schema and error triage](archive/powerbi/POWER_BI_CLUB_RISK_REFRESH_TRIAGE.md). The previously reported six-row production error is not confirmed resolved.

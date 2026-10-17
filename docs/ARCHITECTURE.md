@@ -1,5 +1,7 @@
 # Architecture and Model Catalog
 
+> **Current evidence boundary (17 October 2026):** The catalog describes the established warehouse model, not a newly run October 2026 BigQuery census. See [Project status](PROJECT_STATUS.md).
+
 ## Overview
 
 This project follows a layered dbt architecture on BigQuery. Each layer has a narrow responsibility:

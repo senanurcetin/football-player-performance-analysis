@@ -1,5 +1,7 @@
 # Power BI Modeling Guide
 
+> **Current evidence boundary (17 October 2026):** Editable source format is verified; a fresh warehouse load and full player-detail interaction testing are still pending. See [Project status](PROJECT_STATUS.md).
+
 ## Report File Format
 
 The report is a PBIP project stored at `powerbi/workspace/FootballPlayerAnalysis/`. It uses the PBIR v4 format: all page and visual definitions live under `Report/definition/` as plain JSON files. This makes every visual property version-controllable and diff-readable.

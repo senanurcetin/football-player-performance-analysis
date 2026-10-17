@@ -1,5 +1,7 @@
 # Operations Runbook
 
+> **Current evidence boundary (17 October 2026):** Operations steps are instructions, not execution evidence of a current production refresh. See [Project status](PROJECT_STATUS.md).
+
 ## Purpose
 
 This runbook describes how to configure, validate, build, and publish the dbt project safely.

@@ -1,5 +1,8 @@
 # NEXUS Football — professional reporting without a paid Power BI seat
 
+> **Archived historical record — 17 October 2026.** This document preserves prior engineering decisions and evidence; it is not the current delivery status. For current verified vs. pending checks, see [Project status](../../PROJECT_STATUS.md) and the [documentation index](../../README.md).
+
+
 **Status:** Source-only preflight; final Power BI Desktop refresh and screenshots pending.  
 **Public-facing, real-data PBIP:** `powerbi/workspace/FootballPlayerAnalysis/FootballPlayerAnalysis.pbip`  
 **Internal QA-only fixture:** `powerbi/offline-demo/FootballPlayerAnalysis/FootballPlayerAnalysis.pbip`

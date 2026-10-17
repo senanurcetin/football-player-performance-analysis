@@ -1,5 +1,8 @@
 # Power BI Desktop issue recovery — 16 October 2026
 
+> **Archived historical record — 17 October 2026.** This document preserves prior engineering decisions and evidence; it is not the current delivery status. For current verified vs. pending checks, see [Project status](../../PROJECT_STATUS.md) and the [documentation index](../../README.md).
+
+
 **Status:** source corrections tested; **actual Desktop rerender pending**. Do not treat a green unit test as visual acceptance.
 
 ## Source incident

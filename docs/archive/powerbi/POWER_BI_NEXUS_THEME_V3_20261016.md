@@ -1,5 +1,8 @@
 # NEXUS Football Intelligence — Midnight V3 Design Baseline
 
+> **Archived historical record — 17 October 2026.** This document preserves prior engineering decisions and evidence; it is not the current delivery status. For current verified vs. pending checks, see [Project status](../../PROJECT_STATUS.md) and the [documentation index](../../README.md).
+
+
 **Date:** 16 October 2026  
 **Scope:** Native Power BI PBIP source, both the real BigQuery workspace and its separate internal QA fixture.  
 **Status:** Source proposal / Power BI Desktop visual and BigQuery refresh acceptance **HOLD**.

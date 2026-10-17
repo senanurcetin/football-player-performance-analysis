@@ -1,5 +1,7 @@
 # Player Market Value Prediction
 
+> **Current evidence boundary (17 October 2026):** Model metrics are historical experiments, not freshly rerun October 2026 training. Persistence baseline remains essential. See [Project status](PROJECT_STATUS.md).
+
 ## Objective
 
 The workflow predicts a player's positive market value for a season using profile, competition-context, prior-valuation, and match-performance information available before the target valuation date.

@@ -1,5 +1,7 @@
 # NEXUS Power BI design system
 
+> **Current evidence (17 October 2026).** [Actual Power BI Desktop screenshots](assets/screenshots/README.md) document nine presentation pages. Remaining refresh, detail interaction and signoff blockers are in [Project status](PROJECT_STATUS.md). Historical implementation notes below retain their original chronology.
+
 The visual target is the NEXUS portfolio artwork in `nexus-web-v2/public/project-previews/football-player-performance-analysis-artwork.svg`. This is a **design reference, not a report screenshot**.
 
 | Role | Color |
@@ -13,7 +15,7 @@ The visual target is the NEXUS portfolio artwork in `nexus-web-v2/public/project
 | Positive emphasis (blue, not green) | `#487FD8` |
 | Warning / risk | `#F6B95F` / `#F27E90` |
 
-No fluorescent green or green/teal should be used in the palette. Keep the semantic meaning of data and preserve existing KPI and DAX logic. The report still connects to Google BigQuery; recoloring does not supply data. Publish no screenshots until a real local rendered report is inspected.
+No fluorescent green or green/teal should be used in the palette. Keep the semantic meaning of data and preserve existing KPI and DAX logic. The report still connects to Google BigQuery; recoloring does not supply data. Nine genuine Desktop page captures now exist; new screenshots must still be source-checked and reviewed.
 
 The Power BI report includes native graphics that may have their own explicit fill/font formatting; change those per-visual settings separately and check dark/light contrast in Power BI Desktop.
 
@@ -61,7 +63,7 @@ The 11 full-size pages use 1280 × 720 layouts. The two report-page tooltips are
 
 At least 36 primary chart/KPI objects per report edition now have descriptive `visual.visualContainerObjects.general[].properties.altText`, including both tooltips. Static alt text describes metrics and filters rather than invented current statistics; it cannot substitute for a rendered screen-reader/keyboard test.
 
-For page-level delivery progress, check [the all-dashboard development plan](POWER_BI_ALL_DASHBOARDS_PLAN.md), then [the render/refresh acceptance gate](POWER_BI_VISUAL_QA.md). A source-level theme commit is **not** evidence of a visually passed Power BI Desktop report.
+For page-level delivery progress, check [the all-dashboard development plan](archive/powerbi/POWER_BI_ALL_DASHBOARDS_PLAN.md), then [the render/refresh acceptance gate](POWER_BI_VISUAL_QA.md). A source-level theme commit is **not** evidence of a visually passed Power BI Desktop report.
 
 ## Canonical NEXUS logo in editable Football Power BI (13 October 2026)
 

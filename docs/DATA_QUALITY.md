@@ -1,5 +1,7 @@
 # Data Quality and Validation
 
+> **Current evidence boundary (17 October 2026):** Counts refer to a June 2026 validation. Current authenticated refresh and reconciliation are outstanding. See [Project status](PROJECT_STATUS.md).
+
 ## Validation Status
 
 The project was fully validated against BigQuery on June 15, 2026.

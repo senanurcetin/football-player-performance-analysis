@@ -1,5 +1,8 @@
 # Player Performance — evidence-first visual pilot
 
+> **Archived historical record — 17 October 2026.** This document preserves prior engineering decisions and evidence; it is not the current delivery status. For current verified vs. pending checks, see [Project status](../../PROJECT_STATUS.md) and the [documentation index](../../README.md).
+
+
 **Prepared:** 13 October 2026
 **Page ID:** `d2bc1e6a078c5c5b125c`
 **Sources:** `powerbi/workspace/FootballPlayerAnalysis/` (BigQuery) and `powerbi/offline-demo/FootballPlayerAnalysis/` (explicitly synthetic)

@@ -1,5 +1,8 @@
 # NEXUS Football — live BigQuery read-only audit (13 October 2026)
 
+> **Archived historical record — 17 October 2026.** This document preserves prior engineering decisions and evidence; it is not the current delivery status. For current verified vs. pending checks, see [Project status](../../PROJECT_STATUS.md) and the [documentation index](../../README.md).
+
+
 **Project:** `data-analiz-490513` · **dataset:** `football_mart` · **BigQuery location:** `EU`.
 
 This document records **actually executed**, read-only BigQuery metadata and aggregate queries from the authorized Windows Google Cloud CLI session. It does not document a successful Power BI Desktop refresh. All queries were restricted to at most 100 MB billed bytes per query.

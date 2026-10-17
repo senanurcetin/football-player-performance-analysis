@@ -8,11 +8,11 @@ Translate Transfermarkt player and club data into consistent performance metrics
 
 | Review question | Evidence |
 |---|---|
-| Does the warehouse layer have a governed scope? | **46 dbt models**, **241/241 tests**, **46/46 model descriptions** in the documented June 15, 2026 validation snapshot; [status](../README.md#project-status) |
-| Does valuation beat persistence? | v5 ensemble **R² 0.9756** vs prior-value baseline **0.9704**; MAE **€781,409** vs **€867,156**; [model comparison](../README.md#ml-model) |
+| Does the warehouse layer have a governed scope? | **46 dbt models**, **241/241 tests**, **46/46 model descriptions** in the documented June 15, 2026 validation snapshot; [status](PROJECT_STATUS.md) |
+| Does valuation beat persistence? | v5 ensemble **R² 0.9756** vs prior-value baseline **0.9704**; MAE **€781,409** vs **€867,156**; [model comparison](../README.md#market-value-modeling-and-limitations) |
 | How much skill remains after asking about value *change*? | A distinct time-split Kaggle study reports much weaker R² on **change** (about **0.22**), and explains why high level-value R² is deceptive: [study](https://www.kaggle.com/code/senanuretin/your-market-value-r2-is-mostly-last-year-s-price) |
 | What does the BI report look like? | [Current genuine screenshot gallery](assets/screenshots/README.md), [release acceptance summary](../README.md#release-acceptance-status), and [visual QA requirements](POWER_BI_VISUAL_QA.md) |
-| Can the workflow be reproduced? | [dbt and ML quick start](../README.md#quick-start), [models](../models/), [tests](../tests/) |
+| Can the workflow be reproduced? | [dbt and ML quick start](../README.md#reproduction), [models](../models/), [tests](../tests/) |
 
 ## Contribution boundaries
 

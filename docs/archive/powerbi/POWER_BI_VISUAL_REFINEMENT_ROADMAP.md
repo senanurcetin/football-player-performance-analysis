@@ -1,11 +1,14 @@
 # NEXUS Football — Power BI visual refinement roadmap
 
+> **Archived historical record — 17 October 2026.** This document preserves prior engineering decisions and evidence; it is not the current delivery status. For current verified vs. pending checks, see [Project status](../../PROJECT_STATUS.md) and the [documentation index](../../README.md).
+
+
 **Date:** 13 October 2026  
 **Canonical edition:** `powerbi/workspace/FootballPlayerAnalysis/FootballPlayerAnalysis.pbip` (live BigQuery)  
 **Comparison edition:** `powerbi/offline-demo/FootballPlayerAnalysis/FootballPlayerAnalysis.pbip` (synthetic fixtures)  
 **Product release:** **HOLD** until actual Desktop rendering and production refresh reconciliation.
 
-**CI execution policy:** Complete source development, offline checks and real Desktop/BigQuery acceptance **before** triggering hosted CI. CircleCI workflows are opt-in through `run_final_ci=true`; see [CI-last release policy](CI_RELEASE_GATE_POLICY.md).
+**CI execution policy:** Complete source development, offline checks and real Desktop/BigQuery acceptance **before** triggering hosted CI. CircleCI workflows are opt-in through `run_final_ci=true`; see [CI-last release policy](../../CI_RELEASE_GATE_POLICY.md).
 
 **Next implementation plan (visual redesign, not another palette pass):** [Professional Power BI Design Execution Plan](POWER_BI_PROFESSIONAL_REDESIGN_EXECUTION_PLAN.md). Start with actual Power BI Desktop screenshots and one deep, evidence-led pilot page; complete all 13 surfaces, interaction QA and BigQuery reconciliation before triggering CircleCI.
 

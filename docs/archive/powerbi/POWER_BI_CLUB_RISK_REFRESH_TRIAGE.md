@@ -1,5 +1,8 @@
 # Club risk profile — Power BI refresh triage
 
+> **Archived historical record — 17 October 2026.** This document preserves prior engineering decisions and evidence; it is not the current delivery status. For current verified vs. pending checks, see [Project status](../../PROJECT_STATUS.md) and the [documentation index](../../README.md).
+
+
 **Purpose:** Diagnose the reported six-row import/refresh error in the
 **production BigQuery** `fct_club_risk_profile` table without silently
 changing production values. This procedure is read-only and optional until

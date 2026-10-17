@@ -1,5 +1,7 @@
 # NEXUS Football Intelligence — Portfolio Production Contract
 
+> **As of 17 October 2026:** Real screenshots are captured; full warehouse reconciliation and player detail QA remain release blockers. See [Project status](PROJECT_STATUS.md).
+
 **Edition to present publicly:** `powerbi/workspace/FootballPlayerAnalysis/FootballPlayerAnalysis.pbip`.
 
 ## Audience and design

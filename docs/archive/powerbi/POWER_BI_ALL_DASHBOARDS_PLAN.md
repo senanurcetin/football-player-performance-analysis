@@ -1,6 +1,9 @@
 # All-dashboard Power BI modernization plan
 
-> **Production Desktop handoff:** [Open the real BigQuery PBIP and record source checks](POWER_BI_DESKTOP_HANDOFF.md). Run `python scripts/check_powerbi_release_handoff.py --output powerbi-handoff.json` from the repository root. Passing source checks does not remove Desktop/BigQuery acceptance HOLD.
+> **Archived historical record — 17 October 2026.** This document preserves prior engineering decisions and evidence; it is not the current delivery status. For current verified vs. pending checks, see [Project status](../../PROJECT_STATUS.md) and the [documentation index](../../README.md).
+
+
+> **Production Desktop handoff:** [Open the real BigQuery PBIP and record source checks](../../POWER_BI_DESKTOP_HANDOFF.md). Run `python scripts/check_powerbi_release_handoff.py --output powerbi-handoff.json` from the repository root. Passing source checks does not remove Desktop/BigQuery acceptance HOLD.
 
 > **New visual refinement roadmap:** [NEXUS Football typography, page hierarchy, navigation and Desktop acceptance](POWER_BI_VISUAL_REFINEMENT_ROADMAP.md). ML Reliability table typography is improved at **source level** in both editions; real Desktop acceptance is still required.
 

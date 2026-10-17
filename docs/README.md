@@ -1,17 +1,39 @@
-# Documentation guide
+# NEXUS Football Intelligence — documentation
 
-Start with the [project README](../README.md) and [real Power BI screenshots](assets/screenshots/README.md).
+**Documentation snapshot: 17 October 2026.** Begin with the [repository README](../README.md), [current project status](PROJECT_STATUS.md) and [real Power BI screenshot gallery](assets/screenshots/README.md).
 
-| Current reference | Document |
-|---|---|
-| Model lineage, grains and BigQuery/dbt architecture | [Architecture](ARCHITECTURE.md) |
-| Reporting design system | [NEXUS BI Design System](BI_DESIGN_SYSTEM.md) |
-| Current screenshot evidence and provenance | [Power BI screenshots](assets/screenshots/README.md) |
-| Quality gates and known source limitations | [Data Quality](DATA_QUALITY.md) |
-| ML temporality, baselines and evaluation | [Player Market Value ML](PLAYER_MARKET_VALUE_ML.md) |
-| Power BI relationships and measures | [Power BI Modeling](POWER_BI_MODELING.md) |
-| Desktop interaction and release criteria | [Visual QA](POWER_BI_VISUAL_QA.md) |
-| Deployment and troubleshooting | [Runbook](RUNBOOK.md) |
-| Reviewer summary and contribution attribution | [Hiring summary](hiring-summary.md) |
+## Canonical active documents
 
-**Historical records:** Dated `POWER_BI_*202610*.md` files and implementation plans reflect the evidence available on those dates. The actual **2026-10-17** Desktop screenshots supersede prior statements that no screenshots existed. Fresh BigQuery reconciliation and final user sign-off remain pending. Do not delete registered Power BI visual assets from the PBIP source.
+| Area | Reference | Purpose |
+|---|---|---|
+| Verification and release | [Current project status](PROJECT_STATUS.md) | Verified evidence and remaining production blockers |
+| Architecture | [Architecture and model catalog](ARCHITECTURE.md) | BigQuery/dbt lineage, model grains |
+| Data validation | [Data quality](DATA_QUALITY.md) | Rules and dated historical test counts |
+| ML | [Player market-value methodology](PLAYER_MARKET_VALUE_ML.md) | Temporal validation and persistence benchmark |
+| BI source | [Power BI modeling](POWER_BI_MODELING.md) | PBIP/PBIR structure and DAX |
+| Visual identity | [NEXUS design system](BI_DESIGN_SYSTEM.md) | Theme palette and 13-page canvas contract |
+| Visual acceptance | [Power BI visual QA](POWER_BI_VISUAL_QA.md) | Current page and interaction acceptance matrix |
+| Deployment handoff | [Desktop open and refresh](POWER_BI_DESKTOP_HANDOFF.md) | Production versus synthetic edition; data reconciliation |
+| Product | [Football Intelligence product](FOOTBALL_INTELLIGENCE_PRODUCT.md) | Product questions and known boundaries |
+| Presentation contract | [Production portfolio contract](POWER_BI_PORTFOLIO_PRODUCTION_CONTRACT.md) | No fabricated metrics, authorized real data |
+| Operations | [Runbook](RUNBOOK.md) | Installation and reproducible execution |
+| Hosted CI | [CI-last policy](CI_RELEASE_GATE_POLICY.md) | Opt-in final release gate |
+| CI troubleshooting | [CI recovery](ci-recovery.md) | Prior CI failures and workarounds |
+| Hiring | [Reviewer brief](hiring-summary.md) | Attribution and verifiable portfolio evidence |
+
+## Screenshot evidence
+
+The [curated gallery](assets/screenshots/README.md) includes nine professional screenshots from the actual production-connected Power BI Desktop. The [capture manifest](assets/screenshots/capture_manifest.json) records 13 original PNGs and their SHA-256 checksums. Two unselected player-detail screenshots and two tooltips remain in the technical archive, not the approved promotional image set. The separate offline demo is **synthetic**.
+
+## Historical records
+
+[Browse the historical Power BI archive](archive/README.md). It contains the original dated engineering plans, design revisions, warehouse audits, incident triage and repair records. Prior phrases such as “screenshots pending” reflect the original document date—not the current capture state.
+
+## Documentation maintenance standards
+
+1. Use [project status](PROJECT_STATUS.md) as the single source of truth for release evidence, and link to it rather than copying changing PASS/HOLD assertions.
+2. Label every model metric with its validation window, source data, baseline and test scope. Do not call historical imported data live.
+3. Do not remove registered resources from Power BI sources simply because a logo/PNG is old; these may be referenced by the report.
+4. Separate historical plans from current operating procedures; preserve historical records with date and repository provenance.
+5. Before merging, run `python scripts/check_docs_integrity.py`, `python scripts/verify_dashboard_screenshots.py` and the project unit tests.
+6. Never commit service-account files, access tokens, private system paths or credentials.
