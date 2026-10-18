@@ -115,9 +115,12 @@ To validate the market-value pipeline, with data credentials and training depend
 
 ```bash
 python -m pip install -r requirements-ml.txt
-python scripts/train_player_market_value.py
+# Run with an authorized Google Cloud project and suitable ADC credentials.
+# The following may create local artifacts and query billed BigQuery data.
+python scripts/train_player_market_value.py --project-id YOUR_GCP_PROJECT
 python scripts/verify_ml_artifact.py
-python scripts/verify_published_ml_outputs.py
+# Run only after governed ML tables have been explicitly published.
+python scripts/verify_published_ml_outputs.py --project-id YOUR_GCP_PROJECT
 ```
 
 Offline source checks and screenshot artifact integrity:
