@@ -41,8 +41,8 @@ def synthetic_metrics() -> dict[str, object]:
         "train_season_max": 2023,
         "training_rows": 120,
         "test_rows": 6,
-        "tuning_season": 2021,
-        "calibration_season": 2022,
+        "tuning_season": 2022,
+        "calibration_season": 2023,
         "held_out_test_seasons": [2024, 2025],
     }
 
