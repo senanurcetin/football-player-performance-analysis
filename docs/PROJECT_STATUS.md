@@ -7,13 +7,19 @@
 
 This is the canonical record of verification status. Dated plans and incidents are preserved in the [historical archive](archive/README.md); their earlier acceptance statements do not supersede this page.
 
+## Visual capture comparison — 18 October 2026
+
+**KONTROL EDİLDİ (limited scope):** All **13/13 production screenshot PNGs** match the dated capture manifest SHA-256 and image-size records. Historical visual measures verified against the June BigQuery documentation: player dimension **47,702**, transfers **40,208**, known-fee coverage **64.2%**, current ML scoring population **7,841**, and decision-ready complement **72.9%**. This is **static historical screenshot/value reconciliation only**; details are recorded in [Power BI historical value audit](POWER_BI_HISTORICAL_VALUE_AUDIT_20261018.md).
+
+**NOT FULLY VERIFIED:** The 365-day observed label panel displays **8,581** records while the prior documented `fct_transfer_success_labels` count is **8,584**. This may reflect source grain, time or visual filters, but the 3-record difference was not independently reconciled. Both player-detail pages show unselected-player/error placeholders in the saved images. No new Power BI Desktop interaction or authorized fresh BigQuery query ran. The overall acceptance state **remains REVIEW PENDING**, independent of verified screenshot checks.
+
 ## Verified vs. pending
 
 | Area | Verified evidence | Still open | Status |
 |---|---|---|---|
 | Repository | Screenshot baseline on `main` commit `f3a84d9` includes new README and real screenshots; historic branches cleaned; no open PR at last check | New release CI, if required | Source delivered |
 | Power BI sources | 13 editable PBIR pages: 9 presentation, 2 drillthrough, 2 tooltips; source layout and binding audits passed | Final interaction acceptance | Source verified / runtime partial |
-| Desktop screenshots | Genuine production-connected Desktop image captures dated 17 October, with imported historical data visible across nine primary pages | Owner review; full screen interaction verification | Captured / pending approval |
+| Desktop screenshots | Genuine captures dated 17 October; 13/13 PNG SHA-256 and dimensions checked on 18 October, comparable historical metrics matched | Player-detail errors, 365-day three-row count discrepancy, Desktop runtime | **KONTROL EDİLDİ** — historical image integrity / matching metrics only; full acceptance pending |
 | Player detail | Two actual unselected-state screenshots preserved in technical evidence | Check/fix visuals with errors, test selected player context | Open |
 | Production freshness | BigQuery marts referenced by editable production PBIP | New authenticated refresh, error/row counts, source-date and KPI reconciliation | Not independently verified |
 | ML | Documented historical v5 ensemble and persistence-baseline comparison | New training/validation if new evaluation results are claimed | Historical metrics only |
