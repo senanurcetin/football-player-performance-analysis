@@ -13,6 +13,7 @@ import pandas as pd
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 from evaluate_ml_artifacts import (  # noqa: E402
     evaluate_predictions, main, summarize_segments, validate_evaluation_frame,
+    validate_evaluation_provenance,
 )
 
 
@@ -30,6 +31,20 @@ def synthetic_predictions() -> pd.DataFrame:
         "prediction_lower_eur": [90, 100, 180, 190, 275, 290],
         "prediction_upper_eur": [110, 120, 210, 230, 320, 320],
     })
+
+
+def synthetic_metrics() -> dict[str, object]:
+    return {
+        "model_version": "model_v5_test",
+        "source_commit_sha": "synthetic-fixture-sha",
+        "feature_contract_hash": "synthetic-contract-hash",
+        "train_season_max": 2023,
+        "training_rows": 120,
+        "test_rows": 6,
+        "tuning_season": 2021,
+        "calibration_season": 2022,
+        "held_out_test_seasons": [2024, 2025],
+    }
 
 
 class EvaluationArtifactContract(unittest.TestCase):
@@ -119,18 +134,57 @@ class EvaluationArtifactContract(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "Baseline error"):
             evaluate_predictions(frame, min_rows=2, replicates=100)
 
+    def test_provenance_rejects_mismatched_model_and_chronology(self):
+        frame = synthetic_predictions()
+        verified = validate_evaluation_provenance(frame, synthetic_metrics())
+        self.assertTrue(verified["artifact_pair_consistent"])
+        self.assertFalse(verified["warehouse_freshness_verified"])
+        for name, invalid in [
+            ("model_version", "different-model"),
+            ("train_season_max", 2024),
+            ("test_rows", 5),
+            ("calibration_season", 2024),
+            ("held_out_test_seasons", [2024, 2024]),
+            ("held_out_test_seasons", [2025]),
+            ("training_rows", 0),
+            ("tuning_season", 2023),
+        ]:
+            with self.subTest(field=name, invalid=invalid):
+                metadata = synthetic_metrics()
+                metadata[name] = invalid
+                with self.assertRaises(ValueError):
+                    validate_evaluation_provenance(frame, metadata)
+
+    def test_provenance_rejects_malformed_types(self):
+        for name, invalid in [
+            ("train_season_max", "2023"),
+            ("test_rows", True),
+            ("held_out_test_seasons", ["2024", "2025"]),
+            ("held_out_test_seasons", None),
+        ]:
+            with self.subTest(field=name):
+                metadata = synthetic_metrics()
+                metadata[name] = invalid
+                with self.assertRaises(ValueError):
+                    validate_evaluation_provenance(synthetic_predictions(), metadata)
+
     def test_cli_writes_hashed_only_aggregate_outputs(self):
         frame = synthetic_predictions()
         with tempfile.TemporaryDirectory() as tmp:
             source = Path(tmp) / "test_predictions.csv"
+            metrics = Path(tmp) / "metrics.json"
             output = Path(tmp) / "report"
             frame.to_csv(source, index=False)
-            exit_code = main(["--input", str(source), "--output-dir", str(output),
+            metrics.write_text(json.dumps(synthetic_metrics()), encoding="utf-8")
+            exit_code = main(["--input", str(source), "--metrics", str(metrics),
+                              "--output-dir", str(output),
                               "--min-rows", "2", "--replicates", "100", "--seed", "5"])
             self.assertEqual(exit_code, 0)
             summary = json.loads((output / "reliability_summary.json").read_text())
             self.assertEqual(len(summary["input_sha256"]), 64)
+            self.assertEqual(len(summary["metrics_sha256"]), 64)
             self.assertEqual(summary["model_version"], "model_v5_test")
+            self.assertTrue(summary["artifact_provenance"]["artifact_pair_consistent"])
             saved = pd.read_csv(output / "segment_metrics.csv")
             self.assertEqual(len(saved), 9)
             self.assertTrue(source.is_file())
