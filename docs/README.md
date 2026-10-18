@@ -21,6 +21,8 @@
 | Hosted CI | [CI-last policy](CI_RELEASE_GATE_POLICY.md) | Opt-in final release gate |
 | CI troubleshooting | [CI recovery](ci-recovery.md) | Prior CI failures and workarounds |
 | Hiring | [Reviewer brief](hiring-summary.md) | Attribution and verifiable portfolio evidence |
+| ML reliability | [Temporal and statistical diagnostics](ML_RELIABILITY_EVALUATION_20261018.md) | Player-grouped bootstrap, offline holdout auditor, chronological folds and observed coverage |
+| ML execution | [Research-only engineering plan](ANALYTICS_ENGINEERING_EXECUTION_PLAN_20261018.md) | Ordered tasks, acceptance tests and external access blockers |
 
 ## Screenshot evidence
 
