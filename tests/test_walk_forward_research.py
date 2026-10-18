@@ -110,6 +110,12 @@ class FoldResearchTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             m.run_walk_forward(self.frame[self.frame.season < 2018], self.numeric, self.categorical, max_iter=2)
 
+    def test_target_or_identity_as_feature_rejected(self):
+        for feature in ["target_market_value_eur", "player_id", "target_market_value_date"]:
+            with self.subTest(feature=feature):
+                with self.assertRaisesRegex(ValueError, "leakage"):
+                    m.prepare_research_frame(self.frame, self.numeric + [feature], self.categorical)
+
     def test_cli_outputs_hashed_research_only_manifest(self):
         with tempfile.TemporaryDirectory() as tmp:
             source = Path(tmp) / "history.csv"
