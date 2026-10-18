@@ -99,7 +99,7 @@ def validate_evaluation_provenance(
     observed_seasons = sorted(int(year) for year in clean["season"].unique())
     if (
         sorted(seasons) != observed_seasons
-        or not (tuning < calibration <= train_end < min(seasons))
+        or not (tuning < calibration == train_end < min(seasons))
         or test_rows != len(clean)
         or train_rows <= 0
     ):
