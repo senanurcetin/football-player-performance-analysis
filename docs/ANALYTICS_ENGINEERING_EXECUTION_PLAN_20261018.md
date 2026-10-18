@@ -1,0 +1,64 @@
+# NEXUS Football Intelligence — data-science execution plan
+
+**Date:** 18 October 2026
+**Scope:** analytics engineering, data quality, statistical methodology, scientific validation and existing native Power BI correctness. **No productization, public hosting, new sales workflows, mock dashboards or synthetic-as-real metrics.**
+
+## Delivery principles
+
+1. **Truth first.** A code commit, offline unit test, model fit or Power BI screenshot cannot substitute for an authenticated data-freshness and warehouse reconciliation.
+2. **Preserve production behavior unless independently validated.** Existing v5 feature definitions, model weights, output schemas, Power BI pages and approved brand assets remain unchanged by the current ML reliability work.
+3. **No unintended paid execution.** CircleCI is a final opt-in gate. Kaggle, BigQuery and Desktop Commander were not available to this session; no retraining, external pipeline jobs, warehouse mutations or Power BI refresh were initiated.
+4. **Reproducibility.** Every future verified metric needs code commit, model version, dataset-as-of timestamp, evaluation season window, population/denominator, estimator and baseline.
+5. **Attribution.** Preserve the Workintech team's original collaboration history and the upstream authorship record.
+
+## Ordered work packages
+
+| Stage | Priority | Action | Concrete acceptance criterion | Dependency / status |
+| --- | --- | --- | --- | --- |
+| 1 | P0 | ML numeric-contract integrity | NaN/Inf, duplicate/missing keys and incomplete intervals fail closed; synthetic regression coverage | Draft PR #78 created; full repository suite not yet run |
+| 2 | P1 | Temporal and uncertainty foundations | Chronological candidate folds, player-cluster bootstrap CI, empirical interval coverage/width, group n | Draft PR #79; nine local helper tests passed |
+| 3 | P1 | Reproducible holdout evaluation package | Credential-free CLI reads versioned `test_predictions.csv`, validates numeric consistency, produces SHA-256-backed JSON and segmented CSV; small groups suppressed | Implemented on PR #79; ten additional synthetic CLI tests passed locally |
+| 4 | P0 | Integration tests and change reconciliation | Full Python unit suite and ML pipeline smoke test pass on a current checkout; #78 merged first, #79 subsequently reconciled/rebased; no modifications outside planned files | **BLOCKED:** complete repository checkout not available in this session |
+| 5 | P0 | Warehouse provenance and source freshness | Read-only authenticated BigQuery validation of source modification times, business event dates, model row grains, missingness and dashboard metrics; compare to documented historical June snapshot | **BLOCKED:** no authorized BigQuery execution |
+| 6 | P1 | Rolling-origin empirical backtest | Fit/tune/calibrate strictly within each historical fold, compare persistence and a past-only cohort baseline, report season-by-season metrics and clustered uncertainty | **BLOCKED:** current authorized historical feature data and production execution |
+| 7 | P1 | Transfer outcome and coverage study | Quantify selection/coverage bias and 365-day observed outcome denominators; separate association from causal attribution | **BLOCKED:** warehouse data snapshot |
+| 8 | P0 | Native Power BI visual acceptance | Production-connected 13-page Desktop verification including selected player drillthrough, tooltips, source KPIs and refresh errors; record actual screenshots and owner signoff | **BLOCKED:** Power BI Desktop and owner validation |
+| 9 | P0 | Final quality gate | Execute existing opt-in CI on the accepted commit, attach evidence and only then update release status from HOLD | **NOT TRIGGERED**: prerequisites unmet |
+
+## Implemented code deliverables
+
+**PR #78 — Numeric validation:** `scripts/train_player_market_value.py`, `tests/test_ml_numeric_contract.py`, and the methodology note. Does not claim new training results.
+
+**PR #79 — Model reliability:** `scripts/ml_reliability.py`, `scripts/evaluate_ml_artifacts.py`, `tests/test_ml_reliability.py`, `tests/test_evaluate_ml_artifacts.py`, evaluation artifact wiring and methodology notes. It does not train alternative models.
+
+### Offline report execution
+
+With the pinned ML dependencies installed and an **existing, governed held-out prediction CSV**:
+
+```bash
+python -m unittest discover -s tests -p 'test_ml_reliability.py' -v
+python -m unittest discover -s tests -p 'test_evaluate_ml_artifacts.py' -v
+python scripts/evaluate_ml_artifacts.py \
+  --input artifacts/player_market_value/test_predictions.csv \
+  --output-dir artifacts/player_market_value/offline_reliability \
+  --min-rows 30 --replicates 500 --seed 42
+```
+
+Output artifacts are `reliability_summary.json` (model/version/season window, observed error and coverage, player-grouped bootstrap and input SHA-256) and `segment_metrics.csv` (season, position, quality cohort and target value tier; n, unique players and metrics). No personal or player-level predictions are copied into these aggregate reports.
+
+**The source CSV is required.** Do not manufacture evaluation metrics by substituting a synthetic fixture. Tests use synthetic data strictly as regression checks.
+
+## Scientific and operational constraints
+
+- Label all historical evaluation results **historical**, never live. Last independently documented warehouse evidence is June 2026.
+- Persistence MAE is the mandatory reference, while R² of price levels alone can overstate usable forecasting skill.
+- A bootstrap CI is not a causal conclusion or a guarantee under season-to-season distribution shift.
+- An expanding-window **split generator alone is not a completed rolling-origin backtest**.
+- Report sample size and observed 365-day follow-up coverage on all transfer-cohort comparisons.
+- A 90% nominal interval should not be presented as calibrated for each position, league or price band without adequate held-out evidence.
+- The production Power BI source and synthetic test edition must never be conflated.
+- No external publication or model promotion without the actual verified release gates.
+
+## Merge dependency
+
+Because #78 and #79 independently modify the same training script and documentation index, do not blindly merge both feature branches. Review and validate #78 first; then reconcile #79 against the accepted branch, confirm that both input-contract protections and reliability diagnostics survive, and rerun the full regression suite. Until then both remain draft. This avoids claiming incomplete development has been released.
