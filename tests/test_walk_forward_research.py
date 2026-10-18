@@ -10,6 +10,8 @@ from unittest.mock import patch
 import numpy as np
 import pandas as pd
 
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 import walk_forward_research as m
 
 
