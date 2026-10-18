@@ -42,7 +42,7 @@ python scripts/walk_forward_research.py \
   --output artifacts/player_market_value/rolling_origin_research.csv
 ```
 
-This branch's **10 synthetic-only tests** were executed in an isolated environment with NumPy 2.3.5, pandas 2.2.3 and scikit-learn 1.8.0, all passing; they exercise chronology, no future-target contamination in earlier folds, the distinct calibration stage, actual refitting, input validation, baselines, confidence-interval rank and CLI manifest. This is **not** a genuine rolling-origin performance result, because authorized real feature data was not available. The runner forbids obvious target/identity/future data columns as features; preventing less-obvious leakage depends on the upstream dbt feature-contract and as-of-date audits.
+This branch's **12 synthetic-only tests** were executed in an isolated environment with NumPy 2.3.5, pandas 2.2.3 and scikit-learn 1.8.0, all passing; they exercise chronology, no future-target contamination in earlier folds, the distinct calibration stage, actual refitting, input validation, baselines, confidence-interval rank and CLI manifest. This is **not** a genuine rolling-origin performance result, because authorized real feature data was not available. The runner forbids obvious target/identity/future data columns as features; preventing less-obvious leakage depends on the upstream dbt feature-contract and as-of-date audits.
 
 ## Interpretation and statistical limitations
 
