@@ -45,7 +45,7 @@ Values under different population filters are not proof of changed input records
 ## Reproduction when source access returns
 
 1. Refresh `football_mart` in a governed, explicitly authorized and cost-controlled BigQuery environment; record as-of time, source modification/event dates, project, commit and relevant row counts.
-2. Compare `COUNT(*)` from `fct_transfer_success_labels` against **the exact filtered row set Power BI uses**, not against unrelated fixed-horizon populations; isolate the three missing/extra keys via anti-joins, documenting their filter reasons and historical as-of dates.
+2. Compile and run the **read-only** dbt diagnostic [`analyses/audit_transfer_365d_capture_20261018.sql`](../analyses/audit_transfer_365d_capture_20261018.sql) using an authorized BigQuery profile. Compare `COUNT(*)` from `fct_transfer_success_labels` against **the exact filtered row set Power BI uses**, not unrelated fixed-horizon populations; isolate the three missing/extra keys via anti-joins and document filter reasons and historical as-of dates.
 3. Confirm 365-day observed positive labels, coverage denominator and 20-percentage-point increase rule.
 4. Open the existing production-connected PBIP, check both player-selected detail pages (remove visual error states) and actual tooltip behavior; capture evidence and obtain the author's acceptance.
 
