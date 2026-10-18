@@ -25,6 +25,8 @@ from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OrdinalEncoder
 
+from ml_reliability import grouped_mae_skill_bootstrap, interval_coverage_by_group
+
 
 NUMERIC_FEATURES = [
     "season",
@@ -1077,6 +1079,17 @@ def main() -> None:
     )
     segment_metrics = evaluation_metrics(predictions, model_version)
     feature_importance = feature_importance_report(pipeline, test, model_version)
+    # Descriptive holdout diagnostics, not a second release gate or new model fit.
+    metrics["player_grouped_mae_skill_bootstrap"] = grouped_mae_skill_bootstrap(
+        predictions, replicates=500, confidence=0.95, seed=42
+    )
+    interval_coverage_cohorts = pd.concat(
+        [
+            interval_coverage_by_group(predictions, group_column=column)
+            for column in ("season", "position", "prediction_quality_status")
+        ],
+        ignore_index=True,
+    )
 
     final_pipeline = build_pipeline()
     final_pipeline.fit(
@@ -1231,6 +1244,7 @@ def main() -> None:
 
     predictions.to_csv(output_dir / "test_predictions.csv", index=False)
     segment_metrics.to_csv(output_dir / "evaluation_metrics.csv", index=False)
+    interval_coverage_cohorts.to_csv(output_dir / "interval_coverage_cohorts.csv", index=False)
     feature_importance.to_csv(output_dir / "feature_importance.csv", index=False)
     quality_gates.to_csv(output_dir / "quality_gates.csv", index=False)
     if current_predictions is not None:
