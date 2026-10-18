@@ -13,7 +13,7 @@ The report is a PBIP project stored at `powerbi/workspace/FootballPlayerAnalysis
 - The legacy `Report/sections/` directory is retained for historical reference only.
 - Visual definitions follow the schema at `https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json`.
 
-**Opening the report:** Open `powerbi/workspace/FootballPlayerAnalysis/FootballPlayerAnalysis.pbip` directly in PBI Desktop. Data requires a BigQuery connection; refresh credentials from `football.json` service account if prompted.
+**Opening the report:** Open `powerbi/workspace/FootballPlayerAnalysis/FootballPlayerAnalysis.pbip` directly in PBI Desktop. Data requires an authorized BigQuery connection; configure credentials securely in Power BI Desktop using the approved account/connector flow. Do not assume any locally named `football.json` credential file exists or commit service-account keys.
 
 ## Recommended Dataset
 
@@ -132,7 +132,7 @@ Use `football_ml.ml_player_market_value_evaluation_metrics` for season, position
 
 Use `football_ml.ml_player_market_value_quality_gates` on the model-monitoring page. Decision-facing reports should only refresh when all `blocking` rows pass. Use `football_ml.ml_player_market_value_feature_importance` for predictive-driver visuals, and label them as model dependence rather than causal explanation.
 
-The latest validation passed all 241 project tests, all 43 ML-feature tests, and documentation for all 878 model columns.
+**Historical evidence (June 2026):** 241 dbt project tests, 43 ML-feature tests and descriptions for 878 model columns were recorded as passing/complete. These are **not newly executed October 2026 tests**; see [Data quality](DATA_QUALITY.md) and [Project status](PROJECT_STATUS.md).
 
 
 ## Local PBIP Preflight and Opening Errors
