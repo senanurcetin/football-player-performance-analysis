@@ -60,10 +60,19 @@ def prepare_research_frame(frame: pd.DataFrame, numeric: list[str], categorical:
     if frame.empty:
         raise ValueError("Training features are empty")
     clean = frame.copy()
-    for column in set(numeric + [TARGET, "season"]):
+    for column in set(numeric + [TARGET, "season", "previous_market_value_eur"]):
         clean[column] = pd.to_numeric(clean[column], errors="coerce")
-    if clean["player_id"].isna().any():
+    if clean["player_id"].isna().any() or clean["player_id"].astype(str).str.strip().eq("").any():
         raise ValueError("A player identifier is missing")
+    if "training_row_key" in clean and (
+        clean["training_row_key"].isna().any()
+        or clean["training_row_key"].astype(str).str.strip().eq("").any()
+        or clean["training_row_key"].duplicated().any()
+    ):
+        raise ValueError("Training row keys must be nonempty and unique")
+    previous = clean["previous_market_value_eur"].to_numpy(dtype=float)
+    if np.isinf(previous).any() or (previous < 0).any():
+        raise ValueError("Previous market values must be nonnegative or missing")
     targets = clean[TARGET].to_numpy(dtype=float)
     seasons = clean["season"].to_numpy(dtype=float)
     if (not np.isfinite(targets).all() or (targets <= 0).any()
@@ -121,6 +130,10 @@ def run_walk_forward(
     season, calibration is the last prior season, and development consists of
     seasons before tuning. Never tunes, trains, or calibrates on test year Y.
     """
+    if not isinstance(min_development_seasons, int) or min_development_seasons < 1:
+        raise ValueError("min_development_seasons must be a positive integer")
+    if not isinstance(max_iter, int) or not 1 <= max_iter <= 300:
+        raise ValueError("max_iter must be in [1, 300]")
     clean = prepare_research_frame(frame, numeric, categorical)
     years = sorted(clean["season"].unique().tolist())
     min_train = min_development_seasons + 2
