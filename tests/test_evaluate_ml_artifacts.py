@@ -144,6 +144,7 @@ class EvaluationArtifactContract(unittest.TestCase):
             ("train_season_max", 2024),
             ("test_rows", 5),
             ("calibration_season", 2024),
+            ("calibration_season", 2022),  # Pre-calibration fitting leak: not final training season
             ("held_out_test_seasons", [2024, 2024]),
             ("held_out_test_seasons", [2025]),
             ("training_rows", 0),
