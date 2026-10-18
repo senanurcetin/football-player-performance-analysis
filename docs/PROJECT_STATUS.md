@@ -17,7 +17,7 @@ This is the canonical record of verification status. Dated plans and incidents a
 
 | Area | Verified evidence | Still open | Status |
 |---|---|---|---|
-| Repository | Screenshot baseline on `main` commit `f3a84d9` includes new README and real screenshots; historic branches cleaned; no open PR at last check | New release CI, if required | Source delivered |
+| Repository | 17 October screenshot baseline on `main` commit `f3a84d9`; two follow-on draft PRs (#78 numeric contract, #79 research/docs) open on 18 October | Full repository checkout test, code review, controlled merge and final CI | **Source on draft branches; not merged** |
 | Power BI sources | 13 editable PBIR pages: 9 presentation, 2 drillthrough, 2 tooltips; source layout and binding audits passed | Final interaction acceptance | Source verified / runtime partial |
 | Desktop screenshots | Genuine captures dated 17 October; 13/13 PNG SHA-256 and dimensions checked on 18 October, comparable historical metrics matched | Player-detail errors, 365-day three-row count discrepancy, Desktop runtime | **KONTROL EDİLDİ** — historical image integrity / matching metrics only; full acceptance pending |
 | Player detail | Two actual unselected-state screenshots preserved in technical evidence | Check/fix visuals with errors, test selected player context | Open |
