@@ -85,6 +85,27 @@ class FoldResearchTests(unittest.TestCase):
             changed.iloc[0].drop(labels=["test_season"]), check_names=False,
         )
 
+    def test_prev_valuation_invalid_and_keys_duplicate_fail(self):
+        base = self.frame.copy()
+        for value in [-12, np.inf, -np.inf]:
+            frame = base.astype({"previous_market_value_eur": float}).copy()
+            frame.loc[0, "previous_market_value_eur"] = value
+            with self.subTest(value=value):
+                with self.assertRaisesRegex(ValueError, "Previous market"):
+                    m.prepare_research_frame(frame, self.numeric, self.categorical)
+        frame = base.copy()
+        frame["training_row_key"] = [str(x) for x in range(len(frame))]
+        frame.loc[0, "training_row_key"] = frame.loc[1, "training_row_key"]
+        with self.assertRaisesRegex(ValueError, "Training row keys"):
+            m.prepare_research_frame(frame, self.numeric, self.categorical)
+
+    def test_fold_configuration_parameters_fail_closed(self):
+        for kwargs in [{"max_iter": 0}, {"max_iter": 301},
+                       {"min_development_seasons": 0}, {"min_development_seasons": 1.5}]:
+            with self.subTest(kwargs=kwargs):
+                with self.assertRaises(ValueError):
+                    m.run_walk_forward(self.frame, self.numeric, self.categorical, **kwargs)
+
     def test_unknown_position_uses_past_only_median(self):
         ref = self.frame[self.frame.season == 2015].copy()
         example = ref.iloc[:2].copy()
