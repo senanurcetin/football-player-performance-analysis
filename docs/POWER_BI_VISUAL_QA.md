@@ -2,10 +2,16 @@
 
 **As of 17 October 2026.** The [historical visual QA log](archive/powerbi/POWER_BI_VISUAL_QA_HISTORY_20261017.md) preserves the chronological implementation details. For release state, see [Project status](PROJECT_STATUS.md).
 
+## 18 October 2026 static screenshot and KPI acceptance
+
+**KONTROL EDİLDİ — recorded images and comparable historical measures only.** Independently read the 17 October Power BI production screenshot artifacts and recomputed SHA-256 on all 13 committed images: **13/13 exact manifest matches**, all **2177 × 1229**. Matched player count 47,702, transfers 40,208, fee coverage 64.2%, scoring records 7,841 and decision-ready percentage 72.9% to independently documented historical figures. Full method and unmatched dimensions: [18 October screenshot/value audit](POWER_BI_HISTORICAL_VALUE_AUDIT_20261018.md).
+
+**DOĞRULANMADI:** Observed transfer label card **8,581** does not equal the old `fct_transfer_success_labels` documented row count **8,584** (3-row difference). These may be different filters/grains; do not assert a real data change or resolve the difference by inventing rows. The drillthrough captures visibly contain three error/placeholder tiles per page and no selected-player context. Nothing in the screenshot audit certifies fresh BigQuery data or current live Power BI interaction.
+
 ## What is verified
 
 - Actual Windows Power BI Desktop opened the [production-connected PBIP](../powerbi/workspace/FootballPlayerAnalysis/FootballPlayerAnalysis.pbip) and displayed imported KPI/chart data on nine presentation pages.
-- All 13 report screens were captured on 17 October, including 2 hidden drillthrough pages and 2 tooltips. See [real screenshot gallery](assets/screenshots/README.md) and [hash manifest](assets/screenshots/capture_manifest.json).
+- All 13 report screens were captured on 17 October, including 2 hidden drillthrough pages and 2 tooltips; their **13/13 SHA-256 hashes were independently checked on 18 October**. See [real screenshot gallery](assets/screenshots/README.md), [hash manifest](assets/screenshots/capture_manifest.json) and [value comparison](POWER_BI_HISTORICAL_VALUE_AUDIT_20261018.md).
 - Static PBIR binding/geometry audits and 158 Python tests passed during the documentation audit. Source tests are **not** live warehouse tests.
 - **Not verified:** new BigQuery production refresh and KPI reconciliation; owner signoff; selected-player drillthrough tests. Some unselected-player detail visuals contain placeholders/errors.
 
