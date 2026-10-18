@@ -20,7 +20,7 @@
 | 3 | P1 | Reproducible holdout evaluation package | Credential-free CLI pairs held-out `test_predictions.csv` with `metrics.json`, rejects inconsistent seasons/version/row counts, and emits SHA-256-backed JSON plus sample-governed CSV | Implemented on PR #79; latest artifact-provenance tests still require a full checkout run |
 | 4 | P0 | Integration tests and change reconciliation | Full Python unit suite and ML pipeline smoke test pass on a current checkout; stacked #79 reviewed only after #78; no modifications outside planned files | **BLOCKED:** complete repository checkout not available in this session |
 | 5 | P0 | Warehouse provenance and source freshness | Read-only authenticated BigQuery validation of source modification times, business event dates, model row grains, missingness and dashboard metrics; compare to documented historical June snapshot | **BLOCKED:** no authorized BigQuery execution |
-| 6 | P1 | Rolling-origin empirical backtest | An independent experimental refitting runner with strict train/tune/calibrate/test chronology, persistence and past-only position baselines is implemented and has 10 passing synthetic tests. **Actual empirical backtest remains blocked** | **SOURCE IMPLEMENTED; DATA RUN BLOCKED:** no authorized historical ML feature export |
+| 6 | P1 | Rolling-origin empirical backtest | An independent experimental refitting runner with strict train/tune/calibrate/test chronology, persistence and past-only position baselines is implemented and has 12 passing synthetic tests. **Actual empirical backtest remains blocked** | **SOURCE IMPLEMENTED; DATA RUN BLOCKED:** no authorized historical ML feature export |
 | 7 | P1 | Transfer outcome and coverage study | Quantify selection/coverage bias and 365-day observed outcome denominators; separate association from causal attribution | **BLOCKED:** warehouse data snapshot |
 | 8 | P0 | Native Power BI visual acceptance | Production-connected 13-page Desktop verification including selected player drillthrough, tooltips, source KPIs and refresh errors; record actual screenshots and owner signoff | **BLOCKED:** Power BI Desktop and owner validation |
 | 9 | P0 | Final quality gate | Execute existing opt-in CI on the accepted commit, attach evidence and only then update release status from HOLD | **NOT TRIGGERED**: prerequisites unmet |
@@ -40,6 +40,7 @@ python -m unittest discover -s tests -p 'test_ml_reliability.py' -v
 python -m unittest discover -s tests -p 'test_evaluate_ml_artifacts.py' -v
 python scripts/evaluate_ml_artifacts.py \
   --input artifacts/player_market_value/test_predictions.csv \
+  --metrics artifacts/player_market_value/metrics.json \
   --output-dir artifacts/player_market_value/offline_reliability \
   --min-rows 30 --replicates 500 --seed 42
 ```
@@ -61,4 +62,4 @@ Output artifacts are `reliability_summary.json` (model/version/season window, ob
 
 ## Merge dependency
 
-PR #79 was explicitly stacked on PR #78, integrating numeric safeguards and reliability diagnostics in the same training script and retaining both documentation sets. The GitHub comparison of #79 against #78 shows eight intended files, while #78 remains targeted to main. Review and validate #78 first; once accepted, retarget #79 to main and rerun the full regression suite. Both remain drafts until acceptance, with no release claims.
+PR #79 was explicitly stacked on PR #78, integrating numeric safeguards and reliability diagnostics in the same training script and retaining both documentation sets. The GitHub comparison of #79 against #78 includes the documented reliability code, research runner, tests and status files, while #78 remains targeted to main. Review and validate #78 first; once accepted, retarget #79 to main and rerun the full regression suite. Both remain drafts until acceptance, with no release claims.
