@@ -230,8 +230,10 @@ def validate_input_frame(frame: pd.DataFrame, frame_type: str) -> None:
     numeric_values = frame[numeric_columns].to_numpy(dtype=float)
     if np.isinf(numeric_values).any():
         raise ValueError(f"{frame_type} frame contains infinite numeric values.")
-    if frame_type == "training" and (frame[TARGET] <= 0).any():
-        raise ValueError("Training frame contains a non-positive target.")
+    if frame_type == "training":
+        target_values = frame[TARGET].to_numpy(dtype=float)
+        if not np.isfinite(target_values).all() or (target_values <= 0).any():
+            raise ValueError("Training targets must be finite and strictly positive.")
 
 
 def feature_contract() -> dict[str, object]:
@@ -435,8 +437,8 @@ def prediction_quality_status(frame: pd.DataFrame) -> pd.Series:
 def validate_predictions(
     predictions: pd.DataFrame, key_column: str, prediction_column: str
 ) -> None:
-    if predictions[key_column].duplicated().any():
-        raise ValueError(f"Duplicate prediction keys found in {key_column}.")
+    if predictions[key_column].isna().any() or predictions[key_column].duplicated().any():
+        raise ValueError(f"Missing or duplicate prediction keys found in {key_column}.")
     values = predictions[prediction_column].to_numpy(dtype=float)
     if not np.isfinite(values).all() or (values < 0).any():
         raise ValueError(f"Invalid values found in {prediction_column}.")
@@ -446,12 +448,17 @@ def validate_predictions(
         "prediction_lower_eur",
         "prediction_upper_eur",
     }
-    if interval_columns.issubset(predictions.columns):
+    present_interval_columns = interval_columns.intersection(predictions.columns)
+    if present_interval_columns and present_interval_columns != interval_columns:
+        raise ValueError("Prediction interval columns must be supplied together.")
+    if present_interval_columns:
         interval_widths = predictions["prediction_interval_eur"].to_numpy(dtype=float)
         lower = predictions["prediction_lower_eur"].to_numpy(dtype=float)
         upper = predictions["prediction_upper_eur"].to_numpy(dtype=float)
         if (
             not np.isfinite(interval_widths).all()
+            or not np.isfinite(lower).all()
+            or not np.isfinite(upper).all()
             or (interval_widths <= 0).any()
             or predictions["prediction_interval_band"].isna().any()
             or (lower < 0).any()
@@ -474,6 +481,21 @@ def value_band(values: pd.Series) -> pd.Series:
 def calibrate_prediction_intervals(
     actual: np.ndarray, predicted: np.ndarray, quantile: float = 0.9
 ) -> tuple[float, dict[str, float]]:
+    if not 0 < quantile < 1:
+        raise ValueError("Prediction interval quantile must be strictly between 0 and 1.")
+    actual = np.asarray(actual, dtype=float)
+    predicted = np.asarray(predicted, dtype=float)
+    if (
+        actual.ndim != 1
+        or predicted.ndim != 1
+        or len(actual) == 0
+        or len(actual) != len(predicted)
+        or not np.isfinite(actual).all()
+        or not np.isfinite(predicted).all()
+        or (actual <= 0).any()
+        or (predicted < 0).any()
+    ):
+        raise ValueError("Interval calibration requires matching, finite, nonempty value arrays.")
     absolute_error = np.abs(actual - predicted)
     default_interval = float(np.quantile(absolute_error, quantile, method="higher"))
     predicted_bands = value_band(pd.Series(predicted)).to_numpy()
