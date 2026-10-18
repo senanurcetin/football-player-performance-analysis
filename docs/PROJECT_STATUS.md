@@ -7,6 +7,12 @@
 
 This is the canonical record of verification status. Dated plans and incidents are preserved in the [historical archive](archive/README.md); their earlier acceptance statements do not supersede this page.
 
+## Documentation and repository research audit — 18 October 2026
+
+The active document navigation and technical descriptions were consolidated **on draft PR #79, not merged into `main`**. Three redundant/obsolete active handoffs (`FOOTBALL_INTELLIGENCE_PRODUCT.md`, `POWER_BI_PORTFOLIO_PRODUCTION_CONTRACT.md`, `ci-recovery.md`) were retired after their still-applicable native PBIR, design, data-provenance and CI safety requirements were moved into the existing canonical references. A previously missing [KPI dictionary](KPI_DICTIONARY.md) was added and sourced to actual DAX/dbt metric definitions. CI statements in [the runbook](RUNBOOK.md), [ML methodology](PLAYER_MARKET_VALUE_ML.md) and [CI policy](CI_RELEASE_GATE_POLICY.md) now distinguish manual GitHub validation, scheduled ML production and CircleCI final opt-in.
+
+**Bounded navigation QA:** 17 current canonical Markdown files were remotely checked on the feature branch against **87 relative Markdown links**, with **no missing known Markdown destinations or references to the three retired documents**. The existing [19 historical archive records](archive/README.md) were preserved. This is not a complete local repository run of `scripts/check_docs_integrity.py`; full repo tests and CI are still required.
+
 ## Visual capture comparison — 18 October 2026
 
 **KONTROL EDİLDİ (limited scope):** All **13/13 production screenshot PNGs** match the dated capture manifest SHA-256 and image-size records. Historical visual measures verified against the June BigQuery documentation: player dimension **47,702**, transfers **40,208**, known-fee coverage **64.2%**, current ML scoring population **7,841**, and decision-ready complement **72.9%**. This is **static historical screenshot/value reconciliation only**; details are recorded in [Power BI historical value audit](POWER_BI_HISTORICAL_VALUE_AUDIT_20261018.md).
