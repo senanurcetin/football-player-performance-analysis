@@ -39,7 +39,7 @@ All 12 raw sources use BigQuery table last-modified metadata. This is intentiona
 
 At the June 15, 2026 validation, all raw sources passed freshness and were approximately five days old.
 
-## Current Mart Row Counts
+## Historical mart row counts (June 2026 snapshot)
 
 | Model | Rows |
 | --- | ---: |
@@ -68,7 +68,7 @@ At the June 15, 2026 validation, all raw sources passed freshness and were appro
 | `fct_transfer_success_labels` | 8,584 |
 | `fct_club_risk_profile` | 5,714 |
 
-Row counts represent the BigQuery state at validation time and can change when raw data is refreshed.
+Row counts represent the **June 2026** BigQuery state at validation time; they can change when raw data is refreshed. They are **not** evidence of 18 October 2026 source freshness. Historical screenshot KPI comparison and exceptions are documented in [Power BI value audit](POWER_BI_HISTORICAL_VALUE_AUDIT_20261018.md).
 
 ## Transfer and Market Value Analysis Coverage
 
