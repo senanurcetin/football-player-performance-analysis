@@ -46,6 +46,13 @@ def prepare_research_frame(frame: pd.DataFrame, numeric: list[str], categorical:
     """Enforce provided historical feature contract; never impute the target."""
     if not numeric or len(set(numeric + categorical)) != len(numeric + categorical):
         raise ValueError("Feature contract must contain distinct nonempty numeric features")
+    forbidden = {
+        TARGET, "training_row_key", "player_id", "player_name",
+        "target_market_value_date", "current_market_value_in_eur",
+        "future_market_value_eur", "transfer_fee_eur",
+    }
+    if forbidden.intersection(numeric + categorical):
+        raise ValueError("Feature contract contains target or potential leakage fields")
     required = {"season", "player_id", TARGET, "previous_market_value_eur", "position", *numeric, *categorical}
     missing = sorted(required.difference(frame.columns))
     if missing:
