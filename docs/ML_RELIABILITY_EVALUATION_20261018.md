@@ -24,7 +24,25 @@ python -m unittest discover -s tests
 python scripts/evaluate_ml_artifacts.py --input artifacts/player_market_value/test_predictions.csv --output-dir artifacts/player_market_value/offline_reliability
 ```
 
-The new synthetic-only offline suites contain **19 regression tests**: nine for the temporal/bootstrap helper functions and ten for the standalone artifact auditor. All **19 passed** in the isolated Python environment using NumPy and pandas; this is **not** evidence that the whole GitHub repository suite or production integration passed. The full project suite, model training, dbt builds and BigQuery-backed reconciliation were **not** executed during this change. Existing local prediction artifacts are necessary to produce actual model-specific audit results; no synthetic metrics should be published as real football findings.
+The initial synthetic-only offline suites contain **21 regression tests** (nine helper and twelve artifact-lineage checks): nine for the temporal/bootstrap helper functions and ten for the standalone artifact auditor. Earlier isolated checks were reported for the helpers; the **new artifact-provenance tests and full repository suite still require a complete checkout run**. The separate walk-forward research suite has **10 locally executed PASS tests** using NumPy and pandas; this is **not** evidence that the whole GitHub repository suite or production integration passed. The full project suite, model training, dbt builds and BigQuery-backed reconciliation were **not** executed during this change. Existing local prediction artifacts are necessary to produce actual model-specific audit results; no synthetic metrics should be published as real football findings.
+
+## Refitted walk-forward research (offline)
+
+`scripts/walk_forward_research.py` is an **additional, separate research workflow**. It reads a caller-exported historical ML training feature CSV and the generated `feature_contract.json`. For each eligible year, it fits independent models on earlier seasons, tunes an ML/persistence blend on a later-but-still-past season, reserves the next season for interval calibration, and evaluates only on a further held-out season. The **same pre-calibration fitted model** is used for calibration and test inference, so calibration rows cannot enter its fit. A past-only positional median is a second benchmark.
+
+The workflow emits per-year sample size, MAE, WAPE, persistence skill, position-median MAE, a conservative finite-sample split-conformal residual radius, and **empirical** held-out interval coverage. No trained models, forecast marts or Power BI fields are published. It is an independent historical research estimator, **not the governed v5 production ensemble**. Its sklearn configuration differs from v5 and results must not be compared as a v5 champion release gate.
+
+With an already-authorized export of the governed `ml_player_market_value_training` feature table:
+
+```bash
+python -m unittest discover -s tests -p 'test_walk_forward_research.py' -v
+python scripts/walk_forward_research.py \
+  --input artifacts/player_market_value/historical_training_export.csv \
+  --feature-contract artifacts/player_market_value/feature_contract.json \
+  --output artifacts/player_market_value/rolling_origin_research.csv
+```
+
+This branch's **10 synthetic-only tests** were executed in an isolated environment with NumPy 2.3.5, pandas 2.2.3 and scikit-learn 1.8.0, all passing; they exercise chronology, no future-target contamination in earlier folds, the distinct calibration stage, actual refitting, input validation, baselines, confidence-interval rank and CLI manifest. This is **not** a genuine rolling-origin performance result, because authorized real feature data was not available. The runner forbids obvious target/identity/future data columns as features; preventing less-obvious leakage depends on the upstream dbt feature-contract and as-of-date audits.
 
 ## Interpretation and statistical limitations
 
