@@ -12,6 +12,7 @@ Use one canonical source per topic. Dated research and audit notes supply eviden
 | --- | --- | --- |
 | Delivery and verification | [Project status](PROJECT_STATUS.md) | Verified vs. outstanding; historical screenshot and ML evidence; release **REVIEW PENDING** |
 | Architecture | [Architecture and model catalog](ARCHITECTURE.md) | BigQuery/dbt lineage, stable grains and marts |
+| KPI contracts | [Governed KPI dictionary](KPI_DICTIONARY.md) | Population grains, time windows, rate denominators, NULL and percent conventions |
 | Data quality | [Data quality and validation](DATA_QUALITY.md) | Historical June 2026 counts, missingness and statistical limitations |
 | ML methodology | [Player market-value methodology](PLAYER_MARKET_VALUE_ML.md) | Production v5 historical baseline, time split, gates and uncertainty |
 | Power BI semantics | [Power BI modeling](POWER_BI_MODELING.md) | Production model, metric interpretation, DAX and nullable values |
