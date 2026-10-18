@@ -17,10 +17,10 @@
 | --- | --- | --- | --- | --- |
 | 1 | P0 | ML numeric-contract integrity | NaN/Inf, duplicate/missing keys and incomplete intervals fail closed; synthetic regression coverage | Draft PR #78 created; full repository suite not yet run |
 | 2 | P1 | Temporal and uncertainty foundations | Chronological candidate folds, player-cluster bootstrap CI, empirical interval coverage/width, group n | Draft PR #79; nine local helper tests passed |
-| 3 | P1 | Reproducible holdout evaluation package | Credential-free CLI reads versioned `test_predictions.csv`, validates numeric consistency, produces SHA-256-backed JSON and segmented CSV; small groups suppressed | Implemented on PR #79; ten additional synthetic CLI tests passed locally |
+| 3 | P1 | Reproducible holdout evaluation package | Credential-free CLI pairs held-out `test_predictions.csv` with `metrics.json`, rejects inconsistent seasons/version/row counts, and emits SHA-256-backed JSON plus sample-governed CSV | Implemented on PR #79; latest artifact-provenance tests still require a full checkout run |
 | 4 | P0 | Integration tests and change reconciliation | Full Python unit suite and ML pipeline smoke test pass on a current checkout; stacked #79 reviewed only after #78; no modifications outside planned files | **BLOCKED:** complete repository checkout not available in this session |
 | 5 | P0 | Warehouse provenance and source freshness | Read-only authenticated BigQuery validation of source modification times, business event dates, model row grains, missingness and dashboard metrics; compare to documented historical June snapshot | **BLOCKED:** no authorized BigQuery execution |
-| 6 | P1 | Rolling-origin empirical backtest | Fit/tune/calibrate strictly within each historical fold, compare persistence and a past-only cohort baseline, report season-by-season metrics and clustered uncertainty | **BLOCKED:** current authorized historical feature data and production execution |
+| 6 | P1 | Rolling-origin empirical backtest | An independent experimental refitting runner with strict train/tune/calibrate/test chronology, persistence and past-only position baselines is implemented and has 10 passing synthetic tests. **Actual empirical backtest remains blocked** | **SOURCE IMPLEMENTED; DATA RUN BLOCKED:** no authorized historical ML feature export |
 | 7 | P1 | Transfer outcome and coverage study | Quantify selection/coverage bias and 365-day observed outcome denominators; separate association from causal attribution | **BLOCKED:** warehouse data snapshot |
 | 8 | P0 | Native Power BI visual acceptance | Production-connected 13-page Desktop verification including selected player drillthrough, tooltips, source KPIs and refresh errors; record actual screenshots and owner signoff | **BLOCKED:** Power BI Desktop and owner validation |
 | 9 | P0 | Final quality gate | Execute existing opt-in CI on the accepted commit, attach evidence and only then update release status from HOLD | **NOT TRIGGERED**: prerequisites unmet |
@@ -29,7 +29,7 @@
 
 **PR #78 — Numeric validation:** `scripts/train_player_market_value.py`, `tests/test_ml_numeric_contract.py`, and the methodology note. Does not claim new training results.
 
-**PR #79 — Model reliability:** `scripts/ml_reliability.py`, `scripts/evaluate_ml_artifacts.py`, `tests/test_ml_reliability.py`, `tests/test_evaluate_ml_artifacts.py`, evaluation artifact wiring and methodology notes. It does not train alternative models.
+**PR #79 — Model reliability:** `scripts/ml_reliability.py`, `scripts/evaluate_ml_artifacts.py`, `scripts/walk_forward_research.py`, their three regression modules, held-out evaluation artifact wiring and methodology notes. The governed v5 production model is unchanged. The new research-only walk-forward runner fits independent historical estimator instances but does not publish or promote them.
 
 ### Offline report execution
 
