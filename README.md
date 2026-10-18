@@ -9,7 +9,7 @@
 
 End-to-end football intelligence, from Transfermarkt data and governed BigQuery/dbt models to leakage-aware market-value modeling, observed transfer outcomes and **13 editable Power BI report pages**.
 
-**[Current project status](docs/PROJECT_STATUS.md)** · **[Documentation index](docs/README.md)**
+**[Current project status](docs/PROJECT_STATUS.md)** · **[Documentation index](docs/README.md)** · **[Governed KPI dictionary](docs/KPI_DICTIONARY.md)**
 
 **[Open production Power BI project](powerbi/workspace/FootballPlayerAnalysis/FootballPlayerAnalysis.pbip)** · **[View all genuine screenshots](docs/assets/screenshots/README.md)** · **[Architecture](docs/ARCHITECTURE.md)** · **[Model methodology](docs/PLAYER_MARKET_VALUE_ML.md)**
 
@@ -134,7 +134,7 @@ python scripts/verify_dashboard_screenshots.py
 python -m unittest discover -s tests
 ```
 
-**Scope:** Static tests validate the source and stored screenshots; they do not certify current BigQuery data, Power BI interactions or public report publishing. See the [runbook](docs/RUNBOOK.md) and [visual QA requirements](docs/POWER_BI_VISUAL_QA.md).
+**Scope:** Static tests validate source and stored screenshots; they do not certify current BigQuery data or Power BI interactions. The **18 October 2026 documentation audit** removed obsolete product/portfolio/CI-recovery handoffs, created [KPI contracts](docs/KPI_DICTIONARY.md), and reconciled actual CI workflow triggers in the [runbook](docs/RUNBOOK.md). Historical screenshot values were checked but the three-row 365d discrepancy and full runtime acceptance remain open. No productization or public deployment is planned. See the [runbook](docs/RUNBOOK.md) and [visual QA requirements](docs/POWER_BI_VISUAL_QA.md).
 
 ## Repository structure
 
