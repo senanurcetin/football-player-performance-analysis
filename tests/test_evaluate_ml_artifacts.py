@@ -169,6 +169,19 @@ class EvaluationArtifactContract(unittest.TestCase):
                 with self.assertRaises(ValueError):
                     validate_evaluation_provenance(synthetic_predictions(), metadata)
 
+    def test_sparse_baseline_error_is_explicitly_unestimable_not_an_exception(self):
+        frame = synthetic_predictions()
+        frame["baseline_prediction_eur"] = frame["target_market_value_eur"]
+        frame.loc[0, "baseline_prediction_eur"] -= 10
+        summary, segments = evaluate_predictions(frame, min_rows=2, replicates=200, seed=42)
+        bootstrap = summary["cluster_bootstrap_mae_skill"]
+        self.assertEqual(bootstrap["bootstrap_ci_status"], "not_estimable_undefined_resamples")
+        self.assertGreater(bootstrap["undefined_bootstrap_resamples"], 0)
+        self.assertIsNone(bootstrap["bootstrap_ci_lower_pct"])
+        self.assertIsNone(bootstrap["bootstrap_ci_upper_pct"])
+        json.dumps(summary, allow_nan=False)
+        self.assertEqual(segments["row_count"].sum(), 4 * len(frame))
+
     def test_cli_writes_hashed_only_aggregate_outputs(self):
         frame = synthetic_predictions()
         with tempfile.TemporaryDirectory() as tmp:
