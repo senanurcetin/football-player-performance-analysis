@@ -66,6 +66,25 @@ class Transfer365dSourceContractTests(unittest.TestCase):
         self.assertIn("[observedtransfers(365d)]", dax)
         self.assertIn("[eligibletransfers(365d)]", dax)
 
+    def test_reference_dax_matches_native_maturity_and_coverage_contract(self) -> None:
+        """Illustrative DAX must not silently contradict production TMDL."""
+        ref = (ROOT / "powerbi/MEASURES.dax").read_text(encoding="utf-8-sig")
+        eligible = normalized(ref.split("Eligible 365d Transfers =", 1)[1]
+                              .split("Observed 365d Transfers =", 1)[0])
+        observed = normalized(ref.split("Observed 365d Transfers =", 1)[1]
+                              .split("365d Outcome Coverage % =", 1)[0])
+        for measure in (eligible, observed):
+            self.assertIn("today()", measure)
+            self.assertIn("source_latest_valuation_date", measure)
+            self.assertIn("target_365d_date]+30", measure)
+            self.assertIn("<=sourcecutoff", measure)
+        self.assertNotIn("has_365d_outcome]=true()", eligible)
+        self.assertIn("has_365d_outcome]=true()", observed)
+        self.assertIn(
+            "divide([observed365dtransfers],[eligible365dtransfers])",
+            normalized(ref),
+        )
+
     def test_dbts_success_labels_are_not_maturity_filtered(self) -> None:
         sql = normalized(self.label_sql)
         self.assertIn("whereoutcomes.has_365d_outcome", sql)
