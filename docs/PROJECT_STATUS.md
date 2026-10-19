@@ -13,6 +13,12 @@ The active document navigation and technical descriptions were consolidated thro
 
 **Extended GitHub-tree navigation QA (19 October 2026):** fetched the recursive tree for the pre-merge PR #79 source snapshot (**2,277 files, 3,424 tree entries**) and remotely inspected **all 48 tracked Markdown files** and **242 internal Markdown, image and directory links**; all link destinations resolve to tracked files or directories (three initial directory-looking exceptions were confirmed to be valid folders). The [19 historical archive files](archive/README.md) remain preserved. This is a real source-tree navigation audit but **not** an execution of `scripts/check_docs_integrity.py` or the complete repository test suite.
 
+## Valuation source event-grain hardening — 19 October 2026
+
+Draft follow-up research change: the **training and scoring dbt models** now derive prior values from a common, positive and unambiguous player-date valuation event instead of raw possibly duplicate source rows. The training target matches on player, date **and EUR amount**, protecting unique player-season keys against duplicate same-day valuations. Disputed EUR amounts are excluded rather than arbitrarily selected, while ambiguous competition IDs are missing. A separate read-only SQL profile measures affected records. Isolated SQLite reconstruction of the grouping and label-join rules passed **5/5 synthetic tests**; **no actual BigQuery sample, execution, model retraining or full repository test result** has been measured. See [event-grain audit](ML_VALUATION_EVENT_GRAIN_AUDIT_20261019.md).
+
+**Owner scope instruction:** Power BI was accepted by the user for this workstream and is no longer being developed here. This acknowledgement does not imply new Desktop or live source verification. Remaining engineering priorities focus on ML reliability, dbt lineage and warehouse data quality.
+
 ## ML as-of data quality improvements — 19 October 2026
 
 **Source merged:** [PR #81](https://github.com/senanurcetin/football-player-performance-analysis/pull/81) landed on `main` at `337dd2d48e0edaae9ee8f6b7bd6f85d7e21c616a` with `[skip ci]`. This adds two unexecuted, read-only dbt event-time tests, one unexecuted lineage audit, and enhanced Python input/season contracts. An isolated synthetic reconstruction passed **4 tests** and eight remote SQL/source-contract checks passed. The **full repository suite and authorized BigQuery tests were not run** during integration; source merge does not itself approve empirical model performance or source freshness.
