@@ -69,6 +69,41 @@ class MarketValueNumericContract(unittest.TestCase):
                 with self.assertRaises(ValueError):
                     validate_input_frame(frame, "training")
 
+    def test_invalid_seasons_rejected_before_time_split(self) -> None:
+        for kind in ("training", "scoring"):
+            for invalid in [None, np.nan, np.inf, -np.inf, 2024.5, 0, -1, "invalid"]:
+                with self.subTest(kind=kind, season=invalid):
+                    frame = synthetic_features(kind)
+                    frame["season"] = frame["season"].astype(object)
+                    frame.loc[0, "season"] = invalid
+                    with self.assertRaisesRegex(ValueError, "seasons"):
+                        validate_input_frame(frame, kind)
+
+    def test_blank_keys_rejected_in_training_and_scoring(self) -> None:
+        for kind, column in [
+            ("training", "training_row_key"),
+            ("scoring", "scoring_row_key"),
+        ]:
+            for invalid in ["", "   "]:
+                with self.subTest(kind=kind, key=invalid):
+                    frame = synthetic_features(kind)
+                    frame.loc[0, column] = invalid
+                    with self.assertRaisesRegex(ValueError, "invalid keys"):
+                        validate_input_frame(frame, kind)
+
+    def test_negative_prior_market_value_rejected_but_missing_allowed(self) -> None:
+        for kind in ("training", "scoring"):
+            frame = synthetic_features(kind)
+            frame["previous_market_value_eur"] = frame[
+                "previous_market_value_eur"
+            ].astype(float)
+            frame.loc[0, "previous_market_value_eur"] = -1
+            with self.subTest(kind=kind):
+                with self.assertRaisesRegex(ValueError, "negative prior"):
+                    validate_input_frame(frame, kind)
+            frame.loc[0, "previous_market_value_eur"] = np.nan
+            validate_input_frame(frame, kind)
+
     def test_infinite_scoring_features_are_rejected(self) -> None:
         for invalid in [np.inf, -np.inf]:
             with self.subTest(invalid=invalid):
