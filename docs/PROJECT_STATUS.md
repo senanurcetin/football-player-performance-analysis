@@ -13,6 +13,10 @@
 
 ## Kaggle execution evidence hardening — 19 October 2026
 
+**Merged source update:** [PR #87](https://github.com/senanurcetin/football-player-performance-analysis/pull/87) merged to `main` at commit `dda08054514739081f0c7ebe4ec112695ed0ea6e` using `[skip ci]`. This updates the notebook and portable runner but **does not start a Kaggle notebook or a hosted CI job**. Offline runner's four focused tests passed locally in isolation; the actual Football repository full-suite and Kaggle execution remain **NOT RUN**.
+
+
+
 The independent offline runner now fails closed if `git rev-parse HEAD` cannot provide a valid **40-digit** commit SHA or when the checkout does not match the pinned `--expected-commit`. Both notebook verification stages use the same captured commit SHA. Two additional targeted runner regression tests were added. The Kaggle CPU launch procedure and output ZIP location are documented in [portable verification runbook](REPRODUCIBLE_OFFLINE_VERIFICATION_20261019.md). **Actual Kaggle kernel execution is still NOT VERIFIED**: this ChatGPT session has no Kaggle execution connector, Kaggle credentials or outbound DNS to launch a notebook. No hosted CI, BigQuery or Power BI interaction was initiated.
 
 ## Desktop Commander quota workaround — 19 October 2026
