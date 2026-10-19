@@ -40,7 +40,7 @@
 football-player-performance-analysis/
 ├── models/                 # staging / intermediate / marts / ml (dbt)
 ├── snapshots/ tests/       # dbt snapshots, singular SQL and Python tests
-├── analyses/ macros/ seeds/# read-only research SQL and dbt project structure
+├── analyses/ macros/ seeds/ # read-only SQL and dbt structural directories
 ├── scripts/ notebooks/    # local Python tools and optional Colab/Kaggle
 ├── powerbi/
 │   ├── workspace/          # actual editable PBIP production source
