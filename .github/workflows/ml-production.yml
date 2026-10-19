@@ -1,9 +1,15 @@
 name: ML Production
 
+# Research release discipline: never schedule credentialed model publication.
+# This job is an explicit final-stage manual action, not a routine CI check.
 on:
-  schedule:
-    - cron: "0 5 * * 1"
   workflow_dispatch:
+    inputs:
+      confirm_final_release:
+        description: "I explicitly approve billable BigQuery work and model publication after source/Power BI/CI review"
+        required: true
+        default: false
+        type: boolean
 
 permissions:
   contents: read
@@ -14,6 +20,8 @@ concurrency:
 
 jobs:
   train-score-publish:
+    # Both an opt-in repository variable AND per-run confirmation are required.
+    if: vars.ENABLE_ML_PRODUCTION == 'true' && inputs.confirm_final_release == true
     runs-on: ubuntu-latest
     timeout-minutes: 45
     env:

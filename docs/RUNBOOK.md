@@ -6,7 +6,7 @@
 
 This runbook describes safe, reproducible **analytics-engineering development, validation and documentation** of the dbt/ML project. It does not authorize productization, public publishing, or paid cloud processing.
 
-**Operating state (18 October 2026):** GitHub `dbt CI` is `workflow_dispatch`-only and additionally requires `ENABLE_GITHUB_ACTIONS_CI=true`; its cloud validation requires `ENABLE_BIGQUERY_CI=true` and BigQuery credentials. CircleCI jobs are gated by `run_final_ci=true` and are final-stage opt-in. The separate `ML Production` Actions workflow still defines a **weekly Monday 05:00 UTC schedule** plus manual dispatch; unlike dbt CI, it has no explicit `ENABLE_GITHUB_ACTIONS_CI` guard. This scheduled configuration may cause billed BigQuery work when credentials are configured. Confirm authorization, budget and GitHub workflow status before enabling or running it. No October 2026 production check is implied by these source definitions.
+**Operating state (18 October 2026):** GitHub `dbt CI` is `workflow_dispatch`-only and additionally requires `ENABLE_GITHUB_ACTIONS_CI=true`; its cloud validation requires `ENABLE_BIGQUERY_CI=true` and BigQuery credentials. CircleCI jobs are gated by `run_final_ci=true` and are final-stage opt-in. **Updated 19 October 2026:** GitHub `ML Production` no longer has a weekly schedule. It is manual dispatch only and additionally requires both `ENABLE_ML_PRODUCTION=true` as a repository variable and `confirm_final_release=true` on the actual dispatch. On 19 October at 10:26 UTC an earlier **scheduled** workflow attempted to run but failed at the `GCP_SERVICE_ACCOUNT_JSON` nonempty check, before dbt, model fitting or publishing. This was independently verified in GitHub job steps. The failed workflow is not a release or a data-quality PASS.
 
 ## Prerequisites
 
@@ -118,7 +118,7 @@ Local model artifacts and prediction CSV files are written under `artifacts/play
 
 Before a Power BI refresh, confirm that `assert_ml_scoring_readiness` passes, review `ml_player_market_value_feature_drift`, and filter decision-facing predictions to `prediction_quality_status in ('high', 'medium')`. Limited-quality rows intentionally publish the governed baseline fallback and belong on the data-quality page.
 
-The pipeline validates all blocking release gates before publishing any prediction table. The GitHub Actions `ML Production` workflow is configured for Monday 05:00 UTC and manual dispatch, but **do not trigger it merely for documentation review**: it builds warehouse models and may publish tables. Running it requires explicit data permissions, budget approval, and separate release-gate acceptance. Documentation and offline source tests should run first.
+The pipeline validates all blocking release gates before publishing any prediction table. The GitHub Actions `ML Production` workflow was changed on 19 October 2026 to **manual dispatch only with double confirmation**, not a weekly schedule. **Do not trigger it for documentation or pre-release test review**: it builds warehouse models and may publish tables. Running it requires explicit data permissions, budget approval, and separate release-gate acceptance. Documentation and offline source tests should run first.
 
 Verify a local or downloaded governed artifact with:
 
@@ -195,7 +195,7 @@ Authenticated dbt commands (`dbt source freshness`, `dbt snapshot`, `dbt build`,
 
 The actual `.github/workflows/dbt-ci.yml` is **manual dispatch only**, not a daily, push-triggered or PR-triggered workflow. The `offline-preflight` job is disabled unless `ENABLE_GITHUB_ACTIONS_CI=true`; its `validate` job additionally requires `ENABLE_BIGQUERY_CI=true` and the authorized `GCP_SERVICE_ACCOUNT_JSON` secret. Because the present event is manual, any SQL branch conditioned on `github.event_name == 'pull_request'` must **not** be described as having run.
 
-The separate `.github/workflows/ml-production.yml` is scheduled weekly and also supports manual dispatch. It runs authenticated dbt and ML publication steps when eligible and configured; this can incur processing charges. This is **not** the same opt-in gate as the `dbt CI` workflow.
+The separate `.github/workflows/ml-production.yml` allows **only manual dispatch**, gated by `ENABLE_ML_PRODUCTION=true` and per-run `confirm_final_release=true`. This pipeline may incur BigQuery charges and publish artifacts and must run **only after all model, warehouse, Power BI and final CI reviews are approved**. It is distinct from the `dbt CI` and CircleCI test gates.
 
 `.circleci/config.yml` sets `run_final_ci=false` by default and guards all nine jobs behind an explicit final opt-in. See the [canonical CI policy](CI_RELEASE_GATE_POLICY.md). Credentials must be stored only in authorized GitHub secrets or local ignored files, never checked into Markdown/YAML. Treat untriggered or skipped jobs as **NOT RUN**, not PASS.
 
