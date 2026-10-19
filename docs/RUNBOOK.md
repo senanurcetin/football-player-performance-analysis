@@ -161,6 +161,10 @@ dbt docs serve
 Generated files under `target/` are local artifacts and should not be committed.
 After generation, `python scripts/check_documentation_coverage.py` verifies that every model and physical model column has a description.
 
+## Quota-free independent CPU verification
+
+When Desktop Commander is unavailable, use the [Colab/Kaggle verification notebook](../notebooks/nexus_football_offline_verification.ipynb) and [offline runbook](REPRODUCIBLE_OFFLINE_VERIFICATION_20261019.md). In an independent CPU checkout, execute `python scripts/run_offline_verification.py --phases source ml` and, only if green, `--phases full`. Keep the generated SHA-tagged JSON reports. The workflow does not execute BigQuery, hosted CI or model publication, and cloud-source verification still requires an authorized separate run.
+
 ## Research validation and controlled integration
 
 Local source checks should not cause a paid BigQuery build. From a complete checkout and a suitable Python environment:
