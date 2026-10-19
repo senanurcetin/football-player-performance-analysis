@@ -1,6 +1,6 @@
 # Operations Runbook
 
-> **Updated 19 October 2026:** SentinelX independently executed full Python **243/243 PASS**, the nine-phase offline runner and nonauthenticated dbt parse. These are **real source test results**, not proof of authenticated BigQuery freshness or historical model accuracy. See [executed evidence](SENTINELX_OFFLINE_VERIFICATION_20261019.md) and [current project status](PROJECT_STATUS.md).
+> **Updated 19 October 2026:** SentinelX independently executed full Python **243/243 baseline, 246/246 post-cleanup, and 249/249 after the declared-doc gate PASS**, the nine-phase offline runner and nonauthenticated dbt parse. These are **real source test results**, not proof of authenticated BigQuery freshness or historical model accuracy. See [executed evidence](SENTINELX_OFFLINE_VERIFICATION_20261019.md) and [current project status](PROJECT_STATUS.md).
 
 ## Purpose
 
@@ -159,7 +159,7 @@ dbt docs serve
 ```
 
 Generated files under `target/` are local artifacts and should not be committed.
-After generation, `python scripts/check_documentation_coverage.py` verifies that every model and physical model column has a description.
+After generation, `python scripts/check_documentation_coverage.py` verifies that every model and physical model column has a description. Without BigQuery or a generated `target/catalog.json`, run `python scripts/check_declared_documentation.py` to check source SQL/YAML descriptions (46 models and 878 declared columns at the 19 October audit). **Offline declared coverage is not physical warehouse coverage**, so the catalog-based gate remains open.
 
 **Kaggle update, 19 October 2026:** Use `notebooks/nexus_football_offline_verification.ipynb` with CPU and Internet enabled; the report runner now rejects missing or mismatched full commit SHAs. A valid test report must include `source_commit_verification.status=passed` in addition to `overall_status=PASS`. See [Kaggle instructions](REPRODUCIBLE_OFFLINE_VERIFICATION_20261019.md).
 
@@ -178,6 +178,7 @@ Local source checks should not cause a paid BigQuery build. From a complete chec
 ```bash
 python -m compileall -q scripts
 python scripts/check_docs_integrity.py
+python scripts/check_declared_documentation.py
 python scripts/check_offline_ci.py
 python -m unittest discover -s tests
 python scripts/check_powerbi_project.py
