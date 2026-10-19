@@ -20,9 +20,9 @@ with training as (
         countif(target_market_value_eur is null or target_market_value_eur <= 0)
             as nonpositive_or_missing_targets,
         countif(feature_last_appearance_date >= target_market_value_date)
-            as future_or_same_day_appearances,
+            as invalid_appearance_timestamps,
         countif(previous_market_value_date >= target_market_value_date)
-            as future_or_same_day_prior_values,
+            as invalid_prior_valuation_timestamps,
         countif(previous_market_value_eur < 0) as negative_prior_values,
         countif(previous_market_value_eur is null) as missing_prior_values,
         countif(prior_valuation_count < 0) as negative_valuation_counts
@@ -40,9 +40,9 @@ scoring as (
         max(prediction_as_of_date) as latest_target_or_asof_date,
         cast(null as int64) as nonpositive_or_missing_targets,
         countif(feature_last_appearance_date > prediction_as_of_date)
-            as future_or_same_day_appearances,
+            as invalid_appearance_timestamps,
         countif(previous_market_value_date > prediction_as_of_date)
-            as future_or_same_day_prior_values,
+            as invalid_prior_valuation_timestamps,
         countif(previous_market_value_eur < 0) as negative_prior_values,
         countif(previous_market_value_eur is null) as missing_prior_values,
         countif(prior_valuation_count < 0) as negative_valuation_counts
