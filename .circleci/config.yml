@@ -28,6 +28,16 @@ jobs:
           name: Check dbt YAML and model Jinja sources
           command: python scripts/check_offline_ci.py
       - run:
+          name: Validate declared dbt documentation (offline)
+          command: python scripts/check_declared_documentation.py
+      - run:
+          name: Validate documentation links and repository hygiene
+          command: |
+            python scripts/check_docs_integrity.py
+            python -m unittest discover -s tests -p 'test_docs_integrity.py' -v
+            python -m unittest discover -s tests -p 'test_repository_structure.py' -v
+            python -m unittest discover -s tests -p 'test_dbt_declared_documentation.py' -v
+      - run:
           name: Validate real PBIR page registry and native chart design
           command: |
             python -m unittest discover -s tests -p 'test_powerbi_audit.py' -v
