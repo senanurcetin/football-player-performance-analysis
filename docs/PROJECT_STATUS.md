@@ -2,6 +2,8 @@
 
 **As of 19 October 2026.** Scope: research-grade football analytics, dbt, historical market-value modeling and existing Power BI; **no productization**. This is the **single current acceptance decision**. Earlier dated documents are historical source evidence, not independent current release approvals.
 
+**Final documentation/layout candidate (19 October 2026):** After consolidating the active documentation index, status, CI and ML-methodology language, three new repository-hygiene tests were added. The isolated Windows checkout at `fcb66f72e27dfdd2178e41a31b67749e6f26005b` passed **246/246 Python tests** (including all three new structure checks), and its exact-SHA **nine-stage offline runner reported PASS**. The structure audit found **no tracked temporary artifacts, generated caches, or exact duplicate active Markdown documents**. Original historical Power BI audit records were retained. These are source/structure checks, not authenticated BigQuery table execution.
+
 **Decision: REVIEW PENDING.** Source integration, full Python tests, dbt compilation/parse and documentation checks **PASS**; authenticated BigQuery checks and revised **real-data** historical ML evaluation **have not run**. The owner has accepted the existing Power BI workstream, but the current warehouse reconciliation has not been verified. Final hosted CI has **not** been triggered.
 
 ## Verification record — executed, not inferred
