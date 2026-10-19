@@ -35,6 +35,8 @@
 - Group aggregations must be weighted by underlying numerator/denominator or underlying facts, **not blindly averaged over differently sized cohorts**, unless the result is explicitly labeled an unweighted average of group rates.
 - Player profiles and past performances must not be used as post-transfer causal controls without appropriate identification design. Historical valuation sources are estimates, not transaction prices.
 
+**Reference/production consistency:** `powerbi/MEASURES.dax` is guidance and does not override native PBIR/TMDL. On draft PR #79 its 365d formulas were synchronized with the production maturity-filtered measures. The new `tests/test_transfer_365d_source_contract.py` protects both from future divergence, pending complete checkout test execution.
+
 ## Source precedence and audit commands
 
 1. Native semantic logic: [`powerbi/MEASURES.dax`](../powerbi/MEASURES.dax) and the actual production PBIR's field bindings, [`models/semantic.yml`](../models/semantic.yml), dbt model SQL and dbt schema tests.
