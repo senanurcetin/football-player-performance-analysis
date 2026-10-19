@@ -22,11 +22,19 @@
 | Player Market Value Prediction: scored players | **7,841** | ML current scoring rows **7,841** | **MATCH — checked** |
 | Player Market Value Prediction: decision-ready | **72.9%** | Historical limited-quality share **27.09%**, complement **72.91%** | **MATCH at displayed rounding — checked** |
 | Transfer Success 365d: visible rate | **8,581 observed / 36,571 eligible = 23.46%**, shown as **23%** | The denominator is *not* documented as the same fixed-horizon mart grain | **INTERNAL DISPLAY CONSISTENCY checked; cross-mart match NOT established** |
-| Transfer Success 365d: observed rows | **8,581** in visual | **8,584** historical `fct_transfer_success_labels` rows | **3-record difference — unresolved**. May be filter/relationship/refresh effects; no cause asserted |
+| Transfer Success 365d: observed rows | **8,581** in visual (fixed-horizon DAX, matured outcomes) | **8,584** historical `fct_transfer_success_labels` rows (all rows with a 365d outcome) | **DIFFERENT DEFINED POPULATIONS — source-measure semantics confirmed; exact 3-row explanation requires source readback** |
 | Transfer Success 365d: eligible population | **36,571** in visual | `fct_transfer_fixed_horizon_outcomes` has **39,780** total historical transfers | **Different documented grains/filters; no equality asserted** |
 | ML Model Reliability: feature count | **24** | 16 numeric + 8 categorical configured by `scripts/train_player_market_value.py` | **MATCH — checked** |
 | ML Model Reliability: “Highest R²” / “Lowest WAPE” | **0.999** / **1.0** | Historical overall held-out R² **0.9756** / WAPE **12.51%** | **Not comparable:** screenshot explicitly shows extrema across segments; source document describes overall ensemble. Neither is proof of model improvement |
 | Player Performance: 14,163 players | **14,163** in performance view | Player dimension **47,702** | **Not comparable** without confirming active-performance population/filter definitions |
+
+## Static investigation of the 365-day three-record gap (19 October 2026)
+
+The **actual native production PBIR** has different definitions:
+
+- The screenshot's observed counter binds to `fct_transfer_fixed_horizon_outcomes[Observed Transfers (365d)]` (page visual `a7e40000000000000002`). That DAX counts **distinct transfer keys** only when `has_365d_outcome = TRUE` and `target_365d_date + 30 days <= MIN(TODAY(), MAX(source_latest_valuation_date))`. The eligible counter uses that same **as-of-source maturity cutoff** but does not require an observed outcome (page visual `a7e40000000000000001`). The coverage card divides those two counts.
+- By contrast, `models/marts/fct_transfer_success_labels.sql` selects every `fct_transfer_fixed_horizon_outcomes` record with `has_365d_outcome`, **without that source-maturity cutoff**. Thus **8,581 vs. 8,584 is not an apples-to-apples comparison**. The filter difference is conclusively established in versioned source. Whether it accounts for exactly three rows requires a governed read-only query and identical source/visual filter/as-of conditions.
+- [The read-only SQL diagnostic](../analyses/audit_transfer_365d_capture_20261018.sql) now reproduces the **actual DAX maturity rule** for a configurable snapshot date (default 2026-10-17), reporting distinct eligible, observed, success-labelled, and *labelled-but-not-matured* transfer populations by position. Its output has **not been executed** against BigQuery; do not assert that the three records have been identified.
 
 Values under different population filters are not proof of changed input records. In particular, **do not silently replace 8,581 with 8,584 or mark 365-day label counts reconciled** without inspecting `fct_transfer_success_labels`, downstream Power BI relationships, visual/slicer filters and capture/warehouse snapshot dates.
 
@@ -36,7 +44,7 @@ Values under different population filters are not proof of changed input records
 | --- | --- |
 | Screenshot files unchanged against manifest | **KONTROL EDİLDİ — 13/13** |
 | Comparable historical KPI values in screenshot vs documentation | **KONTROL EDİLDİ — matches listed above** |
-| 365-day transfer-success full population reconciliation | **BEKLİYOR — 3-row difference** |
+| 365-day transfer-success full population reconciliation | **DEFINITION CHECKED, ROW-LEVEL OPEN — DAX maturity filter differs from dbt labels; 3-row composition unverified** |
 | Power BI Desktop navigation, player-selected drillthrough and tooltip invocation | **BEKLİYOR — desktop runtime unavailable** |
 | Two screenshot player-detail error panels / unselected state | **HATA GÖZLEMLENDİ — not accepted** |
 | Fresh BigQuery marts, latest source timestamps, row-grain reconciliation and live KPI testing | **DOĞRULANMADI — no authorized BigQuery runtime exposed** |
@@ -45,7 +53,7 @@ Values under different population filters are not proof of changed input records
 ## Reproduction when source access returns
 
 1. Refresh `football_mart` in a governed, explicitly authorized and cost-controlled BigQuery environment; record as-of time, source modification/event dates, project, commit and relevant row counts.
-2. Compile and run the **read-only** dbt diagnostic [`analyses/audit_transfer_365d_capture_20261018.sql`](../analyses/audit_transfer_365d_capture_20261018.sql) using an authorized BigQuery profile. Compare `COUNT(*)` from `fct_transfer_success_labels` against **the exact filtered row set Power BI uses**, not unrelated fixed-horizon populations; isolate the three missing/extra keys via anti-joins and document filter reasons and historical as-of dates.
+2. Compile and run the **read-only** dbt diagnostic [`analyses/audit_transfer_365d_capture_20261018.sql`](../analyses/audit_transfer_365d_capture_20261018.sql) with an authorized BigQuery profile and the 17 October 2026 capture as-of date. Compare the **distinct matured DAX transfer-key set** against unfiltered `fct_transfer_success_labels` keys, isolate any difference, and document source snapshot, timezone, filters and row keys. An as-of date alone does not recreate a historical overwritten warehouse snapshot.
 3. Confirm 365-day observed positive labels, coverage denominator and 20-percentage-point increase rule.
 4. Open the existing production-connected PBIP, check both player-selected detail pages (remove visual error states) and actual tooltip behavior; capture evidence and obtain the author's acceptance.
 
