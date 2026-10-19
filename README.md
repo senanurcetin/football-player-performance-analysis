@@ -15,7 +15,7 @@ End-to-end football intelligence, from Transfermarkt data and governed BigQuery/
 
 ![Nine real NEXUS football dashboard views](docs/assets/screenshots/NEXUS_Football_Page_Gallery.png)
 
-> **Current verification — 19 October 2026:** Independent Windows SentinelX checkout: **246/246 Python tests PASS** after repository structure/documentation cleanup (**243/243 on the earlier baseline**), **47/47 ML tests PASS**, offline dbt parse **46 models / 243 declared dbt tests** PASS. The owner previously accepted the Power BI workstream; 13 historical screenshots remain available, but **authenticated BigQuery freshness, real-data model backtesting and final CircleCI are not verified**. The decision remains **REVIEW PENDING**. See [dated executed evidence](docs/SENTINELX_OFFLINE_VERIFICATION_20261019.md) and [remaining gates](docs/PROJECT_STATUS.md).
+> **Current verification — 19 October 2026:** Independent Windows SentinelX checkout: **249/249 Python tests PASS** after offline documentation checks were extended (**246/246 after the earlier cleanup; 243/243 on the initial baseline**), **47/47 ML tests PASS**, offline dbt parse **46 models / 243 declared dbt tests** PASS. The owner previously accepted the Power BI workstream; 13 historical screenshots remain available, but **authenticated BigQuery freshness, real-data model backtesting and final CircleCI are not verified**. The decision remains **REVIEW PENDING**. See [dated executed evidence](docs/SENTINELX_OFFLINE_VERIFICATION_20261019.md) and [remaining gates](docs/PROJECT_STATUS.md).
 
 ## Project origin — Workintech team project
 
@@ -127,6 +127,7 @@ Offline source checks and screenshot artifact integrity:
 
 ```bash
 python scripts/check_powerbi_project.py
+python scripts/check_declared_documentation.py  # YAML declarations only, not physical BigQuery columns
 python scripts/check_powerbi_offline_demo.py
 python scripts/audit_powerbi_visuals.py
 python scripts/audit_powerbi_layout.py
@@ -134,7 +135,7 @@ python scripts/verify_dashboard_screenshots.py
 python -m unittest discover -s tests
 ```
 
-**Scope:** Static tests validate source and stored screenshots; they do not certify current BigQuery data or Power BI interactions. The **18 October 2026 documentation audit** removed obsolete product/portfolio/CI-recovery handoffs, created [KPI contracts](docs/KPI_DICTIONARY.md), and reconciled actual CI workflow triggers in the [runbook](docs/RUNBOOK.md). Historical screenshot values were checked but the three-row 365d discrepancy and full runtime acceptance remain open. No productization or public deployment is planned. See the [runbook](docs/RUNBOOK.md) and [visual QA requirements](docs/POWER_BI_VISUAL_QA.md).
+**Scope:** Static tests validate source and stored screenshots; they do not certify current BigQuery data or Power BI interactions. The **18–19 October 2026 documentation audit** removed obsolete product/portfolio/CI-recovery handoffs, created [KPI contracts](docs/KPI_DICTIONARY.md), and reconciled actual CI workflow triggers in the [runbook](docs/RUNBOOK.md). Historical screenshot values were checked but the three-row 365d discrepancy and full runtime acceptance remain open. No productization or public deployment is planned. See the [runbook](docs/RUNBOOK.md) and [visual QA requirements](docs/POWER_BI_VISUAL_QA.md).
 
 ## Repository structure
 
@@ -170,7 +171,7 @@ Diagnostic Power BI caches and temporary local scripts are excluded from source 
 - [x] 13 genuine report-area PNG captures, including nine fully rendered presentation views.
 - [x] Nine NEXUS-framed portfolio images and a consolidated gallery.
 - [x] Real-capture provenance, hashes and automated screenshot integrity checks.
-- [ ] Owner approval of the current design and published images.
+- [x] Owner accepted existing Power BI designs and screenshots; refreshed-data parity remains pending.
 - [ ] Drillthrough pages validated with selected players, error-free visuals and navigation.
 - [ ] Current production BigQuery freshness, warehouse-to-model reconciliation and refresh outcome verified.
 - [ ] Release sign-off, if publication is required.
