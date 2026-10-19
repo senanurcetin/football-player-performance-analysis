@@ -5,6 +5,20 @@
 > **Source integration — 19 October 2026 (`main`):**
 > [Numeric-contract PR #78](https://github.com/senanurcetin/football-player-performance-analysis/pull/78) was **merged** at `0aaec6f8d3f8f28d3cd55c7ca648a05dd3364bb0`. [Research and documentation PR #79](https://github.com/senanurcetin/football-player-performance-analysis/pull/79) was then **merged** at `f63ee20a4c4fb8a43b6a99e468a6e325ea244f8e`. Both merges used `[skip ci]`; **hosted CI was not intentionally run**. Earlier isolated synthetic-only ML research checks reported **33/33 tests** and 93% coverage, but the actual combined repository suite, #78 regression suite, current BigQuery freshness, real-data historical model backtests and Power BI Desktop runtime acceptance **have not been executed or independently verified for this integration**. Merging the source is not production model approval or portfolio release. Overall release state remains **REVIEW PENDING**.
 
+## Ordered verification gates — 19 October 2026
+
+The owner requested **verify everything before Power BI and final CI**. Source integration and isolated synthetic checks do **not** satisfy the following remaining prerequisites:
+
+| Gate | Required verification | Recorded state |
+| --- | --- | --- |
+| A — complete checkout | Run Python full unit discovery, `scripts/check_offline_ci.py`, `scripts/check_ml_pipeline.py`, docs/link integrity, original PR #78–#84 regression tests, and source-level BigQuery/dbt/Jinja compile | **BLOCKED:** this ChatGPT container cannot resolve GitHub for a full clone; the authorized Desktop Commander `Senanur` device is **offline** as of this check. Prior isolated passes are not full-checkout evidence |
+| B — authorized warehouse | Authenticate approved BigQuery project, inspect freshness/source timestamps, run both as-of tests, canonical training-key coverage, event-grain/conflict/exclusion audit and existing dbt checks | **BLOCKED:** provider-native BigQuery connector is **DISABLED_BY_ADMIN**; no alternate authenticated warehouse runtime is connected in this session |
+| C — real historical ML | Rerun corrected train/tune/calibration/holdout pipeline on current verified data; report persistence baseline, MAE, WAPE, segment coverage, uncertainty and promotion gates | **NOT RUN:** source-grain and calibrated-predictor changes may change historical model metrics |
+| D — Power BI | After A–C, retain owner's previous visual acceptance, and recheck refreshed comparable KPI populations as necessary before final signoff | **DEFERRED by owner order**; no new Desktop execution claimed |
+| E — final CI | After A–D, run the explicitly authorized final opt-in CircleCI and only then consider manual production publication | **NOT TRIGGERED** in this verification effort |
+
+**Independent GitHub workflow incident:** [ML Production scheduled run #39237422384](https://github.com/senanurcetin/football-player-performance-analysis/actions/runs/39237422384) began on **19 October 2026 at 10:26 UTC** and **FAILED** during `Configure BigQuery credentials`: GitHub secret `GCP_SERVICE_ACCOUNT_JSON` was empty. GitHub confirms all later source-freshness, dbt build, ML train/publish and verification steps were **SKIPPED**. This is **not** a credentialed BigQuery test failure or a model failure; no model publication occurred in that run. To respect verification-before-CI, the weekly schedule was removed, and the workflow now needs explicit **manual `confirm_final_release=true`** plus repository variable **`ENABLE_ML_PRODUCTION=true`**. This change does not launch a CI run or provide Google Cloud credentials.
+
 This is the canonical record of verification status. Dated plans and incidents are preserved in the [historical archive](archive/README.md); their earlier acceptance statements do not supersede this page.
 
 ## Documentation and repository research audit — 18 October 2026
