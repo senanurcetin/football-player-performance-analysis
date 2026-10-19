@@ -163,6 +163,10 @@ After generation, `python scripts/check_documentation_coverage.py` verifies that
 
 **Kaggle update, 19 October 2026:** Use `notebooks/nexus_football_offline_verification.ipynb` with CPU and Internet enabled; the report runner now rejects missing or mismatched full commit SHAs. A valid test report must include `source_commit_verification.status=passed` in addition to `overall_status=PASS`. See [Kaggle instructions](REPRODUCIBLE_OFFLINE_VERIFICATION_20261019.md).
 
+## Executed Windows offline verification — 19 October 2026
+
+A connected SentinelX Windows agent successfully cloned the latest `main` into an isolated directory, installed the pinned dependencies in a dedicated Python 3.13.14 virtual environment, and ran the **entire Python suite (243/243 PASS)**, ML tests (47/47 PASS), documentation and YAML/Jinja validators, ML synthetic smoke and a **credential-free dbt parse**. The [dated evidence report](SENTINELX_OFFLINE_VERIFICATION_20261019.md) records source SHA, counts and remaining authentication gaps. These local tests **do not** validate source warehouse freshness or current model metrics; leave Power BI and hosted CI gated until those checks are resolved.
+
 ## Quota-free independent CPU verification
 
 When Desktop Commander is unavailable, use the [Colab/Kaggle verification notebook](../notebooks/nexus_football_offline_verification.ipynb) and [offline runbook](REPRODUCIBLE_OFFLINE_VERIFICATION_20261019.md). In an independent CPU checkout, execute `python scripts/run_offline_verification.py --phases source ml` and, only if green, `--phases full`. Keep the generated SHA-tagged JSON reports. The workflow does not execute BigQuery, hosted CI or model publication, and cloud-source verification still requires an authorized separate run.
