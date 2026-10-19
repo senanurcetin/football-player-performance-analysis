@@ -31,6 +31,14 @@ The formal report includes `commit_sha=e84632af9aee1a3552a6d1904aa645ec1adc7a65`
 
 The dbt parse used a **dummy, nonauthenticated profile**, so it validated source/model compilation structure **without** BigQuery connection, remote table reads, permissions or usage costs. The SentinelX agent account has **zero active `gcloud` authenticated accounts** and no configured default project. The user account's data credentials were not read, copied, or impersonated.
 
+## Follow-up documentation and repository layout audit — 19 October 2026
+
+The active documentation was normalized to one canonical [project status](PROJECT_STATUS.md), a navigable [documentation map](README.md) and clearly dated methodology/audit notes. Old claims that weekly ML publication is still scheduled, the source test suite has never run, or historic v5 model approval is current were corrected. The distinct `powerbi/workspace` (real PBIP) and `powerbi/offline-demo` (synthetic) editions were preserved; all 19 archived Power BI engineering reports remain historical evidence, not active directives.
+
+New `tests/test_repository_structure.py` adds three checks: expected analytical/Power BI folders, no tracked temporary or generated artifacts, and no duplicate-byte active technical Markdown docs. On independent Windows checkout `fcb66f72e27dfdd2178e41a31b67749e6f26005b`, **3/3 new structure tests PASS**, **246/246 full Python tests PASS**, and the pinned **nine-stage source/ML/full runner PASS**. Source YAML/Jinja and documentation link checks also passed. The earlier 243/243 results above remain valid evidence for their original, separately named commit.
+
+The source revisions did **not** query BigQuery or publish model artifacts; warehouse and real-data evaluation continue to block release.
+
 ## Acceptance work deliberately deferred
 
 1. **Warehouse read-only verification — BLOCKED/NOT RUN.** Authorized BigQuery project/account required to inspect fresh source dates, actual model-table grains, 365-day row coverage and the amended canonical-valuation exclusion counts, then run dbt singular tests against real data. No query or table mutation was attempted.
