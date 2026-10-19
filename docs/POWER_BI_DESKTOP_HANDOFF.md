@@ -2,7 +2,7 @@
 
 **Open:** `powerbi/workspace/FootballPlayerAnalysis/FootballPlayerAnalysis.pbip`  
 **Warehouse:** Google BigQuery, `data-analiz-490513.football_mart`  
-**Release (17 October 2026):** Desktop presentation captures available; **HOLD** until fresh BigQuery refresh/reconciliation, player-detail interaction QA and owner signoff. See [Project status](PROJECT_STATUS.md).
+**19 October 2026:** Original Desktop captures are available and the owner accepted the existing BI workstream. Full Python/PBIP source preflight PASS; **current authenticated BigQuery refresh and any newly selected-player runtime inspection remain unverified**, so project-wide release stays **REVIEW PENDING**. See [Project status](PROJECT_STATUS.md).
 
 The `workspace` PBIP is the real-data edition. The `offline-demo` PBIP uses deterministic synthetic `#table` fixtures; do not treat its values as actual player or club results.
 
