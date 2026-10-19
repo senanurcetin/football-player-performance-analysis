@@ -55,6 +55,6 @@ football-player-performance-analysis/
 2. Preserve original screenshot hashes and research attribution. Do not pass a synthetic dashboard or historical June warehouse figure off as current real data.
 3. Preserve the separate Power BI real-source and offline-demo editions; never move production data to synthetic fixtures.
 4. Do not commit credentials, personal secrets, dbt `target/`, Python virtual environments or local runtime logs. Keep paid cloud work behind explicit approval.
-5. After documentation or folder edits: run `python scripts/check_docs_integrity.py`, `python -m unittest discover -s tests -p 'test_*.py'`, `python scripts/check_offline_ci.py`, plus relevant PBIR static checks and dbt parse. Save exact Git SHA and results.
+5. After documentation or folder edits: run `python scripts/check_docs_integrity.py`, `python scripts/check_declared_documentation.py`, `python -m unittest discover -s tests -p 'test_*.py'`, `python scripts/check_offline_ci.py`, plus relevant PBIR checks and dbt parse. The declared-doc check covers YAML (46 models / 878 columns audited on 19 October), **not physical warehouse columns**. The physical catalog verification still requires `check_documentation_coverage.py` and a warehouse-generated `target/catalog.json`. Save exact Git SHA and results.
 6. **Do not launch final hosted CI** until the authenticated BigQuery source tests and corrected real-data ML evaluation are complete; see [current gates](PROJECT_STATUS.md).
 

@@ -5,7 +5,7 @@ exposures:
     label: Power BI Transfer and Market Value Analysis
     type: dashboard
     maturity: high
-    url: https://github.com/ilknurdenizozturk/football-player-performance-analysis
+    url: https://github.com/senanurcetin/football-player-performance-analysis/blob/main/powerbi/workspace/FootballPlayerAnalysis/FootballPlayerAnalysis.pbip
     description: Decision-facing transfer cohort, fixed-horizon outcome, club portfolio, and coverage-bias dashboard
     depends_on:
       - ref('fct_transfer_market_value_analysis')
@@ -22,7 +22,7 @@ exposures:
     label: Power BI Player and Match Analysis
     type: dashboard
     maturity: high
-    url: https://github.com/ilknurdenizozturk/football-player-performance-analysis
+    url: https://github.com/senanurcetin/football-player-performance-analysis/blob/main/powerbi/workspace/FootballPlayerAnalysis/FootballPlayerAnalysis.pbip
     description: Player match performance, rolling form, match context, and club-season dashboard
     depends_on:
       - ref('fct_match')
@@ -35,11 +35,11 @@ exposures:
       email: senanur.cetin.work@gmail.com
 
   - name: player_market_value_ml_production
-    label: Player Market Value ML Production
+    label: Player Market Value ML Research Workflow (manual release gate)
     type: ml
-    maturity: high
-    url: https://github.com/ilknurdenizozturk/football-player-performance-analysis/actions/workflows/ml-production.yml
-    description: Governed market-value training, scoring, release gating, and monitoring workflow
+    maturity: medium
+    url: https://github.com/senanurcetin/football-player-performance-analysis/actions/workflows/ml-production.yml
+    description: Source lineage for a manual-only, authorization-gated valuation training and scoring workflow; no current live model release is claimed
     depends_on:
       - ref('ml_player_market_value_training')
       - ref('ml_player_market_value_scoring')

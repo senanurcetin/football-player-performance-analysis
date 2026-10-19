@@ -1,12 +1,12 @@
 # NEXUS Football — CI-last release policy
 
-> **Updated 19 October 2026:** Offline Python tests **243/243 on the original checkout and 246/246 after repository hygiene tests**, source/dbt parse and structural checks PASS via SentinelX; **BigQuery table tests, corrected real-data model evaluation and final hosted CI remain NOT RUN**. This document is a release policy and historical CI incident record, not a new CI pass. See [Project status](PROJECT_STATUS.md).
+> **Updated 19 October 2026:** Offline Python tests **243/243 on the original checkout, 246/246 after hygiene tests, and 249/249 with the offline declared-documentation regressions**, source/dbt parse and structural checks PASS via SentinelX; **BigQuery table tests, corrected real-data model evaluation and final hosted CI remain NOT RUN**. This document is a release policy and historical CI incident record, not a new CI pass. See [Project status](PROJECT_STATUS.md).
 
 **Current decision (13 October 2026):** development, source repairs, real Desktop acceptance and local tests come **before** any new CircleCI verification run.
 
 ## Workflow boundary (updated against checked-in YAML, 19 October 2026)
 
-- **CircleCI:** the sole nine-job workflow requires `run_final_ci=true`; ordinary branch pushes may register empty pipelines but must not be called test passes.
+- **CircleCI:** the sole nine-job workflow requires `run_final_ci=true`; ordinary branch pushes may register empty pipelines but must not be called test passes. The dbt-source-preflight job now includes offline declared model/column documentation, Markdown-link, and repository-layout checks, which do **not** replace physical BigQuery validation.
 - **GitHub `dbt CI`:** `.github/workflows/dbt-ci.yml` has **only `workflow_dispatch`**; even manual `offline-preflight` needs `ENABLE_GITHUB_ACTIONS_CI=true`; warehouse `validate` additionally needs `ENABLE_BIGQUERY_CI=true` and permitted credentials. PR/schedule-specific YAML steps are presently unreachable via the configured event set.
 - **GitHub `ML Production`:** `.github/workflows/ml-production.yml` previously scheduled weekly but now has **manual dispatch only**. A manually invoked job requires both the repository variable `ENABLE_ML_PRODUCTION=true` and the per-run Boolean input `confirm_final_release=true`. This does not rely on `ENABLE_GITHUB_ACTIONS_CI`. It may incur BigQuery charges and publish model tables; activate only after the full research, source, Desktop and final CI gates pass. On 19 October 2026 the old scheduled run **failed before any BigQuery work**, because the GitHub secret `GCP_SERVICE_ACCOUNT_JSON` was empty. No new CI was triggered as part of this change.
 - GitHub status with no check results is **NOT RUN/UNKNOWN**, never PASS. For current results and exact source proof see [Project status](PROJECT_STATUS.md).
