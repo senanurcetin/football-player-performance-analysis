@@ -10,6 +10,7 @@
 | Architecture | [Architecture and model catalog](ARCHITECTURE.md) | BigQuery/dbt lineage, model grains |
 | Data validation | [Data quality](DATA_QUALITY.md) | Rules and dated historical test counts |
 | ML | [Player market-value methodology](PLAYER_MARKET_VALUE_ML.md) | Temporal validation and persistence benchmark |
+| ML integrity | [Numeric-contract hardening](ML_VALIDATION_HARDENING_20261018.md) | Credential-free input, interval and calibration guards; follow-up science roadmap |
 | BI source | [Power BI modeling](POWER_BI_MODELING.md) | PBIP/PBIR structure and DAX |
 | Visual identity | [NEXUS design system](BI_DESIGN_SYSTEM.md) | Theme palette and 13-page canvas contract |
 | Visual acceptance | [Power BI visual QA](POWER_BI_VISUAL_QA.md) | Current page and interaction acceptance matrix |
