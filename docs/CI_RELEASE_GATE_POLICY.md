@@ -1,10 +1,10 @@
 # NEXUS Football — CI-last release policy
 
-> **As of 17 October 2026:** This is the policy for future final CI runs, not evidence that hosted CI has passed. See [Project status](PROJECT_STATUS.md).
+> **Updated 19 October 2026:** Full offline Python tests **243/243 PASS**, source/dbt parse and structural checks PASS via SentinelX; **BigQuery table tests, corrected real-data model evaluation and final hosted CI remain NOT RUN**. This document is a release policy and historical CI incident record, not a new CI pass. See [Project status](PROJECT_STATUS.md).
 
 **Current decision (13 October 2026):** development, source repairs, real Desktop acceptance and local tests come **before** any new CircleCI verification run.
 
-## Workflow boundary (verified from checked-in YAML, 18 October 2026)
+## Workflow boundary (updated against checked-in YAML, 19 October 2026)
 
 - **CircleCI:** the sole nine-job workflow requires `run_final_ci=true`; ordinary branch pushes may register empty pipelines but must not be called test passes.
 - **GitHub `dbt CI`:** `.github/workflows/dbt-ci.yml` has **only `workflow_dispatch`**; even manual `offline-preflight` needs `ENABLE_GITHUB_ACTIONS_CI=true`; warehouse `validate` additionally needs `ENABLE_BIGQUERY_CI=true` and permitted credentials. PR/schedule-specific YAML steps are presently unreachable via the configured event set.
@@ -23,7 +23,7 @@
 
 The `run_final_ci` mechanism uses CircleCI's documented boolean pipeline-parameter and workflow-level `when` syntax.
 
-## Local and product acceptance — required before CI
+## Local source, data and owner acceptance — required before CI
 
 1. **Close source defects and planned development.** Review actual PBIR pages and assets, check native navigation, labels, chart bounds, custom fonts and demo provenance. Do not replace source PBIR with mockups.
 2. **Run offline source checks locally from the repo root**, recording exit codes and error output, rather than triggering CI:
