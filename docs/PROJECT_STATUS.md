@@ -15,6 +15,8 @@ The active document navigation and technical descriptions were consolidated thro
 
 ## Model diagnostic safeguards — 19 October 2026
 
+**Integration record:** Follow-up [PR #80](https://github.com/senanurcetin/football-player-performance-analysis/pull/80) merged into `main` at `779409bf96a19b34d92fdd025ac35898f77260a1` using `[skip ci]`. The merge was verified against the remote `main` head; no hosted CI status checks were reported for that commit. These safeguards have not been evaluated with new authenticated warehouse data, and they do not upgrade production or Desktop acceptance.
+
 A small post-integration research correction protects the player-grouped MAE-skill bootstrap from an undefined ratio in some legitimate cluster resamples. The point estimate remains reportable while an invalid unconditional confidence interval is recorded as **not estimable** (null bounds, explicit status and affected replicate count). The offline audit CLI now refuses output paths that overlap either predictions or metadata inputs. Targeted synthetic numerical behavior was reproduced without BigQuery; full project tests and final CI remain outstanding. See [ML evaluation methodology](ML_RELIABILITY_EVALUATION_20261018.md).
 
 ## Visual capture comparison — 18 October 2026
