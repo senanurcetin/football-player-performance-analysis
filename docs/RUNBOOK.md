@@ -187,7 +187,7 @@ python scripts/check_ml_pipeline.py
 
 Model artifact evaluation on **real historical exported data** is a distinct task: consult [ML reliability methodology](ML_RELIABILITY_EVALUATION_20261018.md) and keep outputs under ignored `artifacts/`. Never report synthetic-fixture test output as football forecasting skill.
 
-Review/commit changes to a **feature branch** and use a reviewed pull request, rather than directly pushing `main`. The open numeric-validation PR #78 and research/BI-audit PR #79 are **stacked**, so the first must be reviewed before the second is retargeted to `main`. Preserve the final CI opt-in policy.
+Review/commit changes to a **feature branch** and use a reviewed pull request, rather than directly pushing `main`. The historical numeric-validation PR #78 and research/BI-audit PR #79 were merged in that order on **19 October 2026**. Both merge commits used `[skip ci]` without intentionally launching hosted CI. Future changes should still use reviewed feature branches; preserve the final CI opt-in policy. Source integration does **not** mean that authenticated warehouse/Power BI acceptance passed.
 
 Authenticated dbt commands (`dbt source freshness`, `dbt snapshot`, `dbt build`, `dbt docs generate`) are **separate, permissioned, potentially billable** warehouse operations, not prerequisite calls to run uncredentialed Markdown checks. Run them only against the intended environment once access, budget and source provenance are established.
 
