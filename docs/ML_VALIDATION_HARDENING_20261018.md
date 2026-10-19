@@ -1,5 +1,7 @@
 # ML validation hardening — 18 October 2026
 
+> **Follow-up 19 October 2026:** The combined Python suite (**243/243 PASS**) and ML-focused suite (**47/47 PASS**) ran in an independent full Windows checkout. This supersedes the original isolated-test-only execution scope recorded below. **No authenticated BigQuery tests or revised real-data training/backtest were run.** See [verification evidence](SENTINELX_OFFLINE_VERIFICATION_20261019.md) and [current status](PROJECT_STATUS.md).
+
 **Scope:** credential-free source integrity. This branch does not retrain the model, query BigQuery, access Kaggle, run Power BI Desktop, publish predictions, or establish new empirical performance metrics.
 
 ## Rationale
@@ -56,7 +58,7 @@ Prioritize the following *separate, evidence-driven* enhancements:
 - Change scope: `scripts/train_player_market_value.py`, `tests/test_ml_numeric_contract.py` and this note.
 - Remote BigQuery / Kaggle access: **NOT USED**.
 - New training, backtesting and production results: **NOT RUN**.
-- Portfolio signoff: **PENDING**, following `docs/PROJECT_STATUS.md`.
+- Existing Power BI owner acceptance was acknowledged; the **overall project release remains REVIEW PENDING**, following [current status](PROJECT_STATUS.md).
 - CI-last policy: `docs/CI_RELEASE_GATE_POLICY.md`; keep hosted CircleCI opt-in.
 
 The original Workintech team project attribution and upstream contributions remain unchanged.
