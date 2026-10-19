@@ -61,11 +61,11 @@ summary AS (
         COUNT(*) AS fixed_horizon_rows,
         COUNT(DISTINCT transfer_key) AS fixed_horizon_keys,
         COUNTIF(has_365d_outcome) AS observed_anytime,
-        COUNTIF(is_in_success_label_mart) AS success_label_rows,
-        COUNTIF(is_matured_for_capture) AS dax_eligible_transfer_rows,
-        COUNTIF(
-            is_matured_for_capture AND has_365d_outcome
-        ) AS dax_observed_transfer_rows,
+        COUNT(DISTINCT IF(is_in_success_label_mart, transfer_key, NULL)) AS success_label_rows,
+        COUNT(DISTINCT IF(is_matured_for_capture, transfer_key, NULL)) AS dax_eligible_transfer_rows,
+        COUNT(DISTINCT IF(
+            is_matured_for_capture AND has_365d_outcome, transfer_key, NULL
+        )) AS dax_observed_transfer_rows,
         COUNTIF(
             is_in_success_label_mart AND
             (NOT is_matured_for_capture OR is_matured_for_capture IS NULL)
