@@ -15,7 +15,7 @@ End-to-end football intelligence, from Transfermarkt data and governed BigQuery/
 
 ![Nine real NEXUS football dashboard views](docs/assets/screenshots/NEXUS_Football_Page_Gallery.png)
 
-> **Current verification — 19 October 2026:** Independent Windows SentinelX checkout: **243/243 Python tests PASS**, **47/47 ML tests PASS**, offline dbt parse **46 models / 243 declared dbt tests** PASS. The owner previously accepted the Power BI workstream; 13 historical screenshots remain available, but **authenticated BigQuery freshness, real-data model backtesting and final CircleCI are not verified**. The decision remains **REVIEW PENDING**. See [dated executed evidence](docs/SENTINELX_OFFLINE_VERIFICATION_20261019.md) and [remaining gates](docs/PROJECT_STATUS.md).
+> **Current verification — 19 October 2026:** Independent Windows SentinelX checkout: **246/246 Python tests PASS** after repository structure/documentation cleanup (**243/243 on the earlier baseline**), **47/47 ML tests PASS**, offline dbt parse **46 models / 243 declared dbt tests** PASS. The owner previously accepted the Power BI workstream; 13 historical screenshots remain available, but **authenticated BigQuery freshness, real-data model backtesting and final CircleCI are not verified**. The decision remains **REVIEW PENDING**. See [dated executed evidence](docs/SENTINELX_OFFLINE_VERIFICATION_20261019.md) and [remaining gates](docs/PROJECT_STATUS.md).
 
 ## Project origin — Workintech team project
 
