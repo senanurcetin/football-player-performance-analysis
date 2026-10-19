@@ -1,5 +1,7 @@
 # Football ML reliability — statistical audit (18 October 2026)
 
+> **Status reconciled 19 October 2026:** The full combined Python suite (**243/243**) and ML-specific tests (**47/47**) passed in a genuine Windows checkout; the offline dbt source parse also passed. Earlier statements below about tests not yet run refer to their **original development date**. **No real BigQuery feature rows or corrected empirical historical ML scores were evaluated.** See [executed source evidence](SENTINELX_OFFLINE_VERIFICATION_20261019.md) and [current gates](PROJECT_STATUS.md).
+
 **Scope:** new reproducible, local statistical evidence in the established NEXUS player-valuation pipeline. This implementation does **not** retrieve Kaggle data, refresh BigQuery marts, retrain the production model during source review, alter the production Power BI report, or establish updated model performance claims.
 
 ## Components
@@ -87,7 +89,7 @@ These checks validate fitted-estimator identity in source and metadata consisten
 - Genuine production metrics remain those supported by the dated evidence in `PROJECT_STATUS.md` and `PLAYER_MARKET_VALUE_ML.md`.
 - Full production evaluation requires an authorized BigQuery environment, recorded source snapshot, model version and timestamp. Kaggle dataset terms and Workintech team attribution remain applicable.
 - Hosted CircleCI is final-stage opt-in. This PR uses `[skip ci]` and must not be merged as an empirical release validation.
-- Power BI release **remains on hold** until selected-player drillthrough interactions, actual Desktop refresh and warehouse reconciliation are accepted.
+- The owner accepted the existing Power BI workstream; selected-player interactions and a **new warehouse-backed KPI refresh** remain unverified technical checks, not reasons to overwrite the user's prior design acceptance.
 
 ## Next steps
 

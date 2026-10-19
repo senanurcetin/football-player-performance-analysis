@@ -15,13 +15,13 @@ End-to-end football intelligence, from Transfermarkt data and governed BigQuery/
 
 ![Nine real NEXUS football dashboard views](docs/assets/screenshots/NEXUS_Football_Page_Gallery.png)
 
-> **Status — 17 October 2026:** Nine primary pages were opened and captured from the real Power BI Desktop **production-connected PBIP** with visible imported model data. Two hidden player-detail pages still need selection-state and visual-error remediation. A current-day BigQuery freshness/reconciliation run and final owner acceptance are **not verified**. Screenshots are historical model evidence—not proof of live football data or deployment. **Release: pending final acceptance.**
+> **Current verification — 19 October 2026:** Independent Windows SentinelX checkout: **246/246 Python tests PASS** after repository structure/documentation cleanup (**243/243 on the earlier baseline**), **47/47 ML tests PASS**, offline dbt parse **46 models / 243 declared dbt tests** PASS. The owner previously accepted the Power BI workstream; 13 historical screenshots remain available, but **authenticated BigQuery freshness, real-data model backtesting and final CircleCI are not verified**. The decision remains **REVIEW PENDING**. See [dated executed evidence](docs/SENTINELX_OFFLINE_VERIFICATION_20261019.md) and [remaining gates](docs/PROJECT_STATUS.md).
 
 ## Project origin — Workintech team project
 
 **This is a collaborative training project developed with a team during the Workintech Data Pro program, not a solo-authored portfolio project.** The repo's foundation also incorporates earlier collaborative/upstream dbt work. The current fork documents subsequent extensions in its analytics models, semantic layer, Power BI reporting, validation, and player-market-value research. Treat those as **repository-level outputs**, not an assertion that one person created every component.
 
-Attribution and historical model provenance are recorded in the [reviewer brief](docs/hiring-summary.md), upstream Git history, and contributor commits. The verified Power BI screenshots show the latest report presentation, while production data refresh and user acceptance remain separate release checks.
+Attribution and historical model provenance are recorded in the [reviewer brief](docs/hiring-summary.md), upstream Git history, and contributor commits. The 17 October Power BI screenshots are historical captures; the owner subsequently accepted the existing visual workstream, but an authenticated post-refresh metric audit remains outstanding.
 
 ## What the project delivers
 

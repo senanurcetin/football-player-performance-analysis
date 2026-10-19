@@ -1,5 +1,7 @@
 # Same-day valuation grain and source-conflict policy — 19 October 2026
 
+> **Later verification on 19 October:** All declared Python source/SQLite checks, including target-coverage parity, ran in the independent **243/243 PASS** full test suite. Credential-free dbt parse recognized the model/test definitions. **No BigQuery target exclusion counts or corrected real-data model scores were obtained.** Earlier isolated-test statements below describe the implementation stage, not the latest test state. [Executed evidence](SENTINELX_OFFLINE_VERIFICATION_20261019.md).
+
 **Scope:** Research-oriented BigQuery/dbt feature integrity for the existing Football Intelligence project. **No productization, model publication, new valuation claims or Power BI changes.**
 
 ## Defect and prevention
@@ -53,4 +55,4 @@ The read-only `analyses/audit_ml_valuation_event_grain_20261019.sql` reports:
 
 Run only with the user-authorized, cost-controlled BigQuery/dbt profile. Record project, as-of/source modification time, query output, the pre/post model grain, Git commit SHA and changes to sample counts **before** treating the new source model as accepted. Existing dbt `unique` and `not_null` tests on `training_row_key` remain required; additionally rerun both temporal as-of SQL tests. The query is not a fixture generator and does not mutate data.
 
-**Acceptance status:** Source implementation and synthetic SQLite reproduction completed. **BigQuery mart rebuild, actual exclusion impact, real-data model refit, quality-gate evaluation and complete repository test execution remain NOT VERIFIED.** CI remains final-stage opt-in by user request. Power BI is outside this research workstream by owner instruction.
+**Acceptance status as of 19 October:** Source implemented; complete Python test suite **243/243 PASS** and credential-free dbt parse PASS. **BigQuery mart execution, actual exclusion impact, real-data model refit and empirical quality-gate evaluation remain NOT VERIFIED.** CI remains final-stage opt-in. Power BI has separate prior owner acceptance.
