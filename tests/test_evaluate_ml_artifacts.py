@@ -169,6 +169,40 @@ class EvaluationArtifactContract(unittest.TestCase):
                 with self.assertRaises(ValueError):
                     validate_evaluation_provenance(synthetic_predictions(), metadata)
 
+    def test_sparse_baseline_error_is_explicitly_unestimable_not_an_exception(self):
+        frame = synthetic_predictions()
+        frame["baseline_prediction_eur"] = frame["target_market_value_eur"]
+        frame.loc[0, "baseline_prediction_eur"] -= 10
+        summary, segments = evaluate_predictions(frame, min_rows=2, replicates=200, seed=42)
+        bootstrap = summary["cluster_bootstrap_mae_skill"]
+        self.assertEqual(bootstrap["bootstrap_ci_status"], "not_estimable_undefined_resamples")
+        self.assertGreater(bootstrap["undefined_bootstrap_resamples"], 0)
+        self.assertIsNone(bootstrap["bootstrap_ci_lower_pct"])
+        self.assertIsNone(bootstrap["bootstrap_ci_upper_pct"])
+        json.dumps(summary, allow_nan=False)
+        self.assertEqual(segments["row_count"].sum(), 4 * len(frame))
+
+    def test_cli_never_overwrites_prediction_or_metrics_input(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            output = Path(tmp)
+            predictions = output / "segment_metrics.csv"
+            metadata = output / "meta.json"
+            predictions.write_text("input-sentinel", encoding="utf-8")
+            metadata.write_text("metrics-sentinel", encoding="utf-8")
+            with self.assertRaises(SystemExit):
+                main(["--input", str(predictions), "--metrics", str(metadata),
+                      "--output-dir", str(output)])
+            self.assertEqual(predictions.read_text(encoding="utf-8"), "input-sentinel")
+
+            predictions = output / "safe_predictions.csv"
+            predictions.write_text("new-input-sentinel", encoding="utf-8")
+            metrics = output / "reliability_summary.json"
+            metrics.write_text("metadata-sentinel", encoding="utf-8")
+            with self.assertRaises(SystemExit):
+                main(["--input", str(predictions), "--metrics", str(metrics),
+                      "--output-dir", str(output)])
+            self.assertEqual(metrics.read_text(encoding="utf-8"), "metadata-sentinel")
+
     def test_cli_writes_hashed_only_aggregate_outputs(self):
         frame = synthetic_predictions()
         with tempfile.TemporaryDirectory() as tmp:

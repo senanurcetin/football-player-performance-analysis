@@ -198,10 +198,14 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--replicates", type=int, default=500)
     parser.add_argument("--seed", type=int, default=42)
     args = parser.parse_args(argv)
-    if args.input.resolve() == (args.output_dir / "segment_metrics.csv").resolve():
-        parser.error("Input must not overlap a generated output")
-    if args.metrics.resolve() == args.input.resolve():
+    generated_paths = {
+        (args.output_dir / name).resolve()
+        for name in ("reliability_summary.json", "segment_metrics.csv")
+    }
+    if args.input.resolve() == args.metrics.resolve():
         parser.error("Predictions CSV and metrics JSON must be separate files")
+    if args.input.resolve() in generated_paths or args.metrics.resolve() in generated_paths:
+        parser.error("Source artifacts must not overlap generated output files")
     frame = pd.read_csv(args.input)
     metadata = json.loads(args.metrics.read_text(encoding="utf-8"))
     provenance = validate_evaluation_provenance(frame, metadata)
