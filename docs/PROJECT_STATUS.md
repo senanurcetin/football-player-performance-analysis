@@ -13,6 +13,10 @@ The active document navigation and technical descriptions were consolidated thro
 
 **Extended GitHub-tree navigation QA (19 October 2026):** fetched the recursive tree for the pre-merge PR #79 source snapshot (**2,277 files, 3,424 tree entries**) and remotely inspected **all 48 tracked Markdown files** and **242 internal Markdown, image and directory links**; all link destinations resolve to tracked files or directories (three initial directory-looking exceptions were confirmed to be valid folders). The [19 historical archive files](archive/README.md) remain preserved. This is a real source-tree navigation audit but **not** an execution of `scripts/check_docs_integrity.py` or the complete repository test suite.
 
+## Model diagnostic safeguards — 19 October 2026
+
+A small post-integration research correction protects the player-grouped MAE-skill bootstrap from an undefined ratio in some legitimate cluster resamples. The point estimate remains reportable while an invalid unconditional confidence interval is recorded as **not estimable** (null bounds, explicit status and affected replicate count). The offline audit CLI now refuses output paths that overlap either predictions or metadata inputs. Targeted synthetic numerical behavior was reproduced without BigQuery; full project tests and final CI remain outstanding. See [ML evaluation methodology](ML_RELIABILITY_EVALUATION_20261018.md).
+
 ## Visual capture comparison — 18 October 2026
 
 **KONTROL EDİLDİ (limited scope):** All **13/13 production screenshot PNGs** match the dated capture manifest SHA-256 and image-size records. Historical visual measures verified against the June BigQuery documentation: player dimension **47,702**, transfers **40,208**, known-fee coverage **64.2%**, current ML scoring population **7,841**, and decision-ready complement **72.9%**. This is **static historical screenshot/value reconciliation only**; details are recorded in [Power BI historical value audit](POWER_BI_HISTORICAL_VALUE_AUDIT_20261018.md).
