@@ -24,7 +24,7 @@ models:
         data_tests:
           - not_null
       - name: competition_id
-        description: Domestic competition identifier recorded on the target valuation
+        description: Domestic competition identifier at the matched target valuation event; ambiguous same-day competition context is NULL
         data_tests:
           - relationships:
               arguments:
@@ -89,7 +89,7 @@ models:
       - name: previous_market_value_date
         description: Latest available valuation date strictly before the target valuation date
       - name: previous_market_value_eur
-        description: Latest available player market value strictly before the target valuation date
+        description: Latest positive, unambiguous daily player valuation strictly before the target date; conflicting same-day EUR values are excluded
       - name: has_previous_market_value
         description: Flag indicating that a prior market value is available
         data_tests:
@@ -97,11 +97,11 @@ models:
       - name: days_since_previous_market_value
         description: Days between the previous and target market value dates
       - name: prior_valuation_count
-        description: Number of player valuations strictly before the target valuation date
+        description: Number of distinct positive and unambiguous player-valuation dates strictly before the target event
         data_tests:
           - not_null
       - name: prior_highest_market_value_eur
-        description: Highest player valuation strictly before the target valuation date
+        description: Highest usable unambiguous daily player valuation strictly before the target event
       - name: target_market_value_date
         description: Valuation date being predicted
         data_tests:
@@ -138,7 +138,7 @@ models:
         data_tests:
           - not_null
       - name: competition_id
-        description: Domestic competition identifier recorded on the latest available valuation
+        description: Domestic competition context on the latest positive unambiguous daily valuation; conflicting same-day competition IDs become NULL
         data_tests:
           - relationships:
               arguments:
@@ -203,7 +203,7 @@ models:
       - name: previous_market_value_date
         description: Latest available valuation date on or before the prediction build date
       - name: previous_market_value_eur
-        description: Latest available player market value on or before the prediction build date
+        description: Latest positive, unambiguous daily player valuation on or before the scoring as-of date
       - name: has_previous_market_value
         description: Flag indicating that a previous market value is available
         data_tests:
@@ -211,11 +211,11 @@ models:
       - name: days_since_previous_market_value
         description: Days between the latest available valuation and prediction build date
       - name: prior_valuation_count
-        description: Number of player valuations available through the prediction build date
+        description: Count of distinct positive unambiguous daily valuation events through the scoring as-of date
         data_tests:
           - not_null
       - name: prior_highest_market_value_eur
-        description: Highest player valuation available through the prediction build date
+        description: Highest usable unambiguous daily valuation available through the scoring as-of date
       - name: prediction_as_of_date
         description: Date on which the scoring feature table was built
         data_tests:

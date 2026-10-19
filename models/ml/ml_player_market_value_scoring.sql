@@ -1,6 +1,39 @@
 {{ config(cluster_by=["position", "competition_id"]) }}
 
-with scoring_context as (
+with -- One usable, unambiguous event per player and calendar date.
+-- Exact duplicate source rows collapse. Conflicting same-day EUR values
+-- are excluded from supervised labels and prior-value baselines rather than
+-- resolved by an arbitrary ARRAY_AGG tie.
+valuation_events as (
+
+    select
+        player_id,
+        valuation_date,
+        case
+            when count(distinct market_value_in_eur) = 1
+                then max(market_value_in_eur)
+        end as market_value_in_eur,
+        case
+            when count(distinct player_club_domestic_competition_id) = 1
+                then max(player_club_domestic_competition_id)
+        end as player_club_domestic_competition_id
+
+    from {{ ref('stg_player_valuations') }}
+    where valuation_date is not null
+        and market_value_in_eur > 0
+    group by player_id, valuation_date
+
+),
+
+unambiguous_valuation_events as (
+
+    select *
+    from valuation_events
+    where market_value_in_eur is not null
+
+),
+
+scoring_context as (
 
     select max(season) as scoring_season
 
@@ -89,7 +122,7 @@ valuation_features as (
 
     from performance_features players
 
-    left join {{ ref('stg_player_valuations') }} valuations
+    left join unambiguous_valuation_events valuations
         on players.player_id = valuations.player_id
         and valuations.valuation_date <= current_date()
 

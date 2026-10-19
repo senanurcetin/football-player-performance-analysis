@@ -52,6 +52,10 @@ The corrected diagnostic preserves the observed `mae_skill_vs_persistence_pct`, 
 
 The standalone offline auditor also rejects either source file (`test_predictions.csv` or `metrics.json`) colliding with a generated output path, preventing accidental overwrite. Two isolated numeric scenarios (dense vs. single-error-player baselines) were reproduced locally; additional source regression tests have been added, but the **full GitHub checkout suite remains unrun** for this change. No real-data skill, source freshness or Desktop approval is claimed.
 
+## Valuation-event grain precondition — 19 October 2026
+
+The feature-table source now has a separate [same-day valuation event-grain audit](ML_VALUATION_EVENT_GRAIN_AUDIT_20261019.md): duplicate player-date source records should not multiply supervised targets, conflicting same-day EUR observations are excluded, and previous-value persistence uses only unambiguous past observations. **No conclusion about real player counts or changed MAE is available** until the read-only source collision/exclusion query and actual historical model evaluation are run by an authorized BigQuery user.
+
 ## Interpretation and statistical limitations
 
 - **Bootstrap skill** = 100 × (1 − model absolute error total / persistence absolute error total). A value above zero indicates a lower observed MAE than persistence on the supplied cohort. This is not evidence that the predictor beats persistence in each league, season or valuation tier.

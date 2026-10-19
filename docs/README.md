@@ -29,6 +29,7 @@ Use one canonical source per topic. Dated research and audit notes supply eviden
 | --- | --- | --- |
 | [Numeric ML validation — 18 Oct](ML_VALIDATION_HARDENING_20261018.md) | Required target, key and interval-contract safeguards merged into `main` via PR #78 | Source changes, not an empirical model rerun |
 | [ML reliability — 18 Oct](ML_RELIABILITY_EVALUATION_20261018.md) | Offline grouped uncertainty, artifact consistency and refitted walk-forward research | Local synthetic tests only; real feature export still needed |
+| [Daily valuation event-grain audit — 19 Oct](ML_VALUATION_EVENT_GRAIN_AUDIT_20261019.md) | Player/date deduplication, conflicting EUR amounts and target row grain | Synthetic SQLite check; warehouse impact NOT VERIFIED |
 | [Research-only execution plan — 18 Oct](ANALYTICS_ENGINEERING_EXECUTION_PLAN_20261018.md) | Ordered outstanding work and authorization dependencies | Not a substitute for live test evidence |
 | [Power BI historical value audit — 18 Oct](POWER_BI_HISTORICAL_VALUE_AUDIT_20261018.md) | **13/13** screenshot file hashes and historical KPI reconciliation | **KONTROL EDİLDİ** for matched items; 365-day 3-row mismatch remains |
 | [Screenshot gallery and capture manifest](assets/screenshots/README.md) | Source-rendered images, hashes and provenance | 17 Oct images; not current BigQuery freshness |
