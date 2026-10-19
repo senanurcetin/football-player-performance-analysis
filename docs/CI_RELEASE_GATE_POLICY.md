@@ -8,7 +8,7 @@
 
 - **CircleCI:** the sole nine-job workflow requires `run_final_ci=true`; ordinary branch pushes may register empty pipelines but must not be called test passes.
 - **GitHub `dbt CI`:** `.github/workflows/dbt-ci.yml` has **only `workflow_dispatch`**; even manual `offline-preflight` needs `ENABLE_GITHUB_ACTIONS_CI=true`; warehouse `validate` additionally needs `ENABLE_BIGQUERY_CI=true` and permitted credentials. PR/schedule-specific YAML steps are presently unreachable via the configured event set.
-- **GitHub `ML Production`:** `.github/workflows/ml-production.yml` independently declares **weekly Monday 05:00 UTC and manual triggers** and has no `ENABLE_GITHUB_ACTIONS_CI` guard. When credentials exist it may incur charges and publish model tables; do not claim it is disabled by this CircleCI-last policy. Confirm actual scheduler state and authorization before allowing it to run.
+- **GitHub `ML Production`:** `.github/workflows/ml-production.yml` previously scheduled weekly but now has **manual dispatch only**. A manually invoked job requires both the repository variable `ENABLE_ML_PRODUCTION=true` and the per-run Boolean input `confirm_final_release=true`. This does not rely on `ENABLE_GITHUB_ACTIONS_CI`. It may incur BigQuery charges and publish model tables; activate only after the full research, source, Desktop and final CI gates pass. On 19 October 2026 the old scheduled run **failed before any BigQuery work**, because the GitHub secret `GCP_SERVICE_ACCOUNT_JSON` was empty. No new CI was triggered as part of this change.
 - GitHub status with no check results is **NOT RUN/UNKNOWN**, never PASS. For current results and exact source proof see [Project status](PROJECT_STATUS.md).
 
 ## Trigger policy
