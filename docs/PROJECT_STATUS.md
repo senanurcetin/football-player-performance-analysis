@@ -13,6 +13,10 @@ The active document navigation and technical descriptions were consolidated thro
 
 **Extended GitHub-tree navigation QA (19 October 2026):** fetched the recursive tree for the pre-merge PR #79 source snapshot (**2,277 files, 3,424 tree entries**) and remotely inspected **all 48 tracked Markdown files** and **242 internal Markdown, image and directory links**; all link destinations resolve to tracked files or directories (three initial directory-looking exceptions were confirmed to be valid folders). The [19 historical archive files](archive/README.md) remain preserved. This is a real source-tree navigation audit but **not** an execution of `scripts/check_docs_integrity.py` or the complete repository test suite.
 
+## ML as-of data quality improvements — 19 October 2026
+
+The post-merge quality branch adds training/scoring season and identifier checks, nonnegative prior-market-value enforcement, two warehouse-bound **read-only** singular dbt tests for target/feature date chronology and a research-only historical feature-lineage profiling query. The source SQL files are **not executed** on BigQuery; no source freshness or updated model metrics are claimed. A small isolated input-contract reproduction passed **4/4 local tests**, not a full project checkout. The full regression suite remains pending; the source review and CI-last workflow remain intact.
+
 ## Model diagnostic safeguards — 19 October 2026
 
 **Integration record:** Follow-up [PR #80](https://github.com/senanurcetin/football-player-performance-analysis/pull/80) merged into `main` at `779409bf96a19b34d92fdd025ac35898f77260a1` using `[skip ci]`. The merge was verified against the remote `main` head; no hosted CI status checks were reported for that commit. These safeguards have not been evaluated with new authenticated warehouse data, and they do not upgrade production or Desktop acceptance.

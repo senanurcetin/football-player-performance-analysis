@@ -16,6 +16,16 @@ The established player-market-value training code uses temporal development / tu
 
 Existing allowances remain: **missing optional feature values may still be imputed**, and a lower interval may legitimately be truncated at zero. Training/score features with infinity remain invalid.
 
+## As-of and input contracts — 19 October 2026 follow-up
+
+Additional, **fail-closed** source checks are being added after PRs #78–#80:
+
+- Both scoring and training reject **missing, fractional, infinite or nonpositive seasons** before a chronological split; row identifiers must be nonmissing, unique **and nonblank**, and historical previous market value must be **nonnegative** when present. Nullable prior value remains legal for the existing median/baseline fallback.
+- Two **read-only singular dbt tests** in `tests/assert_ml_training_asof_integrity.sql` and `tests/assert_ml_scoring_asof_integrity.sql` identify feature-event dates occurring at or after a training target, or strictly after a scoring as-of date, as well as inconsistent previous valuations and impossible counters. They return bad rows; they do **not** mutate warehouse sources.
+- `analyses/audit_ml_feature_lineage_20261019.sql` offers a separate, **unexecuted**, read-only profile of row grains, season/date ranges, prior-value missingness and as-of violations. Its query output will only be interpretable with a documented source-refresh/as-of timestamp.
+- Three new synthetic `test_ml_numeric_contract.py` test methods cover both frame types. Three additional credential-free `test_ml_asof_sql_contract.py` methods check the SQL contracts (not BigQuery execution). An isolated hand-transcribed reproduction of the input contract passed **4/4 local Python unit tests**, but this is **not** the actual full repository test run or an empirical finding.
+- Hosted CI remains explicitly deferred by user instruction. Later BigQuery/dbt checks require authorization and could incur processing costs; do not mislabel committed source checks as completed warehouse validation.
+
 ## Offline verification
 
 With Python 3.11 and the dependencies in `requirements-ml.txt` installed, run from the repo root:

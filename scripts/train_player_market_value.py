@@ -221,10 +221,25 @@ def validate_input_frame(frame: pd.DataFrame, frame_type: str) -> None:
         raise ValueError(f"{frame_type} frame is missing columns: {missing_columns}.")
     if frame.empty:
         raise ValueError(f"{frame_type} frame is empty.")
-    if frame[key_column].isna().any() or frame[key_column].duplicated().any():
+    keys = frame[key_column]
+    if (
+        keys.isna().any()
+        or keys.duplicated().any()
+        or keys.astype(str).str.strip().eq("").any()
+    ):
         raise ValueError(f"{frame_type} frame has invalid keys in {key_column}.")
-    if frame["player_id"].isna().any() or frame["season"].isna().any():
-        raise ValueError(f"{frame_type} frame has missing player_id or season.")
+    if frame["player_id"].isna().any():
+        raise ValueError(f"{frame_type} frame has missing player_id.")
+
+    # A null, fractional or infinite season silently defeats the chronological
+    # train/tune/calibrate/test split; it must fail before fitting anything.
+    seasons = pd.to_numeric(frame["season"], errors="coerce").to_numpy(dtype=float)
+    if (
+        not np.isfinite(seasons).all()
+        or (seasons != np.floor(seasons)).any()
+        or (seasons <= 0).any()
+    ):
+        raise ValueError(f"{frame_type} frame requires finite, positive whole-number seasons.")
 
     numeric_columns = [*NUMERIC_FEATURES]
     if frame_type == "training":
@@ -232,6 +247,11 @@ def validate_input_frame(frame: pd.DataFrame, frame_type: str) -> None:
     numeric_values = frame[numeric_columns].to_numpy(dtype=float)
     if np.isinf(numeric_values).any():
         raise ValueError(f"{frame_type} frame contains infinite numeric values.")
+    prior_valuation = pd.to_numeric(
+        frame["previous_market_value_eur"], errors="coerce"
+    ).to_numpy(dtype=float)
+    if (prior_valuation < 0).any():
+        raise ValueError(f"{frame_type} frame contains negative prior market valuations.")
     if frame_type == "training":
         target_values = frame[TARGET].to_numpy(dtype=float)
         if not np.isfinite(target_values).all() or (target_values <= 0).any():
