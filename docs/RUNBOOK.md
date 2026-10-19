@@ -1,6 +1,6 @@
 # Operations Runbook
 
-> **Current evidence boundary (17 October 2026):** Operations steps are instructions, not execution evidence of a current production refresh. See [Project status](PROJECT_STATUS.md).
+> **Updated 19 October 2026:** SentinelX independently executed full Python **243/243 PASS**, the nine-phase offline runner and nonauthenticated dbt parse. These are **real source test results**, not proof of authenticated BigQuery freshness or historical model accuracy. See [executed evidence](SENTINELX_OFFLINE_VERIFICATION_20261019.md) and [current project status](PROJECT_STATUS.md).
 
 ## Purpose
 
