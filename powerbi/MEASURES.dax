@@ -13,17 +13,57 @@ CALCULATE(
     fct_transfer_cohort_performance[meets_minimum_sample_size] = TRUE()
 )
 
+// Reference DAX only. The actual production measures and field bindings live
+// in the PBIP Model/definition/tables/fct_transfer_fixed_horizon_outcomes.tmdl.
+// Keep BOTH numerator and denominator under the same maturity cutoff.
 Historical Transfers =
 DISTINCTCOUNT(fct_transfer_fixed_horizon_outcomes[transfer_key])
 
+Eligible 365d Transfers =
+VAR SourceCutoff =
+    MIN(
+        TODAY(),
+        MAX(fct_transfer_fixed_horizon_outcomes[source_latest_valuation_date])
+    )
+RETURN
+    IF(
+        ISBLANK(SourceCutoff),
+        BLANK(),
+        CALCULATE(
+            [Historical Transfers],
+            FILTER(
+                fct_transfer_fixed_horizon_outcomes,
+                NOT ISBLANK(fct_transfer_fixed_horizon_outcomes[target_365d_date])
+                    && fct_transfer_fixed_horizon_outcomes[target_365d_date] + 30
+                        <= SourceCutoff
+            )
+        )
+    )
+
 Observed 365d Transfers =
-CALCULATE(
-    [Historical Transfers],
-    fct_transfer_fixed_horizon_outcomes[has_365d_outcome] = TRUE()
-)
+VAR SourceCutoff =
+    MIN(
+        TODAY(),
+        MAX(fct_transfer_fixed_horizon_outcomes[source_latest_valuation_date])
+    )
+RETURN
+    IF(
+        ISBLANK(SourceCutoff),
+        BLANK(),
+        CALCULATE(
+            [Historical Transfers],
+            FILTER(
+                fct_transfer_fixed_horizon_outcomes,
+                NOT ISBLANK(fct_transfer_fixed_horizon_outcomes[target_365d_date])
+                    && fct_transfer_fixed_horizon_outcomes[target_365d_date] + 30
+                        <= SourceCutoff
+                    && fct_transfer_fixed_horizon_outcomes[has_365d_outcome] = TRUE()
+            )
+        )
+    )
 
 365d Outcome Coverage % =
-DIVIDE([Observed 365d Transfers], [Historical Transfers])
+DIVIDE([Observed 365d Transfers], [Eligible 365d Transfers])
 
 Median 365d Value Change % =
 CALCULATE(
