@@ -56,6 +56,23 @@ The standalone offline auditor also rejects either source file (`test_prediction
 
 The feature-table source now has a separate [same-day valuation event-grain audit](ML_VALUATION_EVENT_GRAIN_AUDIT_20261019.md): duplicate player-date source records should not multiply supervised targets, conflicting same-day EUR observations are excluded, and previous-value persistence uses only unambiguous past observations. **No conclusion about real player counts or changed MAE is available** until the read-only source collision/exclusion query and actual historical model evaluation are run by an authorized BigQuery user.
 
+## Governed historical v5 calibration identity — 19 October 2026
+
+Source review exposed a mismatch in `scripts/train_player_market_value.py`: the conformal interval was calibrated on the **pre-calibration fitted model**, but the historical held-out prediction subsequently used a **different estimator refitted to include the calibration season**. Although all of those dates were before the test period, the calibration residuals no longer corresponded to the deployed holdout predictor. The previous fallback `train[TARGET].median()` likewise included the calibration year, unlike the earlier calibration fallback.
+
+The corrected held-out evaluation **reuses the exact fitted `calibration_pipeline` without refitting** and uses the identical pre-calibration `calibration_baseline_fill` in the calibration and test ensembles. The source records `evaluation_fit_rows`, `evaluation_fit_season_max`, `calibration_rows` and `calibration_and_test_share_fitted_predictor=true` in `metrics.json`. The **standalone artifact auditor now requires this field and a coherent chronology**, so earlier unverified-model-identity artifacts cannot be passed off as a new coherent calibration report.
+
+This changes **how future historical v5 performance metrics would be computed** and may change MAE, WAPE, interval coverage, sample-acceptance decisions and published historical comparison to prior results. **No real historical model was re-run, no numerical improvement is claimed and no previously recorded 0.9756 R² or 12.51% WAPE figure is superseded by this code commit.** Recompute these from actual authorized feature data before using them for release decisions. The separate `final_pipeline` trained on all historical rows for optional current scoring remains structurally unchanged; a calibration interval learned for a historical estimator is **not** automatically a formal future-coverage guarantee for a differently refitted production model.
+
+For static, credential-free safeguards:
+
+```bash
+python -m unittest discover -s tests -p 'test_ml_calibration_identity.py' -v
+python -m unittest discover -s tests -p 'test_evaluate_ml_artifacts.py' -v
+```
+
+These checks validate fitted-estimator identity in source and metadata consistency; they **do not** substitute for empirical rolling-origin evaluation, a full project test suite, BigQuery rebuild or a user-approved release.
+
 ## Interpretation and statistical limitations
 
 - **Bootstrap skill** = 100 × (1 − model absolute error total / persistence absolute error total). A value above zero indicates a lower observed MAE than persistence on the supplied cohort. This is not evidence that the predictor beats persistence in each league, season or valuation tier.
