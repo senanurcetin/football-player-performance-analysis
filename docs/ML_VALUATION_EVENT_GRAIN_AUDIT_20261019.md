@@ -16,6 +16,17 @@ Both model sources now use the same pre-aggregation:
 
 This is a **source-quality policy**, not a recommendation to replace unknown observations with zero. Competition context can remain missing; a missing previous value still invokes the existing baseline fallback. No change was made to the published model scoring weights or source table schemas.
 
+## Latest player-season target and row-coverage correction — 19 October 2026
+
+Source-only verification found a second problem after initial player-date deduplication: the historical target selector used `ARRAY_AGG` ordered by **date only**, so conflicting market values at the **same latest player-season date** could still be chosen nondeterministically. Also, `tests/assert_ml_training_row_coverage.sql` expected all positive timeline candidates even though canonical source conflicts are intentionally ineligible, creating a guaranteed false coverage failure when the exclusion policy is exercised.
+
+- `ml_player_market_value_training.sql` now groups targets at **player, season, date**, producing NULL target EUR on conflicting positive values. It then selects the latest date, **without falling back to an older date** merely because the newest date conflicts. Its canonical player-date-EUR join excludes such records.
+- `assert_ml_training_row_coverage.sql` constructs the **same expected eligible population**, including exact source canonical date/EUR matching, and compares expected/actual keys bidirectionally. A separate raw-candidate audit remains necessary to quantify exclusions and selection bias; this test cannot establish that no records were lost.
+- `analyses/audit_ml_valuation_event_grain_20261019.sql` uses the same latest-target policy and reports `conflicted_latest_player_season_targets`. Without current BigQuery results, the number of excluded rows is still **UNKNOWN**.
+- `tests/test_ml_target_coverage_parity.py` adds four source/SQLite synthetic checks. A local SQLite demonstration verified that a conflicted latest date is **NULL** while a duplicated consistent date retains one positive EUR value. This is **not** the complete checkout's unit tests nor a dbt compilation.
+
+**Release gate:** After authorized BigQuery source and credentials are available, compile dbt, run `assert_ml_training_row_coverage` and the unique-key tests, inspect the candidate-vs-canonical exclusion summary, and rerun the corrected historical ML evaluation. No production numeric results are asserted from source changes.
+
 ## Reproducible verification
 
 Run without BigQuery credentials from a full checkout:
