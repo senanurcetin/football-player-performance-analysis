@@ -1,6 +1,6 @@
 # Data Quality and Validation
 
-> **Current evidence boundary (17 October 2026):** Counts refer to a June 2026 validation. Current authenticated refresh and reconciliation are outstanding. See [Project status](PROJECT_STATUS.md).
+> **Checked 19 October 2026:** This document's warehouse counts remain the **June 2026** authenticated historical snapshot. Full offline Python source tests **243/243 PASS** and dbt parse PASS on Windows, but **no current BigQuery source freshness or dbt table tests were executed**. See [Project status](PROJECT_STATUS.md).
 
 ## Validation Status
 
@@ -111,7 +111,7 @@ High- and medium-quality ensemble weights are selected only on 2022. Limited-qua
 
 The current scoring readiness check passes with 27.09% missing previous values, 28.59% missing competition context, and 0% missing age. Missing optional inputs are preserved and imputed; predictions are labeled `high`, `medium`, or `limited` so downstream reports can filter by readiness.
 
-GitHub CI also runs `scripts/check_ml_pipeline.py` with synthetic missing and categorical values to detect preprocessing, model-fitting, ensemble, prediction-validation, segment-metric, and drift regressions without retraining against production data.
+The local [offline verification runner](SENTINELX_OFFLINE_VERIFICATION_20261019.md) **ran `scripts/check_ml_pipeline.py` successfully** with synthetic missing and categorical values. The hosted CI configuration also contains synthetic validation steps, but no new hosted job was intentionally triggered; these checks do not retrain against current BigQuery production data.
 
 The v5 production release passes all seven blocking model gates: baseline MAE improvement, latest-approved-champion MAE regression, WAPE, R2, overall interval coverage, EUR 20M+ interval coverage, and no prediction-quality segment performing below its baseline. Its status remains `approved_with_monitoring` because the limited-quality prediction share is 27.09% and ten features show significant PSI drift. These warnings are exposed rather than suppressed.
 
