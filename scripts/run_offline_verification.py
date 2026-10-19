@@ -12,6 +12,7 @@ import json
 import os
 from pathlib import Path
 import platform
+import re
 import subprocess
 import sys
 import time
@@ -38,7 +39,7 @@ def run(repo: Path, label: str, command: list[str], timeout: int) -> dict:
             "output_tail": output[-6000:]}
 
 
-def run_all(repo: Path, phases: list[str], timeout: int) -> dict:
+def run_all(repo: Path, phases: list[str], timeout: int, expected_commit: str | None = None) -> dict:
     if not (repo / "dbt_project.yml").is_file():
         raise ValueError("Expected the GitHub repository root with dbt_project.yml")
     version = run(repo, "source_commit", ["git", "rev-parse", "HEAD"], 20)
@@ -64,14 +65,29 @@ def run_all(repo: Path, phases: list[str], timeout: int) -> dict:
         steps.append(("all_python_unit_tests", [py, "-m", "unittest", "discover", "-s",
                                                 test_dir, "-p", "test_*.py", "-v"]))
     evidence = [run(repo, label, command, timeout) for label, command in steps]
+    commit = version["output_tail"].strip().lower() if version["status"] == "passed" else None
+    valid_commit = bool(commit and re.fullmatch(r"[0-9a-f]{40}", commit))
+    matches_requested_commit = (
+        expected_commit is None or commit == expected_commit.lower()
+    )
+    verified_commit = valid_commit and matches_requested_commit
     return {"generated_at_utc": datetime.now(timezone.utc).isoformat(),
             "repository": "senanurcetin/football-player-performance-analysis",
-            "commit_sha": version["output_tail"].strip() if version["status"] == "passed" else None,
+            "commit_sha": commit if valid_commit else None,
+            "source_commit_verification": {
+                "status": "passed" if verified_commit else "failed",
+                "expected_sha": expected_commit,
+                "actual_sha": commit if valid_commit else None,
+                "command_status": version["status"],
+                "command_output_tail": version["output_tail"][-500:],
+            },
             "python": platform.python_version(),
             "phases": phases,
             "source_type": "local_offline_checks_no_bigquery_no_ci",
             "results": evidence,
-            "overall_status": "PASS" if evidence and all(x["status"] == "passed" for x in evidence) else "FAIL",
+            "overall_status": "PASS" if (
+                verified_commit and evidence and all(x["status"] == "passed" for x in evidence)
+            ) else "FAIL",
             "bigquery_verified": False,
             "model_real_data_verified": False,
             "powerbi_desktop_verified_by_this_runner": False,
@@ -84,15 +100,22 @@ def main() -> int:
     parser.add_argument("--phases", nargs="+", choices=["source", "ml", "full"],
                         default=["source", "ml", "full"])
     parser.add_argument("--timeout", type=int, default=1200)
+    parser.add_argument("--expected-commit", type=str, default=None,
+                        help="Reject a report if checkout differs from this exact 40-character SHA")
     parser.add_argument("--report", type=Path, default=Path("verification_report.json"))
     args = parser.parse_args()
     if args.timeout <= 0:
         parser.error("--timeout must be a positive number of seconds")
+    if args.expected_commit is not None and not re.fullmatch(
+        r"[0-9a-fA-F]{40}", args.expected_commit
+    ):
+        parser.error("--expected-commit must be a full 40-character git SHA")
     if args.report.resolve().is_relative_to(args.repo.resolve()) and args.report.name in {
         "dbt_project.yml", "requirements.txt", "requirements-ml.txt"
     }:
         parser.error("Do not overwrite repository configuration")
-    evidence = run_all(args.repo.resolve(), list(dict.fromkeys(args.phases)), args.timeout)
+    evidence = run_all(args.repo.resolve(), list(dict.fromkeys(args.phases)),
+                       args.timeout, expected_commit=args.expected_commit)
     args.report.parent.mkdir(parents=True, exist_ok=True)
     args.report.write_text(json.dumps(evidence, indent=2, ensure_ascii=False), encoding="utf-8")
     print("Report:", args.report.resolve(), "|", evidence["overall_status"])

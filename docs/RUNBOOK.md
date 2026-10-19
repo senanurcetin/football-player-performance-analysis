@@ -161,6 +161,8 @@ dbt docs serve
 Generated files under `target/` are local artifacts and should not be committed.
 After generation, `python scripts/check_documentation_coverage.py` verifies that every model and physical model column has a description.
 
+**Kaggle update, 19 October 2026:** Use `notebooks/nexus_football_offline_verification.ipynb` with CPU and Internet enabled; the report runner now rejects missing or mismatched full commit SHAs. A valid test report must include `source_commit_verification.status=passed` in addition to `overall_status=PASS`. See [Kaggle instructions](REPRODUCIBLE_OFFLINE_VERIFICATION_20261019.md).
+
 ## Quota-free independent CPU verification
 
 When Desktop Commander is unavailable, use the [Colab/Kaggle verification notebook](../notebooks/nexus_football_offline_verification.ipynb) and [offline runbook](REPRODUCIBLE_OFFLINE_VERIFICATION_20261019.md). In an independent CPU checkout, execute `python scripts/run_offline_verification.py --phases source ml` and, only if green, `--phases full`. Keep the generated SHA-tagged JSON reports. The workflow does not execute BigQuery, hosted CI or model publication, and cloud-source verification still requires an authorized separate run.

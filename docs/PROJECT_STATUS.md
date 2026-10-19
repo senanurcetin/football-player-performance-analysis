@@ -11,6 +11,10 @@
 - [PR #85](https://github.com/senanurcetin/football-player-performance-analysis/pull/85) **merged** at `78e16fb4c70e080621162ef2440742fb49df7998`: removed the recurring ML publication schedule and required manual `ENABLE_ML_PRODUCTION=true` plus per-run `confirm_final_release=true`. Remote trigger checks **6/6** passed. No hosted CI was intentionally triggered. Last independent scheduled run failed at missing credentials **before** data jobs.
 - **Release remains REVIEW PENDING.** A merged source change is not evidence that the full checkout, authorized warehouse, newly fitted historical model, Power BI and final opt-in CI have been validated.
 
+## Kaggle execution evidence hardening — 19 October 2026
+
+The independent offline runner now fails closed if `git rev-parse HEAD` cannot provide a valid **40-digit** commit SHA or when the checkout does not match the pinned `--expected-commit`. Both notebook verification stages use the same captured commit SHA. Two additional targeted runner regression tests were added. The Kaggle CPU launch procedure and output ZIP location are documented in [portable verification runbook](REPRODUCIBLE_OFFLINE_VERIFICATION_20261019.md). **Actual Kaggle kernel execution is still NOT VERIFIED**: this ChatGPT session has no Kaggle execution connector, Kaggle credentials or outbound DNS to launch a notebook. No hosted CI, BigQuery or Power BI interaction was initiated.
+
 ## Desktop Commander quota workaround — 19 October 2026
 
 An **uncredentialed Google Colab / Kaggle CPU notebook** and a portable `scripts/run_offline_verification.py` have been prepared to run source and ML tests on a complete GitHub checkout **without** Desktop Commander, GitHub Actions, CircleCI or BigQuery. The notebook validates as a Jupyter file; runner compiles; **two local runner contract tests passed** (PASS/FAIL propagation and no cloud/CI command). It emits SHA-scoped JSON test evidence for review. **The real football full checkout has not yet been executed in a cloud notebook** because ChatGPT cannot directly launch the user's Colab/Kaggle kernel. See [reproducible offline verification](REPRODUCIBLE_OFFLINE_VERIFICATION_20261019.md).
