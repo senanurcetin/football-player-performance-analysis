@@ -44,6 +44,14 @@ python scripts/walk_forward_research.py \
 
 This branch's **12 synthetic-only tests** were executed in an isolated environment with NumPy 2.3.5, pandas 2.2.3 and scikit-learn 1.8.0, all passing; they exercise chronology, no future-target contamination in earlier folds, the distinct calibration stage, actual refitting, input validation, baselines, confidence-interval rank and CLI manifest. This is **not** a genuine rolling-origin performance result, because authorized real feature data was not available. The runner forbids obvious target/identity/future data columns as features; preventing less-obvious leakage depends on the upstream dbt feature-contract and as-of-date audits.
 
+## Diagnostic resilience note — 19 October 2026
+
+The independent player-cluster bootstrap is an **optional descriptive evaluation diagnostic**, not a v5 model promotion gate. Some otherwise valid datasets concentrate all persistence-baseline error in only one player's rows. A player-cluster bootstrap resample may exclude that player, producing a **zero baseline MAE denominator** even though the observed sample has valid relative skill. Previously such a draw raised `ValueError` and could unnecessarily interrupt training.
+
+The corrected diagnostic preserves the observed `mae_skill_vs_persistence_pct`, reports `undefined_bootstrap_resamples`, and returns `bootstrap_ci_status="not_estimable_undefined_resamples"` with JSON `null` CI bounds if **any** resample has an undefined ratio. When every draw is defined, `bootstrap_ci_status="estimated"` and the existing percentile CI is reported. This **does not** replace undefined draws, mislabel conditional estimates as unconditional confidence intervals, or alter governed training weights.
+
+The standalone offline auditor also rejects either source file (`test_predictions.csv` or `metrics.json`) colliding with a generated output path, preventing accidental overwrite. Two isolated numeric scenarios (dense vs. single-error-player baselines) were reproduced locally; additional source regression tests have been added, but the **full GitHub checkout suite remains unrun** for this change. No real-data skill, source freshness or Desktop approval is claimed.
+
 ## Interpretation and statistical limitations
 
 - **Bootstrap skill** = 100 × (1 − model absolute error total / persistence absolute error total). A value above zero indicates a lower observed MAE than persistence on the supplied cohort. This is not evidence that the predictor beats persistence in each league, season or valuation tier.
