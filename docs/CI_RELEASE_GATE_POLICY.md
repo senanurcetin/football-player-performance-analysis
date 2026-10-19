@@ -1,6 +1,6 @@
 # NEXUS Football — CI-last release policy
 
-> **Updated 19 October 2026:** Full offline Python tests **243/243 PASS**, source/dbt parse and structural checks PASS via SentinelX; **BigQuery table tests, corrected real-data model evaluation and final hosted CI remain NOT RUN**. This document is a release policy and historical CI incident record, not a new CI pass. See [Project status](PROJECT_STATUS.md).
+> **Updated 19 October 2026:** Offline Python tests **243/243 on the original checkout and 246/246 after repository hygiene tests**, source/dbt parse and structural checks PASS via SentinelX; **BigQuery table tests, corrected real-data model evaluation and final hosted CI remain NOT RUN**. This document is a release policy and historical CI incident record, not a new CI pass. See [Project status](PROJECT_STATUS.md).
 
 **Current decision (13 October 2026):** development, source repairs, real Desktop acceptance and local tests come **before** any new CircleCI verification run.
 
