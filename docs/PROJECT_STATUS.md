@@ -11,6 +11,10 @@
 - [PR #85](https://github.com/senanurcetin/football-player-performance-analysis/pull/85) **merged** at `78e16fb4c70e080621162ef2440742fb49df7998`: removed the recurring ML publication schedule and required manual `ENABLE_ML_PRODUCTION=true` plus per-run `confirm_final_release=true`. Remote trigger checks **6/6** passed. No hosted CI was intentionally triggered. Last independent scheduled run failed at missing credentials **before** data jobs.
 - **Release remains REVIEW PENDING.** A merged source change is not evidence that the full checkout, authorized warehouse, newly fitted historical model, Power BI and final opt-in CI have been validated.
 
+## Desktop Commander quota workaround — 19 October 2026
+
+An **uncredentialed Google Colab / Kaggle CPU notebook** and a portable `scripts/run_offline_verification.py` have been prepared to run source and ML tests on a complete GitHub checkout **without** Desktop Commander, GitHub Actions, CircleCI or BigQuery. The notebook validates as a Jupyter file; runner compiles; **two local runner contract tests passed** (PASS/FAIL propagation and no cloud/CI command). It emits SHA-scoped JSON test evidence for review. **The real football full checkout has not yet been executed in a cloud notebook** because ChatGPT cannot directly launch the user's Colab/Kaggle kernel. See [reproducible offline verification](REPRODUCIBLE_OFFLINE_VERIFICATION_20261019.md).
+
 ## Ordered verification gates — 19 October 2026
 
 The owner requested **verify everything before Power BI and final CI**. Source integration and isolated synthetic checks do **not** satisfy the following remaining prerequisites:

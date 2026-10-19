@@ -35,6 +35,8 @@ Use one canonical source per topic. Dated research and audit notes supply eviden
 | [Screenshot gallery and capture manifest](assets/screenshots/README.md) | Source-rendered images, hashes and provenance | 17 Oct images; not current BigQuery freshness |
 | [Historical engineering archive](archive/README.md) | Date-stamped earlier designs, incidents and fixes | Read-only background; do not treat as the current acceptance decision |
 
+| [Free CPU offline verification — 19 Oct](REPRODUCIBLE_OFFLINE_VERIFICATION_20261019.md) | [Colab/Kaggle runnable notebook](../notebooks/nexus_football_offline_verification.ipynb), fail-closed JSON runner and evidence limits | Runner has 2 local unit tests PASS; full football checkout still needs execution |
+
 ## Maintenance policy
 
 1. Keep the [project status](PROJECT_STATUS.md) as the only current release/acceptance decision. Link to it; don't repeat the same PASS/HOLD assertions in multiple independent files.
