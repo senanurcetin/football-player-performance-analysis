@@ -182,6 +182,27 @@ class EvaluationArtifactContract(unittest.TestCase):
         json.dumps(summary, allow_nan=False)
         self.assertEqual(segments["row_count"].sum(), 4 * len(frame))
 
+    def test_cli_never_overwrites_prediction_or_metrics_input(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            output = Path(tmp)
+            predictions = output / "segment_metrics.csv"
+            metadata = output / "meta.json"
+            predictions.write_text("input-sentinel", encoding="utf-8")
+            metadata.write_text("metrics-sentinel", encoding="utf-8")
+            with self.assertRaises(SystemExit):
+                main(["--input", str(predictions), "--metrics", str(metadata),
+                      "--output-dir", str(output)])
+            self.assertEqual(predictions.read_text(encoding="utf-8"), "input-sentinel")
+
+            predictions = output / "safe_predictions.csv"
+            predictions.write_text("new-input-sentinel", encoding="utf-8")
+            metrics = output / "reliability_summary.json"
+            metrics.write_text("metadata-sentinel", encoding="utf-8")
+            with self.assertRaises(SystemExit):
+                main(["--input", str(predictions), "--metrics", str(metrics),
+                      "--output-dir", str(output)])
+            self.assertEqual(metrics.read_text(encoding="utf-8"), "metadata-sentinel")
+
     def test_cli_writes_hashed_only_aggregate_outputs(self):
         frame = synthetic_predictions()
         with tempfile.TemporaryDirectory() as tmp:
