@@ -24,7 +24,7 @@
 
 | Evidence | What it establishes | Limitation |
 | --- | --- | --- |
-| [Executed SentinelX verification — 19 Oct](SENTINELX_OFFLINE_VERIFICATION_20261019.md) | **243/243 Python tests**, **47/47 ML tests**, offline dbt parse **PASS** | Does not run dbt tests on BigQuery tables |
+| [Executed SentinelX verification — 19 Oct](SENTINELX_OFFLINE_VERIFICATION_20261019.md) | **243/243 baseline and 246/246 after structure audit**, **47/47 ML**, offline dbt parse **PASS** | Does not run dbt tests on BigQuery tables |
 | [Portable Colab/Kaggle procedure](REPRODUCIBLE_OFFLINE_VERIFICATION_20261019.md) | Alternative verified-source runner and SHA-bound result JSON | Windows verification was executed; hosted Kaggle was not |
 | [Numeric validation — 18 Oct](ML_VALIDATION_HARDENING_20261018.md) | Fail-closed keys/targets and as-of training contracts | Model was not refit on new real data |
 | [ML reliability — 18–19 Oct](ML_RELIABILITY_EVALUATION_20261018.md) | Bootstrap, finite-sample interval and fitted-predictor identity | Only offline/synthetic evidence for the corrected model |
