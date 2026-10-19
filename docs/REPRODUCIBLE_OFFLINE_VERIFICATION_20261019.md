@@ -29,7 +29,15 @@ python scripts/run_offline_verification.py --phases full \
   --repo . --report verification_full_report.json
 ```
 
-### Güvenlik ve veri kanıtı sınırları
+### Kaggle CPU'da kesin sürümle doğrulama — 19 Ekim eklemesi
+
+**Kaggle çalıştırma adımları:** Kaggle → Code → New Notebook → File → Import Notebook; GitHub'dan `notebooks/nexus_football_offline_verification.ipynb` dosyasını import et. Settings bölümünde **Internet → On** ve **Accelerator → None (CPU)** seç. `Run All` (veya `Save Version → Save & Run All`) ile yürüt. Test kanıtı `/kaggle/working/nexus_football_verification_reports.zip` içinde oluşur; notebook çıktısından indirilebilir. GitHub'daki `main` üzerinden *aynı notebook* seçildiğinde de aynı adımlar geçerlidir.
+
+Güvenilir sonuç şartı: notebook önce tam 40 karakterli Git SHA'yı okur ve hem `source ml` hem `full` raporlarına `--expected-commit` verir. Çalıştırıcı SHA'yı okuyamaz, Git komutu başarısız olur veya SHA aşamalar arasında değişirse **genel sonuç FAIL** olmalıdır. Salt test komutlarının sıfır çıkış kodu vermesi yeterli değildir.
+
+Bu katı kural için iki ek Python regresyon testi eklendi: **Git SHA yok** ve **beklenen SHA uyuşmuyor** koşullarında PASS üretme. Güncel dört testin tam GitHub checkout koşusu **henüz Kaggle'da çalıştırılmadı**. Önceki iki testin geçmesi yeni eklenenlerin PASS olduğu anlamına gelmez.
+
+## Güvenlik ve veri kanıtı sınırları
 
 Bu notebook **BigQuery credentials/ADC istemez**, Google Cloud tablo okuma-yazma işlemi yapmaz, Github Actions/CircleCI başlatmaz ve model yayınlamaz. Ücretsiz Colab/Kaggle kaynak süresi sınırlarına tabidir. Çalıştırıcıda gerçekte PASS olmayan bir komut **genel sonucu FAIL yapar**; boş rapor hiçbir zaman PASS olmaz.
 
