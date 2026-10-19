@@ -24,22 +24,32 @@ with raw_valuation_days as (
 
 ),
 
+target_candidate_by_date as (
+
+    select
+        player_id,
+        season,
+        season_market_value_date as target_market_value_date,
+        case when count(distinct season_market_value) = 1
+            then max(season_market_value)
+        end as target_market_value_eur
+    from {{ ref('fct_player_career_timeline') }}
+    where season_market_value > 0
+        and season_market_value_date <= current_date()
+    group by player_id, season, target_market_value_date
+
+),
+
 timeline_target_days as (
 
     select
         player_id,
         season,
         array_agg(
-            struct(
-                season_market_value_date as target_market_value_date,
-                season_market_value as target_market_value_eur
-            )
-            order by season_market_value_date desc
-            limit 1
+            struct(target_market_value_date, target_market_value_eur)
+            order by target_market_value_date desc limit 1
         )[offset(0)] as target
-    from {{ ref('fct_player_career_timeline') }}
-    where season_market_value > 0
-        and season_market_value_date <= current_date()
+    from target_candidate_by_date
     group by player_id, season
 
 ),
@@ -82,6 +92,9 @@ select
         as conflicting_competition_only_days,
     (select count(*) from timeline_target_days)
         as candidate_player_season_targets,
+    (select countif(target.target_market_value_eur is null)
+        from timeline_target_days)
+        as conflicted_latest_player_season_targets,
     (select countif(is_canonical_target) from target_membership)
         as matched_unambiguous_targets,
     (select countif(is_canonical_target is not true) from target_membership)
