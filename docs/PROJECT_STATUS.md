@@ -5,6 +5,12 @@
 > **Source integration — 19 October 2026 (`main`):**
 > [Numeric-contract PR #78](https://github.com/senanurcetin/football-player-performance-analysis/pull/78) was **merged** at `0aaec6f8d3f8f28d3cd55c7ca648a05dd3364bb0`. [Research and documentation PR #79](https://github.com/senanurcetin/football-player-performance-analysis/pull/79) was then **merged** at `f63ee20a4c4fb8a43b6a99e468a6e325ea244f8e`. Both merges used `[skip ci]`; **hosted CI was not intentionally run**. Earlier isolated synthetic-only ML research checks reported **33/33 tests** and 93% coverage, but the actual combined repository suite, #78 regression suite, current BigQuery freshness, real-data historical model backtests and Power BI Desktop runtime acceptance **have not been executed or independently verified for this integration**. Merging the source is not production model approval or portfolio release. Overall release state remains **REVIEW PENDING**.
 
+## Latest controlled merges — 19 October 2026
+
+- [PR #84](https://github.com/senanurcetin/football-player-performance-analysis/pull/84) **merged** at `a860cbb592586404837f7b53460616a718ead394`: latest-season target-date conflict rejection, canonical training coverage parity and transparent exclusion audit. Remote source checks **9/9** and one isolated SQLite fixture passed; **BigQuery/dbt compilation not executed**.
+- [PR #85](https://github.com/senanurcetin/football-player-performance-analysis/pull/85) **merged** at `78e16fb4c70e080621162ef2440742fb49df7998`: removed the recurring ML publication schedule and required manual `ENABLE_ML_PRODUCTION=true` plus per-run `confirm_final_release=true`. Remote trigger checks **6/6** passed. No hosted CI was intentionally triggered. Last independent scheduled run failed at missing credentials **before** data jobs.
+- **Release remains REVIEW PENDING.** A merged source change is not evidence that the full checkout, authorized warehouse, newly fitted historical model, Power BI and final opt-in CI have been validated.
+
 ## Ordered verification gates — 19 October 2026
 
 The owner requested **verify everything before Power BI and final CI**. Source integration and isolated synthetic checks do **not** satisfy the following remaining prerequisites:
