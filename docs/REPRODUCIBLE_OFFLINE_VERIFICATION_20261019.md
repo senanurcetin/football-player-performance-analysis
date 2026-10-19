@@ -47,6 +47,6 @@ Bu notebook **BigQuery credentials/ADC istemez**, Google Cloud tablo okuma-yazma
 
 ### Kanıt durumu
 
-19 Ekim 2026'da notebook dosyası `nbformat.validate` ile doğrulandı, runner `py_compile` ve `--help` ile çalıştırıldı; runner için `tests/test_run_offline_verification.py` kapsamında **iki lokal PASS** alındı. **Bunlar football repo testlerinin çalıştırıldığı anlamına gelmez.** Bu ChatGPT ortamından GitHub archive indirme isteği DNS hatası verdi; bağlı `Senanur` Desktop Commander cihazı kota nedeniyle kullanılamıyor. Tam depo ve BigQuery kabul sonuçları ancak yetkili alternatif kernel çalıştırıldığında üretilebilir.
+**Güncel kanıt (19 Ekim 2026):** SentinelX üzerinden Windows'ta izole edilmiş tam GitHub checkout'u kullanılarak **243/243 Python**, **47/47 ML testi** ve SHA eşleşmeli dokuz aşamalı taşınabilir doğrulama çalıştırıcısı **PASS** verdi. dbt çevrimdışı parse işlemi de başarılıdır. Colab/Kaggle notebook'u alternatif olarak korunuyor, ancak **Kaggle sunucusunda çalıştırıldığı iddia edilmiyor**. Bu başarılar gerçek BigQuery kaynak sorgularının ve yeniden eğitilmiş modelin kabulü değildir. [Çalıştırılmış test kanıtı](SENTINELX_OFFLINE_VERIFICATION_20261019.md).
 
 Sürüm ve açık engeller için [PROJECT_STATUS.md](PROJECT_STATUS.md) tek güncel karar kaynağıdır.
