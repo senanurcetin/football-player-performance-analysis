@@ -60,6 +60,10 @@ Output artifacts are `reliability_summary.json` (model/version/season window, ob
 - The production Power BI source and synthetic test edition must never be conflated.
 - No external publication or model promotion without the actual verified release gates.
 
+## Additional v5 calibration correctness prerequisite — 19 October 2026
+
+The historical v5 evaluation must not refit its estimator on the interval-calibration season before testing. The corrected source now reuses the same fitted predictor and missing-baseline fill; `metrics.json` reports model-fit versus calibration rows separately and the offline evaluation package requires provenance. **Treat all earlier backtest figures as historical, not reproducible evidence of the corrected source.** Re-evaluate governed model metrics and interval coverage on authorized historical data before any release claim. This source correction is separate from the existing non-production rolling-origin research runner and does not initiate hosted CI.
+
 ## Merge dependency
 
 **Completed 19 October 2026:** PR #78 was merged into `main` at `0aaec6f8d3f8f28d3cd55c7ca648a05dd3364bb0`; PR #79 was subsequently retargeted from #78's branch to `main` and merged at `f63ee20a4c4fb8a43b6a99e468a6e325ea244f8e`. GitHub reported both merges successful. `[skip ci]` was used, and no hosted CI was intentionally run. Integration of source code is complete; full repository tests, actual BigQuery warehouse/ML evidence and Power BI Desktop runtime/user acceptance **remain outstanding**. Keep external release status **REVIEW PENDING**.

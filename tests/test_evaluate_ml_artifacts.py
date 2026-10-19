@@ -40,6 +40,10 @@ def synthetic_metrics() -> dict[str, object]:
         "feature_contract_hash": "synthetic-contract-hash",
         "train_season_max": 2023,
         "training_rows": 120,
+        "evaluation_fit_rows": 100,
+        "evaluation_fit_season_max": 2022,
+        "calibration_rows": 20,
+        "calibration_and_test_share_fitted_predictor": True,
         "test_rows": 6,
         "tuning_season": 2022,
         "calibration_season": 2023,
@@ -148,6 +152,13 @@ class EvaluationArtifactContract(unittest.TestCase):
             ("held_out_test_seasons", [2024, 2024]),
             ("held_out_test_seasons", [2025]),
             ("training_rows", 0),
+            ("evaluation_fit_rows", 0),
+            ("evaluation_fit_rows", 119),
+            ("evaluation_fit_season_max", 2023),
+            ("calibration_rows", 0),
+            ("calibration_rows", 21),
+            ("calibration_and_test_share_fitted_predictor", False),
+            ("calibration_and_test_share_fitted_predictor", None),
             ("tuning_season", 2023),
         ]:
             with self.subTest(field=name, invalid=invalid):
@@ -155,6 +166,12 @@ class EvaluationArtifactContract(unittest.TestCase):
                 metadata[name] = invalid
                 with self.assertRaises(ValueError):
                     validate_evaluation_provenance(frame, metadata)
+
+    def test_legacy_artifact_without_fitted_predictor_identity_rejected(self):
+        metadata = synthetic_metrics()
+        metadata.pop("calibration_and_test_share_fitted_predictor")
+        with self.assertRaisesRegex(ValueError, "same fitted estimator"):
+            validate_evaluation_provenance(synthetic_predictions(), metadata)
 
     def test_provenance_rejects_malformed_types(self):
         for name, invalid in [

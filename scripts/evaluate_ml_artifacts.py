@@ -88,6 +88,13 @@ def validate_evaluation_provenance(
     test_rows = whole_number("test_rows")
     tuning = whole_number("tuning_season")
     calibration = whole_number("calibration_season")
+    fit_rows = whole_number("evaluation_fit_rows")
+    fit_end = whole_number("evaluation_fit_season_max")
+    calibration_rows = whole_number("calibration_rows")
+    if metadata.get("calibration_and_test_share_fitted_predictor") is not True:
+        raise ValueError(
+            "Calibration and held-out predictions must share the same fitted estimator"
+        )
     seasons = metadata.get("held_out_test_seasons")
     if (
         not isinstance(seasons, list)
@@ -102,6 +109,10 @@ def validate_evaluation_provenance(
         or not (tuning < calibration == train_end < min(seasons))
         or test_rows != len(clean)
         or train_rows <= 0
+        or fit_rows <= 0
+        or calibration_rows <= 0
+        or fit_rows + calibration_rows != train_rows
+        or fit_end != tuning
     ):
         raise ValueError("Artifact train/tune/calibration/holdout provenance mismatch")
     return {
@@ -109,6 +120,10 @@ def validate_evaluation_provenance(
         "source_commit_sha": metadata.get("source_commit_sha"),
         "feature_contract_hash": metadata.get("feature_contract_hash"),
         "declared_train_season_max": train_end,
+        "evaluation_fit_season_max": fit_end,
+        "evaluation_fit_rows": fit_rows,
+        "calibration_rows": calibration_rows,
+        "calibration_and_test_share_fitted_predictor": True,
         "declared_test_seasons": observed_seasons,
         "declared_test_rows": test_rows,
         "artifact_pair_consistent": True,

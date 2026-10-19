@@ -988,9 +988,10 @@ def main() -> None:
         ),
         0,
     )
+    calibration_baseline_fill = float(calibration_training[TARGET].median())
     calibration_baseline = (
         calibration["previous_market_value_eur"]
-        .fillna(float(calibration_training[TARGET].median()))
+        .fillna(calibration_baseline_fill)
         .to_numpy()
     )
     calibration_prediction, _ = apply_blend_weights_by_quality_status(
@@ -1018,13 +1019,16 @@ def main() -> None:
         f"{hashlib.sha256(version_input.encode()).hexdigest()[:8]}"
     )
 
-    pipeline = build_pipeline()
-    pipeline.fit(train[NUMERIC_FEATURES + CATEGORICAL_FEATURES], train[TARGET])
+    # Use exactly the pre-calibration fitted estimator for held-out inference.
+    # Re-fitting on the calibration season would make interval residuals and
+    # held-out predictions come from different models, invalidating the
+    # split-conformal comparison even though calibration precedes test time.
+    pipeline = calibration_pipeline
     model_prediction = np.maximum(
         pipeline.predict(test[NUMERIC_FEATURES + CATEGORICAL_FEATURES]),
         0,
     )
-    baseline_fill = float(train[TARGET].median())
+    baseline_fill = calibration_baseline_fill
     baseline_prediction = (
         test["previous_market_value_eur"].fillna(baseline_fill).to_numpy()
     )
@@ -1046,6 +1050,10 @@ def main() -> None:
         "test_rows": int(len(test)),
         "train_season_min": int(train["season"].min()),
         "train_season_max": int(train["season"].max()),
+        "evaluation_fit_rows": int(len(calibration_training)),
+        "evaluation_fit_season_max": int(calibration_training["season"].max()),
+        "calibration_rows": int(len(calibration)),
+        "calibration_and_test_share_fitted_predictor": True,
         "tuning_season": tuning_season,
         "calibration_season": calibration_season,
         "held_out_test_seasons": held_out_seasons,
