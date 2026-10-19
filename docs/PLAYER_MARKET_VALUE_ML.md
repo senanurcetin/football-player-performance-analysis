@@ -55,9 +55,9 @@ Random row splitting is not used.
 
 The dbt tests `assert_ml_features_precede_target`, `assert_ml_training_row_coverage`, `assert_ml_feature_business_rules`, `assert_ml_model_coverage`, and `assert_ml_scoring_readiness` enforce date boundaries, target coverage, feature validity, and scoring readiness.
 
-GitHub CI runs a synthetic pipeline smoke test on every relevant change. It validates preprocessing, missing-value handling, fitting, prediction, quality-segment ensemble-weight selection, limited-quality fallback enforcement, governed segment metrics, sample-size controls, and metric calculation without publishing or retraining production predictions.
+The repository's source-level synthetic pipeline smoke test is available locally and within the opt-in CI definitions. GitHub `dbt CI` is **manual dispatch only** with `ENABLE_GITHUB_ACTIONS_CI=true`; CircleCI's nine jobs require the final `run_final_ci=true` parameter. **Do not claim a smoke test ran on every push or PR.** It validates preprocessing, missing-value handling, fitting, prediction, quality-segment ensemble-weight selection, limited-quality fallback enforcement, governed segment metrics, sample-size controls, and metric calculation without publishing or retraining production predictions.
 
-The separate `ML Production` workflow runs weekly and on demand. It refreshes the dbt ML models, trains and evaluates the model, blocks publication on release-gate failure, publishes approved outputs, and retains governed artifacts for 30 days.
+The separate `ML Production` workflow **defines** a weekly Monday 05:00 UTC schedule and manual dispatch. It is not the same workflow as the manual-only `dbt CI` gate and can execute **paid BigQuery/model publication** steps when credentials are configured. Do not infer recent successful execution from the YAML schedule alone. It refreshes the dbt ML models, trains and evaluates the model, blocks publication on release-gate failure, publishes approved outputs, and retains governed artifacts for 30 days.
 
 Profile attributes such as position, preferred foot, citizenship, and height come from the current player profile source. They are relatively stable attributes but remain a known historical-modeling limitation.
 

@@ -4,6 +4,13 @@
 
 **Current decision (13 October 2026):** development, source repairs, real Desktop acceptance and local tests come **before** any new CircleCI verification run.
 
+## Workflow boundary (verified from checked-in YAML, 18 October 2026)
+
+- **CircleCI:** the sole nine-job workflow requires `run_final_ci=true`; ordinary branch pushes may register empty pipelines but must not be called test passes.
+- **GitHub `dbt CI`:** `.github/workflows/dbt-ci.yml` has **only `workflow_dispatch`**; even manual `offline-preflight` needs `ENABLE_GITHUB_ACTIONS_CI=true`; warehouse `validate` additionally needs `ENABLE_BIGQUERY_CI=true` and permitted credentials. PR/schedule-specific YAML steps are presently unreachable via the configured event set.
+- **GitHub `ML Production`:** `.github/workflows/ml-production.yml` independently declares **weekly Monday 05:00 UTC and manual triggers** and has no `ENABLE_GITHUB_ACTIONS_CI` guard. When credentials exist it may incur charges and publish model tables; do not claim it is disabled by this CircleCI-last policy. Confirm actual scheduler state and authorization before allowing it to run.
+- GitHub status with no check results is **NOT RUN/UNKNOWN**, never PASS. For current results and exact source proof see [Project status](PROJECT_STATUS.md).
+
 ## Trigger policy
 
 `.circleci/config.yml` defines a boolean `run_final_ci` pipeline parameter with `default: false`. The only CircleCI workflow (`verify-offline-source`) has a `when: << pipeline.parameters.run_final_ci >>` guard:

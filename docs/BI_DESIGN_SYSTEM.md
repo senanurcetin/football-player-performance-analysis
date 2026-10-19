@@ -19,9 +19,19 @@ No fluorescent green or green/teal should be used in the palette. Keep the seman
 
 The Power BI report includes native graphics that may have their own explicit fill/font formatting; change those per-visual settings separately and check dark/light contrast in Power BI Desktop.
 
+## Governed native-report source and accessibility rules
+
+This design system retains the useful, non-productization source rules from the superseded product/portfolio handoff documents:
+
+- **Canonical editable source** is `powerbi/workspace/FootballPlayerAnalysis/FootballPlayerAnalysis.pbip`, connected through `GoogleBigQuery.Database` to governed football marts. A separately stored `powerbi/offline-demo` PBIP uses **synthetic fixture data** and must remain visibly distinguished; never substitute demo values or screenshots for historical production evidence.
+- Preserve the **13 native PBIR pages** (nine presentation, two player drillthrough and two tooltip) and their existing fields, DAX, filters, navigation and resource-package references when changing visual styling. Keep analytics headings, tooltips and selected-player details in English; preserve clear metric denominators, units and non-null handling.
+- The production source includes the registered transparent **NEXUS** wordmark resource `NEXUS_Official_Transparent_Logo.png`; do not replace it with an inferred/recreated logo. Verify resource registration and readable scaling via `scripts/check_powerbi_portfolio.py` and actual Desktop visual review.
+- Use the defined navy/blue/cyan/lavender palette with readable contrast, descriptive alt text, no clipped plots, and no claim of causal effects from descriptive transfer comparisons. Model valuations are estimates, not realized transfer prices.
+- **Static tests are not Desktop acceptance.** The [visual QA matrix](POWER_BI_VISUAL_QA.md), [dated screenshot/KPI audit](POWER_BI_HISTORICAL_VALUE_AUDIT_20261018.md), and [canonical project status](PROJECT_STATUS.md) independently record what was and was not verified.
+
 ## Current PBIR canvas contract (13 October 2026)
 
-The **current** editable PBIR uses a unified NEXUS dark background for the nine analytics and drillthrough pages. Home and Closing use the deeper hero navy. Only the two compact, hidden tooltip pages retain pale contextual canvases; they are **not** normal report tabs. Prior pastel full-page designs are historical and must not be described as the present source.
+The **current** editable PBIR uses a unified NEXUS dark background for the nine analytics and drillthrough pages. Home and Closing use the deeper hero navy. The two compact, hidden tooltip pages are **not** normal report tabs; the current PBIR canvas table below records **dark `#091E33` backgrounds**, not the earlier pale experimental design. Prior pastel full-page designs are historical and must not be described as the present source.
 
 This table describes the actual `Report/definition/pages/*/page.json` backgrounds in **both** editions; `offline-demo` now uses the same clean page-tab names as production, but retains an explicit, readable synthetic-data disclosure on every full-size page. The two contextual tooltips are bound to these clearly disclosed synthetic parent pages. There is no implied production-data provenance.
 
@@ -49,7 +59,7 @@ Individual visual surfaces and chart layouts remain deliberately asymmetric; uni
 
 - The current presentation is the **single editable PBIR report**, with two intentional source variants: `workspace` (BigQuery) and `offline-demo` (deterministic synthetic fixtures). Neither variant is a legacy slide deck.
 - Home and Closing use a consistent navy editorial treatment, with distinct headlines (`THE GAME, IN DATA.` / `EVIDENCE DRIVES DECISIONS.`). Home navigation is typographic rather than decorative emoji buttons; all Power BI page-navigation references remain intact.
-- The nine analytics/drillthrough pages share the NEXUS `#091E33` page canvas while retaining differentiated native chart layouts; the two contextual tooltip canvases remain pale as shown in the source contract above.
+- The nine analytics/drillthrough pages share the NEXUS `#091E33` page canvas while retaining differentiated native chart layouts; the two contextual tooltip pages use the **dark `#091E33`** background shown in the source contract above.
 - Seven duplicate PNG resources in each variant's *project-root* `StaticResources/RegisteredResources` folder were byte-identical to their correctly registered copies under `Report/StaticResources/RegisteredResources`. The **14 redundant mirrors (18,263,794 bytes in tracked file sizes)** have been deleted; the seven assets still referenced in the registered PBIR resource package are retained in both variants.
 - Historical green Power BI galleries and superseded editorial cover illustrations remain excluded from this repository. **Do not add separate PDF/PPTX exports or replacement mockup PNGs** solely to represent this source report.
 

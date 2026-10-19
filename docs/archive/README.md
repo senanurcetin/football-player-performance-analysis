@@ -24,7 +24,6 @@ Historical statements such as 'screenshots not yet captured' refer to the date o
 | [POWER_BI_RUNTIME_REPAIR_20261017.md](powerbi/POWER_BI_RUNTIME_REPAIR_20261017.md) | 17 October runtime repair evidence |
 | [POWER_BI_TRANSFER_ENGLISH_MIDNIGHT_20261016.md](powerbi/POWER_BI_TRANSFER_ENGLISH_MIDNIGHT_20261016.md) | English labels and midnight transfer refinements |
 | [POWER_BI_VISUAL_REFINEMENT_ROADMAP.md](powerbi/POWER_BI_VISUAL_REFINEMENT_ROADMAP.md) | Earlier visual refinement roadmap |
-
 | [Power BI visual QA history](powerbi/POWER_BI_VISUAL_QA_HISTORY_20261017.md) | Original dated visual QA findings and development log |
 
 **Maintenance rule:** archive documents are append-only historical evidence; do not rewrite past results as newly rerun tests. Update [Project status](../PROJECT_STATUS.md), [current technical references](../README.md) and executable tests for new changes.

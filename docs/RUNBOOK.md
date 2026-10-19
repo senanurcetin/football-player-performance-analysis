@@ -4,7 +4,9 @@
 
 ## Purpose
 
-This runbook describes how to configure, validate, build, and publish the dbt project safely.
+This runbook describes safe, reproducible **analytics-engineering development, validation and documentation** of the dbt/ML project. It does not authorize productization, public publishing, or paid cloud processing.
+
+**Operating state (18 October 2026):** GitHub `dbt CI` is `workflow_dispatch`-only and additionally requires `ENABLE_GITHUB_ACTIONS_CI=true`; its cloud validation requires `ENABLE_BIGQUERY_CI=true` and BigQuery credentials. CircleCI jobs are gated by `run_final_ci=true` and are final-stage opt-in. The separate `ML Production` Actions workflow still defines a **weekly Monday 05:00 UTC schedule** plus manual dispatch; unlike dbt CI, it has no explicit `ENABLE_GITHUB_ACTIONS_CI` guard. This scheduled configuration may cause billed BigQuery work when credentials are configured. Confirm authorization, budget and GitHub workflow status before enabling or running it. No October 2026 production check is implied by these source definitions.
 
 ## Prerequisites
 
@@ -78,7 +80,7 @@ Capture changing player and club profile attributes:
 dbt snapshot
 ```
 
-Snapshots are written to `<base>_snapshots`. CI builds staging prerequisites before PR snapshots, runs snapshot validity tests during the full build, and deletes temporary staging, intermediate, mart, ML, and snapshot datasets after every PR validation.
+Snapshots are written to `<base>_snapshots`. The **manually gated** `dbt CI` YAML includes steps for snapshot prerequisites only if the event type is a pull request; the workflow currently registers only `workflow_dispatch`, so these PR-specific steps are **not automatically exercised**. Do not describe the source configuration as proof that isolated PR datasets or cleanup actually ran. Capture successful BigQuery execution logs separately.
 
 ### Source Freshness
 
@@ -116,7 +118,7 @@ Local model artifacts and prediction CSV files are written under `artifacts/play
 
 Before a Power BI refresh, confirm that `assert_ml_scoring_readiness` passes, review `ml_player_market_value_feature_drift`, and filter decision-facing predictions to `prediction_quality_status in ('high', 'medium')`. Limited-quality rows intentionally publish the governed baseline fallback and belong on the data-quality page.
 
-The pipeline validates all blocking release gates before publishing any prediction table. Run the GitHub Actions `ML Production` workflow for the governed production path; it runs weekly on Monday at 05:00 UTC and can also be started manually.
+The pipeline validates all blocking release gates before publishing any prediction table. The GitHub Actions `ML Production` workflow is configured for Monday 05:00 UTC and manual dispatch, but **do not trigger it merely for documentation review**: it builds warehouse models and may publish tables. Running it requires explicit data permissions, budget approval, and separate release-gate acceptance. Documentation and offline source tests should run first.
 
 Verify a local or downloaded governed artifact with:
 
@@ -159,40 +161,43 @@ dbt docs serve
 Generated files under `target/` are local artifacts and should not be committed.
 After generation, `python scripts/check_documentation_coverage.py` verifies that every model and physical model column has a description.
 
-## Deployment Procedure
+## Research validation and controlled integration
 
-Deployment has two explicit parts:
-
-1. Build the dbt models in BigQuery.
-2. Publish the validated code to GitHub.
-
-Recommended sequence:
+Local source checks should not cause a paid BigQuery build. From a complete checkout and a suitable Python environment:
 
 ```bash
-dbt source freshness --selector raw_sources
-dbt snapshot
-dbt build
-dbt docs generate
+python -m compileall -q scripts
+python scripts/check_docs_integrity.py
+python scripts/check_offline_ci.py
+python -m unittest discover -s tests
+python scripts/check_powerbi_project.py
+python scripts/verify_dashboard_screenshots.py
 git diff --check
-git status
-git add --all
-git commit -m "describe the change"
-git push origin main
 ```
 
-Do not push a model change when `dbt build` or required tests fail.
+For the new ML research work, use the additional **synthetic offline** checks:
 
-## GitHub Actions
+```bash
+python -m unittest discover -s tests -p 'test_ml_numeric_contract.py' -v
+python -m unittest discover -s tests -p 'test_ml_reliability.py' -v
+python -m unittest discover -s tests -p 'test_evaluate_ml_artifacts.py' -v
+python -m unittest discover -s tests -p 'test_walk_forward_research.py' -v
+python scripts/check_ml_pipeline.py
+```
 
-The `dbt CI` workflow runs:
+Model artifact evaluation on **real historical exported data** is a distinct task: consult [ML reliability methodology](ML_RELIABILITY_EVALUATION_20261018.md) and keep outputs under ignored `artifacts/`. Never report synthetic-fixture test output as football forecasting skill.
 
-- Daily metadata freshness checks
-- Daily and production Type-2 snapshot capture
-- Full production build and docs generation after a push to `main`
-- Full pull-request validation in isolated temporary BigQuery datasets
-- Automatic pull-request dataset cleanup
+Review/commit changes to a **feature branch** and use a reviewed pull request, rather than directly pushing `main`. The open numeric-validation PR #78 and research/BI-audit PR #79 are **stacked**, so the first must be reviewed before the second is retargeted to `main`. Preserve the final CI opt-in policy.
 
-Configure the repository Actions secret `GCP_SERVICE_ACCOUNT_JSON` with the complete service account JSON document. The workflow never prints the secret.
+Authenticated dbt commands (`dbt source freshness`, `dbt snapshot`, `dbt build`, `dbt docs generate`) are **separate, permissioned, potentially billable** warehouse operations, not prerequisite calls to run uncredentialed Markdown checks. Run them only against the intended environment once access, budget and source provenance are established.
+
+## Hosted CI: what the repository actually configures
+
+The actual `.github/workflows/dbt-ci.yml` is **manual dispatch only**, not a daily, push-triggered or PR-triggered workflow. The `offline-preflight` job is disabled unless `ENABLE_GITHUB_ACTIONS_CI=true`; its `validate` job additionally requires `ENABLE_BIGQUERY_CI=true` and the authorized `GCP_SERVICE_ACCOUNT_JSON` secret. Because the present event is manual, any SQL branch conditioned on `github.event_name == 'pull_request'` must **not** be described as having run.
+
+The separate `.github/workflows/ml-production.yml` is scheduled weekly and also supports manual dispatch. It runs authenticated dbt and ML publication steps when eligible and configured; this can incur processing charges. This is **not** the same opt-in gate as the `dbt CI` workflow.
+
+`.circleci/config.yml` sets `run_final_ci=false` by default and guards all nine jobs behind an explicit final opt-in. See the [canonical CI policy](CI_RELEASE_GATE_POLICY.md). Credentials must be stored only in authorized GitHub secrets or local ignored files, never checked into Markdown/YAML. Treat untriggered or skipped jobs as **NOT RUN**, not PASS.
 
 ## Validation Checklist
 
