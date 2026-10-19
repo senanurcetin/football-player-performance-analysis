@@ -36,29 +36,40 @@ unambiguous_valuation_events as (
 
 ),
 
-timeline_targets as (
+-- Collapse player-season-date rows before selecting the latest target.
+-- At the latest available date, conflicting positive EUR observations make
+-- the target unusable rather than nondeterministically selecting one.
+target_candidate_by_date as (
 
     select
         timeline.player_id,
         timeline.season,
-
-        array_agg(
-            struct(
-                timeline.season_market_value_date as target_market_value_date,
-                timeline.season_market_value as target_market_value_eur
-            )
-            order by timeline.season_market_value_date desc
-            limit 1
-        )[offset(0)] as target
+        timeline.season_market_value_date as target_market_value_date,
+        case
+            when count(distinct timeline.season_market_value) = 1
+                then max(timeline.season_market_value)
+        end as target_market_value_eur
 
     from {{ ref('fct_player_career_timeline') }} timeline
-
     where timeline.season_market_value > 0
         and timeline.season_market_value_date <= current_date()
+    group by timeline.player_id, timeline.season, target_market_value_date
 
-    group by
-        timeline.player_id,
-        timeline.season
+),
+
+timeline_targets as (
+
+    select
+        player_id,
+        season,
+        array_agg(
+            struct(target_market_value_date, target_market_value_eur)
+            order by target_market_value_date desc
+            limit 1
+        )[offset(0)] as target
+    from target_candidate_by_date
+    group by player_id, season
+
 ),
 
 targets as (
