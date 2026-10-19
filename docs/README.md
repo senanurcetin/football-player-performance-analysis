@@ -25,6 +25,9 @@ Use one canonical source per topic. Dated research and audit notes supply eviden
 
 ## Focused research and audit evidence
 
+| [Actual SentinelX offline verification — 19 Oct](SENTINELX_OFFLINE_VERIFICATION_20261019.md) | Independent Windows full Python and dbt source-parse evidence | **243/243 Python PASS**, 47/47 ML PASS, dbt parse PASS; BigQuery runtime still pending |
+
+
 | Evidence | Purpose | Status |
 | --- | --- | --- |
 | [Numeric ML validation — 18 Oct](ML_VALIDATION_HARDENING_20261018.md) | Required target, key and interval-contract safeguards merged into `main` via PR #78 | Source changes, not an empirical model rerun |
