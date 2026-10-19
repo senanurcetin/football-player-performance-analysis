@@ -1,5 +1,7 @@
 # Current project status
 
+> **Latest independent offline verification — 19 October 2026:** Via connected SentinelX on Windows, the actual `main` checkout at `e84632af9aee1a3552a6d1904aa645ec1adc7a65` completed **243/243 Python unit tests PASS**, **47/47 ML regression tests PASS**, source/Jinja and documentation preflight PASS, synthetic ML pipeline smoke PASS, and **credential-free dbt parse PASS** (46 models, 243 registered dbt tests). The portable 9-step offline runner also reported **PASS** with the exact commit SHA. This supersedes earlier statements that the full checkout was inaccessible. **No authenticated BigQuery tables or corrected empirical historical ML metrics were verified**, so overall release is still **REVIEW PENDING**. Full methods and limits: [SentinelX verification report](SENTINELX_OFFLINE_VERIFICATION_20261019.md).
+
 **Evidence snapshot: 17 October 2026 | NEXUS Football Intelligence**
 
 > **Source integration — 19 October 2026 (`main`):**
@@ -29,8 +31,8 @@ The owner requested **verify everything before Power BI and final CI**. Source i
 
 | Gate | Required verification | Recorded state |
 | --- | --- | --- |
-| A — complete checkout | Run Python full unit discovery, `scripts/check_offline_ci.py`, `scripts/check_ml_pipeline.py`, docs/link integrity, original PR #78–#84 regression tests, and source-level BigQuery/dbt/Jinja compile | **BLOCKED:** this ChatGPT container cannot resolve GitHub for a full clone; the authorized Desktop Commander `Senanur` device is **offline** as of this check. Prior isolated passes are not full-checkout evidence |
-| B — authorized warehouse | Authenticate approved BigQuery project, inspect freshness/source timestamps, run both as-of tests, canonical training-key coverage, event-grain/conflict/exclusion audit and existing dbt checks | **BLOCKED:** provider-native BigQuery connector is **DISABLED_BY_ADMIN**; no alternate authenticated warehouse runtime is connected in this session |
+| A — complete checkout | Full Python discovery, regression tests, source/Jinja preflight, docs integrity, synthetic ML smoke and nonauthenticated dbt parse on exact Git SHA | **PASS (19 October, SentinelX Windows):** 243/243 Python tests, 47/47 ML tests, 11 YAML + 54 SQL/Jinja preflight, dbt parse with 46 models / 243 test nodes. This is **offline acceptance only**, not BigQuery dbt test execution. See [evidence](SENTINELX_OFFLINE_VERIFICATION_20261019.md) |
+| B — authorized warehouse | Authenticate approved BigQuery project, inspect freshness/source timestamps, run both as-of tests, canonical training-key coverage, event-grain/conflict/exclusion audit and existing dbt checks | **BLOCKED/NOT RUN:** Native BigQuery connector disabled; SentinelX host has Google Cloud CLI but agent account has **zero active authenticated accounts** and no default project. Source dbt parse passed against a credential-free dummy profile only |
 | C — real historical ML | Rerun corrected train/tune/calibration/holdout pipeline on current verified data; report persistence baseline, MAE, WAPE, segment coverage, uncertainty and promotion gates | **NOT RUN:** source-grain and calibrated-predictor changes may change historical model metrics |
 | D — Power BI | After A–C, retain owner's previous visual acceptance, and recheck refreshed comparable KPI populations as necessary before final signoff | **DEFERRED by owner order**; no new Desktop execution claimed |
 | E — final CI | After A–D, run the explicitly authorized final opt-in CircleCI and only then consider manual production publication | **NOT TRIGGERED** in this verification effort |
