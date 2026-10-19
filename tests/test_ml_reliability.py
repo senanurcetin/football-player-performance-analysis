@@ -48,6 +48,10 @@ class RollingOriginContract(unittest.TestCase):
             rolling_origin_season_splits(self.frame, min_train_seasons=3, test_seasons=[2021])
         with self.assertRaises(ValueError):
             rolling_origin_season_splits(self.frame, min_train_seasons=0)
+        for invalid in [True, 1.5, "2"]:
+            with self.subTest(invalid=invalid):
+                with self.assertRaises(ValueError):
+                    rolling_origin_season_splits(self.frame, min_train_seasons=invalid)
 
 
 class PlayerGroupedBootstrap(unittest.TestCase):
@@ -67,6 +71,26 @@ class PlayerGroupedBootstrap(unittest.TestCase):
         self.assertEqual(a["rows"], 8)
         self.assertGreater(a["mae_skill_vs_persistence_pct"], 0)
         self.assertLessEqual(a["bootstrap_ci_lower_pct"], a["bootstrap_ci_upper_pct"])
+
+    def test_undefined_cluster_resamples_preserve_point_estimate_without_ci(self):
+        # Only one player carries persistence error: some perfectly legitimate
+        # player-cluster resamples omit that player and make relative skill 0/0.
+        frame = self.frame.copy()
+        frame["baseline_prediction_eur"] = frame["target_market_value_eur"]
+        frame.loc[0, "baseline_prediction_eur"] -= 10
+        result = grouped_mae_skill_bootstrap(frame, replicates=300, seed=42)
+        self.assertEqual(result["bootstrap_ci_status"], "not_estimable_undefined_resamples")
+        self.assertGreater(result["undefined_bootstrap_resamples"], 0)
+        self.assertIsNone(result["bootstrap_ci_lower_pct"])
+        self.assertIsNone(result["bootstrap_ci_upper_pct"])
+        self.assertTrue(np.isfinite(result["mae_skill_vs_persistence_pct"]))
+
+    def test_estimable_ci_reports_no_undefined_draws(self):
+        result = grouped_mae_skill_bootstrap(self.frame, replicates=200, seed=42)
+        self.assertEqual(result["bootstrap_ci_status"], "estimated")
+        self.assertEqual(result["undefined_bootstrap_resamples"], 0)
+        self.assertIsNotNone(result["bootstrap_ci_lower_pct"])
+        self.assertIsNotNone(result["bootstrap_ci_upper_pct"])
 
     def test_invalid_replicates_and_one_player_rejected(self):
         with self.assertRaises(ValueError):
