@@ -1,6 +1,6 @@
 # Architecture and Model Catalog
 
-> **Current evidence boundary (17 October 2026):** The catalog describes the established warehouse model, not a newly run October 2026 BigQuery census. See [Project status](PROJECT_STATUS.md).
+> **Source audit 19 October 2026:** Architecture and declared dbt models parsed successfully offline (46 models, 243 registered tests); the full Python suite **243/243 PASS**. This is **not** a current BigQuery model census or table execution. Same-day valuation canonicalization and target-date conflict handling have been implemented in the model sources but their real exclusion counts remain unknown. See [current gates](PROJECT_STATUS.md) and [valuation event-grain audit](ML_VALUATION_EVENT_GRAIN_AUDIT_20261019.md).
 
 ## Overview
 
