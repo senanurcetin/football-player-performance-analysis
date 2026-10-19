@@ -15,6 +15,8 @@ The active document navigation and technical descriptions were consolidated thro
 
 ## ML as-of data quality improvements — 19 October 2026
 
+**Source merged:** [PR #81](https://github.com/senanurcetin/football-player-performance-analysis/pull/81) landed on `main` at `337dd2d48e0edaae9ee8f6b7bd6f85d7e21c616a` with `[skip ci]`. This adds two unexecuted, read-only dbt event-time tests, one unexecuted lineage audit, and enhanced Python input/season contracts. An isolated synthetic reconstruction passed **4 tests** and eight remote SQL/source-contract checks passed. The **full repository suite and authorized BigQuery tests were not run** during integration; source merge does not itself approve empirical model performance or source freshness.
+
 The post-merge quality branch adds training/scoring season and identifier checks, nonnegative prior-market-value enforcement, two warehouse-bound **read-only** singular dbt tests for target/feature date chronology and a research-only historical feature-lineage profiling query. The source SQL files are **not executed** on BigQuery; no source freshness or updated model metrics are claimed. A small isolated input-contract reproduction passed **4/4 local tests**, not a full project checkout. The full regression suite remains pending; the source review and CI-last workflow remain intact.
 
 ## Model diagnostic safeguards — 19 October 2026
