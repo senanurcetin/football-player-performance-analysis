@@ -1,6 +1,6 @@
 # Player Market Value Prediction
 
-> **Current evidence boundary (17 October 2026):** Model metrics are historical experiments, not freshly rerun October 2026 training. Persistence baseline remains essential. See [Project status](PROJECT_STATUS.md).
+> **Verified 19 October 2026:** The real full Python suite (**243/243**) and ML subset (**47/47**) passed on a complete Windows checkout; offline dbt parse passed. The market-value figures in this document describe the **previous historical v5 model and June warehouse state**, **not** fresh data or real-data evaluation of the corrected October source. See [executed tests](SENTINELX_OFFLINE_VERIFICATION_20261019.md) and [current acceptance](PROJECT_STATUS.md).
 
 ## Objective
 
@@ -35,9 +35,9 @@ For each player-season, the target is the latest positive eligible market value 
 - `target_market_value_date`
 - `target_market_value_eur`
 
-The current BigQuery training feature table contains 90,704 rows.
+The **historically documented (June 2026)** BigQuery training feature table contained **90,704 rows**. The canonical daily-valuation filtering introduced in October may change this count; it has **not** been recomputed.
 
-`ml_player_market_value_scoring` contains one row for each player active in the latest observed season. It uses appearances and valuations available through the build date. The current scoring table contains 7,841 rows.
+`ml_player_market_value_scoring` contains one row for each player active in the latest observed season. It uses appearances and valuations available through the build date. The **historically recorded** scoring table contained **7,841 rows**; current warehouse row count and source freshness are unverified.
 
 ## Leakage Controls
 
@@ -51,13 +51,13 @@ Random row splitting is not used.
 - Season 2023 is used only to calibrate the 90% conformal prediction interval.
 - Seasons 2024 and 2025 form the temporal backtest and release-gating set.
 - The code does not use the backtest seasons for fitting, automated weight selection, or interval calibration.
-- The final production artifact is retrained on all 90,704 labeled rows after evaluation.
+- The **historical v5 process** refitted a final scoring artifact on all 90,704 then-eligible labels. Revised source code has **not** been retrained on a newly verified dataset.
 
 The dbt tests `assert_ml_features_precede_target`, `assert_ml_training_row_coverage`, `assert_ml_feature_business_rules`, `assert_ml_model_coverage`, and `assert_ml_scoring_readiness` enforce date boundaries, target coverage, feature validity, and scoring readiness.
 
 The repository's source-level synthetic pipeline smoke test is available locally and within the opt-in CI definitions. GitHub `dbt CI` is **manual dispatch only** with `ENABLE_GITHUB_ACTIONS_CI=true`; CircleCI's nine jobs require the final `run_final_ci=true` parameter. **Do not claim a smoke test ran on every push or PR.** It validates preprocessing, missing-value handling, fitting, prediction, quality-segment ensemble-weight selection, limited-quality fallback enforcement, governed segment metrics, sample-size controls, and metric calculation without publishing or retraining production predictions.
 
-The separate `ML Production` workflow **defines** a weekly Monday 05:00 UTC schedule and manual dispatch. It is not the same workflow as the manual-only `dbt CI` gate and can execute **paid BigQuery/model publication** steps when credentials are configured. Do not infer recent successful execution from the YAML schedule alone. It refreshes the dbt ML models, trains and evaluates the model, blocks publication on release-gate failure, publishes approved outputs, and retains governed artifacts for 30 days.
+The separate `ML Production` GitHub workflow is **manual dispatch only**: the weekly schedule was removed on 19 October 2026. Both repository variable `ENABLE_ML_PRODUCTION=true` **and** per-run `confirm_final_release=true` are mandatory. The pipeline can incur **paid BigQuery usage/model publication** and must not be used as a substitute for data-quality tests or final CircleCI. The previous scheduled attempt failed at a missing cloud credential precheck, before data or model processing.
 
 Profile attributes such as position, preferred foot, citizenship, and height come from the current player profile source. They are relatively stable attributes but remain a known historical-modeling limitation.
 
@@ -127,7 +127,7 @@ The pipeline evaluates every candidate before publishing any BigQuery prediction
 | Worst quality-segment improvement versus baseline | `>= 0%` | `0.00%` |
 | MAE regression versus latest approved champion | `<= 2%` | `-2.84%` |
 
-The latest v5 release status is `approved_with_monitoring`. All blocking gates pass. Two warning gates require review but do not reject the release:
+The **historical pre-October v5 release record** reported `approved_with_monitoring` and its then-current blocking gates passed. **This is not approval of the corrected October 2026 pipeline**; authenticated BigQuery tests and real-data reevaluation remain open. The earlier snapshot contained two warning signals:
 
 - Current `limited` prediction share is 27.09%, above the 25% warning threshold.
 - Ten features show significant PSI drift versus the latest labeled season.
