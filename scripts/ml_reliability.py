@@ -23,8 +23,8 @@ def rolling_origin_season_splits(
     must each be performed strictly within the fold's training rows, never the
     held-out season. Does not train or score a model.
     """
-    if min_train_seasons < 1:
-        raise ValueError("min_train_seasons must be positive")
+    if isinstance(min_train_seasons, bool) or not isinstance(min_train_seasons, int) or min_train_seasons < 1:
+        raise ValueError("min_train_seasons must be a positive integer")
     if season_column not in frame:
         raise ValueError(f"Missing season column: {season_column}")
     values = pd.to_numeric(frame[season_column], errors="coerce").to_numpy(dtype=float)
@@ -57,7 +57,7 @@ def grouped_mae_skill_bootstrap(
     replicates: int = 500,
     confidence: float = 0.95,
     seed: int = 42,
-) -> dict[str, float | int]:
+) -> dict[str, float | int | str | None]:
     """Confidence interval for MAE improvement (%) via player-cluster bootstrap.
 
     Sampling units are players, *not* player-seasons. With historical serial or
@@ -93,28 +93,41 @@ def grouped_mae_skill_bootstrap(
     observed_skill_pct = float(100 * (1 - model_group_sums.sum() / baseline_total))
     rng = np.random.default_rng(seed)
     bootstrap_scores = np.empty(replicates, dtype=float)
-    # Bound working memory even when there are many distinct players.
+    undefined_draws = 0
+    # Players with a nonzero baseline error can be omitted by a bootstrap
+    # resample. Relative MAE skill is mathematically undefined for that draw.
     for start in range(0, replicates, 128):
         end = min(start + 128, replicates)
         sample_ids = rng.integers(0, group_count, size=(end - start, group_count))
         sampled_baseline = baseline_group_sums[sample_ids].sum(axis=1)
         sampled_model = model_group_sums[sample_ids].sum(axis=1)
         valid = sampled_baseline > 0
-        if not valid.all():
-            raise ValueError("A bootstrap sample has zero baseline error")
-        bootstrap_scores[start:end] = 100 * (1 - sampled_model / sampled_baseline)
-    alpha = (1 - confidence) / 2
-    low, high = np.quantile(bootstrap_scores, [alpha, 1 - alpha])
+        undefined_draws += int((~valid).sum())
+        chunk = np.full(end - start, np.nan, dtype=float)
+        chunk[valid] = 100 * (1 - sampled_model[valid] / sampled_baseline[valid])
+        bootstrap_scores[start:end] = chunk
+    if undefined_draws:
+        # An interval conditional on discarding undefined replicates is not
+        # the stated unconditional cluster-bootstrap percentile interval.
+        # Preserve the observed point estimate, but do not manufacture a CI.
+        low, high = None, None
+        ci_status = "not_estimable_undefined_resamples"
+    else:
+        alpha = (1 - confidence) / 2
+        bounds = np.quantile(bootstrap_scores, [alpha, 1 - alpha])
+        low, high = float(bounds[0]), float(bounds[1])
+        ci_status = "estimated"
     return {
         "player_groups": group_count,
         "rows": int(len(frame)),
         "replicates": replicates,
         "confidence_level_pct": float(confidence * 100),
         "mae_skill_vs_persistence_pct": observed_skill_pct,
-        "bootstrap_ci_lower_pct": float(low),
-        "bootstrap_ci_upper_pct": float(high),
+        "bootstrap_ci_lower_pct": low,
+        "bootstrap_ci_upper_pct": high,
+        "bootstrap_ci_status": ci_status,
+        "undefined_bootstrap_resamples": undefined_draws,
     }
-
 
 def interval_coverage_by_group(
     frame: pd.DataFrame,
