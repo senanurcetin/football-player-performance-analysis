@@ -1,6 +1,6 @@
 # NEXUS Football Intelligence — current verification status
 
-**As of 19 October 2026.** Scope: research-grade football analytics, dbt, historical market-value modeling and existing Power BI; **no productization**. This is the **single current acceptance decision**. Earlier dated documents are historical source evidence, not independent current release approvals.
+**As of 20 October 2026.** Scope: research-grade football analytics, dbt, historical market-value modeling and existing Power BI; **no productization**. This is the **single current acceptance decision**. Earlier dated documents are historical source evidence, not independent current release approvals.
 
 **Final documentation/layout candidate (19 October 2026):** After consolidating the active documentation index, status, CI and ML-methodology language, three new repository-hygiene tests were added. The isolated Windows checkout at `fcb66f72e27dfdd2178e41a31b67749e6f26005b` passed **246/246 Python tests** (including all three new structure checks), and its exact-SHA **nine-stage offline runner reported PASS**. The structure audit found **no tracked temporary artifacts, generated caches, or exact duplicate active Markdown documents**. Original historical Power BI audit records were retained. These are source/structure checks, not authenticated BigQuery table execution.
 
@@ -58,3 +58,10 @@ No tracked `target/`, virtual environment, temporary log or duplicate Markdown d
 ## Evidence and research references
 
 [Executed SentinelX verification](SENTINELX_OFFLINE_VERIFICATION_20261019.md) · [Execution method and alternate Colab/Kaggle notebook](REPRODUCIBLE_OFFLINE_VERIFICATION_20261019.md) · [ML reliability and corrected calibration methodology](ML_RELIABILITY_EVALUATION_20261018.md) · [Source-event valuation audit](ML_VALUATION_EVENT_GRAIN_AUDIT_20261019.md) · [Historic Power BI 365-day comparison](POWER_BI_HISTORICAL_VALUE_AUDIT_20261018.md) · [Historical June 2026 data-quality snapshot](DATA_QUALITY.md) · [Root project README](../README.md).
+
+## 20 October 2026 — continuation / access boundary
+
+- Before further work, `main` was at `1b9b4648800177c982fbf074a042c5be2a94c9ff`. CircleCI remains explicit opt-in and was not run.
+- The provider-native BigQuery connector is disabled by admin; the connected Windows agent reports zero active `gcloud` accounts, an unset default project, and no project credential environment variables. No paid query or publication was attempted.
+- A row-level transfer mismatch diagnostic, local CSV validator and **nine synthetic regressions** were prepared under `analyses/`, `scripts/` and `tests/`. The new isolated checkout passed **258/258 full Python unit tests**, production Power BI static source checks, offline demo checks and credential-free dbt parse. **The three historic 365-day difference keys have not been identified.**
+- All previously specified real BigQuery/source-freshness tests, historical ML backtest, Power BI post-refresh reconciliation and hosted final CI remain open.
