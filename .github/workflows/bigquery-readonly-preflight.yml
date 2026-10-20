@@ -1,0 +1,52 @@
+name: BigQuery Read-Only Access Preflight
+
+# Manual and metadata-only: no SQL, dbt builds, model writes, or queries.
+on:
+  workflow_dispatch:
+    inputs:
+      confirm_metadata_only:
+        description: "Confirm a no-query, metadata-only test of the existing GitHub secret"
+        required: true
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: football-bigquery-metadata
+  cancel-in-progress: false
+
+jobs:
+  check-metadata:
+    if: inputs.confirm_metadata_only == true
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out exact commit
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+
+      - name: Install BigQuery metadata client
+        run: python -m pip install "google-cloud-bigquery>=3.20,<4"
+
+      - name: Check repository BigQuery service account and mart metadata
+        env:
+          GCP_SERVICE_ACCOUNT_JSON: ${{ secrets.GCP_SERVICE_ACCOUNT_JSON }}
+        run: |
+          python scripts/check_bigquery_github_access.py --project-id data-analiz-490513 --output artifacts/bigquery_repository_metadata_preflight.json
+
+      - name: Upload credential-free metadata report
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: bigquery-repository-metadata-${{ github.run_id }}
+          path: artifacts/bigquery_repository_metadata_preflight.json
+          if-no-files-found: warn
+          retention-days: 14

@@ -181,3 +181,7 @@ Diagnostic Power BI caches and temporary local scripts are excluded from source 
 ## Documentation and contribution
 
 [Documentation index](docs/README.md) · [Screenshot evidence](docs/assets/screenshots/README.md) · [Architecture](docs/ARCHITECTURE.md) · [Data quality](docs/DATA_QUALITY.md) · [ML model](docs/PLAYER_MARKET_VALUE_ML.md) · [Power BI modeling](docs/POWER_BI_MODELING.md) · [BI design](docs/BI_DESIGN_SYSTEM.md) · [Operations](docs/RUNBOOK.md) · [Reviewer summary and attribution](docs/hiring-summary.md) · [Contributing](CONTRIBUTING.md) · [MIT license](LICENSE)
+
+### GitHub-hosted BigQuery access preflight
+
+Repository workflows already reference Google Cloud project `data-analiz-490513` and the `GCP_SERVICE_ACCOUNT_JSON` GitHub secret. A new [manual metadata-only GitHub Actions preflight](.github/workflows/bigquery-readonly-preflight.yml) can check whether that identity can read the `football_mart` transfer-table metadata **without any SQL queries or model publication**. Merely having the workflow or a secret reference is not successful authentication; BigQuery reconciliation, historical ML retesting, Desktop refresh and final CircleCI remain separately gated.
