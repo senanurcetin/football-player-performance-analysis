@@ -1,14 +1,11 @@
 name: BigQuery Read-Only Access Preflight
 
 # Manual and metadata-only: no SQL, dbt builds, model writes, or queries.
+# Explicit manual trigger is sufficient for read-only metadata API access.
+# Do not add a job-level input guard: default-false caused run 39416694886
+# (including re-run attempt 2) to skip check-metadata before any GCP request.
 on:
   workflow_dispatch:
-    inputs:
-      confirm_metadata_only:
-        description: "Confirm a no-query, metadata-only test of the existing GitHub secret"
-        required: true
-        type: boolean
-        default: false
 
 permissions:
   contents: read
@@ -19,7 +16,6 @@ concurrency:
 
 jobs:
   check-metadata:
-    if: inputs.confirm_metadata_only == true
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
