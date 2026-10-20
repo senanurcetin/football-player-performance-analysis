@@ -58,3 +58,7 @@ The same local sweep found one additional issue outside that CircleCI failure: M
 ## CI trigger and release state
 
 This source change gates **future** CircleCI jobs only. It does not retroactively repair the existing failed status, prove CircleCI can still start after manual opt-in, or verify real Power BI runtime and BigQuery credentials. Those proofs remain separate acceptance criteria.
+
+## Isolated non-billable connection preflight — 20 October 2026
+
+An independent manually dispatched [BigQuery Read-Only Access Preflight](../.github/workflows/bigquery-readonly-preflight.yml) is available solely to establish whether the existing GitHub service-account secret can read metadata for the live transfer marts. It has **no push, PR or schedule trigger** and starts **no SQL queries, dbt builds, or model publication**. It does **not** satisfy any final CircleCI nine-job gate and does not authorize BigQuery query costs. The repo's prior 19 October `GCP_SERVICE_ACCOUNT_JSON` empty-secret failure cannot be considered repaired before a successful actual credential check. GitHub Actions minutes exhaustion remains an independent scheduling blocker.
