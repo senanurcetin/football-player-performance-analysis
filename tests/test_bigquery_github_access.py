@@ -81,13 +81,21 @@ class BigQueryGitHubMetadataContract(unittest.TestCase):
     def test_workflow_is_manual_and_credential_scoped(self):
         workflow=(ROOT/".github/workflows/bigquery-readonly-preflight.yml").read_text("utf8")
         self.assertIn("workflow_dispatch:",workflow)
-        self.assertIn("confirm_metadata_only",workflow)
+        self.assertNotIn("confirm_metadata_only",workflow)
+        self.assertNotIn("if: inputs.",workflow)
         self.assertIn("secrets.GCP_SERVICE_ACCOUNT_JSON",workflow)
         self.assertNotIn("  push:",workflow)
         self.assertNotIn("  schedule:",workflow)
         self.assertNotIn("train_player_market_value.py",workflow)
         self.assertNotIn("run: dbt build",workflow)
         self.assertIn("persist-credentials: false",workflow)
+        try:
+            import yaml
+        except ImportError:
+            self.skipTest("Optional PyYAML not installed")
+        doc=yaml.load(workflow,Loader=yaml.BaseLoader)
+        self.assertEqual(set(doc["on"]),{"workflow_dispatch"})
+        self.assertNotIn("if",doc["jobs"]["check-metadata"])
 
 if __name__=="__main__":
     unittest.main()
