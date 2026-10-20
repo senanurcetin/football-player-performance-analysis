@@ -1,6 +1,6 @@
 # NEXUS Football Intelligence — documentation map
 
-**Reviewed 19 October 2026.** This is an analytics engineering, data science, dbt and existing editable Power BI research project. **No productization or hosted deployment.** The [project status](PROJECT_STATUS.md) is the sole current acceptance authority; the date printed inside a technical research note limits its empirical claims.
+**Reviewed 20 October 2026.** This is an analytics engineering, data science, dbt and existing editable Power BI research project. **No productization or hosted deployment.** The [project status](PROJECT_STATUS.md) is the sole current acceptance authority; the date printed inside a technical research note limits its empirical claims.
 
 ## Canonical reference documents
 
@@ -26,6 +26,7 @@
 | --- | --- | --- |
 | [Executed SentinelX verification — 19 Oct](SENTINELX_OFFLINE_VERIFICATION_20261019.md) | **243/243 baseline and 246/246 after structure audit**, **47/47 ML**, offline dbt parse **PASS** | Does not run dbt tests on BigQuery tables |
 | [Portable Colab/Kaggle procedure](REPRODUCIBLE_OFFLINE_VERIFICATION_20261019.md) | Alternative verified-source runner and SHA-bound result JSON | Windows verification was executed; hosted Kaggle was not |
+| [Transfer-key reconciliation preparation — 20 Oct](POWER_BI_HISTORICAL_VALUE_AUDIT_20261018.md) | Read-only anti-join SQL, exported CSV validator, and 9 synthetic regression tests | BigQuery connection disabled; no actual historic three-key match |
 | [Numeric validation — 18 Oct](ML_VALIDATION_HARDENING_20261018.md) | Fail-closed keys/targets and as-of training contracts | Model was not refit on new real data |
 | [ML reliability — 18–19 Oct](ML_RELIABILITY_EVALUATION_20261018.md) | Bootstrap, finite-sample interval and fitted-predictor identity | Only offline/synthetic evidence for the corrected model |
 | [Same-day valuation event grain — 19 Oct](ML_VALUATION_EVENT_GRAIN_AUDIT_20261019.md) | Canonical player-date rule and conflict exclusion policy | Actual excluded source keys/counts unknown |
