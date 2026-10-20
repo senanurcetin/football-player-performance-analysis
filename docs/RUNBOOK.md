@@ -268,3 +268,15 @@ Consult [Data Quality](DATA_QUALITY.md). Missing raw values are acceptable only 
 ### Freshness Warning or Error
 
 Confirm whether the raw ingestion job ran and inspect the BigQuery table last-modified timestamps. Do not replace metadata freshness with game, transfer, or valuation business dates.
+
+## Read-only 365d transfer-key audit (prepared 20 October 2026)
+
+After BigQuery credentials and query budget are authorized, compile [the key-level SELECT](../analyses/audit_transfer_365d_row_level_20261020.sql) through dbt with `pbi_capture_as_of_date: "2026-10-17"`. Execute the compiled query in an authenticated read-only session and export the mismatch rows as CSV. Record BigQuery job ID, bytes billed, warehouse modification time, source snapshot, capture date, BI refresh timestamp and all page/slicer filters. No scripts in this step should write any warehouse tables.
+
+Validate the returned CSV offline:
+
+```bash
+python scripts/validate_transfer_365d_reconciliation.py   --input /path/to/authorized-transfer-key-export.csv   --capture-date 2026-10-17   --output artifacts/transfer_365d_key_audit.json
+```
+
+Compare that result to the [grouped summary query](../analyses/audit_transfer_365d_capture_20261018.sql) under equivalent source/filter conditions. A successful CSV validation is not a source freshness, full-population, or historical screenshot approval. If the original source snapshot is unavailable, record HISTORICAL NOT REPRODUCIBLE. Synthetic offline test: `python -m unittest discover -s tests -p 'test_transfer_365d_key_reconciliation.py' -v`.

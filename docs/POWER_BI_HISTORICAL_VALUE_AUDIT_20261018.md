@@ -59,3 +59,13 @@ Values under different population filters are not proof of changed input records
 4. Open the existing production-connected PBIP, check both player-selected detail pages (remove visual error states) and actual tooltip behavior; capture evidence and obtain the author's acceptance.
 
 **Verdict:** The requested “Power BI kontrol edildi” is supportable **only for screenshot integrity and historical matching values**, not for the 365-day discrepancy or for the full Power BI live/runtime release gate.
+
+## Transfer-key audit preparation — 20 October 2026
+
+The historical **8,581 Power BI vs. 8,584 dbt label** comparison remains **ROW-LEVEL UNRESOLVED**. The BigQuery connector is disabled by admin, and the connected Windows agent reports zero active gcloud accounts and no default project. No authorized live data or original warehouse snapshot was used.
+
+- [Key-level diagnostic](../analyses/audit_transfer_365d_row_level_20261020.sql) lists nonmatching or duplicate `transfer_key` values and classifies label-only, nonmatured, orphan and duplicate conditions. It records capture and source cutoff dates, without writing any tables.
+- [CSV evidence checker](../scripts/validate_transfer_365d_reconciliation.py) rejects empty, duplicate, misdated, incoherent exports. Its `validated_export_only` result is NOT evidence of source freshness or visual filter parity.
+- [Synthetic regressions](../tests/test_transfer_365d_key_reconciliation.py) confirm fail-closed behavior.
+
+For an authorized historical comparison, verify source modification timestamp, report refresh/capture time, historical immutable dataset snapshot, and all visual/page filters. A capture-date parameter alone does not reconstruct overwritten BigQuery tables. The original three keys are still unknown; the synthetic three-key test must not be reported as their identification.
