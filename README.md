@@ -21,7 +21,7 @@ End-to-end football intelligence, from Transfermarkt data and governed BigQuery/
 
 **This is a collaborative training project developed with a team during the Workintech Data Pro program, not a solo-authored portfolio project.** The repo's foundation also incorporates earlier collaborative/upstream dbt work. The current fork documents subsequent extensions in its analytics models, semantic layer, Power BI reporting, validation, and player-market-value research. Treat those as **repository-level outputs**, not an assertion that one person created every component.
 
-Attribution and historical model provenance are recorded in the [reviewer brief](docs/hiring-summary.md), upstream Git history, and contributor commits. The 17 October Power BI screenshots are historical captures; the owner subsequently accepted the existing visual workstream, but an authenticated post-refresh metric audit remains outstanding.
+Attribution and historical model provenance are established by the repository's upstream Git history, contributor commits and the collaborative-project statement above. The 17 October Power BI screenshots are historical captures; the owner subsequently accepted the existing visual workstream, but an authenticated post-refresh metric audit remains outstanding.
 
 ## What the project delivers
 
@@ -33,7 +33,7 @@ Attribution and historical model provenance are recorded in the [reviewer brief]
 | Interactive BI | 9 presentation pages, 2 hidden drillthrough detail pages, 2 tooltip pages in editable PBIP/PBIR format |
 | Presentation | NEXUS midnight/navy design, cyan and lavender accents; verifiable real Desktop PNGs |
 
-The repository extends earlier collaborative work; attribution and project contributions are documented in the [reviewer summary](docs/hiring-summary.md). The football dataset remains subject to the [source data license and terms](https://www.kaggle.com/datasets/davidcariboo/player-scores).
+The repository extends earlier collaborative work; project contributions and historical authorship must be read from upstream and current Git commit history. The football dataset remains subject to the [source data license and terms](https://www.kaggle.com/datasets/davidcariboo/player-scores).
 
 ## Power BI dashboard screenshots
 
@@ -180,7 +180,7 @@ Diagnostic Power BI caches and temporary local scripts are excluded from source 
 
 ## Documentation and contribution
 
-[Documentation index](docs/README.md) · [Screenshot evidence](docs/assets/screenshots/README.md) · [Architecture](docs/ARCHITECTURE.md) · [Data quality](docs/DATA_QUALITY.md) · [ML model](docs/PLAYER_MARKET_VALUE_ML.md) · [Power BI modeling](docs/POWER_BI_MODELING.md) · [BI design](docs/BI_DESIGN_SYSTEM.md) · [Operations](docs/RUNBOOK.md) · [Reviewer summary and attribution](docs/hiring-summary.md) · [Contributing](CONTRIBUTING.md) · [MIT license](LICENSE)
+[Documentation index](docs/README.md) · [Screenshot evidence](docs/assets/screenshots/README.md) · [Architecture](docs/ARCHITECTURE.md) · [Data quality](docs/DATA_QUALITY.md) · [ML model](docs/PLAYER_MARKET_VALUE_ML.md) · [Power BI modeling](docs/POWER_BI_MODELING.md) · [BI design](docs/BI_DESIGN_SYSTEM.md) · [Operations](docs/RUNBOOK.md) · [Contributing](CONTRIBUTING.md) · [MIT license](LICENSE)
 
 ### GitHub-hosted BigQuery access preflight
 
