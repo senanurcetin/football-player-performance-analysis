@@ -17,8 +17,9 @@
 | BI source and screenshot evidence | [Power BI visual QA](POWER_BI_VISUAL_QA.md) | 13 captured screens and the as-of-date limitation |
 | Desktop handling | [Power BI Desktop handoff](POWER_BI_DESKTOP_HANDOFF.md) | Actual Desktop checks and permitted refresh |
 | Reproduction and operations | [Runbook](RUNBOOK.md) | Local checks, isolated Windows validation and approved data work |
+| Workintech BigQuery recovery | [Isolated recovery and Power BI source plan](WORKINTECH_MIGRATION_20261027.md) | Offline source data, safe target namespaces, open authorization gates |
 | Hosted workflow approvals | [Final CI release policy](CI_RELEASE_GATE_POLICY.md) | Nine-job CircleCI opt-in; separately confirmed model publication |
-| Attribution | [Reviewer/author brief](hiring-summary.md) | Original team participation and limitations |
+| Attribution | [Project-origin attribution](../README.md) | Original team participation and limitations |
 
 ## Date-scoped research and verification evidence
 

@@ -4,7 +4,7 @@ sources:
   - name: football_raw
     description: Raw Transfermarkt football dataset imported from Kaggle
     database: "{{ env_var('DBT_SOURCE_DATABASE', target.database) }}"
-    schema: football_raw
+    schema: "{{ env_var('DBT_SOURCE_DATASET', 'football_raw') }}"
     loader: Kaggle
     config:
       meta:
