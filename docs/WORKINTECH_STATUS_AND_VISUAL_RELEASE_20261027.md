@@ -1,5 +1,8 @@
 # NEXUS Football Intelligence — Workintech recovery and visual evidence (27 October 2026)
 
+**POST-CAPTURE SOURCE FIX (27 October, 22:38 local):** The authentic Desktop screenshots are from earlier that day and remain unchanged. Four Power BI visual definitions were corrected without new captures: the fee-premium chart no longer divides percentage axis and labels by one million (1000000D); two currency tooltips now use the properly million-scaled custom format (two commas before M), rather than a literal M suffix; and the main quality donut renders percentages only while the legend retains category names. Five targeted regression tests pass. **Live post-fix Desktop rendering has not been observed.** Other label and table overflow, player-detail and 34 extra import issues remain separate.
+
+
 **Evidence date:** 27 October 2026. **Target:** Google BigQuery EU, workintech-working, and the owner's Windows Power BI Desktop. This is the current execution record; earlier October 17–20 status notes remain historical evidence rather than current acceptance.
 
 ## Reconstructed warehouse and actual verification

@@ -29,7 +29,7 @@
               "queryRef": "ml_player_market_value_current_predictions.Average Predicted Market Value",
               "nativeQueryRef": "Avg. Prediction Değeri",
               "displayName": "Avg. Prediction Değeri",
-              "format": "€0.0M"
+              "format": "€0.0,,\"M\""
             },
             {
               "field": {

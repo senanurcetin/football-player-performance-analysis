@@ -1,5 +1,8 @@
 # Workintech Power BI — 27 October 2026 source edition
 
+**POST-SCREENSHOT SOURCE FIX:** Four visual.json definitions corrected (percentage axis and labels, two tooltip currencies and crowded donut category labels). The active report has byte-identical patched files; no new screenshots were requested. Run the source dry-run repair script scripts/fix_powerbi_visual_formats_20261027.py and its five regression tests test_powerbi_fixed_formats_20261027.py. The on-screen appearance remains to be independently observed when convenient.
+
+
 This directory is the **versioned, editable PBIP/PBIR/TMDL snapshot** of the report the Windows owner actually opened and screenshotted on 27 October 2026.
 
 **Main file:** [FootballPlayerAnalysis.pbip](FootballPlayerAnalysis/FootballPlayerAnalysis.pbip)

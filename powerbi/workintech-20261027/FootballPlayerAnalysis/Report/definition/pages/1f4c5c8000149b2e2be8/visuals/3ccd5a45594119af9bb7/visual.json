@@ -160,7 +160,7 @@
             "labelStyle": {
               "expr": {
                 "Literal": {
-                  "Value": "'Category, percent of total'"
+                  "Value": "'Percent of total'"
                 }
               }
             },
@@ -424,4 +424,4 @@
       }
     ]
   }
-}
+}

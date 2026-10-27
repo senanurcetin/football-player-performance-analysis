@@ -1,5 +1,8 @@
 # NEXUS Football — genuine Power BI Desktop screenshot gallery
 
+**Capture versus current source:** These 13 original PNGs represent Desktop before the later 27 October visual-format repair. They are not retouched or replaced. The PBIR sources were subsequently corrected for the fee-premium percentage scale, two currency tooltip formats and prediction-quality donut labels. These file changes have passed offline regression; no subsequent Desktop render is claimed. See [current verification](../../WORKINTECH_STATUS_AND_VISUAL_RELEASE_20261027.md).
+
+
 **Latest capture: 27 October 2026.** The images are genuine user-supplied Power BI Desktop screenshots from the Workintech-connected report, not fabricated diagrams, an offline synthetic demo, or images of a current live football feed.
 
 ![27 October 2026 nine-page NEXUS Power BI gallery](NEXUS_Football_Page_Gallery.png)

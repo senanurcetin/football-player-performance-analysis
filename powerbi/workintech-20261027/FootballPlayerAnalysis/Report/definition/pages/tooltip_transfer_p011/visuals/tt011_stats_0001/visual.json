@@ -29,7 +29,7 @@
               "queryRef": "fct_transfer_market_value_analysis.Average Known Transfer Fee",
               "nativeQueryRef": "Ort. Transfer Fee",
               "displayName": "Ort. Transfer Fee",
-              "format": "€0.0M"
+              "format": "€0.0,,\"M\""
             },
             {
               "field": {
