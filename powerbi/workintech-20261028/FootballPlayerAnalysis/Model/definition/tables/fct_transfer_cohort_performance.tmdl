@@ -1,0 +1,201 @@
+table fct_transfer_cohort_performance
+	lineageTag: 26f2485b-dc5d-4aa1-af93-46742af47f5b
+
+	column horizon_days
+		dataType: int64
+		formatString: 0
+		lineageTag: f7affc6f-f0a6-46e8-ad7a-ba400581630f
+		summarizeBy: sum
+		sourceColumn: horizon_days
+
+		annotation SummarizationSetBy = Automatic
+
+	column cohort_type
+		dataType: string
+		lineageTag: 5466a67e-3a73-40b4-922c-33b2e77abd56
+		summarizeBy: none
+		sourceColumn: cohort_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column cohort_value
+		dataType: string
+		lineageTag: 34877ba7-d562-497f-82ef-7342ff53a9ee
+		summarizeBy: none
+		sourceColumn: cohort_value
+
+		annotation SummarizationSetBy = Automatic
+
+	column transfer_count
+		dataType: int64
+		formatString: 0
+		lineageTag: ea3b6aa3-cf65-429e-b1df-0875b8e375b7
+		summarizeBy: sum
+		sourceColumn: transfer_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column observed_outcome_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 9b882a62-4ed4-48d7-bda6-02bed0f27756
+		summarizeBy: sum
+		sourceColumn: observed_outcome_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column missing_baseline_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 5ef19dbc-64af-41ba-9d15-d7cde50a49d5
+		summarizeBy: sum
+		sourceColumn: missing_baseline_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column not_yet_observable_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 18f6fb6e-0d6b-45dc-a6c6-c4a96fa67133
+		summarizeBy: sum
+		sourceColumn: not_yet_observable_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column missing_followup_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 7550093b-bc5b-4236-9b23-d0fc342e3244
+		summarizeBy: sum
+		sourceColumn: missing_followup_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column outcome_coverage_pct
+		dataType: double
+		lineageTag: 123b97a5-91ff-4b57-a623-e599df99dbbd
+		summarizeBy: sum
+		sourceColumn: outcome_coverage_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_market_value_change_pct
+		dataType: double
+		lineageTag: b963e01d-23bc-4a28-97c0-767f8aa74612
+		summarizeBy: sum
+		sourceColumn: avg_market_value_change_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column median_market_value_change_pct
+		dataType: double
+		lineageTag: 7e124477-1267-443d-9088-61a917b7fba0
+		summarizeBy: sum
+		sourceColumn: median_market_value_change_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column p25_market_value_change_pct
+		dataType: double
+		lineageTag: ec804bc6-9aed-4465-b6c4-f22a6d2d58b1
+		summarizeBy: sum
+		sourceColumn: p25_market_value_change_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column p75_market_value_change_pct
+		dataType: double
+		lineageTag: dcc3b07b-a65c-49b8-9a72-fa694be6cd39
+		summarizeBy: sum
+		sourceColumn: p75_market_value_change_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column stddev_market_value_change_pct
+		dataType: double
+		lineageTag: a1a2f291-e9c7-4027-8747-73cbf1532c79
+		summarizeBy: sum
+		sourceColumn: stddev_market_value_change_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column positive_outcome_rate_pct
+		dataType: double
+		lineageTag: 6b0a7e7e-6721-48e5-8d61-151be7bb9ba2
+		summarizeBy: sum
+		sourceColumn: positive_outcome_rate_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_fee_premium_pct
+		dataType: double
+		lineageTag: 83abf74b-48fb-483f-bf1a-4c91b91a7a0b
+		summarizeBy: sum
+		sourceColumn: avg_fee_premium_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_change_ci95_lower_pct
+		dataType: double
+		lineageTag: 2e8e4442-4fa1-4d36-b8d6-e6440ead4990
+		summarizeBy: sum
+		sourceColumn: avg_change_ci95_lower_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_change_ci95_upper_pct
+		dataType: double
+		lineageTag: b9ec53c4-922f-436d-b47a-52c224f61e1f
+		summarizeBy: sum
+		sourceColumn: avg_change_ci95_upper_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column meets_minimum_sample_size
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: da3be8c3-f0d3-437b-9178-9fe4aa483f8c
+		summarizeBy: none
+		sourceColumn: meets_minimum_sample_size
+
+		annotation SummarizationSetBy = Automatic
+
+	column analytical_reliability
+		dataType: string
+		lineageTag: b42aee56-709f-499f-9ff0-585a078fcc3d
+		summarizeBy: none
+		sourceColumn: analytical_reliability
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fct_transfer_cohort_performance = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database([Implementation="2.0",UseStorageApi=false,BillingProject="workintech-working"]),
+				    #"workintech-working" = Source{[Name="workintech-working"]}[Data],
+				    football_mart_Schema = #"workintech-working"{[Name="nexus_football_mart",Kind="Schema"]}[Data],
+				    fct_transfer_cohort_performance_Table = football_mart_Schema{[Name="fct_transfer_cohort_performance",Kind="Table"]}[Data]
+				in
+				    fct_transfer_cohort_performance_Table
+

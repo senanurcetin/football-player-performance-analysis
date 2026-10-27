@@ -1,0 +1,209 @@
+table 'fct_data_coverage_bias (2)'
+	lineageTag: 5aa356d5-3417-4efa-8529-69e39e497712
+
+	column segment_type
+		dataType: string
+		lineageTag: f042ff92-4233-46aa-81fe-dbd051bed5c9
+		summarizeBy: none
+		sourceColumn: segment_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column segment_value
+		dataType: string
+		lineageTag: d2badbef-13d0-43c6-87ae-ac966d3032b9
+		summarizeBy: none
+		sourceColumn: segment_value
+
+		annotation SummarizationSetBy = Automatic
+
+	column transfer_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 36e8d935-69c9-42bd-bd1c-36a902da7c53
+		summarizeBy: sum
+		sourceColumn: transfer_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column known_fee_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 8aa408e6-e8b8-4bbb-b16b-af469c3dd0b4
+		summarizeBy: sum
+		sourceColumn: known_fee_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column known_fee_coverage_pct
+		dataType: double
+		lineageTag: 12df0788-3259-4847-b88b-6b6d5c90802a
+		summarizeBy: sum
+		sourceColumn: known_fee_coverage_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column market_value_baseline_count
+		dataType: int64
+		formatString: 0
+		lineageTag: fa9b76a5-3188-4deb-ba45-48786b279902
+		summarizeBy: sum
+		sourceColumn: market_value_baseline_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column market_value_baseline_coverage_pct
+		dataType: double
+		lineageTag: dafcd27e-5b7a-43b5-a082-3a8462616d24
+		summarizeBy: sum
+		sourceColumn: market_value_baseline_coverage_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column fee_value_comparison_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 45a893f5-3b92-489e-b81a-9996e17e703a
+		summarizeBy: sum
+		sourceColumn: fee_value_comparison_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column fee_value_comparison_coverage_pct
+		dataType: double
+		lineageTag: 471222a1-66de-4b93-bca1-776abf614e2f
+		summarizeBy: sum
+		sourceColumn: fee_value_comparison_coverage_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column outcome_90d_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 36f026f0-2ffd-4948-abd5-26c53aeebcc8
+		summarizeBy: sum
+		sourceColumn: outcome_90d_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column outcome_90d_coverage_pct
+		dataType: double
+		lineageTag: 166146ca-9ced-45a4-b955-977d7fcc5a52
+		summarizeBy: sum
+		sourceColumn: outcome_90d_coverage_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column outcome_180d_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 073d72ed-1167-4566-b907-04406b4c2e4a
+		summarizeBy: sum
+		sourceColumn: outcome_180d_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column outcome_180d_coverage_pct
+		dataType: double
+		lineageTag: 60038ed7-b3e5-472c-8527-369c27ffabd7
+		summarizeBy: sum
+		sourceColumn: outcome_180d_coverage_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column outcome_365d_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 8747982f-75c9-4df1-ad0f-318efd07dd54
+		summarizeBy: sum
+		sourceColumn: outcome_365d_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column outcome_365d_coverage_pct
+		dataType: double
+		lineageTag: 6b6ff551-6f6c-4e7d-9425-240ad0bd78e8
+		summarizeBy: sum
+		sourceColumn: outcome_365d_coverage_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column pre_180d_performance_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 3a5ab296-9268-4c0a-9e91-90b817eb3c19
+		summarizeBy: sum
+		sourceColumn: pre_180d_performance_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column pre_180d_performance_coverage_pct
+		dataType: double
+		lineageTag: cab3afbe-bb5a-4ed1-89ec-2961fca676fa
+		summarizeBy: sum
+		sourceColumn: pre_180d_performance_coverage_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column post_180d_performance_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 6ccd4671-73b0-43db-8b31-4fb537848bcb
+		summarizeBy: sum
+		sourceColumn: post_180d_performance_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column post_180d_performance_coverage_pct
+		dataType: double
+		lineageTag: d638f242-633b-4ca4-86ee-843716aa4498
+		summarizeBy: sum
+		sourceColumn: post_180d_performance_coverage_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column maximum_material_missingness_pct
+		dataType: double
+		lineageTag: 092cf0ed-91aa-45a1-a535-3127b5889b34
+		summarizeBy: sum
+		sourceColumn: maximum_material_missingness_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column coverage_bias_risk
+		dataType: string
+		lineageTag: e9f07bda-c385-4cbc-a56d-0092a36d3c59
+		summarizeBy: none
+		sourceColumn: coverage_bias_risk
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'fct_data_coverage_bias (2)' = m
+		mode: import
+		source =
+				let
+				    Kaynak = GoogleBigQuery.Database([Implementation="2.0"]),
+				    #"workintech-working_Database" = Kaynak{[Name="workintech-working",Kind="Database"]}[Data],
+				    nexus_football_mart_Schema = #"workintech-working_Database"{[Name="nexus_football_mart",Kind="Schema"]}[Data],
+				    fct_data_coverage_bias_Table = nexus_football_mart_Schema{[Name="fct_data_coverage_bias",Kind="Table"]}[Data]
+				in
+				    fct_data_coverage_bias_Table
+

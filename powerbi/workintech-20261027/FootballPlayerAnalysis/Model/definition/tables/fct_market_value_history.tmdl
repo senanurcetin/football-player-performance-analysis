@@ -1,0 +1,119 @@
+table fct_market_value_history
+	lineageTag: 19f37d4b-4f70-4b07-a37b-22aa6847d657
+
+	column player_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 8d807186-871f-42e7-9c9f-af92a9f52d22
+		summarizeBy: none
+		sourceColumn: player_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column player_name
+		dataType: string
+		lineageTag: 65289046-66e8-4b9a-9351-ab694bdc02c3
+		summarizeBy: none
+		sourceColumn: player_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column position
+		dataType: string
+		lineageTag: a1ee241b-eb26-40e1-a411-7d6747f85742
+		summarizeBy: none
+		sourceColumn: position
+
+		annotation SummarizationSetBy = Automatic
+
+	column sub_position
+		dataType: string
+		lineageTag: aa3855be-72f2-4037-82d8-85d3d0ad19a4
+		summarizeBy: none
+		sourceColumn: sub_position
+
+		annotation SummarizationSetBy = Automatic
+
+	column valuation_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: ab249697-2503-436a-b97e-e33fe384f796
+		summarizeBy: none
+		sourceColumn: valuation_date
+
+		variation Variation
+			isDefault
+			relationship: 2546c02f-2be1-4df0-aa94-e54f1e359b4a
+			defaultHierarchy: LocalDateTable_35944a08-163d-4892-8b0a-c095ccc10fb1.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column market_value_in_eur
+		dataType: int64
+		formatString: 0
+		lineageTag: e6c080a6-434a-4c95-ab45-ab44b31247b2
+		summarizeBy: sum
+		sourceColumn: market_value_in_eur
+
+		annotation SummarizationSetBy = Automatic
+
+	column current_club_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 1a35e5bc-5fc7-4773-b40b-e2093996636c
+		summarizeBy: sum
+		sourceColumn: current_club_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column current_club_name
+		dataType: string
+		lineageTag: 357b1fb1-5555-439a-90bb-801caa1754f9
+		summarizeBy: none
+		sourceColumn: current_club_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column competition_id
+		dataType: string
+		lineageTag: 2570b173-aa09-44e4-90e1-c23bce2ddd08
+		summarizeBy: none
+		sourceColumn: competition_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column has_club_context
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: b8831547-6c4c-428b-ab56-858a119212f8
+		summarizeBy: none
+		sourceColumn: has_club_context
+
+		annotation SummarizationSetBy = Automatic
+
+	column has_competition_context
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 47970388-fa69-4e13-b7df-b16a5f02ab8a
+		summarizeBy: none
+		sourceColumn: has_competition_context
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fct_market_value_history = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database([Implementation="2.0",UseStorageApi=false,BillingProject="workintech-working"]),
+				    #"workintech-working" = Source{[Name="workintech-working"]}[Data],
+				    football_mart_Schema = #"workintech-working"{[Name="nexus_football_mart",Kind="Schema"]}[Data],
+				    fct_market_value_history_Table = football_mart_Schema{[Name="fct_market_value_history",Kind="Table"]}[Data]
+				in
+				    fct_market_value_history_Table
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

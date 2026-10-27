@@ -140,7 +140,7 @@ combined_clubs as (
         cast(null as string) as club_code,
         historical_clubs.club_name,
         cast(null as string) as domestic_competition_id,
-        cast(null as string) as total_market_value,
+        cast(null as float64) as total_market_value,
         cast(null as int64) as squad_size,
         cast(null as float64) as average_age,
         cast(null as int64) as foreigners_number,

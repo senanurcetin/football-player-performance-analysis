@@ -1,0 +1,315 @@
+table 'ml_player_market_value_scoring (2)'
+	lineageTag: 2817e4e6-bc24-488b-8aa8-7fd6cf08be03
+
+	column scoring_row_key
+		dataType: string
+		lineageTag: fac5f2e8-1fa2-4218-87ee-1fd1bdeecbba
+		summarizeBy: none
+		sourceColumn: scoring_row_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column player_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 0b1c9cba-634f-4536-8bb6-5e461f8d9dd3
+		summarizeBy: none
+		sourceColumn: player_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column player_name
+		dataType: string
+		lineageTag: 28946c72-d583-47a1-ac1e-14ea361091df
+		summarizeBy: none
+		sourceColumn: player_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column season
+		dataType: int64
+		formatString: 0
+		lineageTag: 793af40a-b4e1-417b-ad31-6053efa8254f
+		summarizeBy: sum
+		sourceColumn: season
+
+		annotation SummarizationSetBy = Automatic
+
+	column competition_id
+		dataType: string
+		lineageTag: 6c930dab-0f36-433d-b9ea-e6054c22ec53
+		summarizeBy: none
+		sourceColumn: competition_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column has_competition_context
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 51fe9850-3c0a-4498-b532-7dced365ffa1
+		summarizeBy: none
+		sourceColumn: has_competition_context
+
+		annotation SummarizationSetBy = Automatic
+
+	column position
+		dataType: string
+		lineageTag: 45f7ca75-4c70-4d90-9232-860ab58ae13b
+		summarizeBy: none
+		sourceColumn: position
+
+		annotation SummarizationSetBy = Automatic
+
+	column sub_position
+		dataType: string
+		lineageTag: 6e89a08e-02b7-4b0e-b750-256d7b03c452
+		summarizeBy: none
+		sourceColumn: sub_position
+
+		annotation SummarizationSetBy = Automatic
+
+	column preferred_foot
+		dataType: string
+		lineageTag: 50f5a0e4-1415-4c45-9a34-435346ef36ec
+		summarizeBy: none
+		sourceColumn: preferred_foot
+
+		annotation SummarizationSetBy = Automatic
+
+	column height_in_cm
+		dataType: int64
+		formatString: 0
+		lineageTag: 7186885b-8010-45d0-b661-3ac8b6515339
+		summarizeBy: sum
+		sourceColumn: height_in_cm
+
+		annotation SummarizationSetBy = Automatic
+
+	column country_of_citizenship
+		dataType: string
+		lineageTag: b2525788-52c6-461c-98ad-05c1e16cb293
+		summarizeBy: none
+		sourceColumn: country_of_citizenship
+
+		annotation SummarizationSetBy = Automatic
+
+	column competition_type
+		dataType: string
+		lineageTag: c7816e68-aca6-47aa-965e-2a215efc0eab
+		summarizeBy: none
+		sourceColumn: competition_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column competition_country_name
+		dataType: string
+		lineageTag: 8010a752-a334-4a77-8234-85733909eb02
+		summarizeBy: none
+		sourceColumn: competition_country_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column confederation
+		dataType: string
+		lineageTag: 9877d0ce-30d1-4f66-ae88-c38da23eb228
+		summarizeBy: none
+		sourceColumn: confederation
+
+		annotation SummarizationSetBy = Automatic
+
+	column age_at_target_date
+		dataType: int64
+		formatString: 0
+		lineageTag: f849c757-ea87-42ad-a05b-38dde96d8517
+		summarizeBy: sum
+		sourceColumn: age_at_target_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column matches_before_target
+		dataType: int64
+		formatString: 0
+		lineageTag: cbd2e734-4fde-4625-94bd-25e400e7ee40
+		summarizeBy: sum
+		sourceColumn: matches_before_target
+
+		annotation SummarizationSetBy = Automatic
+
+	column competitions_played_before_target
+		dataType: int64
+		formatString: 0
+		lineageTag: ac9a5d73-b4f2-4b83-a1e3-b0791cf78490
+		summarizeBy: sum
+		sourceColumn: competitions_played_before_target
+
+		annotation SummarizationSetBy = Automatic
+
+	column minutes_before_target
+		dataType: int64
+		formatString: 0
+		lineageTag: 635fd54b-5808-43a3-a29d-734256559879
+		summarizeBy: sum
+		sourceColumn: minutes_before_target
+
+		annotation SummarizationSetBy = Automatic
+
+	column goals_before_target
+		dataType: int64
+		formatString: 0
+		lineageTag: 3a28f749-1f3f-48f1-aaff-dd5915e50ded
+		summarizeBy: sum
+		sourceColumn: goals_before_target
+
+		annotation SummarizationSetBy = Automatic
+
+	column assists_before_target
+		dataType: int64
+		formatString: 0
+		lineageTag: 2ef17bdd-0d38-4ab4-9c94-d9a300c5ffb1
+		summarizeBy: sum
+		sourceColumn: assists_before_target
+
+		annotation SummarizationSetBy = Automatic
+
+	column yellow_cards_before_target
+		dataType: int64
+		formatString: 0
+		lineageTag: 7dd9b09a-efe6-4f30-9f23-dd39aca39b26
+		summarizeBy: sum
+		sourceColumn: yellow_cards_before_target
+
+		annotation SummarizationSetBy = Automatic
+
+	column red_cards_before_target
+		dataType: int64
+		formatString: 0
+		lineageTag: 09e5043c-7581-4fb4-af7f-fc03a9fc64db
+		summarizeBy: sum
+		sourceColumn: red_cards_before_target
+
+		annotation SummarizationSetBy = Automatic
+
+	column goals_per_90_before_target
+		dataType: double
+		lineageTag: 6ecbc6ba-cdfa-4daa-8d30-f6f927abe64b
+		summarizeBy: sum
+		sourceColumn: goals_per_90_before_target
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column assists_per_90_before_target
+		dataType: double
+		lineageTag: 2749b34e-2bf1-4e8c-a9e8-8482301ac3f6
+		summarizeBy: sum
+		sourceColumn: assists_per_90_before_target
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column feature_last_appearance_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: c74ca294-4e7d-4e10-89b9-a18aefe19bed
+		summarizeBy: none
+		sourceColumn: feature_last_appearance_date
+
+		variation Variation
+			isDefault
+			relationship: c7c1c4ed-0c4e-4238-82c2-1be6104b2b94
+			defaultHierarchy: LocalDateTable_fd2cbe24-36c4-4d5e-86b9-f804f684dd81.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column previous_market_value_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: dbd37094-2c7d-41f7-8797-ca1b4a2f4697
+		summarizeBy: none
+		sourceColumn: previous_market_value_date
+
+		variation Variation
+			isDefault
+			relationship: 72495723-16cc-459b-994e-a0fddef8b5c8
+			defaultHierarchy: LocalDateTable_a0620e62-a49f-4c15-ad9f-9607c33c4a68.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column previous_market_value_eur
+		dataType: int64
+		formatString: 0
+		lineageTag: 015bf644-a438-4671-bad6-51d81bbb6853
+		summarizeBy: sum
+		sourceColumn: previous_market_value_eur
+
+		annotation SummarizationSetBy = Automatic
+
+	column has_previous_market_value
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: b12f2509-1c47-418a-af80-2f2e36db89d9
+		summarizeBy: none
+		sourceColumn: has_previous_market_value
+
+		annotation SummarizationSetBy = Automatic
+
+	column days_since_previous_market_value
+		dataType: int64
+		formatString: 0
+		lineageTag: 6dc7a3d7-b57b-4afd-bb20-084dc9bd5fc1
+		summarizeBy: sum
+		sourceColumn: days_since_previous_market_value
+
+		annotation SummarizationSetBy = Automatic
+
+	column prior_valuation_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 48233eb7-9b83-43d2-bb1b-f1b45a7475d8
+		summarizeBy: sum
+		sourceColumn: prior_valuation_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column prior_highest_market_value_eur
+		dataType: int64
+		formatString: 0
+		lineageTag: f4072594-0a08-4e1d-9e7d-ba492de10e15
+		summarizeBy: sum
+		sourceColumn: prior_highest_market_value_eur
+
+		annotation SummarizationSetBy = Automatic
+
+	column prediction_as_of_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 9250c628-9f19-4f84-9e08-524e874e6293
+		summarizeBy: none
+		sourceColumn: prediction_as_of_date
+
+		variation Variation
+			isDefault
+			relationship: 3febbe32-f749-4611-a320-308b6482bb30
+			defaultHierarchy: LocalDateTable_977189b1-5e56-4c32-a768-5eb01860f9a5.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition 'ml_player_market_value_scoring (2)' = m
+		mode: import
+		source =
+				let
+				    Kaynak = GoogleBigQuery.Database([Implementation="2.0"]),
+				    #"workintech-working_Database" = Kaynak{[Name="workintech-working",Kind="Database"]}[Data],
+				    nexus_football_ml_Schema = #"workintech-working_Database"{[Name="nexus_football_ml",Kind="Schema"]}[Data],
+				    ml_player_market_value_scoring_Table = nexus_football_ml_Schema{[Name="ml_player_market_value_scoring",Kind="Table"]}[Data]
+				in
+				    ml_player_market_value_scoring_Table
+

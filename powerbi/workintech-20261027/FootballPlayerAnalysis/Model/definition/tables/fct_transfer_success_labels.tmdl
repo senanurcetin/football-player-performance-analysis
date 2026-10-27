@@ -1,0 +1,256 @@
+table fct_transfer_success_labels
+	lineageTag: 0136047f-b78c-4425-9c0d-8cf1f773c128
+
+	measure 'Transfers (365d)' =
+			CALCULATE(
+			    DISTINCTCOUNT(fct_transfer_success_labels[transfer_key]),
+			    fct_transfer_success_labels[label_horizon_days] = 365
+			)
+		formatString: 0
+		lineageTag: 2bc98524-71db-4200-b7e4-9437ac2a07f3
+
+	measure 'Average Transfer Fee (365d)' =
+			CALCULATE(
+			    AVERAGE(fct_transfer_success_labels[transfer_fee]),
+			    fct_transfer_success_labels[label_horizon_days] = 365
+			)
+		formatString: #,0
+		lineageTag: aaec3a31-3151-4608-8549-6f92dde49d41
+
+	measure 'Transfer Success Rate (365d)' =
+			CALCULATE(
+			    AVERAGE(fct_transfer_success_labels[is_successful_transfer]),
+			    fct_transfer_success_labels[label_horizon_days] = 365
+			)
+		formatString: 0.0%
+		lineageTag: ba413920-5333-45c3-aa05-252b8487646f
+
+	column transfer_key
+		dataType: string
+		lineageTag: a38cc9f6-1907-4346-84cb-9dd16be9cca6
+		summarizeBy: none
+		sourceColumn: transfer_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column player_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 45882bd2-43f0-4d4d-ae06-e5ad9722c5dd
+		summarizeBy: none
+		sourceColumn: player_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column player_name
+		dataType: string
+		lineageTag: 875edfca-65ca-4f0b-a0a4-6cd9286979e5
+		summarizeBy: none
+		sourceColumn: player_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column position
+		dataType: string
+		lineageTag: 9be97b84-457a-4389-a710-c50d9a1947f7
+		summarizeBy: none
+		sourceColumn: position
+
+		annotation SummarizationSetBy = Automatic
+
+	column age_at_transfer
+		dataType: int64
+		formatString: 0
+		lineageTag: 1ea0c474-1b81-4d0c-8ec1-d06ba9864bf0
+		summarizeBy: sum
+		sourceColumn: age_at_transfer
+
+		annotation SummarizationSetBy = Automatic
+
+	column transfer_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: a404191d-1c73-41cb-b669-3e348b0f3c54
+		summarizeBy: none
+		sourceColumn: transfer_date
+
+		variation Variation
+			isDefault
+			relationship: d747153d-d8b7-46d4-bdef-aeebf7783ce0
+			defaultHierarchy: LocalDateTable_ac631afb-868d-4b22-8b54-49e0aa7efa07.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column transfer_year
+		dataType: int64
+		formatString: 0
+		lineageTag: 059dc8b4-8c68-4a90-b177-5361067161eb
+		summarizeBy: sum
+		sourceColumn: transfer_year
+
+		annotation SummarizationSetBy = Automatic
+
+	column transfer_season
+		dataType: string
+		lineageTag: 349e165e-f363-41cc-ac64-5ca52bc5e3d6
+		summarizeBy: none
+		sourceColumn: transfer_season
+
+		annotation SummarizationSetBy = Automatic
+
+	column from_club_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 82fa75ec-b6ca-473f-8d94-be239f5ff8f0
+		summarizeBy: sum
+		sourceColumn: from_club_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column from_club_name
+		dataType: string
+		lineageTag: e1a7f93c-9559-43af-886f-4f83b388a376
+		summarizeBy: none
+		sourceColumn: from_club_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column to_club_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 2977eb61-cef8-4b82-a45e-c526da6f6210
+		summarizeBy: sum
+		sourceColumn: to_club_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column to_club_name
+		dataType: string
+		lineageTag: eac198c7-bdf7-4179-abfa-6c230cd3b6a1
+		summarizeBy: none
+		sourceColumn: to_club_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column transfer_fee
+		dataType: double
+		lineageTag: 6ce83ec1-953f-4e7e-828e-8b654dcb0a7f
+		summarizeBy: sum
+		sourceColumn: transfer_fee
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column has_known_transfer_fee
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 1ad59458-cb1f-4fbb-9188-49a9fb6d5b36
+		summarizeBy: none
+		sourceColumn: has_known_transfer_fee
+
+		annotation SummarizationSetBy = Automatic
+
+	column market_value_baseline
+		dataType: double
+		lineageTag: 16ef737c-2e1a-4f94-a837-a1a0c4f86400
+		summarizeBy: sum
+		sourceColumn: market_value_baseline
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column fee_market_value_difference_pct
+		dataType: double
+		lineageTag: 01603852-3197-45d6-be5f-6b85835f0166
+		summarizeBy: sum
+		sourceColumn: fee_market_value_difference_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column label_horizon_days
+		dataType: int64
+		formatString: 0
+		lineageTag: 9b9d2e03-fdbb-49ef-8342-4c1dc062e965
+		summarizeBy: sum
+		sourceColumn: label_horizon_days
+
+		annotation SummarizationSetBy = Automatic
+
+	column outcome_valuation_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: fe7ddfec-cc9d-458d-823e-e3d3f1c39aaa
+		summarizeBy: none
+		sourceColumn: outcome_valuation_date
+
+		variation Variation
+			isDefault
+			relationship: a8909e64-eafa-44b4-8ee2-6381ba75d9f3
+			defaultHierarchy: LocalDateTable_61c1976a-f0c7-4add-a43f-8e55830234b4.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column outcome_market_value
+		dataType: int64
+		formatString: 0
+		lineageTag: 3987cdd8-f340-409f-9487-d18946484dab
+		summarizeBy: sum
+		sourceColumn: outcome_market_value
+
+		annotation SummarizationSetBy = Automatic
+
+	column market_value_change_at_horizon_pct
+		dataType: double
+		lineageTag: 8d40794e-51e3-483d-ac8e-de96a3fe143b
+		summarizeBy: sum
+		sourceColumn: market_value_change_at_horizon_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column label_status
+		dataType: string
+		lineageTag: 0b79be1d-3cde-430d-a216-1ee2213b6f0f
+		summarizeBy: none
+		sourceColumn: label_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column success_threshold_pct
+		dataType: int64
+		formatString: 0
+		lineageTag: 3d40be5d-8797-46d3-9fe7-c365ce5f05a5
+		summarizeBy: sum
+		sourceColumn: success_threshold_pct
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_successful_transfer
+		dataType: int64
+		formatString: 0
+		lineageTag: b8e6c3f0-f7a6-432a-9e6e-c1391702fb30
+		summarizeBy: sum
+		sourceColumn: is_successful_transfer
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fct_transfer_success_labels = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database([Implementation="2.0",UseStorageApi=false,BillingProject="workintech-working"]),
+				    #"workintech-working" = Source{[Name="workintech-working"]}[Data],
+				    football_mart_Schema = #"workintech-working"{[Name="nexus_football_mart",Kind="Schema"]}[Data],
+				    fct_transfer_success_labels_Table = football_mart_Schema{[Name="fct_transfer_success_labels",Kind="Table"]}[Data]
+				in
+				    fct_transfer_success_labels_Table
+

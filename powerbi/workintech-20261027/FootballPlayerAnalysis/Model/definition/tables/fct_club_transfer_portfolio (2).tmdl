@@ -1,0 +1,194 @@
+table 'fct_club_transfer_portfolio (2)'
+	lineageTag: 40180dd5-f398-4a7b-883d-999a7db53500
+
+	column club_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 25063fc2-9298-4823-8d38-fb9567f3d88a
+		summarizeBy: none
+		sourceColumn: club_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column club_name
+		dataType: string
+		lineageTag: 301f95d0-51a8-4809-9307-1b4eb6fdb4ec
+		summarizeBy: none
+		sourceColumn: club_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column transfer_season
+		dataType: string
+		lineageTag: 499f2f93-157c-4d21-9a0e-04c4e83c71a1
+		summarizeBy: none
+		sourceColumn: transfer_season
+
+		annotation SummarizationSetBy = Automatic
+
+	column inbound_transfers
+		dataType: int64
+		formatString: 0
+		lineageTag: 06a49cb2-06f5-45d2-aedc-fdb04981689b
+		summarizeBy: sum
+		sourceColumn: inbound_transfers
+
+		annotation SummarizationSetBy = Automatic
+
+	column outbound_transfers
+		dataType: int64
+		formatString: 0
+		lineageTag: 95397c23-e9e4-4078-92fe-69e46c6f6f8f
+		summarizeBy: sum
+		sourceColumn: outbound_transfers
+
+		annotation SummarizationSetBy = Automatic
+
+	column inbound_known_fee_transfers
+		dataType: int64
+		formatString: 0
+		lineageTag: faad1b8c-ae84-429a-b309-0cd2f0ac3d2f
+		summarizeBy: sum
+		sourceColumn: inbound_known_fee_transfers
+
+		annotation SummarizationSetBy = Automatic
+
+	column outbound_known_fee_transfers
+		dataType: int64
+		formatString: 0
+		lineageTag: 7626468a-d183-4806-a2ae-d94d2b139510
+		summarizeBy: sum
+		sourceColumn: outbound_known_fee_transfers
+
+		annotation SummarizationSetBy = Automatic
+
+	column inbound_transfer_spend
+		dataType: double
+		lineageTag: ec1d1aa0-0c9b-49fb-b7d5-a45dd3b140a1
+		summarizeBy: sum
+		sourceColumn: inbound_transfer_spend
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column outbound_transfer_income
+		dataType: double
+		lineageTag: 6d824574-1d13-46b4-80ec-87f779f0ed0f
+		summarizeBy: sum
+		sourceColumn: outbound_transfer_income
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column net_transfer_spend
+		dataType: double
+		lineageTag: e9ed103f-10de-49b9-881d-9b00de1f66f9
+		summarizeBy: sum
+		sourceColumn: net_transfer_spend
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_inbound_transfer_fee
+		dataType: double
+		lineageTag: ec822908-c1b7-4923-82d2-162cae5b6ce4
+		summarizeBy: sum
+		sourceColumn: avg_inbound_transfer_fee
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_outbound_transfer_fee
+		dataType: double
+		lineageTag: 76a36141-f170-48f2-ae0f-e9e094b25757
+		summarizeBy: sum
+		sourceColumn: avg_outbound_transfer_fee
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_inbound_fee_premium_pct
+		dataType: double
+		lineageTag: 06cc7bd8-8e0b-4264-ad81-934b8ce6094b
+		summarizeBy: sum
+		sourceColumn: avg_inbound_fee_premium_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_outbound_fee_premium_pct
+		dataType: double
+		lineageTag: 9aa77c8b-98b0-4230-b819-b4483cbde47a
+		summarizeBy: sum
+		sourceColumn: avg_outbound_fee_premium_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_inbound_post_transfer_value_change_pct
+		dataType: double
+		lineageTag: ed802e78-8b29-44fe-add4-0c4db426ecd9
+		summarizeBy: sum
+		sourceColumn: avg_inbound_post_transfer_value_change_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column inbound_transfers_with_value_outcome
+		dataType: int64
+		formatString: 0
+		lineageTag: dc0b4dbe-9a9c-44c6-b34a-f545d4082962
+		summarizeBy: sum
+		sourceColumn: inbound_transfers_with_value_outcome
+
+		annotation SummarizationSetBy = Automatic
+
+	column inbound_positive_value_outcome_rate_pct
+		dataType: double
+		lineageTag: 3b0ea12e-7436-4e59-91d3-1754f6dffec8
+		summarizeBy: sum
+		sourceColumn: inbound_positive_value_outcome_rate_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column inbound_fee_coverage_pct
+		dataType: double
+		lineageTag: 66115388-460b-449f-946d-8eb2e552fc69
+		summarizeBy: sum
+		sourceColumn: inbound_fee_coverage_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column outbound_fee_coverage_pct
+		dataType: double
+		lineageTag: 5bab7493-d106-4412-af4f-cb3e0cb69580
+		summarizeBy: sum
+		sourceColumn: outbound_fee_coverage_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'fct_club_transfer_portfolio (2)' = m
+		mode: import
+		source =
+				let
+				    Kaynak = GoogleBigQuery.Database([Implementation="2.0"]),
+				    #"workintech-working_Database" = Kaynak{[Name="workintech-working",Kind="Database"]}[Data],
+				    nexus_football_mart_Schema = #"workintech-working_Database"{[Name="nexus_football_mart",Kind="Schema"]}[Data],
+				    fct_club_transfer_portfolio_Table = nexus_football_mart_Schema{[Name="fct_club_transfer_portfolio",Kind="Table"]}[Data]
+				in
+				    fct_club_transfer_portfolio_Table
+

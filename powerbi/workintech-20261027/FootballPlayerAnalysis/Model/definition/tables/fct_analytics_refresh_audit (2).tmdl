@@ -1,0 +1,155 @@
+table 'fct_analytics_refresh_audit (2)'
+	lineageTag: c2cccde6-a970-4afe-95a6-632c02e7e83d
+
+	column audit_key
+		dataType: string
+		lineageTag: a6d162fc-9af6-4bee-bdeb-f314069f11f1
+		summarizeBy: none
+		sourceColumn: audit_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column audit_generated_at_utc
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 69865780-86da-47df-9c54-76b2934f1ca8
+		summarizeBy: none
+		sourceColumn: audit_generated_at_utc
+
+		variation Variation
+			isDefault
+			relationship: 96256aea-9ee2-4b62-af81-5ffc296d0671
+			defaultHierarchy: LocalDateTable_c603f33e-7718-4dca-8bf3-cd915818da3d.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column dbt_target_name
+		dataType: string
+		lineageTag: ab94faa4-1218-4527-be14-69f7c756d1c5
+		summarizeBy: none
+		sourceColumn: dbt_target_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column source_game_rows
+		dataType: int64
+		formatString: 0
+		lineageTag: 94ac108f-da4f-437c-a2da-110894b9dc1c
+		summarizeBy: sum
+		sourceColumn: source_game_rows
+
+		annotation SummarizationSetBy = Automatic
+
+	column source_appearance_rows
+		dataType: int64
+		formatString: 0
+		lineageTag: 976c79bc-4ff9-4f62-94be-6dddd3afb37c
+		summarizeBy: sum
+		sourceColumn: source_appearance_rows
+
+		annotation SummarizationSetBy = Automatic
+
+	column source_transfer_rows
+		dataType: int64
+		formatString: 0
+		lineageTag: bb35fac4-cacf-4d80-9e03-5d38aa54d2c1
+		summarizeBy: sum
+		sourceColumn: source_transfer_rows
+
+		annotation SummarizationSetBy = Automatic
+
+	column source_valuation_rows
+		dataType: int64
+		formatString: 0
+		lineageTag: 79e77a2a-d6a4-4246-b24a-db06be3b7e18
+		summarizeBy: sum
+		sourceColumn: source_valuation_rows
+
+		annotation SummarizationSetBy = Automatic
+
+	column match_rows
+		dataType: int64
+		formatString: 0
+		lineageTag: a43ec095-02e1-4d78-96bc-65ca96afdcf4
+		summarizeBy: sum
+		sourceColumn: match_rows
+
+		annotation SummarizationSetBy = Automatic
+
+	column player_match_rows
+		dataType: int64
+		formatString: 0
+		lineageTag: 66f26038-9771-4776-b282-99207377eca9
+		summarizeBy: sum
+		sourceColumn: player_match_rows
+
+		annotation SummarizationSetBy = Automatic
+
+	column historical_transfer_rows
+		dataType: int64
+		formatString: 0
+		lineageTag: 75dacfba-0041-40d7-a06c-ed570004e2c8
+		summarizeBy: sum
+		sourceColumn: historical_transfer_rows
+
+		annotation SummarizationSetBy = Automatic
+
+	column overall_known_fee_coverage_pct
+		dataType: double
+		lineageTag: cc7bccd8-6f3c-4cfc-9dbd-58a6c14c5782
+		summarizeBy: sum
+		sourceColumn: overall_known_fee_coverage_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column overall_fee_value_comparison_coverage_pct
+		dataType: double
+		lineageTag: c32a9602-67bd-4d71-a127-0a3b3c44656f
+		summarizeBy: sum
+		sourceColumn: overall_fee_value_comparison_coverage_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column overall_365d_outcome_coverage_pct
+		dataType: double
+		lineageTag: 91d14023-b8d7-4c3e-907f-fb7789d298f0
+		summarizeBy: sum
+		sourceColumn: overall_365d_outcome_coverage_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column high_bias_risk_segment_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 0021b24e-5d43-4b78-8fba-ba41cf3df29d
+		summarizeBy: sum
+		sourceColumn: high_bias_risk_segment_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column insufficient_sample_cohort_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 0521d3b6-1940-4f0e-8dc3-84a76f0cc36a
+		summarizeBy: sum
+		sourceColumn: insufficient_sample_cohort_count
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'fct_analytics_refresh_audit (2)' = m
+		mode: import
+		source =
+				let
+				    Kaynak = GoogleBigQuery.Database([Implementation="2.0"]),
+				    #"workintech-working_Database" = Kaynak{[Name="workintech-working",Kind="Database"]}[Data],
+				    nexus_football_mart_Schema = #"workintech-working_Database"{[Name="nexus_football_mart",Kind="Schema"]}[Data],
+				    fct_analytics_refresh_audit_Table = nexus_football_mart_Schema{[Name="fct_analytics_refresh_audit",Kind="Table"]}[Data]
+				in
+				    fct_analytics_refresh_audit_Table
+

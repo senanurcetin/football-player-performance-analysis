@@ -1,0 +1,1940 @@
+cultureInfo en-US
+
+	linguisticMetadata =
+			{
+			  "Version": "2.0.0",
+			  "Language": "en-US",
+			  "Entities": {
+			    "dim_players.position": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "dim_players",
+			          "ConceptualProperty": "position"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Position": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "dim_players.age_group": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "dim_players",
+			          "ConceptualProperty": "Age Group"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Age band": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "dim_players.current_club_name": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "dim_players",
+			          "ConceptualProperty": "current_club_name"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Club": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fct_player_performance.avg_ga_per_90": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "fct_player_performance",
+			          "ConceptualProperty": "Avg G+A per 90"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Performance (G+A per 90)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fct_player_performance.player_name": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "fct_player_performance",
+			          "ConceptualProperty": "player_name"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Player Name": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fct_club_performance.club_name": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "fct_club_performance",
+			          "ConceptualProperty": "club_name"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Club": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fct_competition_performance.competition_name": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "fct_competition_performance",
+			          "ConceptualProperty": "competition_name"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Competition": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fct_transfer_success_labels.position": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "fct_transfer_success_labels",
+			          "ConceptualProperty": "position"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Position": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fct_transfer_success_labels.transfers_365d": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "fct_transfer_success_labels",
+			          "ConceptualProperty": "Transfers (365d)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Observed transfers (365d)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fct_transfer_success_labels.average_transfer_fee_365d": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "fct_transfer_success_labels",
+			          "ConceptualProperty": "Average Transfer Fee (365d)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Average fee (€)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fct_transfer_success_labels.transfer_success_rate_365d": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "fct_transfer_success_labels",
+			          "ConceptualProperty": "Transfer Success Rate (365d)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Observed success rate (%)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fct_transfer_fixed_horizon_outcomes.outcome_365d_status": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "fct_transfer_fixed_horizon_outcomes",
+			          "ConceptualProperty": "outcome_365d_status"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Follow-up status": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fct_transfer_fixed_horizon_outcomes.transfers_by_outcome_status_365d": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "fct_transfer_fixed_horizon_outcomes",
+			          "ConceptualProperty": "Transfers by Outcome Status (365d)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Transfers by follow-up status": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fct_transfer_fixed_horizon_outcomes.eligible_transfers_365d": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "fct_transfer_fixed_horizon_outcomes",
+			          "ConceptualProperty": "Eligible Transfers (365d)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Eligible Transfers (365d)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fct_transfer_fixed_horizon_outcomes.observed_transfers_365d": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "fct_transfer_fixed_horizon_outcomes",
+			          "ConceptualProperty": "Observed Transfers (365d)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Observed Transfers (365d)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fct_transfer_fixed_horizon_outcomes.outcome_coverage_365d": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "fct_transfer_fixed_horizon_outcomes",
+			          "ConceptualProperty": "Outcome Coverage (365d)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Outcome Coverage (365d)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fct_transfer_fixed_horizon_outcomes.reliability_notice_365d": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "fct_transfer_fixed_horizon_outcomes",
+			          "ConceptualProperty": "Reliability Notice (365d)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Reliability Notice (365d)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fct_transfer_market_value_analysis.position": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "fct_transfer_market_value_analysis",
+			          "ConceptualProperty": "position"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Position": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fct_transfer_market_value_analysis.average_fee_premium_discount_": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "fct_transfer_market_value_analysis",
+			          "ConceptualProperty": "Average Fee Premium Discount %"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Average fee premium / discount (%)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Premium / Discount %": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Ort. Premium %": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fct_transfer_market_value_analysis.transfer_count": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "fct_transfer_market_value_analysis",
+			          "ConceptualProperty": "Transfer Count"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Transfer Hacmi": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Transfer Count": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fct_transfer_market_value_analysis.market_value_direction_after_transfer": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "fct_transfer_market_value_analysis",
+			          "ConceptualProperty": "market_value_direction_after_transfer"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Value direction": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Fee/value direction": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "market_value_direction_after_transfer": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fct_transfer_market_value_analysis.fee_status": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "fct_transfer_market_value_analysis",
+			          "ConceptualProperty": "fee_status"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Fee Status": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fct_transfer_market_value_analysis.transfer_season": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "fct_transfer_market_value_analysis",
+			          "ConceptualProperty": "transfer_season"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Transfer season": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "transfer_season": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Season": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fct_transfer_market_value_analysis.average_known_transfer_fee": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "fct_transfer_market_value_analysis",
+			          "ConceptualProperty": "Average Known Transfer Fee"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Average known fee (€)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Avg. Fee": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Fee (Season)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Ort. Transfer Fee": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fct_transfer_market_value_analysis.known_fee_coverage_": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "fct_transfer_market_value_analysis",
+			          "ConceptualProperty": "Known Fee Coverage %"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Known Fee Coverage %": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fct_transfer_market_value_analysis.player_name": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "fct_transfer_market_value_analysis",
+			          "ConceptualProperty": "player_name"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Player": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fct_transfer_market_value_analysis.from_club_name": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "fct_transfer_market_value_analysis",
+			          "ConceptualProperty": "from_club_name"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Source Club": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fct_transfer_market_value_analysis.to_club_name": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "fct_transfer_market_value_analysis",
+			          "ConceptualProperty": "to_club_name"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Destination Club": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fct_transfer_market_value_analysis.transfer_fee": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "fct_transfer_market_value_analysis",
+			          "ConceptualProperty": "transfer_fee"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Fee (€)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Transfer Fee": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fct_transfer_market_value_analysis.market_value_baseline": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "fct_transfer_market_value_analysis",
+			          "ConceptualProperty": "market_value_baseline"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Baseline (€)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Baseline Value": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fct_transfer_market_value_analysis.fee_market_value_difference_pct": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "fct_transfer_market_value_analysis",
+			          "ConceptualProperty": "fee_market_value_difference_pct"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Fee delta (%)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Premium / Discount %": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fct_transfer_market_value_analysis.transfer_context_summary": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "fct_transfer_market_value_analysis",
+			          "ConceptualProperty": "Transfer Context Summary"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Active Selection": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fct_transfer_market_value_analysis.total_known_transfer_fee": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "fct_transfer_market_value_analysis",
+			          "ConceptualProperty": "Total Known Transfer Fee"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Total Volume": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fct_transfer_market_value_analysis.selected_player_posttransfer_change_": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "fct_transfer_market_value_analysis",
+			          "ConceptualProperty": "Selected Player Post-Transfer Change %"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Avg. Post-Transfer Change": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fct_transfer_market_value_analysis.selected_player_transfer_count": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "fct_transfer_market_value_analysis",
+			          "ConceptualProperty": "Selected Player Transfer Count"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Transfer Count": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fct_transfer_market_value_analysis.selected_transfer_player": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "fct_transfer_market_value_analysis",
+			          "ConceptualProperty": "Selected Transfer Player"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Selected Player": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fct_transfer_market_value_analysis.market_value_change_after_transfer_pct": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "fct_transfer_market_value_analysis",
+			          "ConceptualProperty": "market_value_change_after_transfer_pct"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Post-Transfer Change %": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fct_transfer_market_value_analysis.selected_player_known_fee": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "fct_transfer_market_value_analysis",
+			          "ConceptualProperty": "Selected Player Known Fee"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Total Known Fee": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fct_transfer_market_value_analysis.high_premium_transfer_count": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "fct_transfer_market_value_analysis",
+			          "ConceptualProperty": "High Premium Transfer Count"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "High Premium (>30%)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "ml_player_market_value_current_predictions.prediction_quality_status": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "ml_player_market_value_current_predictions",
+			          "ConceptualProperty": "prediction_quality_status"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Prediction Quality": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Quality": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "ml_player_market_value_current_predictions.position": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "ml_player_market_value_current_predictions",
+			          "ConceptualProperty": "position"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Position": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "ml_player_market_value_current_predictions.average_prediction_upside_": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "ml_player_market_value_current_predictions",
+			          "ConceptualProperty": "Average Prediction Upside %"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Value Upside %": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Predicted upside (%)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Avg. Upside %": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "ml_player_market_value_current_predictions.preferred_foot": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "ml_player_market_value_current_predictions",
+			          "ConceptualProperty": "preferred_foot"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Dominant Foot": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "ml_player_market_value_current_predictions.average_predicted_market_value": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "ml_player_market_value_current_predictions",
+			          "ConceptualProperty": "Average Predicted Market Value"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Avg. Prediction": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Predicted value (€)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Position Predictions": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Avg. Prediction Değeri": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "ml_player_market_value_current_predictions.decision_ready_rate_": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "ml_player_market_value_current_predictions",
+			          "ConceptualProperty": "Decision Ready Rate %"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Decision Ready %": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "ml_player_market_value_current_predictions.prediction_context_summary": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "ml_player_market_value_current_predictions",
+			          "ConceptualProperty": "Prediction Context Summary"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Active Selection": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "ml_player_market_value_current_predictions.player_name": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "ml_player_market_value_current_predictions",
+			          "ConceptualProperty": "player_name"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Player": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "ml_player_market_value_current_predictions.previous_market_value_eur": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "ml_player_market_value_current_predictions",
+			          "ConceptualProperty": "previous_market_value_eur"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Prior (€)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Previous Value": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "ml_player_market_value_current_predictions.predicted_market_value_eur": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "ml_player_market_value_current_predictions",
+			          "ConceptualProperty": "predicted_market_value_eur"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Predicted (€)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Prediction Value": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "ml_player_market_value_current_predictions.prediction_delta_vs_previous_pct": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "ml_player_market_value_current_predictions",
+			          "ConceptualProperty": "prediction_delta_vs_previous_pct"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Change (%)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Fark %": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "ml_player_market_value_current_predictions.prediction_lower_eur": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "ml_player_market_value_current_predictions",
+			          "ConceptualProperty": "prediction_lower_eur"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Lower (€)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Lower Bound (90%)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "ml_player_market_value_current_predictions.prediction_upper_eur": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "ml_player_market_value_current_predictions",
+			          "ConceptualProperty": "prediction_upper_eur"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Upper (€)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Upper Bound (90%)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "ml_player_market_value_current_predictions.average_previous_market_value": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "ml_player_market_value_current_predictions",
+			          "ConceptualProperty": "Average Previous Market Value"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Avg. Previous Value": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "ml_player_market_value_current_predictions.scored_player_count": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "ml_player_market_value_current_predictions",
+			          "ConceptualProperty": "Scored Player Count"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Predicted Players": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Total Players Count": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "ml_player_market_value_current_predictions.competition_country_name": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "ml_player_market_value_current_predictions",
+			          "ConceptualProperty": "competition_country_name"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Competition Country": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Country / League": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "ml_player_market_value_current_predictions.selected_player_previous_value": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "ml_player_market_value_current_predictions",
+			          "ConceptualProperty": "Selected Player Previous Value"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Previous Value": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "ml_player_market_value_current_predictions.selected_player_prediction_value": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "ml_player_market_value_current_predictions",
+			          "ConceptualProperty": "Selected Player Prediction Value"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Prediction Value": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "ml_player_market_value_current_predictions.selected_player_prediction_change_": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "ml_player_market_value_current_predictions",
+			          "ConceptualProperty": "Selected Player Prediction Change %"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Prediction Delta %": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "ml_player_market_value_current_predictions.selected_prediction_player": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "ml_player_market_value_current_predictions",
+			          "ConceptualProperty": "Selected Prediction Player"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Selected Player": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "ml_player_market_value_current_predictions.model_version": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "ml_player_market_value_current_predictions",
+			          "ConceptualProperty": "model_version"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Model": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "ml_player_market_value_current_predictions.high_upside_player_count": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "ml_player_market_value_current_predictions",
+			          "ConceptualProperty": "High Upside Player Count"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "High Upside (>20%)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "ml_player_market_value_feature_importance.feature_type": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "ml_player_market_value_feature_importance",
+			          "ConceptualProperty": "feature_type"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Feature Type": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "ml_player_market_value_feature_importance.model_version": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "ml_player_market_value_feature_importance",
+			          "ConceptualProperty": "model_version"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Model Version": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "ml_player_market_value_feature_importance.importance_rank": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "ml_player_market_value_feature_importance",
+			          "ConceptualProperty": "importance_rank"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Rank": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "ml_player_market_value_feature_importance.feature": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "ml_player_market_value_feature_importance",
+			          "ConceptualProperty": "feature"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Feature": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "ml_player_market_value_feature_importance.mae_increase_eur_mean": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "ml_player_market_value_feature_importance",
+			          "ConceptualProperty": "mae_increase_eur_mean"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "MAE Increase (€)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "ml_player_market_value_evaluation_metrics.segment_type": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "ml_player_market_value_evaluation_metrics",
+			          "ConceptualProperty": "segment_type"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Segment Type": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "ml_player_market_value_evaluation_metrics.segment_value": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "ml_player_market_value_evaluation_metrics",
+			          "ConceptualProperty": "segment_value"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Segment Value": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "ml_player_market_value_evaluation_metrics.row_count": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "ml_player_market_value_evaluation_metrics",
+			          "ConceptualProperty": "row_count"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Records": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "ml_player_market_value_evaluation_metrics.r2": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "ml_player_market_value_evaluation_metrics",
+			          "ConceptualProperty": "r2"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "R²": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "ml_player_market_value_evaluation_metrics.wape_pct": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "ml_player_market_value_evaluation_metrics",
+			          "ConceptualProperty": "wape_pct"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "WAPE %": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "ml_player_market_value_evaluation_metrics.mae_eur": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "ml_player_market_value_evaluation_metrics",
+			          "ConceptualProperty": "mae_eur"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "MAE (€)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "ml_player_market_value_evaluation_metrics.within_25_pct": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "ml_player_market_value_evaluation_metrics",
+			          "ConceptualProperty": "within_25_pct"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Within ±25%": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "ml_player_market_value_evaluation_metrics.mae_improvement_vs_baseline_pct": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "ml_player_market_value_evaluation_metrics",
+			          "ConceptualProperty": "mae_improvement_vs_baseline_pct"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Improvement vs Baseline": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "ml_player_market_value_quality_gates.severity": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "ml_player_market_value_quality_gates",
+			          "ConceptualProperty": "severity"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Importance Level": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Importance": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "ml_player_market_value_quality_gates.gate_name": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "ml_player_market_value_quality_gates",
+			          "ConceptualProperty": "gate_name"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Quality Gate": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "ml_player_market_value_quality_gates.actual_value": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "ml_player_market_value_quality_gates",
+			          "ConceptualProperty": "actual_value"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Actual Value": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "ml_player_market_value_quality_gates.threshold_value": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "ml_player_market_value_quality_gates",
+			          "ConceptualProperty": "threshold_value"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Threshold Value": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "ml_player_market_value_quality_gates.passed": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "ml_player_market_value_quality_gates",
+			          "ConceptualProperty": "passed"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Passed?": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    }
+			  }
+			}
+		contentType: json
+

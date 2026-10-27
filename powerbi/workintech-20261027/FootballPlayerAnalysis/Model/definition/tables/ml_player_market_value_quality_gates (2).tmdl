@@ -1,0 +1,97 @@
+table 'ml_player_market_value_quality_gates (2)'
+	lineageTag: 37e2e984-8590-4792-b9a6-0c6539f41644
+
+	column model_version
+		dataType: string
+		lineageTag: 3240dd7b-1757-4374-a09b-28f630d2ee29
+		summarizeBy: none
+		sourceColumn: model_version
+
+		annotation SummarizationSetBy = Automatic
+
+	column model_generated_at_utc
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 8c8011d3-d285-4366-b4fe-e6d7492a31d6
+		summarizeBy: none
+		sourceColumn: model_generated_at_utc
+
+		variation Variation
+			isDefault
+			relationship: 015e0d67-e6ec-4025-9328-562c8ff05938
+			defaultHierarchy: LocalDateTable_90b64456-d54b-4032-9355-80ed571c1b3a.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column gate_name
+		dataType: string
+		lineageTag: 4bb4dd0e-d0c2-4fe8-bb11-b2968479c77c
+		summarizeBy: none
+		sourceColumn: gate_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column actual_value
+		dataType: double
+		lineageTag: b407cb23-1e16-49c0-a6a6-9225f95e68bf
+		summarizeBy: sum
+		sourceColumn: actual_value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column threshold_operator
+		dataType: string
+		lineageTag: 27e03e9f-e4b9-4016-95b6-b0bc1db873f2
+		summarizeBy: none
+		sourceColumn: threshold_operator
+
+		annotation SummarizationSetBy = Automatic
+
+	column threshold_value
+		dataType: double
+		lineageTag: 69fe19f3-8db2-43e0-a2e4-7b1722fbdb3a
+		summarizeBy: sum
+		sourceColumn: threshold_value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column passed
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 83febad0-0b3d-4ad8-a824-b7ffe8ee0fbf
+		summarizeBy: none
+		sourceColumn: passed
+
+		annotation SummarizationSetBy = Automatic
+
+	column severity
+		dataType: string
+		lineageTag: caffd727-b412-41de-9405-32ca58322203
+		summarizeBy: none
+		sourceColumn: severity
+
+		annotation SummarizationSetBy = Automatic
+
+	column details
+		dataType: string
+		lineageTag: 3bca5a3d-91f7-4df1-b42d-f15a3b2957d9
+		summarizeBy: none
+		sourceColumn: details
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'ml_player_market_value_quality_gates (2)' = m
+		mode: import
+		source =
+				let
+				    Kaynak = GoogleBigQuery.Database([Implementation="2.0"]),
+				    #"workintech-working_Database" = Kaynak{[Name="workintech-working",Kind="Database"]}[Data],
+				    nexus_football_ml_Schema = #"workintech-working_Database"{[Name="nexus_football_ml",Kind="Schema"]}[Data],
+				    ml_player_market_value_quality_gates_Table = nexus_football_ml_Schema{[Name="ml_player_market_value_quality_gates",Kind="Table"]}[Data]
+				in
+				    ml_player_market_value_quality_gates_Table
+

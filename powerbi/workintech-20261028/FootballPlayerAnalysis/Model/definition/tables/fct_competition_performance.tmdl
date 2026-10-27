@@ -1,0 +1,112 @@
+table fct_competition_performance
+	lineageTag: 344ca135-3aad-4ba4-8a49-31a7bf4d8dd9
+
+	column competition_id
+		dataType: string
+		lineageTag: 4f14239c-98bf-424e-9361-c9f9019899cc
+		summarizeBy: none
+		sourceColumn: competition_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column competition_name
+		dataType: string
+		lineageTag: 3ec7603d-d7a9-46d1-99ed-f438522c5d17
+		summarizeBy: none
+		sourceColumn: competition_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column competition_type
+		dataType: string
+		lineageTag: 687fdc8b-ae88-413e-b686-5501f8648fe5
+		summarizeBy: none
+		sourceColumn: competition_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column country_name
+		dataType: string
+		lineageTag: 8f231b53-9b75-4b9c-ad33-4923b46caaff
+		summarizeBy: none
+		sourceColumn: country_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column confederation
+		dataType: string
+		lineageTag: 95fd7b14-3636-4bfa-9ec9-1f0a5ffaa0e9
+		summarizeBy: none
+		sourceColumn: confederation
+
+		annotation SummarizationSetBy = Automatic
+
+	column matches_played
+		dataType: int64
+		formatString: 0
+		lineageTag: c8f3a9eb-af33-4cc0-9382-bb2238d99974
+		summarizeBy: sum
+		sourceColumn: matches_played
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_goals
+		dataType: int64
+		formatString: 0
+		lineageTag: d3dc2e96-9e5e-49c7-8928-138d7de0372e
+		summarizeBy: sum
+		sourceColumn: total_goals
+
+		annotation SummarizationSetBy = Automatic
+
+	column avg_goals_per_match
+		dataType: double
+		lineageTag: 372f0277-3c44-4892-a17d-595e4918c7de
+		summarizeBy: sum
+		sourceColumn: avg_goals_per_match
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column club_participation_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 0e0ba311-8353-4d13-b7a7-2b814fb81552
+		summarizeBy: sum
+		sourceColumn: club_participation_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column avg_attendance
+		dataType: double
+		lineageTag: 21d42bf5-e04c-4474-b5d5-3c074345cddf
+		summarizeBy: sum
+		sourceColumn: avg_attendance
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Competition Short Label' = SWITCH(fct_competition_performance[competition_id], "IT1", "Serie A (IT)", "ES1", "La Liga (ES)", "GB1", "Premier L. (ENG)", "FR1", "Ligue 1 (FR)", "TR1", "Super Lig (TR)", "L1", "Bundesliga (DE)", "NL1", "Eredivisie (NL)", "PO1", "Liga Portugal", "BE1", "Jupiler Pro", "RU1", "Premier L. (RU)", "GR1", "Super L. (GR)", "SC1", "Scottish Prem.", "UKR1", "Premier L. (UA)", "ELQ", "Europa L. Qual.", "EL", "Europa League", "DK1", "Danish Superliga", "FAC", "FA Cup", "CL", "Champions L.", "CDR", "Copa del Rey", "RUP", "Russian Cup", "SFA", "Scottish FA Cup", "ECLQ", "Conference Qual.", "NLP", "KNVB Cup", "CLQ", "Champions Qual.", "GRP", "Greek Cup", "DKP", "Danish Cup", "CIT", "Coppa Italia", "DFB", "DFB-Pokal", "UCOL", "Conference L.", "MLS1", "MLS", "UKRP", "Ukrainian Cup", "PL1", "Ekstraklasa", "SA1", "Saudi Pro L.", "BRA1", "Brazil Serie A", "SER1", "Serbian Super L.", "RO1", "Romanian Super L.", "TS1", "Czech Chance L.", "C1", "Swiss Super L.", "ARG1", "Argentine Apertura", "FIWC", "World Cup", "A1", "Bundesliga (AT)", "KR1", "Croatian HNL", "NO1", "Eliteserien", "SE1", "Allsvenskan", "AUS1", "A-League (AU)", "JAP1", "J1 League", "MEX1", "Liga MX Claus.", "RSK1", "K League 1", "EURO", "UEFA Euro", "AFCN", "AFCON", "AFAC", "AFC Asian Cup", "SUC", "Spanish Supercup", "COPA", "Copa America", "EJPL", "Jupiler Playoff I", "POBE", "Jupiler Europe PO", "SCI", "Italian Supercup", "GBCS", "Community Shield", "RUSS", "Russian Supercup", "DFL", "German Supercup", "USC", "UEFA Supercup", LEFT(SUBSTITUTE(fct_competition_performance[competition_name], "-", " "), 18) & " (" & fct_competition_performance[competition_id] & ")")
+		dataType: string
+		lineageTag: bb6e1c7a-b202-5768-9a49-4fe03e85821c
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fct_competition_performance = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database([Implementation="2.0",UseStorageApi=false,BillingProject="workintech-working"]),
+				    #"workintech-working" = Source{[Name="workintech-working"]}[Data],
+				    football_mart_Schema = #"workintech-working"{[Name="nexus_football_mart",Kind="Schema"]}[Data],
+				    fct_competition_performance_Table = football_mart_Schema{[Name="fct_competition_performance",Kind="Table"]}[Data]
+				in
+				    fct_competition_performance_Table
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

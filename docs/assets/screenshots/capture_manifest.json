@@ -1,140 +1,185 @@
 {
-  "captured": "2026-10-17",
-  "source_commit_at_capture": "db0819bbcea5aca852e2c06366fb4245bcc39d1e",
-  "source_pbip": "powerbi/workspace/FootballPlayerAnalysis/FootballPlayerAnalysis.pbip",
-  "kind": "genuine Power BI Desktop captures; production-connected historical imported data; NOT offline synthetic demo",
-  "freshness": "A fresh BigQuery import and KPI reconciliation are NOT independently certified.",
-  "acceptance": "Nine main presentation pages visually observed. Two drillthrough pages have unresolved unselected-player placeholder/error states. Final owner sign-off pending.",
+  "captured": "2026-10-27",
+  "source_commit_at_capture": null,
+  "source_pbip": "C:\\Users\\MONSTER\\Documents\\NEXUS-Football-PBI\\FootballPlayerAnalysis\\FootballPlayerAnalysis.pbip",
+  "kind": "13 unmodified, user-provided Power BI Desktop screenshots; source is Workintech-connected imported report",
+  "data_freshness": "Imported public football source snapshot; latest game date 2026-07-06. Screenshots do NOT establish Oct-27 match freshness.",
+  "acceptance": "9 main screens rendered; 2 detail screens show no selected player; 2 tooltip renders; pending visual defect list and owner acceptance.",
+  "screen_issue_notes": [
+    "Transfer fee premium chart on 06 shows broken M%/near-zero axis units: visual defect still open.",
+    "Model evaluation and player tables have horizontal scrolling/truncated columns; monitor accessibility.",
+    "Detail screenshots have unselected-player empty cards; show as state evidence, not verified selected-player drillthrough.",
+    "Some narrow legend labels may truncate, and tooltip values/units require parity review."
+  ],
   "captures": [
     {
       "page": "Home",
       "type": "Main",
       "path": "docs/assets/screenshots/production/01_home.png",
+      "source_filename": "Ekran görüntüsü 2026-10-27 212729.png",
       "size": [
-        2177,
-        1229
+        2432,
+        1211
       ],
-      "sha256": "ae69db206d158d215b06ba232501af18edb8f35736a0ac0b558ca728b66a4ef1"
+      "sha256": "5e06e6a2c87172c7f705572f27f0be04a382fc2e430d1898c7b03e81e86d321e",
+      "capture_date": "2026-10-27",
+      "provenance": "user-provided genuine Power BI Desktop screenshot; Workintech import"
     },
     {
       "page": "Player Performance Analysis",
       "type": "Main",
       "path": "docs/assets/screenshots/production/02_player_performance.png",
+      "source_filename": "Ekran görüntüsü 2026-10-27 212911.png",
       "size": [
-        2177,
-        1229
+        2436,
+        1216
       ],
-      "sha256": "e330e79a15287bd70d1f61b5aa02613b3f34330764d9768ec70ad716c10a7e54"
+      "sha256": "f3c7e23d05a832f150db625d16968f44cb0d24ec12289a255a9daceb32f7e270",
+      "capture_date": "2026-10-27",
+      "provenance": "user-provided genuine Power BI Desktop screenshot; Workintech import"
     },
     {
       "page": "Player Segmentation",
       "type": "Main",
       "path": "docs/assets/screenshots/production/03_player_segmentation.png",
+      "source_filename": "Ekran görüntüsü 2026-10-27 213015.png",
       "size": [
-        2177,
-        1229
+        2446,
+        1219
       ],
-      "sha256": "8a10e14687bd4f639e154f33580047206d56683493687349beac6f8f762d74e7"
+      "sha256": "0f33b6b5402be9cf464330a994a6d11dc82f370c48d5fa6564d7f51192b111fd",
+      "capture_date": "2026-10-27",
+      "provenance": "user-provided genuine Power BI Desktop screenshot; Workintech import"
     },
     {
       "page": "Club & League Analysis",
       "type": "Main",
       "path": "docs/assets/screenshots/production/04_club_league.png",
+      "source_filename": "Ekran görüntüsü 2026-10-27 213058.png",
       "size": [
-        2177,
-        1229
+        2431,
+        1217
       ],
-      "sha256": "6620236046ff2e4fe15b49efdb36f6e7a090e85fd818062253216ec224b21f6f"
+      "sha256": "81252a48372dd6785cd26dbba88f85224eedc61e5bf6f0c67333e94fdcd02597",
+      "capture_date": "2026-10-27",
+      "provenance": "user-provided genuine Power BI Desktop screenshot; Workintech import"
     },
     {
-      "page": "Transfer Success Analysis (365d)",
+      "page": "Observed Transfer Outcomes / 365 Days",
       "type": "Main",
       "path": "docs/assets/screenshots/production/05_transfer_success.png",
+      "source_filename": "Ekran görüntüsü 2026-10-27 213148.png",
       "size": [
-        2177,
-        1229
+        2415,
+        1219
       ],
-      "sha256": "d8be42543d32e5dce0dd52ca78c3d9632822550df2f6f6ebd15c8a135cc103b5"
+      "sha256": "300f0e00dcb81c6c894ab6a42eec7695420dd2918c17ba2d4ee4548e89c095c9",
+      "capture_date": "2026-10-27",
+      "provenance": "user-provided genuine Power BI Desktop screenshot; Workintech import"
     },
     {
       "page": "Transfer & Market Value Analysis",
       "type": "Main",
       "path": "docs/assets/screenshots/production/06_transfer_market.png",
+      "source_filename": "Ekran görüntüsü 2026-10-27 213229.png",
       "size": [
-        2177,
-        1229
+        2432,
+        1216
       ],
-      "sha256": "f99c61e06f4aa5e8e2040f23fa1879260119ca4af1e00af867bd729f47950302"
+      "sha256": "b99c75eba4eb31cbbd45afda4df83604630980312bb281bffe8cf277662424a5",
+      "capture_date": "2026-10-27",
+      "provenance": "user-provided genuine Power BI Desktop screenshot; Workintech import"
     },
     {
       "page": "Player Market Value Prediction",
       "type": "Main",
       "path": "docs/assets/screenshots/production/07_market_value_prediction.png",
+      "source_filename": "Ekran görüntüsü 2026-10-27 213307.png",
       "size": [
-        2177,
-        1229
+        2389,
+        1220
       ],
-      "sha256": "5393aef36006934688ed647af987818331432e1cb8cdd8abf070508861423bbf"
+      "sha256": "f03a3ab52fb5bf52ba1ffae22d129f70c60ed4a5831442147f89a2d13a857b9d",
+      "capture_date": "2026-10-27",
+      "provenance": "user-provided genuine Power BI Desktop screenshot; Workintech import"
     },
     {
       "page": "ML Model Reliability",
       "type": "Main",
       "path": "docs/assets/screenshots/production/08_ml_reliability.png",
+      "source_filename": "Ekran görüntüsü 2026-10-27 213404.png",
       "size": [
-        2177,
-        1229
+        2387,
+        1216
       ],
-      "sha256": "a9ffdfc83353c485f583913b00d1092aca673eaeacef9b470007fabeee96ee61"
+      "sha256": "20aa47908baa9160860cb3c668bc1ff0e647575dd43ecbf598b3862fc227e3e1",
+      "capture_date": "2026-10-27",
+      "provenance": "user-provided genuine Power BI Desktop screenshot; Workintech import"
     },
     {
       "page": "Closing",
       "type": "Main",
       "path": "docs/assets/screenshots/production/09_closing.png",
+      "source_filename": "Ekran görüntüsü 2026-10-27 213432.png",
       "size": [
-        2177,
-        1229
+        2389,
+        1218
       ],
-      "sha256": "6b3ab7fc464e424d362978c935da23d53e651a37ede6cf0ce2cc36fd1b864a73"
+      "sha256": "cee064272a400f05e22d893a9c94aaa0e7307990cad4ded7c2501c71085f51bb",
+      "capture_date": "2026-10-27",
+      "provenance": "user-provided genuine Power BI Desktop screenshot; Workintech import"
     },
     {
       "page": "Player Transfer Detail",
       "type": "Drillthrough",
       "path": "docs/assets/screenshots/production/10_transfer_detail.png",
+      "source_filename": "Ekran görüntüsü 2026-10-27 213509.png",
       "size": [
-        2177,
-        1229
+        2388,
+        1215
       ],
-      "sha256": "690d5e75d5704f293d3c88e05e8795340ec0813368ca9edbdc2eb45a96f54d5e"
+      "sha256": "d135862545c78f662ff2b0c5954ac3ead1f41dfddc8c84c2e50507a79d61d2f1",
+      "capture_date": "2026-10-27",
+      "provenance": "user-provided genuine Power BI Desktop screenshot; Workintech import"
     },
     {
-      "page": "Player Prediction Detail",
+      "page": "Player Market Value Prediction Detail",
       "type": "Drillthrough",
       "path": "docs/assets/screenshots/production/11_prediction_detail.png",
+      "source_filename": "Ekran görüntüsü 2026-10-27 213545.png",
       "size": [
-        2177,
-        1229
+        2356,
+        1217
       ],
-      "sha256": "b41733a333de1695784eae975ac8cd6447fa2b4525ab3f60bc48b3f8f22fc0a0"
+      "sha256": "76e63a7adc91feb7f6e13c63e3fa68c7239eb49e614599c5b3e3318a95647648",
+      "capture_date": "2026-10-27",
+      "provenance": "user-provided genuine Power BI Desktop screenshot; Workintech import"
     },
     {
-      "page": "Tooltip Transfer",
+      "page": "Transfer fee vs value tooltip",
       "type": "Tooltip",
       "path": "docs/assets/screenshots/internal/12_tooltip_transfer.png",
+      "source_filename": "Ekran görüntüsü 2026-10-27 213618.png",
       "size": [
-        2177,
-        1229
+        555,
+        313
       ],
-      "sha256": "aa56a3f67915d4703839e7339f7d609ba1acd29c07128eabc738e44e73d7a568"
+      "sha256": "32916aa466b6e520eefed2e6dac92fbd68efde8a82a894b0302cb903bf4c4e5f",
+      "capture_date": "2026-10-27",
+      "provenance": "user-provided genuine Power BI Desktop screenshot; Workintech import"
     },
     {
-      "page": "Tooltip Prediction",
+      "page": "Player valuation tooltip",
       "type": "Tooltip",
       "path": "docs/assets/screenshots/internal/13_tooltip_prediction.png",
+      "source_filename": "Ekran görüntüsü 2026-10-27 213641.png",
       "size": [
-        2177,
-        1229
+        552,
+        315
       ],
-      "sha256": "66531e4fbc8f2bfde4198c761a38c7084bac22d7c3c67d45ff374e01932b4b16"
+      "sha256": "31e23cc9a83209af0c7c109bedd3cfa40326b9edea84e6fae24bbcad8d0f4785",
+      "capture_date": "2026-10-27",
+      "provenance": "user-provided genuine Power BI Desktop screenshot; Workintech import"
     }
   ]
 }

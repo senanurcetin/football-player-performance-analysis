@@ -1,0 +1,141 @@
+table fct_club_performance
+	lineageTag: 0bd254f7-b264-4b69-a8f3-b2cd1c8f6e2c
+
+	column club_id
+		dataType: int64
+		formatString: 0
+		lineageTag: d5cdb9bc-d675-454e-9efd-443d36f00f5e
+		summarizeBy: none
+		sourceColumn: club_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column club_name
+		dataType: string
+		lineageTag: 30b1e575-fc46-4d39-9598-c63573688975
+		summarizeBy: none
+		sourceColumn: club_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column domestic_competition_id
+		dataType: string
+		lineageTag: a04cb835-1e20-4e07-85f0-45c19b4e1186
+		summarizeBy: none
+		sourceColumn: domestic_competition_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column matches_played
+		dataType: int64
+		formatString: 0
+		lineageTag: 3fcf26e6-0d97-4cfd-b706-ce5e0c645a8e
+		summarizeBy: sum
+		sourceColumn: matches_played
+
+		annotation SummarizationSetBy = Automatic
+
+	column wins
+		dataType: int64
+		formatString: 0
+		lineageTag: 6c4ed70c-e03c-41ff-a850-b53e62633ba9
+		summarizeBy: sum
+		sourceColumn: wins
+
+		annotation SummarizationSetBy = Automatic
+
+	column draws
+		dataType: int64
+		formatString: 0
+		lineageTag: 03e69438-f274-4d1d-921e-e94eb95e6995
+		summarizeBy: sum
+		sourceColumn: draws
+
+		annotation SummarizationSetBy = Automatic
+
+	column losses
+		dataType: int64
+		formatString: 0
+		lineageTag: cf8bf7b6-7b6e-469e-8cd1-32f58b620180
+		summarizeBy: sum
+		sourceColumn: losses
+
+		annotation SummarizationSetBy = Automatic
+
+	column goals_scored
+		dataType: int64
+		formatString: 0
+		lineageTag: dd284771-bca8-47e4-8a21-6b1d196732cd
+		summarizeBy: sum
+		sourceColumn: goals_scored
+
+		annotation SummarizationSetBy = Automatic
+
+	column goals_conceded
+		dataType: int64
+		formatString: 0
+		lineageTag: 9d99563b-b9a6-413e-ad3c-f195a3de0459
+		summarizeBy: sum
+		sourceColumn: goals_conceded
+
+		annotation SummarizationSetBy = Automatic
+
+	column goal_difference
+		dataType: int64
+		formatString: 0
+		lineageTag: c7a4f6fd-6d55-4ad3-8ab7-525573a50115
+		summarizeBy: sum
+		sourceColumn: goal_difference
+
+		annotation SummarizationSetBy = Automatic
+
+	column win_rate
+		dataType: double
+		formatString: 0.0%
+		lineageTag: aeceb9c3-572f-4f17-a6bd-6ba645f0746c
+		summarizeBy: sum
+		sourceColumn: win_rate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_goals_scored
+		dataType: double
+		lineageTag: 43bda70c-089d-44a8-884f-d9316f509beb
+		summarizeBy: sum
+		sourceColumn: avg_goals_scored
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_goals_conceded
+		dataType: double
+		lineageTag: 7e0ce415-420d-4074-a6e4-d80663729444
+		summarizeBy: sum
+		sourceColumn: avg_goals_conceded
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition fct_club_performance = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database([Implementation="2.0",UseStorageApi=false,BillingProject="workintech-working"]),
+				    #"workintech-working" = Source{[Name="workintech-working"]}[Data],
+				    football_mart_Schema = #"workintech-working"{[Name="nexus_football_mart",Kind="Schema"]}[Data],
+				    fct_club_performance_Table = football_mart_Schema{[Name="fct_club_performance",Kind="Table"]}[Data],
+				    #"Win Rate Fraction" = Table.TransformColumns(
+				        fct_club_performance_Table,
+				        {{"win_rate", each if _ = null then null else Number.From(_) / 100, type nullable number}}
+				    )
+				in
+				    #"Win Rate Fraction"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

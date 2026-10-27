@@ -1,5 +1,8 @@
 # NEXUS Power BI design system
 
+**CURRENT VISUAL REFERENCES (27 October):** [Real nine-page montage](assets/screenshots/NEXUS_Football_Page_Gallery.png) and [individual screenshot gallery](assets/screenshots/README.md) reflect the latest user-visible NEXUS midnight palette, navigation, and report typography. Value axes and tooltip currency/percentage format issues identified on pages 06 and both hidden tooltips remain open; do not standardize the incorrect M% units.
+
+
 > **Current evidence (17 October 2026).** [Actual Power BI Desktop screenshots](assets/screenshots/README.md) document nine presentation pages. Remaining refresh, detail interaction and signoff blockers are in [Project status](PROJECT_STATUS.md). Historical implementation notes below retain their original chronology.
 
 The visual target is the NEXUS portfolio artwork in `nexus-web-v2/public/project-previews/football-player-performance-analysis-artwork.svg`. This is a **design reference, not a report screenshot**.

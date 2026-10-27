@@ -1,0 +1,165 @@
+table ml_player_market_value_evaluation_metrics
+	lineageTag: d5c5d27f-0d76-43ba-9cdb-ad22671734b9
+
+	column model_version
+		dataType: string
+		lineageTag: 32dd4bb6-a8d1-4991-a8b4-f97e40ce8490
+		summarizeBy: none
+		sourceColumn: model_version
+
+		annotation SummarizationSetBy = Automatic
+
+	column segment_type
+		dataType: string
+		lineageTag: 79a26468-41b4-46f7-bf7b-8c9c2a6bd9da
+		summarizeBy: none
+		sourceColumn: segment_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column segment_value
+		dataType: string
+		lineageTag: c28544b5-f086-4fc1-91cc-36ab3be5d9ad
+		summarizeBy: none
+		sourceColumn: segment_value
+
+		annotation SummarizationSetBy = Automatic
+
+	column row_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 6adbb3b1-0a4d-470d-8774-fc49d0c1468c
+		summarizeBy: sum
+		sourceColumn: row_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column minimum_sample_size
+		dataType: int64
+		formatString: 0
+		lineageTag: 870db245-aed8-41f9-99a4-672b71926865
+		summarizeBy: sum
+		sourceColumn: minimum_sample_size
+
+		annotation SummarizationSetBy = Automatic
+
+	column meets_minimum_sample_size
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: b66b8585-677c-4d04-9aa8-092677c8f4aa
+		summarizeBy: none
+		sourceColumn: meets_minimum_sample_size
+
+		annotation SummarizationSetBy = Automatic
+
+	column mae_eur
+		dataType: double
+		lineageTag: bc3bee0f-66a3-4c66-a477-5bea0ef5b353
+		summarizeBy: sum
+		sourceColumn: mae_eur
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column rmse_eur
+		dataType: double
+		lineageTag: 8350f41a-bbc6-4433-aee4-8d2ddf41d849
+		summarizeBy: sum
+		sourceColumn: rmse_eur
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column r2
+		dataType: double
+		lineageTag: f07ed56f-5c16-447a-b93b-fab9a805090d
+		summarizeBy: sum
+		sourceColumn: r2
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column wape_pct
+		dataType: double
+		lineageTag: 6f9afc07-f52f-4a6f-834a-5a81e891d1dd
+		summarizeBy: sum
+		sourceColumn: wape_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column median_absolute_percentage_error_pct
+		dataType: double
+		lineageTag: 417395c9-d25e-44f3-9370-6d5c503ec1d7
+		summarizeBy: sum
+		sourceColumn: median_absolute_percentage_error_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column mean_error_eur
+		dataType: double
+		lineageTag: 8c0c5f07-4251-4638-8e2a-12db30981d17
+		summarizeBy: sum
+		sourceColumn: mean_error_eur
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column within_25_pct
+		dataType: double
+		lineageTag: bfdb2487-eb89-4efe-b5d3-8a2743c51a4b
+		summarizeBy: sum
+		sourceColumn: within_25_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column baseline_mae_eur
+		dataType: double
+		lineageTag: 20834453-1d24-4286-ac5c-4ec9acb236fc
+		summarizeBy: sum
+		sourceColumn: baseline_mae_eur
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column mae_improvement_vs_baseline_pct
+		dataType: double
+		lineageTag: fd256ea0-93d5-4318-a15c-da2bd457cc08
+		summarizeBy: sum
+		sourceColumn: mae_improvement_vs_baseline_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column interval_coverage_pct
+		dataType: double
+		lineageTag: c0aa524c-ae53-43c1-a732-7592c90c9da0
+		summarizeBy: sum
+		sourceColumn: interval_coverage_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition ml_player_market_value_evaluation_metrics = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database([Implementation="2.0",UseStorageApi=false,BillingProject="workintech-working"]),
+				    #"workintech-working" = Source{[Name="workintech-working"]}[Data],
+				    football_ml_Schema = #"workintech-working"{[Name="nexus_football_ml",Kind="Schema"]}[Data],
+				    ml_player_market_value_evaluation_metrics_Table = football_ml_Schema{[Name="ml_player_market_value_evaluation_metrics",Kind="Table"]}[Data]
+				in
+				    ml_player_market_value_evaluation_metrics_Table
+

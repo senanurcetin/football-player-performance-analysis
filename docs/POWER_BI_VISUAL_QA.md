@@ -1,5 +1,11 @@
 # Power BI Desktop visual QA — current acceptance checklist
 
+**AFTER THE 27 OCTOBER SCREENSHOTS — TARGETED SOURCE REPAIR:** Four visual configurations were fixed in the active PBIP and dated Workintech source edition (percentage scale, two currency tooltips and main quality donut labels). Complete backups and five offline regression tests were verified. Historical images are intentionally retained without editing; they must not be described as screenshots of the fixed visuals. Remaining dense tables, drillthrough interaction and additional semantic imports require separate review. See [latest evidence](WORKINTECH_STATUS_AND_VISUAL_RELEASE_20261027.md).
+
+
+**LATEST VISUAL REVIEW (27 OCTOBER):** The [new 13 genuine Desktop screenshots](assets/screenshots/README.md) and [execution/defect register](WORKINTECH_STATUS_AND_VISUAL_RELEASE_20261027.md) supersede the 17–18 October static-image status below. 13 pages, 308 visuals, 30 charts were inventoried; 32 PBIR/TMDL files were changed and source-backup/hash verification passed. **Visible P0/P1 issues remain:** Transfer Fee Premium M% axis, distorted €m tooltip labels, legend/table truncation and untested selected-player drillthrough. Do not present prior visual-QA closure as signoff for the refreshed Workintech report.
+
+
 **Historical capture: 17 October 2026; reviewed 19 October.** The owner subsequently accepted Power BI as an existing workstream, and the full offline source suite plus PBIP static checks passed. That acceptance is **not** a new live BigQuery refresh, source parity or selected-player interaction test. The [historical visual QA log](archive/powerbi/POWER_BI_VISUAL_QA_HISTORY_20261017.md) preserves implementation details; see the [project status](PROJECT_STATUS.md).
 
 ## 18 October 2026 static screenshot and KPI acceptance

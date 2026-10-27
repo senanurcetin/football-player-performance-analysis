@@ -1,0 +1,892 @@
+table fct_transfer_market_value_analysis
+	lineageTag: b440b2c4-0d45-43bf-832b-ad1b9d31fdee
+
+	/// Distinct transfer records in the active filter context.
+	measure 'Transfer Count' = DISTINCTCOUNT(fct_transfer_market_value_analysis[transfer_key])
+		formatString: #,0
+		displayFolder: Market Value Analysis\01 Scope
+		lineageTag: d7e32403-c38c-4940-a291-01287e743ea9
+
+	/// Transfers with a known transfer fee.
+	measure 'Known Fee Transfer Count' = CALCULATE([Transfer Count], fct_transfer_market_value_analysis[has_known_transfer_fee] = TRUE())
+		formatString: #,0 "transfers"
+		displayFolder: Market Value Analysis\01 Scope
+		lineageTag: 9d579a09-5a2c-4800-b7cc-bc6b25377dac
+
+	/// Share of transfer records with a known transfer fee.
+	measure 'Known Fee Coverage %' = COALESCE(DIVIDE([Known Fee Transfer Count], [Transfer Count]), 0)
+		formatString: 0.0%
+		displayFolder: Market Value Analysis\02 Data Trust
+		lineageTag: 18cfd1f1-03a7-4d4e-84d5-c51fdf695f7c
+
+	/// Average transfer fee, excluding unknown fee records.
+	measure 'Average Known Transfer Fee' = CALCULATE(AVERAGE(fct_transfer_market_value_analysis[transfer_fee]), fct_transfer_market_value_analysis[has_known_transfer_fee] = TRUE())
+		formatString: €0.0
+		displayFolder: Market Value Analysis\03 Commercial Value
+		lineageTag: a5f25aa3-9f64-4691-8008-381347328e38
+
+	/// Total known transfer fee in the active filter context.
+	measure 'Total Known Transfer Fee' = CALCULATE(SUM(fct_transfer_market_value_analysis[transfer_fee]), fct_transfer_market_value_analysis[has_known_transfer_fee] = TRUE())
+		formatString: €0.0
+		displayFolder: Market Value Analysis\03 Commercial Value
+		lineageTag: 4868ce98-1b3b-41fc-a3f8-b5604435b3b1
+
+	/// Transfers with both a known fee and a market-value baseline.
+	measure 'Comparable Transfer Count' = CALCULATE([Transfer Count], fct_transfer_market_value_analysis[has_fee_market_value_comparison] = TRUE())
+		formatString: #,0 "transfers"
+		displayFolder: Market Value Analysis\02 Data Trust
+		lineageTag: 8d4771db-d5f4-4e81-82e6-580b98e4f615
+
+	/// Share of transfer records eligible for fee versus market-value comparison.
+	measure 'Comparison Coverage %' = DIVIDE([Comparable Transfer Count], [Transfer Count])
+		formatString: 0.0%
+		displayFolder: Market Value Analysis\02 Data Trust
+		lineageTag: 376c515b-c314-4c60-8fda-34cd52e01f65
+
+	/// Average fee premium or discount versus the market-value baseline.
+	measure 'Average Fee Premium Discount %' = DIVIDE(CALCULATE(AVERAGE(fct_transfer_market_value_analysis[fee_market_value_difference_pct]), fct_transfer_market_value_analysis[has_fee_market_value_comparison] = TRUE()), 100)
+		formatString: 0.0%
+		displayFolder: Market Value Analysis\03 Commercial Value
+		lineageTag: ff55674d-98f2-41f0-8e29-b2694ae8b04e
+
+	/// Transfers with an observable post-transfer market-value outcome.
+	measure 'Post Transfer Outcome Count' = CALCULATE([Transfer Count], fct_transfer_market_value_analysis[has_post_transfer_value_change] = TRUE())
+		formatString: #,0 "transfers"
+		displayFolder: Market Value Analysis\02 Data Trust
+		lineageTag: 9dc16c52-4a98-4b8a-b2e6-5c608d184d52
+
+	/// Share of transfers with an observable post-transfer value outcome.
+	measure 'Post Transfer Outcome Coverage %' = COALESCE(DIVIDE([Post Transfer Outcome Count], [Transfer Count]), 0)
+		formatString: 0.0%
+		displayFolder: Market Value Analysis\02 Data Trust
+		lineageTag: a542c896-91bf-4678-a3a4-31f839b9653b
+
+	/// Average post-transfer market-value change for observable outcomes.
+	measure 'Average Post Transfer Value Change %' = DIVIDE(CALCULATE(AVERAGE(fct_transfer_market_value_analysis[market_value_change_after_transfer_pct]), fct_transfer_market_value_analysis[has_post_transfer_value_change] = TRUE()), 100)
+		formatString: 0.0%
+		displayFolder: Market Value Analysis\04 Outcomes
+		lineageTag: a1005ea1-eb8c-44df-8fb1-36f91e7f24bc
+
+	/// Share of observable transfer outcomes with a market-value increase.
+	measure 'Value Increase Rate %' = COALESCE(DIVIDE(CALCULATE([Transfer Count], fct_transfer_market_value_analysis[market_value_direction_after_transfer] = "increase"), [Post Transfer Outcome Count]), 0)
+		formatString: 0.0%
+		displayFolder: Market Value Analysis\04 Outcomes
+		lineageTag: 90505594-aef0-4c82-8c6c-33e365318333
+
+	/// Selected player label for drill-through pages.
+	measure 'Selected Transfer Player' = SELECTEDVALUE(fct_transfer_market_value_analysis[player_name], "No player selected")
+		displayFolder: Market Value Analysis\05 Dynamic Context
+		lineageTag: eee6269c-919f-46fd-866e-7fc9a8564ab5
+
+	/// Dynamic context summary driven by active filters.
+	measure 'Transfer Context Summary' = VAR SeasonLabel = SELECTEDVALUE(fct_transfer_market_value_analysis[transfer_season], "All seasons") VAR PositionLabel = SELECTEDVALUE(fct_transfer_market_value_analysis[position], "All Positions") RETURN SeasonLabel & " | " & PositionLabel & " | " & FORMAT([Transfer Count], "#,0") & " transfer"
+		displayFolder: Market Value Analysis\05 Dynamic Context
+		lineageTag: b0e12804-9bda-4be6-9b8c-c0829b351e59
+
+	/// Dynamic page title driven by active slicer selections.
+	measure 'Page 005 Dynamic Title' = VAR s = SELECTEDVALUE(fct_transfer_market_value_analysis[transfer_season], "All seasons") VAR p = SELECTEDVALUE(fct_transfer_market_value_analysis[position], "All Positions") RETURN "Transfer & Market Value  |  " & s & "  │  " & p
+		displayFolder: Market Value Analysis\05 Dynamic Context
+		lineageTag: 20ec5d82-c86d-4169-907f-6eda6ae08c55
+
+	/// Transfers where the fee exceeds market value by more than 30% — competitive bidding or star effect signal.
+	measure 'High Premium Transfer Count' = CALCULATE([Transfer Count], fct_transfer_market_value_analysis[fee_market_value_difference_pct] > 30)
+		formatString: #,0 "transfers"
+		displayFolder: Market Value Analysis\03 Commercial Value
+		lineageTag: 83683521-543e-4b5b-badb-bda1f364490b
+
+	/// Ratio of total known fees to total market value baselines — overall market efficiency index.
+	measure 'Transfer Value Index' = DIVIDE(CALCULATE(SUM(fct_transfer_market_value_analysis[transfer_fee]), fct_transfer_market_value_analysis[has_known_transfer_fee] = TRUE()), CALCULATE(SUM(fct_transfer_market_value_analysis[market_value_baseline]), fct_transfer_market_value_analysis[has_market_value_baseline] = TRUE()))
+		formatString: 0.00x
+		displayFolder: Market Value Analysis\03 Commercial Value
+		lineageTag: 0c923f3d-3a52-4ec5-8d54-7468ac119fa7
+
+	/// Year-over-year change in average known transfer fee.
+	measure 'YoY Avg Fee Change %' = VAR CY = CALCULATE([Average Known Transfer Fee]) VAR PY = CALCULATE([Average Known Transfer Fee], FILTER(ALL(fct_transfer_market_value_analysis[transfer_year]), fct_transfer_market_value_analysis[transfer_year] = MAX(fct_transfer_market_value_analysis[transfer_year]) - 1)) RETURN DIVIDE(CY - PY, PY)
+		formatString: +0.0%;-0.0%;0.0%
+		displayFolder: Market Value Analysis\03 Commercial Value
+		lineageTag: 2fecabd1-48d3-4171-adcb-e8d6773b56af
+
+	/// Maximum known transfer fee in the active filter context.
+	measure 'Max Known Transfer Fee' = CALCULATE(MAX(fct_transfer_market_value_analysis[transfer_fee]), fct_transfer_market_value_analysis[has_known_transfer_fee] = TRUE())
+		formatString: €0.0
+		displayFolder: Market Value Analysis\03 Commercial Value
+		lineageTag: bb95f400-042e-4ba5-a7b9-dab25094fab3
+
+	measure 'Selected Player Post-Transfer Change %' = IF ( HASONEVALUE ( fct_transfer_market_value_analysis[player_id] ), [Average Post Transfer Value Change %], BLANK () )
+		formatString: 0.0%
+		displayFolder: Drillthrough\Selection-safe KPIs
+		lineageTag: 8e5e486c-ab40-4be7-a504-5566c9797823
+
+	measure 'Selected Player Transfer Count' = IF ( HASONEVALUE ( fct_transfer_market_value_analysis[player_id] ), [Transfer Count], BLANK () )
+		formatString: #,0
+		displayFolder: Drillthrough\Selection-safe KPIs
+		lineageTag: 69bfcf89-4537-43a8-81b1-4fe1808912d1
+
+	measure 'Selected Player Known Fee' = IF ( HASONEVALUE ( fct_transfer_market_value_analysis[player_id] ), [Total Known Transfer Fee], BLANK () )
+		formatString: €0.0
+		displayFolder: Drillthrough\Selection-safe KPIs
+		lineageTag: 1153a9ea-8d49-48e5-8983-4787113206bd
+
+	column transfer_key
+		dataType: string
+		lineageTag: 5fa5f641-6753-42f9-a397-e90a47748f0b
+		summarizeBy: none
+		sourceColumn: transfer_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column player_id
+		dataType: int64
+		formatString: 0
+		lineageTag: e9f84de8-f63c-471d-b494-3bf9f383b415
+		summarizeBy: none
+		sourceColumn: player_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column player_name
+		dataType: string
+		lineageTag: 22deac01-dd72-4bbc-bf03-35ada30a8bf3
+		summarizeBy: none
+		sourceColumn: player_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column position
+		dataType: string
+		lineageTag: f85b2868-fd39-4ca0-b3a3-0751bec4227f
+		summarizeBy: none
+		sourceColumn: position
+
+		annotation SummarizationSetBy = Automatic
+
+	column sub_position
+		dataType: string
+		lineageTag: 82e3ad84-5a3e-4dbd-86c9-031ed3ec25bc
+		summarizeBy: none
+		sourceColumn: sub_position
+
+		annotation SummarizationSetBy = Automatic
+
+	column birth_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 092ffbe3-83cb-447e-a104-fb5cc3f8cfbf
+		summarizeBy: none
+		sourceColumn: birth_date
+
+		variation Variation
+			isDefault
+			relationship: 54592705-61b1-4989-9614-24453e8f03b1
+			defaultHierarchy: LocalDateTable_ee0c45f5-5ce6-412a-b743-c5e9780a29a6.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column country_of_citizenship
+		dataType: string
+		lineageTag: d6bc74ef-4d3a-40eb-bc8d-040b0445470d
+		summarizeBy: none
+		sourceColumn: country_of_citizenship
+
+		annotation SummarizationSetBy = Automatic
+
+	column age_at_transfer
+		dataType: int64
+		formatString: 0
+		lineageTag: e0ae0152-1de6-4c41-8025-b36c1d4c02ce
+		summarizeBy: sum
+		sourceColumn: age_at_transfer
+
+		annotation SummarizationSetBy = Automatic
+
+	column transfer_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: be6f79ab-9ce3-4ac8-b423-8bda1a13da4f
+		summarizeBy: none
+		sourceColumn: transfer_date
+
+		variation Variation
+			isDefault
+			relationship: edad52db-35ab-4cc1-bac7-3b6b4a3ac969
+			defaultHierarchy: LocalDateTable_402390ed-838f-413f-8b34-00e012dc29fa.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column transfer_year
+		dataType: int64
+		formatString: 0
+		lineageTag: 72bbe609-74d3-4b73-b131-696507b8e76f
+		summarizeBy: sum
+		sourceColumn: transfer_year
+
+		annotation SummarizationSetBy = Automatic
+
+	column transfer_month
+		dataType: int64
+		formatString: 0
+		lineageTag: 30921af5-319a-46f2-a07e-82f2c8b1f53a
+		summarizeBy: sum
+		sourceColumn: transfer_month
+
+		annotation SummarizationSetBy = Automatic
+
+	column transfer_season
+		dataType: string
+		lineageTag: 4802d11c-f875-46bd-a19f-6e0b99f6a0bd
+		summarizeBy: none
+		sourceColumn: transfer_season
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_future_transfer
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 32221d7a-df90-47b6-9b3b-bf8555c9ca71
+		summarizeBy: none
+		sourceColumn: is_future_transfer
+
+		annotation SummarizationSetBy = Automatic
+
+	column transfer_sequence_number
+		dataType: int64
+		formatString: 0
+		lineageTag: df7d9058-2e62-47d3-b6c0-daa711906c1f
+		summarizeBy: sum
+		sourceColumn: transfer_sequence_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column player_transfer_count
+		dataType: int64
+		formatString: 0
+		lineageTag: e306e46f-05ff-4e1e-a03a-8b399c80a393
+		summarizeBy: sum
+		sourceColumn: player_transfer_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column known_fee_transfer_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 2f9dc4cf-5679-4114-8e53-e1920f2b4a23
+		summarizeBy: sum
+		sourceColumn: known_fee_transfer_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_latest_transfer
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 0ebf03cd-0c36-42bc-8612-6f557be828c7
+		summarizeBy: none
+		sourceColumn: is_latest_transfer
+
+		annotation SummarizationSetBy = Automatic
+
+	column previous_transfer_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 68dbdf3a-045d-4ea1-adc4-aa14f4b156d9
+		summarizeBy: none
+		sourceColumn: previous_transfer_date
+
+		variation Variation
+			isDefault
+			relationship: 2de34f5f-a9d7-49b8-89f7-afb75293ff40
+			defaultHierarchy: LocalDateTable_1665a1cb-5e3c-4d65-9651-6326caba3068.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column days_since_previous_transfer
+		dataType: int64
+		formatString: 0
+		lineageTag: cfba51ec-0136-4afe-a31b-6ccb5d743af2
+		summarizeBy: sum
+		sourceColumn: days_since_previous_transfer
+
+		annotation SummarizationSetBy = Automatic
+
+	column next_transfer_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 584bae9d-99cd-4008-81b3-5174daa17d19
+		summarizeBy: none
+		sourceColumn: next_transfer_date
+
+		variation Variation
+			isDefault
+			relationship: de28e0ad-71e4-40a5-9420-39e9b91a7920
+			defaultHierarchy: LocalDateTable_48709e1d-bf47-47cc-94d5-7511b4ad5222.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column days_to_next_transfer
+		dataType: int64
+		formatString: 0
+		lineageTag: 026444d2-39bd-482a-8052-57169dda2aaf
+		summarizeBy: sum
+		sourceColumn: days_to_next_transfer
+
+		annotation SummarizationSetBy = Automatic
+
+	column from_club_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 6e9f0b68-2ad6-4447-8ff7-e26f9cafe182
+		summarizeBy: sum
+		sourceColumn: from_club_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column from_club_name
+		dataType: string
+		lineageTag: 33ee6611-c091-4914-b70e-2191d4508e6d
+		summarizeBy: none
+		sourceColumn: from_club_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column to_club_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 95d275c7-5c37-4d39-a7f3-5d5b388680b9
+		summarizeBy: sum
+		sourceColumn: to_club_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column to_club_name
+		dataType: string
+		lineageTag: 1b0fd302-7830-4dbd-8b63-5542178b55f3
+		summarizeBy: none
+		sourceColumn: to_club_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column transfer_fee
+		dataType: double
+		lineageTag: 2ff8cd08-ee43-4154-bfb7-393784dcd6e7
+		summarizeBy: sum
+		sourceColumn: transfer_fee
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column cumulative_known_transfer_fee
+		dataType: double
+		lineageTag: aa4feaf3-65b9-4cad-9a37-1cb74d1995b0
+		summarizeBy: sum
+		sourceColumn: cumulative_known_transfer_fee
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column total_transfer_fee
+		dataType: double
+		lineageTag: a9a34411-b645-4c92-9696-2a42cc6d6023
+		summarizeBy: sum
+		sourceColumn: total_transfer_fee
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_transfer_fee
+		dataType: double
+		lineageTag: ce84e868-8849-454a-8f9b-c83fac32c9e3
+		summarizeBy: sum
+		sourceColumn: avg_transfer_fee
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column max_transfer_fee
+		dataType: double
+		lineageTag: 5115cf08-5006-4050-8fb1-c4ccd106c0e9
+		summarizeBy: sum
+		sourceColumn: max_transfer_fee
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column fee_status
+		dataType: string
+		lineageTag: 42ea6a8c-be2c-4ad6-890b-87ba8f62e72a
+		summarizeBy: none
+		sourceColumn: fee_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column has_known_transfer_fee
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 4ad8a1bb-8706-4c40-a154-28f6cd95b80b
+		summarizeBy: none
+		sourceColumn: has_known_transfer_fee
+
+		annotation SummarizationSetBy = Automatic
+
+	column transfer_record_market_value
+		dataType: double
+		lineageTag: 9f633e2f-f571-416a-b091-c0c8ba3952b6
+		summarizeBy: sum
+		sourceColumn: transfer_record_market_value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column has_transfer_record_market_value
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 94ed3d74-d888-404b-9bd1-6a77f078f219
+		summarizeBy: none
+		sourceColumn: has_transfer_record_market_value
+
+		annotation SummarizationSetBy = Automatic
+
+	column market_value_baseline_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 089e1472-6d01-4c67-95eb-6cd0e952bcae
+		summarizeBy: none
+		sourceColumn: market_value_baseline_date
+
+		variation Variation
+			isDefault
+			relationship: 88ee5f87-a47b-4fc6-936a-b4b62473d503
+			defaultHierarchy: LocalDateTable_17e963b7-e819-4176-97e6-c3277aa03c52.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column market_value_baseline
+		dataType: double
+		lineageTag: 3d6540c6-f26f-42d4-8199-043bf4886154
+		summarizeBy: sum
+		sourceColumn: market_value_baseline
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column market_value_baseline_source
+		dataType: string
+		lineageTag: 0978e831-2c98-46b4-930a-6a6e5c352f5a
+		summarizeBy: none
+		sourceColumn: market_value_baseline_source
+
+		annotation SummarizationSetBy = Automatic
+
+	column has_market_value_baseline
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 6448971a-335d-4391-ad64-74cadc7a92e2
+		summarizeBy: none
+		sourceColumn: has_market_value_baseline
+
+		annotation SummarizationSetBy = Automatic
+
+	column has_fee_market_value_comparison
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: d335e993-a2fe-4597-b287-e5960321b1dc
+		summarizeBy: none
+		sourceColumn: has_fee_market_value_comparison
+
+		annotation SummarizationSetBy = Automatic
+
+	column days_since_market_value_baseline
+		dataType: int64
+		formatString: 0
+		lineageTag: 30b376a9-4eec-431a-aa3e-72f6e0f31012
+		summarizeBy: sum
+		sourceColumn: days_since_market_value_baseline
+
+		annotation SummarizationSetBy = Automatic
+
+	column fee_market_value_difference
+		dataType: double
+		lineageTag: 897277f5-3609-415a-936a-6781168f9e09
+		summarizeBy: sum
+		sourceColumn: fee_market_value_difference
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column fee_market_value_difference_pct
+		dataType: double
+		lineageTag: dee99a12-2bf4-4cee-99a9-1380c5d91725
+		summarizeBy: sum
+		sourceColumn: fee_market_value_difference_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column fee_to_market_value_ratio
+		dataType: double
+		lineageTag: d351082e-7412-486a-afbc-fdbee5f68d6d
+		summarizeBy: sum
+		sourceColumn: fee_to_market_value_ratio
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column prior_valuation_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 22a7e197-be16-4934-a1b5-c9675a513b0c
+		summarizeBy: none
+		sourceColumn: prior_valuation_date
+
+		variation Variation
+			isDefault
+			relationship: 9b01f1c4-f1f8-4867-b55e-8d2e5aa30f61
+			defaultHierarchy: LocalDateTable_08a49516-31cd-48b4-89ba-dc2db016d8cf.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column prior_market_value
+		dataType: int64
+		formatString: 0
+		lineageTag: 212932d8-9d64-4b31-a7a6-43e69f6848f5
+		summarizeBy: sum
+		sourceColumn: prior_market_value
+
+		annotation SummarizationSetBy = Automatic
+
+	column prior_valuation_club_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 13287e7f-80a9-4e3b-9d6d-9dffdf4f914e
+		summarizeBy: sum
+		sourceColumn: prior_valuation_club_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column prior_valuation_club_name
+		dataType: string
+		lineageTag: a58f1211-0a8d-4ce9-89bd-001b4332a4ac
+		summarizeBy: none
+		sourceColumn: prior_valuation_club_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column prior_valuation_competition_id
+		dataType: string
+		lineageTag: f9f5e8cc-4ce7-4e34-ad9f-98c8e76cd5da
+		summarizeBy: none
+		sourceColumn: prior_valuation_competition_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column prior_competition_name
+		dataType: string
+		lineageTag: 3d05d988-9b18-4c95-9a1b-ba2122f25fbb
+		summarizeBy: none
+		sourceColumn: prior_competition_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column prior_competition_country_name
+		dataType: string
+		lineageTag: 455caaed-6c23-4615-aade-6120470b0c20
+		summarizeBy: none
+		sourceColumn: prior_competition_country_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column prior_competition_confederation
+		dataType: string
+		lineageTag: 179936b5-14f6-49fe-882c-8ccfb55397e6
+		summarizeBy: none
+		sourceColumn: prior_competition_confederation
+
+		annotation SummarizationSetBy = Automatic
+
+	column has_prior_valuation
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 76f74cdb-3d6f-4309-94d8-63de76cdad2a
+		summarizeBy: none
+		sourceColumn: has_prior_valuation
+
+		annotation SummarizationSetBy = Automatic
+
+	column days_since_prior_valuation
+		dataType: int64
+		formatString: 0
+		lineageTag: c852f02b-5d67-4e18-b39a-3dd8b16b1f52
+		summarizeBy: sum
+		sourceColumn: days_since_prior_valuation
+
+		annotation SummarizationSetBy = Automatic
+
+	column next_valuation_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 1c528499-3b4e-47f7-a19f-a16d58cdf242
+		summarizeBy: none
+		sourceColumn: next_valuation_date
+
+		variation Variation
+			isDefault
+			relationship: 8f773ac8-a682-4482-bac5-0edd297dcbe2
+			defaultHierarchy: LocalDateTable_2dd0becb-a826-4faa-adbd-8dbd411a199d.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column next_market_value
+		dataType: int64
+		formatString: 0
+		lineageTag: 30fe629c-9370-4aa1-bd8a-da680184d847
+		summarizeBy: sum
+		sourceColumn: next_market_value
+
+		annotation SummarizationSetBy = Automatic
+
+	column next_valuation_club_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 49e7cf23-d4cf-4500-9930-80cac46c7866
+		summarizeBy: sum
+		sourceColumn: next_valuation_club_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column next_valuation_club_name
+		dataType: string
+		lineageTag: 69aa7f04-4a72-42a2-8b97-06ac67b24936
+		summarizeBy: none
+		sourceColumn: next_valuation_club_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column next_valuation_competition_id
+		dataType: string
+		lineageTag: 44d94710-575c-41df-a500-a2d00c5cb5a3
+		summarizeBy: none
+		sourceColumn: next_valuation_competition_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column next_competition_name
+		dataType: string
+		lineageTag: d941f901-07d0-4755-91ca-b569cdb64cb8
+		summarizeBy: none
+		sourceColumn: next_competition_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column next_competition_country_name
+		dataType: string
+		lineageTag: fe8c22bc-f9a9-419e-b3ce-278ba9e3adaa
+		summarizeBy: none
+		sourceColumn: next_competition_country_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column next_competition_confederation
+		dataType: string
+		lineageTag: 58cd2cd4-fc0a-47e1-bc7c-e4d4aebcc6c6
+		summarizeBy: none
+		sourceColumn: next_competition_confederation
+
+		annotation SummarizationSetBy = Automatic
+
+	column has_next_valuation
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 93dfa2fb-26ff-414a-8817-5b143fe71285
+		summarizeBy: none
+		sourceColumn: has_next_valuation
+
+		annotation SummarizationSetBy = Automatic
+
+	column days_to_next_valuation
+		dataType: int64
+		formatString: 0
+		lineageTag: 796d5a6b-2f95-4c6a-af32-b8367a6fd090
+		summarizeBy: sum
+		sourceColumn: days_to_next_valuation
+
+		annotation SummarizationSetBy = Automatic
+
+	column market_value_change_after_transfer
+		dataType: double
+		lineageTag: 16f8234a-05f8-4390-a860-643d225ba377
+		summarizeBy: sum
+		sourceColumn: market_value_change_after_transfer
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column market_value_change_after_transfer_pct
+		dataType: double
+		lineageTag: 82c7e052-bbf0-41d6-aa85-8d5ef318eeca
+		summarizeBy: sum
+		sourceColumn: market_value_change_after_transfer_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column has_post_transfer_value_change
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: c78139ec-bc01-4747-9d75-072fb3545c2f
+		summarizeBy: none
+		sourceColumn: has_post_transfer_value_change
+
+		annotation SummarizationSetBy = Automatic
+
+	column market_value_direction_after_transfer
+		dataType: string
+		lineageTag: 02e6c1c4-2a09-47c4-a07f-73e1cf90e5e0
+		summarizeBy: none
+		sourceColumn: market_value_direction_after_transfer
+
+		annotation SummarizationSetBy = Automatic
+
+	column valuation_context_change
+		dataType: string
+		lineageTag: 31cc5ccc-4ca8-4ee7-8c69-d8953f0ebc67
+		summarizeBy: none
+		sourceColumn: valuation_context_change
+
+		annotation SummarizationSetBy = Automatic
+
+	column first_valuation_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 99d5f025-dc0e-4da1-973d-c8c307e9f6c0
+		summarizeBy: none
+		sourceColumn: first_valuation_date
+
+		variation Variation
+			isDefault
+			relationship: 65e79f51-5217-4e34-8840-ed34620c5c11
+			defaultHierarchy: LocalDateTable_d105d730-64ba-4e7d-8133-fcecdbcb7bfc.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column latest_valuation_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 2bc3b999-253c-4d06-af5c-d3fade2cd063
+		summarizeBy: none
+		sourceColumn: latest_valuation_date
+
+		variation Variation
+			isDefault
+			relationship: 5b64f022-0d68-48e3-8711-115d0c7617e4
+			defaultHierarchy: LocalDateTable_6ae1fcc1-20a1-4422-b9b3-8e685bffd029.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column first_market_value
+		dataType: int64
+		formatString: 0
+		lineageTag: e9d5b6f8-41f5-4ea0-a215-b41220ced83c
+		summarizeBy: sum
+		sourceColumn: first_market_value
+
+		annotation SummarizationSetBy = Automatic
+
+	column current_market_value
+		dataType: int64
+		formatString: 0
+		lineageTag: 1352c462-6bf0-4bb9-82ca-f3dfedadbaac
+		summarizeBy: sum
+		sourceColumn: current_market_value
+
+		annotation SummarizationSetBy = Automatic
+
+	column highest_market_value
+		dataType: int64
+		formatString: 0
+		lineageTag: 948befed-678e-4d2e-b458-ffcb243af5f9
+		summarizeBy: sum
+		sourceColumn: highest_market_value
+
+		annotation SummarizationSetBy = Automatic
+
+	column career_market_value_growth
+		dataType: int64
+		formatString: 0
+		lineageTag: f56caacd-d6ee-4cd0-9235-a17b12c6e04b
+		summarizeBy: sum
+		sourceColumn: career_market_value_growth
+
+		annotation SummarizationSetBy = Automatic
+
+	column career_market_value_growth_pct
+		dataType: double
+		lineageTag: 9502ce24-a314-4e90-a9ff-dca63208104f
+		summarizeBy: sum
+		sourceColumn: career_market_value_growth_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column yon_etiketi_tr
+		dataType: string
+		lineageTag: e646ac13-2ed1-447b-a331-7567175d730e
+		summarizeBy: none
+		sourceColumn: yon_etiketi_tr
+
+		annotation SummarizationSetBy = Automatic
+
+	column fee_range_category_tr = SWITCH(TRUE(), [transfer_fee] >= 50000000, "Mega Transfer (≥50M€)", [transfer_fee] >= 20000000, "Büyük Transfer (20-50M€)", [transfer_fee] >= 5000000, "Orta Transfer (5-20M€)", [transfer_fee] > 0, "Küçük Transfer (<5M€)", NOT([has_known_transfer_fee]), "Ücretsiz/Bilinmiyor", "Veri Yok")
+		dataType: string
+		lineageTag: 288f3730-276c-40a4-a242-e3298db7e490
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column pozisyon_tr
+		dataType: string
+		lineageTag: 66d12ead-074b-4756-a7e9-ac0508160708
+		summarizeBy: none
+		sourceColumn: pozisyon_tr
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fct_transfer_market_value_analysis = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database([Implementation="2.0",UseStorageApi=false,BillingProject="workintech-working"]),
+				    #"workintech-working" = Source{[Name="workintech-working"]}[Data],
+				    football_mart_Schema = #"workintech-working"{[Name="nexus_football_mart",Kind="Schema"]}[Data],
+				    fct_transfer_market_value_analysis_Table = football_mart_Schema{[Name="fct_transfer_market_value_analysis",Kind="Table"]}[Data]
+				in
+				    fct_transfer_market_value_analysis_Table
+

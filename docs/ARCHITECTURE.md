@@ -1,5 +1,8 @@
 # Architecture and Model Catalog
 
+**WORKINTECH RUNTIME PROFILE (27 October):** [27 October verified Workintech release record](WORKINTECH_STATUS_AND_VISUAL_RELEASE_20261027.md). Target project is workintech-working (EU), datasets nexus_football_raw, nexus_football_staging, nexus_football_intermediate, nexus_football_mart, nexus_football_ml and nexus_football_snapshots. Runtime creates 46 dbt models + two snapshots; 31 of the Power BI model sources are physically verified (22 mart + 9 ML). Historic architecture documentation below also addresses the older data-analiz-490513 environment.
+
+
 > **Source audit 19 October 2026:** Architecture and declared dbt models parsed successfully offline (46 models, 243 registered tests); the full Python suite **243/243 PASS**. This is **not** a current BigQuery model census or table execution. Same-day valuation canonicalization and target-date conflict handling have been implemented in the model sources but their real exclusion counts remain unknown. See [current gates](PROJECT_STATUS.md) and [valuation event-grain audit](ML_VALUATION_EVENT_GRAIN_AUDIT_20261019.md).
 
 ## Overview

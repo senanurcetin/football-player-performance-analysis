@@ -1,0 +1,324 @@
+table 'ml_player_market_value_model_registry (2)'
+	lineageTag: 0fa61c0d-59ee-4fc3-8619-143732eb99a2
+
+	column model_name
+		dataType: string
+		lineageTag: 95b3810b-b830-4d49-b268-7e28efdc89b6
+		summarizeBy: none
+		sourceColumn: model_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column model_version
+		dataType: string
+		lineageTag: 61943579-dc11-4711-bc88-c1607c2dd3e5
+		summarizeBy: none
+		sourceColumn: model_version
+
+		annotation SummarizationSetBy = Automatic
+
+	column model_generated_at_utc
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 724aa31c-fc56-49f7-8e8b-dd6cb69620f0
+		summarizeBy: none
+		sourceColumn: model_generated_at_utc
+
+		variation Variation
+			isDefault
+			relationship: f26c0670-ff2f-4519-915c-18368eb99ea1
+			defaultHierarchy: LocalDateTable_8a13c516-27ac-46b0-a915-23075d760234.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column release_status
+		dataType: string
+		lineageTag: e7a4b8ae-755c-4eb9-b03b-fa53e74ba8cf
+		summarizeBy: none
+		sourceColumn: release_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column blocking_quality_gates_passed
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 384d29e0-5bfc-4159-8754-41e155efcb77
+		summarizeBy: none
+		sourceColumn: blocking_quality_gates_passed
+
+		annotation SummarizationSetBy = Automatic
+
+	column warning_quality_gates_failed
+		dataType: int64
+		formatString: 0
+		lineageTag: 979e1a3b-0918-4868-a203-ba4c84837b5c
+		summarizeBy: sum
+		sourceColumn: warning_quality_gates_failed
+
+		annotation SummarizationSetBy = Automatic
+
+	column model_artifact_sha256
+		dataType: string
+		lineageTag: fe0e9081-af2f-4585-b60a-15d53e3b3070
+		summarizeBy: none
+		sourceColumn: model_artifact_sha256
+
+		annotation SummarizationSetBy = Automatic
+
+	column feature_contract_hash
+		dataType: string
+		lineageTag: 4a074ea9-5407-42b9-bbe8-0a80f2b0415e
+		summarizeBy: none
+		sourceColumn: feature_contract_hash
+
+		annotation SummarizationSetBy = Automatic
+
+	column source_commit_sha
+		dataType: string
+		lineageTag: 2906275b-e329-466f-a2bb-acc3c5ed95c1
+		summarizeBy: none
+		sourceColumn: source_commit_sha
+
+		annotation SummarizationSetBy = Automatic
+
+	column runtime_versions
+		dataType: string
+		lineageTag: e1907486-f70d-48c1-91d2-03ed277788c7
+		summarizeBy: none
+		sourceColumn: runtime_versions
+
+		annotation SummarizationSetBy = Automatic
+
+	column training_rows
+		dataType: int64
+		formatString: 0
+		lineageTag: 049b3602-0d98-4f7e-ac2b-5d3542ff586d
+		summarizeBy: sum
+		sourceColumn: training_rows
+
+		annotation SummarizationSetBy = Automatic
+
+	column test_rows
+		dataType: int64
+		formatString: 0
+		lineageTag: 372eacc1-94af-4582-8bc0-b2332009fca8
+		summarizeBy: sum
+		sourceColumn: test_rows
+
+		annotation SummarizationSetBy = Automatic
+
+	column train_season_min
+		dataType: int64
+		formatString: 0
+		lineageTag: bf94d77a-af06-49c8-88a6-b46ccc064e64
+		summarizeBy: sum
+		sourceColumn: train_season_min
+
+		annotation SummarizationSetBy = Automatic
+
+	column train_season_max
+		dataType: int64
+		formatString: 0
+		lineageTag: e78927be-6c55-408e-bf2b-de7d7c186c70
+		summarizeBy: sum
+		sourceColumn: train_season_max
+
+		annotation SummarizationSetBy = Automatic
+
+	column evaluation_training_rows
+		dataType: int64
+		formatString: 0
+		lineageTag: 5cc80cca-b3fe-4160-9dd2-946995d0af21
+		summarizeBy: sum
+		sourceColumn: evaluation_training_rows
+
+		annotation SummarizationSetBy = Automatic
+
+	column production_training_rows
+		dataType: int64
+		formatString: 0
+		lineageTag: 1c77940f-ca7a-4d99-9f07-190c6876d472
+		summarizeBy: sum
+		sourceColumn: production_training_rows
+
+		annotation SummarizationSetBy = Automatic
+
+	column evaluation_train_season_min
+		dataType: int64
+		formatString: 0
+		lineageTag: 2aa9b12a-1859-4698-938a-73137e108995
+		summarizeBy: sum
+		sourceColumn: evaluation_train_season_min
+
+		annotation SummarizationSetBy = Automatic
+
+	column evaluation_train_season_max
+		dataType: int64
+		formatString: 0
+		lineageTag: 8d7cf10c-08a4-45e7-9f24-7398f997a6a2
+		summarizeBy: sum
+		sourceColumn: evaluation_train_season_max
+
+		annotation SummarizationSetBy = Automatic
+
+	column production_train_season_min
+		dataType: int64
+		formatString: 0
+		lineageTag: 7278706d-35f1-44b0-a9aa-324773d16b24
+		summarizeBy: sum
+		sourceColumn: production_train_season_min
+
+		annotation SummarizationSetBy = Automatic
+
+	column production_train_season_max
+		dataType: int64
+		formatString: 0
+		lineageTag: cba9882d-39d1-4770-a1cd-6e6b61d568aa
+		summarizeBy: sum
+		sourceColumn: production_train_season_max
+
+		annotation SummarizationSetBy = Automatic
+
+	column tuning_season
+		dataType: int64
+		formatString: 0
+		lineageTag: d3676d56-832c-4e9c-b659-c5b2fafc11d6
+		summarizeBy: sum
+		sourceColumn: tuning_season
+
+		annotation SummarizationSetBy = Automatic
+
+	column calibration_season
+		dataType: int64
+		formatString: 0
+		lineageTag: 6f082e50-567d-4c39-9877-355075f48cfb
+		summarizeBy: sum
+		sourceColumn: calibration_season
+
+		annotation SummarizationSetBy = Automatic
+
+	column test_seasons
+		dataType: string
+		lineageTag: a37b74b5-df9f-4d27-b6c2-2d6fa85544a9
+		summarizeBy: none
+		sourceColumn: test_seasons
+
+		annotation SummarizationSetBy = Automatic
+
+	column selected_ml_blend_weight
+		dataType: double
+		lineageTag: fafaf100-b11b-489a-876a-ef11450d0387
+		summarizeBy: sum
+		sourceColumn: selected_ml_blend_weight
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column selected_ml_blend_weights_by_quality_status
+		dataType: string
+		lineageTag: 5fb7b23d-aec9-471a-853c-391a9393d705
+		summarizeBy: none
+		sourceColumn: selected_ml_blend_weights_by_quality_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column conformal_prediction_interval_eur_90
+		dataType: double
+		lineageTag: 851c1961-208c-4ca8-bc3d-20154355cdd6
+		summarizeBy: sum
+		sourceColumn: conformal_prediction_interval_eur_90
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column conformal_prediction_interval_by_predicted_value_band_eur_90
+		dataType: string
+		lineageTag: 3853daad-8b10-4caa-bd76-cbdcc22659b9
+		summarizeBy: none
+		sourceColumn: conformal_prediction_interval_by_predicted_value_band_eur_90
+
+		annotation SummarizationSetBy = Automatic
+
+	column test_mae_eur
+		dataType: double
+		lineageTag: 5aa6ced1-0071-45ff-920d-a80f9e5f565b
+		summarizeBy: sum
+		sourceColumn: test_mae_eur
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column test_rmse_eur
+		dataType: double
+		lineageTag: 885003c6-034a-4a1a-8d9b-eb079141f2c6
+		summarizeBy: sum
+		sourceColumn: test_rmse_eur
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column test_r2
+		dataType: double
+		lineageTag: a2ead302-7c7d-4eab-97b8-b1832b9fefee
+		summarizeBy: sum
+		sourceColumn: test_r2
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column test_wape_pct
+		dataType: double
+		lineageTag: b8f68c76-0cfd-42cf-b07c-4956eaeae96b
+		summarizeBy: sum
+		sourceColumn: test_wape_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column test_median_absolute_percentage_error_pct
+		dataType: double
+		lineageTag: bda982d1-b18c-44c2-a16d-941de83cddb5
+		summarizeBy: sum
+		sourceColumn: test_median_absolute_percentage_error_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column test_mean_error_eur
+		dataType: double
+		lineageTag: 90df8777-557c-40ec-9726-1e4c4a907c7f
+		summarizeBy: sum
+		sourceColumn: test_mean_error_eur
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column test_within_25_pct
+		dataType: double
+		lineageTag: 523230c6-4911-4903-9335-8ff27ac4fc92
+		summarizeBy: sum
+		sourceColumn: test_within_25_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'ml_player_market_value_model_registry (2)' = m
+		mode: import
+		source =
+				let
+				    Kaynak = GoogleBigQuery.Database([Implementation="2.0"]),
+				    #"workintech-working_Database" = Kaynak{[Name="workintech-working",Kind="Database"]}[Data],
+				    nexus_football_ml_Schema = #"workintech-working_Database"{[Name="nexus_football_ml",Kind="Schema"]}[Data],
+				    ml_player_market_value_model_registry_Table = nexus_football_ml_Schema{[Name="ml_player_market_value_model_registry",Kind="Table"]}[Data]
+				in
+				    ml_player_market_value_model_registry_Table
+

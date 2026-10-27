@@ -1,5 +1,11 @@
 # Power BI Model Specification
 
+**ACCEPTED WORKINTECH DESKTOP EDITION — 28 October:** [34-source production-promoted PBIP](workintech-20261028/FootballPlayerAnalysis/FootballPlayerAnalysis.pbip). The earlier workintech-20261027 PBIP remains as historical model evidence. [Cutover/rollback audit](../docs/WORKINTECH_PRODUCTION_PROMOTION_20261028.md): 31 duplicated imports removed, 87 valid relationships and 13/308 page/visual structure preserved; post-cutover Power BI engine verification remains separate.
+
+
+**LATEST REPORT (27 October):** [Workintech versioned PBIP](workintech-20261027/FootballPlayerAnalysis/FootballPlayerAnalysis.pbip) is an editable Desktop copy with current user-supplied screenshots documented [here](../docs/assets/screenshots/README.md). It retains all original 13 pages. 31 governed source contract tables were verified, but the owner-edited PBIP additionally contains 34 other imported Workintech table definitions that require semantic reconciliation. See [execution status](../docs/WORKINTECH_STATUS_AND_VISUAL_RELEASE_20261027.md).
+
+
 Use `football_mart` as the supported BI interface.
 
 ## Decision-Facing Pages

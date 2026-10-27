@@ -1,0 +1,67 @@
+table ml_player_market_value_feature_importance
+	lineageTag: d708019b-5959-40c3-8f7f-6eee79c96a8a
+
+	column model_version
+		dataType: string
+		lineageTag: 158c2f31-f6b1-4047-91a3-0777f4a183ba
+		summarizeBy: none
+		sourceColumn: model_version
+
+		annotation SummarizationSetBy = Automatic
+
+	column feature
+		dataType: string
+		lineageTag: 56190068-ce4d-44b9-a0d7-62e0215270d5
+		summarizeBy: none
+		sourceColumn: feature
+
+		annotation SummarizationSetBy = Automatic
+
+	column feature_type
+		dataType: string
+		lineageTag: 20c64e18-ca6d-4f17-91c7-fae68724d584
+		summarizeBy: none
+		sourceColumn: feature_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column mae_increase_eur_mean
+		dataType: double
+		lineageTag: 01607e56-2532-4e46-aeb7-31c4288a80c2
+		summarizeBy: sum
+		sourceColumn: mae_increase_eur_mean
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column mae_increase_eur_std
+		dataType: double
+		lineageTag: 25114d2a-787c-4509-a4b9-95eabd5cf8ef
+		summarizeBy: sum
+		sourceColumn: mae_increase_eur_std
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column importance_rank
+		dataType: int64
+		formatString: 0
+		lineageTag: b788a599-973e-4e68-a565-6de8edbf9c5c
+		summarizeBy: sum
+		sourceColumn: importance_rank
+
+		annotation SummarizationSetBy = Automatic
+
+	partition ml_player_market_value_feature_importance = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database([Implementation="2.0",UseStorageApi=false,BillingProject="workintech-working"]),
+				    #"workintech-working" = Source{[Name="workintech-working"]}[Data],
+				    football_ml_Schema = #"workintech-working"{[Name="nexus_football_ml",Kind="Schema"]}[Data],
+				    ml_player_market_value_feature_importance_Table = football_ml_Schema{[Name="ml_player_market_value_feature_importance",Kind="Table"]}[Data]
+				in
+				    ml_player_market_value_feature_importance_Table
+

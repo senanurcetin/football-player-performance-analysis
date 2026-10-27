@@ -1,0 +1,192 @@
+table 'fct_player_career_timeline (2)'
+	lineageTag: 1f2d872b-65ba-40cb-8571-6cb8b7898171
+
+	column player_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 5b5c5c01-ea67-488a-9321-37356117841d
+		summarizeBy: none
+		sourceColumn: player_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column player_name
+		dataType: string
+		lineageTag: 6deecf88-1781-4cb3-839a-e0e3f756011d
+		summarizeBy: none
+		sourceColumn: player_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column position
+		dataType: string
+		lineageTag: 0baad169-006a-4974-82db-f3e863da7207
+		summarizeBy: none
+		sourceColumn: position
+
+		annotation SummarizationSetBy = Automatic
+
+	column current_club_name
+		dataType: string
+		lineageTag: 8d4d7313-d3c3-426e-ae41-2ca03bb65410
+		summarizeBy: none
+		sourceColumn: current_club_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column season
+		dataType: int64
+		formatString: 0
+		lineageTag: 099f3081-c22a-46e7-b5c4-040d9752b490
+		summarizeBy: sum
+		sourceColumn: season
+
+		annotation SummarizationSetBy = Automatic
+
+	column competition_id
+		dataType: string
+		lineageTag: 5d3b7248-8732-4904-b6ed-8757a67cb95f
+		summarizeBy: none
+		sourceColumn: competition_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column matches_played
+		dataType: int64
+		formatString: 0
+		lineageTag: 270de61e-a646-4203-bb57-66074e66525a
+		summarizeBy: sum
+		sourceColumn: matches_played
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_goals
+		dataType: int64
+		formatString: 0
+		lineageTag: a4906f66-0f9c-4399-8f37-d31bd96ad144
+		summarizeBy: sum
+		sourceColumn: total_goals
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_assists
+		dataType: int64
+		formatString: 0
+		lineageTag: 10daaeff-c895-467d-8a92-07374540f0bf
+		summarizeBy: sum
+		sourceColumn: total_assists
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_minutes_played
+		dataType: int64
+		formatString: 0
+		lineageTag: 23092685-464d-44b6-a55e-ac7af3f2823b
+		summarizeBy: sum
+		sourceColumn: total_minutes_played
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_yellow_cards
+		dataType: int64
+		formatString: 0
+		lineageTag: 90e993dc-a945-43cb-842f-0ac6818f2f88
+		summarizeBy: sum
+		sourceColumn: total_yellow_cards
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_red_cards
+		dataType: int64
+		formatString: 0
+		lineageTag: 3c0d23ee-1efd-4423-8aaf-7ed5ccd8459d
+		summarizeBy: sum
+		sourceColumn: total_red_cards
+
+		annotation SummarizationSetBy = Automatic
+
+	column goals_per_match
+		dataType: double
+		lineageTag: 8b6841e2-ec5a-43ef-ad1b-232a307030a2
+		summarizeBy: sum
+		sourceColumn: goals_per_match
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column assists_per_match
+		dataType: double
+		lineageTag: 985ee10a-dddd-4364-8eeb-337239c6a331
+		summarizeBy: sum
+		sourceColumn: assists_per_match
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column goals_per_90
+		dataType: double
+		lineageTag: a9084885-a8b3-413d-97dd-8a485838795a
+		summarizeBy: sum
+		sourceColumn: goals_per_90
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column assists_per_90
+		dataType: double
+		lineageTag: 4312113b-ecd3-4d6f-a73c-0515efe908b4
+		summarizeBy: sum
+		sourceColumn: assists_per_90
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column season_market_value
+		dataType: int64
+		formatString: 0
+		lineageTag: ab545bad-92cd-4ce9-a8be-a2bedd73d11d
+		summarizeBy: sum
+		sourceColumn: season_market_value
+
+		annotation SummarizationSetBy = Automatic
+
+	column season_market_value_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: c792a6c8-42f6-49b3-8605-30e6e7ca5a57
+		summarizeBy: none
+		sourceColumn: season_market_value_date
+
+		variation Variation
+			isDefault
+			relationship: 0b0bd8c7-cf69-4c4b-acc0-9ab4ada238d8
+			defaultHierarchy: LocalDateTable_98dc5be7-073b-4332-92a5-672eb62d5cda.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column has_season_market_value
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 31d0d6cb-d3b0-4631-bfbd-8bda4cc529de
+		summarizeBy: none
+		sourceColumn: has_season_market_value
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'fct_player_career_timeline (2)' = m
+		mode: import
+		source =
+				let
+				    Kaynak = GoogleBigQuery.Database([Implementation="2.0"]),
+				    #"workintech-working_Database" = Kaynak{[Name="workintech-working",Kind="Database"]}[Data],
+				    nexus_football_mart_Schema = #"workintech-working_Database"{[Name="nexus_football_mart",Kind="Schema"]}[Data],
+				    fct_player_career_timeline_Table = nexus_football_mart_Schema{[Name="fct_player_career_timeline",Kind="Table"]}[Data]
+				in
+				    fct_player_career_timeline_Table
+

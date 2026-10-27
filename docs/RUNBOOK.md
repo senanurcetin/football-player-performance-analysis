@@ -1,5 +1,8 @@
 # Operations Runbook
 
+**CURRENT WORKINTECH OPERATIONS (27 October):** See [27 October verified Workintech release record](WORKINTECH_STATUS_AND_VISUAL_RELEASE_20261027.md). The owner-authorized isolated Windows recovery script is C:\ProgramData\SentinelX\workspace\football-recovery-20261027\Start-WorkintechWarehouse.ps1. The warehouse has been built and tests have passed: do not re-run -Phase Full simply to update screenshots or Markdown. Power BI Import refresh requires an authorized Desktop/Service connection, and downstream scheduled refresh is independent of raw-data ingestion/dbt. Store credentials only in local approved OS/Power BI facilities; never in source control.
+
+
 > **Updated 19 October 2026:** SentinelX independently executed full Python **243/243 baseline, 246/246 post-cleanup, and 249/249 after the declared-doc gate PASS**, the nine-phase offline runner and nonauthenticated dbt parse. These are **real source test results**, not proof of authenticated BigQuery freshness or historical model accuracy. See [executed evidence](SENTINELX_OFFLINE_VERIFICATION_20261019.md) and [current project status](PROJECT_STATUS.md).
 
 ## Purpose

@@ -1,0 +1,178 @@
+table dim_date
+	lineageTag: 1e046b2e-0b8b-4453-9487-5afb3c3490ab
+
+	column date_day
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 1cc5fd7d-3020-4b00-9dd7-91628e28ad17
+		summarizeBy: none
+		sourceColumn: date_day
+
+		variation Variation
+			isDefault
+			relationship: 6f2fa2a2-8b6e-4a61-a4fc-588566d1d374
+			defaultHierarchy: LocalDateTable_9f5aadfb-4263-4caf-9506-79e4cd0e50aa.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column date_key
+		dataType: int64
+		formatString: 0
+		lineageTag: 750e04cd-004e-4728-9ffb-b775f1bf1de3
+		summarizeBy: sum
+		sourceColumn: date_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column calendar_year
+		dataType: int64
+		formatString: 0
+		lineageTag: c88b33b4-3aaa-47db-9889-2cc489c379f4
+		summarizeBy: sum
+		sourceColumn: calendar_year
+
+		annotation SummarizationSetBy = Automatic
+
+	column calendar_quarter_number
+		dataType: int64
+		formatString: 0
+		lineageTag: ed18b0fc-5843-4728-9d41-5021bc18e44d
+		summarizeBy: sum
+		sourceColumn: calendar_quarter_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column calendar_quarter_name
+		dataType: string
+		lineageTag: f8c0d7bf-59cd-46b6-a90d-6546335e2622
+		summarizeBy: none
+		sourceColumn: calendar_quarter_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column calendar_month_number
+		dataType: int64
+		formatString: 0
+		lineageTag: 8d78c796-0c24-454f-b455-52732e03d128
+		summarizeBy: sum
+		sourceColumn: calendar_month_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column calendar_month_name
+		dataType: string
+		lineageTag: ddc34e84-742a-424a-8b51-15b2f6d48a2c
+		summarizeBy: none
+		sourceColumn: calendar_month_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column calendar_month_short_name
+		dataType: string
+		lineageTag: c47ac3a6-2df5-4ac9-b90c-ea76c30c6dfa
+		summarizeBy: none
+		sourceColumn: calendar_month_short_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column calendar_year_month
+		dataType: string
+		lineageTag: 519edff1-fe54-465d-9f5b-38d18747eabe
+		summarizeBy: none
+		sourceColumn: calendar_year_month
+
+		annotation SummarizationSetBy = Automatic
+
+	column calendar_year_month_sort
+		dataType: int64
+		formatString: 0
+		lineageTag: c5987a3e-a266-44ef-8ee5-5f27b0f9ca4d
+		summarizeBy: sum
+		sourceColumn: calendar_year_month_sort
+
+		annotation SummarizationSetBy = Automatic
+
+	column iso_year
+		dataType: int64
+		formatString: 0
+		lineageTag: 281e873d-e1d0-4112-9944-e5941b3df2f7
+		summarizeBy: sum
+		sourceColumn: iso_year
+
+		annotation SummarizationSetBy = Automatic
+
+	column iso_week_number
+		dataType: int64
+		formatString: 0
+		lineageTag: a1644ce6-ec80-4173-a277-eac725a6dfac
+		summarizeBy: sum
+		sourceColumn: iso_week_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column iso_day_of_week_number
+		dataType: int64
+		formatString: 0
+		lineageTag: 6a3f72f3-e556-40ca-a61f-c56c3a72b858
+		summarizeBy: sum
+		sourceColumn: iso_day_of_week_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column calendar_day_of_month
+		dataType: int64
+		formatString: 0
+		lineageTag: 6e37225f-4577-40b1-845c-a91ddaa82612
+		summarizeBy: sum
+		sourceColumn: calendar_day_of_month
+
+		annotation SummarizationSetBy = Automatic
+
+	column calendar_day_name
+		dataType: string
+		lineageTag: bbd9f541-a67d-42c2-b1f5-a05b51a066f3
+		summarizeBy: none
+		sourceColumn: calendar_day_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_weekend
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 9b4ffc57-85fd-43d4-ad6d-7c02a4ccff9c
+		summarizeBy: none
+		sourceColumn: is_weekend
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_today
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 6835097a-4ea4-482e-a11d-7c44247adda9
+		summarizeBy: none
+		sourceColumn: is_today
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_future_date
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 59252b27-7a4d-49b2-9fc0-95b58f1420fd
+		summarizeBy: none
+		sourceColumn: is_future_date
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_date = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database([Implementation="2.0",UseStorageApi=false,BillingProject="workintech-working"]),
+				    #"workintech-working" = Source{[Name="workintech-working"]}[Data],
+				    football_mart_Schema = #"workintech-working"{[Name="nexus_football_mart",Kind="Schema"]}[Data],
+				    dim_date_Table = football_mart_Schema{[Name="dim_date",Kind="Table"]}[Data]
+				in
+				    dim_date_Table
+

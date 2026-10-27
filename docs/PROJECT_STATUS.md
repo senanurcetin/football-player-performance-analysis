@@ -1,77 +1,41 @@
 # NEXUS Football Intelligence — current verification status
 
-**As of 20 October 2026.** Scope: research-grade football analytics, dbt, historical market-value modeling and existing Power BI; **no productization**. This is the **single current acceptance decision**. Earlier dated documents are historical source evidence, not independent current release approvals.
+**Current date: 28 October 2026.** This is the **single current project-status document**. Dated investigations are preserved separately; outdated research limitations are not automatically the present Desktop model status.
 
-**Final documentation/layout candidate (19 October 2026):** After consolidating the active documentation index, status, CI and ML-methodology language, three new repository-hygiene tests were added. The isolated Windows checkout at `fcb66f72e27dfdd2178e41a31b67749e6f26005b` passed **246/246 Python tests** (including all three new structure checks), and its exact-SHA **nine-stage offline runner reported PASS**. The structure audit found **no tracked temporary artifacts, generated caches, or exact duplicate active Markdown documents**. Original historical Power BI audit records were retained. These are source/structure checks, not authenticated BigQuery table execution.
+## Current edition and acceptance
 
-**19 October repeat check:** an independent Windows checkout of `7dab032b0e88de33f6dedd01fb16cad3b163768c` again passed the SHA-bound **nine-stage offline runner**. The dbt manifest exposes **46 documented models and 878 described declared columns**. The strict physical-column coverage check needs `catalog.json` from a permitted warehouse docs generation; it is NOT RUN. Following that review, the extended offline dbt/YAML documentation guard and **three new regression cases** passed; the full local Python suite passed **249/249**. This does not validate BigQuery column reality, and every subsequent source revision still requires its own verification.
+| Area | Verified evidence | Boundary |
+| --- | --- | --- |
+| Historical input | 12 Kaggle/Transfermarkt tables; last recorded match **6 July 2026** | Not a live current-season football feed |
+| BigQuery and dbt | Owner-authorized **46/46 dbt models** and **243/243 dbt tests** | Future warehouse refresh and monitoring are separate |
+| Governed Power BI physical contract | **31/31** checked tables (22 mart + 9 ML) | Three additional unique Power BI imports not covered by this contract |
+| Desktop semantic model | Owner reported the tested model worked; **34 BigQuery imports, 87 relationships, 13 pages and 308 visuals**; full rollback retained | Independent post-cutover Desktop/TOM evaluation not run by assistant |
+| Structural and visual evidence | 243/243 explicit PBIR field references valid; 13 archived screenshots hash-verified | PNGs taken **27 October**, before subsequent format repairs |
+| ML | Historical time-split methodology, baseline/interval and leakage-control framework | Revised real-data temporal holdout has not been independently verified |
+| Operations | Versioned editable PBIP source in Git; existing local Desktop path preserved | Power BI Service publication, refresh and commercial sign-off not established |
 
-**Decision: REVIEW PENDING.** Source integration, full Python tests, dbt compilation/parse and documentation checks **PASS**; authenticated BigQuery checks and revised **real-data** historical ML evaluation **have not run**. The owner has accepted the existing Power BI workstream, but the current warehouse reconciliation has not been verified. Final hosted CI has **not** been triggered.
+**Current PBIP:** [Owner-accepted Workintech 28 October edition](../powerbi/workintech-20261028/FootballPlayerAnalysis/FootballPlayerAnalysis.pbip).
 
-## Verification record — executed, not inferred
+## Evidence and provenance
 
-| Verification | Result / evidence |
-| --- | --- |
-| Tested source | Public `main` at `e84632af9aee1a3552a6d1904aa645ec1adc7a65`, clean independent checkout on Windows via SentinelX |
-| Python unit tests | **243/243 PASS** — full `python -m unittest discover -s tests -p 'test_*.py' -v` |
-| ML-focused tests | **47/47 PASS** — `test_ml_*.py` |
-| Formal offline source/ML/full runner | **9/9 checks PASS**, with exact Git commit match; detailed record in [executed evidence](SENTINELX_OFFLINE_VERIFICATION_20261019.md) |
-| Python syntax and dbt YAML/Jinja preflight | **PASS** — 11 YAML files, 54 SQL/Jinja files |
-| Documentation links and headings | **PASS** — no broken local Markdown links or anchors in the tested commit |
-| Real-world BigQuery access | **NOT RUN** — SentinelX agent account has no active Google Cloud login/project; no credential was requested or used |
-| Offline dbt parse | **PASS** with credential-free temporary profile: dbt 1.12.6 / BigQuery adapter 1.11.1; **46 models, 2 snapshots, 8 analyses and 243 declared dbt tests** |
-| dbt tests against live tables | **NOT RUN** — manifest discovery is not warehouse execution |
-| Actual revised market-value backtest | **NOT RUN** — no authorized verified historical feature export |
-| Historical Power BI screenshots/PBIP source | **PASS** — 13 screenshots and static PBIR source checks; these are not evidence of a fresh Desktop refresh |
-| Owner's Power BI acceptance | **ACKNOWLEDGED** — user directed focus to ML/data; selected-player interactions and post-refresh BI/warehouse parity were not rerun |
-| Final CircleCI | **NOT RUN** — final-stage-only opt-in; no per-merge hosted CI |
+- [Owner-authorized Workintech warehouse and 31-table source-contract verification](WORKINTECH_STATUS_AND_VISUAL_RELEASE_20261027.md).
+- [Full import deduplication and 87-relationship static QA](WORKINTECH_FULL_DEDUP_QA_20261028.md) and [local Desktop PBIP cutover with rollback](WORKINTECH_PRODUCTION_PROMOTION_20261028.md).
+- [13 genuine 27 October Desktop screenshots and SHA-256 manifest](assets/screenshots/README.md), preserved without retouching or a request for new screenshots.
+- [Historical archive quality profiling](WORKINTECH_AUTONOMOUS_QUALITY_GATE_20261027.md): two unmatched player appearance records; 1,214 matches referencing five absent publisher competition codes; one nonpositive valuation; 475 future-dated transfers as of 27 October. Observed 365-day outcomes exclude future transfers.
 
-After adding the executed-evidence documentation, commit `4bd7d53d17df6497bb8759052781387c3dcd44a2` was fetched into the Windows verification workspace and the same **nine-stage offline runner passed again** for that exact SHA. Documentation edits after this record require their own source and test recheck; they do not retroactively certify BigQuery.
+## Remaining acceptance conditions
 
-## Remaining acceptance gates, in order
+1. **Analytic semantics:** Compare priority DAX/KPI outputs to governed BigQuery populations, including filters, transfer outcome denominators and selected-player drillthrough. This can proceed without requesting new screenshots.
+2. **Model evaluation:** Evaluate revised training and scoring on a fresh authorized chronological holdout (baseline comparisons, segment support, intervals, leakage and drift).
+3. **Operations:** Verify access, source-data refresh, Power BI Service deployment/scheduling, monitoring and rollback, if a hosted deployment is required.
+4. **Commercial publication:** Reconcile original collaborative attribution, dataset licensing, and approved CI/release governance. No billed cloud action is implied by a documentation merge.
 
-1. **Authorized read-only warehouse evidence (BLOCKED).** Establish an approved, separate BigQuery session. Verify raw source modification time separately from event dates; run `assert_ml_training_asof_integrity`, `assert_ml_scoring_asof_integrity`, `assert_ml_training_row_coverage`, the canonical player/date valuation exclusion audit ([SQL](../analyses/audit_ml_valuation_event_grain_20261019.sql)) and other dbt checks. Record project, as-of/source timestamp, source-row and unique-key counts and query cost authorization. No anonymous/fixture substitute.
-2. **Empirical ML evidence (NOT RUN).** On verified real feature rows, rerun corrected training/tuning/calibration/holdout and rolling-origin comparisons against previous-value persistence. Report MAE, WAPE, interval coverage/width, n per segment, cluster-bootstrap status and drift. **Earlier historical v5 figures are not validated for the revised code.**
-3. **Power BI source reconciliation (OWNER-ACCEPTED, freshness OPEN).** Maintain the user's prior design approval and the original production PBIP. Once BigQuery is verified, reconcile comparable KPI populations. The **8,581** screenshot 365-day observed count uses a DAX maturity cutoff while the **8,584** historical dbt success-label count does not; the three actual row keys remain unidentified. Do not invent a match. The two player-detail screens were originally captured without a selected player, so past screenshots alone do not prove drillthrough interactions.
-4. **Final hosted CI (NOT RUN).** Only after the above gates and owner approval, run the nine-job CircleCI workflow once with `run_final_ci=true`. A push or PR with no checks is not PASS. Do not trigger a cost-bearing cloud/model publication to compensate for missing source evidence.
+## History, ownership and environment
 
-### Credential and CI policy
+This repository originated as a **collaborative Workintech Data Pro team project** incorporating upstream contributions; Git history is the attribution record. It must not be portrayed as exclusively authored by one contributor.
 
-- `.github/workflows/dbt-ci.yml`: manual dispatch and opt-in variables; warehouse validation requires separate authorization.
-- `.github/workflows/ml-production.yml`: **manual only**, plus `ENABLE_ML_PRODUCTION=true` and per-run `confirm_final_release=true`. The former weekly schedule was removed after [run #39237422384](https://github.com/senanurcetin/football-player-performance-analysis/actions/runs/39237422384) on 19 October 2026 failed at the empty `GCP_SERVICE_ACCOUNT_JSON` precheck; all subsequent dbt/training/publish steps were **skipped**.
-- `.circleci/config.yml`: nine final jobs gated on `run_final_ci=true`, default false. A workflow definition or past check is not a new success. See [CI policy](CI_RELEASE_GATE_POLICY.md).
+The historical `data-analiz-490513` warehouse and its `football_mart` tables differ from the recovered `workintech-working` project. Earlier October 17–20 source checks are dated evidence, not claims of the current model state.
 
-## Repository and documentation ownership
+See the [documentation index](README.md), [19 October offline verification](SENTINELX_OFFLINE_VERIFICATION_20261019.md), and [earlier recovery plan](WORKINTECH_MIGRATION_20261027.md).
 
-| Area | Purpose / authoritative entry |
-| --- | --- |
-| `models/{staging,intermediate,marts,ml}/`, `snapshots/`, `tests/` | Native dbt SQL models, snapshots, singular and schema tests; [architecture](ARCHITECTURE.md) |
-| `scripts/`, `requirements*.txt`, `notebooks/` | Python ML evaluation, research tooling and optional portable offline runner; [methodology](PLAYER_MARKET_VALUE_ML.md) |
-| `analyses/` | Non-mutating, authorization-gated analytical SQL; [data quality](DATA_QUALITY.md) |
-| `powerbi/workspace/` and `powerbi/offline-demo/` | Authentic editable PBIP and separately labelled synthetic fixtures; [design contract](BI_DESIGN_SYSTEM.md) |
-| `docs/` | Canonical status, current methodologies, evidence, runbook and index; [documentation map](README.md) |
-| `docs/archive/powerbi/` | **19 retained historical investigation/design records**; [archive index](archive/README.md) |
-| `.github/`, `.circleci/` | Source checks, manual/cloud and final opted-in CI; [policy](CI_RELEASE_GATE_POLICY.md) |
-
-No tracked `target/`, virtual environment, temporary log or duplicate Markdown document was found in the repository structure audit. The 19 archived records are deliberately historical provenance, **not** active implementation plans; their dated findings are not to be silently rewritten as current. Only `docs/PROJECT_STATUS.md` controls the present release status.
-
-## Evidence and research references
-
-[Executed SentinelX verification](SENTINELX_OFFLINE_VERIFICATION_20261019.md) · [Execution method and alternate Colab/Kaggle notebook](REPRODUCIBLE_OFFLINE_VERIFICATION_20261019.md) · [ML reliability and corrected calibration methodology](ML_RELIABILITY_EVALUATION_20261018.md) · [Source-event valuation audit](ML_VALUATION_EVENT_GRAIN_AUDIT_20261019.md) · [Historic Power BI 365-day comparison](POWER_BI_HISTORICAL_VALUE_AUDIT_20261018.md) · [Historical June 2026 data-quality snapshot](DATA_QUALITY.md) · [Root project README](../README.md).
-
-## 20 October 2026 — continuation / access boundary
-
-- Before further work, `main` was at `1b9b4648800177c982fbf074a042c5be2a94c9ff`. CircleCI remains explicit opt-in and was not run.
-- The provider-native BigQuery connector is disabled by admin; the connected Windows agent reports zero active `gcloud` accounts, an unset default project, and no project credential environment variables. No paid query or publication was attempted.
-- A row-level transfer mismatch diagnostic, local CSV validator and **nine synthetic regressions** were prepared under `analyses/`, `scripts/` and `tests/`. The new isolated checkout passed **258/258 full Python unit tests**, production Power BI static source checks, offline demo checks and credential-free dbt parse. **The three historic 365-day difference keys have not been identified.**
-- All previously specified real BigQuery/source-freshness tests, historical ML backtest, Power BI post-refresh reconciliation and hosted final CI remain open.
-
-## 20 October — GitHub-hosted BigQuery route identified, not yet verified
-
-GitHub Actions has a configured `data-analiz-490513` project and references the `GCP_SERVICE_ACCOUNT_JSON` repository secret in `dbt-ci.yml` and `ml-production.yml`. This is the **correct alternative connection route** to the unauthenticated SentinelX Windows host. Secret contents are inaccessible from GitHub source and may have changed after the 19 October CI precheck reported an empty secret.
-
-A narrowly scoped [manual metadata-only workflow](../.github/workflows/bigquery-readonly-preflight.yml) and [credential-safe metadata inspector](../scripts/check_bigquery_github_access.py) are prepared. They use the secret **only inside GitHub Actions**, inspect `football_mart` and two historical transfer tables through non-querying BigQuery metadata APIs, and save a redacted status artifact. No BigQuery SQL, billable job, model publication, hosted final CI, or workflow dispatch was executed during preparation. The project's 365-day key-level audit, real-data ML backtest and post-refresh Power BI gates are still open until actual run evidence is obtained.
-
-## 20 October — GitHub preflight run diagnosed (blocked before connection)
-
-GitHub Actions [run 39416694886](https://github.com/senanurcetin/football-player-performance-analysis/actions/runs/39416694886) displayed two attempts. The GitHub API returned job `check-metadata` with `conclusion=skipped`, not a credential failure; its confirmation input had default `false`, and retrying the run retained the original input. The manual metadata-only workflow was revised to **remove the redundant confirmation input and job-level condition**. A fresh `workflow_dispatch` is still required to actually check the secret; use a **new workflow run on current main**, not *Re-run jobs* from run 39416694886. No live BigQuery authentication or data query is established by this YAML change.
+**Decision:** Advanced professional data engineering, analytics, ML and BI project; **owner-accepted local Power BI source**. Current-data, hosted-service and broader commercial certification remain open.

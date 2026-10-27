@@ -1,7 +1,11 @@
 # NEXUS Football — Power BI Desktop production handoff
 
-**Open:** `powerbi/workspace/FootballPlayerAnalysis/FootballPlayerAnalysis.pbip`  
-**Warehouse:** Google BigQuery, `data-analiz-490513.football_mart`  
+**LATEST OWNER DESKTOP HANDOFF (27 OCTOBER):** See [27 October verified Workintech release record](WORKINTECH_STATUS_AND_VISUAL_RELEASE_20261027.md). The active owner-edited Power BI file is C:\Users\MONSTER\Documents\NEXUS-Football-PBI\FootballPlayerAnalysis\FootballPlayerAnalysis.pbip. A separate [versioned Workintech source edition](../powerbi/workintech-20261027/FootballPlayerAnalysis/FootballPlayerAnalysis.pbip) and [13 current Desktop captures](assets/screenshots/README.md) are in this repository. The older data-analiz-490513 and main-repository instructions below are **legacy environment instructions**, not the current Workintech target. Avoid importing another copy of the 31 governed tables using Navigator.
+
+
+**Historical report path:** powerbi/workspace/FootballPlayerAnalysis/FootballPlayerAnalysis.pbip
+**Historical warehouse:** Google BigQuery data-analiz-490513.football_mart
+**Current Workintech edition:** [separate October 27 PBIP](../powerbi/workintech-20261027/FootballPlayerAnalysis/FootballPlayerAnalysis.pbip), source project workintech-working; 31 contract tables and 34 additional imported connector definitions marked for review.
 **19 October 2026:** Original Desktop captures are available and the owner accepted the existing BI workstream. Full Python/PBIP source preflight PASS; **current authenticated BigQuery refresh and any newly selected-player runtime inspection remain unverified**, so project-wide release stays **REVIEW PENDING**. See [Project status](PROJECT_STATUS.md).
 
 The `workspace` PBIP is the real-data edition. The `offline-demo` PBIP uses deterministic synthetic `#table` fixtures; do not treat its values as actual player or club results.

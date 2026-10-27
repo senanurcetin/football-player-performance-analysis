@@ -1,0 +1,171 @@
+table fct_agent_portfolio
+	lineageTag: 127d2a2b-74f2-4bc2-9781-c3d4b04b43e0
+
+	column agent_name
+		dataType: string
+		lineageTag: fe71df74-8a85-4342-8e44-962424e151c6
+		summarizeBy: none
+		sourceColumn: agent_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column player_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 8e24cafe-f290-40ab-b432-4a17156329b2
+		summarizeBy: sum
+		sourceColumn: player_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column players_with_current_market_value
+		dataType: int64
+		formatString: 0
+		lineageTag: 9e0595fc-07b4-4a6a-bc05-3ac9ed769d5e
+		summarizeBy: sum
+		sourceColumn: players_with_current_market_value
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_current_market_value
+		dataType: int64
+		formatString: 0
+		lineageTag: 222e5ae9-b582-41b3-a920-0feb31298605
+		summarizeBy: sum
+		sourceColumn: total_current_market_value
+
+		annotation SummarizationSetBy = Automatic
+
+	column avg_current_market_value
+		dataType: double
+		lineageTag: 8f80b814-1990-4f2a-b614-e6d1b9d4d2bb
+		summarizeBy: sum
+		sourceColumn: avg_current_market_value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column median_current_market_value
+		dataType: int64
+		formatString: 0
+		lineageTag: 1eef8241-be1e-4fff-bb7c-8c53a742b0fb
+		summarizeBy: sum
+		sourceColumn: median_current_market_value
+
+		annotation SummarizationSetBy = Automatic
+
+	column max_current_market_value
+		dataType: int64
+		formatString: 0
+		lineageTag: d89df259-211f-4541-9ada-cf1e4cfdc2e1
+		summarizeBy: sum
+		sourceColumn: max_current_market_value
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_player_matches
+		dataType: int64
+		formatString: 0
+		lineageTag: 9e2134b7-8f40-4498-b95f-38aed57ef25c
+		summarizeBy: sum
+		sourceColumn: total_player_matches
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_player_goals
+		dataType: int64
+		formatString: 0
+		lineageTag: 43a3707b-62b1-4660-98f3-d62b95c6f2f7
+		summarizeBy: sum
+		sourceColumn: total_player_goals
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_player_assists
+		dataType: int64
+		formatString: 0
+		lineageTag: b8053844-de4e-4427-a94e-8f1f58193593
+		summarizeBy: sum
+		sourceColumn: total_player_assists
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_transfer_records
+		dataType: int64
+		formatString: 0
+		lineageTag: 17c127a7-b709-44e1-96f4-0ac5271ee25c
+		summarizeBy: sum
+		sourceColumn: total_transfer_records
+
+		annotation SummarizationSetBy = Automatic
+
+	column known_fee_transfer_records
+		dataType: int64
+		formatString: 0
+		lineageTag: 29b32d40-10ca-4be8-b4f6-b5f1954a49dd
+		summarizeBy: sum
+		sourceColumn: known_fee_transfer_records
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_known_transfer_fee
+		dataType: double
+		lineageTag: 0862b6de-3f22-4e81-b165-6786814026b7
+		summarizeBy: sum
+		sourceColumn: total_known_transfer_fee
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column max_known_transfer_fee
+		dataType: double
+		lineageTag: e3d845c3-84e1-41a5-a52c-9216d60ebe77
+		summarizeBy: sum
+		sourceColumn: max_known_transfer_fee
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column transfer_fee_coverage_pct
+		dataType: double
+		lineageTag: 7747f296-a840-4121-a90f-ff2298451482
+		summarizeBy: sum
+		sourceColumn: transfer_fee_coverage_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column complete_profile_players
+		dataType: int64
+		formatString: 0
+		lineageTag: 6154b675-46f0-4b86-8e92-0a2b17c672aa
+		summarizeBy: sum
+		sourceColumn: complete_profile_players
+
+		annotation SummarizationSetBy = Automatic
+
+	column complete_profile_player_pct
+		dataType: double
+		lineageTag: 9845ecfc-4483-4683-945a-1b0e43a16739
+		summarizeBy: sum
+		sourceColumn: complete_profile_player_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition fct_agent_portfolio = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database([Implementation="2.0",UseStorageApi=false,BillingProject="workintech-working"]),
+				    #"workintech-working" = Source{[Name="workintech-working"]}[Data],
+				    football_mart_Schema = #"workintech-working"{[Name="nexus_football_mart",Kind="Schema"]}[Data],
+				    fct_agent_portfolio_Table = football_mart_Schema{[Name="fct_agent_portfolio",Kind="Table"]}[Data]
+				in
+				    fct_agent_portfolio_Table
+

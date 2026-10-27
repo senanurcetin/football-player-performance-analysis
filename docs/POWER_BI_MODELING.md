@@ -1,5 +1,8 @@
 # Power BI Modeling Guide
 
+> **27 October current edition:** [27 October verified Workintech release record](WORKINTECH_STATUS_AND_VISUAL_RELEASE_20261027.md). The new Workintech PBIP is a separate dated source copy; 31 governed physical BigQuery Power BI sources passed contract checks. The user-edited PBIP also has 34 additional imported/duplicate connector definitions, some related to other tables: this is not yet semantically reconciled. Two new additive calculated columns supply short competition and 365d follow-up category labels; source competition names remain available. Do not remove relationship tables just because names carry (2).
+
+
 > **Current evidence boundary (17 October 2026):** Editable source format is verified; a fresh warehouse load and full player-detail interaction testing are still pending. See [Project status](PROJECT_STATUS.md).
 
 ## Report File Format

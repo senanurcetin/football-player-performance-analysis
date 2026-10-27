@@ -4,24 +4,24 @@
 
 [![BigQuery](https://img.shields.io/badge/Warehouse-BigQuery-4285F4)](docs/ARCHITECTURE.md)
 [![dbt](https://img.shields.io/badge/Transform-dbt-FF694B)](dbt_project.yml)
-[![Power BI](https://img.shields.io/badge/Dashboard-PBIP%20%2F%20PBIR-F2C811)](powerbi/workspace/FootballPlayerAnalysis/FootballPlayerAnalysis.pbip)
+[![Power BI](https://img.shields.io/badge/Dashboard-Editable%20PBIP-F2C811)](powerbi/workintech-20261028/FootballPlayerAnalysis/FootballPlayerAnalysis.pbip)
 [![License](https://img.shields.io/badge/License-MIT-blue)](LICENSE)
 
-End-to-end football intelligence, from Transfermarkt data and governed BigQuery/dbt models to leakage-aware market-value modeling, observed transfer outcomes and **13 editable Power BI report pages**.
+An end-to-end **historical football analytics** project connecting BigQuery/dbt data engineering, player and transfer analytics, time-aware market-value modeling and a 13-page editable Power BI report. The foundation is a **collaborative Workintech Data Pro team project**; subsequent work and authorship are traceable in Git history.
 
-**[Current project status](docs/PROJECT_STATUS.md)** · **[Documentation index](docs/README.md)** · **[Governed KPI dictionary](docs/KPI_DICTIONARY.md)**
+**Current Desktop edition — 28 October 2026:** Owner-reported successful testing of the **34-source, 87-relationship** Power BI model; it was reversibly promoted to the same local PBIP path with a complete backup. All **13 pages and 308 visuals** are preserved. Static and local regression checks passed, but a post-cutover Desktop run was not independently captured.
 
-**[Open production Power BI project](powerbi/workspace/FootballPlayerAnalysis/FootballPlayerAnalysis.pbip)** · **[View all genuine screenshots](docs/assets/screenshots/README.md)** · **[Architecture](docs/ARCHITECTURE.md)** · **[Model methodology](docs/PLAYER_MARKET_VALUE_ML.md)**
+**Workintech warehouse evidence:** 46/46 dbt models, 243/243 successful dbt tests, seven ML outputs and 31/31 governed physical Power BI source contracts in the owner-authorized recovery. Three additional unique sources lie outside the 31-table contract. The archive's latest match is **6 July 2026**; there is no claim of live October fixtures.
 
-![Nine real NEXUS football dashboard views](docs/assets/screenshots/NEXUS_Football_Page_Gallery.png)
+**[Current verified status](docs/PROJECT_STATUS.md)** · **[34-source PBIP](powerbi/workintech-20261028/FootballPlayerAnalysis/FootballPlayerAnalysis.pbip)** · **[Docs](docs/README.md)** · **[27 October genuine screenshots](docs/assets/screenshots/README.md)** · **[Local cutover and rollback](docs/WORKINTECH_PRODUCTION_PROMOTION_20261028.md)**
 
-> **Current offline verification — 20 October 2026:** Independent Windows SentinelX checkout: **258/258 Python tests PASS** (including nine synthetic transfer-key reconciliation tests), **47/47 focused ML tests PASS** on the 19 October baseline, and offline dbt parse PASS (**46 models / 243 registered dbt tests**). The owner previously accepted the Power BI workstream; 13 historical screenshots remain available, but **authenticated BigQuery freshness, real-data model backtesting and final CircleCI are not verified**. An added read-only [transfer-key reconciliation query](analyses/audit_transfer_365d_row_level_20261020.sql) and [offline result validator](scripts/validate_transfer_365d_reconciliation.py) await an authorized warehouse export; they do not identify the historical missing three keys. The decision remains **REVIEW PENDING**. See [dated executed evidence](docs/SENTINELX_OFFLINE_VERIFICATION_20261019.md) and [remaining gates](docs/PROJECT_STATUS.md).
+![Nine genuine Power BI report pages captured 27 October 2026](docs/assets/screenshots/NEXUS_Football_Page_Gallery.png)
 
 ## Project origin — Workintech team project
 
 **This is a collaborative training project developed with a team during the Workintech Data Pro program, not a solo-authored portfolio project.** The repo's foundation also incorporates earlier collaborative/upstream dbt work. The current fork documents subsequent extensions in its analytics models, semantic layer, Power BI reporting, validation, and player-market-value research. Treat those as **repository-level outputs**, not an assertion that one person created every component.
 
-Attribution and historical model provenance are established by the repository's upstream Git history, contributor commits and the collaborative-project statement above. The 17 October Power BI screenshots are historical captures; the owner subsequently accepted the existing visual workstream, but an authenticated post-refresh metric audit remains outstanding.
+Attribution and historical model provenance are established by the repository's upstream Git history, contributor commits and the collaborative-project statement above. The 27 October Power BI screenshots are historical captures; the owner subsequently accepted the existing visual workstream, but an authenticated post-refresh metric audit remains outstanding.
 
 ## What the project delivers
 
@@ -54,13 +54,15 @@ The visuals below are cropped **actual Windows Power BI Desktop captures**; they
 | [![Prediction](docs/assets/screenshots/production/07_market_value_prediction.png)](docs/assets/screenshots/production/07_market_value_prediction.png) | [![Reliability](docs/assets/screenshots/production/08_ml_reliability.png)](docs/assets/screenshots/production/08_ml_reliability.png) |
 | **Published valuation estimates and quality segmentation** | **Feature diagnostics, segment metrics and model-quality gates** |
 
-Browse [the nine-page gallery and all full-resolution screenshots](docs/assets/screenshots/README.md), including Home, Club & League, and Closing. Two unselected-player detail screens and two hidden tooltips are preserved **only as technical evidence** pending further interaction tests.
+Browse [the current gallery and all 13 hash-verified original screenshots](docs/assets/screenshots/README.md), including Home, Club & League, Closing, two unselected-player detail states and two technical tooltips. The visible fee premium M% error, tooltip currency scaling, and residual legend/table truncation remain documented defects.
 
 ### Source editions
 
 | Edition | Editable report | Usage |
 |---|---|---|
-| Production-connected | [`powerbi/workspace/FootballPlayerAnalysis/FootballPlayerAnalysis.pbip`](powerbi/workspace/FootballPlayerAnalysis/FootballPlayerAnalysis.pbip) | Canonical BigQuery model; authorization needed for new refresh |
+| **28 October — owner-accepted Desktop source** | [34-source Workintech PBIP](powerbi/workintech-20261028/FootballPlayerAnalysis/FootballPlayerAnalysis.pbip) | 87 relationships, 13 pages, 308 visuals, full rollback available |
+| 27 October — pre-dedup historical source | [65-source PBIP](powerbi/workintech-20261027/FootballPlayerAnalysis/FootballPlayerAnalysis.pbip) | Previous model edition preserved |
+| Earlier production-connected | [Prior PBIP](powerbi/workspace/FootballPlayerAnalysis/FootballPlayerAnalysis.pbip) | Historical data-analiz-490513 edition, preserved |
 | Offline regression demo | [`powerbi/offline-demo/FootballPlayerAnalysis/FootballPlayerAnalysis.pbip`](powerbi/offline-demo/FootballPlayerAnalysis/FootballPlayerAnalysis.pbip) | Explicitly **synthetic data**, never evidence of actual player outcomes |
 
 The repository publishes PBIP/PBIR source, **not** a publicly hosted live Power BI Service report. Observed 365-day transfer success is **not** an ML prediction; coverage, cohort definitions and horizon are material to interpretation.
@@ -81,7 +83,7 @@ flowchart LR
     C --> J[Historical snapshots]
 ```
 
-The historically documented model inventory included 12 staging views, 7 intermediate views, 25 marts and 2 ML tables. Counts refer to a **prior documented warehouse validation**, not a new October refresh. See the [model catalog, lineage and source contracts](docs/ARCHITECTURE.md).
+The 27 October owner-executed Workintech build completed 12 staging, 7 intermediate, 25 marts and 2 ML preparation models (46 in total), with 243 passing dbt tests. That does not make archived match events current. See the [model catalog, lineage and source contracts](docs/ARCHITECTURE.md).
 
 ## Market-value modeling and limitations
 
@@ -153,7 +155,9 @@ python -m unittest discover -s tests
 ├── macros/                   # dbt macros
 ├── models/                   # Staging, intermediate, mart and ML models
 ├── powerbi/
-│   ├── workspace/            # BigQuery-backed PBIP
+│   ├── workintech-20261028/  # Accepted 34-source Desktop PBIP
+│   ├── workintech-20261027/  # Historical 65-source source PBIP
+│   ├── workspace/            # Older BigQuery-backed PBIP
 │   └── offline-demo/         # Synthetic regression fixture
 ├── scripts/                  # ML training, preflight, asset verification
 ├── seeds/                    # Reference seeds
@@ -171,10 +175,10 @@ Diagnostic Power BI caches and temporary local scripts are excluded from source 
 - [x] 13 genuine report-area PNG captures, including nine fully rendered presentation views.
 - [x] Nine NEXUS-framed portfolio images and a consolidated gallery.
 - [x] Real-capture provenance, hashes and automated screenshot integrity checks.
-- [x] Owner accepted existing Power BI designs and screenshots; refreshed-data parity remains pending.
-- [ ] Drillthrough pages validated with selected players, error-free visuals and navigation.
-- [ ] Current production BigQuery freshness, warehouse-to-model reconciliation and refresh outcome verified.
-- [ ] Release sign-off, if publication is required.
+- [x] Owner confirmed the tested 34-source Desktop report worked; its source was reversibly promoted and checked.
+- [ ] Selected-player drillthrough and post-cutover interactions independently certified (separate from owner acceptance).
+- [ ] Important KPI-to-BigQuery reconciliation, source freshness and Power BI Service refresh independently certified.
+- [ ] Commercial publication sign-off, current temporal ML evaluation and approved hosted CI, if required.
 
 **Quality rule:** Do not turn successful source tests or historical screenshots into unsupported claims of a current live deployment.
 

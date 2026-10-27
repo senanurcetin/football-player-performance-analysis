@@ -34,7 +34,7 @@ class MLTargetCoverageParity(unittest.TestCase):
         model = sql_file("models/ml/ml_player_market_value_training.sql")
         coverage = sql_file("tests/assert_ml_training_row_coverage.sql")
         self.assertIn("target.target_market_value_eur = valuations.market_value_in_eur", model)
-        self.assertIn("t.target.target_market_value_eur = v.market_value_in_eur", coverage)
+        self.assertIn("t.target.target_market_value_eur = v.canonical_market_value_eur", coverage)
         self.assertIn("having count(distinct market_value_in_eur) = 1", coverage)
         self.assertIn("except distinct", coverage)
         self.assertIn("ml_player_market_value_training", coverage)

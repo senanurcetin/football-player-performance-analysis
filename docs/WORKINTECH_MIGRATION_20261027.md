@@ -1,6 +1,9 @@
 # Workintech recovery — isolated warehouse and Power BI source plan (27 October 2026)
 
-**Status:** Local recovery verified; Workintech BigQuery authentication, IAM, billing approval, raw loading, dbt execution, and live Power BI refresh are **NOT VERIFIED**. **No cloud writes** were performed in this recovery. This document is a source-controlled handoff, not an authorization to incur query or storage costs.
+**EXECUTION UPDATE (27 October evening):** The authorization/build work described below as future work was subsequently carried out by the Windows owner: 12 sources loaded, 46 dbt models materialized, snapshots and 243 dbt tests passed, seven ML outputs published, and a 31/31 physical Power BI contract passed. The previous procedural text is the *initial plan*, not the current result. See [27 October verified Workintech release record](WORKINTECH_STATUS_AND_VISUAL_RELEASE_20261027.md) and the [Desktop screenshot manifest](assets/screenshots/capture_manifest.json). The owner Desktop imported report has 31 governed plus 34 additional/duplicate BigQuery TMDL table definitions; reconciliation remains open.
+
+
+**INITIAL MORNING STATUS (now superseded):** At the start of the 27 October recovery, Workintech cloud access, data loading, dbt execution and Power BI refresh had not been verified. See the execution update above for the later authorized build/test results and 13 captured Desktop screens. The text below is a dated planning record, not an authorization for additional billable jobs.
 
 ## Recovery evidence on the Windows host
 

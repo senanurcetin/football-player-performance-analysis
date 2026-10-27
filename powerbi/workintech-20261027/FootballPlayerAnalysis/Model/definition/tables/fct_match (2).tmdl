@@ -1,0 +1,294 @@
+table 'fct_match (2)'
+	lineageTag: 0383f6c5-b29b-4339-ae14-5529b3d318a9
+
+	column game_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 82ad6981-4d72-4c25-bee0-d535f1a8ad62
+		summarizeBy: sum
+		sourceColumn: game_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column game_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 67fb1acd-dba3-414e-b351-b3a80e43af94
+		summarizeBy: none
+		sourceColumn: game_date
+
+		variation Variation
+			isDefault
+			relationship: bfb10562-4ba2-4eb9-87c0-4120c2f9f807
+			defaultHierarchy: LocalDateTable_d4f7899c-7bd8-44b8-8958-620582a705e0.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column season
+		dataType: int64
+		formatString: 0
+		lineageTag: 42d01b49-554d-4005-b449-784991a77386
+		summarizeBy: sum
+		sourceColumn: season
+
+		annotation SummarizationSetBy = Automatic
+
+	column competition_id
+		dataType: string
+		lineageTag: e4433797-6536-4500-a6fa-8a5b00ce1723
+		summarizeBy: none
+		sourceColumn: competition_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column competition_name
+		dataType: string
+		lineageTag: 633d9425-7735-4985-8054-dbfcdcd152b1
+		summarizeBy: none
+		sourceColumn: competition_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column competition_type
+		dataType: string
+		lineageTag: c7463733-a66a-4e99-8185-c35a8b910a6d
+		summarizeBy: none
+		sourceColumn: competition_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column competition_country_name
+		dataType: string
+		lineageTag: bb9fc6a7-c439-49ec-8610-3f7bb6d1b73c
+		summarizeBy: none
+		sourceColumn: competition_country_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column round
+		dataType: string
+		lineageTag: 191fd989-d589-43c5-b3d1-e1eb09db2ce1
+		summarizeBy: none
+		sourceColumn: round
+
+		annotation SummarizationSetBy = Automatic
+
+	column home_club_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 94e4bbb7-33f0-490c-a15c-b3cac39f9afc
+		summarizeBy: sum
+		sourceColumn: home_club_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column home_club_name
+		dataType: string
+		lineageTag: feb7e1ac-abf3-47ad-aaaa-39b271652811
+		summarizeBy: none
+		sourceColumn: home_club_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column away_club_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 26e5d9cb-4b22-41f3-bf41-bae8d2e5a556
+		summarizeBy: sum
+		sourceColumn: away_club_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column away_club_name
+		dataType: string
+		lineageTag: a0ff43c2-7f8a-44d1-9a59-d5e441d841e3
+		summarizeBy: none
+		sourceColumn: away_club_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column home_club_goals
+		dataType: int64
+		formatString: 0
+		lineageTag: e59997b1-1a68-494b-960b-b0492c4175a5
+		summarizeBy: sum
+		sourceColumn: home_club_goals
+
+		annotation SummarizationSetBy = Automatic
+
+	column away_club_goals
+		dataType: int64
+		formatString: 0
+		lineageTag: f6ba591b-9ebd-4d73-80f2-dd7939a84ac1
+		summarizeBy: sum
+		sourceColumn: away_club_goals
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_goals
+		dataType: int64
+		formatString: 0
+		lineageTag: da69a6f5-091a-4a26-ae2f-6d99532de732
+		summarizeBy: sum
+		sourceColumn: total_goals
+
+		annotation SummarizationSetBy = Automatic
+
+	column home_goal_difference
+		dataType: int64
+		formatString: 0
+		lineageTag: 71122edd-13d6-4bb8-9701-0c60705c1d2d
+		summarizeBy: sum
+		sourceColumn: home_goal_difference
+
+		annotation SummarizationSetBy = Automatic
+
+	column match_result
+		dataType: string
+		lineageTag: 400df15b-21e6-4e51-92fe-17323150910a
+		summarizeBy: none
+		sourceColumn: match_result
+
+		annotation SummarizationSetBy = Automatic
+
+	column home_club_position
+		dataType: int64
+		formatString: 0
+		lineageTag: ed1aefda-33f4-4fdb-8d59-8c4446aa0610
+		summarizeBy: sum
+		sourceColumn: home_club_position
+
+		annotation SummarizationSetBy = Automatic
+
+	column away_club_position
+		dataType: int64
+		formatString: 0
+		lineageTag: 0b99c29c-be72-4a0a-8ca4-c064d9178ca6
+		summarizeBy: sum
+		sourceColumn: away_club_position
+
+		annotation SummarizationSetBy = Automatic
+
+	column home_club_manager_name
+		dataType: string
+		lineageTag: 1e541364-db50-4c6e-86d1-26eabb7b0bbe
+		summarizeBy: none
+		sourceColumn: home_club_manager_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column away_club_manager_name
+		dataType: string
+		lineageTag: 3d6fa7fc-999d-4dc8-b13b-1fb0b4f8939b
+		summarizeBy: none
+		sourceColumn: away_club_manager_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column home_club_formation
+		dataType: string
+		lineageTag: b7b69465-5729-4e68-9c6d-8b95af2ad6dd
+		summarizeBy: none
+		sourceColumn: home_club_formation
+
+		annotation SummarizationSetBy = Automatic
+
+	column away_club_formation
+		dataType: string
+		lineageTag: 66301d26-840a-4d8a-a00d-f87cc68a3321
+		summarizeBy: none
+		sourceColumn: away_club_formation
+
+		annotation SummarizationSetBy = Automatic
+
+	column stadium
+		dataType: string
+		lineageTag: 6caf055c-83d1-474d-b953-035e776f6a33
+		summarizeBy: none
+		sourceColumn: stadium
+
+		annotation SummarizationSetBy = Automatic
+
+	column attendance
+		dataType: int64
+		formatString: 0
+		lineageTag: cdc49d34-8bb3-4baf-8fbc-45f7ec4b9357
+		summarizeBy: sum
+		sourceColumn: attendance
+
+		annotation SummarizationSetBy = Automatic
+
+	column referee
+		dataType: string
+		lineageTag: 6885dcb8-49ef-49d0-9ca8-1401bdaef883
+		summarizeBy: none
+		sourceColumn: referee
+
+		annotation SummarizationSetBy = Automatic
+
+	column aggregate
+		dataType: string
+		lineageTag: d221d88d-749d-4d65-9d76-d42d36ab0491
+		summarizeBy: none
+		sourceColumn: aggregate
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_future_game
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 42a9cc2a-dcb5-466b-a8d3-24de5a56c121
+		summarizeBy: none
+		sourceColumn: is_future_game
+
+		annotation SummarizationSetBy = Automatic
+
+	column has_attendance
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: f221cf13-6a00-4d9d-8980-9c067d8f11b3
+		summarizeBy: none
+		sourceColumn: has_attendance
+
+		annotation SummarizationSetBy = Automatic
+
+	column has_both_formations
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: eb69d5f4-4877-4a60-b467-07fe8d9437c9
+		summarizeBy: none
+		sourceColumn: has_both_formations
+
+		annotation SummarizationSetBy = Automatic
+
+	column has_both_managers
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: a57445de-1747-424e-901d-33df9707bce7
+		summarizeBy: none
+		sourceColumn: has_both_managers
+
+		annotation SummarizationSetBy = Automatic
+
+	column has_both_table_positions
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 3b3ae368-a780-4d6e-9575-7ee64a1e6a3c
+		summarizeBy: none
+		sourceColumn: has_both_table_positions
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'fct_match (2)' = m
+		mode: import
+		source =
+				let
+				    Kaynak = GoogleBigQuery.Database([Implementation="2.0"]),
+				    #"workintech-working_Database" = Kaynak{[Name="workintech-working",Kind="Database"]}[Data],
+				    nexus_football_mart_Schema = #"workintech-working_Database"{[Name="nexus_football_mart",Kind="Schema"]}[Data],
+				    fct_match_Table = nexus_football_mart_Schema{[Name="fct_match",Kind="Table"]}[Data]
+				in
+				    fct_match_Table
+

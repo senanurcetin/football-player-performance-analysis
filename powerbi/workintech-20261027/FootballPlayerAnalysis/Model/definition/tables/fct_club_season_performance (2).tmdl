@@ -1,0 +1,238 @@
+table 'fct_club_season_performance (2)'
+	lineageTag: 85fc1607-9dbc-44f5-932c-c5117a444111
+
+	column club_id
+		dataType: int64
+		formatString: 0
+		lineageTag: c926f4c6-68d8-48ac-b8ec-fbb263161e32
+		summarizeBy: none
+		sourceColumn: club_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column club_name
+		dataType: string
+		lineageTag: 3cec067f-fa2f-40d4-a5f5-8b58a0640b1c
+		summarizeBy: none
+		sourceColumn: club_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column season
+		dataType: int64
+		formatString: 0
+		lineageTag: bc2af131-2f61-44c4-b1f6-ddb23a63c916
+		summarizeBy: sum
+		sourceColumn: season
+
+		annotation SummarizationSetBy = Automatic
+
+	column season_start_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 13c8bc54-b63c-4f3c-ade1-fc41395c9956
+		summarizeBy: none
+		sourceColumn: season_start_date
+
+		variation Variation
+			isDefault
+			relationship: 05e725c8-f3e5-4fe6-97d4-b4d61fb86e8f
+			defaultHierarchy: LocalDateTable_da3f1979-c80c-4e9e-9ef9-bdff2aff21ff.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column competition_id
+		dataType: string
+		lineageTag: 38319e8a-1aba-4a7a-94c1-d25f52f6a024
+		summarizeBy: none
+		sourceColumn: competition_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column competition_name
+		dataType: string
+		lineageTag: feddcf37-e2a1-459d-a6bf-3cdb44d61e4a
+		summarizeBy: none
+		sourceColumn: competition_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column matches_played
+		dataType: int64
+		formatString: 0
+		lineageTag: 83c4c986-62fc-4835-bb97-d65d9c63d562
+		summarizeBy: sum
+		sourceColumn: matches_played
+
+		annotation SummarizationSetBy = Automatic
+
+	column wins
+		dataType: int64
+		formatString: 0
+		lineageTag: 3b714458-f495-4a08-b35c-34e7a65fd33f
+		summarizeBy: sum
+		sourceColumn: wins
+
+		annotation SummarizationSetBy = Automatic
+
+	column draws
+		dataType: int64
+		formatString: 0
+		lineageTag: a66b6b86-4055-4f4c-b03c-3dd937a2cb44
+		summarizeBy: sum
+		sourceColumn: draws
+
+		annotation SummarizationSetBy = Automatic
+
+	column losses
+		dataType: int64
+		formatString: 0
+		lineageTag: c28f4114-5aa9-4baa-bf39-7221ed973b82
+		summarizeBy: sum
+		sourceColumn: losses
+
+		annotation SummarizationSetBy = Automatic
+
+	column goals_scored
+		dataType: int64
+		formatString: 0
+		lineageTag: 6f96daf5-d74a-4665-a7a7-b0d42b002184
+		summarizeBy: sum
+		sourceColumn: goals_scored
+
+		annotation SummarizationSetBy = Automatic
+
+	column goals_conceded
+		dataType: int64
+		formatString: 0
+		lineageTag: 20fd0bdb-707d-4d53-b83c-b11ba2e3b6b7
+		summarizeBy: sum
+		sourceColumn: goals_conceded
+
+		annotation SummarizationSetBy = Automatic
+
+	column goal_difference
+		dataType: int64
+		formatString: 0
+		lineageTag: c4aa2652-976c-4db4-a718-01aff5fefaf5
+		summarizeBy: sum
+		sourceColumn: goal_difference
+
+		annotation SummarizationSetBy = Automatic
+
+	column points
+		dataType: int64
+		formatString: 0
+		lineageTag: 9edb6fe9-fddb-4963-9cd6-6294cec55caa
+		summarizeBy: sum
+		sourceColumn: points
+
+		annotation SummarizationSetBy = Automatic
+
+	column win_rate_pct
+		dataType: double
+		lineageTag: 0dcca450-372b-450a-ac47-1de5805d8592
+		summarizeBy: sum
+		sourceColumn: win_rate_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_goals_scored
+		dataType: double
+		lineageTag: 2f87734d-7172-4961-9046-339273b721d9
+		summarizeBy: sum
+		sourceColumn: avg_goals_scored
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_goals_conceded
+		dataType: double
+		lineageTag: 560c7823-c615-4426-badc-07cf507e9a0a
+		summarizeBy: sum
+		sourceColumn: avg_goals_conceded
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_attendance
+		dataType: double
+		lineageTag: c7a2669b-712c-40c2-8acf-44d09e745b52
+		summarizeBy: sum
+		sourceColumn: avg_attendance
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column home_matches
+		dataType: int64
+		formatString: 0
+		lineageTag: ec4ea413-c1c9-47cc-abc8-0eacb216ec15
+		summarizeBy: sum
+		sourceColumn: home_matches
+
+		annotation SummarizationSetBy = Automatic
+
+	column away_matches
+		dataType: int64
+		formatString: 0
+		lineageTag: 5a88a25e-e549-481c-8aed-34bd8f5ef1df
+		summarizeBy: sum
+		sourceColumn: away_matches
+
+		annotation SummarizationSetBy = Automatic
+
+	column managers_used
+		dataType: int64
+		formatString: 0
+		lineageTag: fd3fe0eb-061e-44a0-afd2-f40e9a3ae5d5
+		summarizeBy: sum
+		sourceColumn: managers_used
+
+		annotation SummarizationSetBy = Automatic
+
+	column formations_used
+		dataType: int64
+		formatString: 0
+		lineageTag: a5e7aa90-58b5-4d19-87fa-680b646bb0ec
+		summarizeBy: sum
+		sourceColumn: formations_used
+
+		annotation SummarizationSetBy = Automatic
+
+	column highest_recorded_position
+		dataType: int64
+		formatString: 0
+		lineageTag: 1a620dfe-b902-4800-9619-2e210f939147
+		summarizeBy: sum
+		sourceColumn: highest_recorded_position
+
+		annotation SummarizationSetBy = Automatic
+
+	column lowest_recorded_position
+		dataType: int64
+		formatString: 0
+		lineageTag: 560808de-6d31-4b02-a61a-29606bc208d2
+		summarizeBy: sum
+		sourceColumn: lowest_recorded_position
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'fct_club_season_performance (2)' = m
+		mode: import
+		source =
+				let
+				    Kaynak = GoogleBigQuery.Database([Implementation="2.0"]),
+				    #"workintech-working_Database" = Kaynak{[Name="workintech-working",Kind="Database"]}[Data],
+				    nexus_football_mart_Schema = #"workintech-working_Database"{[Name="nexus_football_mart",Kind="Schema"]}[Data],
+				    fct_club_season_performance_Table = nexus_football_mart_Schema{[Name="fct_club_season_performance",Kind="Table"]}[Data]
+				in
+				    fct_club_season_performance_Table
+

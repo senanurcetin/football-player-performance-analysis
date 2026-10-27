@@ -1,12 +1,17 @@
-# NEXUS Football Intelligence — documentation map
+# NEXUS Football Intelligence — documentation index
 
-**Reviewed 20 October 2026.** This is an analytics engineering, data science, dbt and existing editable Power BI research project. **No productization or hosted deployment.** The [project status](PROJECT_STATUS.md) is the sole current acceptance authority; the date printed inside a technical research note limits its empirical claims.
+**Current edition: 28 October 2026.** Start with [current verification status](PROJECT_STATUS.md), the [34-source owner-accepted PBIP](../powerbi/workintech-20261028/FootballPlayerAnalysis/FootballPlayerAnalysis.pbip), and [reversible local promotion evidence](WORKINTECH_PRODUCTION_PROMOTION_20261028.md).
+
+Earlier investigations remain dated technical evidence, **not conflicting current status reports**. Live cloud reporting, current football data and commercial release certification remain separate.
 
 ## Canonical reference documents
 
 | Topic | Document | Purpose |
 | --- | --- | --- |
-| Current decision and open gates | [Project status](PROJECT_STATUS.md) | **Offline verification passed; actual BigQuery and corrected historical model evaluation pending** |
+| **Current 28 October acceptance and open gates** | [Project status](PROJECT_STATUS.md) | Single current source of truth |
+| Owner-accepted 34-source Desktop edition | [Production source promotion and rollback](WORKINTECH_PRODUCTION_PROMOTION_20261028.md) | 87 relationships, 13 pages, 308 visuals |
+| Warehouse reconstruction evidence | [27 October workintech execution](WORKINTECH_STATUS_AND_VISUAL_RELEASE_20261027.md) | 46 dbt models, 243 passing tests, governed 31-table contract |
+| Historical baseline verification | [19 October offline evidence](SENTINELX_OFFLINE_VERIFICATION_20261019.md) | Historic checkout, not current release acceptance |
 | Project entry | [Repository README](../README.md) | Goal, high-level architecture and quick start |
 | Technical architecture | [Architecture and model catalog](ARCHITECTURE.md) | Grains, SQL lineage, mart ownership |
 | KPI rules | [Governed KPI dictionary](KPI_DICTIONARY.md) | Time and cohort boundaries, denominators, missingness and percentage scales |
@@ -33,7 +38,7 @@
 | [Same-day valuation event grain — 19 Oct](ML_VALUATION_EVENT_GRAIN_AUDIT_20261019.md) | Canonical player-date rule and conflict exclusion policy | Actual excluded source keys/counts unknown |
 | [Original research plan — 18 Oct](ANALYTICS_ENGINEERING_EXECUTION_PLAN_20261018.md) | Prioritized requirements with later status addendum | Treat its original phase descriptions as historical |
 | [17 Oct Power BI image and KPI audit](POWER_BI_HISTORICAL_VALUE_AUDIT_20261018.md) | 13 screenshots, static values and 365-day definition discrepancy | No new authenticated source reconciliation |
-| [Screenshot captures and manifest](assets/screenshots/README.md) | Reproducible visual snapshots with source provenance | Historical captures only |
+| [27 October genuine screenshots and manifest](assets/screenshots/README.md) | 13 original captured PNGs | Captured before later visual-format corrections |
 | [Archived Power BI design/incident records](archive/README.md) | **19 historical technical records** | Not current acceptance documents |
 
 ## Folder structure and maintenance rules

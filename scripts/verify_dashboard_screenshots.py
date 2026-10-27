@@ -22,14 +22,23 @@ def validate() -> dict[str,int]:
         data=file.read_bytes()
         if data[:8]!=b"\x89PNG\r\n\x1a\n":raise AssertionError(f"Invalid PNG {file}")
         dimensions=struct.unpack(">II",data[16:24])
-        if dimensions!=(2177,1229) or list(dimensions)!=r["size"]:
+        if dimensions[0]<400 or dimensions[1]<250 or list(dimensions)!=r["size"]:
             raise AssertionError(f"Invalid screenshot dimensions {file}")
         if hashlib.sha256(data).hexdigest()!=r["sha256"]:
             raise AssertionError(f"SHA-256 mismatch: {file}")
+    for entry in rows:
+        if entry["type"]=="Main":
+            src=ROOT/entry["path"]
+            framed=BASE/"portfolio"/src.name
+            if not framed.is_file() or hashlib.sha256(framed.read_bytes()).hexdigest()!=entry["sha256"]:
+                raise AssertionError(f"Portfolio copy differs from current Desktop capture: {framed}")
     frame_files=list((BASE/"portfolio").glob("*.png"))
     if len(frame_files)!=9:raise AssertionError(f"Expected nine framed PNGs, got {len(frame_files)}")
-    if not (BASE/"NEXUS_Football_Page_Gallery.png").is_file():
-        raise AssertionError("Gallery image missing")
+    gallery=BASE/"NEXUS_Football_Page_Gallery.png"
+    if not gallery.is_file():raise AssertionError("Gallery image missing")
+    gd=gallery.read_bytes()
+    if gd[:8]!=b"\x89PNG\r\n\x1a\n" or len(gd)<50000:
+        raise AssertionError("Gallery screenshot montage is missing or corrupt")
     readme=(ROOT/"README.md").read_text(encoding="utf-8")
     screenshots_readme=(BASE/"README.md").read_text(encoding="utf-8")
     for p in set(re.findall(r"docs/assets/screenshots/[A-Za-z0-9_./-]+\.png",readme)):
