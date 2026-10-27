@@ -1,5 +1,8 @@
 # NEXUS Football Intelligence — documentation map
 
+**FULL WORKINTECH MODEL TEST COPY (28 October):** [34-source isolated PBIP, nine preserved business relations and 87 fully typed relation endpoints](WORKINTECH_FULL_DEDUP_QA_20261028.md). Static model and screenshot-hash tests passed. Do not confuse these with live Desktop/TOM model-engine acceptance.
+
+
 **WORKINTECH PBIP MIGRATION PLAN:** [Three-table sandbox pilot, duplicate physical-source relation conflicts and auto-date links](WORKINTECH_DEDUP_PILOT_20261027.md). Five offline migration tests pass; active Desktop report unchanged.
 
 

@@ -1,5 +1,8 @@
 # NEXUS Football — Workintech semantic model deduplication pilot
 
+**FOLLOW-UP COMPLETED — 28 October:** [Full 31-source deduplication in an isolated QA PBIP](WORKINTECH_FULL_DEDUP_QA_20261028.md) now passes six additional static regression tests (34 unique imports, 87 valid join relationships, no missing endpoints or join type mismatches). The original pilot and active Power BI source remain preserved. Power BI Desktop model-engine load and DAX semantic equivalence remain unverified.
+
+
 **Evidence:** 27 October 2026. **Decision:** an isolated three-table source-code pilot passed offline checks; no changes were made to the owner's active Power BI model. No new screenshots are required or requested.
 
 ## Pilot changes (sandbox only)

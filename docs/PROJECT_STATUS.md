@@ -1,5 +1,8 @@
 # NEXUS Football Intelligence — current verification status
 
+**MODEL SIMPLIFICATION UPDATE — 28 October:** [Full isolated Power BI deduplication report](WORKINTECH_FULL_DEDUP_QA_20261028.md). All 31 duplicate physical import definitions were removed only from QA; 40 exclusive date hierarchies were cleaned up and nine novel business relationships preserved. All existing report pages and DAX source definitions were retained. Production still on hold without runtime validation; no new screenshots required.
+
+
 **CURRENT DEDUP PILOT STATUS:** [27 October isolated PBIP safe-reduction test](WORKINTECH_DEDUP_PILOT_20261027.md): three redundant sources removed only in an isolated sandbox with 13 pages / 308 visuals and identical original relationships; 29 exact duplicate relationship pairs, two filter-direction conflicts, 40 auto-date and nine novel relations remain to be resolved. No change to the active Desktop report.
 
 

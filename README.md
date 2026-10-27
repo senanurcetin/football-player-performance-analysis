@@ -1,5 +1,8 @@
 # NEXUS Football Intelligence
 
+**28 October 2026 — FULL DEDUP QA:** [Complete isolated 31-table consolidation and 87-relation static verification](docs/WORKINTECH_FULL_DEDUP_QA_20261028.md). The sandbox now retains 34 unique BigQuery physical imports, 13 pages and 308 visuals, with six passing QA tests. The active Desktop PBIP is unchanged; a verified Power BI Desktop model load/semantic-query acceptance is still required.
+
+
 **SOURCE-MODEL CLEANUP PILOT (27 October):** [Isolated three-table deduplication and 158-relationship migration analysis](docs/WORKINTECH_DEDUP_PILOT_20261027.md). Three unreferenced (2) tables removed in a QA copy only; 13 pages, 308 visuals and all original relationships preserved. The active Desktop PBIP is unchanged, and no screenshots were requested.
 
 

@@ -1,5 +1,8 @@
 # NEXUS Football — Autonomous Offline Quality Gate (27 October 2026)
 
+**QA CANDIDATE UPDATE — 28 October:** [Complete isolated import-consolidation report](WORKINTECH_FULL_DEDUP_QA_20261028.md). A separate 34-physical-import / 87-relation QA model passes static tests. This does **not** supersede RELEASE_HOLD on the owner-edited 65-import production report because engine-load and filter-context acceptance have not occurred.
+
+
 **MIGRATION EVIDENCE ADDENDUM:** [Sandbox-only three-table removal and full relationship migration matrix](WORKINTECH_DEDUP_PILOT_20261027.md). Of 158 original model relationships, 80 refer to duplicate imports (29 identical, 2 cross-filter disagreements, 40 auto-date links, 9 new non-date links). The offline gate now records these counts; no production consolidation or extra screenshot is authorized.
 
 
