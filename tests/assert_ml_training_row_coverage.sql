@@ -38,7 +38,7 @@ canonical_valuation_days as (
     select
         player_id,
         valuation_date,
-        max(market_value_in_eur) as market_value_in_eur
+        max(market_value_in_eur) as canonical_market_value_eur
     from {{ ref('stg_player_valuations') }}
     where valuation_date is not null
         and market_value_in_eur > 0
@@ -56,7 +56,7 @@ expected as (
     inner join canonical_valuation_days v
         on t.player_id = v.player_id
         and t.target.target_market_value_date = v.valuation_date
-        and t.target.target_market_value_eur = v.market_value_in_eur
+        and t.target.target_market_value_eur = v.canonical_market_value_eur
 
 ),
 
