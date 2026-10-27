@@ -1,0 +1,183 @@
+{
+  "name": "6415c9236337687a024b",
+  "layouts": [
+    {
+      "id": 0,
+      "position": {
+        "x": 900,
+        "y": 197,
+        "z": 11300,
+        "width": 265,
+        "height": 252,
+        "tabOrder": 11300
+      }
+    }
+  ],
+  "singleVisual": {
+    "visualType": "textbox",
+    "drillFilterOtherVisuals": true,
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "TAHMİN ANALİZİ",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "11pt",
+                      "color": "#FFFFFF"
+                    }
+                  }
+                ],
+                "horizontalAlignment": "Center"
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "",
+                    "textStyle": {
+                      "fontSize": "4pt",
+                      "color": "#FFFFFF"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "• Pozitif 'Fark %': oyuncu piyasada henüz tam fiyatlanmamış bir büyüme potansiyeli taşır.",
+                    "textStyle": {
+                      "fontWeight": "normal",
+                      "fontSize": "8pt",
+                      "color": "#E6F2E8"
+                    }
+                  }
+                ],
+                "spaceAfter": 2
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "• 'Limited' kalite: tahmin yalnızca yön bilgisi verir, değer kesin değildir.",
+                    "textStyle": {
+                      "fontWeight": "normal",
+                      "fontSize": "8pt",
+                      "color": "#E6F2E8"
+                    }
+                  }
+                ],
+                "spaceAfter": 2
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "• Dar güven aralığı, modelin o oyuncuya yüksek özgüvenini ölçer.",
+                    "textStyle": {
+                      "fontWeight": "normal",
+                      "fontSize": "8pt",
+                      "color": "#E6F2E8"
+                    }
+                  }
+                ],
+                "spaceAfter": 2
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "• Önceki değer ile tahmin karşılaştırması scouting kararlarında referans noktasıdır.",
+                    "textStyle": {
+                      "fontWeight": "normal",
+                      "fontSize": "8pt",
+                      "color": "#E6F2E8"
+                    }
+                  }
+                ],
+                "spaceAfter": 2
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "• Ana sayfaya dönmek için sol üstteki Geri butonunu kullanın.",
+                    "textStyle": {
+                      "fontWeight": "normal",
+                      "fontSize": "8pt",
+                      "color": "#E6F2E8"
+                    }
+                  }
+                ],
+                "spaceAfter": 2
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "vcObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#285D3D'"
+                    }
+                  }
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#2E6B45'"
+                    }
+                  }
+                }
+              }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,759 @@
+table 'fct_transfer_market_value_analysis (2)'
+	lineageTag: ce0be89b-54cc-4080-97b5-c537a62d0ba9
+
+	column transfer_key
+		dataType: string
+		lineageTag: 5549ad62-3594-4b5f-b31e-b29aa834c55b
+		summarizeBy: none
+		sourceColumn: transfer_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column player_id
+		dataType: int64
+		formatString: 0
+		lineageTag: f2b341e2-9338-4b60-9f32-99dc2f38271c
+		summarizeBy: none
+		sourceColumn: player_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column player_name
+		dataType: string
+		lineageTag: 2d5c5529-c301-446f-a026-d4f735c8ad5b
+		summarizeBy: none
+		sourceColumn: player_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column position
+		dataType: string
+		lineageTag: ec0dcd98-2674-44b8-878c-56b0d5cf326f
+		summarizeBy: none
+		sourceColumn: position
+
+		annotation SummarizationSetBy = Automatic
+
+	column pozisyon_tr
+		dataType: string
+		lineageTag: f7e0bf72-d800-4aef-8802-3aafd8ab6fca
+		summarizeBy: none
+		sourceColumn: pozisyon_tr
+
+		annotation SummarizationSetBy = Automatic
+
+	column sub_position
+		dataType: string
+		lineageTag: 9594def1-5004-440a-b9b2-892c797e2a2c
+		summarizeBy: none
+		sourceColumn: sub_position
+
+		annotation SummarizationSetBy = Automatic
+
+	column birth_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 027752e0-cdd5-4e15-8ebc-9f52cc51c9ad
+		summarizeBy: none
+		sourceColumn: birth_date
+
+		variation Variation
+			isDefault
+			relationship: f5538a61-f81a-41be-a08e-c87fb442b989
+			defaultHierarchy: LocalDateTable_ec90bdde-5ed2-41a2-bea8-3530f2f7c7f3.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column country_of_citizenship
+		dataType: string
+		lineageTag: 477aa2bb-c958-476a-aa15-3e42e0622603
+		summarizeBy: none
+		sourceColumn: country_of_citizenship
+
+		annotation SummarizationSetBy = Automatic
+
+	column age_at_transfer
+		dataType: int64
+		formatString: 0
+		lineageTag: cced8789-1756-45be-952c-b0c54d32f652
+		summarizeBy: sum
+		sourceColumn: age_at_transfer
+
+		annotation SummarizationSetBy = Automatic
+
+	column transfer_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: d1780d7c-1774-473b-8149-289193f47cb5
+		summarizeBy: none
+		sourceColumn: transfer_date
+
+		variation Variation
+			isDefault
+			relationship: 2ec4ba2b-b103-4201-8e57-c8119a105934
+			defaultHierarchy: LocalDateTable_25504950-0aee-4f3c-8fa7-a32659721baf.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column transfer_year
+		dataType: int64
+		formatString: 0
+		lineageTag: 23dbe43e-0cc2-42d3-b368-fc2dce196bfd
+		summarizeBy: sum
+		sourceColumn: transfer_year
+
+		annotation SummarizationSetBy = Automatic
+
+	column transfer_month
+		dataType: int64
+		formatString: 0
+		lineageTag: abbb7ee9-0448-43fc-86d2-f3e457a5273b
+		summarizeBy: sum
+		sourceColumn: transfer_month
+
+		annotation SummarizationSetBy = Automatic
+
+	column transfer_season
+		dataType: string
+		lineageTag: 9bbc2811-d411-4901-8bfd-6407be1e233c
+		summarizeBy: none
+		sourceColumn: transfer_season
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_future_transfer
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 3bcd5895-dd89-48df-b7ef-8f567f25ad81
+		summarizeBy: none
+		sourceColumn: is_future_transfer
+
+		annotation SummarizationSetBy = Automatic
+
+	column transfer_sequence_number
+		dataType: int64
+		formatString: 0
+		lineageTag: 6639c8d2-9b4d-431f-b308-1fa629376a90
+		summarizeBy: sum
+		sourceColumn: transfer_sequence_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column player_transfer_count
+		dataType: int64
+		formatString: 0
+		lineageTag: d5c4d1c6-5b9e-44fe-adac-6be851c194c0
+		summarizeBy: sum
+		sourceColumn: player_transfer_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column known_fee_transfer_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 9da36d65-d130-43ac-ab38-b0ea43003e52
+		summarizeBy: sum
+		sourceColumn: known_fee_transfer_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_latest_transfer
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 0b5f9968-b6d6-4852-9159-5c650453f5dc
+		summarizeBy: none
+		sourceColumn: is_latest_transfer
+
+		annotation SummarizationSetBy = Automatic
+
+	column previous_transfer_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 2368bef9-e4ce-4789-addd-0665bef78a1d
+		summarizeBy: none
+		sourceColumn: previous_transfer_date
+
+		variation Variation
+			isDefault
+			relationship: 0b4301b9-e047-4bab-865e-74a56525af24
+			defaultHierarchy: LocalDateTable_b5d9aec9-2775-4f9f-ac7b-35826c4a965c.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column days_since_previous_transfer
+		dataType: int64
+		formatString: 0
+		lineageTag: 873eb61a-a821-44b0-9255-fa39a83c5a2c
+		summarizeBy: sum
+		sourceColumn: days_since_previous_transfer
+
+		annotation SummarizationSetBy = Automatic
+
+	column next_transfer_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: ff10390a-e098-4448-87b0-fbefc564c29c
+		summarizeBy: none
+		sourceColumn: next_transfer_date
+
+		variation Variation
+			isDefault
+			relationship: 54562af2-c40d-4552-84a4-90a7aaeaccb9
+			defaultHierarchy: LocalDateTable_517b08a4-e723-4989-a15f-2277ba01128b.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column days_to_next_transfer
+		dataType: int64
+		formatString: 0
+		lineageTag: 659eeab7-bd0a-4cdf-b2dc-50b1bf0205aa
+		summarizeBy: sum
+		sourceColumn: days_to_next_transfer
+
+		annotation SummarizationSetBy = Automatic
+
+	column from_club_id
+		dataType: int64
+		formatString: 0
+		lineageTag: f5ec55b0-a6de-44f8-93b5-7589fb808dae
+		summarizeBy: sum
+		sourceColumn: from_club_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column from_club_name
+		dataType: string
+		lineageTag: 79d2c2b9-1292-4cb3-98b0-72f1713f920f
+		summarizeBy: none
+		sourceColumn: from_club_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column to_club_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 0216ff3c-6cd9-4f4f-bd7d-bb949a186ab2
+		summarizeBy: sum
+		sourceColumn: to_club_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column to_club_name
+		dataType: string
+		lineageTag: 13bc32f5-6e91-407d-9ac1-c3a4eb9f6d0d
+		summarizeBy: none
+		sourceColumn: to_club_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column transfer_fee
+		dataType: double
+		lineageTag: 355d6992-a8f5-42bf-a71d-6720438e0b28
+		summarizeBy: sum
+		sourceColumn: transfer_fee
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column cumulative_known_transfer_fee
+		dataType: double
+		lineageTag: f73b2890-c886-418f-a6ab-a2d816d5a0a5
+		summarizeBy: sum
+		sourceColumn: cumulative_known_transfer_fee
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column total_transfer_fee
+		dataType: double
+		lineageTag: 81599629-4d60-40a5-b985-28504a42505c
+		summarizeBy: sum
+		sourceColumn: total_transfer_fee
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_transfer_fee
+		dataType: double
+		lineageTag: 241912e3-bd82-4ea6-a885-ae32f75af70b
+		summarizeBy: sum
+		sourceColumn: avg_transfer_fee
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column max_transfer_fee
+		dataType: double
+		lineageTag: ad5eb8d3-2c22-449a-b66d-cc80621f54a3
+		summarizeBy: sum
+		sourceColumn: max_transfer_fee
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column fee_status
+		dataType: string
+		lineageTag: 509ca826-fff9-4be5-a0b3-f99378b0b076
+		summarizeBy: none
+		sourceColumn: fee_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column has_known_transfer_fee
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: b830f582-353b-4a23-84d0-c4deee2ca344
+		summarizeBy: none
+		sourceColumn: has_known_transfer_fee
+
+		annotation SummarizationSetBy = Automatic
+
+	column transfer_record_market_value
+		dataType: double
+		lineageTag: a70b359f-678e-45d4-a3d3-d3f2ef18e01a
+		summarizeBy: sum
+		sourceColumn: transfer_record_market_value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column has_transfer_record_market_value
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 2a88dbc0-874a-478c-9943-484ab06f3707
+		summarizeBy: none
+		sourceColumn: has_transfer_record_market_value
+
+		annotation SummarizationSetBy = Automatic
+
+	column market_value_baseline_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 4a7a76c5-0548-4826-88f5-ce1f5d23ceb3
+		summarizeBy: none
+		sourceColumn: market_value_baseline_date
+
+		variation Variation
+			isDefault
+			relationship: 66ddbf60-6824-4372-9dfb-e862daf9a16e
+			defaultHierarchy: LocalDateTable_56a0c86f-4810-43a4-bbdd-00fcd380fdea.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column market_value_baseline
+		dataType: double
+		lineageTag: 4acbdbaa-ffb9-497e-929b-7bb94d80c17c
+		summarizeBy: sum
+		sourceColumn: market_value_baseline
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column market_value_baseline_source
+		dataType: string
+		lineageTag: 55357709-4a3e-4a5c-ac6b-c1ffc81d60f5
+		summarizeBy: none
+		sourceColumn: market_value_baseline_source
+
+		annotation SummarizationSetBy = Automatic
+
+	column has_market_value_baseline
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 552091fe-7c67-4412-891e-0eb5c62aea02
+		summarizeBy: none
+		sourceColumn: has_market_value_baseline
+
+		annotation SummarizationSetBy = Automatic
+
+	column has_fee_market_value_comparison
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: de7cca16-39d5-4267-934f-f587ba00eeac
+		summarizeBy: none
+		sourceColumn: has_fee_market_value_comparison
+
+		annotation SummarizationSetBy = Automatic
+
+	column days_since_market_value_baseline
+		dataType: int64
+		formatString: 0
+		lineageTag: 51ee7786-2d04-42fb-b6bb-8a450760e81e
+		summarizeBy: sum
+		sourceColumn: days_since_market_value_baseline
+
+		annotation SummarizationSetBy = Automatic
+
+	column fee_market_value_difference
+		dataType: double
+		lineageTag: 6703026d-6520-4210-a8d6-f88b667be0ec
+		summarizeBy: sum
+		sourceColumn: fee_market_value_difference
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column fee_market_value_difference_pct
+		dataType: double
+		lineageTag: 70e289ea-20a3-4002-a564-27e8d27d00e5
+		summarizeBy: sum
+		sourceColumn: fee_market_value_difference_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column fee_to_market_value_ratio
+		dataType: double
+		lineageTag: 483e3bdd-660b-45cd-bba3-7d4dc9c1f17c
+		summarizeBy: sum
+		sourceColumn: fee_to_market_value_ratio
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column prior_valuation_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 33e12426-875c-4177-9309-06ee02e9284a
+		summarizeBy: none
+		sourceColumn: prior_valuation_date
+
+		variation Variation
+			isDefault
+			relationship: 3fb708a8-d299-4d7e-a1fb-bef88ef07655
+			defaultHierarchy: LocalDateTable_07feca34-05c8-45c6-ac18-31cafed0d9d1.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column prior_market_value
+		dataType: int64
+		formatString: 0
+		lineageTag: b89a028c-50f9-40de-8bff-712710ab5a32
+		summarizeBy: sum
+		sourceColumn: prior_market_value
+
+		annotation SummarizationSetBy = Automatic
+
+	column prior_valuation_club_id
+		dataType: int64
+		formatString: 0
+		lineageTag: d0139ace-c5cb-4914-87e6-e6dc5cbf2a0f
+		summarizeBy: sum
+		sourceColumn: prior_valuation_club_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column prior_valuation_club_name
+		dataType: string
+		lineageTag: 95d6efe4-744d-49ca-aabf-efa4f4ab3caa
+		summarizeBy: none
+		sourceColumn: prior_valuation_club_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column prior_valuation_competition_id
+		dataType: string
+		lineageTag: 68a83f0e-e567-4a49-b569-563cd99327a9
+		summarizeBy: none
+		sourceColumn: prior_valuation_competition_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column prior_competition_name
+		dataType: string
+		lineageTag: eb0d599b-a789-4616-9c8c-0421bcf62d6e
+		summarizeBy: none
+		sourceColumn: prior_competition_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column prior_competition_country_name
+		dataType: string
+		lineageTag: 0aaa9e52-9feb-4dea-9b89-cacbf5f19a76
+		summarizeBy: none
+		sourceColumn: prior_competition_country_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column prior_competition_confederation
+		dataType: string
+		lineageTag: 3751b5ae-ea98-42f5-ae10-b96606ee326e
+		summarizeBy: none
+		sourceColumn: prior_competition_confederation
+
+		annotation SummarizationSetBy = Automatic
+
+	column has_prior_valuation
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 6559d779-fce9-4671-93d1-2848d28ea45c
+		summarizeBy: none
+		sourceColumn: has_prior_valuation
+
+		annotation SummarizationSetBy = Automatic
+
+	column days_since_prior_valuation
+		dataType: int64
+		formatString: 0
+		lineageTag: 4f9d7b29-a484-40ef-985b-d0beff2cdd96
+		summarizeBy: sum
+		sourceColumn: days_since_prior_valuation
+
+		annotation SummarizationSetBy = Automatic
+
+	column next_valuation_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 86dfa075-f380-4922-9d4a-836f82c3dbfb
+		summarizeBy: none
+		sourceColumn: next_valuation_date
+
+		variation Variation
+			isDefault
+			relationship: fa998a42-708d-4892-81ba-20f68958abd1
+			defaultHierarchy: LocalDateTable_0cefd462-c9f8-40cb-8919-bf4a67057201.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column next_market_value
+		dataType: int64
+		formatString: 0
+		lineageTag: 8ceada15-19bc-428e-9985-d27f937e476c
+		summarizeBy: sum
+		sourceColumn: next_market_value
+
+		annotation SummarizationSetBy = Automatic
+
+	column next_valuation_club_id
+		dataType: int64
+		formatString: 0
+		lineageTag: a61bc7ce-466d-49d3-8542-370bbcd02058
+		summarizeBy: sum
+		sourceColumn: next_valuation_club_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column next_valuation_club_name
+		dataType: string
+		lineageTag: 13f02861-d0e6-486a-a519-83658511eb71
+		summarizeBy: none
+		sourceColumn: next_valuation_club_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column next_valuation_competition_id
+		dataType: string
+		lineageTag: d83bfbdb-9771-4e27-87dc-00a626acdd5a
+		summarizeBy: none
+		sourceColumn: next_valuation_competition_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column next_competition_name
+		dataType: string
+		lineageTag: 7824aa90-c86c-413e-a953-b8e4f8df2925
+		summarizeBy: none
+		sourceColumn: next_competition_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column next_competition_country_name
+		dataType: string
+		lineageTag: 2acb77be-1d36-469e-a81c-e4801ea35bb1
+		summarizeBy: none
+		sourceColumn: next_competition_country_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column next_competition_confederation
+		dataType: string
+		lineageTag: 022c19dd-629a-4f8f-be29-c2acffbcc4c0
+		summarizeBy: none
+		sourceColumn: next_competition_confederation
+
+		annotation SummarizationSetBy = Automatic
+
+	column has_next_valuation
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 9ad2d09f-cb8d-439e-b7f9-b97c731e8736
+		summarizeBy: none
+		sourceColumn: has_next_valuation
+
+		annotation SummarizationSetBy = Automatic
+
+	column days_to_next_valuation
+		dataType: int64
+		formatString: 0
+		lineageTag: 37cbb3dd-36ae-4b92-a045-aeb2d4e5dba4
+		summarizeBy: sum
+		sourceColumn: days_to_next_valuation
+
+		annotation SummarizationSetBy = Automatic
+
+	column market_value_change_after_transfer
+		dataType: double
+		lineageTag: 5ea6e852-c9f8-4b54-8ff6-a20e0658088a
+		summarizeBy: sum
+		sourceColumn: market_value_change_after_transfer
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column market_value_change_after_transfer_pct
+		dataType: double
+		lineageTag: f82d6c5c-f9d8-4821-81ea-aa22a8469c40
+		summarizeBy: sum
+		sourceColumn: market_value_change_after_transfer_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column has_post_transfer_value_change
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: b11a102a-9142-4771-b9e1-df6037e08dfd
+		summarizeBy: none
+		sourceColumn: has_post_transfer_value_change
+
+		annotation SummarizationSetBy = Automatic
+
+	column market_value_direction_after_transfer
+		dataType: string
+		lineageTag: b8920446-7ed8-4382-a51c-9a948b30815e
+		summarizeBy: none
+		sourceColumn: market_value_direction_after_transfer
+
+		annotation SummarizationSetBy = Automatic
+
+	column yon_etiketi_tr
+		dataType: string
+		lineageTag: 1c3a8580-d6e4-4f25-b431-bcd9c40def0b
+		summarizeBy: none
+		sourceColumn: yon_etiketi_tr
+
+		annotation SummarizationSetBy = Automatic
+
+	column valuation_context_change
+		dataType: string
+		lineageTag: dd6c1af1-1922-460c-8024-9f19d3e26df7
+		summarizeBy: none
+		sourceColumn: valuation_context_change
+
+		annotation SummarizationSetBy = Automatic
+
+	column first_valuation_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: d9f303fc-833b-45b2-bb52-5057e1099b8f
+		summarizeBy: none
+		sourceColumn: first_valuation_date
+
+		variation Variation
+			isDefault
+			relationship: 9f52241a-8a22-41c8-8739-0985fb80fd41
+			defaultHierarchy: LocalDateTable_4464f70f-aa21-4722-a982-7b47089f05d9.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column latest_valuation_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 894f5e5a-8ca4-46f5-bac5-00a42b22b58c
+		summarizeBy: none
+		sourceColumn: latest_valuation_date
+
+		variation Variation
+			isDefault
+			relationship: d6cc41d9-f65d-429c-a8c8-f0dc703fbc4a
+			defaultHierarchy: LocalDateTable_02517910-eb15-4a36-8cc4-e279a5365c5a.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column first_market_value
+		dataType: int64
+		formatString: 0
+		lineageTag: 4ea2ef75-8da6-4b9b-bfdf-ecbe5ace48f7
+		summarizeBy: sum
+		sourceColumn: first_market_value
+
+		annotation SummarizationSetBy = Automatic
+
+	column current_market_value
+		dataType: int64
+		formatString: 0
+		lineageTag: 741b5f47-370a-4cfe-aca5-621bc2f30253
+		summarizeBy: sum
+		sourceColumn: current_market_value
+
+		annotation SummarizationSetBy = Automatic
+
+	column highest_market_value
+		dataType: int64
+		formatString: 0
+		lineageTag: 46693906-67ff-41b3-af88-d944c6304adc
+		summarizeBy: sum
+		sourceColumn: highest_market_value
+
+		annotation SummarizationSetBy = Automatic
+
+	column career_market_value_growth
+		dataType: int64
+		formatString: 0
+		lineageTag: 697d26d7-7f3e-4b9e-a72e-9c57b58c1f29
+		summarizeBy: sum
+		sourceColumn: career_market_value_growth
+
+		annotation SummarizationSetBy = Automatic
+
+	column career_market_value_growth_pct
+		dataType: double
+		lineageTag: 0299d6c8-0a60-42c6-a7e6-23627db0476a
+		summarizeBy: sum
+		sourceColumn: career_market_value_growth_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'fct_transfer_market_value_analysis (2)' = m
+		mode: import
+		source =
+				let
+				    Kaynak = GoogleBigQuery.Database([Implementation="2.0"]),
+				    #"workintech-working_Database" = Kaynak{[Name="workintech-working",Kind="Database"]}[Data],
+				    nexus_football_mart_Schema = #"workintech-working_Database"{[Name="nexus_football_mart",Kind="Schema"]}[Data],
+				    fct_transfer_market_value_analysis_Table = nexus_football_mart_Schema{[Name="fct_transfer_market_value_analysis",Kind="Table"]}[Data]
+				in
+				    fct_transfer_market_value_analysis_Table
+

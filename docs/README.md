@@ -1,12 +1,16 @@
 # NEXUS Football Intelligence — documentation map
 
+**CURRENT (27 OCTOBER 2026):** [27 October verified Workintech release record](WORKINTECH_STATUS_AND_VISUAL_RELEASE_20261027.md). Owner-executed 46 dbt model runs, the completed dbt test gate and 31/31 BigQuery Power BI physical contract now have runtime evidence. The 20 October repository/offline research status below is retained for historical context; see the [new 13-image Desktop gallery](assets/screenshots/README.md).
+
+
 **Reviewed 20 October 2026.** This is an analytics engineering, data science, dbt and existing editable Power BI research project. **No productization or hosted deployment.** The [project status](PROJECT_STATUS.md) is the sole current acceptance authority; the date printed inside a technical research note limits its empirical claims.
 
 ## Canonical reference documents
 
 | Topic | Document | Purpose |
 | --- | --- | --- |
-| Current decision and open gates | [Project status](PROJECT_STATUS.md) | **Offline verification passed; actual BigQuery and corrected historical model evaluation pending** |
+| **Current 27 October evidence and open gates** | [Workintech execution and visual record](WORKINTECH_STATUS_AND_VISUAL_RELEASE_20261027.md) | 46 dbt models, 31/31 governed source contract, Desktop captures and explicitly open visual/semantic issues |
+| Historical 20 October research decision | [Project status](PROJECT_STATUS.md) | Previous offline and CI-last evidence, with current addendum |
 | Project entry | [Repository README](../README.md) | Goal, high-level architecture and quick start |
 | Technical architecture | [Architecture and model catalog](ARCHITECTURE.md) | Grains, SQL lineage, mart ownership |
 | KPI rules | [Governed KPI dictionary](KPI_DICTIONARY.md) | Time and cohort boundaries, denominators, missingness and percentage scales |

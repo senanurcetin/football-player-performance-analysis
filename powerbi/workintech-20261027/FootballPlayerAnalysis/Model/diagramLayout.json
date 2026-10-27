@@ -1,0 +1,867 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 238.96603223735519,
+            "y": 1749.9610029137066
+          },
+          "nodeIndex": "dim_clubs",
+          "nodeLineageTag": "d195a9d7-8c0a-4f21-9f33-00385be9a5da",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 923.99406892795469,
+            "y": 1702.419552107016
+          },
+          "nodeIndex": "dim_competitions",
+          "nodeLineageTag": "16344326-7188-4a7f-af11-8fdc59c50fa8",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2589.9131922923893,
+            "y": 1412.9013918579099
+          },
+          "nodeIndex": "dim_date",
+          "nodeLineageTag": "1e046b2e-0b8b-4453-9487-5afb3c3490ab",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2038.1256968139505,
+            "y": 1588.1461487293323
+          },
+          "nodeIndex": "dim_players",
+          "nodeLineageTag": "33efd582-f801-4aba-bd7b-540e8194a148",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 3011.1782286410967,
+            "y": 1412.9013918579099
+          },
+          "nodeIndex": "fct_agent_portfolio",
+          "nodeLineageTag": "127d2a2b-74f2-4bc2-9781-c3d4b04b43e0",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 3432.443264989804,
+            "y": 1412.9013918579099
+          },
+          "nodeIndex": "fct_analytics_refresh_audit",
+          "nodeLineageTag": "d22a5f40-db19-4e14-8a3f-fd2f69b30e84",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 705.97244957702242,
+            "y": 902.79360553026754
+          },
+          "nodeIndex": "fct_club_performance",
+          "nodeLineageTag": "0bd254f7-b264-4b69-a8f3-b2cd1c8f6e2c",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 84.611926594677016,
+            "y": 2239.0014286591986
+          },
+          "nodeIndex": "fct_club_risk_profile",
+          "nodeLineageTag": "a2621f71-b18d-4ed7-a19a-21376257e9e9",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 519.59712561339984,
+            "y": 1708.4459885216158
+          },
+          "nodeIndex": "fct_club_season_performance",
+          "nodeLineageTag": "23c48548-cdf2-4f8f-b2cf-f2b6230e0003",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 1773.6733532806991
+          },
+          "nodeIndex": "fct_club_transfer_portfolio",
+          "nodeLineageTag": "aeba5181-ad20-4606-a931-957a5a4cc272",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 835.03158414354493,
+            "y": 2191.459977852508
+          },
+          "nodeIndex": "fct_competition_performance",
+          "nodeLineageTag": "344ca135-3aad-4ba4-8a49-31a7bf4d8dd9",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 3853.7083013385113,
+            "y": 1412.9013918579099
+          },
+          "nodeIndex": "fct_data_coverage_bias",
+          "nodeLineageTag": "3f34fb3f-3d3a-4d83-89dc-e10fe3a620b5",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1081.2413664160208,
+            "y": 2069.4102617811318
+          },
+          "nodeIndex": "fct_market_value_history",
+          "nodeLineageTag": "19f37d4b-4f70-4b07-a37b-22aa6847d657",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 739.0139395203696,
+            "y": 1391.8340312757596
+          },
+          "nodeIndex": "fct_match",
+          "nodeLineageTag": "d2abfe7f-f451-4a40-b866-b464a75609be",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1646.5006997179717,
+            "y": 978.08085149098406
+          },
+          "nodeIndex": "fct_player_career_timeline",
+          "nodeLineageTag": "7c81a1e4-9caa-48f6-8f52-df45daeb6a40",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1505.7677464093417,
+            "y": 2336.7623579703272
+          },
+          "nodeIndex": "fct_player_performance",
+          "nodeLineageTag": "ed76a0fd-562c-40a7-9d63-82e5777f7d62",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 4274.9733376872191,
+            "y": 1412.9013918579099
+          },
+          "nodeIndex": "fct_transfer_cohort_performance",
+          "nodeLineageTag": "26f2485b-dc5d-4aa1-af93-46742af47f5b",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1745.6077301981895,
+            "y": 2249.7003549539959
+          },
+          "nodeIndex": "fct_transfer_fixed_horizon_outcomes",
+          "nodeLineageTag": "b1fd5ea3-a326-4332-9d08-496ae6fef9e2",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1360.3958762074981,
+            "y": 2825.8027837158197
+          },
+          "nodeIndex": "fct_transfer_market_value_analysis",
+          "nodeLineageTag": "b440b2c4-0d45-43bf-832b-ad1b9d31fdee",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2168.648155943682,
+            "y": 2677.1557470281332
+          },
+          "nodeIndex": "fct_transfer_success_labels",
+          "nodeLineageTag": "0136047f-b78c-4425-9c0d-8cf1f773c128",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2069.5411254634637,
+            "y": 941.7243323702038
+          },
+          "nodeIndex": "fct_transfers",
+          "nodeLineageTag": "4f9a8b4c-09fd-47cf-ad81-ac11669f05c7",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1615.0852710684585,
+            "y": 1467.1212772364761
+          },
+          "nodeIndex": "ml_player_market_value_current_predictions",
+          "nodeLineageTag": "c5f23536-9a0d-4fdd-bcb1-fb5dd24b6ee8",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1870.362668618212,
+            "y": 489.04042574549203
+          },
+          "nodeIndex": "ml_player_market_value_evaluation_metrics",
+          "nodeLineageTag": "d5c5d27f-0d76-43ba-9cdb-ad22671734b9",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1343.0699301262944,
+            "y": 1956.1617029819683
+          },
+          "nodeIndex": "ml_player_market_value_evaluation_predictions",
+          "nodeLineageTag": "48978270-cdc8-4ae9-bb17-9eaebb64f80d",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1484.7632113363488,
+            "y": 0
+          },
+          "nodeIndex": "ml_player_market_value_feature_drift",
+          "nodeLineageTag": "82c7c796-f6bf-4aec-8434-c31356c7515d",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1820.0093303349754,
+            "y": 130.99724082208741
+          },
+          "nodeIndex": "ml_player_market_value_feature_importance",
+          "nodeLineageTag": "d708019b-5959-40c3-8f7f-6eee79c96a8a",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1396.9689045894834,
+            "y": 489.04042574549203
+          },
+          "nodeIndex": "ml_player_market_value_model_registry",
+          "nodeLineageTag": "69d8504c-6bfd-4791-895d-848279cd2449",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1218.5687851790208,
+            "y": 889.1444162364827
+          },
+          "nodeIndex": "ml_player_market_value_quality_gates",
+          "nodeLineageTag": "bd1b4402-9367-4d37-b2bb-70677951b5f0",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1192.0448453229665,
+            "y": 1646.594117831409
+          },
+          "nodeIndex": "ml_player_market_value_scoring",
+          "nodeLineageTag": "9d975964-c995-49f0-b30f-d217c7eecf00",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1615.0852710684585,
+            "y": 1843.2850733387409
+          },
+          "nodeIndex": "ml_player_market_value_training",
+          "nodeLineageTag": "4e075950-4fd0-4b06-a947-0d83fa29efc9",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 4696.2383740359255,
+            "y": 1510.9013918579099
+          },
+          "nodeIndex": "time_spine_daily",
+          "nodeLineageTag": "4c0b3c01-577c-4450-af26-fb40871b7a41",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 5928.4335357196105,
+            "y": 1845.1726142657362
+          },
+          "nodeIndex": "dim_clubs (2)",
+          "nodeLineageTag": "01fed684-ed76-406e-9b5d-6b6b3e495034",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 6332.8814051701138,
+            "y": 663.31608597763034
+          },
+          "nodeIndex": "dim_competitions (2)",
+          "nodeLineageTag": "edb1b4d6-8ae9-4b4a-b308-76a4c23ba7f0",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 8849.59051420827,
+            "y": 1116.324044709964
+          },
+          "nodeIndex": "dim_date (2)",
+          "nodeLineageTag": "27929f4b-61c3-4015-943c-ae6bdd39264f",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 6923.4873132211587,
+            "y": 0
+          },
+          "nodeIndex": "dim_national_teams",
+          "nodeLineageTag": "47d1a8d7-e2d2-49bb-a110-0fbb1166d53e",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 5303.5686817925416,
+            "y": 1187.5051321302421
+          },
+          "nodeIndex": "dim_players (2)",
+          "nodeLineageTag": "cf059e36-5250-4090-82c1-35e1f25f0e07",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 9271.1175237923726,
+            "y": 1116.324044709964
+          },
+          "nodeIndex": "fct_agent_portfolio (2)",
+          "nodeLineageTag": "b384625f-d4c9-445f-9350-78e891bdd326",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 9692.644533376475,
+            "y": 1116.324044709964
+          },
+          "nodeIndex": "fct_analytics_refresh_audit (2)",
+          "nodeLineageTag": "c2cccde6-a970-4afe-95a6-632c02e7e83d",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 7261.6188959608735,
+            "y": 130.59349640281562
+          },
+          "nodeIndex": "fct_club_performance (2)",
+          "nodeLineageTag": "f69f6c6b-8c15-42df-a2ee-43de0a9ad933",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 7181.6805775613757,
+            "y": 620.82756275266775
+          },
+          "nodeIndex": "fct_club_risk_profile (2)",
+          "nodeLineageTag": "8d0ec952-c41f-4374-83d5-42ef4232a547",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 5303.5686817925416,
+            "y": 1742.4140230700759
+          },
+          "nodeIndex": "fct_club_season_performance (2)",
+          "nodeLineageTag": "85fc1607-9dbc-44f5-932c-c5117a444111",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 6758.5470957043926,
+            "y": 1643.7842186773346
+          },
+          "nodeIndex": "fct_club_transfer_portfolio (2)",
+          "nodeLineageTag": "40180dd5-f398-4a7b-883d-999a7db53500",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 5727.8027481423933,
+            "y": 1376.1025393439947
+          },
+          "nodeIndex": "fct_competition_performance (2)",
+          "nodeLineageTag": "a11748f0-fbc0-4bb5-9d3e-ff46c606e05d",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 10114.171542960577,
+            "y": 1116.324044709964
+          },
+          "nodeIndex": "fct_data_coverage_bias (2)",
+          "nodeLineageTag": "5aa356d5-3417-4efa-8529-69e39e497712",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 6152.036814492245,
+            "y": 1354.9385479158841
+          },
+          "nodeIndex": "fct_market_value_history (2)",
+          "nodeLineageTag": "252aad90-f095-41d2-8e78-e2320844e953",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 5650.7851141716019,
+            "y": 676.71403807332626
+          },
+          "nodeIndex": "fct_match (2)",
+          "nodeLineageTag": "0383f6c5-b29b-4339-ae14-5529b3d318a9",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 5650.7851141716019,
+            "y": 180.56370530451431
+          },
+          "nodeIndex": "fct_player_career_timeline (2)",
+          "nodeLineageTag": "1f2d872b-65ba-40cb-8571-6cb8b7898171",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 6964.75477892167,
+            "y": 1017.1387225907092
+          },
+          "nodeIndex": "fct_player_match_performance",
+          "nodeLineageTag": "691a10e8-cfd0-435b-b03b-20d481e7aff6",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 5404.4724403857781,
+            "y": 379.345336374211
+          },
+          "nodeIndex": "fct_player_performance (2)",
+          "nodeLineageTag": "69811b2e-ec4e-4749-9d16-cfeacac003a2",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 6075.0191805214545,
+            "y": 456.60540909186693
+          },
+          "nodeIndex": "fct_player_rolling_form",
+          "nodeLineageTag": "4563f31e-47a7-4d7c-8b75-2b406a6fd762",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 10535.69855254468,
+            "y": 1116.324044709964
+          },
+          "nodeIndex": "fct_transfer_cohort_performance (2)",
+          "nodeLineageTag": "56f6eb42-3fbf-470c-b219-2784c318022c",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 5226.55104782175,
+            "y": 752.71637481948028
+          },
+          "nodeIndex": "fct_transfer_fixed_horizon_outcomes (2)",
+          "nodeLineageTag": "4a84bc07-84f3-4996-acb5-90aa1d4134d9",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 5474.8334566623671,
+            "y": 2232.6480894199281
+          },
+          "nodeIndex": "fct_transfer_market_value_analysis (2)",
+          "nodeLineageTag": "ce0be89b-54cc-4080-97b5-c537a62d0ba9",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 4980.2383740359255,
+            "y": 558.60180165089469
+          },
+          "nodeIndex": "fct_transfer_success_labels (2)",
+          "nodeLineageTag": "9f92aef1-f1ca-42bb-ac11-a13f4b9a34ed",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 6352.6676020694631,
+            "y": 1838.2287327207116
+          },
+          "nodeIndex": "fct_transfers (2)",
+          "nodeLineageTag": "76c7cfd7-b490-4934-afb7-07ca7d35693e",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 6766.5591467739505,
+            "y": 663.31608597763034
+          },
+          "nodeIndex": "ml_player_market_value_current_predictions (2)",
+          "nodeLineageTag": "5a3d1dfc-4edd-4d4d-a62d-263d109b8358",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 8428.06350462417,
+            "y": 1037.1578541323636
+          },
+          "nodeIndex": "ml_player_market_value_evaluation_metrics (2)",
+          "nodeLineageTag": "38a82da6-350d-4a27-b407-c13f6b32b3f7",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 6540.520712571818,
+            "y": 1153.5501523274825
+          },
+          "nodeIndex": "ml_player_market_value_evaluation_predictions (2)",
+          "nodeLineageTag": "158ef4ef-a63e-47ee-82cc-d24c05b7f3c7",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 6755.0000513119612,
+            "y": 1265.2893442119489
+          },
+          "nodeIndex": "ml_player_market_value_feature_drift (2)",
+          "nodeLineageTag": "1f27dc4c-0849-4639-86c1-033727c9da93",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 7173.2659146400129,
+            "y": 1076.1284021171798
+          },
+          "nodeIndex": "ml_player_market_value_feature_importance (2)",
+          "nodeLineageTag": "605ecc60-b1e0-433e-a23b-3b0b4056644b",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 7591.5317779680645,
+            "y": 957.92438341908246
+          },
+          "nodeIndex": "ml_player_market_value_model_registry (2)",
+          "nodeLineageTag": "0fa61c0d-59ee-4fc3-8619-143732eb99a2",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 8009.7976412961161,
+            "y": 1157.6036683628929
+          },
+          "nodeIndex": "ml_player_market_value_quality_gates (2)",
+          "nodeLineageTag": "37e2e984-8590-4792-b9a6-0c6539f41644",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 6499.2532468713071,
+            "y": 303.21490682582771
+          },
+          "nodeIndex": "ml_player_market_value_scoring (2)",
+          "nodeLineageTag": "2817e4e6-bc24-488b-8aa8-7fd6cf08be03",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 6066.42523090225,
+            "y": 864.704481566032
+          },
+          "nodeIndex": "ml_player_market_value_training (2)",
+          "nodeLineageTag": "4b405298-c22d-4037-8581-7b46f68fe7c0",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 10957.22556212878,
+            "y": 1214.324044709964
+          },
+          "nodeIndex": "time_spine_daily (2)",
+          "nodeLineageTag": "eaa9edb7-4dd2-4482-a34c-f065d09dc648",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "Tüm tablolar",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "Tüm tablolar",
+  "defaultDiagram": "Tüm tablolar"
+}

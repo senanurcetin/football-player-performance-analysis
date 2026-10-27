@@ -1,0 +1,170 @@
+table fct_analytics_refresh_audit
+	lineageTag: d22a5f40-db19-4e14-8a3f-fd2f69b30e84
+
+	measure 'Last Warehouse Audit Label' =
+			VAR LatestAuditUtc = MAX ( fct_analytics_refresh_audit[audit_generated_at_utc] )
+			VAR AuditAgeDays = DATEDIFF ( LatestAuditUtc, UTCNOW (), DAY )
+			RETURN
+			    IF (
+			        ISBLANK ( LatestAuditUtc ),
+			        "AUDIT / NOT AVAILABLE",
+			        IF (
+			            AuditAgeDays > 90,
+			            "HISTORICAL / ",
+			            "QUALITY AUDIT / "
+			        ) & UPPER ( FORMAT ( LatestAuditUtc, "dd MMM yyyy", "en-US" ) )
+			    )
+		lineageTag: 28eebc78-691c-402f-9a35-c31ba491c0ca
+
+	column audit_key
+		dataType: string
+		lineageTag: c9a2ca64-ccb5-4bd8-9fd0-6bbfce314356
+		summarizeBy: none
+		sourceColumn: audit_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column audit_generated_at_utc
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 83e2bd14-11fc-4556-ac70-35a9cb4190fb
+		summarizeBy: none
+		sourceColumn: audit_generated_at_utc
+
+		variation Variation
+			isDefault
+			relationship: 65faa3e4-1c52-401b-9425-a120bfb087ef
+			defaultHierarchy: LocalDateTable_9aad1ec0-b250-48f2-ba51-b24ede5f4327.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column dbt_target_name
+		dataType: string
+		lineageTag: e48db9ac-11dc-4524-b91c-cabcd6408ffb
+		summarizeBy: none
+		sourceColumn: dbt_target_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column source_game_rows
+		dataType: int64
+		formatString: 0
+		lineageTag: f875aaa9-55b7-4bdd-91b2-dcf4f1dfa846
+		summarizeBy: sum
+		sourceColumn: source_game_rows
+
+		annotation SummarizationSetBy = Automatic
+
+	column source_appearance_rows
+		dataType: int64
+		formatString: 0
+		lineageTag: 4868d222-f5fd-4a14-8dd1-42db9e3962cf
+		summarizeBy: sum
+		sourceColumn: source_appearance_rows
+
+		annotation SummarizationSetBy = Automatic
+
+	column source_transfer_rows
+		dataType: int64
+		formatString: 0
+		lineageTag: 4f131d3d-9611-4baa-b7cb-c63619225ec6
+		summarizeBy: sum
+		sourceColumn: source_transfer_rows
+
+		annotation SummarizationSetBy = Automatic
+
+	column source_valuation_rows
+		dataType: int64
+		formatString: 0
+		lineageTag: 76a3d226-5aa1-48fb-9140-bf7439309938
+		summarizeBy: sum
+		sourceColumn: source_valuation_rows
+
+		annotation SummarizationSetBy = Automatic
+
+	column match_rows
+		dataType: int64
+		formatString: 0
+		lineageTag: 0cd9fa7d-16c0-4fbf-bd59-3e87063d0606
+		summarizeBy: sum
+		sourceColumn: match_rows
+
+		annotation SummarizationSetBy = Automatic
+
+	column player_match_rows
+		dataType: int64
+		formatString: 0
+		lineageTag: d8dcabb7-64f4-42b4-ae81-89ec5680a6b4
+		summarizeBy: sum
+		sourceColumn: player_match_rows
+
+		annotation SummarizationSetBy = Automatic
+
+	column historical_transfer_rows
+		dataType: int64
+		formatString: 0
+		lineageTag: 53afbe0e-1b15-44e2-b638-bd39ae7a2cb1
+		summarizeBy: sum
+		sourceColumn: historical_transfer_rows
+
+		annotation SummarizationSetBy = Automatic
+
+	column overall_known_fee_coverage_pct
+		dataType: double
+		lineageTag: 2dfa98e9-fbb9-429b-9914-fbf3602cd557
+		summarizeBy: sum
+		sourceColumn: overall_known_fee_coverage_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column overall_fee_value_comparison_coverage_pct
+		dataType: double
+		lineageTag: 062de62d-488f-40de-9611-8fe262414b0e
+		summarizeBy: sum
+		sourceColumn: overall_fee_value_comparison_coverage_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column overall_365d_outcome_coverage_pct
+		dataType: double
+		lineageTag: 4b1e5e75-053e-4c8e-aac2-a98fb198465f
+		summarizeBy: sum
+		sourceColumn: overall_365d_outcome_coverage_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column high_bias_risk_segment_count
+		dataType: int64
+		formatString: 0
+		lineageTag: cd481a0f-c397-47ad-b547-4556db7dbe35
+		summarizeBy: sum
+		sourceColumn: high_bias_risk_segment_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column insufficient_sample_cohort_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 12973495-f450-43c8-a51a-4ce6315a9c37
+		summarizeBy: sum
+		sourceColumn: insufficient_sample_cohort_count
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fct_analytics_refresh_audit = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database([Implementation="2.0",UseStorageApi=false,BillingProject="workintech-working"]),
+				    #"workintech-working" = Source{[Name="workintech-working"]}[Data],
+				    football_mart_Schema = #"workintech-working"{[Name="nexus_football_mart",Kind="Schema"]}[Data],
+				    fct_analytics_refresh_audit_Table = football_mart_Schema{[Name="fct_analytics_refresh_audit",Kind="Table"]}[Data]
+				in
+				    fct_analytics_refresh_audit_Table
+

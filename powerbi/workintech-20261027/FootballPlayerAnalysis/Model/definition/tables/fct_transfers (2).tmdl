@@ -1,0 +1,145 @@
+table 'fct_transfers (2)'
+	lineageTag: 76c7cfd7-b490-4934-afb7-07ca7d35693e
+
+	column player_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 5b143119-4ef3-4e35-b409-590ca00f5059
+		summarizeBy: none
+		sourceColumn: player_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column position
+		dataType: string
+		lineageTag: 860fe6b6-4809-49fa-899c-6a1a02d6a858
+		summarizeBy: none
+		sourceColumn: position
+
+		annotation SummarizationSetBy = Automatic
+
+	column sub_position
+		dataType: string
+		lineageTag: 2d689afd-6382-49eb-b363-f030851f90c5
+		summarizeBy: none
+		sourceColumn: sub_position
+
+		annotation SummarizationSetBy = Automatic
+
+	column player_name
+		dataType: string
+		lineageTag: 71c76a96-8d96-47b7-8c37-e182c1a4cdcd
+		summarizeBy: none
+		sourceColumn: player_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column transfer_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: bc2789c0-b1ed-4991-877d-834ba9eb5e62
+		summarizeBy: none
+		sourceColumn: transfer_date
+
+		variation Variation
+			isDefault
+			relationship: fa399c82-c188-4e15-a50d-189daa84407a
+			defaultHierarchy: LocalDateTable_93193503-443d-41bd-8d1c-57e0011ebb1e.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column transfer_season
+		dataType: string
+		lineageTag: 14493dcc-699b-4d32-a21a-e6a864cdb091
+		summarizeBy: none
+		sourceColumn: transfer_season
+
+		annotation SummarizationSetBy = Automatic
+
+	column from_club_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 54f7fe74-5e28-4578-9a28-f8191fd5c4d7
+		summarizeBy: sum
+		sourceColumn: from_club_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column to_club_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 785793c1-29f0-4b39-9cf7-7ad7a054681a
+		summarizeBy: sum
+		sourceColumn: to_club_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column from_club_name
+		dataType: string
+		lineageTag: a7616203-67fb-4afd-b3b6-e32bfe6eb1c6
+		summarizeBy: none
+		sourceColumn: from_club_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column to_club_name
+		dataType: string
+		lineageTag: a5e59b29-b71b-4c4f-9410-5127e6e6e3a2
+		summarizeBy: none
+		sourceColumn: to_club_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column transfer_fee
+		dataType: double
+		lineageTag: 7780818b-cd8a-4344-908d-d54b8b34c0b2
+		summarizeBy: sum
+		sourceColumn: transfer_fee
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column market_value_in_eur
+		dataType: double
+		lineageTag: ca877000-4138-4be5-b3a4-7bb297b46295
+		summarizeBy: sum
+		sourceColumn: market_value_in_eur
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column fee_market_value_difference
+		dataType: double
+		lineageTag: cdb88968-9b02-4860-a093-721b837a11b4
+		summarizeBy: sum
+		sourceColumn: fee_market_value_difference
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column fee_market_value_difference_pct
+		dataType: double
+		lineageTag: e8452f11-7913-46a0-ac31-e87ff20ad997
+		summarizeBy: sum
+		sourceColumn: fee_market_value_difference_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'fct_transfers (2)' = m
+		mode: import
+		source =
+				let
+				    Kaynak = GoogleBigQuery.Database([Implementation="2.0"]),
+				    #"workintech-working_Database" = Kaynak{[Name="workintech-working",Kind="Database"]}[Data],
+				    nexus_football_mart_Schema = #"workintech-working_Database"{[Name="nexus_football_mart",Kind="Schema"]}[Data],
+				    fct_transfers_Table = nexus_football_mart_Schema{[Name="fct_transfers",Kind="Table"]}[Data]
+				in
+				    fct_transfers_Table
+

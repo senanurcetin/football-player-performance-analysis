@@ -1,0 +1,245 @@
+table ml_player_market_value_evaluation_predictions
+	lineageTag: 48978270-cdc8-4ae9-bb17-9eaebb64f80d
+
+	column training_row_key
+		dataType: string
+		lineageTag: 8f1b51e7-6df7-4f30-9844-78440208f4fe
+		summarizeBy: none
+		sourceColumn: training_row_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column player_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 2b44247a-566e-426a-a9e1-3c8d5e03e11c
+		summarizeBy: none
+		sourceColumn: player_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column player_name
+		dataType: string
+		lineageTag: 64247f08-a7ff-4b6d-a318-29b54cca8fc4
+		summarizeBy: none
+		sourceColumn: player_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column season
+		dataType: double
+		lineageTag: c5a804cc-8e36-480f-92dd-e6726c540814
+		summarizeBy: sum
+		sourceColumn: season
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column competition_id
+		dataType: string
+		lineageTag: 41abbb7c-7e56-401a-b651-77bc7501ce5b
+		summarizeBy: none
+		sourceColumn: competition_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column target_market_value_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: c1ad049a-8287-4c66-996c-062fe2e886ce
+		summarizeBy: none
+		sourceColumn: target_market_value_date
+
+		variation Variation
+			isDefault
+			relationship: fee3734a-d773-4e48-9c46-e0b2d23ac475
+			defaultHierarchy: LocalDateTable_565478d7-8cee-4baf-8fcc-a60316ddc2b6.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column target_market_value_eur
+		dataType: double
+		lineageTag: 1e22f8e8-ab4d-44bb-9de8-faed645de6ef
+		summarizeBy: sum
+		sourceColumn: target_market_value_eur
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column previous_market_value_eur
+		dataType: double
+		lineageTag: 13b4465d-f39e-464a-ab33-d18063743438
+		summarizeBy: sum
+		sourceColumn: previous_market_value_eur
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column position
+		dataType: string
+		lineageTag: 8f4c9a74-965b-4765-a8bc-ab63bb2638b3
+		summarizeBy: none
+		sourceColumn: position
+
+		annotation SummarizationSetBy = Automatic
+
+	column sub_position
+		dataType: string
+		lineageTag: 68a9c795-dd3d-47f1-a1cc-b8d7be9ab556
+		summarizeBy: none
+		sourceColumn: sub_position
+
+		annotation SummarizationSetBy = Automatic
+
+	column age_at_target_date
+		dataType: double
+		lineageTag: 04c2c217-274b-42f0-8bba-1b6e5f615315
+		summarizeBy: sum
+		sourceColumn: age_at_target_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column competition_country_name
+		dataType: string
+		lineageTag: 11b7bce1-cd1b-447f-929f-594cf0e23e0e
+		summarizeBy: none
+		sourceColumn: competition_country_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column ml_only_prediction_eur
+		dataType: double
+		lineageTag: c71820ca-d677-4249-a3b3-d2e0a9a1a4d9
+		summarizeBy: sum
+		sourceColumn: ml_only_prediction_eur
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column baseline_prediction_eur
+		dataType: double
+		lineageTag: 4a4f38e7-29fe-4733-b888-97047d115a18
+		summarizeBy: sum
+		sourceColumn: baseline_prediction_eur
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column predicted_market_value_eur
+		dataType: double
+		lineageTag: ebac1084-4247-4319-a290-6d8de125891e
+		summarizeBy: sum
+		sourceColumn: predicted_market_value_eur
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column absolute_error_eur
+		dataType: double
+		lineageTag: c27c2432-736f-4406-9687-2fa25a69b9d5
+		summarizeBy: sum
+		sourceColumn: absolute_error_eur
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column prediction_interval_band
+		dataType: string
+		lineageTag: b11b5cbe-912e-4cf0-ad39-08571b151f80
+		summarizeBy: none
+		sourceColumn: prediction_interval_band
+
+		annotation SummarizationSetBy = Automatic
+
+	column prediction_interval_eur
+		dataType: double
+		lineageTag: 158d96dd-8528-4929-8486-9db47187defe
+		summarizeBy: sum
+		sourceColumn: prediction_interval_eur
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column prediction_lower_eur
+		dataType: double
+		lineageTag: 478d4af3-81d3-4bf8-a69b-88c24f604c21
+		summarizeBy: sum
+		sourceColumn: prediction_lower_eur
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column prediction_upper_eur
+		dataType: double
+		lineageTag: 8441ca19-6527-4d3a-8d57-9b36118af95f
+		summarizeBy: sum
+		sourceColumn: prediction_upper_eur
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column prediction_quality_status
+		dataType: string
+		lineageTag: 99002997-e9a8-44f8-a3b3-74afdc63c191
+		summarizeBy: none
+		sourceColumn: prediction_quality_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column selected_ml_blend_weight
+		dataType: double
+		lineageTag: 37f249c2-aef1-4845-85a5-bdf179eae485
+		summarizeBy: sum
+		sourceColumn: selected_ml_blend_weight
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column model_version
+		dataType: string
+		lineageTag: 332b37d4-8e2c-4f5a-b8cf-aad3d67f33de
+		summarizeBy: none
+		sourceColumn: model_version
+
+		annotation SummarizationSetBy = Automatic
+
+	column model_generated_at_utc
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: b5689170-e02c-4c6f-ac50-e66f55b6d5a0
+		summarizeBy: none
+		sourceColumn: model_generated_at_utc
+
+		variation Variation
+			isDefault
+			relationship: 7c251df3-090e-4b8f-a5bd-aac9a10250aa
+			defaultHierarchy: LocalDateTable_dbe5bd2e-9215-4abc-90e9-cc6e843bc4be.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition ml_player_market_value_evaluation_predictions = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database([Implementation="2.0",UseStorageApi=false,BillingProject="workintech-working"]),
+				    #"workintech-working" = Source{[Name="workintech-working"]}[Data],
+				    football_ml_Schema = #"workintech-working"{[Name="nexus_football_ml",Kind="Schema"]}[Data],
+				    ml_player_market_value_evaluation_predictions_Table = football_ml_Schema{[Name="ml_player_market_value_evaluation_predictions",Kind="Table"]}[Data]
+				in
+				    ml_player_market_value_evaluation_predictions_Table
+

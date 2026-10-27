@@ -1,5 +1,8 @@
 # Data Quality and Validation
 
+**DATA EDITION NOTE (27 October):** Workintech is an isolated rebuilt, historical Kaggle archive in project workintech-working; latest game 6 July 2026. The earlier June 2026/data-analiz research and quality audits below remain dated evidence. 12 source tables were loaded, but screenshot analytics cannot be described as live 27 October results. See [27 October verified Workintech release record](WORKINTECH_STATUS_AND_VISUAL_RELEASE_20261027.md).
+
+
 > **Checked 19 October 2026:** This document's warehouse counts remain the **June 2026** authenticated historical snapshot. Full offline Python source tests **243/243 PASS** and dbt parse PASS on Windows, but **no current BigQuery source freshness or dbt table tests were executed**. See [Project status](PROJECT_STATUS.md).
 
 ## Validation Status

@@ -1,5 +1,8 @@
 # NEXUS Football Intelligence
 
+**LATEST EXECUTED EDITION — 27 October 2026:** The owner rebuilt an isolated Workintech BigQuery warehouse (46 dbt models, two snapshots, 243 passing dbt tests, seven ML outputs and 31/31 verified governed Power BI sources). [Current release record](docs/WORKINTECH_STATUS_AND_VISUAL_RELEASE_20261027.md) · [Real 27 October Power BI gallery](docs/assets/screenshots/README.md) · [Current Workintech PBIP source edition](powerbi/workintech-20261027/FootballPlayerAnalysis/FootballPlayerAnalysis.pbip). The earlier repository main/default BigQuery project is a separate environment. The current Desktop PBIP also contains 34 additional imported table definitions needing review; screenshots are not final metric certification.
+
+
 **Football Player Performance Analysis | BigQuery · dbt · Python/ML · Power BI**
 
 [![BigQuery](https://img.shields.io/badge/Warehouse-BigQuery-4285F4)](docs/ARCHITECTURE.md)
@@ -54,13 +57,14 @@ The visuals below are cropped **actual Windows Power BI Desktop captures**; they
 | [![Prediction](docs/assets/screenshots/production/07_market_value_prediction.png)](docs/assets/screenshots/production/07_market_value_prediction.png) | [![Reliability](docs/assets/screenshots/production/08_ml_reliability.png)](docs/assets/screenshots/production/08_ml_reliability.png) |
 | **Published valuation estimates and quality segmentation** | **Feature diagnostics, segment metrics and model-quality gates** |
 
-Browse [the nine-page gallery and all full-resolution screenshots](docs/assets/screenshots/README.md), including Home, Club & League, and Closing. Two unselected-player detail screens and two hidden tooltips are preserved **only as technical evidence** pending further interaction tests.
+Browse [the current gallery and all 13 hash-verified original screenshots](docs/assets/screenshots/README.md), including Home, Club & League, Closing, two unselected-player detail states and two technical tooltips. The visible fee premium M% error, tooltip currency scaling, and residual legend/table truncation remain documented defects.
 
 ### Source editions
 
 | Edition | Editable report | Usage |
 |---|---|---|
-| Production-connected | [`powerbi/workspace/FootballPlayerAnalysis/FootballPlayerAnalysis.pbip`](powerbi/workspace/FootballPlayerAnalysis/FootballPlayerAnalysis.pbip) | Canonical BigQuery model; authorization needed for new refresh |
+| **Workintech 27 October (current source)** | [Workintech PBIP](powerbi/workintech-20261027/FootballPlayerAnalysis/FootballPlayerAnalysis.pbip) | Owner-imported report; 31 verified governed tables + 34 extra connector definitions needing dependency review |
+| Earlier production-connected | [Prior PBIP](powerbi/workspace/FootballPlayerAnalysis/FootballPlayerAnalysis.pbip) | Historical data-analiz-490513 edition, preserved |
 | Offline regression demo | [`powerbi/offline-demo/FootballPlayerAnalysis/FootballPlayerAnalysis.pbip`](powerbi/offline-demo/FootballPlayerAnalysis/FootballPlayerAnalysis.pbip) | Explicitly **synthetic data**, never evidence of actual player outcomes |
 
 The repository publishes PBIP/PBIR source, **not** a publicly hosted live Power BI Service report. Observed 365-day transfer success is **not** an ML prediction; coverage, cohort definitions and horizon are material to interpretation.

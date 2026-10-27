@@ -1,0 +1,130 @@
+table 'ml_player_market_value_feature_drift (2)'
+	lineageTag: 1f27dc4c-0849-4639-86c1-033727c9da93
+
+	column model_version
+		dataType: string
+		lineageTag: 45c675a0-c979-45b3-adfa-42e629be80e4
+		summarizeBy: none
+		sourceColumn: model_version
+
+		annotation SummarizationSetBy = Automatic
+
+	column feature
+		dataType: string
+		lineageTag: e4d1877e-14a3-4e1b-984c-c449f3de1151
+		summarizeBy: none
+		sourceColumn: feature
+
+		annotation SummarizationSetBy = Automatic
+
+	column feature_type
+		dataType: string
+		lineageTag: 41457bf6-c6d1-4ecd-9314-45fa7e0a59cb
+		summarizeBy: none
+		sourceColumn: feature_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column psi
+		dataType: double
+		lineageTag: 29c6d648-9623-47c5-974c-0c2631789987
+		summarizeBy: sum
+		sourceColumn: psi
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column drift_status
+		dataType: string
+		lineageTag: 073f9548-25b6-43d5-91a1-50baedd71cb0
+		summarizeBy: none
+		sourceColumn: drift_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column reference_row_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 0ea6c6f6-b9ea-460f-b0ce-86b59574a267
+		summarizeBy: sum
+		sourceColumn: reference_row_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column current_row_count
+		dataType: int64
+		formatString: 0
+		lineageTag: a4123a21-5a46-4eb4-8750-4f4e9a4e9365
+		summarizeBy: sum
+		sourceColumn: current_row_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column reference_season_min
+		dataType: int64
+		formatString: 0
+		lineageTag: 42a27239-7410-44e2-acd6-3a00278d6a99
+		summarizeBy: sum
+		sourceColumn: reference_season_min
+
+		annotation SummarizationSetBy = Automatic
+
+	column reference_season_max
+		dataType: int64
+		formatString: 0
+		lineageTag: b3783177-29be-4ba1-8ea1-06e5db70fe12
+		summarizeBy: sum
+		sourceColumn: reference_season_max
+
+		annotation SummarizationSetBy = Automatic
+
+	column current_season_min
+		dataType: int64
+		formatString: 0
+		lineageTag: 5646e778-c077-45fd-8f90-ac09dd149ef8
+		summarizeBy: sum
+		sourceColumn: current_season_min
+
+		annotation SummarizationSetBy = Automatic
+
+	column current_season_max
+		dataType: int64
+		formatString: 0
+		lineageTag: 8abe5247-f499-4661-bb4e-da16781bf7f7
+		summarizeBy: sum
+		sourceColumn: current_season_max
+
+		annotation SummarizationSetBy = Automatic
+
+	column reference_missing_pct
+		dataType: double
+		lineageTag: d6312b14-9c0c-49eb-931a-55dcb0ef7e0f
+		summarizeBy: sum
+		sourceColumn: reference_missing_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column current_missing_pct
+		dataType: double
+		lineageTag: a7fdae5e-0cc4-4ec9-b7ad-6b4045cb6e65
+		summarizeBy: sum
+		sourceColumn: current_missing_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'ml_player_market_value_feature_drift (2)' = m
+		mode: import
+		source =
+				let
+				    Kaynak = GoogleBigQuery.Database([Implementation="2.0"]),
+				    #"workintech-working_Database" = Kaynak{[Name="workintech-working",Kind="Database"]}[Data],
+				    nexus_football_ml_Schema = #"workintech-working_Database"{[Name="nexus_football_ml",Kind="Schema"]}[Data],
+				    ml_player_market_value_feature_drift_Table = nexus_football_ml_Schema{[Name="ml_player_market_value_feature_drift",Kind="Table"]}[Data]
+				in
+				    ml_player_market_value_feature_drift_Table
+

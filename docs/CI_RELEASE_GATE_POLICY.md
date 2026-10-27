@@ -1,5 +1,8 @@
 # NEXUS Football — CI-last release policy
 
+**WORKINTECH EVIDENCE UPDATE (27 October):** The owner-executed recovery completed 46/46 BigQuery dbt models, dbt test gates and 31/31 Power BI table/column contracts. The project still requires resolved screenshot formatting defects, a selected-player workflow test, reconciliation of additional import tables and explicit release acceptance. The manually gated CircleCI policy **has not changed**. See [27 October verified Workintech release record](WORKINTECH_STATUS_AND_VISUAL_RELEASE_20261027.md).
+
+
 > **Updated 19 October 2026:** Offline Python tests **243/243 on the original checkout, 246/246 after hygiene tests, and 249/249 with the offline declared-documentation regressions**, source/dbt parse and structural checks PASS via SentinelX; **BigQuery table tests, corrected real-data model evaluation and final hosted CI remain NOT RUN**. This document is a release policy and historical CI incident record, not a new CI pass. See [Project status](PROJECT_STATUS.md).
 
 **Current decision (13 October 2026):** development, source repairs, real Desktop acceptance and local tests come **before** any new CircleCI verification run.

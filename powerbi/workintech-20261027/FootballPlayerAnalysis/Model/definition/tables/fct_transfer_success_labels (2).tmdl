@@ -1,0 +1,232 @@
+table 'fct_transfer_success_labels (2)'
+	lineageTag: 9f92aef1-f1ca-42bb-ac11-a13f4b9a34ed
+
+	column transfer_key
+		dataType: string
+		lineageTag: b6ced16e-23e2-4972-9570-122187ab5f03
+		summarizeBy: none
+		sourceColumn: transfer_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column player_id
+		dataType: int64
+		formatString: 0
+		lineageTag: fece3979-8d26-4cac-b976-06441fbd5e7f
+		summarizeBy: none
+		sourceColumn: player_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column player_name
+		dataType: string
+		lineageTag: 9f14d40e-2526-4e40-a642-e49992f517bf
+		summarizeBy: none
+		sourceColumn: player_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column position
+		dataType: string
+		lineageTag: 9b8fc5dd-e856-4fba-9a93-9edb463ed81b
+		summarizeBy: none
+		sourceColumn: position
+
+		annotation SummarizationSetBy = Automatic
+
+	column age_at_transfer
+		dataType: int64
+		formatString: 0
+		lineageTag: 984976ba-468f-47f9-8f05-d6496ab15c7e
+		summarizeBy: sum
+		sourceColumn: age_at_transfer
+
+		annotation SummarizationSetBy = Automatic
+
+	column transfer_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: a5148f24-bf16-4e6c-beec-10d480574078
+		summarizeBy: none
+		sourceColumn: transfer_date
+
+		variation Variation
+			isDefault
+			relationship: 49dd1af6-d997-434b-a607-20125d349746
+			defaultHierarchy: LocalDateTable_472c8862-2ae3-4783-8821-a4fb41a69fa6.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column transfer_year
+		dataType: int64
+		formatString: 0
+		lineageTag: 98d8eab3-6766-4a0e-afa5-f11a7cffee8e
+		summarizeBy: sum
+		sourceColumn: transfer_year
+
+		annotation SummarizationSetBy = Automatic
+
+	column transfer_season
+		dataType: string
+		lineageTag: e2c14a4d-3b92-43da-be78-e6144933c75c
+		summarizeBy: none
+		sourceColumn: transfer_season
+
+		annotation SummarizationSetBy = Automatic
+
+	column from_club_id
+		dataType: int64
+		formatString: 0
+		lineageTag: ad1a3ed2-672b-4070-99cf-864a5f1c086e
+		summarizeBy: sum
+		sourceColumn: from_club_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column from_club_name
+		dataType: string
+		lineageTag: fbac1e08-6370-4d7d-af72-d18d70bbb810
+		summarizeBy: none
+		sourceColumn: from_club_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column to_club_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 998765b4-6a54-4036-8f24-ed18016b1b71
+		summarizeBy: sum
+		sourceColumn: to_club_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column to_club_name
+		dataType: string
+		lineageTag: b7d7bec0-18da-4030-9fac-249339c8d17d
+		summarizeBy: none
+		sourceColumn: to_club_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column transfer_fee
+		dataType: double
+		lineageTag: 25a56235-2ca5-4920-b547-7fc4d6114676
+		summarizeBy: sum
+		sourceColumn: transfer_fee
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column has_known_transfer_fee
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 17376ada-064f-49c0-b8c7-dfc58e682360
+		summarizeBy: none
+		sourceColumn: has_known_transfer_fee
+
+		annotation SummarizationSetBy = Automatic
+
+	column market_value_baseline
+		dataType: double
+		lineageTag: 6d5f4879-301c-464a-9333-3980a52a767e
+		summarizeBy: sum
+		sourceColumn: market_value_baseline
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column fee_market_value_difference_pct
+		dataType: double
+		lineageTag: a153c986-e2d6-44d3-aeba-0f74de89467b
+		summarizeBy: sum
+		sourceColumn: fee_market_value_difference_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column label_horizon_days
+		dataType: int64
+		formatString: 0
+		lineageTag: d9a1b7c9-68e0-4c5d-9884-9877a7922468
+		summarizeBy: sum
+		sourceColumn: label_horizon_days
+
+		annotation SummarizationSetBy = Automatic
+
+	column outcome_valuation_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: a9450b5e-a884-443a-8c70-1f37f7216122
+		summarizeBy: none
+		sourceColumn: outcome_valuation_date
+
+		variation Variation
+			isDefault
+			relationship: 4f48ae3b-60c1-4753-a17d-e6232d4f03ff
+			defaultHierarchy: LocalDateTable_9c93a032-3c96-4f5e-bc5d-35c190b862ec.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column outcome_market_value
+		dataType: int64
+		formatString: 0
+		lineageTag: 72305414-92ed-45d0-a245-623961cf6b6e
+		summarizeBy: sum
+		sourceColumn: outcome_market_value
+
+		annotation SummarizationSetBy = Automatic
+
+	column market_value_change_at_horizon_pct
+		dataType: double
+		lineageTag: 7056abec-96d8-45cb-a630-880f22a2eb4e
+		summarizeBy: sum
+		sourceColumn: market_value_change_at_horizon_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column label_status
+		dataType: string
+		lineageTag: e0f15f08-ddd9-438b-9b1e-b9f2615e2350
+		summarizeBy: none
+		sourceColumn: label_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column success_threshold_pct
+		dataType: int64
+		formatString: 0
+		lineageTag: 298ae671-0c7e-4773-8862-e97878e65638
+		summarizeBy: sum
+		sourceColumn: success_threshold_pct
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_successful_transfer
+		dataType: int64
+		formatString: 0
+		lineageTag: db159443-4183-4448-8c91-938f143e0c8f
+		summarizeBy: sum
+		sourceColumn: is_successful_transfer
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'fct_transfer_success_labels (2)' = m
+		mode: import
+		source =
+				let
+				    Kaynak = GoogleBigQuery.Database([Implementation="2.0"]),
+				    #"workintech-working_Database" = Kaynak{[Name="workintech-working",Kind="Database"]}[Data],
+				    nexus_football_mart_Schema = #"workintech-working_Database"{[Name="nexus_football_mart",Kind="Schema"]}[Data],
+				    fct_transfer_success_labels_Table = nexus_football_mart_Schema{[Name="fct_transfer_success_labels",Kind="Table"]}[Data]
+				in
+				    fct_transfer_success_labels_Table
+

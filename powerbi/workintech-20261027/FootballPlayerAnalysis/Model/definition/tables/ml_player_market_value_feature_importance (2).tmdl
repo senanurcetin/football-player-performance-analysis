@@ -1,0 +1,67 @@
+table 'ml_player_market_value_feature_importance (2)'
+	lineageTag: 605ecc60-b1e0-433e-a23b-3b0b4056644b
+
+	column model_version
+		dataType: string
+		lineageTag: d63b70f0-5fda-48f3-9eaf-f59a98e738d0
+		summarizeBy: none
+		sourceColumn: model_version
+
+		annotation SummarizationSetBy = Automatic
+
+	column feature
+		dataType: string
+		lineageTag: cac6db09-6b3c-4506-8c00-1a2f8898688c
+		summarizeBy: none
+		sourceColumn: feature
+
+		annotation SummarizationSetBy = Automatic
+
+	column feature_type
+		dataType: string
+		lineageTag: 9a9f25e1-46d7-42d4-bd67-7c99cff3ff4d
+		summarizeBy: none
+		sourceColumn: feature_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column mae_increase_eur_mean
+		dataType: double
+		lineageTag: e9a6ccf9-fed4-4b40-941f-3d863ceaac2b
+		summarizeBy: sum
+		sourceColumn: mae_increase_eur_mean
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column mae_increase_eur_std
+		dataType: double
+		lineageTag: 18581a6a-167e-41e9-9b06-c24ecb5d8f95
+		summarizeBy: sum
+		sourceColumn: mae_increase_eur_std
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column importance_rank
+		dataType: int64
+		formatString: 0
+		lineageTag: aa5d2b5d-a45a-406f-a0e7-0b735edbc1c2
+		summarizeBy: sum
+		sourceColumn: importance_rank
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'ml_player_market_value_feature_importance (2)' = m
+		mode: import
+		source =
+				let
+				    Kaynak = GoogleBigQuery.Database([Implementation="2.0"]),
+				    #"workintech-working_Database" = Kaynak{[Name="workintech-working",Kind="Database"]}[Data],
+				    nexus_football_ml_Schema = #"workintech-working_Database"{[Name="nexus_football_ml",Kind="Schema"]}[Data],
+				    ml_player_market_value_feature_importance_Table = nexus_football_ml_Schema{[Name="ml_player_market_value_feature_importance",Kind="Table"]}[Data]
+				in
+				    ml_player_market_value_feature_importance_Table
+

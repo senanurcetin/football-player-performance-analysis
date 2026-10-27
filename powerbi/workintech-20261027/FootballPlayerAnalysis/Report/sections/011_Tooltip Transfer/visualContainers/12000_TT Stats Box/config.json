@@ -1,0 +1,321 @@
+{
+  "name": "tt011_stats_0001",
+  "layouts": [
+    {
+      "id": 0,
+      "position": {
+        "x": 345,
+        "y": 42,
+        "z": 12000,
+        "width": 205,
+        "height": 268,
+        "tabOrder": 12000
+      }
+    }
+  ],
+  "singleVisual": {
+    "visualType": "multiRowCard",
+    "projections": {
+      "Values": [
+        {
+          "queryRef": "fct_transfer_market_value_analysis.Average Known Transfer Fee"
+        },
+        {
+          "queryRef": "fct_transfer_market_value_analysis.Average Fee Premium Discount %"
+        },
+        {
+          "queryRef": "fct_transfer_market_value_analysis.Transfer Count"
+        },
+        {
+          "queryRef": "fct_transfer_market_value_analysis.High Premium Transfer Count"
+        }
+      ]
+    },
+    "prototypeQuery": {
+      "Version": 2,
+      "From": [
+        {
+          "Name": "ftmva",
+          "Entity": "fct_transfer_market_value_analysis",
+          "Type": 0
+        }
+      ],
+      "Select": [
+        {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Source": "ftmva"
+              }
+            },
+            "Property": "Average Known Transfer Fee"
+          },
+          "Name": "fct_transfer_market_value_analysis.Average Known Transfer Fee",
+          "NativeReferenceName": "Ort. Transfer Ücreti"
+        },
+        {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Source": "ftmva"
+              }
+            },
+            "Property": "Average Fee Premium Discount %"
+          },
+          "Name": "fct_transfer_market_value_analysis.Average Fee Premium Discount %",
+          "NativeReferenceName": "Ort. Prim %"
+        },
+        {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Source": "ftmva"
+              }
+            },
+            "Property": "Transfer Count"
+          },
+          "Name": "fct_transfer_market_value_analysis.Transfer Count",
+          "NativeReferenceName": "Transfer Sayısı"
+        },
+        {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Source": "ftmva"
+              }
+            },
+            "Property": "High Premium Transfer Count"
+          },
+          "Name": "fct_transfer_market_value_analysis.High Premium Transfer Count",
+          "NativeReferenceName": "Yüksek Prim"
+        }
+      ]
+    },
+    "columnProperties": {
+      "fct_transfer_market_value_analysis.Average Known Transfer Fee": {
+        "displayName": "Ort. Transfer Ücreti",
+        "formatString": "€0.0M"
+      },
+      "fct_transfer_market_value_analysis.Average Fee Premium Discount %": {
+        "displayName": "Ort. Prim %",
+        "formatString": "+0.0%;-0.0%;0.0%"
+      },
+      "fct_transfer_market_value_analysis.Transfer Count": {
+        "displayName": "Transfer Sayısı",
+        "formatString": "#,0"
+      },
+      "fct_transfer_market_value_analysis.High Premium Transfer Count": {
+        "displayName": "Yüksek Prim (>%30)",
+        "formatString": "#,0"
+      }
+    },
+    "drillFilterOtherVisuals": false,
+    "objects": {
+      "card": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "11D"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#20323F'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Segoe UI'"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "cardTitle": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#536A60'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Segoe UI'"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dataLabels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "vcObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#F6FBF5'"
+                    }
+                  }
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#8BC99A'"
+                    }
+                  }
+                }
+              }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Transfer İstatistikleri'"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'center'"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "9D"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#20323F'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

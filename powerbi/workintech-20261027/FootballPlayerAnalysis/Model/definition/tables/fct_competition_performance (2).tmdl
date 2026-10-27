@@ -1,0 +1,101 @@
+table 'fct_competition_performance (2)'
+	lineageTag: a11748f0-fbc0-4bb5-9d3e-ff46c606e05d
+
+	column competition_id
+		dataType: string
+		lineageTag: f7b83965-50db-423a-ba7b-336d75325153
+		summarizeBy: none
+		sourceColumn: competition_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column competition_name
+		dataType: string
+		lineageTag: f12e1461-5522-4275-a725-a3adc3521ced
+		summarizeBy: none
+		sourceColumn: competition_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column competition_type
+		dataType: string
+		lineageTag: 48e1fbfa-bb9b-4da7-b95a-7b1313413c3d
+		summarizeBy: none
+		sourceColumn: competition_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column country_name
+		dataType: string
+		lineageTag: b37d4fc5-300c-4702-8b3a-bd33a297f14b
+		summarizeBy: none
+		sourceColumn: country_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column confederation
+		dataType: string
+		lineageTag: 6432768e-7abb-4002-842e-ea896b90b4a5
+		summarizeBy: none
+		sourceColumn: confederation
+
+		annotation SummarizationSetBy = Automatic
+
+	column matches_played
+		dataType: int64
+		formatString: 0
+		lineageTag: 230acf15-811c-4269-ac00-a4fee3d4838d
+		summarizeBy: sum
+		sourceColumn: matches_played
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_goals
+		dataType: int64
+		formatString: 0
+		lineageTag: b9bc1a5b-757c-4348-9769-b27d7d4e9c56
+		summarizeBy: sum
+		sourceColumn: total_goals
+
+		annotation SummarizationSetBy = Automatic
+
+	column avg_goals_per_match
+		dataType: double
+		lineageTag: 47231756-bc99-4cd7-949c-97f54b5d82f7
+		summarizeBy: sum
+		sourceColumn: avg_goals_per_match
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column club_participation_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 0f016320-0f54-4215-a8f0-010066c5f2e1
+		summarizeBy: sum
+		sourceColumn: club_participation_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column avg_attendance
+		dataType: double
+		lineageTag: 260f2ab8-c6c5-43c5-9a3b-ebb9c677e18a
+		summarizeBy: sum
+		sourceColumn: avg_attendance
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'fct_competition_performance (2)' = m
+		mode: import
+		source =
+				let
+				    Kaynak = GoogleBigQuery.Database([Implementation="2.0"]),
+				    #"workintech-working_Database" = Kaynak{[Name="workintech-working",Kind="Database"]}[Data],
+				    nexus_football_mart_Schema = #"workintech-working_Database"{[Name="nexus_football_mart",Kind="Schema"]}[Data],
+				    fct_competition_performance_Table = nexus_football_mart_Schema{[Name="fct_competition_performance",Kind="Table"]}[Data]
+				in
+				    fct_competition_performance_Table
+

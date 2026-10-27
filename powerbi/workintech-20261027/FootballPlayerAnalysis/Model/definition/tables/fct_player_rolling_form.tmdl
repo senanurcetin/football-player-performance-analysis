@@ -1,0 +1,312 @@
+table fct_player_rolling_form
+	lineageTag: 4563f31e-47a7-4d7c-8b75-2b406a6fd762
+
+	column appearance_id
+		dataType: string
+		lineageTag: f929fc83-7abf-430c-adf0-09813f4991c4
+		summarizeBy: none
+		sourceColumn: appearance_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column game_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 68bdfad0-be86-4bc6-938f-7fe2ad6706e0
+		summarizeBy: sum
+		sourceColumn: game_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column player_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 9d8ea5a5-d413-4143-bfc5-ff1f5b59d85e
+		summarizeBy: none
+		sourceColumn: player_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column player_name
+		dataType: string
+		lineageTag: ed165535-8633-4da9-8aef-57f3d0a3bb00
+		summarizeBy: none
+		sourceColumn: player_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column position
+		dataType: string
+		lineageTag: e32277e0-a7d5-4cfe-a2d1-f95a5a153f88
+		summarizeBy: none
+		sourceColumn: position
+
+		annotation SummarizationSetBy = Automatic
+
+	column sub_position
+		dataType: string
+		lineageTag: a44bb01e-dd43-4551-8e83-93dcf40a32ea
+		summarizeBy: none
+		sourceColumn: sub_position
+
+		annotation SummarizationSetBy = Automatic
+
+	column player_club_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 880cbf18-5e7c-40e4-a5a7-cf7d9d7a08f8
+		summarizeBy: sum
+		sourceColumn: player_club_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column player_club_name
+		dataType: string
+		lineageTag: c400d883-e404-48e7-a78c-c2d3343d7d6a
+		summarizeBy: none
+		sourceColumn: player_club_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column competition_id
+		dataType: string
+		lineageTag: 08602fdd-73d7-4119-b2a2-33b321bee808
+		summarizeBy: none
+		sourceColumn: competition_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column season
+		dataType: int64
+		formatString: 0
+		lineageTag: 281945e4-3147-4719-898d-ddb94124ac5e
+		summarizeBy: sum
+		sourceColumn: season
+
+		annotation SummarizationSetBy = Automatic
+
+	column appearance_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 681f893d-1faf-48c7-b251-1c9315edb507
+		summarizeBy: none
+		sourceColumn: appearance_date
+
+		variation Variation
+			isDefault
+			relationship: 8c3dd758-748b-4ec8-b0a8-4aeb85d16990
+			defaultHierarchy: LocalDateTable_d8d070a3-020c-42dd-94a6-ffcc041f3c8e.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column hosting
+		dataType: string
+		lineageTag: 47187136-8893-44da-808f-421dbfce2707
+		summarizeBy: none
+		sourceColumn: hosting
+
+		annotation SummarizationSetBy = Automatic
+
+	column opponent_club_id
+		dataType: int64
+		formatString: 0
+		lineageTag: a7c96898-950a-41c9-8cd1-3d20eb67ce62
+		summarizeBy: sum
+		sourceColumn: opponent_club_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column opponent_club_name
+		dataType: string
+		lineageTag: bc03f67c-3d9c-49bc-a9c4-3dc139ddcf21
+		summarizeBy: none
+		sourceColumn: opponent_club_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column club_result
+		dataType: string
+		lineageTag: b0a1822e-e645-4c2c-a513-a60d1f2725bf
+		summarizeBy: none
+		sourceColumn: club_result
+
+		annotation SummarizationSetBy = Automatic
+
+	column club_points
+		dataType: int64
+		formatString: 0
+		lineageTag: 3691fa03-e3b4-481a-a14b-ffd1e34199e2
+		summarizeBy: sum
+		sourceColumn: club_points
+
+		annotation SummarizationSetBy = Automatic
+
+	column minutes_played
+		dataType: int64
+		formatString: 0
+		lineageTag: cf5d85ca-478b-40bf-be67-c20489bd66a9
+		summarizeBy: sum
+		sourceColumn: minutes_played
+
+		annotation SummarizationSetBy = Automatic
+
+	column goals
+		dataType: int64
+		formatString: 0
+		lineageTag: 2b778721-619b-4fcf-a64a-e664e1eec420
+		summarizeBy: sum
+		sourceColumn: goals
+
+		annotation SummarizationSetBy = Automatic
+
+	column assists
+		dataType: int64
+		formatString: 0
+		lineageTag: e9eacf73-fd20-4858-a778-4ea88c46a8c6
+		summarizeBy: sum
+		sourceColumn: assists
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_starter
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 2b2adc8b-e643-433a-a00d-53be2831130a
+		summarizeBy: none
+		sourceColumn: is_starter
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_captain
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: bdbfd244-5d21-48b5-91ed-ea7c48bb55f4
+		summarizeBy: none
+		sourceColumn: is_captain
+
+		annotation SummarizationSetBy = Automatic
+
+	column rolling_5_appearances
+		dataType: int64
+		formatString: 0
+		lineageTag: a5cda40f-2a10-4630-9340-a0f5dc840736
+		summarizeBy: sum
+		sourceColumn: rolling_5_appearances
+
+		annotation SummarizationSetBy = Automatic
+
+	column rolling_5_minutes
+		dataType: int64
+		formatString: 0
+		lineageTag: d7885059-efe1-40b4-8cf7-cb80237bb919
+		summarizeBy: sum
+		sourceColumn: rolling_5_minutes
+
+		annotation SummarizationSetBy = Automatic
+
+	column rolling_5_goals
+		dataType: int64
+		formatString: 0
+		lineageTag: 4a5d8a1a-1491-4688-9e51-fa368adf3609
+		summarizeBy: sum
+		sourceColumn: rolling_5_goals
+
+		annotation SummarizationSetBy = Automatic
+
+	column rolling_5_assists
+		dataType: int64
+		formatString: 0
+		lineageTag: 00515590-d999-4cbf-8aa2-add83c499c0e
+		summarizeBy: sum
+		sourceColumn: rolling_5_assists
+
+		annotation SummarizationSetBy = Automatic
+
+	column rolling_5_yellow_cards
+		dataType: int64
+		formatString: 0
+		lineageTag: 1e35dbb1-e768-46e8-a23b-9c13e76dfddc
+		summarizeBy: sum
+		sourceColumn: rolling_5_yellow_cards
+
+		annotation SummarizationSetBy = Automatic
+
+	column rolling_5_red_cards
+		dataType: int64
+		formatString: 0
+		lineageTag: 4fb3aa53-b26d-4763-bcdf-55da65969b24
+		summarizeBy: sum
+		sourceColumn: rolling_5_red_cards
+
+		annotation SummarizationSetBy = Automatic
+
+	column rolling_5_club_points
+		dataType: int64
+		formatString: 0
+		lineageTag: 0a060e7d-62bc-4613-9a39-d3f788913687
+		summarizeBy: sum
+		sourceColumn: rolling_5_club_points
+
+		annotation SummarizationSetBy = Automatic
+
+	column rolling_5_goals_per_90
+		dataType: double
+		lineageTag: 571364f5-c321-405e-bca6-a81e070bc084
+		summarizeBy: sum
+		sourceColumn: rolling_5_goals_per_90
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column rolling_5_assists_per_90
+		dataType: double
+		lineageTag: a9dffe3f-79b7-440c-8238-22efcdbad405
+		summarizeBy: sum
+		sourceColumn: rolling_5_assists_per_90
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column rolling_5_avg_minutes
+		dataType: double
+		lineageTag: b64ed290-9503-46f2-9c15-5a664574b771
+		summarizeBy: sum
+		sourceColumn: rolling_5_avg_minutes
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column rolling_5_starts
+		dataType: int64
+		formatString: 0
+		lineageTag: 8fac913f-1439-4769-81dc-51f4d3caf5af
+		summarizeBy: sum
+		sourceColumn: rolling_5_starts
+
+		annotation SummarizationSetBy = Automatic
+
+	column rolling_5_captain_appearances
+		dataType: int64
+		formatString: 0
+		lineageTag: ef225d3f-4bb2-40b9-a4c2-04473776028c
+		summarizeBy: sum
+		sourceColumn: rolling_5_captain_appearances
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fct_player_rolling_form = m
+		mode: import
+		source =
+				let
+				    Kaynak = GoogleBigQuery.Database([Implementation="2.0"]),
+				    #"workintech-working_Database" = Kaynak{[Name="workintech-working",Kind="Database"]}[Data],
+				    nexus_football_mart_Schema = #"workintech-working_Database"{[Name="nexus_football_mart",Kind="Schema"]}[Data],
+				    fct_player_rolling_form_Table = nexus_football_mart_Schema{[Name="fct_player_rolling_form",Kind="Table"]}[Data]
+				in
+				    fct_player_rolling_form_Table
+

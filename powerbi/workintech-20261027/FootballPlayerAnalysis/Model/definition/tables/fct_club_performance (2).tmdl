@@ -1,0 +1,132 @@
+table 'fct_club_performance (2)'
+	lineageTag: f69f6c6b-8c15-42df-a2ee-43de0a9ad933
+
+	column club_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 165155eb-f12b-4b70-b3e7-80128ed1a4f7
+		summarizeBy: none
+		sourceColumn: club_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column club_name
+		dataType: string
+		lineageTag: 317c6bb2-ce41-45db-bbef-5d8633e410c6
+		summarizeBy: none
+		sourceColumn: club_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column domestic_competition_id
+		dataType: string
+		lineageTag: 66a9e930-d524-4a67-b64e-f171d162c10d
+		summarizeBy: none
+		sourceColumn: domestic_competition_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column matches_played
+		dataType: int64
+		formatString: 0
+		lineageTag: 8bef982c-0494-4e0f-bf58-c790f49230ea
+		summarizeBy: sum
+		sourceColumn: matches_played
+
+		annotation SummarizationSetBy = Automatic
+
+	column wins
+		dataType: int64
+		formatString: 0
+		lineageTag: 44a4b3d8-d9c4-45d4-a20b-9339a1eafbba
+		summarizeBy: sum
+		sourceColumn: wins
+
+		annotation SummarizationSetBy = Automatic
+
+	column draws
+		dataType: int64
+		formatString: 0
+		lineageTag: d67d09d2-d41c-4991-b847-57cc762763d3
+		summarizeBy: sum
+		sourceColumn: draws
+
+		annotation SummarizationSetBy = Automatic
+
+	column losses
+		dataType: int64
+		formatString: 0
+		lineageTag: 27cdd319-7d92-4cfe-8fcc-72498fe2df93
+		summarizeBy: sum
+		sourceColumn: losses
+
+		annotation SummarizationSetBy = Automatic
+
+	column goals_scored
+		dataType: int64
+		formatString: 0
+		lineageTag: edde60d4-fb22-40c4-ad20-8169c2f72c36
+		summarizeBy: sum
+		sourceColumn: goals_scored
+
+		annotation SummarizationSetBy = Automatic
+
+	column goals_conceded
+		dataType: int64
+		formatString: 0
+		lineageTag: 6f37898b-f095-461f-8702-9dce55a832c6
+		summarizeBy: sum
+		sourceColumn: goals_conceded
+
+		annotation SummarizationSetBy = Automatic
+
+	column goal_difference
+		dataType: int64
+		formatString: 0
+		lineageTag: 94359828-2d01-451a-a2d8-a2d9566f5d5b
+		summarizeBy: sum
+		sourceColumn: goal_difference
+
+		annotation SummarizationSetBy = Automatic
+
+	column win_rate
+		dataType: double
+		lineageTag: 1246eb88-6a2c-43ca-86b6-b4f6e227a8e6
+		summarizeBy: sum
+		sourceColumn: win_rate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_goals_scored
+		dataType: double
+		lineageTag: 78201073-9710-4a36-bf5a-f9406204a504
+		summarizeBy: sum
+		sourceColumn: avg_goals_scored
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_goals_conceded
+		dataType: double
+		lineageTag: 922e3e3b-a719-44de-b441-3507d6980d4b
+		summarizeBy: sum
+		sourceColumn: avg_goals_conceded
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'fct_club_performance (2)' = m
+		mode: import
+		source =
+				let
+				    Kaynak = GoogleBigQuery.Database([Implementation="2.0"]),
+				    #"workintech-working_Database" = Kaynak{[Name="workintech-working",Kind="Database"]}[Data],
+				    nexus_football_mart_Schema = #"workintech-working_Database"{[Name="nexus_football_mart",Kind="Schema"]}[Data],
+				    fct_club_performance_Table = nexus_football_mart_Schema{[Name="fct_club_performance",Kind="Table"]}[Data]
+				in
+				    fct_club_performance_Table
+

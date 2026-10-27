@@ -1,0 +1,180 @@
+table dim_national_teams
+	lineageTag: 47d1a8d7-e2d2-49bb-a110-0fbb1166d53e
+
+	column national_team_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 77feb901-acfe-43a5-8c15-911a564b6b36
+		summarizeBy: none
+		sourceColumn: national_team_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column national_team_name
+		dataType: string
+		lineageTag: 5ca160b5-ed3f-4123-bddb-47c11e256bea
+		summarizeBy: none
+		sourceColumn: national_team_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column team_code
+		dataType: string
+		lineageTag: d907704e-6a01-4d43-a93b-4b426dedb07e
+		summarizeBy: none
+		sourceColumn: team_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column country_id
+		dataType: int64
+		formatString: 0
+		lineageTag: d8ec61b2-efdf-4489-97c5-70fe47ec7aa5
+		summarizeBy: none
+		sourceColumn: country_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column country_name
+		dataType: string
+		lineageTag: 6e5c2f88-021b-41c6-ab21-5274e06d79d1
+		summarizeBy: none
+		sourceColumn: country_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column country_code
+		dataType: string
+		lineageTag: eae809ed-5bb6-438d-873d-535164138a37
+		summarizeBy: none
+		sourceColumn: country_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column confederation
+		dataType: string
+		lineageTag: 52004437-34de-47b9-987a-a9b8e2b0642d
+		summarizeBy: none
+		sourceColumn: confederation
+
+		annotation SummarizationSetBy = Automatic
+
+	column squad_size
+		dataType: int64
+		formatString: 0
+		lineageTag: 5746b3b7-63fb-45df-836d-385ee7289e37
+		summarizeBy: none
+		sourceColumn: squad_size
+
+		annotation SummarizationSetBy = Automatic
+
+	column average_age
+		dataType: double
+		lineageTag: cfafdd17-f58c-4ce1-a8c9-e649421345fc
+		summarizeBy: none
+		sourceColumn: average_age
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column foreigners_number
+		dataType: int64
+		formatString: 0
+		lineageTag: 3f5fb9df-b49f-48be-a732-93049b97d4e8
+		summarizeBy: none
+		sourceColumn: foreigners_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column foreigners_percentage
+		dataType: double
+		lineageTag: 1c89fdb9-c5fa-4f24-8a35-4a4582e5cc36
+		summarizeBy: none
+		sourceColumn: foreigners_percentage
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column total_market_value
+		dataType: int64
+		formatString: 0
+		lineageTag: 556ef572-8520-488c-9691-21a2c8399fd8
+		summarizeBy: none
+		sourceColumn: total_market_value
+
+		annotation SummarizationSetBy = Automatic
+
+	column coach_name
+		dataType: string
+		lineageTag: ed34fd73-5e6e-49fc-8de0-c7a7b4d26430
+		summarizeBy: none
+		sourceColumn: coach_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column fifa_ranking
+		dataType: int64
+		formatString: 0
+		lineageTag: a5413cfa-dd87-4637-b1b4-cf1c9cef3e99
+		summarizeBy: none
+		sourceColumn: fifa_ranking
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_season
+		dataType: int64
+		formatString: 0
+		lineageTag: e1d1ff2a-2c57-4673-baa0-44ddda52eb26
+		summarizeBy: none
+		sourceColumn: last_season
+
+		annotation SummarizationSetBy = Automatic
+
+	column national_team_name_display
+		dataType: string
+		lineageTag: da604ef5-7db7-47c9-a4e1-f3594a3826b8
+		summarizeBy: none
+		sourceColumn: national_team_name_display
+
+		annotation SummarizationSetBy = Automatic
+
+	column has_team_name
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: abec1535-16a8-4ad9-8b04-b8a34ece2bee
+		summarizeBy: none
+		sourceColumn: has_team_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column has_total_market_value
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: e2dc85b9-7441-435b-9803-6e3a7663bcf5
+		summarizeBy: none
+		sourceColumn: has_total_market_value
+
+		annotation SummarizationSetBy = Automatic
+
+	column has_fifa_ranking
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 09f7b226-0505-4e4b-8163-d8b4ae25990f
+		summarizeBy: none
+		sourceColumn: has_fifa_ranking
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_national_teams = m
+		mode: import
+		source =
+				let
+				    Kaynak = GoogleBigQuery.Database([Implementation="2.0"]),
+				    #"workintech-working_Database" = Kaynak{[Name="workintech-working",Kind="Database"]}[Data],
+				    nexus_football_mart_Schema = #"workintech-working_Database"{[Name="nexus_football_mart",Kind="Schema"]}[Data],
+				    dim_national_teams_Table = nexus_football_mart_Schema{[Name="dim_national_teams",Kind="Table"]}[Data]
+				in
+				    dim_national_teams_Table
+

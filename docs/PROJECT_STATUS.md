@@ -1,6 +1,9 @@
 # NEXUS Football Intelligence — current verification status
 
-**As of 20 October 2026.** Scope: research-grade football analytics, dbt, historical market-value modeling and existing Power BI; **no productization**. This is the **single current acceptance decision**. Earlier dated documents are historical source evidence, not independent current release approvals.
+**CURRENT EXECUTION ADDENDUM — 27 October 2026:** [27 October verified Workintech release record](WORKINTECH_STATUS_AND_VISUAL_RELEASE_20261027.md). Workintech BigQuery layers **46/46**, dbt quality **243/243**, seven governed ML outputs and 31/31 physical Power BI source contracts passed in the owner-executed recovery. The new 13 Desktop images render real imported data. **Pending:** fee-premium M%/tooltip format defects, selected-player drillthrough, 34 additional imported table dependencies, BigQuery-to-screen KPI comparison, owner acceptance and hosted CI. **The historical 20 October REVIEW PENDING decision below does not describe the completed 27 October warehouse run.**
+
+
+**HISTORICAL STATUS — 20 October 2026 (superseded by the 27 October addendum above).** Scope was research-grade football analytics, dbt, historical market-value modeling and Power BI. This original decision is preserved for traceability, not a new 27 October release verdict.
 
 **Final documentation/layout candidate (19 October 2026):** After consolidating the active documentation index, status, CI and ML-methodology language, three new repository-hygiene tests were added. The isolated Windows checkout at `fcb66f72e27dfdd2178e41a31b67749e6f26005b` passed **246/246 Python tests** (including all three new structure checks), and its exact-SHA **nine-stage offline runner reported PASS**. The structure audit found **no tracked temporary artifacts, generated caches, or exact duplicate active Markdown documents**. Original historical Power BI audit records were retained. These are source/structure checks, not authenticated BigQuery table execution.
 

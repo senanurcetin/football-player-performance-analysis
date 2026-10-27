@@ -1,0 +1,100 @@
+table dim_competitions
+	lineageTag: 16344326-7188-4a7f-af11-8fdc59c50fa8
+
+	column competition_id
+		dataType: string
+		lineageTag: 042d978a-75da-4aaf-b5be-f794e87cc045
+		summarizeBy: none
+		sourceColumn: competition_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column competition_code
+		dataType: string
+		lineageTag: 53cfb1cd-c542-41d6-ae4b-da21adf1a1d5
+		summarizeBy: none
+		sourceColumn: competition_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column competition_name
+		dataType: string
+		lineageTag: 24faef39-58e1-410e-b244-61fbd28dffc3
+		summarizeBy: none
+		sourceColumn: competition_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column competition_sub_type
+		dataType: string
+		lineageTag: cbeb2327-142e-4930-8693-6262ba5c66e6
+		summarizeBy: none
+		sourceColumn: competition_sub_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column competition_type
+		dataType: string
+		lineageTag: 1affa1db-8180-4286-a5d4-c2500c5baefd
+		summarizeBy: none
+		sourceColumn: competition_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column country_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 353761ef-50de-4644-8234-abd296c44d0d
+		summarizeBy: sum
+		sourceColumn: country_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column country_name
+		dataType: string
+		lineageTag: f3561456-0c78-4889-9d09-6af1c7043da6
+		summarizeBy: none
+		sourceColumn: country_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column domestic_league_code
+		dataType: string
+		lineageTag: 4f152dc8-27b5-4f7a-ac4f-dbd8f0af4696
+		summarizeBy: none
+		sourceColumn: domestic_league_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column confederation
+		dataType: string
+		lineageTag: dbc2735e-fc37-40bf-9ccd-bb158f6aa458
+		summarizeBy: none
+		sourceColumn: confederation
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_clubs
+		dataType: int64
+		formatString: 0
+		lineageTag: e98700b0-3bc7-46e1-96a8-905662844474
+		summarizeBy: sum
+		sourceColumn: total_clubs
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_competitions = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database([Implementation="2.0",UseStorageApi=false,BillingProject="workintech-working"]),
+				    #"workintech-working" = Source{[Name="workintech-working"]}[Data],
+				    football_mart_Schema = #"workintech-working"{[Name="nexus_football_mart",Kind="Schema"]}[Data],
+				    dim_competitions_Table = football_mart_Schema{[Name="dim_competitions",Kind="Table"]}[Data]
+				in
+				    dim_competitions_Table
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
