@@ -76,7 +76,11 @@ class FullDedupStaticQA(unittest.TestCase):
                 continue
             q=after/p.name
             self.assertTrue(q.exists(),p.name)
-            self.assertEqual(p.read_bytes(),q.read_bytes(),p.name)
+            # Git may change CRLF to LF on checkout; prove TMDL source
+            # equivalence without mistaking newline normalization for a
+            # DAX formula or BigQuery source change.
+            normalize=lambda f:f.read_text("utf8").replace("\r\n","\n").rstrip("\n")
+            self.assertEqual(normalize(p),normalize(q),p.name)
         self.assertFalse(self.audit["existing_dax_measure_definitions_changed"])
 
     def test_release_hold_and_no_screenshot_requirement(self):

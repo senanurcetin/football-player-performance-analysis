@@ -18,6 +18,29 @@ def files(root):
 def same(a,b):
     return hashlib.sha256(a.read_bytes()).digest()==hashlib.sha256(b.read_bytes()).digest()
 
+def equivalent_git_checkout_content(a,b):
+    """Git may normalize UTF-8/TMDL line endings and JSON trailing newlines.
+
+    Desktop staging/production equality is still checked *byte-for-byte*
+    separately by test_active_is_identical_to_tested_QA.
+    """
+    if same(a,b):
+        return True
+    raw_a,raw_b=a.read_bytes(),b.read_bytes()
+    try:
+        x=raw_a.decode("utf8").replace("\r\n","\n").rstrip("\n")
+        y=raw_b.decode("utf8").replace("\r\n","\n").rstrip("\n")
+    except UnicodeDecodeError:
+        return False
+    if x==y:
+        return True
+    if a.suffix.lower()==".json" and b.suffix.lower()==".json":
+        try:
+            return json.loads(x)==json.loads(y)
+        except json.JSONDecodeError:
+            return False
+    return False
+
 class OwnerAcceptedPBIPProductionSource(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -51,7 +74,7 @@ class OwnerAcceptedPBIPProductionSource(unittest.TestCase):
         v=files(VERSION)
         self.assertEqual(a.keys(),v.keys())
         for name,path in v.items():
-            self.assertTrue(same(path,a[name]),name)
+            self.assertTrue(equivalent_git_checkout_content(path,a[name]),name)
 
     def test_cache_is_not_stale_and_screen_capture_not_requested(self):
         self.assertFalse((ACTIVE/"Model/.pbi").exists())
