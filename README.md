@@ -1,5 +1,8 @@
 # NEXUS Football Intelligence
 
+**28 October QA STATUS:** [Full isolated Power BI deduplication and 243-field visual-binding integrity](docs/WORKINTECH_FULL_DEDUP_QA_20261028.md) passed the offline source/model QA suite. The active Desktop report remains untouched, and runtime semantic equivalence is **not yet demonstrated**; this work required no new screenshots.
+
+
 **28 October 2026 — FULL DEDUP QA:** [Complete isolated 31-table consolidation and 87-relation static verification](docs/WORKINTECH_FULL_DEDUP_QA_20261028.md). The sandbox now retains 34 unique BigQuery physical imports, 13 pages and 308 visuals, with six passing QA tests. The active Desktop PBIP is unchanged; a verified Power BI Desktop model load/semantic-query acceptance is still required.
 
 

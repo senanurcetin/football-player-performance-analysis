@@ -1,5 +1,8 @@
 # NEXUS Football Intelligence — current verification status
 
+**VISUAL BINDING ACCEPTANCE UPDATE — 28 October:** [Isolated full Workintech model QA](WORKINTECH_FULL_DEDUP_QA_20261028.md) now includes a 243-reference / 101-distinct-field PBIR validation pass (0 missing), plus three regression tests. A Desktop/TOM runtime query check remains a blocker for replacing the owner's active report. No screenshots from the user were requested.
+
+
 **MODEL SIMPLIFICATION UPDATE — 28 October:** [Full isolated Power BI deduplication report](WORKINTECH_FULL_DEDUP_QA_20261028.md). All 31 duplicate physical import definitions were removed only from QA; 40 exclusive date hierarchies were cleaned up and nine novel business relationships preserved. All existing report pages and DAX source definitions were retained. Production still on hold without runtime validation; no new screenshots required.
 
 

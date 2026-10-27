@@ -1,5 +1,8 @@
 # NEXUS Football — full duplicate-import consolidation in isolated QA
 
+**ADDITIONAL AUTOMATED VISUAL-BINDING GATE (28 October):** The complete isolated 34-source model was audited against all 308 unchanged PBIR visual JSON files. All **243 explicit Column/Measure references** (101 distinct bindings) resolve to existing model tables and fields. The remaining business filter graph has 28 participating business tables. Three further visual-binding regression tests passed. A local Tabular/TOM engine could not be used for independent runtime parsing/refresh, so **DAX filter-context equivalence is not certified**. New screenshots were neither captured nor requested. Evidence JSON: C:\ProgramData\SentinelX\workspace\football-recovery-20261027\powerbi-full-dedup-qa-20261028\qa_field_and_filter_path_report.json. Re-run with python scripts/check_workintech_qa_visual_bindings.py.
+
+
 **Evidence date:** 28 October 2026. **Status:** **STATIC QA PASSED; Desktop/TOM runtime acceptance not verified.** The owner's active Desktop report and the versioned repository PBIP were **not modified**.
 
 ## Executed engineering change
