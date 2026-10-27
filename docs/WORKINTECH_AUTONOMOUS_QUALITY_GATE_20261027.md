@@ -1,5 +1,8 @@
 # NEXUS Football — Autonomous Offline Quality Gate (27 October 2026)
 
+**AFTER OWNER ACCEPTANCE (28 October):** The owner-confirmed 34-source Power BI QA model has been reversibly promoted as the active Desktop source. See [promotion record](WORKINTECH_PRODUCTION_PROMOTION_20261028.md). The earlier RELEASE_HOLD gate describes the former 65-source semantic model and remaining *commercial data/Service* assurance tasks; do not present it as proof that the owner-accepted Desktop cutover failed.
+
+
 **QA CANDIDATE UPDATE — 28 October:** [Complete isolated import-consolidation report](WORKINTECH_FULL_DEDUP_QA_20261028.md). A separate 34-physical-import / 87-relation QA model passes static tests. This does **not** supersede RELEASE_HOLD on the owner-edited 65-import production report because engine-load and filter-context acceptance have not occurred.
 
 

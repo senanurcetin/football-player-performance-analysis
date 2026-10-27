@@ -1,5 +1,8 @@
 # NEXUS Football Intelligence — documentation map
 
+**CURRENT DESKTOP SOURCE RELEASE — 28 October:** [Owner-accepted 34-source PBIP deployment and full rollback evidence](WORKINTECH_PRODUCTION_PROMOTION_20261028.md). Earlier 65-source model descriptions are historical, and the model was only promoted after the owner reported successful QA testing. Additional commercial cloud monitoring and ML quality gates remain independent.
+
+
 **FULL WORKINTECH MODEL TEST COPY (28 October):** [34-source isolated PBIP, nine preserved business relations and 87 fully typed relation endpoints](WORKINTECH_FULL_DEDUP_QA_20261028.md). Static model and screenshot-hash tests passed. Do not confuse these with live Desktop/TOM model-engine acceptance.
 
 

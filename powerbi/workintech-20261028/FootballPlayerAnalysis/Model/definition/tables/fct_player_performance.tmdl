@@ -1,0 +1,233 @@
+table fct_player_performance
+	lineageTag: ed76a0fd-562c-40a7-9d63-82e5777f7d62
+
+	measure 'Total Goals' = SUM(fct_player_performance[total_goals])
+		formatString: 0
+		lineageTag: cffc1c43-15b1-4f5b-b067-fdc7afb3fe0d
+
+	measure 'Total Assists' = SUM(fct_player_performance[total_assists])
+		formatString: 0
+		lineageTag: d182585b-e466-4920-a54b-b6718d4e2f4c
+
+	measure 'Total Minutes' = SUM(fct_player_performance[total_minutes_played])
+		formatString: 0
+		lineageTag: 40e436be-7e35-4330-8f58-b5b58861edbb
+
+	measure 'Total Players Count' = DISTINCTCOUNT(fct_player_performance[player_id])
+		formatString: 0
+		lineageTag: f9d5f9ff-ad1a-4031-aeaa-e4efc608f147
+
+	measure 'Player G+A per 90' =
+			DIVIDE(
+			    [Total Goals] + [Total Assists],
+			    [Total Minutes],
+			    BLANK()
+			) * 90
+		lineageTag: 959a3360-650e-4dba-aa68-6ff358e0231a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg G+A per 90' =
+			
+			AVERAGEX(
+			    fct_player_performance,
+			    fct_player_performance[goals_per_90] + fct_player_performance[assists_per_90]
+			)
+		lineageTag: a3a6b05c-498a-4cbd-a55b-97b81f495615
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Average Minutes' =
+			
+			AVERAGE(fct_player_performance[avg_minutes_per_match])
+		lineageTag: cfa566dd-2fc9-4f27-9a34-cd4765b5085a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column player_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 475beb7b-c701-4866-b7b0-d7b0e5820556
+		summarizeBy: none
+		sourceColumn: player_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column player_name
+		dataType: string
+		lineageTag: 0f62fc09-f587-4350-9be1-3dff9c27bfff
+		summarizeBy: none
+		sourceColumn: player_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column position
+		dataType: string
+		lineageTag: a81746a0-1319-4a95-9b67-80089c631ba6
+		summarizeBy: none
+		sourceColumn: position
+
+		annotation SummarizationSetBy = Automatic
+
+	column sub_position
+		dataType: string
+		lineageTag: b3dbdd70-1656-4b43-9f91-c4e39c8bf243
+		summarizeBy: none
+		sourceColumn: sub_position
+
+		annotation SummarizationSetBy = Automatic
+
+	column current_club_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 8bfc99e4-96e8-44af-8a70-8f3ba79aa5a2
+		summarizeBy: sum
+		sourceColumn: current_club_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column current_club_name
+		dataType: string
+		lineageTag: 4fded021-1d99-4704-942b-15456cec75a5
+		summarizeBy: none
+		sourceColumn: current_club_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column market_value_in_eur
+		dataType: int64
+		formatString: 0
+		lineageTag: 5bd6df73-5419-4d6c-8172-eae50929c240
+		summarizeBy: sum
+		sourceColumn: market_value_in_eur
+
+		annotation SummarizationSetBy = Automatic
+
+	column has_current_market_value
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 8331be78-e98e-487b-8d84-056d41e34b17
+		summarizeBy: none
+		sourceColumn: has_current_market_value
+
+		annotation SummarizationSetBy = Automatic
+
+	column matches_played
+		dataType: int64
+		formatString: 0
+		lineageTag: 30ce06ff-84a0-4737-a56e-a36a17534677
+		summarizeBy: sum
+		sourceColumn: matches_played
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_goals
+		dataType: int64
+		formatString: 0
+		lineageTag: 507eaf4b-f167-41c2-83a3-4317e1346c43
+		summarizeBy: sum
+		sourceColumn: total_goals
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_assists
+		dataType: int64
+		formatString: 0
+		lineageTag: cb661edf-8519-487b-baec-2bfe3674066f
+		summarizeBy: sum
+		sourceColumn: total_assists
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_minutes_played
+		dataType: int64
+		formatString: 0
+		lineageTag: dea1f443-6761-47e9-a4c0-2ccd81392c4d
+		summarizeBy: sum
+		sourceColumn: total_minutes_played
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_yellow_cards
+		dataType: int64
+		formatString: 0
+		lineageTag: 1c808aff-1925-45af-a23a-ed587e99cf45
+		summarizeBy: sum
+		sourceColumn: total_yellow_cards
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_red_cards
+		dataType: int64
+		formatString: 0
+		lineageTag: 30b075ba-fb3c-4d05-8ce8-739e14d6a0c3
+		summarizeBy: sum
+		sourceColumn: total_red_cards
+
+		annotation SummarizationSetBy = Automatic
+
+	column avg_minutes_per_match
+		dataType: double
+		lineageTag: 9e437329-ae97-4744-bf91-817ce83b4f85
+		summarizeBy: sum
+		sourceColumn: avg_minutes_per_match
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column goals_per_match
+		dataType: double
+		lineageTag: 881291a4-238f-448f-80c8-8a01d74114d0
+		summarizeBy: sum
+		sourceColumn: goals_per_match
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column assists_per_match
+		dataType: double
+		lineageTag: d2f2fbe1-eb1d-4b34-b02e-2c367fd1485b
+		summarizeBy: sum
+		sourceColumn: assists_per_match
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column goals_per_90
+		dataType: double
+		lineageTag: af30d5b7-b360-4b82-9b2b-7222df1aa0cd
+		summarizeBy: sum
+		sourceColumn: goals_per_90
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column assists_per_90
+		dataType: double
+		lineageTag: c8dc797f-f8c7-4f8e-b6e3-90df201d8e38
+		summarizeBy: sum
+		sourceColumn: assists_per_90
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition fct_player_performance = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database([Implementation="2.0",UseStorageApi=false,BillingProject="workintech-working"]),
+				    #"workintech-working" = Source{[Name="workintech-working"]}[Data],
+				    football_mart_Schema = #"workintech-working"{[Name="nexus_football_mart",Kind="Schema"]}[Data],
+				    fct_player_performance_Table = football_mart_Schema{[Name="fct_player_performance",Kind="Table"]}[Data]
+				in
+				    fct_player_performance_Table
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

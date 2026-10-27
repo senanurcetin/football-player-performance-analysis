@@ -1,0 +1,202 @@
+table dim_clubs
+	lineageTag: d195a9d7-8c0a-4f21-9f33-00385be9a5da
+
+	column club_id
+		dataType: int64
+		formatString: 0
+		lineageTag: bded1acb-3d51-4d74-928e-e0bc5380fa63
+		summarizeBy: none
+		sourceColumn: club_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column club_code
+		dataType: string
+		lineageTag: 263ed03d-acaf-49f8-9d68-33477089de96
+		summarizeBy: none
+		sourceColumn: club_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column club_name
+		dataType: string
+		lineageTag: 98f46300-f376-44b2-88b3-95d08fc0274c
+		summarizeBy: none
+		sourceColumn: club_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column domestic_competition_id
+		dataType: string
+		lineageTag: 375eb061-8e8e-402b-9861-85c4089da2c6
+		summarizeBy: none
+		sourceColumn: domestic_competition_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_market_value
+		dataType: double
+		lineageTag: 6f758b53-ec57-48ba-af35-d6862f453521
+		summarizeBy: sum
+		sourceColumn: total_market_value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column squad_size
+		dataType: int64
+		formatString: 0
+		lineageTag: 7656a88c-c726-43b2-83d1-cd4615a78b3f
+		summarizeBy: sum
+		sourceColumn: squad_size
+
+		annotation SummarizationSetBy = Automatic
+
+	column average_age
+		dataType: double
+		lineageTag: 2235b2f9-b185-4b06-a0ab-b7fcdcfb7d46
+		summarizeBy: sum
+		sourceColumn: average_age
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column foreigners_number
+		dataType: int64
+		formatString: 0
+		lineageTag: 25ca5f38-e847-41a9-929e-84ac46132c75
+		summarizeBy: sum
+		sourceColumn: foreigners_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column foreigners_percentage
+		dataType: double
+		lineageTag: 2292bd87-791f-4511-a8a0-dfa2313c61c6
+		summarizeBy: sum
+		sourceColumn: foreigners_percentage
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column national_team_players
+		dataType: int64
+		formatString: 0
+		lineageTag: f3b5c35e-2dfb-4e6a-924e-0e3908f48273
+		summarizeBy: sum
+		sourceColumn: national_team_players
+
+		annotation SummarizationSetBy = Automatic
+
+	column stadium_name
+		dataType: string
+		lineageTag: 29dc2940-67fc-4a37-bbdd-ca16054cedb8
+		summarizeBy: none
+		sourceColumn: stadium_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column stadium_seats
+		dataType: int64
+		formatString: 0
+		lineageTag: 1fe1a5a5-4f62-4c5e-9c24-4267ca1c9293
+		summarizeBy: sum
+		sourceColumn: stadium_seats
+
+		annotation SummarizationSetBy = Automatic
+
+	column net_transfer_record
+		dataType: string
+		lineageTag: 610622e3-7a15-41e1-8121-49b79523c6cd
+		summarizeBy: none
+		sourceColumn: net_transfer_record
+
+		annotation SummarizationSetBy = Automatic
+
+	column coach_name
+		dataType: string
+		lineageTag: df314dfb-5744-4914-90ff-ab31b026c2ba
+		summarizeBy: none
+		sourceColumn: coach_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_season
+		dataType: int64
+		formatString: 0
+		lineageTag: fa85a960-7780-4c77-a593-2e95217c09b3
+		summarizeBy: sum
+		sourceColumn: last_season
+
+		annotation SummarizationSetBy = Automatic
+
+	column club_record_type
+		dataType: string
+		lineageTag: e04dae6b-ac2c-437e-b6ee-455597063aa5
+		summarizeBy: none
+		sourceColumn: club_record_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column club_profile_completeness_pct
+		dataType: double
+		lineageTag: a5547b53-2dcc-4769-a34f-39240f68d73a
+		summarizeBy: sum
+		sourceColumn: club_profile_completeness_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column club_name_display
+		dataType: string
+		lineageTag: 5c7f9869-b968-4e7e-b60b-578f11eae286
+		summarizeBy: none
+		sourceColumn: club_name_display
+
+		annotation SummarizationSetBy = Automatic
+
+	column has_club_name
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: e1caf3cd-857e-46be-bfea-727d1346b09b
+		summarizeBy: none
+		sourceColumn: has_club_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column has_current_profile
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: fa4a8ad5-d7fd-4091-9ac6-002846c5627b
+		summarizeBy: none
+		sourceColumn: has_current_profile
+
+		annotation SummarizationSetBy = Automatic
+
+	column club_profile_completeness_status
+		dataType: string
+		lineageTag: dd6f6231-9ed5-4e34-918f-907f023f9282
+		summarizeBy: none
+		sourceColumn: club_profile_completeness_status
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_clubs = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database([Implementation="2.0",UseStorageApi=false,BillingProject="workintech-working"]),
+				    #"workintech-working" = Source{[Name="workintech-working"]}[Data],
+				    football_mart_Schema = #"workintech-working"{[Name="nexus_football_mart",Kind="Schema"]}[Data],
+				    dim_clubs_Table = football_mart_Schema{[Name="dim_clubs",Kind="Table"]}[Data]
+				in
+				    dim_clubs_Table
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

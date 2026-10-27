@@ -1,0 +1,30 @@
+table time_spine_daily
+	lineageTag: 4c0b3c01-577c-4450-af26-fb40871b7a41
+
+	column date_day
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 6f590859-f424-4c00-90f6-5791d8e5abd1
+		summarizeBy: none
+		sourceColumn: date_day
+
+		variation Variation
+			isDefault
+			relationship: bf4c05f7-b8e7-4f10-bfcc-203eb018de5d
+			defaultHierarchy: LocalDateTable_2052972a-65cc-4057-97e7-e13e4c9bf374.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition time_spine_daily = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database([Implementation="2.0",UseStorageApi=false,BillingProject="workintech-working"]),
+				    #"workintech-working" = Source{[Name="workintech-working"]}[Data],
+				    football_mart_Schema = #"workintech-working"{[Name="nexus_football_mart",Kind="Schema"]}[Data],
+				    time_spine_daily_Table = football_mart_Schema{[Name="time_spine_daily",Kind="Table"]}[Data]
+				in
+				    time_spine_daily_Table
+

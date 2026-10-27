@@ -1,0 +1,25 @@
+[
+  {
+    "name": "NotBlank_fct_transfer_market_valu_fee_status",
+    "expression": {
+      "Not": {
+        "Expression": {
+          "IsEmpty": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "fct_transfer_market_value_analysis"
+                  }
+                },
+                "Property": "fee_status"
+              }
+            }
+          }
+        }
+      }
+    },
+    "type": "Advanced",
+    "howCreated": 0
+  }
+]

@@ -1,0 +1,204 @@
+table dim_players
+	lineageTag: 33efd582-f801-4aba-bd7b-540e8194a148
+
+	measure 'Total Players' = DISTINCTCOUNT(dim_players[player_id])
+		formatString: 0
+		lineageTag: 4fbd50bf-b00e-4d87-b0f7-3a84cf58b4eb
+
+	column player_id
+		dataType: int64
+		formatString: 0
+		lineageTag: afd83001-cb63-4909-b93d-860fa3fdf2fb
+		summarizeBy: none
+		sourceColumn: player_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column player_name
+		dataType: string
+		lineageTag: 3defdb66-7607-41c1-8d64-3f75bbaf1c06
+		summarizeBy: none
+		sourceColumn: player_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column position
+		dataType: string
+		lineageTag: 8f051057-62c9-40c9-81b2-b4cab5c2ef40
+		summarizeBy: none
+		sourceColumn: position
+
+		annotation SummarizationSetBy = Automatic
+
+	column sub_position
+		dataType: string
+		lineageTag: 298f48fc-515d-4653-bead-b54f958c26db
+		summarizeBy: none
+		sourceColumn: sub_position
+
+		annotation SummarizationSetBy = Automatic
+
+	column birth_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 3d5959f1-8a55-4d27-8497-6412a340611b
+		summarizeBy: none
+		sourceColumn: birth_date
+
+		variation Variation
+			isDefault
+			relationship: c7b2052c-d1d6-4efa-a8f3-749a4155939b
+			defaultHierarchy: LocalDateTable_f7e5ed87-c2d7-4b84-9d17-659cbdb1695e.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column country_of_birth
+		dataType: string
+		lineageTag: 33e59696-ef49-4c0a-9645-8439cd5ec4ba
+		summarizeBy: none
+		sourceColumn: country_of_birth
+
+		annotation SummarizationSetBy = Automatic
+
+	column country_of_citizenship
+		dataType: string
+		lineageTag: b59f9c7e-c4f9-453f-a8c3-6aea251078e0
+		summarizeBy: none
+		sourceColumn: country_of_citizenship
+
+		annotation SummarizationSetBy = Automatic
+
+	column height_in_cm
+		dataType: int64
+		formatString: 0
+		lineageTag: ef9950ce-6916-42cb-81f1-6efc3c57f106
+		summarizeBy: sum
+		sourceColumn: height_in_cm
+
+		annotation SummarizationSetBy = Automatic
+
+	column preferred_foot
+		dataType: string
+		lineageTag: 27e6aa1c-6d2b-41a2-b16a-6adf44edf3d2
+		summarizeBy: none
+		sourceColumn: preferred_foot
+
+		annotation SummarizationSetBy = Automatic
+
+	column agent_name
+		dataType: string
+		lineageTag: 94806698-1d46-4bce-b118-733de41f4460
+		summarizeBy: none
+		sourceColumn: agent_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column current_club_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 14246b86-20ec-46da-8286-5198c7da494e
+		summarizeBy: sum
+		sourceColumn: current_club_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column current_club_name
+		dataType: string
+		lineageTag: 65d97623-2955-4886-9890-9c938e71532f
+		summarizeBy: none
+		sourceColumn: current_club_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_season
+		dataType: int64
+		formatString: 0
+		lineageTag: 43f25353-f6d3-4368-b525-809fdb0a09f6
+		summarizeBy: sum
+		sourceColumn: last_season
+
+		annotation SummarizationSetBy = Automatic
+
+	column player_record_type
+		dataType: string
+		lineageTag: 3ec00fbe-3529-4576-a36c-05bacc7a7cc3
+		summarizeBy: none
+		sourceColumn: player_record_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column player_profile_completeness_pct
+		dataType: double
+		lineageTag: ce0272eb-62cd-4f7b-874a-9dd661dc40fd
+		summarizeBy: sum
+		sourceColumn: player_profile_completeness_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column player_name_display
+		dataType: string
+		lineageTag: 302bea63-5f5c-4c1a-93e8-150ee2598449
+		summarizeBy: none
+		sourceColumn: player_name_display
+
+		annotation SummarizationSetBy = Automatic
+
+	column position_display
+		dataType: string
+		lineageTag: b2fd198d-3c9d-455d-aace-580c7739d404
+		summarizeBy: none
+		sourceColumn: position_display
+
+		annotation SummarizationSetBy = Automatic
+
+	column current_club_name_display
+		dataType: string
+		lineageTag: 495e2d30-02cf-4a80-a243-e04db5a81f7e
+		summarizeBy: none
+		sourceColumn: current_club_name_display
+
+		annotation SummarizationSetBy = Automatic
+
+	column has_current_profile
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 401006cb-2349-47c0-8b42-71b1a062a738
+		summarizeBy: none
+		sourceColumn: has_current_profile
+
+		annotation SummarizationSetBy = Automatic
+
+	column player_profile_completeness_status
+		dataType: string
+		lineageTag: 1e5bbb4f-4c81-4213-98a3-c4c0bf69118b
+		summarizeBy: none
+		sourceColumn: player_profile_completeness_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Age Group' = SWITCH(TRUE(), DATEDIFF(dim_players[birth_date], TODAY(), YEAR) < 22, "18-21", DATEDIFF(dim_players[birth_date], TODAY(), YEAR) < 26, "22-25", DATEDIFF(dim_players[birth_date], TODAY(), YEAR) < 30, "26-29", DATEDIFF(dim_players[birth_date], TODAY(), YEAR) < 34, "30-33", "34+")
+		dataType: string
+		lineageTag: 1758ec19-e70b-4b6e-9596-774be26fa5ea
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_players = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database([Implementation="2.0",UseStorageApi=false,BillingProject="workintech-working"]),
+				    #"workintech-working" = Source{[Name="workintech-working"]}[Data],
+				    football_mart_Schema = #"workintech-working"{[Name="nexus_football_mart",Kind="Schema"]}[Data],
+				    dim_players_Table = football_mart_Schema{[Name="dim_players",Kind="Table"]}[Data]
+				in
+				    dim_players_Table
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

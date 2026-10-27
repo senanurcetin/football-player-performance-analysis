@@ -1,0 +1,25 @@
+[
+  {
+    "name": "NotBlank_fct_transfer_market_valu_yon_etiketi_tr",
+    "expression": {
+      "Not": {
+        "Expression": {
+          "IsEmpty": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "fct_transfer_market_value_analysis"
+                  }
+                },
+                "Property": "yon_etiketi_tr"
+              }
+            }
+          }
+        }
+      }
+    },
+    "type": "Advanced",
+    "howCreated": 0
+  }
+]

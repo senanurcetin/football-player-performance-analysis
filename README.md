@@ -1,5 +1,8 @@
 # NEXUS Football Intelligence
 
+**LATEST OWNER-ACCEPTED PBIP (28 October 2026):** [34-source Workintech report edition](powerbi/workintech-20261028/FootballPlayerAnalysis/FootballPlayerAnalysis.pbip) has been reversibly promoted to the same Windows Desktop report path, with 13 pages, 308 visuals, 87 valid model relationships and a complete rollback. The owner reported the tested model worked. [Production promotion and limitations](docs/WORKINTECH_PRODUCTION_PROMOTION_20261028.md). This is a Desktop source release; a post-cutover runtime/Service refresh was not independently verified by the assistant.
+
+
 **28 October QA STATUS:** [Full isolated Power BI deduplication and 243-field visual-binding integrity](docs/WORKINTECH_FULL_DEDUP_QA_20261028.md) passed the offline source/model QA suite. The active Desktop report remains untouched, and runtime semantic equivalence is **not yet demonstrated**; this work required no new screenshots.
 
 

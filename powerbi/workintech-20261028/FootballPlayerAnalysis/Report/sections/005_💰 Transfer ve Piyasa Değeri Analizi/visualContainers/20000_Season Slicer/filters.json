@@ -1,0 +1,25 @@
+[
+  {
+    "name": "NotBlank_fct_transfer_market_valu_transfer_season",
+    "expression": {
+      "Not": {
+        "Expression": {
+          "IsEmpty": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "fct_transfer_market_value_analysis"
+                  }
+                },
+                "Property": "transfer_season"
+              }
+            }
+          }
+        }
+      }
+    },
+    "type": "Advanced",
+    "howCreated": 0
+  }
+]

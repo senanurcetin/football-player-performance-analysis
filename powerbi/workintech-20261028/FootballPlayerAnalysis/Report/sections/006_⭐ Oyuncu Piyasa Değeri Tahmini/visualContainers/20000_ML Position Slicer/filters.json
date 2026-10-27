@@ -1,0 +1,25 @@
+[
+  {
+    "name": "NotBlank_ml_player_market_value_c_pozisyon_tr",
+    "expression": {
+      "Not": {
+        "Expression": {
+          "IsEmpty": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "ml_player_market_value_current_predictions"
+                  }
+                },
+                "Property": "pozisyon_tr"
+              }
+            }
+          }
+        }
+      }
+    },
+    "type": "Advanced",
+    "howCreated": 0
+  }
+]

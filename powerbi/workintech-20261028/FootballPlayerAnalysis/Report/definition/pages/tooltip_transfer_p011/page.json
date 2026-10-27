@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "tooltip_transfer_p011",
+  "displayName": "Tooltip Transfer",
+  "displayOption": "ActualSize",
+  "objects": {
+    "background": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#091E33'"
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "width": 560,
+  "height": 320,
+  "visibility": "HiddenInViewMode",
+  "pageBinding": {
+    "name": "a1100000000000000012",
+    "type": "Tooltip",
+    "parameters": []
+  }
+}

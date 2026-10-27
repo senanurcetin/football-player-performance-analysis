@@ -1,0 +1,54 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "be100000000000000006",
+  "position": {
+    "x": 853,
+    "y": 474,
+    "z": 60000,
+    "height": 141,
+    "width": 353,
+    "tabOrder": 60000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Seven connected perspectives on players, clubs and market decisions. Compare observed outcomes with model estimates, and check the strength of the evidence.",
+                    "textStyle": {
+                      "fontWeight": "normal",
+                      "fontSize": "13pt",
+                      "color": "#B4C9DD",
+                      "fontFamily": "Segoe UI"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

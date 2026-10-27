@@ -1,0 +1,137 @@
+table fct_club_risk_profile
+	lineageTag: a2621f71-b18d-4ed7-a19a-21376257e9e9
+
+	column club_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 7197e685-d54f-47aa-befa-3b5eb217cecf
+		summarizeBy: none
+		sourceColumn: club_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column club_name
+		dataType: string
+		lineageTag: 37438254-008e-4724-9fa3-5bd09ae873fe
+		summarizeBy: none
+		sourceColumn: club_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_incoming_transfers
+		dataType: int64
+		formatString: 0
+		lineageTag: ce446dc6-48fd-4fa6-8bbf-753f4433b2f6
+		summarizeBy: sum
+		sourceColumn: total_incoming_transfers
+
+		annotation SummarizationSetBy = Automatic
+
+	column transfers_with_known_fee
+		dataType: int64
+		formatString: 0
+		lineageTag: 77269c2f-035e-490c-a0f5-60dff48c2c30
+		summarizeBy: sum
+		sourceColumn: transfers_with_known_fee
+
+		annotation SummarizationSetBy = Automatic
+
+	column known_fee_coverage_pct
+		dataType: double
+		lineageTag: d7b78522-6c97-43b0-b98b-48b114b16a78
+		summarizeBy: sum
+		sourceColumn: known_fee_coverage_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column observed_365d_transfers
+		dataType: int64
+		formatString: 0
+		lineageTag: 7f654839-e3d3-4689-993c-c4453995b20e
+		summarizeBy: sum
+		sourceColumn: observed_365d_transfers
+
+		annotation SummarizationSetBy = Automatic
+
+	column outcome_365d_coverage_pct
+		dataType: double
+		lineageTag: 6ae1a414-6d0f-4267-9f44-dd4dea58e6c2
+		summarizeBy: sum
+		sourceColumn: outcome_365d_coverage_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_overpay_pct
+		dataType: double
+		lineageTag: 1b0b0884-62a3-4074-90e8-2e7a97d7b72a
+		summarizeBy: sum
+		sourceColumn: avg_overpay_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column successful_transfers
+		dataType: int64
+		formatString: 0
+		lineageTag: f086f9cf-2451-4c0e-8075-a2e4bf672950
+		summarizeBy: sum
+		sourceColumn: successful_transfers
+
+		annotation SummarizationSetBy = Automatic
+
+	column unsuccessful_transfers
+		dataType: int64
+		formatString: 0
+		lineageTag: faec18f2-a8e3-49a2-b962-b7fd6acc966d
+		summarizeBy: sum
+		sourceColumn: unsuccessful_transfers
+
+		annotation SummarizationSetBy = Automatic
+
+	column transfer_success_rate_pct
+		dataType: double
+		lineageTag: 82f2b793-fd2b-49db-9005-8591ac8c84b2
+		summarizeBy: sum
+		sourceColumn: transfer_success_rate_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column meets_minimum_sample_size
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 323f66d4-8ba2-4e43-96c9-5a190fbdc4fc
+		summarizeBy: none
+		sourceColumn: meets_minimum_sample_size
+
+		annotation SummarizationSetBy = Automatic
+
+	column transfer_risk_category
+		dataType: string
+		lineageTag: e209440a-b475-4058-b7d2-58178486132a
+		summarizeBy: none
+		sourceColumn: transfer_risk_category
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fct_club_risk_profile = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database([Implementation="2.0",UseStorageApi=false,BillingProject="workintech-working"]),
+				    #"workintech-working" = Source{[Name="workintech-working"]}[Data],
+				    football_mart_Schema = #"workintech-working"{[Name="nexus_football_mart",Kind="Schema"]}[Data],
+				    fct_club_risk_profile_Table = football_mart_Schema{[Name="fct_club_risk_profile",Kind="Table"]}[Data],
+				    #"Overpay Percent As Number" = Table.TransformColumns(
+				        fct_club_risk_profile_Table,
+				        {{"avg_overpay_pct", each if _ = null then null else Number.From(_), type nullable number}}
+				    )
+				in
+				    #"Overpay Percent As Number"
+

@@ -1,5 +1,8 @@
 # NEXUS Football Intelligence — current verification status
 
+**CURRENT STATUS — 28 October 2026:** The owner reported the tested Power BI report works; the 34-source / 87-relation version was promoted to the established Desktop PBIP file path with a full 65-source/158-relation rollback. [Exact production source evidence](WORKINTECH_PRODUCTION_PROMOTION_20261028.md). Owner acceptance applies to the tested model; independent post-cutover Desktop rendering or Power BI Service scheduled refresh is not claimed.
+
+
 **VISUAL BINDING ACCEPTANCE UPDATE — 28 October:** [Isolated full Workintech model QA](WORKINTECH_FULL_DEDUP_QA_20261028.md) now includes a 243-reference / 101-distinct-field PBIR validation pass (0 missing), plus three regression tests. A Desktop/TOM runtime query check remains a blocker for replacing the owner's active report. No screenshots from the user were requested.
 
 
