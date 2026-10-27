@@ -1,5 +1,8 @@
 # NEXUS Football Intelligence — documentation map
 
+**AUTONOMOUS QUALITY GATE (27 October):** [Offline source-quality, Power BI relationship audit and screenshot-free release control](WORKINTECH_AUTONOMOUS_QUALITY_GATE_20261027.md). The new source/semantic checks preserve existing PBIP pages and archival screenshots; do not interpret historical captures as new Desktop renders.
+
+
 **CURRENT (27 OCTOBER 2026):** [27 October verified Workintech release record](WORKINTECH_STATUS_AND_VISUAL_RELEASE_20261027.md). Owner-executed 46 dbt model runs, the completed dbt test gate and 31/31 BigQuery Power BI physical contract now have runtime evidence. The 20 October repository/offline research status below is retained for historical context; see the [new 13-image Desktop gallery](assets/screenshots/README.md).
 
 

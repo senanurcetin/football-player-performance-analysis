@@ -1,5 +1,8 @@
 # NEXUS Football Intelligence
 
+**New offline release control (27 October 2026):** [Autonomous quality and semantic-model audit](docs/WORKINTECH_AUTONOMOUS_QUALITY_GATE_20261027.md). This repeatable source-quality and Power BI dependency assessment runs without requesting or generating additional screenshots. It currently marks commercial release as **HOLD**, primarily because 31 duplicate physical BI imports have model relationships and the historical raw archive contains two unmatched appearance-player links.
+
+
 **LATEST EXECUTED EDITION — 27 October 2026:** The owner rebuilt an isolated Workintech BigQuery warehouse (46 dbt models, two snapshots, 243 passing dbt tests, seven ML outputs and 31/31 verified governed Power BI sources). [Current release record](docs/WORKINTECH_STATUS_AND_VISUAL_RELEASE_20261027.md) · [Real 27 October Power BI gallery](docs/assets/screenshots/README.md) · [Current Workintech PBIP source edition](powerbi/workintech-20261027/FootballPlayerAnalysis/FootballPlayerAnalysis.pbip). The earlier repository main/default BigQuery project is a separate environment. The current Desktop PBIP also contains 34 additional imported table definitions needing review; screenshots are not final metric certification.
 
 

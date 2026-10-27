@@ -1,5 +1,8 @@
 # NEXUS Football Intelligence — current verification status
 
+**POST-RECONSTRUCTION RELEASE AUDIT (27 October):** [Autonomous Workintech quality gate](WORKINTECH_AUTONOMOUS_QUALITY_GATE_20261027.md) identified 31 duplicate imports, 3 additional data-source tables, two orphan appearance-player references and planned/future transfers requiring explicit semantics. Release remains on hold pending semantic reconciliation and end-to-end validation; no new screenshots required or requested.
+
+
 **CURRENT EXECUTION ADDENDUM — 27 October 2026:** [27 October verified Workintech release record](WORKINTECH_STATUS_AND_VISUAL_RELEASE_20261027.md). Workintech BigQuery layers **46/46**, dbt quality **243/243**, seven governed ML outputs and 31/31 physical Power BI source contracts passed in the owner-executed recovery. The new 13 Desktop images render real imported data. **Pending:** fee-premium M%/tooltip format defects, selected-player drillthrough, 34 additional imported table dependencies, BigQuery-to-screen KPI comparison, owner acceptance and hosted CI. **The historical 20 October REVIEW PENDING decision below does not describe the completed 27 October warehouse run.**
 
 
