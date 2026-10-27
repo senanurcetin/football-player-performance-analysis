@@ -9,6 +9,8 @@
 
 An end-to-end **historical football analytics** project connecting BigQuery/dbt data engineering, player and transfer analytics, time-aware market-value modeling and a 13-page editable Power BI report. The foundation is a **collaborative Workintech Data Pro team project**; subsequent work and authorship are traceable in Git history.
 
+**Project objective — advanced noncommercial data analytics:** This repository is a professional technical/research and portfolio project, **not** a commercial software product. Success is measured by the quality of its datasets, reproducible pipelines, SQL/dbt modeling, statistically sound ML evaluation, interactive BI and clear technical explanation. Power BI Service publication, paid hosting, continuous live match feeds, commercial release approvals and service-level operations are **out of scope**, not outstanding completion requirements.
+
 **Current Desktop edition — 28 October 2026:** Owner-reported successful testing of the **34-source, 87-relationship** Power BI model; it was reversibly promoted to the same local PBIP path with a complete backup. All **13 pages and 308 visuals** are preserved. Static and local regression checks passed, but a post-cutover Desktop run was not independently captured.
 
 **Workintech warehouse evidence:** 46/46 dbt models, 243/243 successful dbt tests, seven ML outputs and 31/31 governed physical Power BI source contracts in the owner-authorized recovery. Three additional unique sources lie outside the 31-table contract. The archive's latest match is **6 July 2026**; there is no claim of live October fixtures.
@@ -137,7 +139,7 @@ python scripts/verify_dashboard_screenshots.py
 python -m unittest discover -s tests
 ```
 
-**Scope:** Static tests validate source and stored screenshots; they do not certify current BigQuery data or Power BI interactions. The **18–19 October 2026 documentation audit** removed obsolete product/portfolio/CI-recovery handoffs, created [KPI contracts](docs/KPI_DICTIONARY.md), and reconciled actual CI workflow triggers in the [runbook](docs/RUNBOOK.md). Historical screenshot values were checked but the three-row 365d discrepancy and full runtime acceptance remain open. No productization or public deployment is planned. See the [runbook](docs/RUNBOOK.md) and [visual QA requirements](docs/POWER_BI_VISUAL_QA.md).
+**Verification boundary:** Static tests validate source and stored screenshots; they do not certify current BigQuery data or Power BI interactions. The **18–19 October 2026 documentation audit** removed obsolete product/portfolio/CI-recovery handoffs, created [KPI contracts](docs/KPI_DICTIONARY.md), and reconciled actual CI workflow triggers in the [runbook](docs/RUNBOOK.md). Historical screenshot values were checked but the three-row 365d discrepancy and full runtime acceptance remain open. No productization or public deployment is planned. See the [runbook](docs/RUNBOOK.md) and [visual QA requirements](docs/POWER_BI_VISUAL_QA.md).
 
 ## Repository structure
 
@@ -169,16 +171,18 @@ python -m unittest discover -s tests
 
 Diagnostic Power BI caches and temporary local scripts are excluded from source control. Registered report images under `powerbi/**/StaticResources/` remain because deleting them can break the native PBIR report.
 
-## Release acceptance status
+## Advanced analytics project status
 
 - [x] Editable NEXUS production PBIP and separate synthetic test edition retained.
 - [x] 13 genuine report-area PNG captures, including nine fully rendered presentation views.
 - [x] Nine NEXUS-framed portfolio images and a consolidated gallery.
 - [x] Real-capture provenance, hashes and automated screenshot integrity checks.
 - [x] Owner confirmed the tested 34-source Desktop report worked; its source was reversibly promoted and checked.
-- [ ] Selected-player drillthrough and post-cutover interactions independently certified (separate from owner acceptance).
-- [ ] Important KPI-to-BigQuery reconciliation, source freshness and Power BI Service refresh independently certified.
-- [ ] Commercial publication sign-off, current temporal ML evaluation and approved hosted CI, if required.
+- [x] Advanced data-engineering, historical analytics, model-development and Power BI reporting components implemented and documented.
+- [ ] Recommended analytical validation: independently reconcile priority Power BI KPI measures with BigQuery and test selected-player filter/drillthrough behavior.
+- [ ] Recommended ML research hardening: reproduce model quality on a fresh authorized chronological holdout with baseline and subgroup comparisons.
+
+**Not project requirements:** commercial certification, Power BI Service scheduled refresh, live match ingestion or hosted CI. These would belong to a separate deployment project, not to the present noncommercial analytics goal.
 
 **Quality rule:** Do not turn successful source tests or historical screenshots into unsupported claims of a current live deployment.
 

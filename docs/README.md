@@ -2,7 +2,7 @@
 
 **Current edition: 28 October 2026.** Start with [current verification status](PROJECT_STATUS.md), the [34-source owner-accepted PBIP](../powerbi/workintech-20261028/FootballPlayerAnalysis/FootballPlayerAnalysis.pbip), and [reversible local promotion evidence](WORKINTECH_PRODUCTION_PROMOTION_20261028.md).
 
-Earlier investigations remain dated technical evidence, **not conflicting current status reports**. Live cloud reporting, current football data and commercial release certification remain separate.
+**Scope:** advanced noncommercial data analytics and ML research, not a commercial product or hosted live football service. [Current status](PROJECT_STATUS.md) distinguishes delivered project components from recommended further analytical validation. Earlier investigations remain dated technical evidence, **not conflicting current status reports**.
 
 ## Canonical reference documents
 
@@ -23,7 +23,7 @@ Earlier investigations remain dated technical evidence, **not conflicting curren
 | Desktop handling | [Power BI Desktop handoff](POWER_BI_DESKTOP_HANDOFF.md) | Actual Desktop checks and permitted refresh |
 | Reproduction and operations | [Runbook](RUNBOOK.md) | Local checks, isolated Windows validation and approved data work |
 | Workintech BigQuery recovery | [Isolated recovery and Power BI source plan](WORKINTECH_MIGRATION_20261027.md) | Offline source data, safe target namespaces, open authorization gates |
-| Hosted workflow approvals | [Final CI release policy](CI_RELEASE_GATE_POLICY.md) | Nine-job CircleCI opt-in; separately confirmed model publication |
+| Optional hosted automation reference | [CI policy](CI_RELEASE_GATE_POLICY.md) | Historical opt-in CI controls; hosted production release is outside current project scope |
 | Attribution | [Project-origin attribution](../README.md) | Original team participation and limitations |
 
 ## Date-scoped research and verification evidence
@@ -50,8 +50,10 @@ football-player-performance-analysis/
 ├── analyses/ macros/ seeds/ # read-only SQL and dbt structural directories
 ├── scripts/ notebooks/    # local Python tools and optional Colab/Kaggle
 ├── powerbi/
-│   ├── workspace/          # actual editable PBIP production source
-│   └── offline-demo/       # explicitly synthetic fixture version
+│   ├── workintech-20261028/ # current owner-accepted 34-source PBIP
+│   ├── workintech-20261027/ # historical pre-dedup PBIP
+│   ├── workspace/           # older BigQuery-backed edition
+│   └── offline-demo/        # explicitly synthetic fixture version
 ├── docs/
 │   ├── assets/screenshots/ # historical screenshots and hashes
 │   └── archive/powerbi/    # 19 retained historical audit/design notes
@@ -63,5 +65,5 @@ football-player-performance-analysis/
 3. Preserve the separate Power BI real-source and offline-demo editions; never move production data to synthetic fixtures.
 4. Do not commit credentials, personal secrets, dbt `target/`, Python virtual environments or local runtime logs. Keep paid cloud work behind explicit approval.
 5. After documentation or folder edits: run `python scripts/check_docs_integrity.py`, `python scripts/check_declared_documentation.py`, `python -m unittest discover -s tests -p 'test_*.py'`, `python scripts/check_offline_ci.py`, plus relevant PBIR checks and dbt parse. The declared-doc check covers YAML (46 models / 878 columns audited on 19 October), **not physical warehouse columns**. The physical catalog verification still requires `check_documentation_coverage.py` and a warehouse-generated `target/catalog.json`. Save exact Git SHA and results.
-6. **Do not launch final hosted CI** until the authenticated BigQuery source tests and corrected real-data ML evaluation are complete; see [current gates](PROJECT_STATUS.md).
+6. The current project **does not require hosted CI, Service deployment or commercial release certification**. Do not trigger paid cloud tasks merely for documentation; any optional hosted CI remains gated behind explicit authorization. See [the current scope and suggested analytic checks](PROJECT_STATUS.md).
 
