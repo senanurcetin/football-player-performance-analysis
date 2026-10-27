@@ -1,5 +1,8 @@
 # NEXUS Football — Autonomous Offline Quality Gate (27 October 2026)
 
+**MIGRATION EVIDENCE ADDENDUM:** [Sandbox-only three-table removal and full relationship migration matrix](WORKINTECH_DEDUP_PILOT_20261027.md). Of 158 original model relationships, 80 refer to duplicate imports (29 identical, 2 cross-filter disagreements, 40 auto-date links, 9 new non-date links). The offline gate now records these counts; no production consolidation or extra screenshot is authorized.
+
+
 **Status: RELEASE HOLD for commercial production; source and structural audits executed without new screenshots.**
 
 This assessment uses the actual, owner-edited Workintech PBIP source, the versioned repository copy, and the original typed Kaggle Parquet archive. **No additional screenshot from the owner is required at any phase of this workflow, including future development acceptance.** Screenshots captured on 27 October remain historical visual evidence, not a substitute for independently verified post-fix Desktop rendering.

@@ -50,6 +50,7 @@ def image_evidence():
 
 def run(pbip:Path, archive:Path, manifest:Path):
     semantic=load("scripts/audit_workintech_semantic_model.py").assess(pbip)
+    relationships=load("scripts/plan_workintech_relationship_migration.py").plan(pbip)
     quality=load("scripts/profile_workintech_source_quality.py").build_profile(archive,manifest)
     images=image_evidence()
     findings=[]
@@ -97,8 +98,17 @@ def run(pbip:Path, archive:Path, manifest:Path):
             "nonpositive_valuation_rows":quality["valuations"]["nonpositive_values"],
         },
         "existing_images":images,
+        "relationship_migration":{
+            "status":relationships["status"],
+            "counts":relationships["counts"],
+            "filter_direction_disagreements":relationships["same_pair_different_attributes"],
+            "novel_non_date_relationships":relationships["novel_non_date_relationships"],
+            "automatic_bulk_dedup_authorized":False,
+        },
         "findings":findings,
         "next_release_gates":[
+            "Preserve the 29 exact duplicate relation pairs but resolve 2 differing ML cross-filter directions before consolidating model imports.",
+            "Preserve 40 auto-date variations and 9 novel relationships during any safe semantic migration.",
             "Consolidate 31 duplicate sources only after preserving relationships, fields, measures, and page bindings.",
             "Validate 3 additional imported tables against governed grain and refresh costs.",
             "Document and test orphan-appearance handling; never fabricate player identity.",

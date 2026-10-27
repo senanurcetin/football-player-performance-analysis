@@ -1,5 +1,8 @@
 # NEXUS Football Intelligence
 
+**SOURCE-MODEL CLEANUP PILOT (27 October):** [Isolated three-table deduplication and 158-relationship migration analysis](docs/WORKINTECH_DEDUP_PILOT_20261027.md). Three unreferenced (2) tables removed in a QA copy only; 13 pages, 308 visuals and all original relationships preserved. The active Desktop PBIP is unchanged, and no screenshots were requested.
+
+
 **New offline release control (27 October 2026):** [Autonomous quality and semantic-model audit](docs/WORKINTECH_AUTONOMOUS_QUALITY_GATE_20261027.md). This repeatable source-quality and Power BI dependency assessment runs without requesting or generating additional screenshots. It currently marks commercial release as **HOLD**, primarily because 31 duplicate physical BI imports have model relationships and the historical raw archive contains two unmatched appearance-player links.
 
 

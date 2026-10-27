@@ -1,5 +1,8 @@
 # NEXUS Football Intelligence — current verification status
 
+**CURRENT DEDUP PILOT STATUS:** [27 October isolated PBIP safe-reduction test](WORKINTECH_DEDUP_PILOT_20261027.md): three redundant sources removed only in an isolated sandbox with 13 pages / 308 visuals and identical original relationships; 29 exact duplicate relationship pairs, two filter-direction conflicts, 40 auto-date and nine novel relations remain to be resolved. No change to the active Desktop report.
+
+
 **POST-RECONSTRUCTION RELEASE AUDIT (27 October):** [Autonomous Workintech quality gate](WORKINTECH_AUTONOMOUS_QUALITY_GATE_20261027.md) identified 31 duplicate imports, 3 additional data-source tables, two orphan appearance-player references and planned/future transfers requiring explicit semantics. Release remains on hold pending semantic reconciliation and end-to-end validation; no new screenshots required or requested.
 
 

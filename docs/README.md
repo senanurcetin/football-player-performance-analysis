@@ -1,5 +1,8 @@
 # NEXUS Football Intelligence — documentation map
 
+**WORKINTECH PBIP MIGRATION PLAN:** [Three-table sandbox pilot, duplicate physical-source relation conflicts and auto-date links](WORKINTECH_DEDUP_PILOT_20261027.md). Five offline migration tests pass; active Desktop report unchanged.
+
+
 **AUTONOMOUS QUALITY GATE (27 October):** [Offline source-quality, Power BI relationship audit and screenshot-free release control](WORKINTECH_AUTONOMOUS_QUALITY_GATE_20261027.md). The new source/semantic checks preserve existing PBIP pages and archival screenshots; do not interpret historical captures as new Desktop renders.
 
 
