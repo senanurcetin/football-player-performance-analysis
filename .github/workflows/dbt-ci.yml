@@ -1,8 +1,9 @@
 name: dbt CI
 
-# GitHub Actions minutes are exhausted: offline checks run automatically on
-# CircleCI. Manual GitHub runs require an explicit repository variable opt-in.
+# This public repo runs its small, credential-free source gate on PRs.
+# BigQuery / GCP workflows stay manual and explicitly gated.
 on:
+  pull_request:
   workflow_dispatch:
 
 permissions:
@@ -15,7 +16,8 @@ concurrency:
 jobs:
   offline-preflight:
     name: Offline dbt source verification
-    if: vars.ENABLE_GITHUB_ACTIONS_CI == 'true'
+    # Safe on every PR: no cloud credentials, database calls or deployments.
+    if: github.event_name == 'pull_request' || vars.ENABLE_GITHUB_ACTIONS_CI == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 8
     steps:
@@ -39,7 +41,7 @@ jobs:
   validate:
     # BigQuery CI is intentionally opt-in. A missing GCP secret must never
     # make the independent offline CI red on every push or PR.
-    if: vars.ENABLE_GITHUB_ACTIONS_CI == 'true' && vars.ENABLE_BIGQUERY_CI == 'true'
+    if: github.event_name == 'workflow_dispatch' && vars.ENABLE_GITHUB_ACTIONS_CI == 'true' && vars.ENABLE_BIGQUERY_CI == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 30
     env:
