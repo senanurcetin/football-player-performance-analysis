@@ -7,6 +7,10 @@ version: 2.1
 # run the local source/Power BI checks, then explicitly request the final CI gate.
 # An API/web-app trigger must set run_final_ci: true to enable this workflow.
 parameters:
+  # Cheap source/Power BI preflight: manual opt-in, no ML dependencies or GCP.
+  run_quick_ci:
+    type: boolean
+    default: false
   run_final_ci:
     type: boolean
     default: false
@@ -142,6 +146,11 @@ jobs:
           command: python scripts/probe_powerbi_fixtures.py rates
 
 workflows:
+  verify-offline-lightweight:
+    when: << pipeline.parameters.run_quick_ci >>
+    jobs:
+      - dbt-source-preflight
+
   verify-offline-source:
     when: << pipeline.parameters.run_final_ci >>
     jobs:
