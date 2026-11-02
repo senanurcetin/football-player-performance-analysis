@@ -1,5 +1,10 @@
 # NEXUS Football Intelligence
 
+> **Technical review first · 2 November 2026:** [Architecture and upstream attribution](docs/ARCHITECTURE.md) · [current status](docs/PROJECT_STATUS.md) · [data quality](docs/DATA_QUALITY.md) · [market-value evaluation](docs/ML_VALIDATION_HARDENING_20261018.md) · [Power BI screenshot provenance](docs/assets/screenshots/README.md) · [reproduction](#reproduction). Review the **collaborative Workintech foundation** separately from later extensions and owner changes.
+>
+> **Interpretation:** imported historical match data and real Power BI Desktop captures do not mean live coverage. Reported model fit must be compared with the **previous-value baseline**. A reported local Desktop cutover is not an independently verified post-cutover dashboard refresh.
+
+
 **Football Player Performance Analysis | BigQuery · dbt · Python/ML · Power BI**
 
 [![BigQuery](https://img.shields.io/badge/Warehouse-BigQuery-4285F4)](docs/ARCHITECTURE.md)
